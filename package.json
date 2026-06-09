@@ -1,0 +1,19 @@
+{
+  "name": "nexusrealtime",
+  "version": "0.1.0",
+  "description": "A realtime ECS runtime with subscribable engine surfaces.",
+  "type": "module",
+  "main": "./src/index.js",
+  "module": "./src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "files": [
+    "src",
+    "README.md"
+  ],
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  }
+}
