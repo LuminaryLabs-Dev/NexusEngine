@@ -48,14 +48,21 @@ function zoneForPosition(position, bounds) {
   return "outer ring";
 }
 
-export function createWorldPhysicsKit(options = {}) {
+export function createPhysicsKit(options = {}) {
+  const PhysicsInput = defineResource("physics-input");
+  const PhysicsState = defineResource("physics-state");
   const resources = {
-    WorldPhysicsInput: defineResource("world-physics-input"),
-    WorldPhysicsState: defineResource("world-physics-state")
+    PhysicsInput,
+    PhysicsState,
+    WorldPhysicsInput: PhysicsInput,
+    WorldPhysicsState: PhysicsState
   };
 
   const events = {
     BoundaryHit: defineEvent("world-boundary-hit"),
+    GroundContactChanged: defineEvent("physics-ground-contact-changed"),
+    Impact: defineEvent("physics-impact"),
+    StabilityChanged: defineEvent("physics-stability-changed"),
     SlopeBlocked: defineEvent("world-slope-blocked"),
     SoftRespawn: defineEvent("world-soft-respawn")
   };
@@ -84,6 +91,21 @@ export function createWorldPhysicsKit(options = {}) {
     return terrainQuery?.normalAt?.(x, z) ?? { x: 0, y: 1, z: 0 };
   }
 
+  function getSurface(world, x, z) {
+    const terrainQuery = terrainQueryResource ? world.getResource(terrainQueryResource) : null;
+    return terrainQuery?.surfaceAt?.(x, z) ?? {
+      material: "default",
+      traction: 0.8,
+      slipperiness: 0.2,
+      stability: 0.75,
+      impactHardness: 0.4,
+      climbable: false,
+      slide: false,
+      fallZone: false,
+      slope: 0
+    };
+  }
+
   function softRespawn(world, player, state, reason) {
     const height = getTerrainHeight(world, respawnPoint.x, respawnPoint.z);
     player.position.x = respawnPoint.x;
@@ -101,11 +123,12 @@ export function createWorldPhysicsKit(options = {}) {
 
   function physicsSystem(world) {
     const player = playerStateResource ? world.getResource(playerStateResource) : null;
-    const state = world.getResource(resources.WorldPhysicsState);
+    const input = world.getResource(resources.PhysicsInput) ?? {};
+    const state = world.getResource(resources.PhysicsState);
     if (!player || !state) return;
 
     const delta = world.__nexusClock?.delta ?? 1 / 60;
-    const bounds = normalizeBounds(player.bounds ? { minX: -player.bounds, maxX: player.bounds, minZ: -player.bounds, maxZ: player.bounds } : fallbackBounds, fallbackBounds);
+    const bounds = normalizeBounds(player.worldBounds ?? player.bounds ?? fallbackBounds, fallbackBounds);
     const position = player.position ?? (player.position = { x: 0, y: 0, z: 0 });
 
     if (
@@ -122,9 +145,20 @@ export function createWorldPhysicsKit(options = {}) {
 
     const groundHeight = getTerrainHeight(world, position.x, position.z);
     const normal = getTerrainNormal(world, position.x, position.z);
+    const surface = getSurface(world, position.x, position.z);
     const slope = 1 - clamp(normal.y ?? 1, 0, 1);
-    const tooSteep = slope > slopeLimit && !player.isGliding;
-    const targetY = groundHeight + groundOffset + (player.isGliding ? glideHover : 0);
+    const effectiveSlopeLimit = number(input.slopeLimit, slopeLimit);
+    const effectiveGroundOffset = number(input.groundOffset, groundOffset);
+    const effectiveGlideHover = number(input.glideHover, glideHover);
+    const tooSteep = (surface.fallZone || slope > effectiveSlopeLimit) && !player.isGliding;
+    const targetY = groundHeight + effectiveGroundOffset + (player.isGliding ? effectiveGlideHover : 0);
+    const previousGrounded = state.grounded;
+    const previousStability = number(state.stability, 1);
+    const previousY = number(state.playerPosition?.y, position.y);
+    const verticalSpeed = delta > 0 ? (position.y - previousY) / delta : 0;
+    const mass = Math.max(0.01, number(input.mass, number(state.rigidBody?.mass, options.mass ?? 1)));
+    const carriedMass = Math.max(0, number(input.carriedMass, number(state.carried?.mass, options.carriedMass ?? 0)));
+    const totalMass = mass + carriedMass;
 
     if (tooSteep && state.lastSafePosition) {
       position.x += (state.lastSafePosition.x - position.x) * 0.35;
@@ -138,6 +172,27 @@ export function createWorldPhysicsKit(options = {}) {
     }
 
     position.y += (targetY - position.y) * clamp(delta * snapSpeed, 0, 1);
+    const grounded = Math.abs(position.y - targetY) < 0.18;
+    const impactForce = grounded && !previousGrounded
+      ? Math.max(0, -verticalSpeed) * totalMass * number(surface.impactHardness, 0.4)
+      : 0;
+    const stabilityLoss = clamp(
+      slope * 0.18 + number(surface.slipperiness, 0.2) * 0.08 + impactForce * 0.012,
+      0,
+      0.45
+    );
+    const stabilityRecovery = number(surface.stability, 0.75) * delta * 0.32;
+    state.stability = clamp(previousStability - stabilityLoss + stabilityRecovery, 0, 1);
+
+    if (grounded !== previousGrounded) {
+      world.emit(events.GroundContactChanged, { grounded, position: { ...position }, surface });
+    }
+    if (impactForce > number(input.impactThreshold, options.impactThreshold ?? 2.5)) {
+      world.emit(events.Impact, { force: impactForce, position: { ...position }, surface });
+    }
+    if (Math.abs(state.stability - previousStability) > 0.08) {
+      world.emit(events.StabilityChanged, { stability: state.stability, previous: previousStability, surface });
+    }
 
     if (position.y < killY) {
       world.emit(events.SoftRespawn, { reason: "fall", position: { ...position } });
@@ -146,9 +201,35 @@ export function createWorldPhysicsKit(options = {}) {
     }
 
     state.groundHeight = groundHeight;
-    state.grounded = Math.abs(position.y - targetY) < 0.18;
+    state.grounded = grounded;
+    state.contact = {
+      grounded,
+      groundHeight,
+      normal: { x: normal.x ?? 0, y: normal.y ?? 1, z: normal.z ?? 0 },
+      surface,
+      slope,
+      traction: number(surface.traction, 0.8),
+      friction: number(surface.traction, 0.8),
+      impactForce
+    };
+    state.carried = {
+      mass: carriedMass,
+      stability: state.stability,
+      constrained: Boolean(input.constrained ?? options.constrained)
+    };
+    state.rigidBody = {
+      mass,
+      damping: number(input.damping, options.damping ?? 0.08),
+      velocity: { ...(player.velocity ?? { x: 0, y: verticalSpeed, z: 0 }) }
+    };
+    state.fall = {
+      active: Boolean(surface.fallZone || position.y < killY),
+      zone: surface.fallZone?.id ?? null,
+      classification: surface.fallZone ? "fall-zone" : (position.y < killY ? "kill-y" : "none")
+    };
     state.normal = { x: normal.x ?? 0, y: normal.y ?? 1, z: normal.z ?? 0 };
     state.slope = slope;
+    state.surface = surface;
     state.zone = zoneForPosition(position, bounds);
     state.step += 1;
     state.distanceFromRespawn = distance2(position, respawnPoint);
@@ -157,20 +238,37 @@ export function createWorldPhysicsKit(options = {}) {
   }
 
   return defineRuntimeKit({
-    id: options.id ?? "world-physics-kit",
+    id: options.id ?? "physics-kit",
     resources,
     events,
-    systems: [{ phase: "simulate", name: "WorldPhysicsSystem", system: physicsSystem }],
+    systems: [{ phase: "simulate", name: "PhysicsSystem", system: physicsSystem }],
     initWorld({ world }) {
-      world.setResource(resources.WorldPhysicsInput, {
+      world.setResource(resources.PhysicsInput, {
+        carriedMass: options.carriedMass ?? 0,
+        constrained: options.constrained ?? false,
+        damping: options.damping ?? 0.08,
         glideHover,
         groundOffset,
+        impactThreshold: options.impactThreshold ?? 2.5,
         killY,
+        mass: options.mass ?? 1,
         slopeLimit
       });
-      world.setResource(resources.WorldPhysicsState, {
+      world.setResource(resources.PhysicsState, {
         blockedBySlope: false,
+        carried: { mass: options.carriedMass ?? 0, stability: 1, constrained: options.constrained ?? false },
+        contact: {
+          grounded: false,
+          groundHeight: 0,
+          impactForce: 0,
+          friction: 0.8,
+          normal: { x: 0, y: 1, z: 0 },
+          slope: 0,
+          surface: null,
+          traction: 0.8
+        },
         distanceFromRespawn: 0,
+        fall: { active: false, classification: "none", zone: null },
         groundHeight: 0,
         grounded: false,
         lastSafeGroundHeight: 0,
@@ -179,16 +277,26 @@ export function createWorldPhysicsKit(options = {}) {
         outOfBounds: false,
         playerPosition: { ...respawnPoint },
         respawns: 0,
+        rigidBody: { mass: options.mass ?? 1, damping: options.damping ?? 0.08, velocity: { x: 0, y: 0, z: 0 } },
         slope: 0,
+        stability: 1,
+        surface: null,
         step: 0,
         worldBounds: { ...fallbackBounds },
         zone: zoneForPosition(respawnPoint, fallbackBounds)
       });
     },
     metadata: {
-      domain: "movement",
+      domain: "physics",
+      contactResolution: true,
+      stability: true,
+      carryMass: true,
       reusable: true,
       terrainAware: true
     }
   });
+}
+
+export function createWorldPhysicsKit(options = {}) {
+  return createPhysicsKit({ id: options.id ?? "world-physics-kit", ...options });
 }

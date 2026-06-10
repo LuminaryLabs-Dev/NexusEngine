@@ -113,6 +113,7 @@ export {
 } from "./pathfinding-kit.js";
 
 export {
+  createPhysicsKit,
   createWorldPhysicsKit
 } from "./world-physics-kit.js";
 
@@ -169,7 +170,8 @@ export {
 } from "./ar-launcher.js";
 
 export {
-  createActionMovementKit
+  createActionMovementKit,
+  createLocomotionKit
 } from "./action-movement-kit.js";
 
 export {
@@ -190,6 +192,7 @@ export {
 } from "./companion-command-kit.js";
 
 export {
+  createCameraKit,
   createCharacterCameraKit
 } from "./character-camera-kit.js";
 
@@ -290,6 +293,197 @@ export {
   createRenderDescriptorKit,
   createRenderDescriptorSnapshot
 } from "./render-descriptor-kit.js";
+
+export {
+  ScheduleCycle,
+  ScheduleState,
+  createScheduleKit
+} from "./schedule-kit.js";
+
+export {
+  EconomyState,
+  EconomyTransactionCompleted,
+  EconomyTransactionRejected,
+  EconomyTransactionRequest,
+  createEconomyKit
+} from "./economy-kit.js";
+
+export {
+  LifecycleProgressionCompleted,
+  LifecycleProgressionStart,
+  LifecycleProgressionState,
+  createLifecycleProgressionKit
+} from "./lifecycle-progression-kit.js";
+
+export {
+  FacilityConditionChanged,
+  FacilityOperationsState,
+  FacilityOutputProduced,
+  createFacilityOperationsKit
+} from "./facility-operations-kit.js";
+
+export {
+  OccupantAbandoned,
+  OccupantFlowState,
+  OccupantNeedCreated,
+  OccupantServed,
+  OccupantSpawn,
+  createOccupantFlowKit
+} from "./occupant-flow-kit.js";
+
+export {
+  TransportRouteArrived,
+  TransportRouteCall,
+  TransportRouteState,
+  createTransportRouteKit
+} from "./transport-route-kit.js";
+
+export {
+  RequestQueueAdd,
+  RequestQueueExpired,
+  RequestQueueFulfill,
+  RequestQueueFulfilled,
+  RequestQueueState,
+  createRequestQueueKit
+} from "./request-queue-kit.js";
+
+export {
+  TelemetryState,
+  createTelemetryKit
+} from "./telemetry-kit.js";
+
+export {
+  TimingWindowAction,
+  TimingWindowResolved,
+  TimingWindowState,
+  createTimingWindowKit,
+  gradeTimingWindow
+} from "./timing-window-kit.js";
+
+export {
+  ResourcePressureAdjust,
+  ResourcePressureChanged,
+  ResourcePressureDepleted,
+  ResourcePressureState,
+  createResourcePressureKit,
+  pressureValue
+} from "./resource-pressure-kit.js";
+
+export {
+  HazardFieldCollision,
+  HazardFieldSpawned,
+  HazardFieldState,
+  createHazardFieldKit,
+  queryHazardCircle
+} from "./hazard-field-kit.js";
+
+export {
+  CargoConditionChanged,
+  CargoConditionDepleted,
+  CargoDeposited,
+  CargoManifestState,
+  CargoPickedUp,
+  CargoQuotaCompleted,
+  createCargoManifestKit,
+  queryNearestCargo
+} from "./cargo-manifest-kit.js";
+
+export {
+  RequestFulfillmentCompleted,
+  RequestFulfillmentCreated,
+  RequestFulfillmentExpired,
+  RequestFulfillmentState,
+  createRequestFulfillmentKit,
+  queryNearestOpenRequest
+} from "./request-fulfillment-kit.js";
+
+export {
+  PursuitPressureCaught,
+  PursuitPressureChanged,
+  PursuitPressureRecovered,
+  PursuitPressureState,
+  createPursuitPressureKit,
+  pursuitBand
+} from "./pursuit-pressure-kit.js";
+
+export {
+  InputActionPressed,
+  InputIntentChanged,
+  InputIntentState,
+  createInputIntentKit
+} from "./input-intent-kit.js";
+
+export {
+  ScenarioCheckpointReached,
+  ScenarioDurationCompleted,
+  ScenarioDurationState,
+  createScenarioDurationKit
+} from "./scenario-duration-kit.js";
+
+export {
+  WaterSurfaceState,
+  createWaterSurfaceKit,
+  queryWaterSurface
+} from "./water-surface-kit.js";
+
+export {
+  VehicleDynamicsInput,
+  VehicleDynamicsState,
+  VehicleImpact,
+  createVehicleDynamicsKit
+} from "./vehicle-dynamics-kit.js";
+
+export {
+  AssistanceTargetAttached,
+  AssistanceTargetCompleted,
+  AssistanceTargetLost,
+  AssistanceTargetStabilized,
+  AssistanceTargetState,
+  createAssistanceTargetKit
+} from "./assistance-target-kit.js";
+
+export {
+  TransferZoneCompleted,
+  TransferZoneState,
+  createTransferZoneKit
+} from "./transfer-zone-kit.js";
+
+export {
+  RouteFieldState,
+  createRouteFieldKit,
+  queryNearestRouteMarker
+} from "./route-field-kit.js";
+
+export {
+  ScenarioDriverState,
+  createScenarioDriverKit
+} from "./scenario-driver-kit.js";
+
+export {
+  SpatialScaleAnchorEntered,
+  SpatialScaleBandChanged,
+  SpatialScaleState,
+  createSpatialScaleKit,
+  queryNearestScaleAnchor
+} from "./spatial-scale-kit.js";
+
+export {
+  LandmarkActivated,
+  LandmarkDiscovered,
+  LandmarkGuidanceState,
+  LandmarkReached,
+  createLandmarkGuidanceKit,
+  queryNearestLandmark
+} from "./landmark-guidance-kit.js";
+
+export {
+  AffordanceActivated,
+  AffordanceCompleted,
+  AffordanceEntered,
+  EnvironmentalAffordanceState,
+  createEnvironmentalAffordanceKit,
+  queryNearbyAffordances
+} from "./environmental-affordance-kit.js";
 
 export {
   createWebXRPlaneMode

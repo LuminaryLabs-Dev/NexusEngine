@@ -82,6 +82,16 @@ function sampleNormal(environment, x, z) {
   return { x: 0, y: 1, z: 0 };
 }
 
+function sampleSurface(environment, x, z) {
+  if (typeof environment?.surfaceAt === "function") {
+    return environment.surfaceAt(x, z) ?? null;
+  }
+  if (environment?.terrainQuery && typeof environment.terrainQuery.surfaceAt === "function") {
+    return environment.terrainQuery.surfaceAt(x, z) ?? null;
+  }
+  return null;
+}
+
 function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit") {
   const components = {
     PlayerController: defineComponent("action-player-controller"),
@@ -140,7 +150,10 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
   function movementSystem(world) {
     const input = world.getResource(resources.ActionInput) ?? world.getResource(resources.CharacterInput) ?? {};
     const player = world.getResource(resources.PlayerState) ?? world.getResource(resources.CharacterState);
-    const environment = world.getResource(resources.ActionEnvironment) ?? world.getResource(resources.CharacterEnvironment) ?? {};
+    const rawEnvironment = world.getResource(resources.ActionEnvironment) ?? world.getResource(resources.CharacterEnvironment) ?? {};
+    const terrainQuery = options.terrainQueryResource ? world.getResource(options.terrainQueryResource) : rawEnvironment.terrainQuery;
+    const physicsState = options.physicsStateResource ? world.getResource(options.physicsStateResource) : null;
+    const environment = terrainQuery ? { ...rawEnvironment, terrainQuery } : rawEnvironment;
     if (!player) return;
 
     const delta = world.__nexusClock?.delta ?? 1 / 60;
@@ -156,7 +169,11 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
     const jumpSpeed = number(player.jumpSpeed, options.jumpSpeed ?? 12);
     const dashSpeed = number(player.dashSpeed, options.dashSpeed ?? 32);
     const sprintSpeed = number(player.sprintSpeed, options.sprintSpeed ?? 18);
-    const speed = input.dash ? dashSpeed : (input.sprint ? sprintSpeed : number(player.speed, options.speed ?? 12));
+    const surface = sampleSurface(environment, player.position.x, player.position.z);
+    const physicsContact = physicsState?.contact ?? null;
+    const traction = clamp(number(physicsContact?.traction, number(surface?.traction, 1)), 0.25, 1.5);
+    const stability = clamp(number(physicsState?.stability, number(surface?.stability, 1)), 0, 1);
+    const speed = (input.dash ? dashSpeed : (input.sprint ? sprintSpeed : number(player.speed, options.speed ?? 12))) * traction;
     const moveX = number(input.x ?? input.moveX ?? 0);
     const moveZ = number(input.z ?? input.moveZ ?? 0);
     const move = normalizeVector(moveX, moveZ);
@@ -196,8 +213,12 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
       player.facing = { x: 0, z: 1 };
     }
 
-    const accel = player.grounded ? number(player.groundAcceleration, options.groundAcceleration ?? 56) : number(player.airAcceleration, options.airAcceleration ?? 20);
-    const drag = player.grounded ? number(player.groundDrag, options.groundDrag ?? 18) : number(player.airDrag, options.airDrag ?? 4);
+    const accel = player.grounded
+      ? number(player.groundAcceleration, options.groundAcceleration ?? 56) * clamp(traction, 0.45, 1.2)
+      : number(player.airAcceleration, options.airAcceleration ?? 20);
+    const drag = player.grounded
+      ? number(player.groundDrag, options.groundDrag ?? 18) * clamp(1.25 - number(surface?.slipperiness, 0.2), 0.55, 1.35)
+      : number(player.airDrag, options.airDrag ?? 4);
 
     const targetVelocityX = move.x * speed;
     const targetVelocityZ = move.z * speed;
@@ -253,7 +274,7 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
     const groundNormal = sampleNormal(environment, player.position.x, player.position.z);
     const slope = 1 - clamp(number(groundNormal.y, 1), 0, 1);
     const targetY = groundHeight + groundOffset + (player.isGliding ? glideHover : 0);
-    const tooSteep = slope > slopeLimit && !player.isGliding;
+    const tooSteep = (slope > slopeLimit || surface?.fallZone) && !player.isGliding;
 
     if (tooSteep && player.lastSafePosition) {
       player.position.x += (player.lastSafePosition.x - player.position.x) * 0.22;
@@ -307,6 +328,15 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
     player.zone = zoneForPosition(player.position, worldBounds);
     player.groundHeight = groundHeight;
     player.groundNormal = groundNormal;
+    player.surface = surface;
+    player.locomotion = {
+      profile: options.profile ?? "character",
+      traction,
+      stability,
+      slide: Boolean(surface?.slide || slope > slopeLimit * 0.92),
+      physicsLinked: Boolean(physicsState),
+      terrainLinked: Boolean(terrainQuery)
+    };
   }
 
   return defineRuntimeKit({
@@ -386,7 +416,8 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
       world.setResource(resources.CharacterState, state);
     },
     metadata: {
-      domain: "action-adventure",
+      domain: "locomotion",
+      profile: options.profile ?? "character",
       reusable: true,
       terrainAware: true,
       characterControl: true
@@ -394,10 +425,14 @@ function createMovementRuntimeKit(options = {}, kitId = "character-movement-kit"
   });
 }
 
+export function createLocomotionKit(options = {}) {
+  return createMovementRuntimeKit(options, options.id ?? "locomotion-kit");
+}
+
 export function createCharacterMovementKit(options = {}) {
-  return createMovementRuntimeKit(options, "character-movement-kit");
+  return createLocomotionKit({ id: options.id ?? "character-movement-kit", ...options, profile: options.profile ?? "character" });
 }
 
 export function createActionMovementKit(options = {}) {
-  return createMovementRuntimeKit(options, "action-movement-kit");
+  return createLocomotionKit({ id: options.id ?? "action-movement-kit", ...options, profile: options.profile ?? "character" });
 }

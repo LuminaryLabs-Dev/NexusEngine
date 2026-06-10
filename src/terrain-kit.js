@@ -144,6 +144,7 @@ function normalizeConfig(config = {}) {
     ...(preset.materialColors ?? {}),
     ...(config.materialColors ?? {})
   };
+  const surfaceDescriptors = normalizeSurfaceDescriptors(config.surfaceDescriptors ?? config.surfaces, materialColors);
   return {
     id: config.id ?? preset.id ?? config.preset ?? "terrain",
     preset: config.preset ?? null,
@@ -160,8 +161,69 @@ function normalizeConfig(config = {}) {
     smoothing,
     chunks,
     layers,
-    materialColors
+    materialColors,
+    surfaceDescriptors,
+    ledges: normalizeFeatureList(config.ledges),
+    steps: normalizeFeatureList(config.steps),
+    climbFaces: normalizeFeatureList(config.climbFaces),
+    fallZones: normalizeFeatureList(config.fallZones),
+    routeMarkers: normalizeFeatureList(config.routeMarkers ?? config.routes),
+    branchMarkers: normalizeFeatureList(config.branchMarkers),
+    cameraVolumes: normalizeFeatureList(config.cameraVolumes)
   };
+}
+
+function normalizeSurfaceDescriptors(descriptors = {}, materialColors = {}) {
+  const defaults = {
+    sand: { traction: 0.82, slipperiness: 0.18, stability: 0.78, impactHardness: 0.35, climbable: false, slide: false },
+    "wet-sand": { traction: 0.68, slipperiness: 0.34, stability: 0.62, impactHardness: 0.32, climbable: false, slide: false },
+    rock: { traction: 0.74, slipperiness: 0.2, stability: 0.88, impactHardness: 0.82, climbable: true, slide: false },
+    grass: { traction: 0.86, slipperiness: 0.12, stability: 0.8, impactHardness: 0.28, climbable: false, slide: false },
+    moss: { traction: 0.62, slipperiness: 0.38, stability: 0.58, impactHardness: 0.3, climbable: false, slide: true },
+    seabed: { traction: 0.48, slipperiness: 0.52, stability: 0.48, impactHardness: 0.22, climbable: false, slide: true },
+    corruption: { traction: 0.5, slipperiness: 0.42, stability: 0.36, impactHardness: 0.5, climbable: false, slide: true }
+  };
+  const output = {};
+  for (const name of Object.keys(materialColors)) {
+    output[name] = {
+      traction: 0.8,
+      slipperiness: 0.2,
+      stability: 0.75,
+      impactHardness: 0.4,
+      climbable: false,
+      slide: false,
+      ...(defaults[name] ?? {}),
+      ...(descriptors[name] ?? {})
+    };
+  }
+  for (const [name, value] of Object.entries(descriptors)) {
+    output[name] = {
+      traction: 0.8,
+      slipperiness: 0.2,
+      stability: 0.75,
+      impactHardness: 0.4,
+      climbable: false,
+      slide: false,
+      ...(defaults[name] ?? {}),
+      ...(value ?? {})
+    };
+  }
+  return output;
+}
+
+function normalizeFeatureList(features) {
+  return Array.isArray(features) ? features.map((feature, index) => ({
+    id: feature.id ?? `feature-${index}`,
+    type: feature.type ?? inferFeatureType(feature),
+    ...feature
+  })) : [];
+}
+
+function inferFeatureType(feature = {}) {
+  if (feature.radius !== undefined) return "circle";
+  if (feature.width !== undefined || feature.depth !== undefined) return "box";
+  if (feature.points?.length) return "path";
+  return "point";
 }
 
 function createMaterialPalette(config) {
@@ -556,6 +618,35 @@ function bilinearChunkSample(chunk, x, z) {
   return (a * (1 - fx) + b * fx) * (1 - fz) + (c * (1 - fx) + d * fx) * fz;
 }
 
+function distanceToPath(points = [], x, z) {
+  let distance = Infinity;
+  for (let index = 0; index < points.length - 1; index += 1) {
+    const a = points[index];
+    const b = points[index + 1];
+    distance = Math.min(distance, distanceToSegment(x, z, number(a.x), number(a.z ?? a.y), number(b.x), number(b.z ?? b.y)));
+  }
+  return distance;
+}
+
+function featureContains(feature, x, z) {
+  const type = feature.type ?? inferFeatureType(feature);
+  if (type === "circle") {
+    return Math.hypot(number(feature.x) - x, number(feature.z ?? feature.y) - z) <= number(feature.radius, 1);
+  }
+  if (type === "box") {
+    return Math.abs(number(feature.x) - x) <= number(feature.width, 1) * 0.5
+      && Math.abs(number(feature.z ?? feature.y) - z) <= number(feature.depth ?? feature.height, 1) * 0.5;
+  }
+  if (type === "path") {
+    return distanceToPath(feature.points, x, z) <= number(feature.width, number(feature.radius, 2));
+  }
+  return Math.hypot(number(feature.x) - x, number(feature.z ?? feature.y) - z) <= number(feature.radius, 1);
+}
+
+function firstFeature(features, x, z) {
+  return features.find((feature) => featureContains(feature, x, z)) ?? null;
+}
+
 function makeQueryApi(state) {
   function findChunk(x, z) {
     const size = number(state.config.chunks.size, 32);
@@ -594,6 +685,55 @@ function makeQueryApi(state) {
     },
     waterDepthAt(x, z) {
       return Math.max(0, number(state.config.waterLevel) - this.heightAt(x, z));
+    },
+    surfaceAt(x, z) {
+      const material = this.materialAt(x, z);
+      const descriptor = state.config.surfaceDescriptors?.[material] ?? {};
+      const fallZone = this.fallZoneAt(x, z);
+      const ledge = this.ledgeAt(x, z);
+      return {
+        material,
+        traction: number(descriptor.traction, 0.8),
+        slipperiness: number(descriptor.slipperiness, 0.2),
+        stability: number(descriptor.stability, 0.75),
+        impactHardness: number(descriptor.impactHardness, 0.4),
+        climbable: Boolean(descriptor.climbable || ledge?.climbable),
+        slide: Boolean(descriptor.slide),
+        fallZone: Boolean(fallZone),
+        ledge,
+        waterDepth: this.waterDepthAt(x, z),
+        slope: this.slopeAt(x, z)
+      };
+    },
+    tractionAt(x, z) {
+      return this.surfaceAt(x, z).traction;
+    },
+    footingAt(x, z) {
+      const surface = this.surfaceAt(x, z);
+      return {
+        material: surface.material,
+        traction: surface.traction,
+        slipperiness: surface.slipperiness,
+        stability: surface.stability,
+        slope: surface.slope,
+        slide: surface.slide || surface.slope > 0.72,
+        safe: !surface.fallZone && surface.stability > 0.25
+      };
+    },
+    ledgeAt(x, z) {
+      return firstFeature(state.config.ledges, number(x), number(z))
+        ?? firstFeature(state.config.steps, number(x), number(z))
+        ?? firstFeature(state.config.climbFaces, number(x), number(z));
+    },
+    fallZoneAt(x, z) {
+      return firstFeature(state.config.fallZones, number(x), number(z));
+    },
+    routeAt(x, z) {
+      return firstFeature(state.config.routeMarkers, number(x), number(z))
+        ?? firstFeature(state.config.branchMarkers, number(x), number(z));
+    },
+    cameraVolumeAt(x, z) {
+      return firstFeature(state.config.cameraVolumes, number(x), number(z));
     }
   };
 }
@@ -762,6 +902,47 @@ export function createTerrainQuery(world, terrainKit) {
     },
     waterDepthAt(x, z) {
       return current()?.waterDepthAt(x, z) ?? 0;
+    },
+    surfaceAt(x, z) {
+      return current()?.surfaceAt(x, z) ?? {
+        material: "sand",
+        traction: 0.8,
+        slipperiness: 0.2,
+        stability: 0.75,
+        impactHardness: 0.4,
+        climbable: false,
+        slide: false,
+        fallZone: false,
+        ledge: null,
+        waterDepth: 0,
+        slope: 0
+      };
+    },
+    tractionAt(x, z) {
+      return current()?.tractionAt(x, z) ?? this.surfaceAt(x, z).traction;
+    },
+    footingAt(x, z) {
+      return current()?.footingAt(x, z) ?? {
+        material: this.materialAt(x, z),
+        traction: this.tractionAt(x, z),
+        slipperiness: 0.2,
+        stability: 0.75,
+        slope: this.slopeAt(x, z),
+        slide: false,
+        safe: true
+      };
+    },
+    ledgeAt(x, z) {
+      return current()?.ledgeAt(x, z) ?? null;
+    },
+    fallZoneAt(x, z) {
+      return current()?.fallZoneAt(x, z) ?? null;
+    },
+    routeAt(x, z) {
+      return current()?.routeAt(x, z) ?? null;
+    },
+    cameraVolumeAt(x, z) {
+      return current()?.cameraVolumeAt(x, z) ?? null;
     }
   };
 }

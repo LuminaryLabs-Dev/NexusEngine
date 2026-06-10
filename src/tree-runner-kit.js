@@ -213,7 +213,7 @@ export function createTreeRunnerKit(options = {}) {
       });
     },
     metadata: {
-      domain: "arcade-runner",
+      domain: "route-traversal",
       reusable: true,
       composition: ["fall-start", "branch-catch", "vine-swing", "runner-fall"]
     }

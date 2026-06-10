@@ -14,13 +14,18 @@ NexusRealtime is a single ESM realtime ECS package with a small deterministic co
 - Generic gameplay kits cover greybox rooms, surface placement, objective flow, interaction targets, collectibles, sorting, symbol alignment, micro-platformers, reveal-light interactions, moving targets, lock-and-socket flows, and render descriptors.
 - `renderers` provides `headless`, `canvas2d`, and first-party `custom-webgl` adapters, including the `beach-side` scene mode for clear-water fishing games.
 - `sequences` provides deterministic linear sequence graphs with event-driven subscription control.
-- `terrain-kit` provides chunked layered terrain with additive layers, cache/version tracking, LOD snapshots, and terrain queries.
+- `terrain-kit` provides chunked layered terrain with additive layers, cache/version tracking, LOD snapshots, terrain semantics, and terrain queries.
+- `physics-kit` provides grounded contact resolution, friction, impact, stability, carry mass, constraints, and fall classification.
+- `locomotion-kit` converts input intent into character, vehicle, flying, or swimming motion by reading terrain and physics state.
+- `camera-kit` provides follow rigs, ragdoll follow, FOV response, shake, terrain volumes, and occlusion/clearance safety.
+- Operations kits provide domain-level schedule cycles, accounts/ledgers, timed lifecycle progression, facility output/condition, occupant demand, transport stops/carriers, request queues, and telemetry snapshots.
+- Spatial guidance kits provide domain-level subject scale anchors, landmark discovery/reach/completion, environmental affordance proximity, and activation progress.
 - `procedural-kit` provides deterministic game-space descriptors for rooms, corridors, walkability, biomes, spawn points, and route markers.
 - `navmesh-kit` converts walkability descriptors into 2.5D navmesh cells, portals, and 3D waypoint/link graphs.
 - `pathfinding-kit` provides a shared A* solver with grid, 2.5D navmesh, and 3D navigation adapters.
 - `realism-kit` coordinates PBR lighting, water, atmosphere, scatter, wildlife visuals, and adaptive render budgets.
 - `fishing-kit` is the first reusable game kit built on top of those engine surfaces.
-- `character` kits add reusable movement, interaction, camera, and ragdoll control for arcade games that need a full embodied player stack.
+- Embodied-control kits are domain APIs: `LocomotionKit` owns intent-to-motion, `PhysicsKit` owns contacts/stability, `CameraKit` owns final view state, and interaction/ragdoll kits remain separate reusable systems.
 
 ## Public API
 
@@ -29,9 +34,10 @@ import {
   DEFAULT_PHASES,
   createEngine,
   createFishingKit,
-  createCharacterMovementKit,
+  createLocomotionKit,
+  createPhysicsKit,
   createCharacterInteractionKit,
-  createCharacterCameraKit,
+  createCameraKit,
   createCharacterRagdollKit,
   createRealismKit,
   createRenderer,
@@ -41,6 +47,17 @@ import {
   createProceduralKit,
   createNavMeshKit,
   createPathfindingKit,
+  createScheduleKit,
+  createEconomyKit,
+  createLifecycleProgressionKit,
+  createFacilityOperationsKit,
+  createOccupantFlowKit,
+  createTransportRouteKit,
+  createRequestQueueKit,
+  createTelemetryKit,
+  createSpatialScaleKit,
+  createLandmarkGuidanceKit,
+  createEnvironmentalAffordanceKit,
   createRealtimeGame,
   realismPresets,
   terrainLayers,
@@ -271,11 +288,6 @@ const kit = createFishingKit({
   }
 });
 
-const characterStack = createCharacterMovementKit({
-  groundHeightAt: (x, z) => terrainQuery.heightAt(x, z),
-  normalAt: (x, z) => terrainQuery.normalAt(x, z)
-});
-
 const engine = createEngine({
   kits: [terrain, realism, kit],
   renderer: createRenderer("custom-webgl", { root: "#game-root", sceneMode: "beach-side" })
@@ -295,19 +307,34 @@ engine.tick(1 / 60);
 - systems: terrain heightfield sampling, cast, camera/look control, screen-to-water aim, tide/water update, cloud drift, lure drift, fish AI, hook timing, fight/tension, scoring, render sync
 - sequences: intro beach pan, cast settle, bite reaction, fight tension pulse, catch celebration, escape recovery, weather/tide event
 
-## Terrain Kit
+## Terrain, Physics, Locomotion, And Camera
+
+These kits form the generic grounded traversal stack. Product apps provide terrain layers, authored features, inputs, and render code; NexusRealtime owns the reusable domain rules.
+
+- `TerrainKit`: terrain generation, surfaces, slope, traction, ledges, steps, climb faces, routes, fall zones, camera volumes, and terrain queries.
+- `PhysicsKit`: ground contact, friction, rigid/carry mass, damping, constraints, impacts, stability, bounds, and fall classification.
+- `LocomotionKit`: intent-to-motion profiles for `character`, `vehicle`, `flying`, and `swimming`; grounded character motion is the current complete profile.
+- `CameraKit`: follow/shoulder-style rigs, ragdoll follow, terrain camera volumes, obstruction pushout, terrain clearance, FOV response, and shake.
+
+Compatibility exports remain during migration: `createWorldPhysicsKit`, `createCharacterMovementKit`, `createActionMovementKit`, `createCharacterCameraKit`, and `createCameraOcclusionKit`. New consumers should use `createPhysicsKit`, `createLocomotionKit`, and `createCameraKit`.
 
 `createTerrainKit()` installs reusable terrain for any game:
 
 - chunks: stable grid cells with cached height, normal, material, wetness, roughness, AO, detail, scatter, shoreline, version, and LOD data
 - layers: `flat`, `heightmap`, `baseNoise`, `carve`, `erosion`, `materials`, `waterInfluence`, and `details`
 - performance: dirty chunks rebuild only when their relevant layer signatures change
-- queries: `heightAt`, `normalAt`, `slopeAt`, `materialAt`, and `waterDepthAt`
+- queries: `heightAt`, `normalAt`, `slopeAt`, `materialAt`, `waterDepthAt`, `surfaceAt`, `tractionAt`, `footingAt`, `ledgeAt`, `fallZoneAt`, `routeAt`, and `cameraVolumeAt`
 - renderer snapshots: `TerrainSnapshot.visibleChunks` feeds custom WebGL chunk meshes while gameplay queries stay independent of render LOD
 
 ```js
 const terrain = createTerrainKit({
   preset: "cozy-beach",
+  surfaceDescriptors: {
+    sand: { traction: 0.78, stability: 0.82, impactHardness: 0.18 },
+    rock: { traction: 0.7, stability: 0.92, impactHardness: 0.78, climbable: true }
+  },
+  fallZones: [{ id: "cliff-drop", shape: "rect", x: 20, z: -8, width: 12, depth: 30 }],
+  cameraVolumes: [{ id: "overlook", shape: "circle", x: 0, z: 0, radius: 24, distance: 14, height: 7 }],
   layers: [
     terrainLayers.baseNoise({ seed: "level-1" }),
     terrainLayers.carve({ shape: "circle", x: 0, z: 0, depth: 2, falloff: 12 }),
@@ -315,7 +342,48 @@ const terrain = createTerrainKit({
     terrainLayers.materials({ rules: [{ material: "sand", belowSlope: 0.7 }] })
   ]
 });
+
+const locomotion = createLocomotionKit({
+  profile: "character",
+  terrainQueryResource: terrain.resources.TerrainQuery
+});
+
+const physics = createPhysicsKit({
+  playerStateResource: locomotion.resources.CharacterState,
+  terrainQueryResource: terrain.resources.TerrainQuery
+});
+
+const camera = createCameraKit({
+  characterStateResource: locomotion.resources.CharacterState,
+  terrainQueryResource: terrain.resources.TerrainQuery
+});
 ```
+
+## Operations Domain Kits
+
+These kits model reusable simulation domains for management, logistics, scheduling, service flow, and validation. They are not product-loop kits; product apps provide authored data, UI, renderers, and win/fail framing.
+
+- `ScheduleKit`: elapsed time and named cycle progress.
+- `EconomyKit`: accounts, transactions, rejection/completion events, and ledger history.
+- `LifecycleProgressionKit`: timed item construction/activation/progression events.
+- `FacilityOperationsKit`: facility capacity, output, upkeep, condition, and completion-driven facility creation.
+- `OccupantFlowKit`: spawned occupants, destination/need creation, patience, service, and abandonment.
+- `TransportRouteKit`: route stops, carriers, rider loading, travel, capacity, and arrival events.
+- `RequestQueueKit`: generic request add/fulfill/expire flow with optional economy rewards or penalties.
+- `TelemetryKit`: selector-based snapshots for validation, SimTime, and host diagnostics.
+- `WaterSurfaceKit`: water zones, currents, drag, depth, waves, and query snapshots.
+- `VehicleDynamicsKit`: generic 2D vehicle motion, boost, surface response, impact, and bounds handling.
+- `AssistanceTargetKit`: recoverable target lifecycle, urgency, attachment, completion, and loss.
+- `TransferZoneKit`: generic safe-zone/deposit-zone completion and transfer history.
+- `RouteFieldKit`: route markers, nearest-marker queries, activation, and route descriptors.
+- `ScenarioDriverKit`: deterministic validation steering helpers for SimTime and harnesses.
+- `RequestFulfillmentKit`: request destinations, deadlines, completion, expiry, and generic reward totals.
+- `PursuitPressureKit`: spatial threat distance, warning bands, recovery, and caught state.
+- `InputIntentKit`: normalized input axes/actions and validation-facing input telemetry.
+- `ScenarioDurationKit`: long-running scenario duration and checkpoint state.
+- `CargoManifestKit`: generic cargo/item availability, carried capacity, deposit/quota progress, and optional carried-item condition decay.
+
+Hosts compose these with existing objective, interaction, terrain, rendering, or procedural kits. NexusRealtime should keep the APIs generic enough for buildings, transit, factories, hospitals, settlements, queues, or other simulations without encoding a product game loop.
 
 ## Realism Kit
 
@@ -345,7 +413,7 @@ const realism = createRealismKit({
 - transparent shader water with ripple, depth tint, fresnel reflection, caustic bands, and visible fish/lure silhouettes below the surface
 - procedural sky, custom sun/hemisphere lighting, fog, contact shadows, environment lighting, and drifting layered clouds
 - batched shoreline details generated from TerrainKit masks, never one draw per grass blade or pebble
-- screen aim converted into water-space cast targets so the Arcade host only forwards input
+- screen aim converted into water-space cast targets so the consumer host only forwards input
 
 ## Behavior
 
@@ -366,6 +434,27 @@ NexusRealtime/
    ├─ ecs.js
    ├─ engine.js
    ├─ fishing-kit.js
+   ├─ economy-kit.js
+   ├─ schedule-kit.js
+   ├─ lifecycle-progression-kit.js
+   ├─ facility-operations-kit.js
+   ├─ occupant-flow-kit.js
+   ├─ transport-route-kit.js
+   ├─ request-queue-kit.js
+   ├─ telemetry-kit.js
+   ├─ water-surface-kit.js
+   ├─ vehicle-dynamics-kit.js
+   ├─ assistance-target-kit.js
+   ├─ transfer-zone-kit.js
+   ├─ route-field-kit.js
+   ├─ scenario-driver-kit.js
+   ├─ request-fulfillment-kit.js
+   ├─ pursuit-pressure-kit.js
+   ├─ input-intent-kit.js
+   ├─ scenario-duration-kit.js
+   ├─ action-movement-kit.js
+   ├─ character-camera-kit.js
+   ├─ world-physics-kit.js
    ├─ realism-kit.js
    ├─ renderers.js
    ├─ runtime-kit.js
