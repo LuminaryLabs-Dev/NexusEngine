@@ -27,6 +27,47 @@ NexusRealtime is a single ESM realtime ECS package with a small deterministic co
 - `fishing-kit` is the first reusable game kit built on top of those engine surfaces.
 - Embodied-control kits are domain APIs: `LocomotionKit` owns intent-to-motion, `PhysicsKit` owns contacts/stability, `CameraKit` owns final view state, and interaction/ragdoll kits remain separate reusable systems.
 
+## Hybrid SequenceNode Engine
+
+NexusRealtime includes an optional recursive SequenceNode orchestration runtime. It is a JavaScript object / JSON AST design surface for game-flow, scene-flow, mission-flow, interaction-flow, and kit deployment.
+
+SequenceNode does not replace the ECS tick. `engine.tick()` still drives realtime simulation, systems, surfaces, and renderer-facing state. SequenceNode progresses from driver events: direct `runtime.dispatch()` calls, engine frame events, existing surfaces, manual API calls, and timer/frame duration events. The legacy `createSequenceRuntime()` API remains available.
+
+```js
+import {
+  createEngine,
+  deploySequenceNode
+} from "nexusrealtime";
+
+const engine = createEngine();
+
+deploySequenceNode(engine, {
+  id: "simple_collect_game",
+  type: "flow",
+  completionMode: "sequence",
+  driver: "hybrid",
+  data: { coins: 0 },
+  children: [
+    {
+      id: "collect_coin",
+      type: "collect",
+      completionMode: "condition",
+      driver: "event",
+      listen: ["CoinCollected"],
+      write: {
+        "root.data.coins": "+1"
+      },
+      until: {
+        path: "root.data.coins",
+        gte: 1
+      }
+    }
+  ]
+}, { autoStart: true });
+
+engine.dispatchSequenceEvent("CoinCollected", { coinId: "coin-1" });
+```
+
 ## Public API
 
 ```js
@@ -66,6 +107,8 @@ import {
   createQuerySurface,
   createResourceSurface,
   createScheduler,
+  createSequenceNodeRuntime,
+  deploySequenceNode,
   createWorld,
   createARKit,
   createARLaunchRuntime,

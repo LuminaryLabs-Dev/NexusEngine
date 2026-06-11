@@ -9,7 +9,7 @@
     ".": "./src/index.js"
   },
   "scripts": {
-    "test": "node tests/procedural-navigation-smoke.mjs"
+    "test": "node tests/run-all.mjs"
   },
   "files": [
     "src",

@@ -72,6 +72,37 @@ export {
 } from "./sequences.js";
 
 export {
+  SequenceNodeCompletionMode,
+  SequenceNodeDriver,
+  SequenceNodeEventType,
+  SequenceNodeState,
+  applySequenceWrites,
+  createSequenceNodeEvent,
+  createSequenceNodeEventBus,
+  createSequenceNodePlan,
+  createSequenceNodeRuntime,
+  evaluateSequenceCondition,
+  flattenSequenceNode,
+  normalizeSequenceNode,
+  readSequencePath,
+  validateSequenceNode,
+  writeSequencePath
+} from "./sequence-node.js";
+
+export {
+  BuiltInSequenceNodeTypes,
+  createDefaultSequenceNodeLibrary,
+  createSequenceNodeLibrary,
+  defineSequenceNodeType
+} from "./sequence-node-library.js";
+
+export {
+  createSequenceNodeKit,
+  deploySequenceNode,
+  installSequenceNodeKits
+} from "./sequence-node-kit.js";
+
+export {
   createFishingKit
 } from "./fishing-kit.js";
 
