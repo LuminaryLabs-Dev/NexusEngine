@@ -26,3 +26,4 @@ build/
 # temporary files
 .tmp/
 .cache/
+memory.md

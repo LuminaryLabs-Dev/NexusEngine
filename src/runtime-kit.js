@@ -43,6 +43,10 @@ export function defineRuntimeKit(config = {}) {
     materials: config.materials ?? [],
     sequences: config.sequences ?? [],
     subscriptions: config.subscriptions ?? [],
+    sequenceNodes: Object.freeze([...(config.sequenceNodes ?? [])]),
+    sequenceNodeTypes: Object.freeze([...(config.sequenceNodeTypes ?? [])]),
+    sequenceNodeSubscriptions: Object.freeze([...(config.sequenceNodeSubscriptions ?? [])]),
+    sequenceNodeOptions: Object.freeze({ ...(config.sequenceNodeOptions ?? {}) }),
     requires: normalizeTokenList(config.requires, "requires", config.id ?? "runtime-kit"),
     provides: normalizeTokenList(config.provides, "provides", config.id ?? "runtime-kit"),
     bindings: Object.freeze({ ...(config.bindings ?? {}) }),
@@ -95,6 +99,20 @@ export function validateRuntimeKit(kit) {
     }
   }
 
+  for (const [field, value] of [
+    ["sequenceNodes", kit.sequenceNodes],
+    ["sequenceNodeTypes", kit.sequenceNodeTypes],
+    ["sequenceNodeSubscriptions", kit.sequenceNodeSubscriptions]
+  ]) {
+    if (value !== undefined && !Array.isArray(value)) {
+      throw new TypeError(`Runtime kit ${kit.id} has an invalid ${field} field.`);
+    }
+  }
+
+  if (kit.sequenceNodeOptions !== undefined && (!kit.sequenceNodeOptions || typeof kit.sequenceNodeOptions !== "object" || Array.isArray(kit.sequenceNodeOptions))) {
+    throw new TypeError(`Runtime kit ${kit.id} has an invalid sequenceNodeOptions field.`);
+  }
+
   return kit;
 }
 
@@ -144,6 +162,34 @@ export function installRuntimeKit(engine, kit, options = {}) {
     }
     for (const subscription of kit.subscriptions ?? []) {
       engine.sequenceRuntime.addSubscription(subscription);
+    }
+  }
+
+  if (engine.sequenceNodeRuntime) {
+    if (kit.sequenceNodeTypes?.length) {
+      engine.sequenceNodeRuntime.registerTypes(kit.sequenceNodeTypes);
+    }
+
+    if (kit.sequenceNodes?.length) {
+      engine.sequenceNodeRuntime.appendGraph(kit.sequenceNodes, kit.sequenceNodeOptions ?? {});
+    }
+
+    for (const subscription of kit.sequenceNodeSubscriptions ?? []) {
+      engine.sequenceNodeRuntime.addSubscription(subscription);
+    }
+
+    if (kit.sequenceNodeOptions?.bindFrameDriver) {
+      engine.sequenceNodeRuntime.bindFrameDriver(kit.sequenceNodeOptions);
+    }
+
+    if (kit.sequenceNodeOptions?.bindSurfaces) {
+      engine.sequenceNodeRuntime.bindEngineSurfaces(kit.sequenceNodeOptions);
+    }
+
+    if (kit.sequenceNodeOptions?.autoStart) {
+      for (const node of kit.sequenceNodes ?? []) {
+        if (node?.id) engine.sequenceNodeRuntime.start(node.id);
+      }
     }
   }
 

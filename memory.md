@@ -16,7 +16,9 @@ Device-specific AR pattern: `ar-device.js` classifies secure mobile/desktop capa
 
 Rendering preference: support `headless`, `canvas2d`, and first-party `custom-webgl` renderer types through the same renderer adapter shape. NexusRealtime should not depend on third-party rendering libraries; compatibility calls to `createRenderer("three")` should route to the custom WebGL renderer while older hosts migrate.
 
-Sequence preference: sequence definitions start as JS objects. Event definitions stay authoritative in code, subscriptions wire discovered events to sequence starts/invokes, and sequence behavior advances only during engine ticks.
+Sequence preference: legacy `src/sequences.js` remains available for deterministic linear sequence graphs. New orchestration should use `src/sequence-node.js`, `src/sequence-node-library.js`, and `src/sequence-node-kit.js`: a recursive JS object / JSON AST layer that sits above ECS, reacts to direct events, surfaces, lifecycle/frame events, timers, and manual calls, and may deploy runtime kits. SequenceNode never replaces `engine.tick()`; it receives optional frame events from the engine after ECS systems and surface publishing.
+
+SequenceNode browser demo pattern: `examples/sequence-node/storm-skiff-browser.html` is the canonical small playable loop. Keep realtime motion in `engine.tick()` plus generic runtime kits, bind surfaces into SequenceNode for objective progression, let SequenceNode emit objective/game events, and keep the browser WebGL renderer visualization-only.
 
 Fishing kit pattern: `createFishingKit()` owns fishing ECS definitions, systems, sequence reactions, and render snapshots. NexusArcade games should only pass content/config/input and should not duplicate fishing systems.
 

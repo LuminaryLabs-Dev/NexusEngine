@@ -5,6 +5,7 @@ import {
 import { installRuntimeKit } from "./runtime-kit.js";
 import { createHeadlessRenderer } from "./renderers.js";
 import { createShaderRegistry, createMaterialRegistry } from "./shaders.js";
+import { createSequenceNodeRuntime } from "./sequence-node.js";
 import { createSequenceRuntime } from "./sequences.js";
 import {
   createEventSurface,
@@ -22,6 +23,13 @@ function assertSurface(surface) {
 function number(value, fallback) {
   const next = Number(value);
   return Number.isFinite(next) ? next : fallback;
+}
+
+function array(value) {
+  if (value === undefined || value === null) {
+    return [];
+  }
+  return Array.isArray(value) ? value : [value];
 }
 
 function groupRecords(records, kind, keySelector) {
@@ -260,6 +268,25 @@ export function createEngine(options = {}) {
       engine.sequenceRuntime.tick(clock.delta);
     }
 
+    if (engine.sequenceNodeRuntime && engine.driveSequenceNodesWithTick !== false) {
+      engine.sequenceNodeRuntime.frame({
+        source: "engine",
+        payload: {
+          delta: clock.delta,
+          elapsed: clock.elapsed,
+          frame: clock.frame
+        },
+        frame: clock.frame,
+        delta: clock.delta,
+        elapsed: clock.elapsed,
+        meta: {
+          engine,
+          world,
+          clock
+        }
+      });
+    }
+
     return world;
   }
 
@@ -274,6 +301,13 @@ export function createEngine(options = {}) {
     kits: [],
     kitBindings: {},
     sequenceRuntime: options.sequenceRuntime ?? createSequenceRuntime(),
+    sequenceNodeRuntime: options.sequenceNodeRuntime ?? createSequenceNodeRuntime({
+      library: options.sequenceNodeLibrary,
+      kitRegistry: options.sequenceKitRegistry,
+      historyLimit: options.sequenceNodeHistoryLimit
+    }),
+    sequenceKitRegistry: { ...(options.sequenceKitRegistry ?? {}) },
+    driveSequenceNodesWithTick: options.driveSequenceNodesWithTick ?? true,
     registerSurface,
     unregisterSurface,
     eventSurface,
@@ -282,6 +316,24 @@ export function createEngine(options = {}) {
     lifecycleSurface,
     installKit(kit, kitOptions = options) {
       return installRuntimeKit(engine, kit, kitOptions);
+    },
+    dispatchSequenceEvent(eventOrType, payload = {}, meta = {}) {
+      return engine.sequenceNodeRuntime.dispatch(eventOrType, payload, meta);
+    },
+    startSequenceNode(id, payload = {}) {
+      return engine.sequenceNodeRuntime.start(id, payload);
+    },
+    mountSequenceNode(nodeOrNodes, mountOptions = {}) {
+      return engine.sequenceNodeRuntime.mount(nodeOrNodes, mountOptions);
+    },
+    registerSequenceNodeType(typeDefinition) {
+      return engine.sequenceNodeRuntime.registerType(typeDefinition);
+    },
+    bindSequenceNodeSurfaces(planOrOptions = {}) {
+      return engine.sequenceNodeRuntime.bindEngineSurfaces(planOrOptions);
+    },
+    bindSequenceNodeFrameDriver(frameOptions = {}) {
+      return engine.sequenceNodeRuntime.bindFrameDriver(frameOptions);
     },
     tick,
     step: tick
@@ -292,6 +344,21 @@ export function createEngine(options = {}) {
   }
 
   engine.sequenceRuntime.bind(engine);
+  engine.sequenceNodeRuntime.bind(engine);
+
+  if (options.sequenceNodes) {
+    engine.sequenceNodeRuntime.mount(options.sequenceNodes);
+  }
+
+  if (options.bindSequenceNodeSurfaces) {
+    engine.sequenceNodeRuntime.bindEngineSurfaces(options.bindSequenceNodeSurfaces);
+  }
+
+  if (options.autoStartSequenceNodes) {
+    for (const node of array(options.sequenceNodes)) {
+      if (node?.id) engine.sequenceNodeRuntime.start(node.id);
+    }
+  }
 
   for (const kit of options.kits ?? []) {
     engine.installKit(kit, options);
