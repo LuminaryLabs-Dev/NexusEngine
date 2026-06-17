@@ -10,6 +10,8 @@ Architecture preference: keep simulation systems deterministic and render-agnost
 
 Generic kit pattern: NexusRealtime must not contain product-specific copy, routes, assets, level names, or app lore. Product apps pass authored datasets into generic kits; NexusRealtime interprets room, placement, objective, interaction, collectible, sorting, platformer, reveal-light, symbol-alignment, socket-lock, and render-descriptor data.
 
+Courier/logistics domain pattern: `RequestFulfillmentKit`, `CargoManifestKit`, `PursuitPressureKit`, `InputIntentKit`, `ScenarioDurationKit`, `WaterSurfaceKit`, `VehicleDynamicsKit`, `RouteFieldKit`, `HazardFieldKit`, `ResourcePressureKit`, `ScenarioDriverKit`, and `TelemetryKit` are neutral ECS/domain kits. Apps may use them for courier, transport, rescue, or logistics games, but NexusRealtime must keep them free of arcade UI, product fiction, retained-folder contracts, and game-specific loops.
+
 AR kit pattern: `createARKit()` owns AR ECS components/resources/events and placement state, `ar-session.js` owns WebXR support/session/hit-test helpers with deterministic unsupported results, `createARRenderer()` owns browser-safe overlay/fallback rendering, and generic objective/interaction kits own reusable intro/surface/place/interact/complete/reset flow. Product apps should import these APIs as a local package now and later as a GitHub/CDN package, while keeping product copy/routes/assets outside NexusRealtime.
 
 Device-specific AR pattern: `ar-device.js` classifies secure mobile/desktop capability, `ar-launcher.js` chooses a mode from page-marker, webxr-plane, camera-overlay, and fallback-preview, and `src/ar-modes/*` owns mode startup/stop behavior. Product apps should not duplicate WebXR, camera, or mode fallback policy.
