@@ -7,10 +7,35 @@
 - latest node: none yet
 - summary: NexusRealtime ecosystem automation must compare against the latest remote release branch and include core, ProtoKits, Experiments, DSK ledgers, and public proof routes.
 - id: ecosystem-root-002
-- status: open
+- status: partially superseded
 - latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-18T20-07-25-0400-ecosystem-state-packet.md`
 - latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T20-07-25-0400-ecosystem-state-node.md`
 - summary: Core `0.0.2` is public-link reachable and test-clean locally, but DSK ecosystem proof is not review-stable until dirty behind-origin sibling repos are reconciled.
+- id: ecosystem-root-003
+- status: open
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-18T21-06-20-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T21-06-20-0400-ecosystem-state-node.md`
+- summary: Core, ProtoKits, and Experiments are clean on `0.0.2` and local DSK proofs pass; remaining ecosystem risk is public consumption clarity because npm metadata is 404 and the proof path is local-checkout based.
+- id: ecosystem-root-004
+- status: partially superseded
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-18T22-08-40-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T22-08-40-0400-ecosystem-state-node.md`
+- summary: Core, ProtoKits, and Experiments remain aligned on latest release branch `0.0.2`; required GitHub/raw/jsDelivr links pass, while npm metadata is still 404 and the DSK proof remains local-checkout based.
+- id: ecosystem-root-005
+- status: superseded-by-ecosystem-root-006
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-18T23-08-42-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T23-08-42-0400-ecosystem-state-node.md`
+- summary: Core, ProtoKits, and Experiments remain aligned on `0.0.2` with local DSK proof green; public proof readiness is blocked by browser module 404s and npm metadata is still unavailable.
+- id: ecosystem-root-006
+- status: superseded-by-ecosystem-root-007
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-19T00-11-28-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T00-11-28-0400-ecosystem-state-node.md`
+- summary: Core and sibling release alignment remain stable with local DSK proof green; public proof still stalls on missing browser module paths, Experiments aggregate checks omit the targeted DSK smoke, npm metadata is unavailable, and branch/package version policy remains unclear.
+- id: ecosystem-root-007
+- status: open
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-19T01-11-04-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T01-11-04-0400-ecosystem-state-node.md`
+- summary: Core and sibling release HEADs remain aligned and validation-green, but sibling worktree dirt has reappeared while public proof loading, aggregate DSK proof coverage, npm metadata, and branch/package version policy remain open.
 
 ## Branch Tree
 - parent: ecosystem-root-001
@@ -25,22 +50,165 @@
 - child: public-consumption-wording
 - relationship: GitHub/raw/jsDelivr available while npm registry metadata is 404
 - look further: `README.md`, `package.json`, npm registry, jsDelivr release URL
+- parent: ecosystem-root-003
+- child: public-consumption-wording
+- relationship: npm metadata remains unavailable while README examples use package-name imports
+- look further: `README.md`, `package.json`, `https://registry.npmjs.org/nexusrealtime`
+- parent: ecosystem-root-003
+- child: non-local-dsk-proof
+- relationship: local DSK proof passes but imports local sibling checkout paths
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`
+- parent: ecosystem-root-003
+- child: package-version-policy
+- relationship: latest branch is `0.0.2`, public raw package metadata reports `nexusrealtime@0.1.0`
+- look further: `package.json`, release tags/branches, public raw package metadata
+- parent: ecosystem-root-004
+- child: public-consumption-npm-gap-2026-06-18T22-08-40-0400
+- relationship: required GitHub/raw/jsDelivr links are available while npm registry metadata remains unavailable
+- look further: `README.md`, `package.json`, `https://registry.npmjs.org/nexusrealtime`
+- parent: ecosystem-root-004
+- child: dsk-proof-local-path-2026-06-18T22-08-40-0400
+- relationship: local DSK proof passes but imports local sibling checkout paths
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`
+- parent: ecosystem-root-004
+- child: branch-alignment-stable-2026-06-18T22-08-40-0400
+- relationship: core and sibling repos are clean/aligned on `0.0.2`
+- look further: core, ProtoKits, and Experiments branch/status checks before the next promotion review
+- parent: ecosystem-root-004
+- child: package-version-policy-2026-06-18T22-08-40-0400
+- relationship: release branch is `0.0.2`, public raw package metadata reports `nexusrealtime@0.1.0`
+- look further: `package.json`, release branch list, raw public `package.json`
+- parent: ecosystem-root-004
+- child: domain-expansion-inventory-2026-06-18T22-08-40-0400
+- relationship: domain/kit expansion docs provide DSK composition-audit targets but are currently untracked
+- look further: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/`
+- parent: ecosystem-root-005
+- child: public-proof-browser-failure-2026-06-18T23-08-42-0400
+- relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- parent: ecosystem-root-005
+- child: branch-alignment-stable-2026-06-18T23-08-42-0400
+- relationship: core, ProtoKits, and Experiments all have `HEAD` equal to `origin/0.0.2`
+- look further: repeat branch/status checks before promotion review
+- parent: ecosystem-root-005
+- child: local-dsk-proof-green-2026-06-18T23-08-42-0400
+- relationship: core tests plus targeted ProtoKits and Experiments DSK proof checks pass locally
+- look further: keep local proof separate from public browser proof and npm package claims
+- parent: ecosystem-root-005
+- child: public-consumption-npm-gap-2026-06-18T23-08-42-0400
+- relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
+- look further: `README.md`, `package.json`, npm publication policy
+- parent: ecosystem-root-005
+- child: governance-first-expansion-2026-06-18T23-08-42-0400
+- relationship: domain expansion should prioritize composition governance, event handoff, proof surfaces, retention, and accounting policy before broad DSK promotion claims
+- look further: `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/composition-audit-rules.md`, DSK architecture and deep bug packets
+- parent: ecosystem-root-005
+- child: package-version-policy-2026-06-18T23-08-42-0400
+- relationship: release branch is `0.0.2`, while package metadata remains `nexusrealtime@0.1.0`
+- look further: `package.json`, raw public package metadata, release branch policy
+- parent: ecosystem-root-006
+- child: public-proof-import-shape-2026-06-19T00-11-28-0400
+- relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- parent: ecosystem-root-006
+- child: aggregate-dsk-proof-validation-2026-06-19T00-11-28-0400
+- relationship: Experiments aggregate `npm run check` passes but does not list `tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- parent: ecosystem-root-006
+- child: branch-local-proof-stable-2026-06-19T00-11-28-0400
+- relationship: core, ProtoKits, and Experiments all have `HEAD` equal to `origin/0.0.2`, and targeted local DSK proof commands pass
+- look further: repeat core/sibling branch checks and targeted proof commands before promotion review
+- parent: ecosystem-root-006
+- child: public-consumption-npm-gap-2026-06-19T00-11-28-0400
+- relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
+- look further: `README.md`, `package.json`, npm publication policy
+- parent: ecosystem-root-006
+- child: package-version-policy-2026-06-19T00-11-28-0400
+- relationship: release branch is `0.0.2`, while package metadata remains `nexusrealtime@0.1.0`
+- look further: `package.json`, raw public package metadata, release branch policy
+- parent: ecosystem-root-007
+- child: sibling-worktree-dirt-2026-06-19T01-11-04-0400
+- relationship: core and sibling release HEADs align, but ProtoKits and Experiments now have local modified/untracked high-fidelity/meadow memory/docs work
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- parent: ecosystem-root-007
+- child: branch-local-proof-stable-2026-06-19T01-11-04-0400
+- relationship: core, ProtoKits, and Experiments have `HEAD` equal to `origin/0.0.2`, and local validation commands pass
+- look further: repeat branch/status checks and validation before promotion review, keeping cleanliness separate from HEAD alignment
+- parent: ecosystem-root-007
+- child: public-proof-import-shape-2026-06-19T01-11-04-0400
+- relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- parent: ecosystem-root-007
+- child: aggregate-dsk-proof-validation-2026-06-19T01-11-04-0400
+- relationship: Experiments aggregate `npm run check` passes but does not list `tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- parent: ecosystem-root-007
+- child: public-consumption-npm-gap-2026-06-19T01-11-04-0400
+- relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
+- look further: `README.md`, `package.json`, npm publication policy
+- parent: ecosystem-root-007
+- child: package-version-policy-2026-06-19T01-11-04-0400
+- relationship: release branch is `0.0.2`, while package metadata remains `nexusrealtime@0.1.0`
+- look further: `package.json`, raw public package metadata, release branch policy
+- parent: ecosystem-root-007
+- child: dsk-hardening-proof-gates-2026-06-19T01-11-04-0400
+- relationship: neighboring architecture, bug, and idea lanes keep promotion blocked on DSK hardening and domain state-machine policy, not only public module loading
+- look further: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, runtime domain kit bug packets, domain idea packets
 
 ## Open Search Branches
 - branch: dsk-ledger-proof-drift
 - owner: ecosystem_state_scout
-- priority: high
+- priority: medium
 - next files: `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`, sibling ProtoKits ledger, sibling Experiments proof route
 - branch: sibling-branch-reconciliation
 - owner: ecosystem_state_scout
-- priority: high
+- priority: low
 - next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`
 - branch: public-consumption-wording
 - owner: ecosystem_state_scout
-- priority: medium
+- priority: high
 - next files: `README.md`, `package.json`, public GitHub/raw/jsDelivr/npm endpoint results
+- branch: non-local-dsk-proof
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- branch: package-version-policy
+- owner: ecosystem_state_scout
+- priority: medium
+- next files: `package.json`, release branch list, raw public `package.json`
+- branch: public-dsk-proof
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- branch: public-proof-import-shape
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- branch: aggregate-dsk-proof-validation
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- branch: dsk-composition-audit-readiness
+- owner: ecosystem_state_scout
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/`, `src/domain-service-kit.js`
+- branch: composition-governance-readiness
+- owner: ecosystem_state_scout
+- priority: medium
+- next files: `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/composition-audit-rules.md`, `src/domain-service-kit.js`, `src/runtime-kit.js`
+- branch: sibling-worktree-dirt
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- branch: dsk-hardening-proof-gates
+- owner: ecosystem_state_scout
+- priority: medium
+- next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, `src/objective-flow-kit.js`, `src/lifecycle-progression-kit.js`, `src/transport-route-kit.js`, `src/schedule-kit.js`
 
 ## Resolved Or Superseded
-- id: none
-- reason:
-- evidence:
+- id: sibling-dirty-behind-2026-06-18T20-07-25-0400
+- reason: ProtoKits and Experiments now have clean worktrees and `HEAD` equals `origin/0.0.2`.
+- evidence: `git status --short --branch`, `git rev-parse HEAD`, and `git rev-parse origin/0.0.2` in both sibling repos during the 2026-06-18T21-06-20-0400 packet.
+- id: sibling-clean-claim-2026-06-19T00-11-28-0400
+- reason: Superseded because ProtoKits and Experiments still match `origin/0.0.2` by `HEAD`, but both now have local modified/untracked worktrees.
+- evidence: `git status --short --branch` in ProtoKits and Experiments during the 2026-06-19T01-11-04-0400 packet.

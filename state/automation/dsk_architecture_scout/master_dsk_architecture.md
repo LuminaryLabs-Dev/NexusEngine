@@ -1,8 +1,38 @@
 # Master DSK Architecture Tracker
 
 ## Current Root Lessons
-- id: dsk-install-hardening-root-2026-06-18
+- id: dsk-operations-data-integrity-root-2026-06-19-0224
 - status: active
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-19T02-24-48-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T02-24-48-0400-dsk-architecture-node.md`
+- summary: Current checkout remains release-aligned and test-green, but production DSK promotion now needs one hardening fixture plan that joins install safety, service-call policy, and operations data integrity.
+- id: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- status: superseded-by-operations-data-integrity-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-19T01-24-20-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T01-24-20-0400-dsk-architecture-node.md`
+- summary: Current checkout remains release-aligned and test-green, but production DSK promotion now needs hardening fixtures that join namespace safety, install transactions, dependency policy, state contracts, accepted mutation, completion idempotency, time catch-up, and config normalization.
+- id: dsk-state-policy-hardening-root-2026-06-19-0023
+- status: superseded-by-promotion-policy-hardening-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-19T00-23-44-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T00-23-44-0400-dsk-architecture-node.md`
+- summary: Current checkout remains release-aligned and test-green, but production DSK promotion now needs one hardening plan that joins namespace safety, install transactions, dependency policy, state contracts, and domain state-machine semantics.
+- id: dsk-governance-hardening-root-2026-06-18-2323
+- status: superseded-by-state-policy-hardening-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-18T23-23-35-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-18T23-23-35-0400-dsk-architecture-node.md`
+- summary: Current checkout remains release-aligned and test-green, but broad DSK production use now needs governance hardening across namespace safety, install transactions, dependency policy, state contracts, and cross-domain event handoff.
+- id: dsk-production-hardening-root-2026-06-18-2223
+- status: superseded-by-governance-hardening-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-18T22-23-28-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-18T22-23-28-0400-dsk-architecture-node.md`
+- summary: Current checkout is aligned with latest release branch and tests pass, but DSK production viability remains blocked by namespace safety, install atomicity, direct dependency policy, and enforceable state contracts.
+- id: dsk-production-viability-root-2026-06-18-2121
+- status: superseded-by-production-hardening-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-18T21-21-57-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-18T21-21-57-0400-dsk-architecture-node.md`
+- summary: Current checkout matches latest release branch and tests pass, but DSK production viability still depends on namespace safety, failed-install atomicity, dependency parity, and state-contract coverage.
+- id: dsk-install-hardening-root-2026-06-18
+- status: superseded-by-production-viability-root
 - latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-18T20-25-55-0400-dsk-architecture-state-packet.md`
 - latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-18T20-25-55-0400-dsk-architecture-node.md`
 - summary: DSK's public RuntimeKit boundary is coherent and tests pass, but production promotion is blocked by reserved API keys, non-atomic failed installs, and direct-install dependency parity.
@@ -13,6 +43,134 @@
 - summary: DSK is present, exported, documented, and smoke-tested, but install atomicity and namespace hardening are the next production-viability gates.
 
 ## Branch Tree
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-namespace-policy-gap
+- relationship: engine API namespace ownership
+- look further: Choose null-prototype `engine.n`, reserved-key rejection, own-property assertions, or a combined policy before promotion.
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-install-transaction-gap
+- relationship: atomic runtime-kit/DSK install
+- look further: Add install preflight or rollback across metadata, kit lists, bindings, world state, registries, scheduler, sequence runtimes, sequence node runtime, install hooks, and namespace APIs.
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-dependency-policy-gap
+- relationship: composer versus direct install contract
+- look further: Decide and test whether direct DSK install enforces all `requires` tokens or only `n:` service tokens.
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-state-contract-gap
+- relationship: reset/snapshot/serialization and async-readiness contract
+- look further: Define minimal promoted-DSK state adapter/API expectations before worker, replay, restore, network, or async claims.
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-service-call-policy-gap
+- relationship: accepted mutation, idempotency, time catch-up, and config normalization
+- look further: Add promotion fixtures for accepted/rejected receipts, one-shot completion, large-delta catch-up, and finite config normalization.
+- parent: dsk-operations-data-integrity-root-2026-06-19-0224
+- child: dsk-operations-data-integrity-gap
+- relationship: immutable config, stable generated identity, finite transactions, and restored-state consistency
+- look further: Add promotion fixtures for occupant reset/id uniqueness, facility/economy finite transaction gates, and resource-pressure restored-state consistency.
+- parent: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- child: dsk-namespace-policy-gap
+- relationship: engine API namespace ownership
+- look further: Choose null-prototype `engine.n`, reserved-key rejection, own-property assertions, or a combined policy before promotion.
+- parent: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- child: dsk-install-transaction-gap
+- relationship: atomic runtime-kit/DSK install
+- look further: Add install preflight or rollback across metadata, kit lists, bindings, world state, registries, scheduler, sequence runtimes, sequence node runtime, install hooks, and namespace APIs.
+- parent: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- child: dsk-dependency-policy-gap
+- relationship: composer versus direct install contract
+- look further: Decide and test whether direct DSK install enforces all `requires` tokens or only `n:` service tokens.
+- parent: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- child: dsk-state-contract-gap
+- relationship: reset/snapshot/serialization and async-readiness contract
+- look further: Define minimal promoted-DSK state adapter/API expectations before worker, replay, restore, network, or async claims.
+- parent: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- child: dsk-service-call-policy-gap
+- relationship: accepted mutation, idempotency, time catch-up, and config normalization
+- look further: Add promotion fixtures for accepted/rejected receipts, one-shot completion, large-delta catch-up, and finite config normalization.
+- parent: dsk-state-policy-hardening-root-2026-06-19-0023
+- child: dsk-namespace-policy-gap
+- relationship: engine API namespace ownership
+- look further: Choose null-prototype `engine.n`, reserved-key rejection, own-property assertions, or a combined policy before promotion.
+- parent: dsk-state-policy-hardening-root-2026-06-19-0023
+- child: dsk-install-transaction-gap
+- relationship: atomic runtime-kit/DSK install
+- look further: Add install preflight or rollback across metadata, kit lists, bindings, world state, registries, scheduler, sequence runtimes, sequence node runtime, and namespace APIs.
+- parent: dsk-state-policy-hardening-root-2026-06-19-0023
+- child: dsk-dependency-policy-gap
+- relationship: composer versus direct install contract
+- look further: Decide and test whether direct DSK install enforces all `requires` tokens or only `n:` service tokens.
+- parent: dsk-state-policy-hardening-root-2026-06-19-0023
+- child: dsk-state-contract-gap
+- relationship: reset/snapshot/serialization and async-readiness contract
+- look further: Define minimal promoted-DSK state adapter/API expectations before worker, replay, restore, network, or async claims.
+- parent: dsk-state-policy-hardening-root-2026-06-19-0023
+- child: dsk-domain-state-machine-policy-gap
+- relationship: promoted domain semantics
+- look further: Add promotion fixtures for terminal states, transfer constraints, restored progress counts, and pressed/held/released input semantics.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-namespace-policy-gap
+- relationship: engine API namespace ownership
+- look further: Choose null-prototype `engine.n`, reserved-key rejection, and own-property assertions before broad DSK promotion.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-install-transaction-gap
+- relationship: atomic runtime-kit/DSK install
+- look further: Add install preflight or rollback across metadata, kit lists, bindings, world state, registries, scheduler, sequence runtimes, and namespace APIs.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-dependency-policy-gap
+- relationship: composer versus direct install contract
+- look further: Decide and test whether direct DSK install enforces all `requires` tokens or only `n:` service tokens.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-state-contract-governance-gap
+- relationship: reset/snapshot/serialization and async-readiness contract
+- look further: Define minimal promoted-DSK state adapter/API expectations before worker, replay, restore, or async claims.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-event-handoff-governance-gap
+- relationship: deterministic cross-domain events
+- look further: Use request/economy order sensitivity as a fixture for next-phase, next-tick, dependency-ordered, or configured delivery semantics.
+- parent: dsk-governance-hardening-root-2026-06-18-2323
+- child: dsk-proof-surface-separation
+- relationship: local proof versus public browser proof
+- look further: Keep DSK architecture proof separate from HTTP-visible but browser-broken public routes; define proof status categories.
+- parent: dsk-production-hardening-root-2026-06-18-2223
+- child: dsk-namespace-reserved-key-gap
+- relationship: engine API namespace safety
+- look further: Reject reserved `apiName` keys or create a null-prototype namespace with own-property guarantees.
+- parent: dsk-production-hardening-root-2026-06-18-2223
+- child: dsk-install-atomicity-gap
+- relationship: failed install rollback
+- look further: Preflight namespace/dependencies/collisions before mutating engine registries, or add rollback around install stages.
+- parent: dsk-production-hardening-root-2026-06-18-2223
+- child: dsk-direct-dependency-policy-gap
+- relationship: composer vs direct install contract
+- look further: Decide whether direct install enforces all `requires` tokens or composer remains the mandatory ordering path.
+- parent: dsk-production-hardening-root-2026-06-18-2223
+- child: dsk-state-contract-gap
+- relationship: reset/snapshot/serialization and async-readiness contract
+- look further: Define minimal enforceable promoted-DSK state interface before scaling DSK count.
+- parent: dsk-production-hardening-root-2026-06-18-2223
+- child: dsk-expansion-docs-scale-pressure
+- relationship: described examples and kit ideas imply large service graphs
+- look further: Use `docs/described_examples.md`, `docs/domain_ideas.md`, and `docs/kits_ideas.md` to design multi-domain dependency fixtures without treating them as release claims.
+- parent: dsk-production-viability-root-2026-06-18-2121
+- child: dsk-release-aligned-contract
+- relationship: release branch validation
+- look further: Keep resolving latest remote branch every run before comparing DSK state.
+- parent: dsk-production-viability-root-2026-06-18-2121
+- child: dsk-namespace-own-property-gap
+- relationship: engine API namespace safety
+- look further: Reject reserved `apiName` keys or create `engine.n` with null-prototype/own-property guarantees.
+- parent: dsk-production-viability-root-2026-06-18-2121
+- child: dsk-install-atomicity-gap
+- relationship: failed install rollback
+- look further: Preflight namespace/dependencies/collisions before mutating engine registries, or add rollback around install stages.
+- parent: dsk-production-viability-root-2026-06-18-2121
+- child: dsk-direct-requires-parity-gap
+- relationship: composer vs direct install contract
+- look further: Decide direct-install `requires` enforcement versus composer-only dependency ordering.
+- parent: dsk-production-viability-root-2026-06-18-2121
+- child: dsk-async-and-serialization-contract-gap
+- relationship: metadata versus enforceable production contract
+- look further: Define reset/snapshot/serialization and async-readiness enforcement before promotion.
 - parent: dsk-install-hardening-root-2026-06-18
 - child: dsk-reserved-api-name
 - relationship: engine API namespace hardening
@@ -43,24 +201,86 @@
 - look further: Decide whether all `requires` tokens should be enforced by direct install.
 
 ## Open Search Branches
-- branch: DSK install hardening
+- branch: DSK operations data integrity promotion fixtures
+- owner: automation
+- priority: high
+- next files: `src/occupant-flow-kit.js`, `src/facility-operations-kit.js`, `src/economy-kit.js`, `src/resource-pressure-kit.js`, operations smoke coverage
+- branch: DSK promotion policy fixture plan
+- owner: automation
+- priority: high
+- next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, `src/objective-flow-kit.js`, `src/lifecycle-progression-kit.js`, `src/transport-route-kit.js`, `src/schedule-kit.js`, smoke coverage
+- branch: DSK hardening fixture plan
+- owner: automation
+- priority: high
+- next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, `tests/domain-service-kit-smoke.mjs`
+- branch: DSK state-machine promotion gates
+- owner: automation
+- priority: high
+- next files: `src/assistance-target-kit.js`, `src/transfer-zone-kit.js`, `src/landmark-guidance-kit.js`, `src/environmental-affordance-kit.js`, `src/input-intent-kit.js`, promotion smoke coverage
+- branch: DSK proof coverage categories
+- owner: automation
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, sibling Experiments proof route, sibling ProtoKits ledger
+- branch: DSK governance hardening plan
+- owner: automation
+- priority: high
+- next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, `tests/domain-service-kit-smoke.mjs`
+- branch: DSK install transaction fixture
+- owner: automation
+- priority: high
+- next files: `src/runtime-kit.js`, `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`
+- branch: DSK event handoff policy
+- owner: automation
+- priority: high
+- next files: `src/ecs.js`, `src/request-queue-kit.js`, `src/economy-kit.js`, `docs/kits_ideas.md`
+- branch: DSK proof surface separation
+- owner: automation
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/kits_ideas.md`, sibling Experiments proof route, sibling ProtoKits ledger
+- branch: DSK hardening design review
 - owner: automation
 - priority: high
 - next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `tests/domain-service-kit-smoke.mjs`
-- branch: DSK dependency parity
+- branch: DSK dependency policy decision
 - owner: automation
 - priority: high
 - next files: `src/game-kit-composer.js`, `src/runtime-kit.js`, `README.md`
+- branch: DSK state contract tests
+- owner: automation
+- priority: high
+- next files: `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`
 - branch: DSK dependency scale
 - owner: automation
 - priority: medium
-- next files: `src/game-kit-composer.js`, `src/runtime-kit.js`
+- next files: `src/game-kit-composer.js`, `src/runtime-kit.js`, `docs/kits_ideas.md`
 - branch: DSK serialization contract
 - owner: automation
 - priority: medium
 - next files: `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`
+- branch: DSK expansion fixture design
+- owner: automation
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, `tests/domain-service-kit-smoke.mjs`
 
 ## Resolved Or Superseded
+- id: dsk-promotion-policy-hardening-root-2026-06-19-0124
+- reason: Superseded by a follow-up that reran preflight/tests, reconfirmed namespace/install/dependency probes, and integrated fresher operations data integrity blockers around mutable config, generated identity, finite ledger state, and restored-state consistency.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-19T02-24-48-0400-dsk-architecture-state-packet.md`
+- id: dsk-state-policy-hardening-root-2026-06-19-0023
+- reason: Superseded by a follow-up that reran preflight/tests, reconfirmed namespace/install/dependency probes, and integrated fresher accepted-mutation, idempotency, time-catchup, and config-normalization promotion risks from neighboring bug and idea lanes.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-19T01-24-20-0400-dsk-architecture-state-packet.md`
+- id: dsk-governance-hardening-root-2026-06-18-2323
+- reason: Superseded by a follow-up that reran preflight/tests, reconfirmed namespace/install/dependency probes, and integrated fresher state-machine policy risks from neighboring bug and idea lanes.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-19T00-23-44-0400-dsk-architecture-state-packet.md`
+- id: dsk-production-hardening-root-2026-06-18-2223
+- reason: Superseded by a follow-up that reran preflight/tests, reconfirmed the same hardening probes, and integrated newer governance, event handoff, and proof-surface constraints from neighboring lanes.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-18T23-23-35-0400-dsk-architecture-state-packet.md`
+- id: dsk-production-viability-root-2026-06-18-2121
+- reason: Superseded by a follow-up that reran preflight/tests, inspected expansion docs, and reconfirmed the same blockers with focused probes.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-18T22-23-28-0400-dsk-architecture-state-packet.md`
+- id: dsk-install-hardening-root-2026-06-18
+- reason: Superseded by a release-aligned follow-up that revalidated the hardening gaps against `origin/0.0.2` with tests passing.
+- evidence: `state/automation/dsk_architecture_scout/packets/2026-06-18T21-21-57-0400-dsk-architecture-state-packet.md`
 - id: dsk-architecture-root-2026-06-18
 - reason: Superseded by a follow-up run that confirmed the named hardening risks with source inspection and ad hoc runtime probes.
 - evidence: `state/automation/dsk_architecture_scout/packets/2026-06-18T20-25-55-0400-dsk-architecture-state-packet.md`

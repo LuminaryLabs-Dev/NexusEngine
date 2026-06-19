@@ -1,6 +1,36 @@
 # Master Deep Bug Reports Tracker
 
 ## Current Root Lessons
+- id: deep-bug-root-2026-06-19-occupant-facility-pressure
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-19T01-53-53-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-19T01-53-53-0400-deep-bug-node.md`
+- summary: Occupant, facility/economy, and resource-pressure kits have operations-domain data invariant bugs: spawn-rule runtime timing survives reset, generated occupants can duplicate authored ids, non-finite facility transactions can poison economy ledgers, and initial resource depletion state can be contradictory.
+- id: deep-bug-root-2026-06-19-objective-lifecycle-time
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-19T00-54-03-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-19T00-54-03-0400-deep-bug-node.md`
+- summary: Objective, lifecycle, transport, and schedule kits have reset/idempotency, accepted-mutation, large-delta, and numeric-config bugs: objective reset preserves completed progress, completion events repeat, rejected lifecycle starts can spend currency, transport under-travels on fast-forward ticks, and invalid schedule scale writes `NaN`.
+- id: deep-bug-root-2026-06-18-recovery-transfer-state-machines
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-18T23-53-22-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-18T23-53-22-0400-deep-bug-node.md`
+- summary: Recovery, transfer, spatial progress, and input kits have state-machine edge-case bugs: lost assistance targets can later complete, transfer zones ignore declared constraints, initial progress counters can disagree with authored flags, and held input emits repeated pressed events.
+- id: deep-bug-root-2026-06-18-operations-kit-composition
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-18T22-52-38-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-18T22-52-38-0400-deep-bug-node.md`
+- summary: Operations/logistics kits have composition edge-case bugs: RequestQueue rewards depend on EconomyKit install order, manual requests ignore default rewards, cargo deposits can become negative, and TelemetryKit `historyLimit: 0` retains all snapshots.
+- id: deep-bug-root-2026-06-18-install-and-lifecycle-invariants
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-18T21-52-29-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-18T21-52-29-0400-deep-bug-node.md`
+- summary: Direct runtime install and lifecycle boundaries remain weak: duplicate kit ids install twice, cleanup events can disappear before ECS consumers see them, disposed SequenceNode runtimes can mutate, and renderer fallback can hide backend failure.
+- id: deep-bug-root-2026-06-18-boot-and-frame-order
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-18T20-54-00-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-18T20-54-00-0400-deep-bug-node.md`
+- summary: Boot staging and frame-source ownership are unsafe: engine-level SequenceNodes can mount before kit type registration, lifecycle surfaces can duplicate frame progression, and default traversal/camera kit composition has crash/recovery gaps.
 - id: deep-bug-root-2026-06-18
 - status: open
 - latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-18T19-54-00-0400-deep-bug-report-packet.md`
@@ -8,6 +38,102 @@
 - summary: Current smoke tests pass, but validation and cleanup boundaries still allow invalid SequenceNode side effects, unbounded terrain cache growth, stale AR sessions, and DSK install rollback risk.
 
 ## Branch Tree
+- parent: deep-bug-root-2026-06-19-occupant-facility-pressure
+- child: deep-bug-occupant-reset-mutable-rule-001
+- relationship: immutable-config/reset bug
+- look further: Clone and normalize occupant spawn rules so runtime `nextAt` never mutates caller config and reset restores authored timing.
+- parent: deep-bug-root-2026-06-19-occupant-facility-pressure
+- child: deep-bug-occupant-id-collision-001
+- relationship: stable identity bug
+- look further: Initialize occupant sequence from existing ids or allocate generated ids through collision checks.
+- parent: deep-bug-root-2026-06-19-occupant-facility-pressure
+- child: deep-bug-facility-economy-nonfinite-001
+- relationship: finite transaction/accounting bug
+- look further: Reject or normalize non-finite facility output/upkeep and economy transaction amounts before ledger mutation.
+- parent: deep-bug-root-2026-06-19-occupant-facility-pressure
+- child: deep-bug-resource-pressure-initial-depletion-001
+- relationship: restored/initial state consistency bug
+- look further: Clamp or consistently derive resource pressure depletion flags at initial state, reset, and system pass.
+- parent: deep-bug-root-2026-06-19-objective-lifecycle-time
+- child: deep-bug-objective-reset-completion-001
+- relationship: reset/idempotency bug
+- look further: Reset ObjectiveFlowKit from immutable config or scrub runtime step fields, and emit completion only on transition.
+- parent: deep-bug-root-2026-06-19-objective-lifecycle-time
+- child: deep-bug-lifecycle-cost-before-validation-001
+- relationship: accepted-mutation boundary bug
+- look further: Validate lifecycle start requests before emitting economy costs or add reservation/rollback semantics.
+- parent: deep-bug-root-2026-06-19-objective-lifecycle-time
+- child: deep-bug-transport-large-delta-001
+- relationship: time-step catch-up bug
+- look further: Process accumulated transport progress across multiple stops and preserve leftover progress.
+- parent: deep-bug-root-2026-06-19-objective-lifecycle-time
+- child: deep-bug-schedule-scale-nan-001
+- relationship: numeric config normalization bug
+- look further: Normalize or reject non-finite schedule scale values before they enter simulation state.
+- parent: deep-bug-root-2026-06-18-recovery-transfer-state-machines
+- child: deep-bug-assistance-terminal-state-001
+- relationship: terminal-state contradiction bug
+- look further: Decide whether lost targets are terminal, recoverable, or mutually exclusive with completion before recovery DSK promotion.
+- parent: deep-bug-root-2026-06-18-recovery-transfer-state-machines
+- child: deep-bug-transfer-zone-constraints-001
+- relationship: declared constraint enforcement bug
+- look further: Enforce or remove `accepts`, `dwellSeconds`, `capacity`, and active transfer semantics.
+- parent: deep-bug-root-2026-06-18-recovery-transfer-state-machines
+- child: deep-bug-spatial-initial-counts-001
+- relationship: restored/authored progress snapshot bug
+- look further: Recompute aggregate counts from normalized initial data across spatial/objective kits.
+- parent: deep-bug-root-2026-06-18-recovery-transfer-state-machines
+- child: deep-bug-input-pressed-level-trigger-001
+- relationship: input edge/level semantics bug
+- look further: Split pressed, held, and released input semantics before one-shot actions consume InputIntent events.
+- parent: deep-bug-root-2026-06-18-operations-kit-composition
+- child: deep-bug-request-economy-order-001
+- relationship: cross-domain event order bug
+- look further: Decide whether request-to-economy events should be next-phase, next-tick, or dependency-ordered before operations DSK promotion.
+- parent: deep-bug-root-2026-06-18-operations-kit-composition
+- child: deep-bug-request-default-reward-001
+- relationship: request default semantics bug
+- look further: Apply default reward/penalty consistently to initial, manual, and occupant-created requests.
+- parent: deep-bug-root-2026-06-18-operations-kit-composition
+- child: deep-bug-cargo-negative-value-001
+- relationship: logistics accounting bounds bug
+- look further: Clamp condition-adjusted delivered values or explicitly model penalties separately.
+- parent: deep-bug-root-2026-06-18-operations-kit-composition
+- child: deep-bug-telemetry-history-zero-001
+- relationship: diagnostics retention config bug
+- look further: Normalize telemetry history limits before slicing and cover zero/invalid cases.
+- parent: deep-bug-root-2026-06-18-install-and-lifecycle-invariants
+- child: deep-bug-runtime-duplicate-id-001
+- relationship: runtime install idempotency bug
+- look further: Enforce stable `kit.id` uniqueness in direct `engine.installKit()` paths, not only in the composer.
+- parent: deep-bug-root-2026-06-18-install-and-lifecycle-invariants
+- child: deep-bug-cleanup-event-lifetime-001
+- relationship: scheduler phase/order event-lifetime bug
+- look further: Decide whether cleanup events are surface-only, forbidden, or deferred to next tick.
+- parent: deep-bug-root-2026-06-18-install-and-lifecycle-invariants
+- child: deep-bug-sequence-dispose-001
+- relationship: sequence lifecycle teardown bug
+- look further: Guard all mutating SequenceNode runtime APIs after `dispose()`.
+- parent: deep-bug-root-2026-06-18-install-and-lifecycle-invariants
+- child: deep-bug-renderer-fallback-001
+- relationship: renderer proof/capability mismatch
+- look further: Preserve requested renderer type and expose fallback reason or throw on unsupported renderer requests.
+- parent: deep-bug-root-2026-06-18-boot-and-frame-order
+- child: deep-bug-sequence-boot-order-002
+- relationship: engine startup order bug
+- look further: Register kit SequenceNode types before engine-level graph normalization and auto-start.
+- parent: deep-bug-root-2026-06-18-boot-and-frame-order
+- child: deep-bug-frame-source-duplication-001
+- relationship: scheduler/frame bridge bug
+- look further: Prevent lifecycle-surface frames and direct engine frames from double-counting one tick.
+- parent: deep-bug-root-2026-06-18-boot-and-frame-order
+- child: deep-bug-camera-default-crash-001
+- relationship: default public-kit composition bug
+- look further: Make camera kit inert without character binding or infer canonical movement state.
+- parent: deep-bug-root-2026-06-18-boot-and-frame-order
+- child: deep-bug-action-killy-order-001
+- relationship: traversal recovery ordering bug
+- look further: Check kill planes before ground snap in movement and align fall semantics with physics.
 - parent: deep-bug-root-2026-06-18
 - child: deep-bug-sequence-validation-001
 - relationship: mutation-boundary bug
@@ -26,6 +152,98 @@
 - look further: Stage or roll back runtime/DSK install mutations.
 
 ## Open Search Branches
+- branch: occupant-reset-and-identity
+- owner: occupant/population
+- priority: high
+- next files: `src/occupant-flow-kit.js`, service-flow smoke coverage, reset/id uniqueness fixtures
+- branch: facility-economy-finite-transactions
+- owner: facility/economy
+- priority: high
+- next files: `src/facility-operations-kit.js`, `src/economy-kit.js`, finite-number transaction validation
+- branch: resource-pressure-restored-state
+- owner: pressure/resources
+- priority: medium
+- next files: `src/resource-pressure-kit.js`, pressure/scenario smoke coverage
+- branch: operations-domain-data-invariants
+- owner: operations/DSK
+- priority: high
+- next files: `src/occupant-flow-kit.js`, `src/facility-operations-kit.js`, `src/economy-kit.js`, `src/resource-pressure-kit.js`
+- branch: objective-reset-idempotency
+- owner: objective/progression
+- priority: high
+- next files: `src/objective-flow-kit.js`, `tests/procedural-navigation-smoke.mjs`, objective/proof harness coverage
+- branch: lifecycle-economy-accepted-mutation
+- owner: lifecycle/economy
+- priority: high
+- next files: `src/lifecycle-progression-kit.js`, `src/economy-kit.js`, `src/facility-operations-kit.js`, lifecycle/economy smoke coverage
+- branch: transport-large-delta-catchup
+- owner: transport/mobility
+- priority: medium
+- next files: `src/transport-route-kit.js`, mobility/operations smoke coverage
+- branch: schedule-numeric-config-policy
+- owner: schedule/operations
+- priority: medium
+- next files: `src/schedule-kit.js`, operations config validation, DSK config normalization helpers
+- branch: recovery-terminal-state-policy
+- owner: assistance/objective/recovery
+- priority: high
+- next files: `src/assistance-target-kit.js`, `src/request-fulfillment-kit.js`, `src/objective-flow-kit.js`, recovery smoke coverage
+- branch: transfer-zone-policy
+- owner: transfer/logistics
+- priority: high
+- next files: `src/transfer-zone-kit.js`, `src/cargo-manifest-kit.js`, `src/route-field-kit.js`, logistics smoke coverage
+- branch: restored-progress-counts
+- owner: spatial/objective/progress
+- priority: medium
+- next files: `src/landmark-guidance-kit.js`, `src/environmental-affordance-kit.js`, `src/objective-flow-kit.js`, progress smoke coverage
+- branch: input-edge-semantics
+- owner: input/interaction
+- priority: medium
+- next files: `src/input-intent-kit.js`, interaction and transfer kit event consumers
+- branch: operations-cross-domain-event-order
+- owner: scheduler/operations/economy
+- priority: high
+- next files: `src/ecs.js`, `src/economy-kit.js`, `src/request-queue-kit.js`, `tests/procedural-navigation-smoke.mjs`
+- branch: operations-default-economics
+- owner: request-queue/economy
+- priority: medium
+- next files: `src/request-queue-kit.js`, `src/occupant-flow-kit.js`, `tests/procedural-navigation-smoke.mjs`
+- branch: logistics-accounting-bounds
+- owner: cargo/logistics
+- priority: medium
+- next files: `src/cargo-manifest-kit.js`, `src/request-fulfillment-kit.js`, logistics smoke coverage
+- branch: telemetry-retention-contract
+- owner: telemetry/validation
+- priority: medium
+- next files: `src/telemetry-kit.js`, validation/proof smoke coverage
+- branch: direct-runtime-install-invariants
+- owner: runtime-kit/composer/DSK
+- priority: high
+- next files: `src/runtime-kit.js`, `src/game-kit-composer.js`, `src/engine.js`, `tests/domain-service-kit-smoke.mjs`
+- branch: ecs-event-lifetime-contract
+- owner: ECS/engine
+- priority: high
+- next files: `src/ecs.js`, `src/engine.js`, kit systems that emit during `cleanup`
+- branch: sequence-runtime-dispose-contract
+- owner: sequence
+- priority: medium
+- next files: `src/sequence-node.js`, `tests/sequence-node-runtime-smoke.mjs`
+- branch: renderer-fallback-contract
+- owner: renderer
+- priority: medium
+- next files: `src/renderers.js`, `README.md`, browser/CDN smoke surfaces
+- branch: engine-sequence-boot-staging
+- owner: engine/sequence/runtime-kit
+- priority: high
+- next files: `src/engine.js`, `src/runtime-kit.js`, `src/sequence-node.js`, `src/sequence-node-kit.js`, `tests/`
+- branch: sequence-frame-source-ownership
+- owner: engine/sequence/scheduler
+- priority: high
+- next files: `src/engine.js`, `src/sequence-node.js`, `tests/sequence-node-frame-driver-smoke.mjs`
+- branch: traversal-kit-default-composition
+- owner: camera/physics
+- priority: medium
+- next files: `src/character-camera-kit.js`, `src/action-movement-kit.js`, `src/world-physics-kit.js`, traversal smoke coverage
 - branch: sequence-deploy-guard
 - owner: sequence
 - priority: high

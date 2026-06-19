@@ -1,8 +1,28 @@
 # Master Ecosystem Proof Tracker
 
 ## Current Root Lessons
-- id: ecosystem-proof-002
+- id: ecosystem-proof-006
 - status: active
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T01-44-00-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T01-44-00-0400-ecosystem-proof-node.md`
+- summary: Local/raw DSK proof remains green and all repos match `origin/0.0.2`, but the public GitHub Pages proof route still stalls at `Booting...`; Experiments aggregate validation still omits the DSK first-wave smoke, and sibling worktrees are dirty.
+- id: ecosystem-proof-005
+- status: superseded-by-refresh
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-18T23-39-46-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T23-39-46-0400-ecosystem-proof-node.md`
+- summary: Local/raw DSK proof remains green and all repos match `origin/0.0.2`, but the public GitHub Pages proof route still stalls at `Booting...`; Experiments aggregate check also omits the DSK first-wave smoke.
+- id: ecosystem-proof-004
+- status: superseded-by-refresh
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-18T22-40-48-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T22-40-48-0400-ecosystem-proof-node.md`
+- summary: Local and raw `0.0.2` proof remains green, but the public GitHub Pages DSK proof route still stalls at `Booting...` because sibling module paths 404.
+- id: ecosystem-proof-003
+- status: superseded-by-refresh
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-18T21-40-21-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T21-40-21-0400-ecosystem-proof-node.md`
+- summary: Local and raw `0.0.2` proof artifacts are now aligned, but the public GitHub Pages DSK proof route remains runtime-broken at `Booting...`.
+- id: ecosystem-proof-002
+- status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-18T20-40-32-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T20-40-32-0400-ecosystem-proof-node.md`
 - summary: Local DSK ecosystem validations still pass, but public/raw `0.0.2` proof paths remain missing and the public proof route visibly 404s.
@@ -13,6 +33,98 @@
 - summary: Local DSK ecosystem proofs pass, but public/raw `0.0.2` proof artifacts are missing or stale.
 
 ## Branch Tree
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-a
+- relationship: branch-aligned
+- look further: Recheck all three repos against the preflight-resolved latest branch before promotion review.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-b
+- relationship: validation-green-targeted-dsk
+- look further: Keep targeted DSK smokes visible until aggregate validation includes them.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-c
+- relationship: public-route-runtime-failure
+- look further: Fix or validate the DSK proof route import-map/module path shape outside this scout lane.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-d
+- relationship: import-map-public-shape
+- look further: Choose CDN `0.0.2`, same-origin deployed assets, or build-step mapping for browser proof modules.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-e
+- relationship: aggregate-validation-gap
+- look further: Add `tests/dsk-first-wave-experiment-smoke.mjs` to an aggregate check or document it as a required targeted proof command.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-f
+- relationship: sibling-worktree-dirt
+- look further: Classify ProtoKits and Experiments dirty worktrees before release-review or public promotion claims.
+- parent: ecosystem-proof-006
+- child: ecosystem-proof-006-g
+- relationship: idea-proof-coverage-gap
+- look further: Build a described-example/domain/kit proof coverage matrix after the first-wave public proof route loads.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-a
+- relationship: branch-aligned
+- look further: Recheck all three repos against the preflight-resolved latest branch before promotion review.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-b
+- relationship: validation-green-targeted-dsk
+- look further: Keep targeted DSK smokes visible until aggregate validation includes them.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-c
+- relationship: public-route-runtime-failure
+- look further: Fix or validate the DSK proof route import-map/module path shape outside this scout lane.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-d
+- relationship: import-map-public-shape
+- look further: Choose CDN `0.0.2`, same-origin deployed assets, or build-step mapping for browser proof modules.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-e
+- relationship: aggregate-validation-gap
+- look further: Add `tests/dsk-first-wave-experiment-smoke.mjs` to an aggregate check or document it as a required targeted proof command.
+- parent: ecosystem-proof-005
+- child: ecosystem-proof-005-f
+- relationship: idea-proof-coverage-gap
+- look further: Build a described-example/domain/kit proof coverage matrix after the first-wave public proof route loads.
+- parent: ecosystem-proof-004
+- child: ecosystem-proof-004-a
+- relationship: branch-aligned
+- look further: Recheck all three repos against `origin/0.0.2`; note unrelated NexusRealtime automation/docs worktree changes before promotion review.
+- parent: ecosystem-proof-004
+- child: ecosystem-proof-004-b
+- relationship: validation-green-public-failing
+- look further: Keep local validation success separate from public browser proof success.
+- parent: ecosystem-proof-004
+- child: ecosystem-proof-004-c
+- relationship: public-route-runtime-failure
+- look further: Fix or validate the DSK proof route import-map/module path shape outside this scout lane.
+- parent: ecosystem-proof-004
+- child: ecosystem-proof-004-d
+- relationship: import-map-public-shape
+- look further: Choose CDN `0.0.2`, same-origin deployed assets, or build-step mapping for browser proof modules.
+- parent: ecosystem-proof-004
+- child: ecosystem-proof-004-e
+- relationship: idea-proof-coverage-gap
+- look further: Build a described-example/domain/kit proof coverage matrix after the first-wave public proof route loads.
+- parent: ecosystem-proof-003
+- child: ecosystem-proof-003-a
+- relationship: branch-aligned
+- look further: Recheck all three repos against `origin/0.0.2` before public-claim review.
+- parent: ecosystem-proof-003
+- child: ecosystem-proof-003-b
+- relationship: raw-protokits-proof
+- look further: Decide compatibility-shim removal conditions for injected-runtime and legacy `engine.*` APIs.
+- parent: ecosystem-proof-003
+- child: ecosystem-proof-003-c
+- relationship: public-route-runtime-failure
+- look further: Fix or validate the DSK proof route import-map/module path shape outside this scout lane.
+- parent: ecosystem-proof-003
+- child: ecosystem-proof-003-d
+- relationship: import-map-public-shape
+- look further: Choose CDN `0.0.2`, same-origin deployed assets, or build-step mapping for browser proof modules.
+- parent: ecosystem-proof-003
+- child: ecosystem-proof-003-e
+- relationship: validation-gap
+- look further: Add or select a deployment-surface check after the no-new-tests scout restriction is lifted.
 - parent: ecosystem-proof-002
 - child: ecosystem-proof-002-a
 - relationship: core-aligned
@@ -51,10 +163,18 @@
 - look further: Decide which `main`/`0.0.1` CDN pins remain valid legacy demos.
 
 ## Open Search Branches
-- branch: local-to-public-proof-sync
+- branch: public-proof-import-shape
 - owner: next scout
 - priority: high
-- next files: ProtoKits local uncommitted DSK proof files, Experiments local proof route, `origin/0.0.2` trees, GitHub Pages build source.
+- next files: `experiments/dsk-first-wave-proof/index.html`, `experiments/dsk-first-wave-proof/src/proof.js`, public CDN URLs, GitHub Pages build source.
+- branch: aggregate-dsk-proof-validation
+- owner: next scout
+- priority: high
+- next files: `NexusRealtime-Experiments/package.json`, `NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, `NexusRealtime-Experiments/tests/`.
+- branch: sibling-worktree-dirt
+- owner: next scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`.
 - branch: import-map-public-shape
 - owner: next scout
 - priority: high
@@ -67,8 +187,24 @@
 - owner: next scout
 - priority: medium
 - next files: `protokits/nexus-dsk-adapter/index.js`, first-wave DSK tests, DSK ledger.
+- branch: idea-proof-coverage-matrix
+- owner: next scout
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/`, sibling ProtoKits/Experiments proof paths.
 
 ## Resolved Or Superseded
+- id: ecosystem-proof-005
+- reason: superseded by 2026-06-19T01-44-00 refresh; branch and validation state remain green, public route still fails in-browser, Experiments aggregate validation still omits the DSK first-wave smoke, and sibling worktree dirt is now part of proof review state.
+- evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-19T01-44-00-0400-ecosystem-proof-state-packet.md`
+- id: ecosystem-proof-004
+- reason: superseded by 2026-06-18T23-39-46 refresh; branch and validation state remain green, public route still fails in-browser, and the refresh adds that Experiments aggregate check omits the DSK first-wave smoke.
+- evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-18T23-39-46-0400-ecosystem-proof-state-packet.md`
+- id: ecosystem-proof-003
+- reason: superseded by 2026-06-18T22-40-48 refresh; branch and validation state remain green, but Playwright and curl reconfirm the public DSK proof route still fails on sibling module 404s.
+- evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-18T22-40-48-0400-ecosystem-proof-state-packet.md`
+- id: ecosystem-proof-002
+- reason: superseded by 2026-06-18T21-40-21 refresh; raw branch proof artifacts now exist and all repos match `origin/0.0.2`, but public browser execution fails on module imports.
+- evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-18T21-40-21-0400-ecosystem-proof-state-packet.md`
 - id: ecosystem-proof-001
 - reason: superseded by 2026-06-18T20-40-32 refresh with the same local-green/public-missing result plus Playwright visible 404 evidence.
 - evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-18T20-40-32-0400-ecosystem-proof-state-packet.md`
