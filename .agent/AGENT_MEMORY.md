@@ -16,7 +16,9 @@ NexusRealtime is the reusable realtime ECS/runtime package. It should stay gener
 
 ## Agent Workflow
 
+- Start from `.agent/start-here.md` for automation work.
 - Check `memory.md` before non-trivial repo work.
+- Run `npm run automation:preflight` before writing automation lane packets.
 - Record agent-visible repo changes in `.agent/CHANGE_LOG.md`.
 - Update this file when a durable repo convention or agent workflow rule changes.
 - Leave unrelated dirty files alone.
@@ -25,4 +27,5 @@ NexusRealtime is the reusable realtime ECS/runtime package. It should stay gener
 ## Current Notes
 
 - `.agent/` was introduced on 2026-06-17 as the local agent tracking surface.
+- Automation work now uses `state/automation/` lane prompts and a branch/public-link preflight.
 - Existing untracked files outside `.agent/` should be treated as user or prior-work changes unless explicitly assigned.

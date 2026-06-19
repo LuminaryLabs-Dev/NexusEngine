@@ -9,6 +9,7 @@
     ".": "./src/index.js"
   },
   "scripts": {
+    "automation:preflight": "node scripts/automation-preflight.mjs",
     "test": "node tests/run-all.mjs"
   },
   "files": [

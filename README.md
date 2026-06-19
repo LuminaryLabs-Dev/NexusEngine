@@ -139,6 +139,10 @@ import {
 
 Domain Service Kits use stable `n-<domain>-kit` IDs, provide `n:<domain>` tokens by default, install their promoted API under `engine.n.<camelDomain>`, and declare linear execution plus async-ready metadata. DSKs still execute through the existing scheduler phases today; async execution is a future capability, not part of the current runtime path.
 
+## Automation Scouts
+
+Repo-local scout automations live under `state/automation/`. Start each run with `npm run automation:preflight`; it resolves the latest remote release branch and checks the public GitHub/raw/CDN URLs before any lane writes findings.
+
 ## Procedural And Navigation Kits
 
 Use these kits when a host app needs generic generated game spaces and route planning without owning procedural or pathfinding algorithms locally.
