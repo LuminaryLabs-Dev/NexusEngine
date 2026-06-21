@@ -1,6 +1,11 @@
 # Master Deep Bug Reports Tracker
 
 ## Current Root Lessons
+- id: deep-bug-root-2026-06-21-domain-command-config-ownership
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-21T06-48-34-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-21T06-48-34-0400-deep-bug-node.md`
+- summary: Economy, timing, resource pressure, lifecycle, and facility APIs have fresh ownership gaps: transaction ledgers, timing receipts/active windows, pressure changes/resources, lifecycle add payloads, and facility add payloads retain caller-owned nested objects or return live state handles.
 - id: deep-bug-root-2026-06-20-telemetry-command-payload-ownership
 - status: open
 - latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-20T17-54-14-0400-deep-bug-report-packet.md`
@@ -148,6 +153,22 @@
 - summary: Current smoke tests pass, but validation and cleanup boundaries still allow invalid SequenceNode side effects, unbounded terrain cache growth, stale AR sessions, and DSK install rollback risk.
 
 ## Branch Tree
+- parent: deep-bug-root-2026-06-21-domain-command-config-ownership
+- child: deep-bug-economy-transaction-metadata-alias-001
+- relationship: economy command/proof ownership bug
+- look further: Add economy fixtures for completed/rejected metadata cloning, returned state mutation, event payload isolation, and ledger proof immutability.
+- parent: deep-bug-root-2026-06-21-domain-command-config-ownership
+- child: deep-bug-timing-window-metadata-alias-001
+- relationship: timing command/read ownership bug
+- look further: Add timing fixtures for action metadata cloning, active read isolation, returned result mutation, event payload isolation, and window config mutation.
+- parent: deep-bug-root-2026-06-21-domain-command-config-ownership
+- child: deep-bug-resource-pressure-metadata-alias-001
+- relationship: resource pressure command/read ownership bug
+- look further: Add pressure fixtures for resource metadata cloning, adjustment metadata cloning, returned state mutation, `get()` read isolation, and depletion payload isolation.
+- parent: deep-bug-root-2026-06-21-domain-command-config-ownership
+- child: deep-bug-lifecycle-facility-add-payload-alias-001
+- relationship: lifecycle/facility add payload ownership bug
+- look further: Add lifecycle/facility add fixtures for nested effects, cost, output, upkeep, metadata, returned state mutation, and economy transaction side effects.
 - parent: deep-bug-root-2026-06-20-telemetry-command-payload-ownership
 - child: deep-bug-telemetry-live-resource-snapshot-001
 - relationship: telemetry proof snapshot isolation bug
@@ -610,6 +631,10 @@
 - look further: Stage or roll back runtime/DSK install mutations.
 
 ## Open Search Branches
+- branch: domain-command-config-ownership
+- owner: economy/timing/pressure/lifecycle/facility
+- priority: high
+- next files: `src/economy-kit.js`, `src/timing-window-kit.js`, `src/resource-pressure-kit.js`, `src/lifecycle-progression-kit.js`, `src/facility-operations-kit.js`, command/add/read ownership fixtures
 - branch: navigation-command-payload-ownership
 - owner: pathfinding/navigation
 - priority: high

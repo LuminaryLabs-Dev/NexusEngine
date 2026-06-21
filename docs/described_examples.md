@@ -1140,3 +1140,33 @@ telemetry-command-evidence-ownership-harness
     |-- query-read-model-isolation-proof-kit
     `-- proof-coverage-matrix-kit
 ```
+
+## 38. Domain Command Config Ownership Harness
+
+Domain: `domain-command-config-ownership`
+
+Intent: a reusable validation composition for domain command, add/config, active-read, and returned-state APIs where nested host-authored payloads must be captured before economy, timing, pressure, lifecycle, or facility proof can be trusted.
+
+```txt
+domain-command-config-ownership-harness
+|-- economy-command-domain
+|   |-- economy-transaction-metadata-ownership-kit
+|   |-- service-command-payload-ownership-kit
+|   `-- event-queue-payload-isolation-kit
+|-- timing-read-domain
+|   |-- timing-action-read-ownership-kit
+|   |-- state-snapshot-isolation-kit
+|   `-- proof-signal-integrity-kit
+|-- pressure-command-domain
+|   |-- pressure-resource-command-ownership-kit
+|   |-- resource-bound-normalization-kit
+|   `-- state-snapshot-isolation-kit
+|-- lifecycle-facility-domain
+|   |-- lifecycle-facility-add-payload-ownership-kit
+|   |-- authored-source-isolation-kit
+|   `-- economy-transaction-metadata-ownership-kit
+`-- proof-domain
+    |-- domain-command-config-ownership-proof-kit
+    |-- telemetry-command-evidence-proof-kit
+    `-- proof-coverage-matrix-kit
+```

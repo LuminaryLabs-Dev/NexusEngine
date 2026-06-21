@@ -10,16 +10,21 @@ This tracker records durable lessons from the idea expansion automation. It is a
 
 ## Latest Run
 
-- Status: thirty-first run complete.
-- Latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-20T19-02-02-0400-domain-kit-idea-expansion-packet.md`
-- Latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-20T19-02-02-0400-domain-kit-idea-node.md`
-- Added idea families: none; refreshed proof-source drift already maps to Proof Readiness Queue and Telemetry Command Evidence Ownership.
-- Next search item: wait for a genuinely fresh neighboring bug/architecture family, or move module-source proof and telemetry/command ownership into non-scout lanes.
+- Status: thirty-second run complete.
+- Latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-21T07-02-40-0400-domain-kit-idea-expansion-packet.md`
+- Latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-21T07-02-40-0400-domain-kit-idea-node.md`
+- Added idea families: Domain Command Config Ownership for economy transaction metadata, timing action/read metadata, resource-pressure command/read state, and lifecycle/facility add payload ownership.
+- Next search item: route command/config ownership into non-scout fixtures after runtime failure-boundary and telemetry/command evidence ownership ordering is decided.
 
 ## Current Root Lessons
 
-- id: domain-kit-idea-root-2026-06-20-1902
+- id: domain-kit-idea-root-2026-06-21-0702
 - status: active
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-21T07-02-40-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-21T07-02-40-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence created a Domain Command Config Ownership planning family for Economy, TimingWindow, ResourcePressure, LifecycleProgression, and FacilityOperations command/config/read ownership.
+- id: domain-kit-idea-root-2026-06-20-1902
+- status: extended-by-domain-command-config-root
 - latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-20T19-02-02-0400-domain-kit-idea-expansion-packet.md`
 - latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-20T19-02-02-0400-domain-kit-idea-node.md`
 - summary: Fresh ecosystem proof sharpened ProtoKits release-source drift, unresolved `nexusrealtime` package resolution, Experiments targeted proof failure, and public `Booting...`, but these duplicate existing Proof Readiness Queue and Telemetry Command Evidence Ownership inventory.
@@ -176,6 +181,26 @@ This tracker records durable lessons from the idea expansion automation. It is a
 
 ## Branch Tree
 
+- parent: domain-kit-idea-root-2026-06-21-0702
+- child: economy-transaction-metadata-ownership-2026-06-21-0702
+- relationship: Economy transaction metadata and returned live ledger state extend command proof ownership beyond prior RequestQueue/TransportRoute/InputIntent evidence.
+- look further: `docs/kits_ideas.md`, `src/economy-kit.js`, economy ledger proof fixtures
+- parent: domain-kit-idea-root-2026-06-21-0702
+- child: timing-action-read-ownership-2026-06-21-0702
+- relationship: TimingWindow action metadata, active-window metadata, and returned result handles need command/read snapshot policy before timing receipts count as proof.
+- look further: `docs/kits_ideas.md`, `src/timing-window-kit.js`, timing action/read fixtures
+- parent: domain-kit-idea-root-2026-06-21-0702
+- child: pressure-resource-command-ownership-2026-06-21-0702
+- relationship: ResourcePressure resource metadata, adjustment metadata, returned state, and resource reads need clone/freeze or mutable-handle semantics.
+- look further: `docs/kits_ideas.md`, `src/resource-pressure-kit.js`, pressure command/read fixtures
+- parent: domain-kit-idea-root-2026-06-21-0702
+- child: lifecycle-facility-add-payload-ownership-2026-06-21-0702
+- relationship: LifecycleProgression and FacilityOperations add APIs need nested payload capture before host/editor mutations can change later simulation and economy output.
+- look further: `docs/kits_ideas.md`, `src/lifecycle-progression-kit.js`, `src/facility-operations-kit.js`, lifecycle/facility add fixtures
+- parent: domain-kit-idea-root-2026-06-21-0702
+- child: domain-command-config-boundary-2026-06-21-0702
+- relationship: This family extends telemetry command evidence ownership but stays separate from query read models, source reset leakage, procedural/navigation ownership, and public proof routing.
+- look further: fixture tranche ordering after runtime failure-boundary and telemetry/command evidence ownership
 - parent: domain-kit-idea-root-2026-06-20-1902
 - child: no-new-release-source-proof-idea-2026-06-20-1902
 - relationship: ProtoKits local branch drift, fetched package-resolution failure, Experiments targeted proof failure, public `Booting...`, npm 404, package-version, and aggregate-vs-targeted gaps remain Proof Readiness Queue work.

@@ -147,10 +147,15 @@
 - latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T06-09-43-0400-ecosystem-state-node.md`
 - summary: Core and ProtoKits remain latest-release aligned, but module-source strategy still blocks local/latest-ref ProtoKits validation, local/fetched Experiments targeted proof, and public browser proof; Experiments remains 2 commits behind fetched `origin/0.0.2`, npm metadata remains 404, and scheduler/world mutation isolation is separate hardening inventory.
 - id: ecosystem-root-030
-- status: open
+- status: superseded-by-ecosystem-root-031
 - latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-20T18-11-35-0400-ecosystem-state-packet.md`
 - latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T18-11-35-0400-ecosystem-state-node.md`
 - summary: Core and ProtoKits remain latest-release aligned, but module-source strategy still blocks local/latest-ref ProtoKits validation, local/fetched Experiments targeted proof, and public browser proof; Experiments remains 2 commits behind fetched `origin/0.0.2`, npm metadata remains 404, and procedural/navigation plus telemetry/command evidence ownership are separate hardening inventory.
+- id: ecosystem-root-031
+- status: open
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-21T06-05-46-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-21T06-05-46-0400-ecosystem-state-node.md`
+- summary: Core commit alignment remains stable even though local core is on `main`, but ecosystem proof is red across ProtoKits targeted package resolution, Experiments aggregate canonical-route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, and package-version policy.
 
 ## Branch Tree
 - parent: ecosystem-root-001
@@ -1009,6 +1014,30 @@
 - child: telemetry-command-evidence-hardening-2026-06-20-1811
 - relationship: Telemetry/command evidence ownership is neighboring runtime hardening inventory, not a module-source proof fix.
 - look further: `src/telemetry-kit.js`, `src/request-queue-kit.js`, `src/transport-route-kit.js`, `src/input-intent-kit.js`, telemetry/command ownership fixtures
+- parent: ecosystem-root-031
+- child: branch-name-vs-ref-alignment-2026-06-21-0605
+- relationship: Core preflight reports branch-name drift because local branch is `main`, but `HEAD`, `origin/main`, and `origin/0.0.2` are the same commit.
+- look further: `npm run automation:preflight`, `git rev-parse HEAD origin/main origin/0.0.2`
+- parent: ecosystem-root-031
+- child: protokits-targeted-package-resolution-2026-06-21-0605
+- relationship: ProtoKits aggregate checks pass locally and at detached release ref, but targeted first-wave DSK proof cannot resolve package `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
+- parent: ecosystem-root-031
+- child: experiments-aggregate-canonical-route-2026-06-21-0605
+- relationship: Experiments aggregate validation is red because canonical route smoke rejects `the-open-above-v2` as versioned.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
+- parent: ecosystem-root-031
+- child: experiments-targeted-dsk-api-installation-2026-06-21-0605
+- relationship: Experiments targeted DSK proof reaches execution but `engine.n.zoneField` is undefined, so first-wave promoted APIs are not installed as the proof expects.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-foundation/`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-service-kits/`
+- parent: ecosystem-root-031
+- child: public-browser-module-404-2026-06-21-0605
+- relationship: Public DSK proof route is HTTP 200 but human-visible `Booting...` because deployed NexusRealtime and ProtoKits module paths return 404.
+- look further: public proof import map, raw proof source, GitHub Pages deployed module paths, jsDelivr release URLs
+- parent: ecosystem-root-031
+- child: public-consumption-version-policy-2026-06-21-0605
+- relationship: Required GitHub/raw/jsDelivr links pass, npm metadata is 404, and release branch `0.0.2` serves package metadata `0.1.0`.
+- look further: `package.json`, release branch list, raw public `package.json`, npm publication policy
 
 ## Open Search Branches
 - branch: module-source-strategy
@@ -1147,6 +1176,18 @@
 - owner: ecosystem_state_scout
 - priority: medium
 - next files: `src/ecs.js`, `src/engine.js`, scheduler active-run, phase topology, `runSystem()` membership, and event queue payload fixtures
+- branch: branch-name-vs-ref-alignment
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `npm run automation:preflight`, core/sibling `git rev-parse HEAD origin/main origin/0.0.2`
+- branch: experiments-aggregate-canonical-route
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, generated routes, `index.html`
+- branch: experiments-targeted-dsk-api-installation
+- owner: ecosystem_state_scout
+- priority: high
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-foundation/`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-service-kits/`
 
 ## Resolved Or Superseded
 - id: sibling-dirty-behind-2026-06-18T20-07-25-0400
@@ -1221,3 +1262,6 @@
 - id: ecosystem-root-029
 - reason: Superseded by `ecosystem-root-030`, which preserves the same module-source blocker and ProtoKits ref alignment while adding procedural/navigation and telemetry/command evidence ownership as separate hardening inventory.
 - evidence: `npm run automation:preflight`, core `npm test`, ProtoKits local/latest-ref checks and failures on missing package `nexusrealtime`, Experiments local targeted failure through ProtoKits package resolution, Experiments fetched aggregate pass, Experiments fetched targeted failure on missing sibling `NexusRealtime`, public URL fetch checks, Playwright launch-state inspection, and neighboring procedural/navigation plus telemetry/command evidence nodes during the 2026-06-20T18-11-35-0400 packet.
+- id: ecosystem-root-030
+- reason: Superseded by `ecosystem-root-031`, which preserves npm/public module-source blockers while adding core branch-name drift with commit equality, sibling main-ahead release refs, Experiments aggregate canonical-route failure, and Experiments targeted DSK API installation failure.
+- evidence: `npm run automation:preflight`, core `npm test`, core/sibling git ref checks, ProtoKits local and detached aggregate/targeted checks, Experiments local and detached aggregate/targeted checks, public URL fetch checks, and Playwright launch-state inspection during the 2026-06-21T06-05-46-0400 packet.

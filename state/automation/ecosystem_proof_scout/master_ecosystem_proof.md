@@ -1,8 +1,18 @@
 # Master Ecosystem Proof Tracker
 
 ## Current Root Lessons
-- id: ecosystem-proof-030
+- id: ecosystem-proof-032
 - status: active
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-21T06-36-07-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-21T06-36-07-0400-ecosystem-proof-node.md`
+- summary: Core commit parity with the preflight-resolved `origin/0.0.2` is stable and smoke-green despite local branch name `main`, but ecosystem proof remains red across separate gates: ProtoKits targeted first-wave DSK cannot resolve package `nexusrealtime`, Experiments aggregate validation fails on canonical `the-open-above-v2` route naming, Experiments targeted DSK proof fails because `engine.n.zoneField` is undefined, npm metadata remains 404, public proof route stays at `Booting...` with deployed module 404s, and telemetry/command plus runtime failure-boundary rows remain separate hardening inventory.
+- id: ecosystem-proof-031
+- status: superseded-by-refresh
+- latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T18-41-30-0400-ecosystem-proof-state-packet.md`
+- latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T18-41-30-0400-ecosystem-proof-node.md`
+- summary: Core and Experiments were aligned with the preflight-resolved latest release branch, but ecosystem DSK proof was still blocked because available ProtoKits was local `main`/`0.0.1`, fetched ProtoKits `origin/0.0.2` could not resolve package `nexusrealtime`, Experiments targeted proof failed, and the public browser proof remained stuck at `Booting...`.
+- id: ecosystem-proof-030
+- status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T06-40-01-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T06-40-01-0400-ecosystem-proof-node.md`
 - summary: Core remains latest-ref aligned and smoke-green, and ProtoKits remains aligned with fetched `origin/0.0.2` at `3d42b725dd166274ff6c5452beef86ef17863852`, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/latest-ref checks cannot resolve package `nexusrealtime`, Experiments local targeted proof fails through ProtoKits, Experiments fetched aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5` while targeted proof fails on sibling paths, public browser proof still stalls at `Booting...`, and scheduler/world mutation isolation remains separate hardening inventory.
@@ -153,6 +163,38 @@
 - summary: Local DSK ecosystem proofs pass, but public/raw `0.0.2` proof artifacts are missing or stale.
 
 ## Branch Tree
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-a
+- relationship: core-main-equals-release-ref
+- look further: Decide whether proof requires checking out branch `0.0.2` or whether commit equality against preflight `latestReleaseBranch` is enough.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-b
+- relationship: protokits-aggregate-green-targeted-package-resolution-red
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-c
+- relationship: experiments-aggregate-canonical-route-red
+- look further: Inspect generated routes and canonical route smoke expectations for `the-open-above-v2`.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-d
+- relationship: experiments-targeted-dsk-engine-n-api-missing
+- look further: Check first-wave ProtoKit return shape, DSK adapter behavior, `createRealtimeGame()` installation, and expected `engine.n.*` API names.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-e
+- relationship: public-route-runtime-module-404
+- look further: Choose CDN `0.0.2`, same-origin deployed assets, package dependency, or build-step import maps for public proof.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-f
+- relationship: npm-and-version-policy-open
+- look further: Decide branch naming, package version, public consumption wording, and npm publication policy.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-g
+- relationship: hardening-inventory-separate-layer
+- look further: Route telemetry/command and runtime failure-boundary fixtures separately from package resolution, route naming, targeted DSK API installation, npm, and public browser proof.
+- parent: ecosystem-proof-032
+- child: ecosystem-proof-032-h
+- relationship: ownership-boundary-still-valid
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof in Experiments while core owns runtime/DSK/composer primitives.
 - parent: ecosystem-proof-030
 - child: ecosystem-proof-030-a
 - relationship: core-latest-ref-green

@@ -1255,3 +1255,42 @@ telemetry-command-evidence-proof-kit
 |-- used by: DSK promotion fixtures, operations/input hardening, proof history reviews, replay and automation evidence gates
 |-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
 ```
+
+## Domain Command Config Ownership Kits
+
+```txt
+economy-transaction-metadata-ownership-kit
+|-- owns: completed/rejected transaction metadata cloning, ledger proof immutability, returned state snapshot policy, economy event payload isolation
+|-- provides: n:economy:transaction-metadata-ownership
+|-- requires: n:service-command:payload-ownership, n:event-queue:payload-isolation
+|-- used by: EconomyKit, operations ledgers, reward/penalty proof, service-flow audit trails, replay validation
+|-- likely target repo: NexusRealtime core validation surface
+
+timing-action-read-ownership-kit
+|-- owns: timing window metadata isolation, action metadata cloning, active-window read snapshots, result/event payload ownership
+|-- provides: n:timing:action-read-ownership
+|-- requires: n:state:snapshot, n:service-command:payload-ownership
+|-- used by: TimingWindowKit, combat/rhythm/training timing, repeated action proof, active timing dashboards
+|-- likely target repo: NexusRealtime core validation surface
+
+pressure-resource-command-ownership-kit
+|-- owns: resource config metadata cloning, adjustment metadata cloning, returned resource/state snapshot policy, depletion payload ownership
+|-- provides: n:pressure:resource-command-ownership
+|-- requires: n:state:snapshot, n:service-command:payload-ownership
+|-- used by: ResourcePressureKit, stamina/oxygen/heat/morale services, pressure proof, scenario replay
+|-- likely target repo: NexusRealtime core validation surface
+
+lifecycle-facility-add-payload-ownership-kit
+|-- owns: lifecycle item and facility add payload capture, nested effects/cost/output/upkeep isolation, returned state snapshot policy, downstream economy side-effect ownership
+|-- provides: n:lifecycle-facility:add-payload-ownership
+|-- requires: n:config:authored-isolation, n:service-command:payload-ownership, n:economy:transaction-metadata-ownership
+|-- used by: LifecycleProgressionKit, FacilityOperationsKit, city/facility authoring, editor-driven operations, economy side-effect proof
+|-- likely target repo: NexusRealtime core validation surface
+
+domain-command-config-ownership-proof-kit
+|-- owns: economy, timing, pressure, lifecycle, and facility command/config/read ownership proof rows
+|-- provides: n:proof:domain-command-config-ownership
+|-- requires: n:proof:coverage, n:economy:transaction-metadata-ownership, n:timing:action-read-ownership, n:pressure:resource-command-ownership, n:lifecycle-facility:add-payload-ownership
+|-- used by: DSK promotion fixtures, operations hardening, replay-safe command validation, editor/config boundary audits
+|-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
+```

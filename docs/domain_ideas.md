@@ -1284,3 +1284,34 @@ world.serviceCommands.payloadOwnership
 world.inputFrames.ownership
 world.proof.telemetryCommandEvidence
 ```
+
+## 44. Domain Command Config Ownership Domain
+
+Purpose: owns cross-domain command, add/config, active-read, returned-state, and proof-record ownership where economy, timing, pressure, lifecycle, and facility services can retain caller-owned nested payloads or expose live handles while appearing replay-safe.
+
+Possible services:
+
+- `n:domain-command-config:ownership`
+- `n:economy:transaction-metadata-ownership`
+- `n:timing:action-read-ownership`
+- `n:pressure:resource-command-ownership`
+- `n:lifecycle-facility:add-payload-ownership`
+- `n:proof:domain-command-config-ownership`
+
+Fits:
+
+- economy ledgers where submitted transaction metadata and returned state must become immutable proof records instead of mutable host objects
+- timing/action services where window metadata, action metadata, active reads, results, and event payloads need snapshot or explicit mutable-handle semantics
+- resource-pressure services where resource metadata, adjustment metadata, depletion payloads, and `get()`/`adjust()` return values must be isolated before replay or validation
+- lifecycle and facility authoring APIs where nested `effects`, `cost`, `output`, `upkeep`, and metadata must be captured before host/editor mutations can change future simulation output
+- DSK hardening fixtures that need command/config/read ownership separate from telemetry selectors, query read models, source reset leakage, procedural/navigation ownership, and public module-source proof
+
+Owned paths:
+
+```txt
+world.economy.transactionMetadataOwnership
+world.timing.actionReadOwnership
+world.pressure.resourceCommandOwnership
+world.lifecycleFacility.addPayloadOwnership
+world.proof.domainCommandConfigOwnership
+```

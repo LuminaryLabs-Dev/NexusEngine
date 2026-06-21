@@ -1,8 +1,13 @@
 # Master DSK Architecture Tracker
 
 ## Current Root Lessons
-- id: dsk-telemetry-command-evidence-context-root-2026-06-20-1823
+- id: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
 - status: active
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-21T06-19-09-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-21T06-19-09-0400-dsk-architecture-node.md`
+- summary: Core `main` is commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but DSK promotion remains blocked by runtime failure-boundary and telemetry/command evidence ownership fixtures; branch-name drift is a release-proof policy question, not a source hardening fix.
+- id: dsk-telemetry-command-evidence-context-root-2026-06-20-1823
+- status: superseded-by-dsk-main-parity-telemetry-command-context-root
 - latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-20T18-23-40-0400-dsk-architecture-state-packet.md`
 - latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-20T18-23-40-0400-dsk-architecture-node.md`
 - summary: Current `origin/0.0.2` remains release-aligned and smoke-green; telemetry selected-value snapshots, telemetry path selector isolation, RequestQueue/TransportRoute command metadata ownership, and InputIntent frame ownership now join the DSK hardening queue as Telemetry Command Evidence Ownership, while procedural/navigation ownership remains separate generated-world inventory and module-source proof stays separate.
@@ -173,6 +178,26 @@
 - summary: DSK is present, exported, documented, and smoke-tested, but install atomicity and namespace hardening are the next production-viability gates.
 
 ## Branch Tree
+- parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- child: dsk-main-equals-release-ref
+- relationship: branch/preflight policy
+- look further: Decide whether release proof requires checkout of branch `0.0.2` or whether commit equality against the preflight-resolved target is sufficient.
+- parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event payload isolation, telemetry/command ownership, and reset/snapshot/async metadata truth.
+- parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- child: dsk-telemetry-command-evidence-confirmed
+- relationship: command/proof evidence ownership row
+- look further: Add fixtures for telemetry selected-value snapshots, telemetry path selector isolation, RequestQueue and TransportRoute command metadata ownership, InputIntent submitted-frame ownership, returned command state mutation, and emitted payload ownership.
+- parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- child: dsk-module-source-proof-separate
+- relationship: distribution/proof boundary
+- look further: Keep package/workspace/CDN/same-origin/build-step import-map decisions in ecosystem/proof lanes, separate from runtime hardening and telemetry/command ownership.
+- parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- child: dsk-core-boundary-preserved
+- relationship: repo ownership boundary
+- look further: Route new reusable implementation to ProtoKits and playable/browser proof to Experiments; keep core changes to runtime/DSK/composer/ECS/scheduler/telemetry/command primitives and validation invariants.
 - parent: dsk-telemetry-command-evidence-context-root-2026-06-20-1823
 - child: dsk-release-aligned-still-context
 - relationship: branch/preflight authority
