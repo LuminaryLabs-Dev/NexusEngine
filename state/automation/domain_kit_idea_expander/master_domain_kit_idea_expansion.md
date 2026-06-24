@@ -10,16 +10,41 @@ This tracker records durable lessons from the idea expansion automation. It is a
 
 ## Latest Run
 
-- Status: thirty-second run complete.
-- Latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-21T07-02-40-0400-domain-kit-idea-expansion-packet.md`
-- Latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-21T07-02-40-0400-domain-kit-idea-node.md`
-- Added idea families: Domain Command Config Ownership for economy transaction metadata, timing action/read metadata, resource-pressure command/read state, and lifecycle/facility add payload ownership.
-- Next search item: route command/config ownership into non-scout fixtures after runtime failure-boundary and telemetry/command evidence ownership ordering is decided.
+- Status: thirty-seventh run complete.
+- Latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-23T19-03-43-0400-domain-kit-idea-expansion-packet.md`
+- Latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-23T19-03-43-0400-domain-kit-idea-node.md`
+- Added idea families: RuntimeKit definition immutability extensions under Runtime Identity And Lifecycle Ownership for nested definition stability, provider-token parity, and installed-definition parity.
+- Next search item: convert RuntimeKit definition immutability into non-scout fixtures before composer handoff, direct/composer parity, duplicate provider/binding, and DSK extension fixture ordering consumes RuntimeKit objects as proof.
 
 ## Current Root Lessons
 
-- id: domain-kit-idea-root-2026-06-21-0702
+- id: domain-kit-idea-root-2026-06-23-1903
 - status: active
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-23T19-03-43-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-23T19-03-43-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence extended Runtime Identity And Lifecycle Ownership with RuntimeKit definition immutability, provider-token parity, and installed-definition parity rows.
+- id: domain-kit-idea-root-2026-06-23-0702
+- status: extended-by-runtime-kit-definition-root
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-23T07-02-55-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-23T07-02-55-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence extended Composition Proof Ownership with composer read-model handoff rows for immutable resolved composer state, supplied-composer validation, and proof metadata parity.
+- id: domain-kit-idea-root-2026-06-22-1904
+- status: extended-by-composer-read-model-handoff-root
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-22T19-04-12-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-22T19-04-12-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence extended Host Graph Lifecycle Ownership with Host Public State Ownership rows for root host capability mutation, public adapter records, record/lifecycle parity, and mount callback side-effect transactions.
+- id: domain-kit-idea-root-2026-06-22-0703
+- status: extended-by-host-public-state-root
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-22T07-03-20-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-22T07-03-20-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence created a DSK Extension Service Ownership planning family for extension API/token parity, base-plus-extension install atomicity, and extension definition identity.
+- id: domain-kit-idea-root-2026-06-21-1903
+- status: extended-by-dsk-extension-service-root
+- latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-21T19-03-16-0400-domain-kit-idea-expansion-packet.md`
+- latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-21T19-03-16-0400-domain-kit-idea-node.md`
+- summary: Fresh deep-bug evidence created a Host Graph Lifecycle Ownership planning family for `Nexus.Host` adapter capability mutation, duplicate adapter identity collapse, non-atomic unmount failure, and snapshot side effects.
+- id: domain-kit-idea-root-2026-06-21-0702
+- status: extended-by-host-graph-lifecycle-root
 - latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-21T07-02-40-0400-domain-kit-idea-expansion-packet.md`
 - latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-21T07-02-40-0400-domain-kit-idea-node.md`
 - summary: Fresh deep-bug evidence created a Domain Command Config Ownership planning family for Economy, TimingWindow, ResourcePressure, LifecycleProgression, and FacilityOperations command/config/read ownership.
@@ -181,6 +206,94 @@ This tracker records durable lessons from the idea expansion automation. It is a
 
 ## Branch Tree
 
+- parent: domain-kit-idea-root-2026-06-23-1903
+- child: runtime-kit-definition-immutability-2026-06-23-1903
+- relationship: RuntimeKit nested arrays/maps and definition entries need freeze, clone, or read-only snapshot policy before `defineRuntimeKit()` output counts as stable proof.
+- look further: `docs/kits_ideas.md`, `src/runtime-kit.js`, RuntimeKit nested immutability fixtures
+- parent: domain-kit-idea-root-2026-06-23-1903
+- child: runtime-provider-token-parity-2026-06-23-1903
+- relationship: Composer provider checks need immutable RuntimeKit provider-token snapshots before caller-mutated `kit.provides` can be ruled out as forged capability proof.
+- look further: `docs/kits_ideas.md`, `src/runtime-kit.js`, `src/game-kit-composer.js`, provider-set parity fixtures
+- parent: domain-kit-idea-root-2026-06-23-1903
+- child: runtime-install-definition-parity-2026-06-23-1903
+- relationship: Direct install and `engine.kits` need installed-definition snapshots or diagnostics before mutable kit objects can be used as scheduler/world/registry proof.
+- look further: `docs/kits_ideas.md`, `src/runtime-kit.js`, `src/engine.js`, direct install definition parity fixtures
+- parent: domain-kit-idea-root-2026-06-23-1903
+- child: runtime-definition-boundary-2026-06-23-1903
+- relationship: This family extends Runtime Identity And Lifecycle Ownership while staying separate from composer read-model handoff, DSK extension service ownership, Runtime Failure Boundary, and public distribution proof.
+- look further: non-scout RuntimeKit hardening lane, composer fixture ordering, DSK promotion fixture tranche
+- parent: domain-kit-idea-root-2026-06-23-0702
+- child: composer-read-model-immutability-2026-06-23-0702
+- relationship: Resolved composer nested arrays/maps need freeze, clone, or read-only snapshot policy before dependency resolution remains valid after handoff.
+- look further: `docs/kits_ideas.md`, `src/game-kit-composer.js`, composer nested immutability fixtures
+- parent: domain-kit-idea-root-2026-06-23-0702
+- child: realtime-game-composer-handoff-2026-06-23-0702
+- relationship: `createRealtimeGame({ composer })` needs recomposition, branding, or provider/install-order parity checks before caller-supplied composer state can become install authority.
+- look further: `docs/kits_ideas.md`, `src/game-kit-composer.js`, `src/engine.js`, supplied-composer contract fixtures
+- parent: domain-kit-idea-root-2026-06-23-0702
+- child: composer-proof-metadata-parity-2026-06-23-0702
+- relationship: `engine.game.installOrder` and `engine.game.bindings` need to reflect actual installed kits or frozen snapshots before they count as proof metadata.
+- look further: `docs/kits_ideas.md`, `src/game-kit-composer.js`, proof metadata parity fixtures
+- parent: domain-kit-idea-root-2026-06-23-0702
+- child: composer-handoff-composition-boundary-2026-06-23-0702
+- relationship: This family extends Composition Proof Ownership while staying separate from DSK Extension Service Ownership, Host Graph Lifecycle Ownership, public distribution proof, and generic query read-model isolation.
+- look further: non-scout composer hardening lane, DSK promotion fixture ordering, release proof metadata consumers
+- parent: domain-kit-idea-root-2026-06-22-1904
+- child: host-root-capability-ownership-2026-06-22-1904
+- relationship: Root `host.provides` needs clone/freeze or explicit revalidated edit APIs before host provider edges count as proof.
+- look further: `docs/kits_ideas.md`, `src/host.js`, root capability mutation fixtures
+- parent: domain-kit-idea-root-2026-06-22-1904
+- child: host-private-adapter-records-2026-06-22-1904
+- relationship: Public adapter records need private lifecycle storage or read-only snapshots so graph-visible adapters cannot bypass `mountAdapter()` validation.
+- look further: `docs/kits_ideas.md`, `src/host.js`, adapter record ownership fixtures
+- parent: domain-kit-idea-root-2026-06-22-1904
+- child: host-record-lifecycle-parity-2026-06-22-1904
+- relationship: Adapter record state and host lifecycle counters need derived parity or diagnostics before graph state can be trusted by proof surfaces.
+- look further: `docs/kits_ideas.md`, `src/host.js`, graph/lifecycle parity fixtures
+- parent: domain-kit-idea-root-2026-06-22-1904
+- child: host-mount-transaction-boundary-2026-06-22-1904
+- relationship: Throwing mount callbacks need staged records, rollback, retry, or diagnostics so leaked host/engine side effects do not create invisible failed installs.
+- look further: `docs/kits_ideas.md`, `src/host.js`, mount callback failure fixtures
+- parent: domain-kit-idea-root-2026-06-22-1904
+- child: host-public-state-boundary-2026-06-22-1904
+- relationship: This family extends Host Graph Lifecycle Ownership while staying separate from DSK Extension Service Ownership, distribution proof, npm, and Experiments route/API failures.
+- look further: dirty host-surface release boundary, host graph hardening fixtures, public proof readiness gates
+- parent: domain-kit-idea-root-2026-06-22-0703
+- child: dsk-extension-api-token-parity-2026-06-22-0703
+- relationship: Extension `apiName`, `services`, and `provides` need parity with installed `engine.n.*` surfaces or an explicit base-API-only extension contract.
+- look further: `docs/kits_ideas.md`, `src/domain-service-kit.js`, extension service token/API fixtures
+- parent: domain-kit-idea-root-2026-06-22-0703
+- child: dsk-extension-install-atomicity-2026-06-22-0703
+- relationship: Installing an extension after its base needs staged mutation, base-aware behavior, rollback, and retry semantics before extension graphs count as proof.
+- look further: `docs/kits_ideas.md`, `src/domain-service-kit.js`, `src/runtime-kit.js`, extension rollback/retry fixtures
+- parent: domain-kit-idea-root-2026-06-22-0703
+- child: dsk-extension-definition-identity-2026-06-22-0703
+- relationship: Extension duplicate checks need ECS definition-name identity as well as config-key identity so base/extension resources, components, and events do not alias accidentally.
+- look further: `docs/kits_ideas.md`, `src/domain-service-kit.js`, `src/ecs.js`, base/extension definition identity fixtures
+- parent: domain-kit-idea-root-2026-06-22-0703
+- child: dsk-extension-service-boundary-2026-06-22-0703
+- relationship: This family extends runtime failure-boundary and runtime identity rows but stays separate from host graph lifecycle, public module-source proof, npm, and Experiments proof routing.
+- look further: runtime failure-boundary fixture ordering, extension smoke fixtures, DSK promotion proof queue
+- parent: domain-kit-idea-root-2026-06-21-1903
+- child: host-adapter-capability-ownership-2026-06-21-1903
+- relationship: `Nexus.Host` adapters need cloned/frozen `provides`, `requires`, and metadata before dependency validation and graph edges count as proof.
+- look further: `docs/kits_ideas.md`, `src/host.js`, host adapter capability fixtures
+- parent: domain-kit-idea-root-2026-06-21-1903
+- child: host-graph-identity-policy-2026-06-21-1903
+- relationship: Duplicate adapter ids/domains currently collapse live mounted records in graph snapshots and need reject, override, or diagnostic policy.
+- look further: `docs/kits_ideas.md`, `src/host.js`, graph identity parity fixtures
+- parent: domain-kit-idea-root-2026-06-21-1903
+- child: host-lifecycle-failure-boundary-2026-06-21-1903
+- relationship: Throwing unmount callbacks can remove retry state while leaving lifecycle counters stale, so host adapter lifecycle needs transactional failure policy.
+- look further: `docs/kits_ideas.md`, `src/host.js`, mount/unmount failure fixtures
+- parent: domain-kit-idea-root-2026-06-21-1903
+- child: host-snapshot-purity-2026-06-21-1903
+- relationship: Adapter snapshot callbacks can mutate host state during reads, so graph snapshots need read-only context or explicit side-effect capture policy.
+- look further: `docs/kits_ideas.md`, `src/host.js`, snapshot purity fixtures
+- parent: domain-kit-idea-root-2026-06-21-1903
+- child: host-graph-lifecycle-boundary-2026-06-21-1903
+- relationship: This family extends composition proof and runtime lifecycle ownership but stays separate from generic DSK provider ownership, query read models, surface snapshots, and public module-source proof.
+- look further: dirty host-surface release boundary, host graph hardening fixtures, DSK promotion proof queue
 - parent: domain-kit-idea-root-2026-06-21-0702
 - child: economy-transaction-metadata-ownership-2026-06-21-0702
 - relationship: Economy transaction metadata and returned live ledger state extend command proof ownership beyond prior RequestQueue/TransportRoute/InputIntent evidence.
@@ -856,6 +969,74 @@ This tracker records durable lessons from the idea expansion automation. It is a
 
 ## Open Search Branches
 
+- branch: runtime-kit-definition-immutability
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/runtime-kit.js`, RuntimeKit nested immutability fixtures
+- branch: runtime-provider-token-parity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/runtime-kit.js`, `src/game-kit-composer.js`, provider-set parity fixtures
+- branch: runtime-install-definition-parity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/runtime-kit.js`, `src/engine.js`, direct install parity fixtures
+- branch: runtime-composer-fixture-order
+- owner: domain_kit_idea_expander
+- priority: medium
+- next files: `docs/kits_ideas.md`, deep bug packets, DSK architecture packets, RuntimeKit/composer/direct-install fixtures
+- branch: composer-read-model-immutability
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/game-kit-composer.js`, composer nested immutability fixtures
+- branch: realtime-game-supplied-composer-contract
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/game-kit-composer.js`, `src/engine.js`, supplied-composer contract fixtures
+- branch: composer-proof-metadata-parity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/game-kit-composer.js`, proof metadata parity fixtures
+- branch: composition-proof-fixture-order
+- owner: domain_kit_idea_expander
+- priority: medium
+- next files: `docs/kits_ideas.md`, DSK architecture packets, deep bug packets, composer/provider/binding/dependency fixtures
+- branch: host-root-capability-ownership
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/host.js`, `tests/host-smoke.mjs`, root capability mutation fixtures
+- branch: host-private-adapter-records
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/host.js`, host adapter record ownership fixtures
+- branch: host-record-lifecycle-parity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/host.js`, graph/lifecycle parity fixtures
+- branch: host-mount-transaction-boundary
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/host.js`, mount callback failure fixtures
+- branch: dirty-host-surface-release-boundary
+- owner: domain_kit_idea_expander
+- priority: medium
+- next files: `src/host.js`, `src/index.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`
+- branch: dsk-extension-api-token-parity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`, extension service/API fixtures
+- branch: dsk-extension-install-atomicity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/domain-service-kit.js`, `src/runtime-kit.js`, base-plus-extension rollback fixtures
+- branch: dsk-extension-definition-identity
+- owner: domain_kit_idea_expander
+- priority: high
+- next files: `docs/kits_ideas.md`, `src/domain-service-kit.js`, `src/ecs.js`, component/resource/event duplicate-name fixtures
+- branch: dsk-extension-proof-handoff
+- owner: domain_kit_idea_expander
+- priority: medium
+- next files: `docs/described_examples.md`, `docs/kits_ideas.md`, non-scout extension smoke fixture lane
 - branch: fresh-neighboring-evidence-check
 - owner: domain_kit_idea_expander
 - priority: high

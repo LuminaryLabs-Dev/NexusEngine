@@ -54,6 +54,12 @@ export {
 } from "./game-kit-composer.js";
 
 export {
+  createHostGraphSnapshot,
+  createNexusHost,
+  defineHostAdapter
+} from "./host.js";
+
+export {
   createCanvas2DRenderer,
   createCustomWebGLRenderer,
   createHeadlessRenderer,

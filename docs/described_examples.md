@@ -951,6 +951,11 @@ composition-proof-ownership-harness
 |   |-- capability-provider-ownership-kit
 |   |-- service-registry-kit
 |   `-- composition-audit-kit
+|-- composer-handoff-domain
+|   |-- composer-read-model-immutability-kit
+|   |-- realtime-game-composer-handoff-kit
+|   |-- composer-proof-metadata-parity-kit
+|   `-- install-dependency-parity-kit
 |-- sequence-type-domain
 |   |-- sequence-type-registry-policy-kit
 |   |-- sequence-node-kit
@@ -977,6 +982,10 @@ Intent: a reusable validation composition for runtime kit bindings, ECS definiti
 
 ```txt
 runtime-identity-lifecycle-harness
+|-- runtime-definition-domain
+|   |-- runtime-kit-definition-immutability-kit
+|   |-- runtime-provider-token-parity-kit
+|   `-- runtime-install-definition-parity-kit
 |-- binding-ownership-domain
 |   |-- runtime-binding-ownership-kit
 |   |-- capability-provider-ownership-kit
@@ -1168,5 +1177,67 @@ domain-command-config-ownership-harness
 `-- proof-domain
     |-- domain-command-config-ownership-proof-kit
     |-- telemetry-command-evidence-proof-kit
+    `-- proof-coverage-matrix-kit
+```
+
+## 39. Host Graph Lifecycle Ownership Harness
+
+Domain: `host-graph-lifecycle-ownership`
+
+Intent: a reusable validation composition for `Nexus.Host` adapter graphs where adapter capability tokens, root host capabilities, mounted record state, adapter identity, mount/unmount transactions, and snapshot callbacks must be owned before host graphs, inspectors, human-view tools, or public proof surfaces can trust composition evidence.
+
+```txt
+host-graph-lifecycle-ownership-harness
+|-- adapter-capability-domain
+|   |-- host-adapter-capability-ownership-kit
+|   |-- host-root-capability-ownership-kit
+|   |-- service-registry-kit
+|   `-- state-snapshot-isolation-kit
+|-- adapter-record-domain
+|   |-- host-private-adapter-records-kit
+|   |-- host-record-lifecycle-parity-kit
+|   `-- lifecycle-parity-proof-kit
+|-- graph-identity-domain
+|   |-- host-graph-identity-policy-kit
+|   |-- composition-audit-kit
+|   `-- capability-provider-ownership-kit
+|-- lifecycle-failure-domain
+|   |-- host-lifecycle-failure-boundary-kit
+|   |-- host-mount-transaction-boundary-kit
+|   |-- lifecycle-parity-proof-kit
+|   `-- scheduler-failure-lifetime-kit
+|-- snapshot-purity-domain
+|   |-- host-snapshot-purity-kit
+|   |-- surface-snapshot-isolation-kit
+|   `-- query-snapshot-isolation-kit
+`-- proof-domain
+    |-- host-graph-lifecycle-proof-kit
+    |-- composition-proof-ownership-kit
+    `-- proof-coverage-matrix-kit
+```
+
+## 40. DSK Extension Service Ownership Harness
+
+Domain: `dsk-extension-service-ownership`
+
+Intent: a reusable validation composition for `extendDomainServiceKit()` service expansion where extension service tokens, installed `engine.n.*` APIs, base-plus-extension transactions, and ECS definition identity must agree before promoted service graphs can trust extension kits.
+
+```txt
+dsk-extension-service-ownership-harness
+|-- api-token-domain
+|   |-- dsk-extension-api-token-parity-kit
+|   |-- dsk-namespace-policy-kit
+|   `-- service-registry-kit
+|-- extension-install-domain
+|   |-- dsk-extension-install-atomicity-kit
+|   |-- dsk-install-rollback-kit
+|   `-- install-transaction-kit
+|-- definition-identity-domain
+|   |-- dsk-extension-definition-identity-kit
+|   |-- ecs-definition-identity-kit
+|   `-- config-normalization-kit
+`-- proof-domain
+    |-- dsk-extension-service-ownership-proof-kit
+    |-- runtime-failure-boundary-proof-kit
     `-- proof-coverage-matrix-kit
 ```

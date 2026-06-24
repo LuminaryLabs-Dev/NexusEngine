@@ -1076,6 +1076,9 @@ Possible services:
 
 - `n:composition-proof:ownership`
 - `n:composition:provider-ownership`
+- `n:composition:composer-read-model`
+- `n:composition:composer-handoff-contract`
+- `n:composition:proof-metadata-parity`
 - `n:sequence:type-registry-policy`
 - `n:sequence:event-history-isolation`
 - `n:ar:runtime-source-consistency`
@@ -1084,15 +1087,21 @@ Possible services:
 Fits:
 
 - composer and DSK graphs where duplicate capability providers must reject, namespace, or declare intentional override ownership before capability presence counts as proof
+- resolved composer objects where nested kit arrays, install-order arrays, provider lists, and binding maps must be frozen, cloned, or revalidated before a prior dependency check counts as proof
+- `createRealtimeGame({ composer })` handoffs where caller-supplied composer state must not install kits or publish metadata that the composer never resolved
+- proof dashboards, inspectors, and host tools where `engine.game.installOrder` and `engine.game.bindings` must match actual installed kits rather than live caller-mutated composer metadata
 - SequenceNode-backed kits where duplicate type names must reject or explicitly override before runtime plans can trust type semantics
 - SequenceNode event buses, diagnostics, telemetry, and proof panels where history snapshots must not expose mutable event objects
 - AR launch and browser/device proof harnesses where support classification and selected mode startup must use one runtime source or reconcile failed startup state
-- proof harnesses that need provider ownership, type registry, event history, and AR runtime-source rows separate from distribution proof, proof-signal integrity, and base runtime failure-boundary work
+- proof harnesses that need provider ownership, composer handoff, type registry, event history, and AR runtime-source rows separate from distribution proof, proof-signal integrity, and base runtime failure-boundary work
 
 Owned paths:
 
 ```txt
 world.composition.providerOwnership
+world.composition.composerReadModel
+world.composition.composerHandoffContract
+world.composition.proofMetadataParity
 world.sequence.typeRegistryPolicy
 world.sequence.eventHistoryIsolation
 world.ar.runtimeSourceConsistency
@@ -1101,11 +1110,14 @@ world.proof.compositionOwnership
 
 ## 38. Runtime Identity And Lifecycle Ownership Domain
 
-Purpose: owns runtime binding ownership, ECS definition identity, SequenceNode install-only kit idempotency, event-bus disposed parity, and proof rows where composed graphs can silently share names, replay side effects, or mutate listener state after teardown.
+Purpose: owns runtime kit definition immutability, provider-token parity, installed-definition parity, runtime binding ownership, ECS definition identity, SequenceNode install-only kit idempotency, event-bus disposed parity, and proof rows where composed graphs can silently share names, mutate validated definitions, replay side effects, or mutate listener state after teardown.
 
 Possible services:
 
 - `n:runtime-identity:lifecycle-ownership`
+- `n:runtime-kit:definition-immutability`
+- `n:runtime-kit:provider-token-parity`
+- `n:runtime-kit:install-definition-parity`
 - `n:runtime:binding-ownership`
 - `n:ecs:definition-identity`
 - `n:sequence:install-only-idempotency`
@@ -1114,15 +1126,21 @@ Possible services:
 
 Fits:
 
+- runtime kit definitions where `systems`, `requires`, `provides`, components, resources, events, registry lists, sequences, or subscriptions must be frozen, cloned, or normalized before kit objects count as proof artifacts
+- composer graphs where provider tokens should come from immutable RuntimeKit snapshots instead of caller-mutated `kit.provides` arrays
+- direct runtime installs where `engine.kits` and installed scheduler/world/registry state must not diverge after a kit object mutates or same-object reinstall is skipped
 - runtime kit and composer graphs where duplicate binding names must reject, namespace, or declare intentional override ownership before bindings count as service proof
 - ECS-backed domain kits where same-named components, resources, and events must be intentionally shared or diagnosed before state isolation claims are trusted
 - SequenceNode-backed proof graphs where raw install-only adapters must be recorded or normalized so repeated deployments do not replay global side effects
 - SequenceNode event buses where every listener API must share disposed-state policy before lifecycle cleanup proof can trust listener counts
-- proof harnesses that need binding, definition identity, install idempotency, and disposed-listener rows separate from capability provider ownership, public module-source proof, and base runtime failure-boundary work
+- proof harnesses that need RuntimeKit definition immutability, provider-token parity, binding, definition identity, install idempotency, and disposed-listener rows separate from composer read-model handoff, public module-source proof, and base runtime failure-boundary work
 
 Owned paths:
 
 ```txt
+world.runtimeKit.definitionImmutability
+world.runtimeKit.providerTokenParity
+world.runtimeKit.installDefinitionParity
 world.runtime.bindingOwnership
 world.ecs.definitionIdentity
 world.sequence.installOnlyIdempotency
@@ -1314,4 +1332,74 @@ world.timing.actionReadOwnership
 world.pressure.resourceCommandOwnership
 world.lifecycleFacility.addPayloadOwnership
 world.proof.domainCommandConfigOwnership
+```
+
+## 45. Host Graph Lifecycle Ownership Domain
+
+Purpose: owns host adapter capability ownership, root host capability ownership, private adapter records, host graph identity policy, adapter lifecycle failure boundaries, snapshot purity, and proof rows where `Nexus.Host` composition graphs can look valid while mounted adapters mutate capability tokens, public records are rewritten, identities collapse, retry state is lost, or host state changes during reads.
+
+Possible services:
+
+- `n:host-graph:lifecycle-ownership`
+- `n:host-adapter:capability-ownership`
+- `n:host-root:capability-ownership`
+- `n:host-adapter-record:ownership`
+- `n:host-record:lifecycle-parity`
+- `n:host-graph:identity-policy`
+- `n:host-lifecycle:failure-boundary`
+- `n:host-mount:transaction-boundary`
+- `n:host-snapshot:purity`
+- `n:proof:host-graph-lifecycle-ownership`
+
+Fits:
+
+- host adapter definitions where `provides`, `requires`, metadata, or returned adapter objects must be cloned or frozen before dependency validation can count as proof
+- root host capability lists where post-creation mutation must not forge dependencies or change provider edges without explicit revalidation
+- host adapter records where direct public array mutation must not inject unvalidated adapters, provider tokens, domains, or lifecycle states into graph snapshots
+- host graph snapshots where duplicate adapter ids, duplicate domains, or duplicate providers need explicit reject, override, or diagnostic policy instead of silently collapsing live records
+- mount/unmount flows where throwing adapter callbacks or leaked side effects must leave lifecycle counts, retry records, diagnostics, and graph state consistent
+- adapter snapshot callbacks where polling a proof graph must be passive or explicitly capture side effects in the returned snapshot
+- DSK and public proof hardening fixtures that need host graph lifecycle ownership separate from runtime kit provider ownership, generic query read models, surface snapshots, and module-source proof
+
+Owned paths:
+
+```txt
+world.host.adapterCapabilityOwnership
+world.host.rootCapabilityOwnership
+world.host.adapterRecordOwnership
+world.host.recordLifecycleParity
+world.host.graphIdentityPolicy
+world.host.lifecycleFailureBoundary
+world.host.mountTransactionBoundary
+world.host.snapshotPurity
+world.proof.hostGraphLifecycleOwnership
+```
+
+## 46. DSK Extension Service Ownership Domain
+
+Purpose: owns extension service token/API parity, base-plus-extension install transactions, extension definition identity, and proof rows where `extendDomainServiceKit()` can advertise promoted services while the installed `engine.n.*` surface, kit record, or ECS state boundary is missing or partially installed.
+
+Possible services:
+
+- `n:dsk-extension:service-ownership`
+- `n:dsk-extension:api-token-parity`
+- `n:dsk-extension:install-atomicity`
+- `n:dsk-extension:definition-identity`
+- `n:proof:dsk-extension-service-ownership`
+
+Fits:
+
+- DSK extensions where a distinct `apiName`, `services`, or `provides` entry must correspond to an installed API or an explicitly base-API-only contract
+- base and extension install flows where installing after the base must be idempotent, transactional, and retryable rather than leaving partial extension APIs or metadata
+- extension merges where component, resource, and event identity must be checked by ECS definition name as well as config key
+- ProtoKit service-expansion paths that add services to existing domains without rewriting the base domain kit
+- DSK hardening fixtures that need extension API/token parity separate from generic install rollback, duplicate runtime binding ownership, and public module-source proof
+
+Owned paths:
+
+```txt
+world.dskExtension.apiTokenParity
+world.dskExtension.installAtomicity
+world.dskExtension.definitionIdentity
+world.proof.dskExtensionServiceOwnership
 ```

@@ -2,11 +2,17 @@
 
 This describes the ideal target architecture, not a guarantee that the current NexusRealtime implementation already satisfies every rule.
 
-Reading order: Domains -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> [Composition](composition.md) -> [Shared Host](shared-host.md)
+Reading order: [Categories](categories.md) -> Domains -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> [Composition](composition.md) -> [Shared Host](shared-host.md)
 
 ## Definition
 
 A domain is a bounded state and meaning container. It is not the behavior object itself.
+
+## Category Relationship
+
+Categories are broad top-level domain containers. A category such as `games`, `rendering`, or `agentic` can contain subdomains, kits, services, compositions, and proofs.
+
+A category does not replace a domain. It gives domains a durable place in the ecosystem so they can grow without forcing every idea into core runtime code.
 
 A domain answers:
 

@@ -1,8 +1,33 @@
 # Master DSK Architecture Tracker
 
 ## Current Root Lessons
-- id: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- id: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
 - status: active
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-23T18-59-21-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-23T18-59-21-0400-dsk-architecture-node.md`
+- summary: Core `main` remains commit-aligned with `origin/0.0.2` and smoke-green with 9 tests, but DSK promotion now needs Composition Proof Ownership fixtures beside Runtime Failure Boundary and DSK Extension Service Ownership: mutable composer arrays/maps can let `createRealtimeGame({ composer })` install unresolved post-resolution kits and publish fake `engine.game` bindings/install-order metadata, while reserved `engine.n` keys, extension API/token parity, extension install atomicity, same-name ECS definition identity, and public proof gates remain open.
+- id: dsk-extension-service-refresh-root-2026-06-23-0617
+- status: superseded-by-dsk-composer-handoff-extension-refresh-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-23T06-17-21-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-23T06-17-21-0400-dsk-architecture-node.md`
+- summary: Core `main` remains commit-aligned with `origin/0.0.2` and smoke-green with 9 tests, but DSK promotion still needs Runtime Failure Boundary and DSK Extension Service Ownership fixtures for reserved `engine.n` API names, extension service-token/API parity, base-plus-extension install atomicity, same-name ECS definition identity, and direct/composer dependency parity; Host Public State Ownership and public proof drift remain adjacent proof/hardening gates, not DSK readiness.
+- id: dsk-extension-service-ownership-root-2026-06-22-1819
+- status: superseded-by-dsk-extension-service-refresh-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-22T18-19-08-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-22T18-19-08-0400-dsk-architecture-node.md`
+- summary: Core `main` remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green with 9 tests, but DSK promotion now needs explicit DSK Extension Service Ownership fixtures for `extendDomainServiceKit()` API/token parity, base-plus-extension install atomicity, and ECS definition-name identity alongside the existing runtime failure-boundary, command/config, host graph, and proof-separation rows.
+- id: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- status: superseded-by-dsk-extension-service-ownership-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-22T06-19-35-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-22T06-19-35-0400-dsk-architecture-node.md`
+- summary: Core `main` remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green with 9 tests, but DSK promotion still needs runtime failure-boundary fixtures plus explicit Host Graph Lifecycle Ownership and ProtoKits local-vs-release proof separation before local host/proof evidence can count as release-ready DSK proof.
+- id: dsk-command-config-context-root-2026-06-21-1818
+- status: superseded-by-dsk-host-graph-and-release-separation-root
+- latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-21T18-18-55-0400-dsk-architecture-state-packet.md`
+- latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-21T18-18-55-0400-dsk-architecture-node.md`
+- summary: Core `main` remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green with 9 tests, but dirty host-surface work is separate release-proof context and DSK promotion now needs Domain Command Config Ownership fixtures for Economy, TimingWindow, ResourcePressure, LifecycleProgression, and FacilityOperations in addition to runtime failure-boundary and telemetry/command evidence ownership.
+- id: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
+- status: superseded-by-dsk-command-config-context-root
 - latest packet: `state/automation/dsk_architecture_scout/packets/2026-06-21T06-19-09-0400-dsk-architecture-state-packet.md`
 - latest node: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-21T06-19-09-0400-dsk-architecture-node.md`
 - summary: Core `main` is commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but DSK promotion remains blocked by runtime failure-boundary and telemetry/command evidence ownership fixtures; branch-name drift is a release-proof policy question, not a source hardening fix.
@@ -178,6 +203,138 @@
 - summary: DSK is present, exported, documented, and smoke-tested, but install atomicity and namespace hardening are the next production-viability gates.
 
 ## Branch Tree
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-composer-read-model-immutability-live
+- relationship: composition proof ownership row
+- look further: Add fixtures that freeze, clone, brand, or otherwise protect `kits`, `orderedKits`, `installOrder`, `provides`, and `bindings` after `createGameKitComposer()` resolves dependencies.
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-realtime-game-supplied-composer-contract-live
+- relationship: createRealtimeGame handoff boundary
+- look further: Add fixtures for stale composer arrays, fake composer objects, missing requirements, duplicate ids, provider parity, install-order parity, and recomposition or rejection policy before `createRealtimeGame({ composer })` becomes install authority.
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-composer-proof-metadata-parity-live
+- relationship: engine.game proof metadata ownership
+- look further: Add fixtures ensuring `engine.game.installOrder` and `engine.game.bindings` match actual installed kits or are frozen snapshots, not live caller-mutated composer metadata.
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-extension-service-fixtures-still-live
+- relationship: extension contract hardening row
+- look further: Preserve extension service-token/API parity, base-plus-extension install atomicity, rollback/retry, and same-name ECS definition identity fixtures beside composer handoff work.
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event queue isolation, and reset/snapshot/async metadata truth.
+- parent: dsk-composer-handoff-extension-refresh-root-2026-06-23-1859
+- child: dsk-proof-gates-still-separate
+- relationship: distribution/proof boundary
+- look further: Keep ProtoKits package resolution, Experiments aggregate/targeted failures, npm, package-version policy, public `Booting...`, optional CDN failures, Host Public State Ownership, and dirty host/docs release policy in their own lanes.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-extension-api-token-parity-live
+- relationship: extension contract hardening row
+- look further: Add fixtures for extension `services`/`provides`/`apiName` parity with installed `engine.n.*` APIs, including explicit API-less extension policy if allowed.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-extension-install-atomicity-live
+- relationship: extension transaction boundary
+- look further: Add rollback/retry fixtures for base-already-installed behavior, API collisions, kit records, DSK metadata, scheduler additions, resources, and service APIs.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-extension-definition-identity-live
+- relationship: ECS identity ownership
+- look further: Add component/resource/event definition-name identity fixtures and define how intentional aliases are declared.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event queue isolation, and reset/snapshot/async metadata truth.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-host-public-state-adjacent
+- relationship: adjacent host proof-surface risk
+- look further: Keep host root capability, private adapter records, record/lifecycle parity, and mount transaction fixtures under Host Graph Lifecycle Ownership instead of DSK extension ownership.
+- parent: dsk-extension-service-refresh-root-2026-06-23-0617
+- child: dsk-proof-gates-still-separate
+- relationship: distribution/proof boundary
+- look further: Keep ProtoKits package resolution, Experiments aggregate/targeted failures, npm, package-version policy, public `Booting...`, and optional CDN failures in ecosystem/proof lanes.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-main-equals-release-ref
+- relationship: branch/preflight policy
+- look further: Decide whether release proof requires checkout of branch `0.0.2`, commit equality against the preflight-resolved target, and/or a clean worktree.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event queue isolation, and reset/snapshot/async metadata truth.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-extension-service-ownership-confirmed
+- relationship: extension contract hardening row
+- look further: Add end-to-end `extendDomainServiceKit()` fixtures for service token/API parity, base-already-installed behavior, extension API collision, rollback/retry, and same-name component/resource/event definition rejection.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-extension-separate-from-proof
+- relationship: distribution/proof boundary
+- look further: Keep package/workspace/CDN/same-origin/build-step import-map decisions in ecosystem/proof lanes, separate from DSK extension contract hardening.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-host-graph-and-command-ownership-carried
+- relationship: hardening queue preservation
+- look further: Preserve Host Graph Lifecycle Ownership, Domain Command Config Ownership, Telemetry Command Evidence Ownership, scheduler/world mutation, event payload isolation, and reset/snapshot/async metadata as separate fixture families.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-protokits-local-release-proof-split
+- relationship: release/proof policy
+- look further: Decide whether DSK proof consumes local ProtoKits `main`, `origin/main`, or preflight-resolved release branch evidence while local ProtoKits remains 103 commits ahead of `origin/0.0.2`.
+- parent: dsk-extension-service-ownership-root-2026-06-22-1819
+- child: dsk-core-boundary-preserved
+- relationship: repo ownership boundary
+- look further: Route new reusable implementation to ProtoKits and playable/browser proof to Experiments; keep core changes to runtime/DSK/composer/ECS/scheduler/host primitives and validation invariants.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-main-equals-release-ref
+- relationship: branch/preflight policy
+- look further: Decide whether release proof requires checkout of branch `0.0.2`, commit equality against the preflight-resolved target, and/or a clean worktree.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event queue isolation, and reset/snapshot/async metadata truth.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-domain-command-config-still-live
+- relationship: command/config/read ownership hardening row
+- look further: Add Economy, TimingWindow, ResourcePressure, LifecycleProgression, and FacilityOperations fixtures for metadata cloning, nested payload capture, returned state mutation, read isolation, emitted payload ownership, and future simulation side effects.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-host-graph-lifecycle-separate
+- relationship: host graph hardening row
+- look further: Add host adapter capability, graph identity, lifecycle failure, and snapshot purity fixtures before treating `Nexus.Host` graph snapshots as proof surfaces.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-protokits-local-release-proof-split
+- relationship: release/proof policy
+- look further: Decide whether DSK proof consumes local ProtoKits `main`, `origin/main`, or preflight-resolved release branch evidence after local ProtoKits moved 103 commits ahead of `origin/0.0.2`.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-module-source-proof-separate
+- relationship: distribution/proof boundary
+- look further: Keep package/workspace/CDN/same-origin/build-step import-map decisions in ecosystem/proof lanes, separate from runtime hardening, host graph hardening, and command/config ownership.
+- parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
+- child: dsk-core-boundary-preserved
+- relationship: repo ownership boundary
+- look further: Route new reusable implementation to ProtoKits and playable/browser proof to Experiments; keep core changes to runtime/DSK/composer/ECS/scheduler/host primitives and validation invariants.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-main-equals-release-ref
+- relationship: branch/preflight policy
+- look further: Decide whether release proof requires checkout of branch `0.0.2` or whether commit equality against the preflight-resolved target is sufficient.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-dirty-host-surface-separate
+- relationship: release-proof/source-boundary context
+- look further: Decide whether dirty host exports, host tests, examples, and docs are part of the next release proof or should stay separate until committed and promoted.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-runtime-failure-boundary-still-first
+- relationship: tranche 1 executable fixture target
+- look further: Write fixtures for reserved keys, null-prototype or own-key policy, rollback/preflight, dependency parity, duplicate ownership diagnostics, scheduler/world mutation, event queue isolation, and reset/snapshot/async metadata truth.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-command-config-ownership-confirmed
+- relationship: command/config/read ownership hardening row
+- look further: Add Economy, TimingWindow, ResourcePressure, LifecycleProgression, and FacilityOperations fixtures for metadata cloning, nested payload capture, returned state mutation, read isolation, emitted payload ownership, and future simulation side effects.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-telemetry-command-evidence-still-separate
+- relationship: command/proof evidence ownership row
+- look further: Preserve telemetry selected-value/path, RequestQueue/TransportRoute metadata, and InputIntent frame ownership fixtures separately from domain command/config ownership.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-module-source-proof-separate
+- relationship: distribution/proof boundary
+- look further: Keep package/workspace/CDN/same-origin/build-step import-map decisions in ecosystem/proof lanes, separate from runtime hardening and command/config ownership.
+- parent: dsk-command-config-context-root-2026-06-21-1818
+- child: dsk-core-boundary-preserved
+- relationship: repo ownership boundary
+- look further: Route new reusable implementation to ProtoKits and playable/browser proof to Experiments; keep core changes to runtime/DSK/composer/ECS/scheduler/command primitives and validation invariants.
 - parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
 - child: dsk-main-equals-release-ref
 - relationship: branch/preflight policy
@@ -1028,6 +1185,30 @@
 - look further: Decide whether all `requires` tokens should be enforced by direct install.
 
 ## Open Search Branches
+- branch: DSK extension service ownership fixtures
+- owner: non-scout implementation lane
+- priority: critical
+- next files: `src/domain-service-kit.js`, `src/runtime-kit.js`, `src/game-kit-composer.js`, `tests/domain-service-kit-smoke.mjs`, extension API/token parity, rollback/retry, and definition identity fixtures
+- branch: DSK host public state ownership fixtures
+- owner: non-scout implementation lane
+- priority: critical
+- next files: `src/host.js`, `tests/host-smoke.mjs`, host root capability, private adapter records, lifecycle parity, and mount transaction fixtures
+- branch: DSK host graph lifecycle ownership fixtures
+- owner: non-scout implementation lane
+- priority: critical
+- next files: `src/host.js`, `tests/host-smoke.mjs`, host adapter capability, graph identity, lifecycle failure, and snapshot purity fixtures
+- branch: DSK ProtoKits local-vs-release proof split
+- owner: ecosystem/release proof lane
+- priority: critical
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+- branch: DSK domain command config ownership fixtures
+- owner: non-scout implementation lane
+- priority: critical
+- next files: `src/economy-kit.js`, `src/timing-window-kit.js`, `src/resource-pressure-kit.js`, `src/lifecycle-progression-kit.js`, `src/facility-operations-kit.js`, focused ownership fixtures
+- branch: DSK dirty host surface release boundary
+- owner: ecosystem/release proof lane
+- priority: high
+- next files: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`
 - branch: DSK proof signal integrity fixtures
 - owner: automation
 - priority: high

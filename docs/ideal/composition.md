@@ -2,11 +2,17 @@
 
 This describes the ideal target architecture, not a guarantee that the current NexusRealtime implementation already satisfies every rule.
 
-Reading order: [Domains](domains.md) -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> Composition -> [Shared Host](shared-host.md)
+Reading order: [Categories](categories.md) -> [Domains](domains.md) -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> Composition -> [Shared Host](shared-host.md)
 
 ## Definition
 
 Composition is the graph that decides how domains, kits, and services are layered into a specific game slice.
+
+## Composition Across Categories
+
+A composition can pull domains, kits, and services from multiple categories. A game slice might use `games` for traversal, `rendering` for material descriptors, `assets` for load plans, `agentic` for decision state, and `persistence` for snapshots.
+
+The composition owns how those category pieces are mounted together. The categories organize where the pieces come from; the composition defines how they interact.
 
 Composition answers:
 

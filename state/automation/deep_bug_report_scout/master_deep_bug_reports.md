@@ -1,6 +1,31 @@
 # Master Deep Bug Reports Tracker
 
 ## Current Root Lessons
+- id: deep-bug-root-2026-06-23-runtime-kit-definition-immutability
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-23T19-00-40-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-23T19-00-40-0400-deep-bug-node.md`
+- summary: `defineRuntimeKit()` freezes only the outer kit while nested definition arrays/maps remain mutable; callers can inject systems before install, forge provider tokens before composer resolution, mutate requirements before direct install, and leave `engine.kits` metadata stale after post-install definition mutation.
+- id: deep-bug-root-2026-06-23-composer-read-model-handoff
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-23T06-49-16-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-23T06-49-16-0400-deep-bug-node.md`
+- summary: `createGameKitComposer()` freezes only the outer composer while nested arrays/maps remain mutable, and `createRealtimeGame({ composer })` trusts that mutable state without parity checks; a stale composer can install unresolved kits, expose fake install-order metadata, and inject bindings that do not match actual `engine.kits`.
+- id: deep-bug-root-2026-06-22-host-public-state-mutation
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-22T18-49-24-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-22T18-49-24-0400-deep-bug-node.md`
+- summary: `Nexus.Host` public state has fresh proof-boundary gaps: mutable root `provides` can forge dependencies, public `adapterRecords` can inject unvalidated graph adapters, record state can diverge from lifecycle state, and throwing mount callbacks can leak host mutations without failed records.
+- id: deep-bug-root-2026-06-22-dsk-extension-install-contract
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-22T06-49-01-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-22T06-49-01-0400-deep-bug-node.md`
+- summary: `extendDomainServiceKit()` has fresh end-to-end contract gaps: extension kits can advertise service tokens without installing the extension API, failed base-plus-extension installs can retain partial extension API/kit/metadata state, and same-name ECS definitions can pass duplicate checks under different config keys.
+- id: deep-bug-root-2026-06-21-host-graph-lifecycle-ownership
+- status: open
+- latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-21T18-48-04-0400-deep-bug-report-packet.md`
+- latest node: `state/automation/deep_bug_report_scout/knowledge_nodes/2026-06-21T18-48-04-0400-deep-bug-node.md`
+- summary: Nexus.Host adapter graph and lifecycle APIs have fresh ownership gaps: mounted adapter token arrays remain mutable, duplicate adapter ids collapse in graph snapshots, throwing unmount callbacks leave lifecycle state inconsistent, and adapter snapshot callbacks can mutate host state during a read.
 - id: deep-bug-root-2026-06-21-domain-command-config-ownership
 - status: open
 - latest packet: `state/automation/deep_bug_report_scout/packets/2026-06-21T06-48-34-0400-deep-bug-report-packet.md`
@@ -153,6 +178,74 @@
 - summary: Current smoke tests pass, but validation and cleanup boundaries still allow invalid SequenceNode side effects, unbounded terrain cache growth, stale AR sessions, and DSK install rollback risk.
 
 ## Branch Tree
+- parent: deep-bug-root-2026-06-23-runtime-kit-definition-immutability
+- child: deep-bug-runtime-kit-nested-array-mutation-001
+- relationship: RuntimeKit definition immutability bug
+- look further: Freeze or clone RuntimeKit nested arrays/maps, including systems, tokens, definitions, registries, sequences, and subscriptions.
+- parent: deep-bug-root-2026-06-23-runtime-kit-definition-immutability
+- child: deep-bug-runtime-provider-token-forgery-001
+- relationship: runtime provider token ownership bug
+- look further: Add composer fixtures for post-definition `provides`/`requires` mutation and provider-set parity against immutable kit snapshots.
+- parent: deep-bug-root-2026-06-23-runtime-kit-definition-immutability
+- child: deep-bug-runtime-install-definition-parity-001
+- relationship: direct install definition parity bug
+- look further: Add direct install fixtures for generic requirement parity and post-install kit definition mutation versus scheduler/world/registry state.
+- parent: deep-bug-root-2026-06-23-composer-read-model-handoff
+- child: deep-bug-composer-nested-array-mutation-001
+- relationship: composer read-model isolation bug
+- look further: Freeze or clone nested composer arrays and add fixtures for post-compose mutation of `kits`, `orderedKits`, `installOrder`, and `provides`.
+- parent: deep-bug-root-2026-06-23-composer-read-model-handoff
+- child: deep-bug-realtime-game-supplied-composer-bypass-001
+- relationship: realtime game composer handoff bug
+- look further: Add supplied-composer fixtures for stale arrays, fake composer objects, duplicate ids, missing requirements, provider parity, and install-order parity.
+- parent: deep-bug-root-2026-06-23-composer-read-model-handoff
+- child: deep-bug-composer-proof-metadata-mutation-001
+- relationship: composer proof metadata ownership bug
+- look further: Add binding and install-order parity fixtures so `engine.game` metadata cannot diverge from actual installed kits.
+- parent: deep-bug-root-2026-06-22-host-public-state-mutation
+- child: deep-bug-host-root-provides-mutation-001
+- relationship: host root capability ownership bug
+- look further: Add fixtures for root `provides` immutability, explicit capability edit policy, dependency revalidation, and graph edge stability.
+- parent: deep-bug-root-2026-06-22-host-public-state-mutation
+- child: deep-bug-host-public-adapter-records-001
+- relationship: host graph record ownership bug
+- look further: Add fixtures that direct `adapterRecords` mutation cannot inject adapters/providers/domains or desync lifecycle counts.
+- parent: deep-bug-root-2026-06-22-host-public-state-mutation
+- child: deep-bug-host-record-state-parity-001
+- relationship: host lifecycle/graph parity bug
+- look further: Add lifecycle/record/domain parity fixtures, invalid state diagnostics, and explicit transition policy.
+- parent: deep-bug-root-2026-06-22-host-public-state-mutation
+- child: deep-bug-host-mount-side-effect-leak-001
+- relationship: host mount transaction bug
+- look further: Add mount failure fixtures for host/engine/resource side effects, retry behavior, diagnostics, and staged failed records.
+- parent: deep-bug-root-2026-06-22-dsk-extension-install-contract
+- child: deep-bug-dsk-extension-api-missing-001
+- relationship: DSK extension API/token parity bug
+- look further: Add extension install fixtures that assert promised `apiName`, `services`, `provides`, and installed `engine.n.*` surfaces agree.
+- parent: deep-bug-root-2026-06-22-dsk-extension-install-contract
+- child: deep-bug-dsk-extension-partial-install-001
+- relationship: DSK extension install atomicity bug
+- look further: Add rollback fixtures for extension installs after base installs, API collision, thrown install callbacks, same-object retry, and metadata/API cleanup.
+- parent: deep-bug-root-2026-06-22-dsk-extension-install-contract
+- child: deep-bug-dsk-extension-definition-name-alias-001
+- relationship: DSK extension definition identity bug
+- look further: Add duplicate component/resource/event definition-name fixtures across base and extension configs, not only duplicate object-key checks.
+- parent: deep-bug-root-2026-06-21-host-graph-lifecycle-ownership
+- child: deep-bug-host-adapter-token-mutation-001
+- relationship: host adapter dependency ownership bug
+- look further: Add host adapter fixtures for token array immutability, post-mount mutation attempts, dependency revalidation policy, and graph edge stability.
+- parent: deep-bug-root-2026-06-21-host-graph-lifecycle-ownership
+- child: deep-bug-host-duplicate-adapter-collapse-001
+- relationship: host graph identity bug
+- look further: Add duplicate adapter id/domain/provider fixtures with diagnostics, explicit override policy, graph record parity, and unmount-by-id ambiguity coverage.
+- parent: deep-bug-root-2026-06-21-host-graph-lifecycle-ownership
+- child: deep-bug-host-unmount-nonatomic-001
+- relationship: host lifecycle failure-boundary bug
+- look further: Add host lifecycle fixtures for throwing unmount callbacks, retry policy, failed-unmount diagnostics, and adapter record/lifecycle counter parity.
+- parent: deep-bug-root-2026-06-21-host-graph-lifecycle-ownership
+- child: deep-bug-host-snapshot-side-effect-001
+- relationship: host graph read-model side-effect bug
+- look further: Add host snapshot purity fixtures for adapter snapshot callbacks, read-only context policy, diagnostics timing, and repeated polling idempotency.
 - parent: deep-bug-root-2026-06-21-domain-command-config-ownership
 - child: deep-bug-economy-transaction-metadata-alias-001
 - relationship: economy command/proof ownership bug
@@ -631,6 +724,50 @@
 - look further: Stage or roll back runtime/DSK install mutations.
 
 ## Open Search Branches
+- branch: composer-nested-immutability
+- owner: composer read model
+- priority: high
+- next files: `src/game-kit-composer.js`, composer nested immutability fixtures
+- branch: realtime-game-supplied-composer-contract
+- owner: realtime game composer handoff
+- priority: high
+- next files: `src/game-kit-composer.js`, `src/engine.js`, supplied-composer parity fixtures
+- branch: composer-proof-metadata-parity
+- owner: composer proof metadata
+- priority: medium
+- next files: `src/game-kit-composer.js`, engine game install-order/binding parity fixtures
+- branch: host-root-capability-ownership
+- owner: Nexus.Host graph
+- priority: high
+- next files: `src/host.js`, `tests/host-smoke.mjs`, host root capability mutation fixtures
+- branch: host-private-adapter-records
+- owner: Nexus.Host graph
+- priority: high
+- next files: `src/host.js`, host adapter record privacy and graph record shape fixtures
+- branch: host-record-lifecycle-parity
+- owner: Nexus.Host lifecycle
+- priority: medium
+- next files: `src/host.js`, host lifecycle/record/domain parity fixtures
+- branch: host-mount-transaction-boundary
+- owner: Nexus.Host lifecycle
+- priority: high
+- next files: `src/host.js`, host mount failure transaction fixtures
+- branch: host-adapter-token-ownership
+- owner: Nexus.Host graph
+- priority: high
+- next files: `src/host.js`, `tests/host-smoke.mjs`, host adapter token immutability fixtures
+- branch: host-graph-identity-policy
+- owner: Nexus.Host graph
+- priority: high
+- next files: `src/host.js`, duplicate adapter id/domain/provider fixtures, graph record parity fixtures
+- branch: host-lifecycle-failure-boundary
+- owner: Nexus.Host lifecycle
+- priority: high
+- next files: `src/host.js`, host mount/unmount failure transaction fixtures
+- branch: host-snapshot-purity
+- owner: Nexus.Host read model
+- priority: medium
+- next files: `src/host.js`, host graph snapshot callback purity fixtures
 - branch: domain-command-config-ownership
 - owner: economy/timing/pressure/lifecycle/facility
 - priority: high

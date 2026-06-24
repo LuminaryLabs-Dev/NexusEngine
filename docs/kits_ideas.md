@@ -993,6 +993,27 @@ capability-provider-ownership-kit
 |-- used by: createGameKitComposer, DSK dependency planning, large ProtoKit graphs, proof harness provider checks
 |-- likely target repo: NexusRealtime core validation surface
 
+composer-read-model-immutability-kit
+|-- owns: frozen/cloned composer kits, orderedKits, installOrder, provides, and binding maps after dependency resolution
+|-- provides: n:composition:composer-read-model
+|-- requires: n:composition:provider-ownership, n:state:snapshot
+|-- used by: createGameKitComposer, DSK dependency proof, reusable composition inspectors, proof harnesses
+|-- likely target repo: NexusRealtime core validation surface
+
+realtime-game-composer-handoff-kit
+|-- owns: supplied-composer validation, stale array rejection, fake composer diagnostics, provider/install-order parity
+|-- provides: n:composition:composer-handoff-contract
+|-- requires: n:composition:composer-read-model, n:install:dependency-parity
+|-- used by: createRealtimeGame, Experiments proof routes, ProtoKit graph smoke tests, host composition wrappers
+|-- likely target repo: NexusRealtime core validation surface
+
+composer-proof-metadata-parity-kit
+|-- owns: engine.game installOrder and bindings parity with actual installed kits, cloned proof metadata, mutation diagnostics
+|-- provides: n:composition:proof-metadata-parity
+|-- requires: n:composition:composer-handoff-contract, n:runtime:binding-ownership
+|-- used by: proof dashboards, host inspectors, release evidence packets, human-view composition tools
+|-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
+
 sequence-type-registry-policy-kit
 |-- owns: duplicate SequenceNode type registration policy, built-in/custom override diagnostics, kit install ordering rows
 |-- provides: n:sequence:type-registry-policy
@@ -1015,9 +1036,9 @@ ar-runtime-source-consistency-kit
 |-- likely target repo: NexusRealtime core validation surface
 
 composition-proof-ownership-kit
-|-- owns: provider ownership, type registry policy, event-history isolation, and AR runtime-source consistency proof rows
+|-- owns: provider ownership, composer read-model/handoff parity, type registry policy, event-history isolation, and AR runtime-source consistency proof rows
 |-- provides: n:proof:composition-ownership
-|-- requires: n:proof:coverage, n:composition:provider-ownership, n:sequence:type-registry-policy, n:sequence:event-history-isolation, n:ar:runtime-source-consistency
+|-- requires: n:proof:coverage, n:composition:provider-ownership, n:composition:composer-read-model, n:composition:composer-handoff-contract, n:composition:proof-metadata-parity, n:sequence:type-registry-policy, n:sequence:event-history-isolation, n:ar:runtime-source-consistency
 |-- used by: DSK promotion fixtures, large composition proof reviews, SequenceNode-backed ProtoKit checks, AR/browser proof readiness
 |-- likely target repo: NexusRealtime core validation surface
 ```
@@ -1025,10 +1046,31 @@ composition-proof-ownership-kit
 ## Runtime Identity And Lifecycle Ownership Kits
 
 ```txt
+runtime-kit-definition-immutability-kit
+|-- owns: frozen/cloned RuntimeKit systems, requires, provides, components, resources, events, registries, sequences, subscriptions, and definition entry snapshots after defineRuntimeKit()
+|-- provides: n:runtime-kit:definition-immutability
+|-- requires: n:config:normalize, n:state:snapshot
+|-- used by: defineRuntimeKit, DSK wrappers, composer inputs, SequenceNode install kits, shader/material registries, proof harnesses
+|-- likely target repo: NexusRealtime core validation surface
+
+runtime-provider-token-parity-kit
+|-- owns: provider/require token snapshots, post-definition mutation diagnostics, composer provider-set parity, forged capability rejection
+|-- provides: n:runtime-kit:provider-token-parity
+|-- requires: n:runtime-kit:definition-immutability, n:composition:provider-ownership
+|-- used by: createGameKitComposer, DSK dependency proof, ProtoKit graph validators, direct/composed install comparison
+|-- likely target repo: NexusRealtime core validation surface
+
+runtime-install-definition-parity-kit
+|-- owns: installed definition snapshots, engine.kits parity with scheduler/world/registry state, same-object reinstall drift diagnostics, direct-install requirement parity
+|-- provides: n:runtime-kit:install-definition-parity
+|-- requires: n:runtime-kit:definition-immutability, n:install:dependency-parity
+|-- used by: installRuntimeKit, createEngine({ kits }), direct install proof, release evidence inspectors
+|-- likely target repo: NexusRealtime core validation surface
+
 runtime-binding-ownership-kit
 |-- owns: binding owner registry, duplicate binding diagnostics, intentional override policy, composer/direct-install parity rows
 |-- provides: n:runtime:binding-ownership
-|-- requires: n:composition:provider-ownership, n:service:registry
+|-- requires: n:runtime-kit:provider-token-parity, n:composition:provider-ownership, n:service:registry
 |-- used by: createGameKitComposer, installRuntimeKit, adapter bindings, host bridges, proof service wiring
 |-- likely target repo: NexusRealtime core validation surface
 
@@ -1054,9 +1096,9 @@ event-bus-disposed-parity-kit
 |-- likely target repo: NexusRealtime core validation surface
 
 runtime-identity-lifecycle-proof-kit
-|-- owns: binding ownership, ECS definition identity, install-only idempotency, and disposed event-bus proof rows
+|-- owns: RuntimeKit definition immutability, provider-token parity, installed-definition parity, binding ownership, ECS definition identity, install-only idempotency, and disposed event-bus proof rows
 |-- provides: n:proof:runtime-identity-lifecycle
-|-- requires: n:proof:coverage, n:runtime:binding-ownership, n:ecs:definition-identity, n:sequence:install-only-idempotency, n:sequence:event-bus-disposed-parity
+|-- requires: n:proof:coverage, n:runtime-kit:definition-immutability, n:runtime-kit:provider-token-parity, n:runtime-kit:install-definition-parity, n:runtime:binding-ownership, n:ecs:definition-identity, n:sequence:install-only-idempotency, n:sequence:event-bus-disposed-parity
 |-- used by: DSK promotion fixtures, composition ownership reviews, SequenceNode proof hardening, runtime lifecycle audits
 |-- likely target repo: NexusRealtime core validation surface
 ```
@@ -1292,5 +1334,104 @@ domain-command-config-ownership-proof-kit
 |-- provides: n:proof:domain-command-config-ownership
 |-- requires: n:proof:coverage, n:economy:transaction-metadata-ownership, n:timing:action-read-ownership, n:pressure:resource-command-ownership, n:lifecycle-facility:add-payload-ownership
 |-- used by: DSK promotion fixtures, operations hardening, replay-safe command validation, editor/config boundary audits
+|-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
+```
+
+## Host Graph Lifecycle Ownership Kits
+
+```txt
+host-adapter-capability-ownership-kit
+|-- owns: host adapter provides/requires clone-freeze policy, metadata ownership, post-mount mutation diagnostics, dependency revalidation rules
+|-- provides: n:host-adapter:capability-ownership
+|-- requires: n:composition:registry, n:state:snapshot
+|-- used by: Nexus.Host, render/input/editor/storage adapters, proof graph validators, host smoke hardening
+|-- likely target repo: NexusRealtime core validation surface
+
+host-root-capability-ownership-kit
+|-- owns: root host provides clone-freeze policy, explicit capability edit APIs, dependency revalidation, host provider edge stability
+|-- provides: n:host-root:capability-ownership
+|-- requires: n:composition:registry, n:host-adapter:capability-ownership
+|-- used by: Nexus.Host root providers, host graph snapshots, dependency validators, proof graph validators
+|-- likely target repo: NexusRealtime core validation surface
+
+host-private-adapter-records-kit
+|-- owns: private mounted adapter record storage, read-only record snapshots, record shape validation, direct mutation diagnostics
+|-- provides: n:host-adapter-record:ownership
+|-- requires: n:host-root:capability-ownership, n:state:snapshot
+|-- used by: host graph snapshots, inspector panels, adapter lifecycle APIs, human-view proof surfaces
+|-- likely target repo: NexusRealtime core validation surface
+
+host-record-lifecycle-parity-kit
+|-- owns: record state transition policy, lifecycle counter derivation, graph/domain state parity, invalid state diagnostics
+|-- provides: n:host-record:lifecycle-parity
+|-- requires: n:host-adapter-record:ownership, n:lifecycle:parity-cleanup
+|-- used by: host lifecycle fixtures, graph snapshot validators, release proof dashboards, adapter recovery flows
+|-- likely target repo: NexusRealtime core validation surface
+
+host-graph-identity-policy-kit
+|-- owns: duplicate adapter id/domain/provider policy, graph record parity, override diagnostics, unmount-by-id ambiguity rules
+|-- provides: n:host-graph:identity-policy
+|-- requires: n:host-adapter:capability-ownership, n:host-adapter-record:ownership, n:audit:composition
+|-- used by: host graph snapshots, inspector panels, editor hosts, release proof dashboards
+|-- likely target repo: NexusRealtime core validation surface
+
+host-lifecycle-failure-boundary-kit
+|-- owns: mount/unmount transaction states, failed cleanup retry records, lifecycle counter parity, adapter failure diagnostics
+|-- provides: n:host-lifecycle:failure-boundary
+|-- requires: n:host-record:lifecycle-parity, n:lifecycle:parity-cleanup, n:scheduler:failure-lifetime
+|-- used by: browser/native/render/audio/storage adapters, host lifecycle fixtures, runtime shell promotion reviews
+|-- likely target repo: NexusRealtime core validation surface
+
+host-mount-transaction-boundary-kit
+|-- owns: staged mounting records, throw-after-side-effect policy, rollback or failed-record retention, retry diagnostics
+|-- provides: n:host-mount:transaction-boundary
+|-- requires: n:host-lifecycle:failure-boundary, n:install:transaction
+|-- used by: adapter mount callbacks, browser/native resource acquisition, host retry flows, lifecycle proof fixtures
+|-- likely target repo: NexusRealtime core validation surface
+
+host-snapshot-purity-kit
+|-- owns: adapter snapshot callback side-effect policy, read-only host contexts, diagnostics timing, repeated polling idempotency
+|-- provides: n:host-snapshot:purity
+|-- requires: n:host-adapter-record:ownership, n:surface:snapshot-isolation, n:query:snapshot-isolation
+|-- used by: host graph snapshots, proof panels, human-view tools, telemetry/debug inspectors
+|-- likely target repo: NexusRealtime core validation surface
+
+host-graph-lifecycle-proof-kit
+|-- owns: adapter capability, root capability, adapter record, graph identity, lifecycle failure, mount transaction, and snapshot purity proof rows
+|-- provides: n:proof:host-graph-lifecycle-ownership
+|-- requires: n:proof:coverage, n:host-adapter:capability-ownership, n:host-root:capability-ownership, n:host-adapter-record:ownership, n:host-record:lifecycle-parity, n:host-graph:identity-policy, n:host-lifecycle:failure-boundary, n:host-mount:transaction-boundary, n:host-snapshot:purity
+|-- used by: Nexus.Host hardening, DSK promotion fixtures, browser/native host release reviews, public proof readiness gates
+|-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
+```
+
+## DSK Extension Service Ownership Kits
+
+```txt
+dsk-extension-api-token-parity-kit
+|-- owns: extension apiName/service/provides parity, API-less extension diagnostics, base-API-only extension policy
+|-- provides: n:dsk-extension:api-token-parity
+|-- requires: n:dsk:namespace-policy, n:composition:registry
+|-- used by: extendDomainServiceKit, ProtoKit service expansions, first-wave DSK proof adapters, engine.n service inspectors
+|-- likely target repo: NexusRealtime core validation surface
+
+dsk-extension-install-atomicity-kit
+|-- owns: base-preinstalled extension install policy, staged extension API writes, failed extension rollback, retry state
+|-- provides: n:dsk-extension:install-atomicity
+|-- requires: n:dsk:install-rollback, n:install:transaction
+|-- used by: extendDomainServiceKit, base-plus-extension DSK graphs, promotion fixtures, proof graph validators
+|-- likely target repo: NexusRealtime core validation surface
+
+dsk-extension-definition-identity-kit
+|-- owns: base/extension component, resource, and event duplicate checks by config key and ECS definition name
+|-- provides: n:dsk-extension:definition-identity
+|-- requires: n:ecs:definition-identity, n:config:normalize
+|-- used by: extendDomainServiceKit, resource/event merge validation, snapshot/reset boundary checks, service-expansion authoring
+|-- likely target repo: NexusRealtime core validation surface
+
+dsk-extension-service-ownership-proof-kit
+|-- owns: extension API/token parity, install atomicity, and definition identity proof rows
+|-- provides: n:proof:dsk-extension-service-ownership
+|-- requires: n:proof:coverage, n:dsk-extension:api-token-parity, n:dsk-extension:install-atomicity, n:dsk-extension:definition-identity
+|-- used by: DSK promotion fixtures, ProtoKit extension promotion reviews, first-wave service expansion proof, runtime contract audits
 |-- likely target repo: NexusRealtime core validation surface plus NexusRealtime-ProtoKits proof tooling
 ```

@@ -152,12 +152,193 @@
 - latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T18-11-35-0400-ecosystem-state-node.md`
 - summary: Core and ProtoKits remain latest-release aligned, but module-source strategy still blocks local/latest-ref ProtoKits validation, local/fetched Experiments targeted proof, and public browser proof; Experiments remains 2 commits behind fetched `origin/0.0.2`, npm metadata remains 404, and procedural/navigation plus telemetry/command evidence ownership are separate hardening inventory.
 - id: ecosystem-root-031
-- status: open
+- status: superseded-by-ecosystem-root-032
 - latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-21T06-05-46-0400-ecosystem-state-packet.md`
 - latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-21T06-05-46-0400-ecosystem-state-node.md`
 - summary: Core commit alignment remains stable even though local core is on `main`, but ecosystem proof is red across ProtoKits targeted package resolution, Experiments aggregate canonical-route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, and package-version policy.
+- id: ecosystem-root-032
+- status: superseded-by-ecosystem-root-033
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-21T18-05-09-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-21T18-05-09-0400-ecosystem-state-node.md`
+- summary: Core and sibling release refs are aligned again, and core smoke coverage now passes 9 tests from a dirty host-surface checkout, but ecosystem proof remains red across ProtoKits targeted package resolution, Experiments aggregate canonical-route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, package-version policy, and sibling `origin/main` freshness drift.
+- id: ecosystem-root-033
+- status: superseded-by-ecosystem-root-034
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-22T06-05-45-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-22T06-05-45-0400-ecosystem-state-node.md`
+- summary: Core remains release-ref aligned and smoke-green, but ProtoKits local `main` is now 103 commits ahead of `origin/0.0.2`; ecosystem proof remains red across ProtoKits targeted package resolution, Experiments aggregate canonical-route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, package-version policy, dirty core host/docs release boundary, and Host Graph Lifecycle Ownership hardening.
+- id: ecosystem-root-034
+- status: superseded-by-ecosystem-root-035
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-22T18-07-07-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-22T18-07-07-0400-ecosystem-state-node.md`
+- summary: Core remains release-ref aligned and smoke-green, while ecosystem proof remains red across ProtoKits local-vs-release separation, ProtoKits targeted package resolution, Experiments aggregate route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, package-version policy, dirty core host/docs release boundary, Host Graph Lifecycle Ownership, and new DSK Extension Service Ownership hardening.
+- id: ecosystem-root-035
+- status: superseded-by-ecosystem-root-036
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-23T06-06-22-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-23T06-06-22-0400-ecosystem-state-node.md`
+- summary: Core remains release-ref aligned and smoke-green, while ecosystem proof remains red across ProtoKits local-vs-release separation, widened sibling `origin/main` drift, ProtoKits targeted package resolution, Experiments aggregate route validation, Experiments targeted DSK API installation, public browser module loading, optional ProtoKits jsDelivr 502, npm metadata, package-version policy, dirty core host/docs release boundary, Host Graph Lifecycle Ownership, Host Public State Ownership, and DSK Extension Service Ownership.
+- id: ecosystem-root-036
+- status: open
+- latest packet: `state/automation/ecosystem_state_scout/packets/2026-06-23T19-01-48-0400-ecosystem-state-packet.md`
+- latest node: `state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-23T19-01-48-0400-ecosystem-state-node.md`
+- summary: Core remains release-ref aligned and smoke-green, while ecosystem proof remains red and sibling local proof drift widened materially: ProtoKits local `main` is 140 ahead of `origin/0.0.2`, 11 behind `origin/main`, and aggregate-red; Experiments local `main` is 67 ahead of `origin/0.0.2` and 50 behind `origin/main`; release ProtoKits aggregate remains green but targeted package resolution is red; Experiments local/release aggregate and targeted DSK proof remain red; public browser proof still stalls at `Booting...`; npm metadata and package-version policy remain open; optional ProtoKits jsDelivr recovered to 200; Composition Proof Ownership is separate hardening inventory.
 
 ## Branch Tree
+- parent: ecosystem-root-036
+- child: protokits-local-aggregate-regression-2026-06-23-1901
+- relationship: ProtoKits local clean `main` is no longer aggregate-green; it is 140 commits ahead of `origin/0.0.2`, 11 behind `origin/main`, and `npm run check` fails at `generic-promotion-gate-smoke` on `pressure emits warning transition`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/generic-promotion-gate-smoke.test.mjs`, local `main`, `origin/main`, package/workspace release policy
+- parent: ecosystem-root-036
+- child: protokits-release-targeted-package-resolution-2026-06-23-1901
+- relationship: disposable `origin/0.0.2` ProtoKits aggregate validation still passes, but local and disposable targeted first-wave DSK smoke cannot resolve package `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- parent: ecosystem-root-036
+- child: experiments-local-release-main-drift-2026-06-23-1901
+- relationship: Experiments local clean `main` is now 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`; local and disposable release checks still fail aggregate route validation and targeted `engine.n.zoneField`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
+- parent: ecosystem-root-036
+- child: public-browser-module-404-2026-06-23-1901
+- relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
+- look further: public DSK proof import map, CDN `0.0.2`, same-origin deployed assets, build-step import maps
+- parent: ecosystem-root-036
+- child: protokits-jsdelivr-proof-path-recovered-2026-06-23-1901
+- relationship: ProtoKits raw and jsDelivr `scan-survey-kit/index.js` now both return 200, removing the prior optional CDN symptom without fixing public browser proof.
+- look further: ProtoKits raw/jsDelivr URLs, public proof import shape, same-origin proof assets
+- parent: ecosystem-root-036
+- child: public-consumption-version-policy-2026-06-23-1901
+- relationship: required core GitHub/raw/jsDelivr links pass while npm metadata is 404 and branch `0.0.2` serves package version `0.1.0`.
+- look further: `package.json`, npm publication policy, README public consumption wording
+- parent: ecosystem-root-036
+- child: composition-proof-hardening-separate-2026-06-23-1901
+- relationship: Composition Proof Ownership covers mutable composer read models and supplied-composer handoff, but it is not a fix for module-source, npm, route, CDN, or targeted DSK proof failures.
+- look further: `src/game-kit-composer.js`, `tests/procedural-navigation-smoke.mjs`, composer immutability fixtures, supplied-composer parity fixtures
+- parent: ecosystem-root-035
+- child: protokits-local-ahead-release-behind-main-2026-06-23-0606
+- relationship: ProtoKits local clean `main` passes aggregate checks but remains 103 commits ahead of the preflight-resolved release branch and is now 30 commits behind fetched `origin/main`, so local dev proof, release-ref proof, and latest-main proof must stay separated.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- parent: ecosystem-root-035
+- child: experiments-main-drift-release-ref-proof-2026-06-23-0606
+- relationship: Experiments local clean `main` still equals `origin/0.0.2`, but fetched `origin/main` advanced 29 commits ahead while aggregate route validation and targeted DSK proof remain red.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
+- parent: ecosystem-root-035
+- child: core-dirty-host-docs-release-boundary-2026-06-23-0606
+- relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
+- look further: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`, domain/ideal docs
+- parent: ecosystem-root-035
+- child: protokits-targeted-package-resolution-2026-06-23-0606
+- relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- parent: ecosystem-root-035
+- child: experiments-aggregate-targeted-proof-red-2026-06-23-0606
+- relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- parent: ecosystem-root-035
+- child: public-browser-module-404-2026-06-23-0606
+- relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
+- look further: public DSK proof import map, CDN `0.0.2`, same-origin deployed assets, build-step import maps
+- parent: ecosystem-root-035
+- child: protokits-jsdelivr-proof-path-2026-06-23-0606
+- relationship: ProtoKits raw `scan-survey-kit/index.js` returns 200, but the jsDelivr `0.0.2` URL returns 502 after retry, so CDN-backed ProtoKits proof is not currently green.
+- look further: ProtoKits raw/jsDelivr URLs, CDN cache state, same-origin proof assets, package resolution
+- parent: ecosystem-root-035
+- child: public-consumption-version-policy-2026-06-23-0606
+- relationship: required core GitHub/raw/jsDelivr links pass after a transient first preflight abort, while npm metadata is 404 and branch `0.0.2` serves package version `0.1.0`.
+- look further: `package.json`, npm publication policy, README public consumption wording
+- parent: ecosystem-root-035
+- child: host-public-state-hardening-separate-2026-06-23-0606
+- relationship: Host Public State Ownership extends Host Graph Lifecycle Ownership with root capability, private record, lifecycle parity, and mount transaction risks, but it is not a fix for module-source, npm, route, or targeted DSK proof failures.
+- look further: `src/host.js`, `tests/host-smoke.mjs`, root capability immutability fixtures, private adapter record fixtures, lifecycle parity fixtures, mount transaction fixtures
+- parent: ecosystem-root-035
+- child: dsk-extension-service-hardening-separate-2026-06-23-0606
+- relationship: DSK Extension Service Ownership remains hardening inventory from neighboring lanes, not a fix for module-source, npm, route, CDN, or targeted DSK proof failures.
+- look further: `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`, extension API/token parity fixtures, extension install atomicity fixtures, duplicate definition-name fixtures
+- parent: ecosystem-root-034
+- child: protokits-local-ahead-release-ref-2026-06-22-1807
+- relationship: ProtoKits local clean `main` passes aggregate checks but remains 103 commits ahead of the preflight-resolved release branch, so local dev proof and release-ref proof must stay separated.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- parent: ecosystem-root-034
+- child: core-dirty-host-docs-release-boundary-2026-06-22-1807
+- relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
+- look further: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`, domain/ideal docs
+- parent: ecosystem-root-034
+- child: protokits-targeted-package-resolution-2026-06-22-1807
+- relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- parent: ecosystem-root-034
+- child: experiments-aggregate-targeted-proof-red-2026-06-22-1807
+- relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- parent: ecosystem-root-034
+- child: public-browser-module-404-2026-06-22-1807
+- relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
+- look further: public DSK proof import map, CDN `0.0.2`, same-origin deployed assets, build-step import maps
+- parent: ecosystem-root-034
+- child: public-consumption-version-policy-2026-06-22-1807
+- relationship: required GitHub/raw/jsDelivr links pass while npm metadata is 404 and branch `0.0.2` serves package version `0.1.0`.
+- look further: `package.json`, npm publication policy, README public consumption wording
+- parent: ecosystem-root-034
+- child: dsk-extension-service-hardening-separate-2026-06-22-1807
+- relationship: DSK Extension Service Ownership is fresh hardening inventory from neighboring lanes, not a fix for module-source, npm, route, or targeted DSK proof failures.
+- look further: `src/domain-service-kit.js`, `tests/domain-service-kit-smoke.mjs`, extension API/token parity fixtures, extension install atomicity fixtures, duplicate definition-name fixtures
+- parent: ecosystem-root-034
+- child: host-graph-hardening-separate-2026-06-22-1807
+- relationship: Host Graph Lifecycle Ownership remains hardening inventory from neighboring lanes, not a fix for module-source, npm, route, or targeted DSK proof failures.
+- look further: `src/host.js`, host graph fixtures, dirty host-surface release boundary
+- parent: ecosystem-root-033
+- child: protokits-local-ahead-release-ref-2026-06-22-0605
+- relationship: ProtoKits local clean `main` passes aggregate checks but is 103 commits ahead of the preflight-resolved release branch, so local dev proof and release-ref proof must be separated.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- parent: ecosystem-root-033
+- child: core-dirty-host-docs-release-boundary-2026-06-22-0605
+- relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
+- look further: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`, domain/ideal docs
+- parent: ecosystem-root-033
+- child: protokits-targeted-package-resolution-2026-06-22-0605
+- relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- parent: ecosystem-root-033
+- child: experiments-aggregate-targeted-proof-red-2026-06-22-0605
+- relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- parent: ecosystem-root-033
+- child: public-browser-module-404-2026-06-22-0605
+- relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
+- look further: public DSK proof import map, CDN `0.0.2`, same-origin deployed assets, build-step import maps
+- parent: ecosystem-root-033
+- child: host-graph-hardening-separate-2026-06-22-0605
+- relationship: Host Graph Lifecycle Ownership is fresh hardening inventory from neighboring lanes, not a fix for module-source, npm, route, or targeted DSK proof failures.
+- look further: `src/host.js`, host graph fixtures, dirty host-surface release boundary
+- parent: ecosystem-root-032
+- child: core-dirty-host-surface-proof-boundary-2026-06-21-1805
+- relationship: dirty core host source/test/example changes are visible in the checkout and covered by 9 smoke tests, but they are not release/public proof until committed and intentionally promoted.
+- look further: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`
+- parent: ecosystem-root-032
+- child: sibling-release-ref-aligned-origin-main-drift-2026-06-21-1805
+- relationship: ProtoKits and Experiments local clean `main` both equal `origin/0.0.2`, while each is behind `origin/main`.
+- look further: sibling branch policy for `origin/main` vs preflight-resolved release branch
+- parent: ecosystem-root-032
+- child: protokits-targeted-package-resolution-2026-06-21-1805
+- relationship: aggregate ProtoKits checks pass locally and in disposable release layout, but targeted first-wave DSK smoke still cannot resolve `nexusrealtime`.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- parent: ecosystem-root-032
+- child: experiments-aggregate-canonical-route-2026-06-21-1805
+- relationship: disposable release-ref aggregate Experiments validation still fails because `the-open-above-v2` is versioned.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers
+- parent: ecosystem-root-032
+- child: experiments-targeted-dsk-api-installation-2026-06-21-1805
+- relationship: targeted Experiments DSK proof reaches execution but `engine.n.zoneField` is undefined.
+- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, ProtoKits first-wave DSK adapters
+- parent: ecosystem-root-032
+- child: public-browser-module-404-2026-06-21-1805
+- relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
+- look further: public DSK proof import map, CDN `0.0.2`, same-origin deployed assets, build-step import maps
+- parent: ecosystem-root-032
+- child: public-consumption-version-policy-2026-06-21-1805
+- relationship: required GitHub/raw/jsDelivr links pass while npm metadata is 404 and branch `0.0.2` serves package version `0.1.0`.
+- look further: `package.json`, npm publication policy, README public consumption wording
+- parent: ecosystem-root-032
+- child: command-config-hardening-inventory-2026-06-21-1805
+- relationship: Domain Command Config Ownership is hardening inventory from neighboring lanes, not a fix for distribution or proof-route failures.
+- look further: deep-bug/domain-idea packets from `2026-06-21T06-48-34-0400` and `2026-06-21T07-02-40-0400`
 - parent: ecosystem-root-001
 - child: latest-branch-public-link-preflight
 - relationship: required preflight for every run
@@ -1190,6 +1371,12 @@
 - next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-foundation/`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-service-kits/`
 
 ## Resolved Or Superseded
+- id: ecosystem-root-032
+- reason: Superseded by `ecosystem-root-033`, which preserves dirty core host/docs, package/public/aggregate/targeted proof blockers, npm/package policy, and public browser module 404s while replacing sibling release-ref parity with new ProtoKits local-ahead release separation and adding Host Graph Lifecycle Ownership as separate hardening inventory.
+- evidence: `npm run automation:preflight`, core `npm test`, core/sibling git ref checks, ProtoKits local and disposable release aggregate/targeted checks, Experiments local and disposable aggregate/targeted checks, public URL fetch checks, and Playwright launch-state inspection during the 2026-06-22T06-05-45-0400 packet.
+- id: ecosystem-root-031
+- reason: Superseded by `ecosystem-root-032`, which preserves the package/public/aggregate/targeted proof blockers while replacing sibling main-ahead drift with release-ref alignment plus sibling `origin/main` freshness drift and dirty core host-surface evidence.
+- evidence: `npm run automation:preflight`, core `npm test`, core/sibling git ref checks, ProtoKits local and disposable aggregate/targeted checks, Experiments disposable aggregate and local/disposable targeted checks, public URL fetch checks, and Playwright launch-state inspection during the 2026-06-21T18-05-09-0400 packet.
 - id: sibling-dirty-behind-2026-06-18T20-07-25-0400
 - reason: ProtoKits and Experiments now have clean worktrees and `HEAD` equals `origin/0.0.2`.
 - evidence: `git status --short --branch`, `git rev-parse HEAD`, and `git rev-parse origin/0.0.2` in both sibling repos during the 2026-06-18T21-06-20-0400 packet.
