@@ -14,6 +14,18 @@ function clone(value) {
   return structuredClone(value);
 }
 
+function cloneSerializableObject(value = {}) {
+  return clone(Object.fromEntries(Object.entries(value).filter(([, entry]) => typeof entry !== "function")));
+}
+
+function createPolicyDescriptors(policies = {}) {
+  return Object.fromEntries(Object.entries(policies).map(([id, policy]) => [id, {
+    id,
+    kind: typeof policy,
+    configurable: true
+  }]));
+}
+
 function isObject(value) {
   return Boolean(value && typeof value === "object" && !Array.isArray(value));
 }
@@ -50,9 +62,9 @@ function createState(config, extra = {}) {
     version: config.version ?? "0.0.3",
     config: clone(config.config ?? {}),
     descriptors: clone(config.descriptors ?? {}),
-    policies: clone(config.policies ?? {}),
+    policies: createPolicyDescriptors(config.policies ?? {}),
     adapters: Object.keys(config.adapters ?? {}),
-    metadata: clone(config.metadata ?? {}),
+    metadata: cloneSerializableObject(config.metadata ?? {}),
     sequence: now,
     lastEvent: null,
     ...clone(config.initialState ?? {})
@@ -70,15 +82,16 @@ function normalizeEvents(domain, eventNames = DEFAULT_EVENT_NAMES) {
 }
 
 function mergeState(state, patch = {}, eventName = "updated") {
+  const { policies, ...serializablePatch } = patch;
   const next = {
     ...state,
-    ...clone(patch),
+    ...clone(serializablePatch),
     sequence: Number(state?.sequence ?? 0) + 1,
     lastEvent: eventName
   };
   if (patch.config) next.config = { ...(state.config ?? {}), ...clone(patch.config) };
   if (patch.descriptors) next.descriptors = { ...(state.descriptors ?? {}), ...clone(patch.descriptors) };
-  if (patch.policies) next.policies = { ...(state.policies ?? {}), ...clone(patch.policies) };
+  if (policies) next.policies = { ...(state.policies ?? {}), ...createPolicyDescriptors(policies) };
   return next;
 }
 
@@ -94,7 +107,7 @@ export function createCoreCapabilityDescriptor(domain, config = {}) {
     doesNotOwn: Object.freeze([...(config.doesNotOwn ?? [])]),
     services: Object.freeze([...(config.services ?? [])]),
     adapters: Object.freeze(Object.keys(config.adapters ?? {})),
-    metadata: Object.freeze({ ...(config.metadata ?? {}) })
+    metadata: Object.freeze(cloneSerializableObject(config.metadata ?? {}))
   });
 }
 
@@ -120,7 +133,7 @@ export function createCoreCapabilityKit(config = {}) {
       purpose: config.purpose ?? `${domain} capability domain`,
       capabilityDomain: true,
       descriptor,
-      ...(config.metadata ?? {})
+      ...cloneSerializableObject(config.metadata ?? {})
     },
     initWorld({ world }) {
       world.setResource(State, createState(stateConfig));
@@ -168,7 +181,7 @@ export function createCoreCapabilityKit(config = {}) {
           return setState(mergeState(state, { descriptors }, "descriptorChanged"), "descriptorChanged", { type, id });
         },
         getPolicy(name) {
-          return clone(getState()?.policies?.[name]);
+          return config.policies?.[name] ?? clone(getState()?.policies?.[name]);
         },
         emit(eventName, payload = {}) {
           const event = events[toPascal(eventName)] ?? events.Updated;
