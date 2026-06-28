@@ -2,6 +2,37 @@
 
 Core capability domains must be configurable and oversteppable without forking the core.
 
+## First principle
+
+```txt
+Use composable pieces first.
+Use umbrella factories when you want a default domain stack.
+Use custom replacement kits when the game/app needs a different path.
+```
+
+## Piece-first usage
+
+A game or ProtoKit can use an individual piece without loading the whole umbrella domain.
+
+```js
+import {
+  createResourceMeter,
+  createPressureChannel
+} from "nexusrealtime/core-kits/core-simulation-kit";
+```
+
+## Umbrella usage
+
+Use the umbrella factory for convenient default installation under `engine.n.*`.
+
+```js
+createCoreSimulationKit({
+  config: {
+    profile: "default-simulation"
+  }
+});
+```
+
 ## Four override layers
 
 ### 1. Data configuration
@@ -57,12 +88,24 @@ extendDomainServiceKit(coreInputKit, {
 });
 ```
 
+## Custom replacement proof
+
+A game can skip a core umbrella factory and install a custom DSK instead. The engine does not require `createCoreInputKit()` or any other core kit.
+
+```js
+createRealtimeGame({
+  kits: [myCustomInputKit]
+});
+```
+
 ## Rule
 
 ```txt
 Configure through data first.
-Override policy second.
-Swap adapters third.
-Extend domains last.
+Use pieces directly when that is enough.
+Use umbrella factories for default domain installation.
+Override policy when data is not enough.
+Swap adapters for host/backend integration.
+Extend domains for larger ProtoKit bubbles.
 Do not copy core internals into ProtoKits.
 ```
