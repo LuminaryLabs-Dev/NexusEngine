@@ -9,7 +9,8 @@ const tests = [
   "tests/sequence-node-runtime-smoke.mjs",
   "tests/sequence-node-frame-driver-smoke.mjs",
   "tests/sequence-node-kit-deploy-smoke.mjs",
-  "tests/sequence-node-surface-bridge-smoke.mjs"
+  "tests/sequence-node-surface-bridge-smoke.mjs",
+  "tests/core-capability-domain-barrels-smoke.mjs"
 ];
 
 for (const test of tests) {
