@@ -1,12 +1,13 @@
 {
   "name": "nexusrealtime",
-  "version": "0.1.0",
+  "version": "0.0.3",
   "description": "A realtime ECS runtime with subscribable engine surfaces.",
   "type": "module",
   "main": "./src/index.js",
   "module": "./src/index.js",
   "exports": {
     ".": "./src/index.js",
+    "./release": "./src/release.js",
     "./foundation": "./src/foundation/index.js",
     "./core-kits": "./src/core-kits/index.js",
     "./core-kits/core-capability-kit": "./src/core-kits/core-capability-kit.js",
@@ -15,11 +16,15 @@
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",
-    "test": "node tests/run-all.mjs"
+    "test": "node tests/run-all.mjs",
+    "test:release": "node tests/run-all.mjs",
+    "release:manifest": "node scripts/generate-dsk-manifest.mjs"
   },
   "files": [
     "src",
-    "README.md"
+    "docs",
+    "README.md",
+    "RELEASE_0.0.3.md"
   ],
   "license": "MIT",
   "engines": {
