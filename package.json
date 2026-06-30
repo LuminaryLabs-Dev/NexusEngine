@@ -17,7 +17,7 @@
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",
     "test": "node tests/run-all.mjs",
-    "test:release": "node tests/run-all.mjs",
+    "test:release": "node tests/release-0.0.3-run-all.mjs",
     "release:manifest": "node scripts/generate-dsk-manifest.mjs"
   },
   "files": [
