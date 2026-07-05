@@ -4,7 +4,7 @@ Status: active
 
 ## Purpose
 
-Entry point for NexusRealtime automation agents and long-running scans.
+Entry point for NexusEngine automation agents and long-running scans.
 
 ## Read Order
 

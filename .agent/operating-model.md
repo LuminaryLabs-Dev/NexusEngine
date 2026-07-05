@@ -1,10 +1,10 @@
-# NexusRealtime Agent Operating Model
+# NexusEngine Agent Operating Model
 
 Status: active
 
 ## Mentality
 
-Agents should make the NexusRealtime ecosystem easier to understand, validate, and promote by writing structured evidence back into the repo.
+Agents should make the NexusEngine ecosystem easier to understand, validate, and promote by writing structured evidence back into the repo.
 
 ## Operating Shape
 
@@ -24,4 +24,4 @@ Agents should make the NexusRealtime ecosystem easier to understand, validate, a
 
 ## Ecosystem Scope
 
-Track NexusRealtime core, ProtoKits, Experiments, public GitHub/CDN consumption, DSK promotion readiness, and long-term runtime issues without turning product-specific experiment behavior into core runtime code.
+Track NexusEngine core, ProtoKits, Experiments, public GitHub/CDN consumption, DSK promotion readiness, and long-term runtime issues without turning product-specific experiment behavior into core runtime code.
