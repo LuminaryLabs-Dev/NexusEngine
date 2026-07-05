@@ -1,16 +1,16 @@
 # Agent Memory
 
-Repo: `NexusRealtime`
+Repo: `NexusEngine`
 
 ## Purpose
 
-NexusRealtime is the reusable realtime ECS/runtime package. It should stay generic, deterministic, and product-agnostic.
+NexusEngine is the reusable realtime ECS/runtime package. It should stay generic, deterministic, and product-agnostic.
 
 ## Architecture Rules
 
 - Keep simulation logic in ECS systems, runtime kits, sequence nodes, adapters, registries, or reusable domain modules.
 - Keep renderers presentation-only; hosts should render snapshots and forward input instead of duplicating simulation logic.
-- Do not add product-specific copy, routes, assets, app lore, or retained game folder contracts to NexusRealtime.
+- Do not add product-specific copy, routes, assets, app lore, or retained game folder contracts to NexusEngine.
 - Product apps should pass authored config/data into generic kits.
 - Prefer additive kits over ECS core rewrites.
 
