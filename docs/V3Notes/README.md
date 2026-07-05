@@ -1,17 +1,17 @@
 # V3Notes
 
-These notes describe a future authoring shape for domain-based kit ecosystems around NexusRealtime.
+These notes describe a future authoring shape for domain-based kit ecosystems around NexusEngine.
 
 They are docs-only notes.
 
-They do not require NexusRealtime runtime changes.
+They do not require NexusEngine runtime changes.
 
 They are meant to help future agents and developers add, inspect, split, compose, and document larger kit ecosystems in a consistent way.
 
 ## Core idea
 
 ```txt
-NexusRealtime remains the runtime foundation.
+NexusEngine remains the runtime foundation.
 
 Domain-based kits can be authored around it.
 
@@ -36,10 +36,10 @@ agent-readable structure notes
 
 ```txt
 not a runtime migration
-not a replacement for existing NexusRealtime behavior
+not a replacement for existing NexusEngine behavior
 not a requirement that every kit must be nested
-not a claim that kit.json is already required by NexusRealtime
-not a request to move all domain logic into NexusRealtime core
+not a claim that kit.json is already required by NexusEngine
+not a request to move all domain logic into NexusEngine core
 ```
 
 ## Reading order
@@ -50,5 +50,5 @@ not a request to move all domain logic into NexusRealtime core
 003-kit-json-as-authoring-metadata.md
 004-example-nexus-github-manager.md
 005-example-peer-mesh-kit-ecosystem.md
-006-how-this-relates-to-existing-nexusrealtime.md
+006-how-this-relates-to-existing-nexusengine.md
 ```

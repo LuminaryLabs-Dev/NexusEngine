@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T02:54:27-04:00
 
 Timestamp: 2026-06-20T02:54:27-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for runtime binding ownership, ECS definition identity, SequenceNode install-only kits, and disposed event-bus subscription behavior
 
 ## Lane Goal
@@ -10,7 +10,7 @@ Scope: read-only deep bug scout for runtime binding ownership, ECS definition id
 ## Prior State Context
 - Current lane tracker latest root before this run: `deep-bug-root-2026-06-20-composer-sequence-ar-proof-isolation`.
 - Recent deep packets already cover duplicate capability providers, duplicate SequenceNode type overwrite, mutable SequenceNode event history snapshots, AR launch device-source mismatch, ARExperience completion repeats, hit-test rejection, negative engine deltas, greybox non-finite scale, AR launch preconditions, mutable launcher support state, SpatialRoom live getters, surface/registry aliasing, DSK partial install, direct dependency parity, scheduler failed ticks, bridge phase, and disposed SequenceNode runtime mutation.
-- Latest ecosystem state/proof packets keep core current and smoke-green, while local/fetched/public DSK proof remains blocked by module-source strategy and unresolved `nexusrealtime` package or sibling imports.
+- Latest ecosystem state/proof packets keep core current and smoke-green, while local/fetched/public DSK proof remains blocked by module-source strategy and unresolved `nexusengine` package or sibling imports.
 - Latest DSK architecture packet keeps runtime failure-boundary first and composition-proof ownership later; this packet adds concrete rows for binding ownership, ECS definition identity, SequenceNode install-only idempotency, and event-bus disposed-state parity.
 - Latest domain idea packet maps duplicate providers, SequenceNode type/history, and AR runtime-source issues to Composition Proof Ownership planning inventory.
 - State packets were context only. Live source, docs, tests, preflight, git refs, and focused probes were authority for this run.

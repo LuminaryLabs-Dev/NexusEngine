@@ -2,10 +2,10 @@ import assert from "node:assert/strict";
 import * as api from "../src/index.js";
 
 for (const name of [
-  "NEXUS_REALTIME_VERSION",
-  "NEXUS_REALTIME_STABILITY",
-  "NEXUS_REALTIME_RELEASE_BRANCH",
-  "NEXUS_REALTIME_RELEASE",
+  "NEXUS_ENGINE_VERSION",
+  "NEXUS_ENGINE_STABILITY",
+  "NEXUS_ENGINE_RELEASE_BRANCH",
+  "NEXUS_ENGINE_RELEASE",
   "createEngine",
   "createRealtimeEngine",
   "createWorld",
@@ -91,9 +91,9 @@ for (const name of [
   assert.equal(typeof api[name] !== "undefined", true, `${name} should be exported`);
 }
 
-assert.equal(api.NEXUS_REALTIME_VERSION, "0.0.3");
-assert.equal(api.NEXUS_REALTIME_STABILITY, "stable-candidate");
-assert.equal(api.NEXUS_REALTIME_RELEASE.version, "0.0.3");
+assert.equal(api.NEXUS_ENGINE_VERSION, "0.0.3");
+assert.equal(api.NEXUS_ENGINE_STABILITY, "stable-candidate");
+assert.equal(api.NEXUS_ENGINE_RELEASE.version, "0.0.3");
 
 const engine = api.createEngine();
 assert.ok(engine.sequenceRuntime);

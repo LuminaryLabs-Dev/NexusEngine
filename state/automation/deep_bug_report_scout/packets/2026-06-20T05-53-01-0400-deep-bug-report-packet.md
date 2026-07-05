@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T05:53:01-04:00
 
 Timestamp: 2026-06-20T05:53:01-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for scheduler/world mutation isolation in the ECS core
 
 ## Lane Goal

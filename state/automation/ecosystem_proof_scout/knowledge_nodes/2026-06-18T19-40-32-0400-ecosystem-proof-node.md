@@ -8,7 +8,7 @@
 ## Child Nodes
 - id: ecosystem-proof-001-a
   parent: ecosystem-proof-001
-  lesson: NexusRealtime core is aligned to latest release branch and passes its smoke suite.
+  lesson: NexusEngine core is aligned to latest release branch and passes its smoke suite.
   evidence: `npm run automation:preflight` resolved `latestReleaseBranch: 0.0.2`; `npm test` passed 8 smoke tests.
   look further: Check whether the optional npm registry 404 is intentional before any npm consumption claim.
 - id: ecosystem-proof-001-b
@@ -34,13 +34,13 @@
 
 ## Next Search Branches
 - branch: public-proof-alignment
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, public GitHub Pages output
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, public GitHub Pages output
 - question: Why are local passing DSK proof artifacts absent from sampled public/raw `0.0.2` URLs?
 - branch: stale-cdn-pins
-- files or folders: `NexusRealtime-ProtoKits/README.md`, `NexusRealtime-ProtoKits/protokits/**/README.md`, `NexusRealtime-Experiments/experiments/**`
+- files or folders: `NexusEngine-ProtoKits/README.md`, `NexusEngine-ProtoKits/protokits/**/README.md`, `NexusEngine-Experiments/experiments/**`
 - question: Which `main` and `0.0.1` pins are intentionally legacy versus stale proof claims?
 - branch: compatibility-shim-exit
-- files or folders: `NexusRealtime-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
+- files or folders: `NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - question: What condition retires old injected-runtime calls and `engine.*` compatibility APIs for first-wave DSKs?
 
 ## Not Claimed

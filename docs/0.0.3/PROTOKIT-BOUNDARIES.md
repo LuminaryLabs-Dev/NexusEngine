@@ -1,14 +1,14 @@
 # ProtoKit Boundaries
 
-This rebuild changes only `LuminaryLabs-Dev/NexusRealtime`.
+This rebuild changes only `LuminaryLabs-Dev/NexusEngine`.
 
 Do not patch satellite repos in this phase:
 
 ```txt
-NexusRealtime-ProtoKits
-NexusRealtime-Experiments
-NexusRealtime-Sandbox
-NexusRealtime-KitBuilder01/02/03
+NexusEngine-ProtoKits
+NexusEngine-Experiments
+NexusEngine-Sandbox
+NexusEngine-KitBuilder01/02/03
 ```
 
 ## Core owns

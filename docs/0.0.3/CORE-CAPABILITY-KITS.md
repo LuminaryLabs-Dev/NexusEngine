@@ -1,6 +1,6 @@
 # Core Capability Kits
 
-This is the canonical map for the `NexusRealtime` core capability-domain rebuild.
+This is the canonical map for the `NexusEngine` core capability-domain rebuild.
 
 A core capability kit is a stable, configurable domain bubble. It is broader than a tiny helper and smaller than a product/game system.
 

@@ -4,7 +4,7 @@
 - 2026-06-19T11-23-07-0400
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-state-signal-fixture-root-2026-06-19-1023`.
@@ -24,7 +24,7 @@
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`.
 - Ahead/behind against `origin/0.0.2`: `0 0`.
 - Required GitHub/raw/jsDelivr public links passed; optional npm metadata remained 404.
-- Package metadata remains `nexusrealtime@0.1.0`.
+- Package metadata remains `nexusengine@0.1.0`.
 
 ## Files inspected
 - `.agent/start-here.md`
@@ -100,7 +100,7 @@
 
 ## Domain and kit expansion architecture notes
 - Repo memory and docs keep the ownership split stable: core owns ECS/runtime/DSK/composer primitives and validation invariants; ProtoKits owns new reusable implementation; Experiments owns browser/playable proof.
-- `docs/how-to-protokit.md` says new reusable kits belong in NexusRealtime-ProtoKits, while core receives DSK contract, validation, scheduler, ECS, or runtime primitive changes.
+- `docs/how-to-protokit.md` says new reusable kits belong in NexusEngine-ProtoKits, while core receives DSK contract, validation, scheduler, ECS, or runtime primitive changes.
 - `docs/domain_ideas.md` and `docs/kits_ideas.md` now include Source State Integrity and State Signal Contract inventory, but these are planning rows, not release claims.
 - Current architecture read: the next useful DSK step is not more broad scouting or core promotion. It is an executable hardening fixture plan that crosses the core DSK install boundary plus selected source-state and signal-contract examples.
 - Neighboring ecosystem state adds a proof-boundary warning: Experiments latest release ref drifted again to 24 commits ahead of the clean local checkout, so DSK hardening proof must stay separate from Experiments latest-ref proof and public browser proof.

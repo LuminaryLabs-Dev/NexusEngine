@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T18-01-47-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -88,7 +88,7 @@
 
 ## DSK boundary notes
 - These rows are proof/tooling and validation-surface inventory, not new gameplay/domain implementations.
-- `hardening-fixture-queue-kit` may point at NexusRealtime core validation surfaces only when it becomes executable tests for runtime primitives, DSK invariants, scheduler behavior, or public API semantics.
+- `hardening-fixture-queue-kit` may point at NexusEngine core validation surfaces only when it becomes executable tests for runtime primitives, DSK invariants, scheduler behavior, or public API semantics.
 - `proof-claim-taxonomy-kit` and `release-evidence-checklist-kit` fit ProtoKits or automation proof tooling by default.
 - `module-source-gate-kit` and `aggregate-targeted-proof-parity-kit` belong closer to Experiments/proof tooling unless a stable runtime contract is missing in core.
 - Public module-source strategy remains an ecosystem/proof lane decision, not a core runtime decision.

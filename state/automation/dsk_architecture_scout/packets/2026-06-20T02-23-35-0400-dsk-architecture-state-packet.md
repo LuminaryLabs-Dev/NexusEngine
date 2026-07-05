@@ -3,15 +3,15 @@
 ## Timestamp
 - local: 2026-06-20T02-23-35-0400
 - UTC preflight: 2026-06-20T06:22:25.472Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-distribution-boundary-still-root-2026-06-20-0154`.
 - Latest DSK packet kept runtime failure-boundary as tranche 1, proof-signal integrity as tranche 8, and distribution/module-source proof as separate claim management.
-- Latest ecosystem state/proof nodes `2026-06-20T01-59-37-0400` and `2026-06-20T01-59-45-0400` show core still current and smoke-green, but local ProtoKits/Experiments targeted DSK proof now also fails on unresolved package `nexusrealtime`; fetched/public proof still fails on module-source paths.
+- Latest ecosystem state/proof nodes `2026-06-20T01-59-37-0400` and `2026-06-20T01-59-45-0400` show core still current and smoke-green, but local ProtoKits/Experiments targeted DSK proof now also fails on unresolved package `nexusengine`; fetched/public proof still fails on module-source paths.
 - Latest deep bug node `2026-06-20T01-55-55-0400` adds composition-proof rows: duplicate capability providers, silent SequenceNode type overwrite, mutable SequenceNode event history, and AR launch device-source mismatch.
 - Latest domain idea node `2026-06-20T02-01-55-0400` converts those rows into a Composition Proof Ownership family without reordering runtime failure-boundary work.
 - State packets were context only. Live source, docs, tests, git refs, preflight, and focused probes were treated as authority.
@@ -27,7 +27,7 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs/automation trackers and many untracked prior automation artifacts were present before this lane wrote its packet, node, and tracker update.
 
 ## Files inspected
@@ -117,7 +117,7 @@
 - Do not use override-based AR launch support as proof until startup uses the same runtime source or reconciles support after failure.
 - Do not treat `npm test`, HTTP 200 public routes, aggregate Experiments checks, fetched raw files, or public CDN reachability as production DSK safety.
 - Do not claim npm package availability; optional npm metadata remains 404.
-- Do not move proof routing, package-resolution shims, browser routes, or reusable implementation into NexusRealtime core to solve distribution proof.
+- Do not move proof routing, package-resolution shims, browser routes, or reusable implementation into NexusEngine core to solve distribution proof.
 
 ## Suggested next review item
 - Use a non-scout lane to write the smallest executable tranche 1 fixture set: `engine.n` reserved-key/null-prototype/own-property policy, failed-install rollback/retryability, direct/composer dependency parity, scheduler failed-tick semantics, and reset/snapshot/async metadata truth.

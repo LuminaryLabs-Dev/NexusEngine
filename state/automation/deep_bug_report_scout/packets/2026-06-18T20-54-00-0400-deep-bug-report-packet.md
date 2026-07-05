@@ -1,8 +1,8 @@
 # Deep Bug Report Packet: 2026-06-18T20:54:00-04:00
 
 Timestamp: 2026-06-18T20:54:00-04:00
-Automation: nexusrealtime-deep-bug-report-packet
-Scope: read-only deep bug scout for NexusRealtime runtime production risks
+Automation: nexusengine-deep-bug-report-packet
+Scope: read-only deep bug scout for NexusEngine runtime production risks
 
 ## Latest branch
 - Preflight latest release branch: `0.0.2`
@@ -62,7 +62,7 @@ Scope: read-only deep bug scout for NexusRealtime runtime production risks
 - Inline Node probe: engine-level `sequenceNodes` with kit-provided custom type.
   - Result: `createEngine({ sequenceNodes, kits })` left node `running`, `completionMode:"manual"`, `driver:"event"`, `validateOk:false`; kit-first mount finished with `completionMode:"timeout"`, `driver:"frame"`, `validateOk:true`.
 - Inline Node probe: `createCharacterCameraKit()` with default options.
-  - Result: first tick threw `TypeError: NexusRealtime expected a resource definition.`
+  - Result: first tick threw `TypeError: NexusEngine expected a resource definition.`
 - Inline Node probe: `createActionMovementKit({ killY:-10 })` with player below kill plane.
   - Result: player y snapped to `1.2`, `respawns:0`, `grounded:true`.
 - Inline Node probe: `createPhysicsKit({ killY:-10 })` with player below kill plane.
@@ -149,7 +149,7 @@ Scope: read-only deep bug scout for NexusRealtime runtime production risks
   - `src/index.js:234-237` exports `createCameraKit` and `createCharacterCameraKit` as public APIs.
 - Reproduction path or likely trigger:
   - Call `createEngine({ kits:[createCharacterCameraKit()] })`, then `engine.tick()`.
-  - Probe result: `TypeError: NexusRealtime expected a resource definition.`
+  - Probe result: `TypeError: NexusEngine expected a resource definition.`
 - Expected behavior:
   - Default camera kit should be inert until a character resource is configured, or infer the canonical action movement `CharacterState` resource when installed together.
 - Actual or suspected behavior:

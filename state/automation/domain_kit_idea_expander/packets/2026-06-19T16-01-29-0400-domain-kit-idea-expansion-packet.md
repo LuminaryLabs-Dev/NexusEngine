@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T16-01-29-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -95,7 +95,7 @@
 - Did not duplicate `experience-edge-proof-kit`; `lifecycle-parity-proof-kit` covers movement/terrain/startup/session parity rows beyond recovery/content/presentation edge contracts.
 
 ## DSK boundary notes
-- These rows are mostly NexusRealtime core validation-surface inventory because the current evidence is in existing core movement, terrain, AR mode, launcher, and AR session behavior.
+- These rows are mostly NexusEngine core validation-surface inventory because the current evidence is in existing core movement, terrain, AR mode, launcher, and AR session behavior.
 - A future reusable policy layer could still target ProtoKits if it is implemented as a generic proof kit around core behavior rather than a direct core fix.
 - Movement receipt transitions should clarify start receipts, stop receipts, held state, duplicate attempts, and transition counts before objectives, tutorials, telemetry, or SequenceNode bridges consume them.
 - Terrain query/chunk parity should keep long spline/path/route layers consistent between fallback query and streamed baked chunks before public world-streaming proof relies on them.

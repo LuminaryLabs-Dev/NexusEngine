@@ -5,22 +5,22 @@
 - status: active
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-23T19-02-41-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-23T19-02-41-0400-ecosystem-proof-node.md`
-- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red with new live drift: ProtoKits local `main` is now aggregate-red while 140 commits ahead of `origin/0.0.2` and 11 behind `origin/main`; ProtoKits targeted proof cannot resolve package `nexusrealtime`; Experiments local `main` is now 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`; Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof still misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; checked ProtoKits jsDelivr proof path recovered to 200; and the public proof route still stalls at `Booting...` on deployed module 404s. Host Public State Ownership, DSK Extension Service Ownership, and Composition Proof Ownership are hardening inventory, not distribution proof fixes.
+- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red with new live drift: ProtoKits local `main` is now aggregate-red while 140 commits ahead of `origin/0.0.2` and 11 behind `origin/main`; ProtoKits targeted proof cannot resolve package `nexusengine`; Experiments local `main` is now 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`; Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof still misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; checked ProtoKits jsDelivr proof path recovered to 200; and the public proof route still stalls at `Booting...` on deployed module 404s. Host Public State Ownership, DSK Extension Service Ownership, and Composition Proof Ownership are hardening inventory, not distribution proof fixes.
 - id: ecosystem-proof-036
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-23T06-38-41-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-23T06-38-41-0400-ecosystem-proof-node.md`
-- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red across the same release/public gates plus fresh drift: ProtoKits local `main` is aggregate-green while 103 commits ahead of `origin/0.0.2` and 30 behind `origin/main`; targeted ProtoKits proof cannot resolve package `nexusrealtime`; Experiments `main` still matches `origin/0.0.2` but is 29 behind `origin/main`; Experiments aggregate validation fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; optional ProtoKits jsDelivr proof path returns 502; and the public proof route still stalls at `Booting...` on deployed module 404s. Host Public State Ownership and DSK Extension Service Ownership are hardening inventory, not distribution proof fixes.
+- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red across the same release/public gates plus fresh drift: ProtoKits local `main` is aggregate-green while 103 commits ahead of `origin/0.0.2` and 30 behind `origin/main`; targeted ProtoKits proof cannot resolve package `nexusengine`; Experiments `main` still matches `origin/0.0.2` but is 29 behind `origin/main`; Experiments aggregate validation fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; optional ProtoKits jsDelivr proof path returns 502; and the public proof route still stalls at `Booting...` on deployed module 404s. Host Public State Ownership and DSK Extension Service Ownership are hardening inventory, not distribution proof fixes.
 - id: ecosystem-proof-035
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-22T18-36-17-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-22T18-36-17-0400-ecosystem-proof-node.md`
-- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red across the same release/public gates: ProtoKits local `main` is clean and aggregate-green while 103 commits ahead of `origin/0.0.2`; targeted ProtoKits proof cannot resolve package `nexusrealtime`; Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof still misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; and the public proof route still stalls at `Booting...` on deployed module 404s. DSK Extension Service Ownership is now explicit hardening inventory, not a distribution proof fix.
+- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red across the same release/public gates: ProtoKits local `main` is clean and aggregate-green while 103 commits ahead of `origin/0.0.2`; targeted ProtoKits proof cannot resolve package `nexusengine`; Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming; Experiments targeted DSK proof still misses `engine.n.zoneField`; npm metadata is 404; package-version policy is open; and the public proof route still stalls at `Booting...` on deployed module 404s. DSK Extension Service Ownership is now explicit hardening inventory, not a distribution proof fix.
 - id: ecosystem-proof-034
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-22T06-36-22-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-22T06-36-22-0400-ecosystem-proof-node.md`
-- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red and ProtoKits release evidence has split again: local ProtoKits `main` is clean and aggregate-green at 470 modules while 103 commits ahead of `origin/0.0.2`; targeted ProtoKits proof cannot resolve package `nexusrealtime`, Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming, Experiments targeted DSK proof still misses `engine.n.zoneField`, npm metadata is 404, package-version policy is open, and the public proof route still stalls at `Booting...` on deployed module 404s.
+- summary: Core remains commit-aligned with the preflight-resolved `origin/0.0.2` and smoke-green, but ecosystem proof remains red and ProtoKits release evidence has split again: local ProtoKits `main` is clean and aggregate-green at 470 modules while 103 commits ahead of `origin/0.0.2`; targeted ProtoKits proof cannot resolve package `nexusengine`, Experiments aggregate validation still fails on canonical `the-open-above-v2` route naming, Experiments targeted DSK proof still misses `engine.n.zoneField`, npm metadata is 404, package-version policy is open, and the public proof route still stalls at `Booting...` on deployed module 404s.
 - id: ecosystem-proof-033
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-21T18-35-45-0400-ecosystem-proof-state-packet.md`
@@ -30,97 +30,97 @@
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-21T06-36-07-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-21T06-36-07-0400-ecosystem-proof-node.md`
-- summary: Core commit parity with the preflight-resolved `origin/0.0.2` is stable and smoke-green despite local branch name `main`, but ecosystem proof remains red across separate gates: ProtoKits targeted first-wave DSK cannot resolve package `nexusrealtime`, Experiments aggregate validation fails on canonical `the-open-above-v2` route naming, Experiments targeted DSK proof fails because `engine.n.zoneField` is undefined, npm metadata remains 404, public proof route stays at `Booting...` with deployed module 404s, and telemetry/command plus runtime failure-boundary rows remain separate hardening inventory.
+- summary: Core commit parity with the preflight-resolved `origin/0.0.2` is stable and smoke-green despite local branch name `main`, but ecosystem proof remains red across separate gates: ProtoKits targeted first-wave DSK cannot resolve package `nexusengine`, Experiments aggregate validation fails on canonical `the-open-above-v2` route naming, Experiments targeted DSK proof fails because `engine.n.zoneField` is undefined, npm metadata remains 404, public proof route stays at `Booting...` with deployed module 404s, and telemetry/command plus runtime failure-boundary rows remain separate hardening inventory.
 - id: ecosystem-proof-031
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T18-41-30-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T18-41-30-0400-ecosystem-proof-node.md`
-- summary: Core and Experiments were aligned with the preflight-resolved latest release branch, but ecosystem DSK proof was still blocked because available ProtoKits was local `main`/`0.0.1`, fetched ProtoKits `origin/0.0.2` could not resolve package `nexusrealtime`, Experiments targeted proof failed, and the public browser proof remained stuck at `Booting...`.
+- summary: Core and Experiments were aligned with the preflight-resolved latest release branch, but ecosystem DSK proof was still blocked because available ProtoKits was local `main`/`0.0.1`, fetched ProtoKits `origin/0.0.2` could not resolve package `nexusengine`, Experiments targeted proof failed, and the public browser proof remained stuck at `Booting...`.
 - id: ecosystem-proof-030
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T06-40-01-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T06-40-01-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, and ProtoKits remains aligned with fetched `origin/0.0.2` at `3d42b725dd166274ff6c5452beef86ef17863852`, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/latest-ref checks cannot resolve package `nexusrealtime`, Experiments local targeted proof fails through ProtoKits, Experiments fetched aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5` while targeted proof fails on sibling paths, public browser proof still stalls at `Booting...`, and scheduler/world mutation isolation remains separate hardening inventory.
+- summary: Core remains latest-ref aligned and smoke-green, and ProtoKits remains aligned with fetched `origin/0.0.2` at `3d42b725dd166274ff6c5452beef86ef17863852`, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/latest-ref checks cannot resolve package `nexusengine`, Experiments local targeted proof fails through ProtoKits, Experiments fetched aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5` while targeted proof fails on sibling paths, public browser proof still stalls at `Booting...`, and scheduler/world mutation isolation remains separate hardening inventory.
 - id: ecosystem-proof-029
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T05-39-53-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T05-39-53-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, and ProtoKits now matches fetched `origin/0.0.2` at `3d42b725dd166274ff6c5452beef86ef17863852`, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/latest-ref checks cannot resolve package `nexusrealtime`, Experiments local targeted proof fails through ProtoKits, Experiments fetched aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5` while targeted proof fails on sibling paths, public browser proof still stalls at `Booting...`, and query read-model isolation remains separate hardening inventory.
+- summary: Core remains latest-ref aligned and smoke-green, and ProtoKits now matches fetched `origin/0.0.2` at `3d42b725dd166274ff6c5452beef86ef17863852`, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/latest-ref checks cannot resolve package `nexusengine`, Experiments local targeted proof fails through ProtoKits, Experiments fetched aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5` while targeted proof fails on sibling paths, public browser proof still stalls at `Booting...`, and query read-model isolation remains separate hardening inventory.
 - id: ecosystem-proof-028
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T04-42-18-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T04-42-18-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusrealtime` even though local/fetched package metadata now both report `0.0.2`, Experiments local/fetched targeted proof fails through package/sibling paths, fetched Experiments aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5`, public browser proof still stalls at `Booting...`, and content-boundary/objective hardening remains separate inventory.
+- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusengine` even though local/fetched package metadata now both report `0.0.2`, Experiments local/fetched targeted proof fails through package/sibling paths, fetched Experiments aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5`, public browser proof still stalls at `Booting...`, and content-boundary/objective hardening remains separate inventory.
 - id: ecosystem-proof-027
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T03-41-33-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T03-41-33-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusrealtime`, local ProtoKits package metadata is still `0.0.1` while fetched `origin/0.0.2` is `0.0.2`, Experiments local/fetched targeted proof fails through package/sibling paths, fetched Experiments aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5`, public browser proof still stalls at `Booting...`, and runtime identity/lifecycle hardening remains separate inventory.
+- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusengine`, local ProtoKits package metadata is still `0.0.1` while fetched `origin/0.0.2` is `0.0.2`, Experiments local/fetched targeted proof fails through package/sibling paths, fetched Experiments aggregate passes at `3e047f693f3ed58cab1c362deb09a597398d05e5`, public browser proof still stalls at `Booting...`, and runtime identity/lifecycle hardening remains separate inventory.
 - id: ecosystem-proof-026
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T02-40-59-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T02-40-59-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusrealtime`, local Experiments targeted proof fails through ProtoKits, fetched Experiments aggregate passes at advanced ref `81b39bccadf2cdf8269df24cd4970a5b2d7ebbd9` while targeted DSK proof fails on sibling paths, public browser proof still stalls at `Booting...`, and composition-proof ownership remains separate hardening inventory.
+- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is still blocked by one module-source strategy gap: ProtoKits local/fetched checks cannot resolve package `nexusengine`, local Experiments targeted proof fails through ProtoKits, fetched Experiments aggregate passes at advanced ref `81b39bccadf2cdf8269df24cd4970a5b2d7ebbd9` while targeted DSK proof fails on sibling paths, public browser proof still stalls at `Booting...`, and composition-proof ownership remains separate hardening inventory.
 - id: ecosystem-proof-025
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-20T01-59-45-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T01-59-45-0400-ecosystem-proof-node.md`
-- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is now blocked earlier than the last packet: ProtoKits local/fetched checks fail on missing package `nexusrealtime`, Experiments local targeted proof fails through that ProtoKits package-resolution issue, Experiments fetched aggregate passes while targeted DSK proof fails on sibling paths, public browser proof still stalls at `Booting...`, and proof-signal/AR-spatial rows remain separate hardening inventory.
+- summary: Core remains latest-ref aligned and smoke-green, but first-wave DSK ecosystem proof is now blocked earlier than the last packet: ProtoKits local/fetched checks fail on missing package `nexusengine`, Experiments local targeted proof fails through that ProtoKits package-resolution issue, Experiments fetched aggregate passes while targeted DSK proof fails on sibling paths, public browser proof still stalls at `Booting...`, and proof-signal/AR-spatial rows remain separate hardening inventory.
 - id: ecosystem-proof-024
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T22-40-52-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T22-40-52-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` remains 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusrealtime`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and proof-signal integrity rows now join hardening inventory without replacing distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` remains 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusengine`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and proof-signal integrity rows now join hardening inventory without replacing distribution proof.
 - id: ecosystem-proof-023
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T21-41-45-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T21-41-45-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` remains 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusrealtime`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and AR/spatial read-model rows now join hardening inventory without replacing distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` remains 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusengine`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and AR/spatial read-model rows now join hardening inventory without replacing distribution proof.
 - id: ecosystem-proof-022
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T20-39-49-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T20-39-49-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` advanced to 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusrealtime`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and compatibility/content-safety now joins hardening inventory without replacing distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` advanced to 26 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusengine`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and compatibility/content-safety now joins hardening inventory without replacing distribution proof.
 - id: ecosystem-proof-021
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T19-40-15-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T19-40-15-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` advanced to 18 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusrealtime`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and read-model/orchestration isolation now joins hardening inventory without replacing distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source strategy; ProtoKits fetched `origin/0.0.2` advanced to 18 commits ahead locally while disposable fetched-ref validation still fails on missing package `nexusengine`, Experiments fetched-ref targeted DSK proof still fails on missing sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and read-model/orchestration isolation now joins hardening inventory without replacing distribution proof.
 - id: ecosystem-proof-020
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T18-39-22-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T18-39-22-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and proof-readiness queueing now joins claim-management inventory without replacing module-source, aggregate parity, npm, package-version, or hardening proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and proof-readiness queueing now joins claim-management inventory without replacing module-source, aggregate parity, npm, package-version, or hardening proof.
 - id: ecosystem-proof-019
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T17-39-50-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T17-39-50-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and query/command semantics rows now join proof inventory while remaining separate from distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and query/command semantics rows now join proof inventory while remaining separate from distribution proof.
 - id: ecosystem-proof-018
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T16-39-19-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T16-39-19-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and lifecycle parity rows now join proof inventory while remaining separate from distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and lifecycle parity rows now join proof inventory while remaining separate from distribution proof.
 - id: ecosystem-proof-017
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T15-40-03-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T15-40-03-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and experience-edge rows now join proof inventory while remaining separate from distribution proof.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and experience-edge rows now join proof inventory while remaining separate from distribution proof.
 - id: ecosystem-proof-016
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T14-41-14-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T14-41-14-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and runtime failure-boundary gates now join promotion proof boundaries.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and runtime failure-boundary gates now join promotion proof boundaries.
 - id: ecosystem-proof-015
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T13-40-31-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T13-40-31-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and traversal hardening gates now join promotion proof boundaries.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof are still blocked by module-source resolution: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and traversal hardening gates now join promotion proof boundaries.
 - id: ecosystem-proof-014
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T12-39-48-0400-ecosystem-proof-state-packet.md`
 - latest node: `state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T12-39-48-0400-ecosystem-proof-node.md`
-- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof point to module-resolution blockers: standalone ProtoKits cannot resolve `nexusrealtime`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusRealtime`, public browser proof still stalls at `Booting...`, and lifecycle/config hardening gates remain open.
+- summary: Core and local available-checkout DSK proof remain green, but fetched-ref and public proof point to module-resolution blockers: standalone ProtoKits cannot resolve `nexusengine`, Experiments fetched-ref targeted DSK proof cannot resolve sibling `NexusEngine`, public browser proof still stalls at `Booting...`, and lifecycle/config hardening gates remain open.
 - id: ecosystem-proof-013
 - status: superseded-by-refresh
 - latest packet: `state/automation/ecosystem_proof_scout/packets/2026-06-19T11-40-11-0400-ecosystem-proof-state-packet.md`
@@ -199,7 +199,7 @@
 - parent: ecosystem-proof-037
 - child: ecosystem-proof-037-c
 - relationship: protokits-release-ref-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-037
 - child: ecosystem-proof-037-d
 - relationship: experiments-local-ahead-release-behind-main-aggregate-red
@@ -235,7 +235,7 @@
 - parent: ecosystem-proof-036
 - child: ecosystem-proof-036-c
 - relationship: protokits-release-ref-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-036
 - child: ecosystem-proof-036-d
 - relationship: experiments-release-ref-aggregate-red-and-main-drift
@@ -271,7 +271,7 @@
 - parent: ecosystem-proof-035
 - child: ecosystem-proof-035-c
 - relationship: protokits-release-ref-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-035
 - child: ecosystem-proof-035-d
 - relationship: experiments-release-ref-aggregate-canonical-route-red
@@ -307,7 +307,7 @@
 - parent: ecosystem-proof-034
 - child: ecosystem-proof-034-c
 - relationship: protokits-release-ref-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-034
 - child: ecosystem-proof-034-d
 - relationship: experiments-release-ref-aggregate-canonical-route-red
@@ -339,7 +339,7 @@
 - parent: ecosystem-proof-033
 - child: ecosystem-proof-033-b
 - relationship: protokits-release-ref-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-033
 - child: ecosystem-proof-033-c
 - relationship: experiments-release-ref-aggregate-canonical-route-red
@@ -375,7 +375,7 @@
 - parent: ecosystem-proof-032
 - child: ecosystem-proof-032-b
 - relationship: protokits-aggregate-green-targeted-package-resolution-red
-- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusrealtime`.
+- look further: Validate targeted first-wave DSK proof with the selected package, workspace, CDN, or link model for `nexusengine`.
 - parent: ecosystem-proof-032
 - child: ecosystem-proof-032-c
 - relationship: experiments-aggregate-canonical-route-red
@@ -407,7 +407,7 @@
 - parent: ecosystem-proof-030
 - child: ecosystem-proof-030-b
 - relationship: protokits-ref-aligned-package-resolution-blocked
-- look further: Treat ProtoKits as latest-ref aligned but unvalidated until `nexusrealtime` resolves under the intended release-consumption model.
+- look further: Treat ProtoKits as latest-ref aligned but unvalidated until `nexusengine` resolves under the intended release-consumption model.
 - parent: ecosystem-proof-030
 - child: ecosystem-proof-030-c
 - relationship: protokits-targeted-dsk-still-red
@@ -439,7 +439,7 @@
 - parent: ecosystem-proof-029
 - child: ecosystem-proof-029-b
 - relationship: protokits-ref-aligned-package-resolution-blocked
-- look further: Treat ProtoKits as latest-ref aligned but unvalidated until `nexusrealtime` resolves under the intended release-consumption model.
+- look further: Treat ProtoKits as latest-ref aligned but unvalidated until `nexusengine` resolves under the intended release-consumption model.
 - parent: ecosystem-proof-029
 - child: ecosystem-proof-029-c
 - relationship: protokits-targeted-dsk-still-red
@@ -471,7 +471,7 @@
 - parent: ecosystem-proof-028
 - child: ecosystem-proof-028-b
 - relationship: protokits-local-and-fetched-package-resolution
-- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusrealtime`.
+- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusengine`.
 - parent: ecosystem-proof-028
 - child: ecosystem-proof-028-c
 - relationship: protokits-package-version-policy-improved-but-not-proof
@@ -503,7 +503,7 @@
 - parent: ecosystem-proof-027
 - child: ecosystem-proof-027-b
 - relationship: protokits-local-and-fetched-package-resolution
-- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusrealtime`.
+- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusengine`.
 - parent: ecosystem-proof-027
 - child: ecosystem-proof-027-c
 - relationship: protokits-package-version-policy
@@ -535,7 +535,7 @@
 - parent: ecosystem-proof-026
 - child: ecosystem-proof-026-b
 - relationship: protokits-local-and-fetched-package-resolution
-- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusrealtime`.
+- look further: Validate ProtoKits local and fetched `origin/0.0.2` with a package/workspace/CDN/link model that resolves `nexusengine`.
 - parent: ecosystem-proof-026
 - child: ecosystem-proof-026-c
 - relationship: experiments-fetched-ref-advanced-targeted-dsk-blocked
@@ -563,7 +563,7 @@
 - parent: ecosystem-proof-025
 - child: ecosystem-proof-025-b
 - relationship: protokits-local-package-resolution-regression
-- look further: Validate ProtoKits local checkout with an explicit package/workspace/CDN/link model that resolves `nexusrealtime`.
+- look further: Validate ProtoKits local checkout with an explicit package/workspace/CDN/link model that resolves `nexusengine`.
 - parent: ecosystem-proof-025
 - child: ecosystem-proof-025-c
 - relationship: protokits-fetched-ref-package-resolution-drift
@@ -595,7 +595,7 @@
 - parent: ecosystem-proof-024
 - child: ecosystem-proof-024-b
 - relationship: protokits-fetched-ref-package-resolution-drift
-- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-024
 - child: ecosystem-proof-024-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -627,7 +627,7 @@
 - parent: ecosystem-proof-023
 - child: ecosystem-proof-023-b
 - relationship: protokits-fetched-ref-package-resolution-drift
-- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-023
 - child: ecosystem-proof-023-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -659,7 +659,7 @@
 - parent: ecosystem-proof-022
 - child: ecosystem-proof-022-b
 - relationship: protokits-fetched-ref-package-resolution-drift
-- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` at `f0fa45a75eea2c4b88683fe3bf146b0453812820` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-022
 - child: ecosystem-proof-022-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -691,7 +691,7 @@
 - parent: ecosystem-proof-021
 - child: ecosystem-proof-021-b
 - relationship: protokits-fetched-ref-package-resolution-drift
-- look further: Validate ProtoKits fetched `origin/0.0.2` at `fd42188ea9b94bd25f4d5339c2888f150a687984` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` at `fd42188ea9b94bd25f4d5339c2888f150a687984` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-021
 - child: ecosystem-proof-021-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -723,7 +723,7 @@
 - parent: ecosystem-proof-020
 - child: ecosystem-proof-020-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-020
 - child: ecosystem-proof-020-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -755,7 +755,7 @@
 - parent: ecosystem-proof-019
 - child: ecosystem-proof-019-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-019
 - child: ecosystem-proof-019-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -787,7 +787,7 @@
 - parent: ecosystem-proof-018
 - child: ecosystem-proof-018-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-018
 - child: ecosystem-proof-018-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -819,7 +819,7 @@
 - parent: ecosystem-proof-017
 - child: ecosystem-proof-017-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-017
 - child: ecosystem-proof-017-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -851,7 +851,7 @@
 - parent: ecosystem-proof-016
 - child: ecosystem-proof-016-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-016
 - child: ecosystem-proof-016-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -883,7 +883,7 @@
 - parent: ecosystem-proof-015
 - child: ecosystem-proof-015-b
 - relationship: protokits-fetched-ref-package-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package/workspace/CDN/link model that can resolve `nexusengine`.
 - parent: ecosystem-proof-015
 - child: ecosystem-proof-015-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -907,7 +907,7 @@
 - parent: ecosystem-proof-015
 - child: ecosystem-proof-015-h
 - relationship: ownership-boundary-still-valid
-- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusRealtime core.
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusEngine core.
 - parent: ecosystem-proof-014
 - child: ecosystem-proof-014-a
 - relationship: core-latest-ref-green
@@ -915,7 +915,7 @@
 - parent: ecosystem-proof-014
 - child: ecosystem-proof-014-b
 - relationship: protokits-fetched-ref-module-resolution
-- look further: Validate ProtoKits fetched `origin/0.0.2` with a package-resolution model that can resolve `nexusrealtime`.
+- look further: Validate ProtoKits fetched `origin/0.0.2` with a package-resolution model that can resolve `nexusengine`.
 - parent: ecosystem-proof-014
 - child: ecosystem-proof-014-c
 - relationship: experiments-fetched-ref-targeted-dsk-blocked
@@ -939,7 +939,7 @@
 - parent: ecosystem-proof-014
 - child: ecosystem-proof-014-h
 - relationship: ownership-boundary-still-valid
-- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusRealtime core.
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusEngine core.
 - parent: ecosystem-proof-013
 - child: ecosystem-proof-013-a
 - relationship: core-latest-ref-green
@@ -971,7 +971,7 @@
 - parent: ecosystem-proof-013
 - child: ecosystem-proof-013-h
 - relationship: ownership-boundary-still-valid
-- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusRealtime core.
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusEngine core.
 - parent: ecosystem-proof-012
 - child: ecosystem-proof-012-a
 - relationship: core-protokits-latest-ref-green
@@ -999,7 +999,7 @@
 - parent: ecosystem-proof-012
 - child: ecosystem-proof-012-g
 - relationship: ownership-boundary-still-valid
-- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusRealtime core.
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusEngine core.
 - parent: ecosystem-proof-011
 - child: ecosystem-proof-011-a
 - relationship: core-protokits-latest-ref-green
@@ -1027,7 +1027,7 @@
 - parent: ecosystem-proof-011
 - child: ecosystem-proof-011-g
 - relationship: ownership-boundary-still-valid
-- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusRealtime core.
+- look further: Keep reusable implementation in ProtoKits and playable/browser proof routing in Experiments, not NexusEngine core.
 - parent: ecosystem-proof-010
 - child: ecosystem-proof-010-a
 - relationship: experiments-latest-ref-drift
@@ -1203,7 +1203,7 @@
 - parent: ecosystem-proof-004
 - child: ecosystem-proof-004-a
 - relationship: branch-aligned
-- look further: Recheck all three repos against `origin/0.0.2`; note unrelated NexusRealtime automation/docs worktree changes before promotion review.
+- look further: Recheck all three repos against `origin/0.0.2`; note unrelated NexusEngine automation/docs worktree changes before promotion review.
 - parent: ecosystem-proof-004
 - child: ecosystem-proof-004-b
 - relationship: validation-green-public-failing
@@ -1259,7 +1259,7 @@
 - parent: ecosystem-proof-002
 - child: ecosystem-proof-002-e
 - relationship: import-map-public-shape
-- look further: Decide public proof import-map target for bare `nexusrealtime`.
+- look further: Decide public proof import-map target for bare `nexusengine`.
 - parent: ecosystem-proof-001
 - child: ecosystem-proof-001-a
 - relationship: core-aligned
@@ -1281,11 +1281,11 @@
 - branch: protokits-local-vs-release-vs-main-proof
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy.
 - branch: experiments-main-drift-and-release-ref-proof
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`, route/proof tests.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`, route/proof tests.
 - branch: protokits-cdn-proof-path
 - owner: next scout
 - priority: high
@@ -1309,15 +1309,15 @@
 - branch: protokits-package-version-policy
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`, fetched `origin/0.0.2`, first-wave DSK adapter metadata.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, fetched `origin/0.0.2`, first-wave DSK adapter metadata.
 - branch: protokits-fetched-ref-module-resolution
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`, package/link/CDN resolution setup.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`, package/link/CDN resolution setup.
 - branch: experiments-targeted-dsk-fetched-ref
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, fetched `origin/0.0.2`, `tests/dsk-first-wave-experiment-smoke.mjs`, `experiments/dsk-first-wave-proof/src/proof.js`, sibling path layout.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, `tests/dsk-first-wave-experiment-smoke.mjs`, `experiments/dsk-first-wave-proof/src/proof.js`, sibling path layout.
 - branch: public-proof-import-shape
 - owner: next scout
 - priority: high
@@ -1325,7 +1325,7 @@
 - branch: aggregate-dsk-proof-validation
 - owner: next scout
 - priority: high
-- next files: `NexusRealtime-Experiments/package.json`, `NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, `NexusRealtime-ProtoKits/package.json`, aggregate command split or disposable validation worktree.
+- next files: `NexusEngine-Experiments/package.json`, `NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, `NexusEngine-ProtoKits/package.json`, aggregate command split or disposable validation worktree.
 - branch: ar-spatial-read-model-proof
 - owner: next scout
 - priority: medium
@@ -1337,7 +1337,7 @@
 - branch: sibling-release-alignment-watch
 - owner: next scout
 - priority: medium
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`.
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`.
 - branch: stale-cdn-pins
 - owner: next scout
 - priority: medium
@@ -1373,11 +1373,11 @@
 - branch: generated-flat-route-cleanliness
 - owner: next scout
 - priority: low
-- next files: `NexusRealtime-Experiments/scripts/generate-flat-experiment-routes.mjs`, `NexusRealtime-Experiments/package.json`.
+- next files: `NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `NexusEngine-Experiments/package.json`.
 - branch: experiment-local-protokit-boundary
 - owner: next scout
 - priority: medium
-- next files: fetched `NexusRealtime-Experiments/protokits/*`, `docs/how-to-protokit.md`, `docs/protokit-boundaries.md`, ProtoKits extraction paths.
+- next files: fetched `NexusEngine-Experiments/protokits/*`, `docs/how-to-protokit.md`, `docs/protokit-boundaries.md`, ProtoKits extraction paths.
 
 ## Resolved Or Superseded
 - id: ecosystem-proof-025
@@ -1393,7 +1393,7 @@
 - reason: superseded by 2026-06-19T13-40-31 refresh; current evidence reproduces the module-source blocker across ProtoKits fetched-ref validation, Experiments fetched-ref targeted DSK validation, and public browser proof, while traversal hardening joins proof boundaries.
 - evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-19T13-40-31-0400-ecosystem-proof-state-packet.md`
 - id: ecosystem-proof-013
-- reason: superseded by 2026-06-19T12-39-48 refresh; disposable fetched-ref validation shows ProtoKits `origin/0.0.2` is blocked by missing `nexusrealtime` package resolution, Experiments fetched-ref aggregate passes but targeted DSK proof fails on sibling relative paths, public browser proof still fails on sibling module 404s, and lifecycle/config hardening joins proof boundaries.
+- reason: superseded by 2026-06-19T12-39-48 refresh; disposable fetched-ref validation shows ProtoKits `origin/0.0.2` is blocked by missing `nexusengine` package resolution, Experiments fetched-ref aggregate passes but targeted DSK proof fails on sibling relative paths, public browser proof still fails on sibling module 404s, and lifecycle/config hardening joins proof boundaries.
 - evidence: `state/automation/ecosystem_proof_scout/packets/2026-06-19T12-39-48-0400-ecosystem-proof-state-packet.md`
 - id: ecosystem-proof-012
 - reason: superseded by 2026-06-19T11-40-11 refresh; fetched ProtoKits `origin/0.0.2` advanced 5 commits beyond the local checkout, fetched Experiments remains 24 commits ahead, public browser proof still fails on sibling module 404s, and runtime hardening proof remains separate.

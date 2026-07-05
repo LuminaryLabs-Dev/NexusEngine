@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-22T18:19:08-0400
 - UTC preflight: 2026-06-22T22:17:43.517Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-host-graph-and-release-separation-root-2026-06-22-0619`.
@@ -29,11 +29,11 @@
 - `origin/main`: `6c450b3073825ddd495979474f57342556658972`
 - `origin/0.0.2`: `6c450b3073825ddd495979474f57342556658972`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing dirty docs/source/test/state changes and untracked neighboring lane artifacts were present before this run. This lane wrote only this packet, its knowledge node, and the DSK tracker update.
 
 ## Files inspected
-- `/Users/crimsonwheeler/.codex/automations/nexusrealtime-dsk-architecture-state-packet/memory.md`
+- `/Users/crimsonwheeler/.codex/automations/nexusengine-dsk-architecture-state-packet/memory.md`
 - `/Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
 - `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`
 - `memory.md`, `README.md`, `package.json`

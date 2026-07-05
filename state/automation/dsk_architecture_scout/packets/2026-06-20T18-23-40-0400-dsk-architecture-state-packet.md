@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-20T18-23-40-0400
 - UTC preflight: 2026-06-20T22:21:38.171Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-procedural-navigation-ownership-context-root-2026-06-20-1738`.
@@ -28,11 +28,11 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs/automation trackers and many untracked prior automation artifacts were present before this run. This lane wrote only its packet, node, and tracker update.
 
 ## Files inspected
-- `/Users/crimsonwheeler/.codex/automations/nexusrealtime-dsk-architecture-state-packet/memory.md`
+- `/Users/crimsonwheeler/.codex/automations/nexusengine-dsk-architecture-state-packet/memory.md`
 - `/Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
 - `/Users/crimsonwheeler/.codex/memories/MEMORY.md`
 - `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`
@@ -132,7 +132,7 @@
 - Do not treat input frames as deterministic replay evidence while returned state and caller-owned metadata can mutate the current frame after submission.
 - Do not attach proof dashboards, SequenceNode bridges, AI adapters, replay harnesses, or editor tools to telemetry/command outputs without a clone/freeze or documented mutable-handle policy.
 - Do not treat `npm test`, HTTP 200 public routes, aggregate Experiments checks, fetched raw files, public CDN reachability, npm metadata, module-source alignment, or query helper availability as production DSK safety.
-- Do not move proof routing, package-resolution shims, browser routes, or reusable gameplay implementation into NexusRealtime core to solve telemetry/command or distribution proof issues.
+- Do not move proof routing, package-resolution shims, browser routes, or reusable gameplay implementation into NexusEngine core to solve telemetry/command or distribution proof issues.
 
 ## Suggested next review item
 - Use a non-scout lane to write the smallest executable tranche 1 fixture set: `engine.n` reserved-key/null-prototype/own-property policy, failed-install rollback/retryability, direct/composer dependency parity, scheduler failed-tick semantics, active-run scheduler mutation, phase topology mutation, `runSystem()` membership, `readEvents()` payload isolation, procedural/navigation request and snapshot ownership, telemetry selected-value/path snapshot ownership, RequestQueue/TransportRoute command metadata ownership, InputIntent frame ownership, and reset/snapshot/async metadata truth.

@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-21T18-18-55-0400
 - UTC preflight: 2026-06-21T22:16:36.078Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-main-parity-telemetry-command-context-root-2026-06-21-0619`.
@@ -29,11 +29,11 @@
 - `origin/main`: `6c450b3073825ddd495979474f57342556658972`
 - `origin/0.0.2`: `6c450b3073825ddd495979474f57342556658972`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified `src/index.js`, `tests/public-api-freeze.mjs`, and `tests/run-all.mjs` plus untracked host docs/examples/source/test files were present before this DSK run. This lane wrote only this packet, its knowledge node, and the DSK tracker update.
 
 ## Files inspected
-- `/Users/crimsonwheeler/.codex/automations/nexusrealtime-dsk-architecture-state-packet/memory.md`
+- `/Users/crimsonwheeler/.codex/automations/nexusengine-dsk-architecture-state-packet/memory.md`
 - `/Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
 - `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`
 - `memory.md`, `README.md`, `package.json`
@@ -124,7 +124,7 @@
 - Do not treat dirty host-surface work as released DSK proof until the release lane decides whether the changes are intentional, committed, and public-consumption-ready.
 - Do not use Economy ledgers, TimingWindow receipts, ResourcePressure changes, lifecycle/facility configs, telemetry history, RequestQueue/TransportRoute command state, or InputIntent frames as proof evidence until ownership semantics are fixed or explicitly documented as mutable handles.
 - Do not treat `npm test`, HTTP 200 routes, aggregate Experiments checks, fetched raw files, CDN reachability, npm metadata, query helper availability, host exports, or commit equality alone as production DSK safety.
-- Do not move proof routing, package-resolution shims, browser routes, host demos, or reusable gameplay implementation into NexusRealtime core to solve distribution proof issues.
+- Do not move proof routing, package-resolution shims, browser routes, host demos, or reusable gameplay implementation into NexusEngine core to solve distribution proof issues.
 
 ## Suggested next review item
 - Use a non-scout lane to write the smallest executable tranche 1 fixture set: `engine.n` reserved-key/null-prototype/own-property policy, failed-install rollback/retryability, direct/composer dependency parity, duplicate binding/provider diagnostics, scheduler/world mutation/event payload policy, telemetry selected-value/path isolation, RequestQueue/TransportRoute/InputIntent command ownership, Economy/TimingWindow/ResourcePressure/LifecycleProgression/FacilityOperations command-config ownership, and reset/snapshot/async metadata truth.

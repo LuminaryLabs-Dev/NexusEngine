@@ -24,12 +24,12 @@
 - id: ecosystem-proof-012-d
   parent: ecosystem-proof-012
   lesson: Public DSK proof remains HTTP-visible but browser-stuck at `Booting...`.
-  evidence: Curl returned 200 for the route; Playwright launch-state snapshot showed `Booting...`; console output showed 404s for `NexusRealtime/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
+  evidence: Curl returned 200 for the route; Playwright launch-state snapshot showed `Booting...`; console output showed 404s for `NexusEngine/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
   look further: Do not treat HTTP 200 on the route as browser-complete proof.
 - id: ecosystem-proof-012-e
   parent: ecosystem-proof-012
   lesson: The public proof import shape still targets sibling GitHub Pages paths that are not deployed.
-  evidence: Local and fetched proof HTML map `nexusrealtime` to `../../../NexusRealtime/src/index.js`; proof module imports sibling `NexusRealtime` and `NexusRealtime-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
+  evidence: Local and fetched proof HTML map `nexusengine` to `../../../NexusEngine/src/index.js`; proof module imports sibling `NexusEngine` and `NexusEngine-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map.
 - id: ecosystem-proof-012-f
   parent: ecosystem-proof-012
@@ -40,7 +40,7 @@
   parent: ecosystem-proof-012
   lesson: Core/ProtoKits/Experiments ownership docs still point public proof work to Experiments and reusable implementation to ProtoKits, not core.
   evidence: `docs/how-to-protokit.md` and `docs/how-to-experiment.md` keep core as runtime/DSK/composer owner, ProtoKits as reusable implementation owner, and Experiments as playable/browser proof owner.
-  look further: Fix proof routing/imports without moving route ownership into NexusRealtime core.
+  look further: Fix proof routing/imports without moving route ownership into NexusEngine core.
 
 ## Related Nodes
 - source: state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T09-44-04-0400-ecosystem-proof-node.md
@@ -61,16 +61,16 @@
 
 ## Next Search Branches
 - branch: experiments-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, fetched `origin/0.0.2`, aggregate and targeted smoke scripts
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, aggregate and targeted smoke scripts
   question: Can fetched `origin/0.0.2` be validated in a disposable worktree without dirtying the main checkout?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: generated-route-validation-boundary
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
   question: Should route generation be made idempotent, moved out of default check, or run only in disposable validation worktrees?
 - branch: state-signal-contract-proof
   files or folders: `src/forest-placement-kit.js`, `src/interaction-kit.js`, `src/shrine-puzzle-kit.js`, `src/light-combat-kit.js`, `src/scenario-driver-kit.js`, `src/camera-occlusion-kit.js`, proof fixtures

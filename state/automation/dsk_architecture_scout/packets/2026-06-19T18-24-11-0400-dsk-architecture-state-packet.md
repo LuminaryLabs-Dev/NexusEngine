@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-19T18-24-11-0400
 - UTC preflight: 2026-06-19T22:23:01.338Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-query-command-queue-split-root-2026-06-19-1722`.
@@ -92,7 +92,7 @@
 - Planning docs still treat domain and kit ideas as expansion inventory, not implementation or release contract (`docs/domain_ideas.md:3-14`; `docs/kits_ideas.md:3-13`).
 - Runtime failure-boundary inventory remains directly relevant to core because it targets namespace safety, failed installs, direct/composer dependency parity, and failed scheduler ticks (`docs/described_examples.md:672-698`).
 - New proof-readiness queueing belongs beside, not inside, the DSK fixture queue. It helps label claims and release evidence, but it does not fix runtime failure-boundary, lifecycle parity, query/command semantics, or experience-edge gaps.
-- Module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusRealtime core.
+- Module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusEngine core.
 
 ## Scaling risks
 - Broad DSK promotion still increases collision, inherited-key, and ownership risks while `engine.n` is a normal object.

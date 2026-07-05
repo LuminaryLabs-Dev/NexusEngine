@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-19T20:53:37-04:00
 
 Timestamp: 2026-06-19T20:53:37-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for AR launch capability contracts and spatial room read-model isolation
 
 ## Lane Goal

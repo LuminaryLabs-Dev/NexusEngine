@@ -1,6 +1,6 @@
-# NexusRealtime
+# NexusEngine
 
-NexusRealtime is a realtime-first, kit-first AI engine.
+NexusEngine is a realtime-first, kit-first AI engine.
 
 It is an operating system for agents and humans to compose boundless game and simulation domains through reusable, idempotent kits.
 
@@ -14,7 +14,7 @@ Every stable capability can promote.
 Every world can keep expanding.
 ```
 
-NexusRealtime is not only an ECS package, not only a plugin system, not only a demo framework, and not only a place for AI-generated games. It is a realtime substrate where kits are the unit of engine meaning. Agents work inside that substrate by selecting domains, composing kits, installing them into the runtime, inspecting deterministic state, reconciling changes, and promoting stable capabilities.
+NexusEngine is not only an ECS package, not only a plugin system, not only a demo framework, and not only a place for AI-generated games. It is a realtime substrate where kits are the unit of engine meaning. Agents work inside that substrate by selecting domains, composing kits, installing them into the runtime, inspecting deterministic state, reconciling changes, and promoting stable capabilities.
 
 ```txt
 intent
@@ -31,7 +31,7 @@ intent
 
 ## The Long-Form Vision
 
-NexusRealtime is being built for games and simulations that do not stop at one fixed scene, one fixed level, one fixed feature list, or one fixed code path.
+NexusEngine is being built for games and simulations that do not stop at one fixed scene, one fixed level, one fixed feature list, or one fixed code path.
 
 The engine should support worlds that grow through domains:
 
@@ -62,7 +62,7 @@ atomic kit
 
 ## Kit-First Engine Model
 
-NexusRealtime is kit-first.
+NexusEngine is kit-first.
 
 A kit is not just a plugin. A kit is a unit of engine meaning.
 
@@ -91,7 +91,7 @@ The target is agent-operable modularity.
 
 ## Boundless Domains Through Composition
 
-NexusRealtime uses the word boundless carefully.
+NexusEngine uses the word boundless carefully.
 
 Boundless does not mean infinite active compute. Boundless means the world structure can keep expanding through domains, descriptors, snapshots, ledgers, seeds, and kits while the runtime only needs to simulate the active slice.
 
@@ -145,7 +145,7 @@ The engine pattern is the same at every scale: name the domain, express it as a 
 
 ## Realtime-First Substrate
 
-NexusRealtime is realtime-first.
+NexusEngine is realtime-first.
 
 The realtime layer gives every kit a stable execution substrate: ECS state, ordered scheduler phases, events, resources, queries, deterministic ticks, reset expectations, snapshots, and subscribable surfaces.
 
@@ -166,7 +166,7 @@ Kits describe what should exist. The engine proves what actually runs.
 
 ## Agent Operating System
 
-NexusRealtime is intended to work like an operating system for agents.
+NexusEngine is intended to work like an operating system for agents.
 
 The engine gives agents:
 
@@ -193,12 +193,12 @@ What should be promoted?
 What should stay experimental?
 ```
 
-This is the difference between using AI as a code generator and building an engine for AI-native development. NexusRealtime does not make agents guess. It gives agents an operating system.
+This is the difference between using AI as a code generator and building an engine for AI-native development. NexusEngine does not make agents guess. It gives agents an operating system.
 
 ## Engine Layers
 
 ```txt
-NexusRealtime
+NexusEngine
 ├─ Realtime Substrate
 │  ├─ ECS state
 │  ├─ scheduler phases
@@ -251,7 +251,7 @@ NexusRealtime
 
 ## Current Package Shape
 
-NexusRealtime currently provides the substrate and promoted kit layers needed to support this direction.
+NexusEngine currently provides the substrate and promoted kit layers needed to support this direction.
 
 ### Realtime substrate
 
@@ -280,7 +280,7 @@ NexusRealtime currently provides the substrate and promoted kit layers needed to
 
 `defineRuntimeKit()` is the lower-level installable engine capability layer.
 
-`defineDomainServiceKit()` is the higher-fidelity path for reusable game and simulation domains that may start in ProtoKits and later promote into NexusRealtime core without a rewrite.
+`defineDomainServiceKit()` is the higher-fidelity path for reusable game and simulation domains that may start in ProtoKits and later promote into NexusEngine core without a rewrite.
 
 ```txt
 runtime kit
@@ -301,7 +301,7 @@ import {
   createPhysicsKit,
   createLocomotionKit,
   createCameraKit
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createRealtimeGame({
   kits: [
@@ -334,7 +334,7 @@ import {
   createPathfindingKit,
   createProceduralKit,
   createRealtimeGame
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createRealtimeGame({
   kits: [
@@ -363,7 +363,7 @@ engine.tick();
 console.log(engine.navigation.snapshot().lastPath);
 ```
 
-Procedural output is render-agnostic descriptor data. Navigation uses the same request shape across `grid`, `navmesh2d`, and `navmesh3d`. The app composes domains; NexusRealtime owns the reusable domain rules.
+Procedural output is render-agnostic descriptor data. Navigation uses the same request shape across `grid`, `navmesh2d`, and `navmesh3d`. The app composes domains; NexusEngine owns the reusable domain rules.
 
 ## Example: AR Composition
 
@@ -374,7 +374,7 @@ import {
   createObjectiveFlowKit,
   createARKit,
   createEngine
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createEngine({
   kits: [
@@ -401,7 +401,7 @@ engine.tick();
 console.log(engine.world.getResource(ObjectiveFlowState));
 ```
 
-Product apps should provide copy, routes, and experience manifests. NexusRealtime owns the reusable session, placement, input, objective, and fallback-mode rules.
+Product apps should provide copy, routes, and experience manifests. NexusEngine owns the reusable session, placement, input, objective, and fallback-mode rules.
 
 ## Repository Guidance
 
@@ -421,4 +421,4 @@ Every stable capability can promote.
 Every world can keep expanding.
 ```
 
-NexusRealtime is the realtime substrate for that process.
+NexusEngine is the realtime substrate for that process.

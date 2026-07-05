@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T03-01-44-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -75,8 +75,8 @@
 - Did not duplicate `sequence-event-history-isolation-kit`; the new event-bus kit narrows disposed-state parity across listener APIs.
 
 ## DSK boundary notes
-- New reusable implementation remains out of NexusRealtime core unless a future non-scout pass identifies a true runtime primitive, DSK invariant, composer rule, ECS identity rule, SequenceNode install rule, or validation surface.
-- The added kit rows are marked as NexusRealtime core validation surfaces because the evidence targets runtime kit binding, ECS definition identity, SequenceNode kit deployment, and event-bus lifecycle primitives.
+- New reusable implementation remains out of NexusEngine core unless a future non-scout pass identifies a true runtime primitive, DSK invariant, composer rule, ECS identity rule, SequenceNode install rule, or validation surface.
+- The added kit rows are marked as NexusEngine core validation surfaces because the evidence targets runtime kit binding, ECS definition identity, SequenceNode kit deployment, and event-bus lifecycle primitives.
 - Product-neutral ProtoKit graphs should treat bindings, ECS definitions, install-only adapters, and disposed listener counts as proof only after these runtime identity rules become executable.
 
 ## Open questions

@@ -8,7 +8,7 @@
 ## Child Nodes
 - id: ecosystem-proof-002-a
   parent: ecosystem-proof-002
-  lesson: NexusRealtime core remains aligned with latest release branch `0.0.2`.
+  lesson: NexusEngine core remains aligned with latest release branch `0.0.2`.
   evidence: `npm run automation:preflight` resolved `latestReleaseBranch: 0.0.2`; local HEAD equals `origin/0.0.2`; `npm test` passed 8 smoke tests.
   look further: Confirm whether optional npm registry 404 is intentional before npm-based consumption claims.
 - id: ecosystem-proof-002-b
@@ -29,7 +29,7 @@
 - id: ecosystem-proof-002-e
   parent: ecosystem-proof-002
   lesson: The proof route's local import map is not a public CDN import map.
-  evidence: `experiments/dsk-first-wave-proof/index.html` maps bare `nexusrealtime` to `../../../NexusRealtime/src/index.js`; ProtoKits README separately documents a `0.0.2` CDN import map for browser hosts.
+  evidence: `experiments/dsk-first-wave-proof/index.html` maps bare `nexusengine` to `../../../NexusEngine/src/index.js`; ProtoKits README separately documents a `0.0.2` CDN import map for browser hosts.
   look further: Decide whether the public proof should use sibling-repo local paths, GitHub Pages-relative paths, or CDN import maps.
 
 ## Related Nodes
@@ -39,11 +39,11 @@
 
 ## Next Search Branches
 - branch: local-to-public-proof-sync
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, GitHub Pages build source
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, GitHub Pages build source
 - question: What exact commits or generated outputs must contain the DSK proof route and first-wave ledger for public review?
 - branch: import-map-public-shape
 - files or folders: `experiments/dsk-first-wave-proof/index.html`, ProtoKits README import-map guidance, public CDN URLs
-- question: Should the public proof map `nexusrealtime` to local sibling source or latest public CDN?
+- question: Should the public proof map `nexusengine` to local sibling source or latest public CDN?
 - branch: compatibility-shim-exit
 - files or folders: `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
 - question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?

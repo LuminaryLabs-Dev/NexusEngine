@@ -18,7 +18,7 @@ A game or ProtoKit can use an individual piece without loading the whole umbrell
 import {
   createResourceMeter,
   createPressureChannel
-} from "nexusrealtime/core-kits/core-simulation-kit";
+} from "nexusengine/core-kits/core-simulation-kit";
 ```
 
 ## Umbrella usage

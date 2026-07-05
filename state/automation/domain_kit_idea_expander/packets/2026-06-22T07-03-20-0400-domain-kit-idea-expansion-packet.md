@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-22T07-03-20-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -81,10 +81,10 @@
 - Did not create a public proof row because extension service ownership does not fix package resolution, import maps, npm metadata, Experiments route naming, or targeted first-wave `engine.n.zoneField`.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, `extendDomainServiceKit()` behavior, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, `extendDomainServiceKit()` behavior, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - DSK Extension Service Ownership is core validation-surface inventory because it concerns the DSK extension contract itself.
-- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusRealtime-Experiments work.
+- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusEngine-Experiments work.
 
 ## Open questions
 - Should an extension with a distinct `apiName`, `services`, or `provides` be required to install an explicit `engine.n.*` API, or should base-API-only extensions be modeled separately?

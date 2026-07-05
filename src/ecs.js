@@ -16,7 +16,7 @@ function assertDefinition(definition, kind, factoryName) {
 
 function createStoreAccessor(kind, storeMap) {
   return function ensureStore(definition) {
-    assertDefinition(definition, kind, "NexusRealtime");
+    assertDefinition(definition, kind, "NexusEngine");
 
     if (!storeMap.has(definition.name)) {
       storeMap.set(definition.name, kind === "event" ? [] : new Map());
@@ -209,7 +209,7 @@ export function createWorld() {
     },
 
     setResource(resource, value) {
-      assertDefinition(resource, "resource", "NexusRealtime");
+      assertDefinition(resource, "resource", "NexusEngine");
       const hadResource = resourceValues.has(resource.name);
       const previous = resourceValues.get(resource.name);
       resourceValues.set(resource.name, value);
@@ -223,17 +223,17 @@ export function createWorld() {
     },
 
     getResource(resource) {
-      assertDefinition(resource, "resource", "NexusRealtime");
+      assertDefinition(resource, "resource", "NexusEngine");
       return resourceValues.get(resource.name);
     },
 
     hasResource(resource) {
-      assertDefinition(resource, "resource", "NexusRealtime");
+      assertDefinition(resource, "resource", "NexusEngine");
       return resourceValues.has(resource.name);
     },
 
     removeResource(resource) {
-      assertDefinition(resource, "resource", "NexusRealtime");
+      assertDefinition(resource, "resource", "NexusEngine");
       if (!resourceValues.has(resource.name)) {
         return false;
       }

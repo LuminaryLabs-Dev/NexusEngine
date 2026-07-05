@@ -9,8 +9,8 @@
 - id: public-proof-browser-failure-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
   lesson: The public DSK proof route is HTTP-visible but still stuck at `Booting...` in a browser.
-  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` showed `Booting...`; console errors showed 404 module loads for NexusRealtime and ProtoKits GitHub Pages paths.
-  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, or build-step import maps.
+  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` showed `Booting...`; console errors showed 404 module loads for NexusEngine and ProtoKits GitHub Pages paths.
+  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, or build-step import maps.
 - id: branch-alignment-stable-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
   lesson: Core and sibling repos remain cleanly aligned with `origin/0.0.2`.
@@ -24,7 +24,7 @@
 - id: public-consumption-npm-gap-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
   lesson: GitHub/raw/jsDelivr consumption remains reachable while npm package metadata still returns 404.
-  evidence: `npm run automation:preflight` and direct fetch checks returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusrealtime`.
+  evidence: `npm run automation:preflight` and direct fetch checks returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusengine`.
   look further: `README.md`, `package.json`, npm publication policy, public consumption wording.
 - id: governance-first-expansion-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
@@ -34,7 +34,7 @@
 - id: package-version-policy-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
   lesson: Release branch `0.0.2` still serves package metadata version `0.1.0`.
-  evidence: Local `package.json` reports `nexusrealtime@0.1.0`; raw public `0.0.2/package.json` returns 200 and preflight uses branch `0.0.2`.
+  evidence: Local `package.json` reports `nexusengine@0.1.0`; raw public `0.0.2/package.json` returns 200 and preflight uses branch `0.0.2`.
   look further: Branch naming policy, package version policy, README release wording.
 
 ## Related Nodes
@@ -50,10 +50,10 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
 - question: Should the public DSK proof use CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: public-consumption-wording
-- files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, `https://registry.npmjs.org/nexusrealtime`
+- files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, `https://registry.npmjs.org/nexusengine`
 - question: Should docs explicitly say GitHub/jsDelivr branch consumption is supported while npm metadata is unavailable?
 - branch: composition-governance-readiness
 - files or folders: `docs/domain_ideas.md`, `docs/kits_ideas.md`, `examples/described-examples/composition-audit-rules.md`, `src/domain-service-kit.js`, `src/runtime-kit.js`

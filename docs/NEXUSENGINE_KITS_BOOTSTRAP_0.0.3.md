@@ -1,16 +1,16 @@
-# NexusRealtime-Kits Bootstrap 0.0.3
+# NexusEngine-Kits Bootstrap 0.0.3
 
 ## Status
 
-No accessible `LuminaryLabs-Dev/NexusRealtime-Kits` or `LuminaryLabs-Agents/NexusRealtime-Kits` repository was found during this implementation pass.
+No accessible `LuminaryLabs-Dev/NexusEngine-Kits` or `LuminaryLabs-Agents/NexusEngine-Kits` repository was found during this implementation pass.
 
 ## Required repository
 
 ```txt
-NexusRealtime-Kits
-package: @luminarylabs/nexusrealtime-kits
+NexusEngine-Kits
+package: @luminarylabs/nexusengine-kits
 version: 0.0.3
-runtime peer: nexusrealtime ^0.0.3
+runtime peer: nexusengine ^0.0.3
 ```
 
 ## Initial structure

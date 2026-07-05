@@ -1,6 +1,6 @@
 # Core Capability Domains
 
-`src/core-kits/` is the home for NexusRealtime core capability domains.
+`src/core-kits/` is the home for NexusEngine core capability domains.
 
 A core capability domain is not a narrow one-off helper and it is not a locked monolith. It is a stable, configurable domain bubble that gives other kits a trusted base to compose from.
 
@@ -14,7 +14,7 @@ Core capability domain
   + snapshot/reset expectations
 ```
 
-The goal is to make NexusRealtime useful out of the gate while still keeping niche, genre-specific, app-specific, and experimental kits in `NexusRealtime-ProtoKits`.
+The goal is to make NexusEngine useful out of the gate while still keeping niche, genre-specific, app-specific, and experimental kits in `NexusEngine-ProtoKits`.
 
 ---
 
@@ -60,19 +60,19 @@ But the core should not become a dumping ground for every game, genre, renderer,
 The intended split is:
 
 ```txt
-NexusRealtime kernel
+NexusEngine kernel
   ECS, scheduler, engine, surfaces
 
-NexusRealtime contracts
+NexusEngine contracts
   runtime-kit, domain-service-kit, composer, token rules
 
-NexusRealtime core-kits
+NexusEngine core-kits
   broad configurable capability domains
 
-NexusRealtime-ProtoKits
+NexusEngine-ProtoKits
   niche, genre, platform, app, and composite kits
 
-NexusRealtime-Experiments
+NexusEngine-Experiments
   playable proof routes and compositions
 ```
 

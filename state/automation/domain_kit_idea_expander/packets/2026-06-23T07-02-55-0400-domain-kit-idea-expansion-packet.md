@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-23T07-02-55-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -80,10 +80,10 @@
 - Did not create another proof-readiness row for package resolution, npm, browser imports, Experiments route naming, optional CDN, or targeted `engine.n.zoneField` because composer handoff hardening does not fix distribution proof.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation surfaces.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation surfaces.
 - Composer read-model and `createRealtimeGame({ composer })` handoff policy are core validation-surface inventory because they concern the composition primitive and proof metadata trust.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
-- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusRealtime-Experiments or app-owned work.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
+- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusEngine-Experiments or app-owned work.
 
 ## Open questions
 - Should `createGameKitComposer()` deeply freeze nested arrays/maps, expose cloned read snapshots, or brand immutable composer objects?

@@ -1200,7 +1200,7 @@
 - branch: DSK ProtoKits local-vs-release proof split
 - owner: ecosystem/release proof lane
 - priority: critical
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
 - branch: DSK domain command config ownership fixtures
 - owner: non-scout implementation lane
 - priority: critical

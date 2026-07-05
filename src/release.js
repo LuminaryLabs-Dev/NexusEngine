@@ -1,12 +1,12 @@
-export const NEXUS_REALTIME_VERSION = "0.0.3";
-export const NEXUS_REALTIME_STABILITY = "stable-candidate";
-export const NEXUS_REALTIME_RELEASE_BRANCH = "release/0.0.3-upgrade";
+export const NEXUS_ENGINE_VERSION = "0.0.3";
+export const NEXUS_ENGINE_STABILITY = "stable-candidate";
+export const NEXUS_ENGINE_RELEASE_BRANCH = "0.0.3";
 
-export const NEXUS_REALTIME_RELEASE = Object.freeze({
-  name: "nexusrealtime",
-  version: NEXUS_REALTIME_VERSION,
-  stability: NEXUS_REALTIME_STABILITY,
-  branch: NEXUS_REALTIME_RELEASE_BRANCH,
+export const NEXUS_ENGINE_RELEASE = Object.freeze({
+  name: "nexusengine",
+  version: NEXUS_ENGINE_VERSION,
+  stability: NEXUS_ENGINE_STABILITY,
+  branch: NEXUS_ENGINE_RELEASE_BRANCH,
   scope: Object.freeze([
     "runtime-substrate",
     "runtime-kit-contract",
@@ -29,5 +29,5 @@ export const NEXUS_REALTIME_RELEASE = Object.freeze({
     "foundation",
     "core-kits"
   ]),
-  notes: "0.0.3 is a release-hardening line. stable/0.0.3 should only be cut after the release gate passes."
+  notes: "0.0.3 is the release-hardening branch for NexusEngine Core v0.0.3."
 });

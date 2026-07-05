@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T19-02-02-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -12,7 +12,7 @@
 - Latest current-lane packet converted telemetry selected values/path selectors, RequestQueue/TransportRoute command metadata, and InputIntent metadata/live-state evidence into Telemetry Command Evidence Ownership.
 - Latest ecosystem state packet `2026-06-20T18-11-35-0400` kept module-source strategy as the active proof blocker and treated procedural/navigation plus telemetry/command ownership as separate hardening inventory.
 - Latest DSK architecture packet `2026-06-20T18-23-40-0400` confirmed Telemetry Command Evidence Ownership as DSK hardening inventory, not a distribution proof fix.
-- Latest ecosystem proof packet `2026-06-20T18-41-30-0400` added sibling proof drift: available ProtoKits is now local `main`/`0.0.1`, fetched ProtoKits `origin/0.0.2` cannot resolve package `nexusrealtime`, Experiments targeted proof still fails, and public browser proof remains `Booting...`.
+- Latest ecosystem proof packet `2026-06-20T18-41-30-0400` added sibling proof drift: available ProtoKits is now local `main`/`0.0.1`, fetched ProtoKits `origin/0.0.2` cannot resolve package `nexusengine`, Experiments targeted proof still fails, and public browser proof remains `Booting...`.
 - Latest deep bug packet remains `2026-06-20T17-54-14-0400`, already mapped by the previous current-lane packet into Telemetry Command Evidence Ownership.
 - State packets were used for context only. Live docs, lane prompt, preflight, tracker state, duplicate scan, and boundary docs were treated as authority for this run.
 
@@ -67,7 +67,7 @@
 - None.
 
 ## Ideas deferred
-- A duplicate Proof Readiness Queue addition was deferred because ProtoKits release-source drift, unresolved `nexusrealtime` package resolution, Experiments targeted smoke failure, aggregate-vs-targeted proof split, public `Booting...`, npm 404, and package-version policy are already covered by existing Proof Readiness Queue rows.
+- A duplicate Proof Readiness Queue addition was deferred because ProtoKits release-source drift, unresolved `nexusengine` package resolution, Experiments targeted smoke failure, aggregate-vs-targeted proof split, public `Booting...`, npm 404, and package-version policy are already covered by existing Proof Readiness Queue rows.
 - A duplicate Telemetry Command Evidence Ownership addition was deferred because the newest DSK architecture and ecosystem proof packets only confirm the previous current-lane idea family.
 - A duplicate Procedural Navigation State Ownership addition was deferred because current neighboring proof packets only reference it as separate hardening inventory.
 - Implementation work, source fixes, test fixtures, module-source decisions, public proof routing, sibling checkout changes, and deployments were deferred because this lane is planning inventory only.
@@ -79,9 +79,9 @@
 - Did not add idea-doc rows because duplicate-only evidence should produce lane packet/node/tracker evidence without editing planning inventories.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
-- New browser/playable proof routes remain NexusRealtime-Experiments work.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
+- New browser/playable proof routes remain NexusEngine-Experiments work.
 - Module-source strategy, package resolution, public proof imports, and aggregate-vs-targeted validation belong to proof/release lanes, not new domain/kit idea rows.
 
 ## Open questions

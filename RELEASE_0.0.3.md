@@ -1,12 +1,12 @@
-# NexusRealtime 0.0.3 Release Plan
+# NexusEngine 0.0.3 Release Plan
 
 ## Release status
 
-`0.0.3` is the release branch for NexusRealtime Core v0.0.3.
+`0.0.3` is the release branch for NexusEngine Core v0.0.3.
 
 `main` is the active hardening and forward-iteration branch.
 
-The older `release/0.0.3-upgrade` ref is no longer the authoritative branch name for the release line. It may exist as a compatibility or historical hardening ref, but documentation should point to `0.0.3` as the release branch.
+The older `0.0.3` ref is no longer the authoritative branch name for the release line. It may exist as a compatibility or historical hardening ref, but documentation should point to `0.0.3` as the release branch.
 
 ## Branch roles
 
@@ -15,9 +15,9 @@ main
   Active hardening branch and current forward-development line.
 
 0.0.3
-  NexusRealtime Core v0.0.3 release branch.
+  NexusEngine Core v0.0.3 release branch.
 
-release/0.0.3-upgrade
+0.0.3
   Historical / compatibility release-hardening ref.
   Do not use as the canonical public branch name.
 ```
@@ -71,4 +71,4 @@ release gate report is recorded
 
 ## Direct outcome
 
-When the release gate passes, NexusRealtime Core v0.0.3 can be consumed as the runtime substrate for stable kits and ProtoKits compatibility work.
+When the release gate passes, NexusEngine Core v0.0.3 can be consumed as the runtime substrate for stable kits and ProtoKits compatibility work.

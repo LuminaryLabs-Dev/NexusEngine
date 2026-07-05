@@ -1,19 +1,15 @@
-# NexusRealtime 0.0.3 Branch Policy
+# NexusEngine 0.0.3 Branch Policy
 
 ## Current rule
 
-Use this branch model for NexusRealtime Core v0.0.3:
+Use this branch model for NexusEngine Core v0.0.3:
 
 ```txt
 main
   Active hardening and forward-iteration branch.
 
 0.0.3
-  Release branch for NexusRealtime Core v0.0.3.
-
-release/0.0.3-upgrade
-  Historical / compatibility hardening ref.
-  Not the canonical release branch name.
+  Release branch for NexusEngine Core v0.0.3.
 ```
 
 ## Public wording
@@ -21,22 +17,16 @@ release/0.0.3-upgrade
 Use:
 
 ```txt
-Nexus Engine, powered by NexusRealtime Core v0.0.3, is active in release hardening.
+Nexus Engine, powered by NexusEngine Core v0.0.3, is active in release hardening.
 ```
 
 Use after the release gate passes:
 
 ```txt
-NexusRealtime Core v0.0.3 is released.
+NexusEngine Core v0.0.3 is released.
 ```
 
-Avoid:
-
-```txt
-stable/0.0.3 is live
-```
-
-unless a stable branch is explicitly created and the release gate report is recorded.
+Avoid claiming release completion until the release gate report is recorded.
 
 ## Update rule
 
@@ -52,7 +42,7 @@ When docs mention ongoing hardening work, they should point to:
 main
 ```
 
-When docs mention `release/0.0.3-upgrade`, they should describe it only as a historical or compatibility ref.
+Do not introduce compatibility or historical hardening branch names for v0.0.3.
 
 ## Release gate checklist
 

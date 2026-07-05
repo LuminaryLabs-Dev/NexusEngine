@@ -2,11 +2,11 @@
 
 ```text
 GOAL:
-Audit NexusRealtime runtime source for ECS, scheduler, runtime-kit, DSK contract, sequence, terrain, renderer, AR, and game-kit bugs.
+Audit NexusEngine runtime source for ECS, scheduler, runtime-kit, DSK contract, sequence, terrain, renderer, AR, and game-kit bugs.
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 - Output lane: state/automation/runtime_bug_scout/findings/
 - Knowledge node lane: state/automation/runtime_bug_scout/knowledge_nodes/
 - Master tracker: state/automation/runtime_bug_scout/master_runtime_bugs.md

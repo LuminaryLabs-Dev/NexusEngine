@@ -1,8 +1,8 @@
 # Deep Bug Report Packet
 
 Timestamp: 2026-06-18T19-54-00-0400
-Automation: nexusrealtime-deep-bug-report-packet
-Scope: read-only deep bug scout for NexusRealtime core runtime surfaces
+Automation: nexusengine-deep-bug-report-packet
+Scope: read-only deep bug scout for NexusEngine core runtime surfaces
 
 ## Latest branch
 - latest remote release branch: `0.0.2`

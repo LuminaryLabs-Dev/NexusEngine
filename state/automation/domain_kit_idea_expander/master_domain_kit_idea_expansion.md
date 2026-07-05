@@ -52,7 +52,7 @@ This tracker records durable lessons from the idea expansion automation. It is a
 - status: extended-by-domain-command-config-root
 - latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-20T19-02-02-0400-domain-kit-idea-expansion-packet.md`
 - latest node: `state/automation/domain_kit_idea_expander/knowledge_nodes/2026-06-20T19-02-02-0400-domain-kit-idea-node.md`
-- summary: Fresh ecosystem proof sharpened ProtoKits release-source drift, unresolved `nexusrealtime` package resolution, Experiments targeted proof failure, and public `Booting...`, but these duplicate existing Proof Readiness Queue and Telemetry Command Evidence Ownership inventory.
+- summary: Fresh ecosystem proof sharpened ProtoKits release-source drift, unresolved `nexusengine` package resolution, Experiments targeted proof failure, and public `Booting...`, but these duplicate existing Proof Readiness Queue and Telemetry Command Evidence Ownership inventory.
 - id: domain-kit-idea-root-2026-06-20-1800
 - status: carried-by-proof-source-no-new-idea-root
 - latest packet: `state/automation/domain_kit_idea_expander/packets/2026-06-20T18-00-21-0400-domain-kit-idea-expansion-packet.md`
@@ -444,7 +444,7 @@ This tracker records durable lessons from the idea expansion automation. It is a
 - look further: `docs/kits_ideas.md`, `src/fishing-kit.js`, content contract fixtures
 - parent: domain-kit-idea-root-2026-06-20-0401
 - child: content-boundary-core-protokit-boundary-2026-06-20-0401
-- relationship: The new rows are validation and boundary inventory, not a reason to add product-specific content to NexusRealtime core.
+- relationship: The new rows are validation and boundary inventory, not a reason to add product-specific content to NexusEngine core.
 - look further: `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, ProtoKits extraction planning, Experiments proof routing
 - parent: domain-kit-idea-root-2026-06-20-0301
 - child: runtime-binding-ownership-2026-06-20-0301
@@ -500,7 +500,7 @@ This tracker records durable lessons from the idea expansion automation. It is a
 - look further: `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`, future deep bug packets
 - parent: domain-kit-idea-root-2026-06-20-0154
 - child: core-boundary-still-preserved-2026-06-20-0154
-- relationship: Current evidence does not move reusable kit implementation, public proof routing, release checklist tooling, or product proof pages into NexusRealtime core.
+- relationship: Current evidence does not move reusable kit implementation, public proof routing, release checklist tooling, or product proof pages into NexusEngine core.
 - look further: `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, sibling proof routing
 - parent: domain-kit-idea-root-2026-06-20-0000
 - child: distribution-proof-source-deferred-2026-06-20-0000

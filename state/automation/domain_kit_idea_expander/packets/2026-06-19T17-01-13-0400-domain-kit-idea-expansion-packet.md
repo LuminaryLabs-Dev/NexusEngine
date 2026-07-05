@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T17-01-13-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -93,7 +93,7 @@
 - Did not duplicate `lifecycle-parity-proof-kit`; `query-command-semantics-proof-kit` covers read/command semantics for guidance, affordance, and route APIs.
 
 ## DSK boundary notes
-- These rows are mostly NexusRealtime core validation-surface inventory because the fresh evidence is in existing core public APIs and exported query helpers.
+- These rows are mostly NexusEngine core validation-surface inventory because the fresh evidence is in existing core public APIs and exported query helpers.
 - A future reusable policy layer could still target ProtoKits if implemented as a generic proof kit around query/command semantics, but the current problem is core API hardening coverage.
 - Terminal receipt policy should decide whether inactive/completed guidance calls reject, no-op with diagnostics, or emit distinct duplicate/terminal receipts.
 - Proximity query policy should separate read-only `nearby`/`nearest` calls from explicit transition-producing updates.

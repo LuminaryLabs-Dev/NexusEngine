@@ -1,8 +1,8 @@
 # Deep Bug Report Packet: 2026-06-19T16:54:05-04:00
 
 Timestamp: 2026-06-19T16:54:05-04:00
-Automation: nexusrealtime-deep-bug-report-packet
-Scope: read-only deep bug scout for NexusRealtime guidance, affordance, and route query API side effects
+Automation: nexusengine-deep-bug-report-packet
+Scope: read-only deep bug scout for NexusEngine guidance, affordance, and route query API side effects
 
 ## Lane Goal
 - Find evidence-backed runtime bugs, edge cases, scaling risks, and DSK promotion blockers.

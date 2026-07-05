@@ -70,7 +70,7 @@
   files or folders: selected traversal, lifecycle/config, source-state, state-signal, receipt, bridge, wrapper, operations, and spatial kits
   question: Which representative rows should join the first fixture pass without turning it into an unbounded audit?
 - branch: proof-boundary separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, public raw/CDN/GitHub Pages URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, public raw/CDN/GitHub Pages URLs
   question: Which evidence belongs to core runtime hardening versus sibling latest-ref validation, public browser proof, aggregate proof, and distribution proof?
 
 ## Not Claimed

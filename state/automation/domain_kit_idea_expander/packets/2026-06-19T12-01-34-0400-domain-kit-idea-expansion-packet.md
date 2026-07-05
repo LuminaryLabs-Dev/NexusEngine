@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T12-01-34-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -88,7 +88,7 @@
 
 ## DSK boundary notes
 - Service lifecycle and config policies should start as ProtoKit planning inventory because they describe reusable policy rows and proof harnesses across domain kits.
-- NexusRealtime core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for install-time config rejection, finite snapshot assertions, or shared validation fixture helpers.
+- NexusEngine core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for install-time config rejection, finite snapshot assertions, or shared validation fixture helpers.
 - Command lifecycle policy should not replace low-level input edges or action-repeat semantics; it should explain post-acceptance service state across multiple targets.
 - Elapsed-rate policy should define whether a service option is per-second, per-tick, fixed-step only, or rejected without explicit units.
 - Descriptor normalization should preserve canonical fields after caller data is copied, not let later spreads or references restore invalid source values.

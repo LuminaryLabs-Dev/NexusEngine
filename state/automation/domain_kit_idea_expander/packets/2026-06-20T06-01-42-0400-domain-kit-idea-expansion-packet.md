@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T06-01-42-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -80,8 +80,8 @@
 - Did not duplicate `query-read-model-isolation-proof-kit`; the new proof row sits below query helper and service read contracts.
 
 ## DSK boundary notes
-- The added rows are NexusRealtime core validation-surface inventory because the evidence targets ECS scheduler, world iteration, and event queue primitives.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- The added rows are NexusEngine core validation-surface inventory because the evidence targets ECS scheduler, world iteration, and event queue primitives.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - DSK promotion fixtures should treat scheduler/world mutation isolation as a lower-level runtime hardening tranche that supports but does not replace query read-model, runtime identity, content-boundary, and module-source proof rows.
 
 ## Open questions

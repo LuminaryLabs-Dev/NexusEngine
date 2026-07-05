@@ -9,7 +9,7 @@
 - id: ecosystem-proof-003-a
   parent: ecosystem-proof-003
   lesson: All three local repos now match `origin/0.0.2`.
-  evidence: `git rev-list --left-right --count HEAD...origin/0.0.2` returned `0 0` in NexusRealtime, ProtoKits, and Experiments.
+  evidence: `git rev-list --left-right --count HEAD...origin/0.0.2` returned `0 0` in NexusEngine, ProtoKits, and Experiments.
   look further: Re-run this check before any release or public-claim review because automation lanes are append-only and branch state can drift.
 - id: ecosystem-proof-003-b
   parent: ecosystem-proof-003
@@ -24,12 +24,12 @@
 - id: ecosystem-proof-003-d
   parent: ecosystem-proof-003
   lesson: The current public proof import shape points outside the GitHub Pages site.
-  evidence: Playwright console logged 404s for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `.../NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
+  evidence: Playwright console logged 404s for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `.../NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
   look further: Inspect `experiments/dsk-first-wave-proof/index.html` and `experiments/dsk-first-wave-proof/src/proof.js` for import-map and module import paths.
 - id: ecosystem-proof-003-e
   parent: ecosystem-proof-003
   lesson: Local validation does not cover the public import-map failure.
-  evidence: NexusRealtime `npm test`, ProtoKits `npm run check`, and Experiments `npm run check` passed, while the public browser route still failed to leave `Booting...`.
+  evidence: NexusEngine `npm test`, ProtoKits `npm run check`, and Experiments `npm run check` passed, while the public browser route still failed to leave `Booting...`.
   look further: Add or choose an existing deployment-surface check only outside this scout lane's no-new-tests rule.
 
 ## Related Nodes
@@ -39,13 +39,13 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - question: Should public proof modules resolve through CDN `0.0.2` URLs, same-origin deployed assets, or a build step?
 - branch: compatibility-shim-exit
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?
 - branch: stale-cdn-pins
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/README.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/README.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs`
 - question: Which `@main` and `@0.0.1` pins are intentional legacy examples versus proof-blocking stale paths?
 
 ## Not Claimed

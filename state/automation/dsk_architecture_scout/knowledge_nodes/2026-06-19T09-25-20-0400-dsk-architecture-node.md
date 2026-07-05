@@ -73,7 +73,7 @@
   files or folders: `src/pursuit-pressure-kit.js`, recovery/objective/scenario pressure kits
   question: Which domains can start terminal and need install/reset receipts or normalized non-terminal starting state?
 - branch: public-proof-separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
   question: Which evidence belongs to runtime hardening versus browser-complete public proof and aggregate validation?
 
 ## Not Claimed

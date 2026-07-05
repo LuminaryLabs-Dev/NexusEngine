@@ -2,7 +2,7 @@
 
 `kit.json` is proposed as future authoring metadata for domain-based kit ecosystems.
 
-It is not currently required by NexusRealtime runtime behavior.
+It is not currently required by NexusEngine runtime behavior.
 
 It is not a replacement for package exports, existing kit factory functions, or current docs.
 
@@ -80,7 +80,7 @@ kit.manifest.json:
 
 ## Compatibility rule
 
-Existing NexusRealtime kit patterns remain valid.
+Existing NexusEngine kit patterns remain valid.
 
 `kit.json` should be treated as an authoring aid for future KitBuilder-style tools and larger domain-kit repos.
 

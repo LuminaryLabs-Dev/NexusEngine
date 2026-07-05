@@ -2,7 +2,7 @@
 
 This is an example of how peer, routing, ONNX, live-server, and tunnel-related work could be described as a future domain-kit ecosystem.
 
-It is not a request to change NexusRealtime runtime behavior.
+It is not a request to change NexusEngine runtime behavior.
 
 It is an authoring and organization example.
 

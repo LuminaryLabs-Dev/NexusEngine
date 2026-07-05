@@ -40,7 +40,7 @@
   parent: dsk-command-config-context-root-2026-06-21-1818
   lesson: Command/config fixtures target existing core validation surfaces; new reusable gameplay/domain implementation still belongs in ProtoKits and playable/browser proof in Experiments.
   evidence: `docs/how-to-protokit.md` keeps core as runtime/DSK/composer owner, ProtoKits as reusable implementation owner, and Experiments as playable proof owner.
-  look further: Harden core contracts without moving proof routing, host demos, or new reusable implementation into NexusRealtime core.
+  look further: Harden core contracts without moving proof routing, host demos, or new reusable implementation into NexusEngine core.
 
 ## Related Nodes
 - source: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-21T06-19-09-0400-dsk-architecture-node.md`

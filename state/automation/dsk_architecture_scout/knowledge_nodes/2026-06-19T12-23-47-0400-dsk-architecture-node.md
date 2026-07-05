@@ -70,7 +70,7 @@
   files or folders: selected source-state, interaction, transition, coordinate, and derived-state kits
   question: Which prior source-state and state-signal rows should be bundled with lifecycle/config rows in the first fixture handoff?
 - branch: proof-boundary separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, public raw/CDN/GitHub Pages URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, public raw/CDN/GitHub Pages URLs
   question: Which evidence belongs to core runtime hardening versus sibling latest-ref validation, public browser proof, aggregate proof, and distribution proof?
 
 ## Not Claimed

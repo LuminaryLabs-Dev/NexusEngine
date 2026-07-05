@@ -1,8 +1,8 @@
-# NexusRealtime API Surface 0.0.3
+# NexusEngine API Surface 0.0.3
 
 ## Status
 
-`0.0.3` is a release-hardening line for the NexusRealtime runtime substrate, runtime-kit contract, Domain Service Kit contract, core capability-kit pattern, surfaces, sequences, and public package exports.
+`0.0.3` is a release-hardening line for the NexusEngine runtime substrate, runtime-kit contract, Domain Service Kit contract, core capability-kit pattern, surfaces, sequences, and public package exports.
 
 ## Stable-candidate runtime surface
 
@@ -40,10 +40,10 @@ createCoreCapabilityDescriptor
 ## Release metadata
 
 ```txt
-NEXUS_REALTIME_VERSION
-NEXUS_REALTIME_STABILITY
-NEXUS_REALTIME_RELEASE_BRANCH
-NEXUS_REALTIME_RELEASE
+NEXUS_ENGINE_VERSION
+NEXUS_ENGINE_STABILITY
+NEXUS_ENGINE_RELEASE_BRANCH
+NEXUS_ENGINE_RELEASE
 ```
 
 ## Core capability kit surface
@@ -89,4 +89,4 @@ npm run test:release
 npm run release:manifest
 ```
 
-The final `stable/0.0.3` branch should not be cut until the release gate has a recorded pass report.
+The final `0.0.3` branch should not be cut until the release gate has a recorded pass report.

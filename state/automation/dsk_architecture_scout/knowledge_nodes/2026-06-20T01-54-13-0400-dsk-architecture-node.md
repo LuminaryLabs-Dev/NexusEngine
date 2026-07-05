@@ -28,7 +28,7 @@
   look further: Use proof-readiness taxonomy to prevent overclaiming after executable fixtures start, not as evidence that any tranche is complete.
 - id: dsk-core-boundary-preserved-2026-06-20-0154
   parent: dsk-distribution-boundary-still-root-2026-06-20-0154
-  lesson: Repeated distribution-proof evidence should not pull proof routing, public imports, reusable implementation, or release checklist tooling into NexusRealtime core.
+  lesson: Repeated distribution-proof evidence should not pull proof routing, public imports, reusable implementation, or release checklist tooling into NexusEngine core.
   evidence: `docs/how-to-protokit.md` keeps core focused on runtime/DSK/composer primitives, ProtoKits on reusable implementations, and Experiments on playable/browser proof; latest idea node preserves that boundary.
   look further: Route future proof-source helpers to ProtoKits proof tooling or Experiments proof routing unless a true core validation invariant is identified.
 
@@ -64,7 +64,7 @@
   question: Which module-source model should become canonical for fetched-ref and public browser proof?
 - branch: core-boundary-preservation
   files or folders: `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, `docs/protokit-boundaries.md`, proof routing docs
-  question: Which proof-source helpers belong in ProtoKits proof tooling or Experiments proof routing rather than NexusRealtime core?
+  question: Which proof-source helpers belong in ProtoKits proof tooling or Experiments proof routing rather than NexusEngine core?
 
 ## Not Claimed
 - This node does not fix bugs, add tests, edit source, edit public docs, promote ProtoKits, publish npm metadata, validate sibling fetched refs, fix public proof routes, prove browser-complete public DSK proof, prove proof-signal integrity readiness, or prove broad DSK promotion readiness.

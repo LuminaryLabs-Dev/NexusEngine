@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-19T19-24-37-0400
 - UTC preflight: 2026-06-19T23:21:45.061Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-proof-readiness-queue-root-2026-06-19-1824`.
@@ -98,7 +98,7 @@
 - Runtime failure-boundary remains the first core fixture tranche because it targets DSK namespace safety, failed installs, direct/composer dependency parity, failed scheduler ticks, and metadata truth (`docs/domain_ideas.md:796-801`).
 - Latest read-model/orchestration isolation rows are also core validation-surface inventory because the live evidence is in `src/shaders.js`, `src/ecs.js`, `src/engine.js`, `src/surfaces.js`, and `src/sequence-node.js`.
 - These new rows should not displace tranche 1. They belong after base runtime failure-boundary, lifecycle parity, query/command semantics, and experience-edge rows, or split underneath those tranches when executable fixture ownership is chosen.
-- Public module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusRealtime core.
+- Public module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusEngine core.
 
 ## Scaling risks
 - Broad DSK promotion still increases collision, inherited-key, and ownership risks while `engine.n` is a normal object.

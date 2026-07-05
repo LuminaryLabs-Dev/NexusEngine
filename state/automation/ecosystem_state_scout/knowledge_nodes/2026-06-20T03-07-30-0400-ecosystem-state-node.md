@@ -2,7 +2,7 @@
 
 ## Root Lesson
 - id: ecosystem-root-026
-- statement: Core remains current and validation-green, but ecosystem proof is still blocked by one module-source strategy: ProtoKits local and fetched validation cannot resolve package `nexusrealtime`, local Experiments targeted proof fails through ProtoKits, fetched Experiments targeted proof still assumes sibling `NexusRealtime/src/index.js`, and public browser proof still stalls at `Booting...`.
+- statement: Core remains current and validation-green, but ecosystem proof is still blocked by one module-source strategy: ProtoKits local and fetched validation cannot resolve package `nexusengine`, local Experiments targeted proof fails through ProtoKits, fetched Experiments targeted proof still assumes sibling `NexusEngine/src/index.js`, and public browser proof still stalls at `Booting...`.
 - why it matters: Promotion review still cannot collapse local, fetched-ref, aggregate, targeted, browser, npm, package-version, and hardening claims into one proof. ProtoKits latest release ref advanced again to `9ab73e0`, so the proof gap widened from 31 to 39 commits behind local while the blocker itself stayed the same.
 
 ## Child Nodes
@@ -13,23 +13,23 @@
   look further: Continue resolving latest release branch with preflight every run.
 - id: protokits-latest-ref-drift-2026-06-20-0307
   parent: ecosystem-root-026
-  lesson: ProtoKits fetched latest release ref advanced and remains unvalidated because package `nexusrealtime` is unresolved.
-  evidence: Local ProtoKits `HEAD` was `f006fa3bbe5721b0aa073de2bca08a452bd8e492`; fetched `origin/0.0.2` advanced to `9ab73e086e06c345409a32c74791b45307dde4ac`; ahead/behind was `0 39`; disposable fetched-ref `npm run check` syntax-checked 362 JavaScript modules and failed with 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusrealtime`; targeted DSK smoke failed for the same package.
+  lesson: ProtoKits fetched latest release ref advanced and remains unvalidated because package `nexusengine` is unresolved.
+  evidence: Local ProtoKits `HEAD` was `f006fa3bbe5721b0aa073de2bca08a452bd8e492`; fetched `origin/0.0.2` advanced to `9ab73e086e06c345409a32c74791b45307dde4ac`; ahead/behind was `0 39`; disposable fetched-ref `npm run check` syntax-checked 362 JavaScript modules and failed with 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusengine`; targeted DSK smoke failed for the same package.
   look further: Validate fetched ProtoKits with the same package, workspace, CDN, or link model selected for local and public proof.
 - id: local-available-checkout-regression-2026-06-20-0307
   parent: ecosystem-root-026
-  lesson: Local available-checkout DSK proof remains red because package `nexusrealtime` is not resolvable from ProtoKits.
-  evidence: ProtoKits local `npm run check` failed after 330 syntax-checked modules with 110 import-smoke failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusrealtime`; ProtoKits local `node tests/dsk-first-wave.test.mjs` failed for the same package; Experiments local `node tests/dsk-first-wave-experiment-smoke.mjs` failed through local ProtoKits `protokits/nexus-dsk-adapter/index.js` for the same package.
+  lesson: Local available-checkout DSK proof remains red because package `nexusengine` is not resolvable from ProtoKits.
+  evidence: ProtoKits local `npm run check` failed after 330 syntax-checked modules with 110 import-smoke failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusengine`; ProtoKits local `node tests/dsk-first-wave.test.mjs` failed for the same package; Experiments local `node tests/dsk-first-wave-experiment-smoke.mjs` failed through local ProtoKits `protokits/nexus-dsk-adapter/index.js` for the same package.
   look further: Make local workspace/package resolution explicit before treating available-checkout proof as evidence.
 - id: experiments-targeted-fetched-ref-resolution-2026-06-20-0307
   parent: ecosystem-root-026
   lesson: Experiments fetched aggregate proof still passes while targeted DSK proof remains blocked by sibling-relative imports.
-  evidence: Local Experiments `HEAD` was `799fad882461502faa84b132f70de011e7dbe0cb`; fetched `origin/0.0.2` was `81b39bccadf2cdf8269df24cd4970a5b2d7ebbd9`; ahead/behind was `0 10`; disposable fetched-ref `npm run check` generated 100 flat route wrappers and passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusRealtime/src/index.js` to missing `/private/tmp/NexusRealtime/src/index.js`.
+  evidence: Local Experiments `HEAD` was `799fad882461502faa84b132f70de011e7dbe0cb`; fetched `origin/0.0.2` was `81b39bccadf2cdf8269df24cd4970a5b2d7ebbd9`; ahead/behind was `0 10`; disposable fetched-ref `npm run check` generated 100 flat route wrappers and passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `/private/tmp/NexusEngine/src/index.js`.
   look further: Run targeted DSK proof with the same module-source strategy intended for public proof.
 - id: public-proof-import-shape-2026-06-20-0307
   parent: ecosystem-root-026
   lesson: The public DSK proof route remains HTTP-visible but browser-stuck at `Booting...`.
-  evidence: Curl returned 200 for the proof route; Playwright snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console and request history showed 404s for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`.
+  evidence: Curl returned 200 for the proof route; Playwright snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console and request history showed 404s for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map for the public proof route.
 - id: aggregate-targeted-proof-boundary-2026-06-20-0307
   parent: ecosystem-root-026
@@ -44,12 +44,12 @@
 - id: public-consumption-npm-gap-2026-06-20-0307
   parent: ecosystem-root-026
   lesson: GitHub/raw/jsDelivr consumption remains reachable while npm package metadata still returns 404.
-  evidence: `npm run automation:preflight` returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusrealtime`.
+  evidence: `npm run automation:preflight` returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusengine`.
   look further: `README.md`, `package.json`, npm publication policy, and public consumption wording.
 - id: package-version-policy-2026-06-20-0307
   parent: ecosystem-root-026
   lesson: Release branch `0.0.2` still serves package metadata version `0.1.0`.
-  evidence: Local package metadata reports `nexusrealtime@0.1.0`; preflight confirmed raw public `0.0.2/package.json` is reachable.
+  evidence: Local package metadata reports `nexusengine@0.1.0`; preflight confirmed raw public `0.0.2/package.json` is reachable.
   look further: Branch naming policy, package version policy, and README release wording.
 
 ## Related Nodes
@@ -72,18 +72,18 @@
 ## Next Search Branches
 - branch: module-source-strategy
   files or folders: `package.json`, sibling package metadata, ProtoKits DSK adapter, Experiments proof import maps, public CDN/raw URLs
-  question: Should release proof resolve NexusRealtime through package/workspace dependency, CDN `0.0.2`, same-origin deployed assets, or build-step import maps?
+  question: Should release proof resolve NexusEngine through package/workspace dependency, CDN `0.0.2`, same-origin deployed assets, or build-step import maps?
 - branch: protokits-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
   question: Can ProtoKits validate locally and at fetched ref without relying on an undeclared package?
 - branch: experiments-targeted-dsk-local-and-fetched
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
   question: Can Experiments targeted DSK proof pass with the intended module-source strategy across local and disposable layouts?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: moving-sibling-release-ref
   files or folders: sibling `origin/0.0.2` refs, automation packets, release evidence checklist

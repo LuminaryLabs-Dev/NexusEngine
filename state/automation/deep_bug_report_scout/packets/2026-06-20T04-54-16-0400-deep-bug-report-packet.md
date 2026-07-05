@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T04:54:16-04:00
 
 Timestamp: 2026-06-20T04:54:16-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for public query/read-model isolation across request, cargo, landmark, affordance, hazard, and water helpers
 
 ## Lane Goal

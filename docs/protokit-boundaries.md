@@ -5,16 +5,16 @@ This document defines the hard repo boundaries for the ProtoKit-first experiment
 ## Core Boundary
 
 ```txt
-NexusRealtime = read-only runtime dependency
-NexusRealtime-ProtoKits = reusable domain logic
-NexusRealtime-Experiments = playable/browser proof
+NexusEngine = read-only runtime dependency
+NexusEngine-ProtoKits = reusable domain logic
+NexusEngine-Experiments = playable/browser proof
 ```
 
-## NexusRealtime Is Read-Only In This Loop
+## NexusEngine Is Read-Only In This Loop
 
-Do not edit NexusRealtime when the goal is to build a game, experiment, or reusable gameplay/domain kit.
+Do not edit NexusEngine when the goal is to build a game, experiment, or reusable gameplay/domain kit.
 
-Read from NexusRealtime:
+Read from NexusEngine:
 
 ```txt
 docs/how-to-protokit.md
@@ -31,11 +31,11 @@ src/game-kit-composer.js
 Do not edit in this loop:
 
 ```txt
-NexusRealtime/src/
-NexusRealtime/tests/
-NexusRealtime/package.json
-NexusRealtime/README.md
-NexusRealtime/memory.md
+NexusEngine/src/
+NexusEngine/tests/
+NexusEngine/package.json
+NexusEngine/README.md
+NexusEngine/memory.md
 ```
 
 ## ProtoKits Own Reusable Behavior
@@ -43,7 +43,7 @@ NexusRealtime/memory.md
 Put reusable domain behavior here:
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/
 ```
 
 ProtoKits may own:
@@ -78,7 +78,7 @@ requestAnimationFrame loops
 Put playable proof here:
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/
 ```
 
 Experiments may own:
@@ -111,9 +111,9 @@ If an Experiment starts owning reusable architecture, extract that behavior to P
 ## Routing Rule
 
 ```txt
-new reusable behavior -> NexusRealtime-ProtoKits
-new playable scene -> NexusRealtime-Experiments
-new target composition idea -> NexusRealtime docs
-NexusRealtime core -> no edits in this loop
+new reusable behavior -> NexusEngine-ProtoKits
+new playable scene -> NexusEngine-Experiments
+new target composition idea -> NexusEngine docs
+NexusEngine core -> no edits in this loop
 ```
 

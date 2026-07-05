@@ -40,7 +40,7 @@
   parent: dsk-host-graph-and-release-separation-root-2026-06-22-0619
   lesson: Hardening fixtures target existing core validation surfaces; new reusable gameplay/domain implementation still belongs in ProtoKits and playable/browser proof in Experiments.
   evidence: `docs/how-to-protokit.md` keeps core as runtime/DSK/composer/primitive owner, ProtoKits as reusable implementation owner, and Experiments as playable proof owner.
-  look further: Harden core contracts without moving proof routing, host demos, or new reusable implementation into NexusRealtime core.
+  look further: Harden core contracts without moving proof routing, host demos, or new reusable implementation into NexusEngine core.
 
 ## Related Nodes
 - source: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-21T18-18-55-0400-dsk-architecture-node.md`
@@ -70,7 +70,7 @@
   files or folders: `src/host.js`, `tests/host-smoke.mjs`
   question: Which host adapter capability, identity, lifecycle, and snapshot policies must be executable before host graphs count as proof?
 - branch: protokits-local-vs-release-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
   question: Should DSK proof consume local ProtoKits `main`, `origin/main`, or the preflight-resolved release branch?
 - branch: branch-name-vs-ref-alignment
   files or folders: `npm run automation:preflight`, `git rev-parse HEAD origin/main origin/0.0.2`

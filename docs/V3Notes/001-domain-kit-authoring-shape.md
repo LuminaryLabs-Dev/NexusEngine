@@ -1,6 +1,6 @@
 # 001: Domain Kit Authoring Shape
 
-This note describes a target authoring shape for future domain-based kit ecosystems around NexusRealtime.
+This note describes a target authoring shape for future domain-based kit ecosystems around NexusEngine.
 
 It is not a runtime rewrite.
 

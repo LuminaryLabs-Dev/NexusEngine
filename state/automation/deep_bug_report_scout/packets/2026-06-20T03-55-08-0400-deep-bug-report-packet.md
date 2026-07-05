@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T03:55:08-04:00
 
 Timestamp: 2026-06-20T03:55:08-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for fishing preset identity, core/product boundary drift, and content objective validation
 
 ## Lane Goal
@@ -62,19 +62,19 @@ Scope: read-only deep bug scout for fishing preset identity, core/product bounda
 
 ## Executive summary
 - Current smoke tests still pass, but the fishing preset surface mixes product-specific content into core and weakens kit identity.
-- `createReefRescueKit()` is exported from the core package even though repo memory and ProtoKit docs say new reusable kit/product behavior should live outside NexusRealtime core.
+- `createReefRescueKit()` is exported from the core package even though repo memory and ProtoKit docs say new reusable kit/product behavior should live outside NexusEngine core.
 - `createFishingKit()` hardcodes runtime kit id `fishing`, so callers cannot create stable unique fishing-kit instances and ReefRescue cannot have its own runtime identity.
 - Fishing objectives accept zero or negative targets and complete after one tick with zero catches.
 
 ## Deep bug reports
 
-### 1. Product-themed ReefRescue preset is exported from NexusRealtime core
+### 1. Product-themed ReefRescue preset is exported from NexusEngine core
 - Severity: medium
 - Owner: core/ProtoKit boundary and public API shape
 - Evidence files and line references:
-  - `memory.md:12-17` says new reusable kits target ProtoKits and NexusRealtime must not contain product-specific copy, routes, assets, level names, or app lore.
+  - `memory.md:12-17` says new reusable kits target ProtoKits and NexusEngine must not contain product-specific copy, routes, assets, level names, or app lore.
   - `docs/how-to-protokit.md:53-68` says core owns runtime contracts, validation, scheduler, ECS, composer, and shared primitives.
-  - `docs/protokit-boundaries.md:5-15` frames NexusRealtime as a read-only runtime dependency for gameplay/domain kit work.
+  - `docs/protokit-boundaries.md:5-15` frames NexusEngine as a read-only runtime dependency for gameplay/domain kit work.
   - `src/reef-rescue-kit.js:4-91` defines a themed preset with `gameId:"reef-rescue"`, title `Reef Rescue`, reef species, lures, water zones, terrain ids, and reef material labels.
   - `src/index.js:118-120` exports `createReefRescueKit()` from the public core package.
 - Reproduction path: import `createReefRescueKit` from `./src/index.js` and inspect returned metadata/content.

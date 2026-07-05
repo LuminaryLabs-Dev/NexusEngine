@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T13-01-05-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -91,7 +91,7 @@
 
 ## DSK boundary notes
 - Traversal proof integrity policies should start as ProtoKit planning inventory because they describe reusable proof rows and service policies across domain kits.
-- NexusRealtime core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for invalid-cost rejection, graph identity assertions, signature helper taxonomy, or recovery event/state validation.
+- NexusEngine core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for invalid-cost rejection, graph identity assertions, signature helper taxonomy, or recovery event/state validation.
 - Navigation cost policy should reject or normalize negative, non-finite, and unbounded costs before A* and proof surfaces treat a route as valid.
 - Navmesh identity policy should distinguish source key uniqueness from emitted cell, portal, waypoint, and link identity uniqueness.
 - Procedural signature taxonomy should clarify content, topology, algorithm/config, and proof signatures instead of relying on one opaque snapshot signature.

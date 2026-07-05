@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-22T18:49:24-04:00
 
 Timestamp: 2026-06-22T18:49:24-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for `Nexus.Host` public state mutation and mount transaction boundaries
 
 ## Lane Goal
