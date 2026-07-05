@@ -5,7 +5,7 @@ Durable record of agent-made changes in this repository. New entries should be a
 ## 2026-06-18
 
 - Added lower-case `.agent` operating files for `agent-it` style automation entry.
-- Added NexusRealtime automation rules requiring latest-branch discovery and public-link preflight checks.
+- Added NexusEngine automation rules requiring latest-branch discovery and public-link preflight checks.
 
 ## 2026-06-17
 
