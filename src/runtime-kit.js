@@ -120,7 +120,7 @@ export function installRuntimeKit(engine, kit, options = {}) {
   validateRuntimeKit(kit);
 
   if (!engine || !engine.scheduler || !engine.world) {
-    throw new TypeError("installRuntimeKit expects a NexusRealtime engine.");
+    throw new TypeError("installRuntimeKit expects a NexusEngine engine.");
   }
 
   engine.kit = kit;
