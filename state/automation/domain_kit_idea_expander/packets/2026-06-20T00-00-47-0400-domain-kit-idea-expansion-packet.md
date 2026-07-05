@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T00-00-47-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -76,9 +76,9 @@
 - Did not duplicate Proof Signal Integrity Domain or its five kit rows from the previous run.
 
 ## DSK boundary notes
-- No new reusable runtime kit should be added to NexusRealtime core from this run.
+- No new reusable runtime kit should be added to NexusEngine core from this run.
 - The repeated module-source evidence is proof tooling and release evidence work, not a new gameplay/domain kit family.
-- If implemented later, distribution-proof helpers should target NexusRealtime-ProtoKits proof tooling or NexusRealtime-Experiments proof routing unless they expose a true core validation invariant.
+- If implemented later, distribution-proof helpers should target NexusEngine-ProtoKits proof tooling or NexusEngine-Experiments proof routing unless they expose a true core validation invariant.
 - Core remains responsible only for runtime, ECS, DSK/composer primitives, exported invariants, and validation surfaces.
 
 ## Open questions

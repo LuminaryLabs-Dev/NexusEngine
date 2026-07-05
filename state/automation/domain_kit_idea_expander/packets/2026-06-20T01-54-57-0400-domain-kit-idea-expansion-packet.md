@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T01-54-57-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -79,7 +79,7 @@
 - Did not duplicate `proof-signal-integrity-kit` or its terminal receipt, hit-test, monotonic time, and finite scale child rows.
 
 ## DSK boundary notes
-- No new reusable runtime kit should be added to NexusRealtime core from this run.
+- No new reusable runtime kit should be added to NexusEngine core from this run.
 - Distribution proof remains proof tooling and release evidence work, not a gameplay/domain kit family.
 - Proof-signal integrity remains core validation-surface inventory only when implemented as runtime/browser/spatial invariants; this lane did not implement it.
 - Future splits should refine existing proof-readiness or proof-signal rows instead of adding parallel planning names unless new evidence changes ownership.

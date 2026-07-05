@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T21-01-07-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -89,7 +89,7 @@
 - Did not duplicate `module-source-gate-kit`; these rows do not decide package, CDN, workspace, or same-origin import strategy.
 
 ## DSK boundary notes
-- These rows are NexusRealtime core validation-surface inventory because the fresh evidence is in exported AR launch, AR device, AR mode, and SpatialRoom primitives.
+- These rows are NexusEngine core validation-surface inventory because the fresh evidence is in exported AR launch, AR device, AR mode, and SpatialRoom primitives.
 - The new rows do not imply new reusable gameplay kits; they define validation boundaries for existing core browser/spatial surfaces.
 - ProtoKits and Experiments may consume the guarantees later, but implementation belongs in core only if a non-scout lane hardens AR launcher or SpatialRoom behavior.
 - Public module-source strategy remains separate; fixing browser imports would not prove launcher preconditions, strict fallback labels, launch-state isolation, or SpatialRoom getter isolation.

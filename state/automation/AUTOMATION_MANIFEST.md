@@ -1,10 +1,10 @@
-# NexusRealtime Automation Manifest
+# NexusEngine Automation Manifest
 
 Last updated: 2026-06-18
 
 ## Scope
 
-This manifest indexes repo-local audit lanes for NexusRealtime. It does not replace `memory.md`, `.agent/*`, source files, tests, release notes, the expansion idea inventories in `docs/described_examples.md`, `docs/domain_ideas.md`, and `docs/kits_ideas.md`, or the routing guides in `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, `docs/protokit-boundaries.md`, `docs/protokit-experiment-loop.md`, and `docs/visual-target-review.md`.
+This manifest indexes repo-local audit lanes for NexusEngine. It does not replace `memory.md`, `.agent/*`, source files, tests, release notes, the expansion idea inventories in `docs/described_examples.md`, `docs/domain_ideas.md`, and `docs/kits_ideas.md`, or the routing guides in `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, `docs/protokit-boundaries.md`, `docs/protokit-experiment-loop.md`, and `docs/visual-target-review.md`.
 
 ## .agent Status
 
@@ -12,8 +12,8 @@ This manifest indexes repo-local audit lanes for NexusRealtime. It does not repl
 - Present guidance: `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`.
 - Operating model: use `.agent` first, resolve latest remote release branch, check public links, then write lane-local evidence.
 - Expansion model: use described examples, domain ideas, and kit ideas as non-canonical source material for possible DSK growth; report risks and candidates, but do not promote them from scout lanes.
-- ProtoKit target rule: new reusable kit implementations belong in `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/` by default. NexusRealtime core changes should be limited to runtime primitives, DSK invariants, composer behavior, and validation surfaces.
-- Experiment target rule: new playable proofs belong in `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/` and should compose core plus ProtoKits instead of owning reusable domain logic.
+- ProtoKit target rule: new reusable kit implementations belong in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/` by default. NexusEngine core changes should be limited to runtime primitives, DSK invariants, composer behavior, and validation surfaces.
+- Experiment target rule: new playable proofs belong in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/` and should compose core plus ProtoKits instead of owning reusable domain logic.
 
 ## Local Lanes
 
@@ -41,11 +41,11 @@ This manifest indexes repo-local audit lanes for NexusRealtime. It does not repl
 
 ## App Automation Cadence
 
-- `Nexus Realtime: Ecosystem State Packet`: hourly at minute 5, `gpt-5.5`, high reasoning.
-- `Nexus Realtime: DSK Architecture State Packet`: hourly at minute 20, `gpt-5.5`, high reasoning.
-- `Nexus Realtime: Ecosystem Proof State Packet`: hourly at minute 35, `gpt-5.5`, high reasoning.
-- `Nexus Realtime: Deep Bug Report Packet`: hourly at minute 50, `gpt-5.5`, max reasoning.
-- `Nexus Realtime: Domain And Kit Idea Expansion`: hourly at minute 58, `gpt-5.5`, high reasoning.
+- `Nexus Engine: Ecosystem State Packet`: hourly at minute 5, `gpt-5.5`, high reasoning.
+- `Nexus Engine: DSK Architecture State Packet`: hourly at minute 20, `gpt-5.5`, high reasoning.
+- `Nexus Engine: Ecosystem Proof State Packet`: hourly at minute 35, `gpt-5.5`, high reasoning.
+- `Nexus Engine: Deep Bug Report Packet`: hourly at minute 50, `gpt-5.5`, max reasoning.
+- `Nexus Engine: Domain And Kit Idea Expansion`: hourly at minute 58, `gpt-5.5`, high reasoning.
 
 ## Repo Lane Cadence
 

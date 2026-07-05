@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-20T04-22-52-0400
 - UTC preflight: 2026-06-20T08:21:42.512Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-runtime-identity-lifecycle-context-root-2026-06-20-0323`.
@@ -28,7 +28,7 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs/automation trackers and many untracked prior automation artifacts were present before this run. This lane wrote only its packet, node, and tracker update.
 
 ## Files inspected
@@ -93,7 +93,7 @@
 - Confirmed: failed late API collision is non-atomic and same-object reinstall returns success without installing the promised API.
 - Confirmed/design gap: direct DSK install allows missing non-`n:` requirements that composer-based installation would reject.
 - Confirmed: runtime binding names silently overwrite across composer and direct install.
-- Confirmed/current: `createReefRescueKit()` exports themed reef rescue content from NexusRealtime core despite current core/ProtoKit boundary docs (`src/reef-rescue-kit.js:4-91`; `src/index.js:118-120`).
+- Confirmed/current: `createReefRescueKit()` exports themed reef rescue content from NexusEngine core despite current core/ProtoKit boundary docs (`src/reef-rescue-kit.js:4-91`; `src/index.js:118-120`).
 - Confirmed/current: `createFishingKit()` ignores `options.id`, and ReefRescue cannot create a stable distinct runtime id because both return `id:"fishing"` (`src/fishing-kit.js:683-704`; `src/reef-rescue-kit.js:73-91`).
 - Confirmed/current: zero fishing objectives complete with zero catches because `caught >= objective.target` accepts `0` (`src/fishing-kit.js:572-584`; `src/fishing-kit.js:794-801`).
 - Carried: ECS definition identity, SequenceNode type policy/history/install-only/disposed parity, duplicate provider ownership, failed-tick replay, lifecycle parity, query/command semantics, experience-edge, read-model/orchestration, compatibility/content-safety, AR/spatial read-model, proof-signal integrity, traversal, source-state, state-signal, receipt, bridge, operations, and spatial rows remain fixture inventory.
@@ -119,7 +119,7 @@
 - Do not treat `createReefRescueKit()` as a new core-domain precedent; keep it as boundary/compatibility evidence unless a non-scout pass intentionally moves or deprecates it.
 - Do not use zero-catch completion as proof success unless disabled-objective semantics are explicit.
 - Do not treat `npm test`, HTTP 200 public routes, aggregate Experiments checks, fetched raw files, public CDN reachability, or npm metadata as production DSK safety.
-- Do not move proof routing, package-resolution shims, browser routes, or reusable gameplay implementation into NexusRealtime core to solve distribution proof.
+- Do not move proof routing, package-resolution shims, browser routes, or reusable gameplay implementation into NexusEngine core to solve distribution proof.
 
 ## Suggested next review item
 - Use a non-scout lane to write the smallest executable tranche 1 fixture set: `engine.n` reserved-key/null-prototype/own-property policy, failed-install rollback/retryability, direct/composer dependency parity, scheduler failed-tick semantics, and reset/snapshot/async metadata truth.

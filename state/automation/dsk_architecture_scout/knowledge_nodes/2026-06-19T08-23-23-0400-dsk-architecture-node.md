@@ -65,7 +65,7 @@
   files or folders: `src/symbol-alignment-kit.js`, `src/lock-and-socket-kit.js`, `src/reveal-light-kit.js`, `src/sorting-kit.js`, `src/moving-target-kit.js`, `src/micro-platformer-kit.js`, `src/interaction-target-kit.js`, smoke coverage
   question: Which wrappers own state, mirror delegated state, or should be declared stateless adapters?
 - branch: public-proof-separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
   question: Which evidence belongs to runtime hardening versus browser-complete public proof and aggregate validation?
 
 ## Not Claimed

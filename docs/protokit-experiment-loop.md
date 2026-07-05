@@ -1,6 +1,6 @@
 # ProtoKit Experiment Loop
 
-This is the repeatable loop for building high-fidelity experiments without editing NexusRealtime core.
+This is the repeatable loop for building high-fidelity experiments without editing NexusEngine core.
 
 Read this with:
 
@@ -13,18 +13,18 @@ docs/visual-target-review.md
 
 ## Goal
 
-Use NexusRealtime as a read-only runtime dependency while building reusable behavior in ProtoKits and proving it in Experiments.
+Use NexusEngine as a read-only runtime dependency while building reusable behavior in ProtoKits and proving it in Experiments.
 
 ## Loop
 
 ```txt
-1. Read NexusRealtime context.
+1. Read NexusEngine context.
 2. Select one Experiment target.
 3. Generate a target image.
 4. Compare target image against the live Experiment.
 5. Convert differences into ProtoKit gaps and Experiment gaps.
-6. Build/refine reusable behavior in NexusRealtime-ProtoKits.
-7. Update NexusRealtime-Experiments to compose those ProtoKits.
+6. Build/refine reusable behavior in NexusEngine-ProtoKits.
+7. Update NexusEngine-Experiments to compose those ProtoKits.
 8. Validate ProtoKits and Experiments.
 9. Repeat until the Experiment is visibly and semantically closer to the target.
 ```
@@ -57,10 +57,10 @@ harness-it -> repeatable validation harness when needed
 ## Work Routing
 
 ```txt
-Reusable domain behavior -> NexusRealtime-ProtoKits/protokits/
-Playable proof -> NexusRealtime-Experiments/experiments/
-Game-specific rendering/input/UI/content -> NexusRealtime-Experiments
-NexusRealtime core -> read-only, no edits
+Reusable domain behavior -> NexusEngine-ProtoKits/protokits/
+Playable proof -> NexusEngine-Experiments/experiments/
+Game-specific rendering/input/UI/content -> NexusEngine-Experiments
+NexusEngine core -> read-only, no edits
 ```
 
 ## Validation
@@ -68,21 +68,21 @@ NexusRealtime core -> read-only, no edits
 Run only the checks for repos changed:
 
 ```txt
-NexusRealtime-ProtoKits:
+NexusEngine-ProtoKits:
   npm run check
 
-NexusRealtime-Experiments:
+NexusEngine-Experiments:
   npm run check
 ```
 
-Do not run a NexusRealtime implementation pass because NexusRealtime is not edited in this loop.
+Do not run a NexusEngine implementation pass because NexusEngine is not edited in this loop.
 
 ## Restart Conditions
 
 Restart the loop if:
 
 ```txt
-NexusRealtime core would need edits
+NexusEngine core would need edits
 Experiment still visibly misses the target
 Reusable behavior is implemented inside the Experiment
 ProtoKit owns browser rendering, DOM, input listeners, or game-specific content
@@ -98,7 +98,7 @@ Visuals improve but reusable architecture gets weaker
 Stop when:
 
 ```txt
-NexusRealtime is untouched
+NexusEngine is untouched
 Reusable behavior lives in ProtoKits
 Playable proof lives in Experiments
 Live Experiment is closer to the target image

@@ -24,7 +24,7 @@
 - id: public-proof-import-shape-2026-06-19-1208
   parent: ecosystem-root-014
   lesson: The public DSK proof route remains HTTP-visible but browser-stuck at `Booting...`.
-  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`; network and curl checks showed 404s for `NexusRealtime/src/index.js`, `NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`.
+  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`; network and curl checks showed 404s for `NexusEngine/src/index.js`, `NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map for the public proof route.
 - id: aggregate-dsk-proof-validation-2026-06-19-1208
   parent: ecosystem-root-014
@@ -49,12 +49,12 @@
 - id: public-consumption-npm-gap-2026-06-19-1208
   parent: ecosystem-root-014
   lesson: GitHub/raw/jsDelivr consumption remains reachable while npm package metadata still returns 404.
-  evidence: `npm run automation:preflight` returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusrealtime`.
+  evidence: `npm run automation:preflight` returned 200 for required GitHub/raw/jsDelivr links and 404 for `https://registry.npmjs.org/nexusengine`.
   look further: `README.md`, `package.json`, npm publication policy, and public consumption wording.
 - id: package-version-policy-2026-06-19-1208
   parent: ecosystem-root-014
   lesson: Release branch `0.0.2` still serves package metadata version `0.1.0`.
-  evidence: Local and raw public package metadata report `nexusrealtime@0.1.0`; preflight confirmed raw public `0.0.2/package.json` is reachable.
+  evidence: Local and raw public package metadata report `nexusengine@0.1.0`; preflight confirmed raw public `0.0.2/package.json` is reachable.
   look further: Branch naming policy, package version policy, and README release wording.
 
 ## Related Nodes
@@ -76,19 +76,19 @@
 
 ## Next Search Branches
 - branch: protokits-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
   question: Can ProtoKits fetched `origin/0.0.2` pass aggregate and targeted DSK checks without dirtying the main checkout?
 - branch: experiments-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, fetched `origin/0.0.2`, tropical-island-scene, aggregate and targeted smoke scripts
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, tropical-island-scene, aggregate and targeted smoke scripts
   question: Can Experiments fetched `origin/0.0.2` be validated without dirtying the main checkout?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: generated-route-validation-boundary
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
   question: Should route generation be made idempotent, moved out of default check, or run only in disposable validation worktrees?
 - branch: dsk-hardening-fixtures
   files or folders: `src/domain-service-kit.js`, `src/runtime-kit.js`, selected source-state and state-signal kits, proof fixtures

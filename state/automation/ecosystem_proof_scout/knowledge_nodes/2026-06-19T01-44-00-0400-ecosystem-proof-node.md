@@ -14,22 +14,22 @@
 - id: ecosystem-proof-006-b
   parent: ecosystem-proof-006
   lesson: Preferred local validations pass, including targeted DSK proof smokes.
-  evidence: NexusRealtime `npm test`, ProtoKits `npm run check`, ProtoKits `node tests/dsk-first-wave.test.mjs`, Experiments `npm run check`, and Experiments `node tests/dsk-first-wave-experiment-smoke.mjs` all exited 0.
+  evidence: NexusEngine `npm test`, ProtoKits `npm run check`, ProtoKits `node tests/dsk-first-wave.test.mjs`, Experiments `npm run check`, and Experiments `node tests/dsk-first-wave-experiment-smoke.mjs` all exited 0.
   look further: Keep targeted DSK commands visible until aggregate checks include them.
 - id: ecosystem-proof-006-c
   parent: ecosystem-proof-006
   lesson: The public proof route still stalls at `Booting...` for humans.
-  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`, with console/request 404s for NexusRealtime and ProtoKits module paths.
+  evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`, with console/request 404s for NexusEngine and ProtoKits module paths.
   look further: Do not treat route HTTP 200 as a working browser proof.
 - id: ecosystem-proof-006-d
   parent: ecosystem-proof-006
   lesson: The public proof import shape still points to sibling GitHub Pages paths that are not deployed.
-  evidence: Direct curls and Playwright requests returned 404 for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `.../NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
+  evidence: Direct curls and Playwright requests returned 404 for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `.../NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map.
 - id: ecosystem-proof-006-e
   parent: ecosystem-proof-006
   lesson: DSK first-wave proof coverage is still not part of the Experiments aggregate check.
-  evidence: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; the targeted command passed separately.
+  evidence: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; the targeted command passed separately.
   look further: Add the DSK proof smoke to aggregate validation or document the targeted command as required evidence.
 - id: ecosystem-proof-006-f
   parent: ecosystem-proof-006
@@ -61,19 +61,19 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
   question: Should public proof modules resolve through CDN `0.0.2` URLs, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or a documented targeted command?
 - branch: sibling-worktree-dirt
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
   question: Is current sibling dirt unrelated local work, review-relevant proof work, or a blocker for ecosystem promotion claims?
 - branch: compatibility-shim-exit
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
   question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?
 - branch: idea-proof-coverage-matrix
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/described_examples.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/domain_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/kits_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/described_examples.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/domain_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/kits_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments`
   question: Which idea domains should get the next executable proof path after first-wave DSK public loading works?
 
 ## Not Claimed

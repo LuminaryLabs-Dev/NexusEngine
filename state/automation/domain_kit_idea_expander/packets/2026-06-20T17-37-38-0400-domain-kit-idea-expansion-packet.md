@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T17-37-38-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -75,9 +75,9 @@
 - Did not create a new scheduler/world domain because active-run mutation, phase topology, `runSystem()` membership, and event payload isolation already have accepted planning rows.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
-- New browser/playable proof routes remain NexusRealtime-Experiments work.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
+- New browser/playable proof routes remain NexusEngine-Experiments work.
 - The next useful action is not another idea row; it is a non-scout fixture or module-source decision in the appropriate lane.
 
 ## Open questions

@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-19T20-24-13-0400
 - UTC preflight: 2026-06-20T00:22:27.059Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-read-model-orchestration-tranche-root-2026-06-19-1924`.
@@ -28,7 +28,7 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs and automation tracker files plus many untracked prior automation artifacts were present before this lane wrote its current packet, node, and tracker update.
 
 ## Files inspected
@@ -102,7 +102,7 @@
 - Read-model/orchestration isolation remains a later core validation-surface tranche for registry descriptor isolation, surface snapshot isolation, SequenceNode race cleanup, and `any` receipt policy (`docs/domain_ideas.md:949-966`; `docs/kits_ideas.md:841-865`).
 - New legacy compatibility/content-safety rows are real exported-surface hardening inventory because live source and probes show issues in `src/sequences.js`, `src/fishing-kit.js`, and `src/ar-renderer.js`.
 - These new rows should not displace tranche 1. They belong after runtime failure-boundary, lifecycle parity, query/command semantics, experience-edge, and read-model/orchestration work, or as a separate legacy compatibility proof group.
-- Public module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusRealtime core.
+- Public module-source strategy remains an ecosystem/proof decision, not a reason to move product routes or reusable implementations into NexusEngine core.
 
 ## Scaling risks
 - Broad DSK promotion still increases collision, inherited-key, and ownership risks while `engine.n` is a normal object.

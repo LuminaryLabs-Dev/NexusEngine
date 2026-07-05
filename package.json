@@ -1,5 +1,5 @@
 {
-  "name": "nexusrealtime",
+  "name": "nexusengine",
   "version": "0.1.0",
   "description": "A realtime ECS runtime with subscribable engine surfaces.",
   "type": "module",

@@ -1,6 +1,6 @@
-# NexusRealtime
+# NexusEngine
 
-NexusRealtime is a single ESM realtime ECS package with a small deterministic core and an engine layer that publishes subscribable surfaces.
+NexusEngine is a single ESM realtime ECS package with a small deterministic core and an engine layer that publishes subscribable surfaces.
 
 ## Package Shape
 
@@ -30,7 +30,7 @@ NexusRealtime is a single ESM realtime ECS package with a small deterministic co
 
 ## Hybrid SequenceNode Engine
 
-NexusRealtime includes an optional recursive SequenceNode orchestration runtime. It is a JavaScript object / JSON AST design surface for game-flow, scene-flow, mission-flow, interaction-flow, and kit deployment.
+NexusEngine includes an optional recursive SequenceNode orchestration runtime. It is a JavaScript object / JSON AST design surface for game-flow, scene-flow, mission-flow, interaction-flow, and kit deployment.
 
 SequenceNode does not replace the ECS tick. `engine.tick()` still drives realtime simulation, systems, surfaces, and renderer-facing state. SequenceNode progresses from driver events: direct `runtime.dispatch()` calls, engine frame events, existing surfaces, manual API calls, and timer/frame duration events. The legacy `createSequenceRuntime()` API remains available.
 
@@ -38,7 +38,7 @@ SequenceNode does not replace the ECS tick. `engine.tick()` still drives realtim
 import {
   createEngine,
   deploySequenceNode
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createEngine();
 
@@ -130,7 +130,7 @@ import {
   defineComponent,
   defineEvent,
   defineResource
-} from "nexusrealtime";
+} from "nexusengine";
 ```
 
 ## RuntimeKit Vs DomainServiceKit
@@ -153,7 +153,7 @@ import {
   createPathfindingKit,
   createProceduralKit,
   createRealtimeGame
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createRealtimeGame({
   kits: [
@@ -186,7 +186,7 @@ Procedural output is render-agnostic descriptor data: regions, rooms, corridors,
 
 ## AR Kit Usage
 
-`NexusRealtime` can be consumed as a remote-style library by apps that need reusable AR behavior. During local development, an app can depend on this checkout with a path dependency and later switch to a public GitHub or CDN-hosted package without changing the AR app contract.
+`NexusEngine` can be consumed as a remote-style library by apps that need reusable AR behavior. During local development, an app can depend on this checkout with a path dependency and later switch to a public GitHub or CDN-hosted package without changing the AR app contract.
 
 ```js
 import {
@@ -195,7 +195,7 @@ import {
   createObjectiveFlowKit,
   createARKit,
   createEngine
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createEngine({
   kits: [
@@ -222,7 +222,7 @@ engine.tick();
 console.log(engine.world.getResource(ObjectiveFlowState));
 ```
 
-For QR-launched apps, use `createARLaunchRuntime()` to select a mode from `page-marker`, `webxr-plane`, `camera-overlay`, and `fallback-preview`. Product apps should provide copy, routes, and experience manifests; NexusRealtime owns device detection, session startup, placement events, camera overlay startup, and fallback mode.
+For QR-launched apps, use `createARLaunchRuntime()` to select a mode from `page-marker`, `webxr-plane`, `camera-overlay`, and `fallback-preview`. Product apps should provide copy, routes, and experience manifests; NexusEngine owns device detection, session startup, placement events, camera overlay startup, and fallback mode.
 
 ## Core Usage
 
@@ -280,7 +280,7 @@ import {
   createTerrainKit,
   realismPresets,
   terrainLayers
-} from "nexusrealtime";
+} from "nexusengine";
 
 const terrain = createTerrainKit({
   preset: "cozy-beach",
@@ -369,7 +369,7 @@ engine.tick(1 / 60);
 
 ## Terrain, Physics, Locomotion, And Camera
 
-These kits form the generic grounded traversal stack. Product apps provide terrain layers, authored features, inputs, and render code; NexusRealtime owns the reusable domain rules.
+These kits form the generic grounded traversal stack. Product apps provide terrain layers, authored features, inputs, and render code; NexusEngine owns the reusable domain rules.
 
 - `TerrainKit`: terrain generation, surfaces, slope, traction, ledges, steps, climb faces, routes, fall zones, camera volumes, and terrain queries.
 - `PhysicsKit`: ground contact, friction, rigid/carry mass, damping, constraints, impacts, stability, bounds, and fall classification.
@@ -443,7 +443,7 @@ These kits model reusable simulation domains for management, logistics, scheduli
 - `ScenarioDurationKit`: long-running scenario duration and checkpoint state.
 - `CargoManifestKit`: generic cargo/item availability, carried capacity, deposit/quota progress, and optional carried-item condition decay.
 
-Hosts compose these with existing objective, interaction, terrain, rendering, or procedural kits. NexusRealtime should keep the APIs generic enough for buildings, transit, factories, hospitals, settlements, queues, or other simulations without encoding a product game loop.
+Hosts compose these with existing objective, interaction, terrain, rendering, or procedural kits. NexusEngine should keep the APIs generic enough for buildings, transit, factories, hospitals, settlements, queues, or other simulations without encoding a product game loop.
 
 ## Realism Kit
 
@@ -486,7 +486,7 @@ const realism = createRealismKit({
 ## Repo Layout
 
 ```text
-NexusRealtime/
+NexusEngine/
 ├─ package.json
 ├─ README.md
 └─ src/

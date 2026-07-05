@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-21T07-02-40-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -81,10 +81,10 @@
 - Did not add another Proof Readiness Queue row because public proof and sibling validation failures are distribution/proof gates, not new kit ideas.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - The new rows are core validation-surface inventory for existing economy, timing, resource pressure, lifecycle, and facility APIs, plus ProtoKits proof tooling for future service commands.
-- New browser/playable proof routes remain NexusRealtime-Experiments work.
+- New browser/playable proof routes remain NexusEngine-Experiments work.
 
 ## Open questions
 - Should command/config APIs return immutable summaries by default and expose explicit mutable handles only through separately named methods?

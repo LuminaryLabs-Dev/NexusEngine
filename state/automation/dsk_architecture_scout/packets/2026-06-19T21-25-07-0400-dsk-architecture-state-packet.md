@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-19T21-25-07-0400
 - UTC preflight: 2026-06-20T01:23:25.769Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-compatibility-content-safety-tranche-root-2026-06-19-2024`.
@@ -28,7 +28,7 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs and automation tracker files plus many untracked prior automation artifacts were present before this lane wrote its current packet, node, and tracker update.
 
 ## Files inspected

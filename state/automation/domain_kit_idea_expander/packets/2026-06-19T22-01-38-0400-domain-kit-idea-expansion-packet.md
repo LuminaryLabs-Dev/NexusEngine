@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T22-01-38-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -94,7 +94,7 @@
 - Did not duplicate `ar-spatial-read-model-proof-kit`; `proof-signal-integrity-kit` groups receipt, helper failure, time, and finite config proof rows rather than AR launch state or SpatialRoom getter read models.
 
 ## DSK boundary notes
-- These rows are NexusRealtime core validation-surface inventory because the fresh evidence is in exported runtime/browser/spatial primitives: `src/ar-experience-kit.js`, `src/ar-session.js`, `src/engine.js`, `src/greybox-building-kit.js`, and `src/spatial-room-kit.js`.
+- These rows are NexusEngine core validation-surface inventory because the fresh evidence is in exported runtime/browser/spatial primitives: `src/ar-experience-kit.js`, `src/ar-session.js`, `src/engine.js`, `src/greybox-building-kit.js`, and `src/spatial-room-kit.js`.
 - The new rows do not imply new gameplay or product kits; they define proof-signal invariants for existing core behavior.
 - ProtoKits and Experiments may consume the guarantees later, but implementation belongs in core only if a non-scout lane hardens AR experience receipts, WebXR helper failure, tick time policy, or spatial scale normalization.
 - Public module-source strategy remains separate; fixing browser imports would not prove receipt counts, hit-test rejection handling, monotonic time, or finite spatial scale.

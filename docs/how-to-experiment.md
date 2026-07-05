@@ -1,26 +1,26 @@
 # How To Experiment
 
-This document explains how new NexusRealtime experiments should be added when they need new domain kits.
+This document explains how new NexusEngine experiments should be added when they need new domain kits.
 
 Read this together with [how-to-protokit.md](how-to-protokit.md), [protokit-boundaries.md](protokit-boundaries.md), [protokit-experiment-loop.md](protokit-experiment-loop.md), and [visual-target-review.md](visual-target-review.md). The short rule is:
 
 ```txt
 Experiment proves a composition.
 ProtoKit implements reusable domain kits.
-NexusRealtime core supplies the runtime and DSK contract.
+NexusEngine core supplies the runtime and DSK contract.
 ```
 
 ## Meaning
 
-When we say "build out NexusRealtime through experiments," we mean:
+When we say "build out NexusEngine through experiments," we mean:
 
 ```txt
 1. Describe the desired game or simulation slice.
 2. Identify which reusable domains and kits are missing.
-3. Build missing reusable kits in NexusRealtime-ProtoKits.
-4. Compose those kits in NexusRealtime-Experiments.
+3. Build missing reusable kits in NexusEngine-ProtoKits.
+4. Compose those kits in NexusEngine-Experiments.
 5. Validate the experiment as a playable/browser proof.
-6. Promote only proven stable runtime primitives back into NexusRealtime core.
+6. Promote only proven stable runtime primitives back into NexusEngine core.
 ```
 
 An experiment should not become the permanent owner of reusable architecture. It should reveal what reusable ProtoKits need to exist.
@@ -28,18 +28,18 @@ An experiment should not become the permanent owner of reusable architecture. It
 ## Repo Roles
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine
 |-- owns ECS, runtime, DSK contract, composer, validation invariants
 |-- owns docs/described_examples.md, docs/domain_ideas.md, docs/kits_ideas.md
 `-- should not receive random new gameplay/domain kits
 
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits
 |-- owns reusable domain kit implementations
 |-- owns protokits/<kit-name>/index.js
 |-- owns ProtoKit docs, exports, headless checks, DSM catalog entries
 `-- is the default target for new kits
 
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments
 |-- owns playable/browser experiments
 |-- owns game-specific presets, routes, input mapping, renderer wiring, and proof pages
 `-- proves that core + ProtoKits compose into real games
@@ -48,7 +48,7 @@ An experiment should not become the permanent owner of reusable architecture. It
 ## Experiment Creation Flow
 
 ```txt
-1. Start in NexusRealtime
+1. Start in NexusEngine
    - Read docs/described_examples.md
    - Read docs/domain_ideas.md
    - Read docs/kits_ideas.md
@@ -61,25 +61,25 @@ An experiment should not become the permanent owner of reusable architecture. It
    - state what should stay game-specific
 
 3. Split reusable from local
-   - reusable domain behavior -> NexusRealtime-ProtoKits
-   - playable scene, art direction, controls, content -> NexusRealtime-Experiments
-   - missing runtime invariant -> NexusRealtime core
+   - reusable domain behavior -> NexusEngine-ProtoKits
+   - playable scene, art direction, controls, content -> NexusEngine-Experiments
+   - missing runtime invariant -> NexusEngine core
 
 4. Build or refine missing ProtoKits
    - follow docs/how-to-protokit.md
-   - update NexusRealtime-ProtoKits/protokits/
+   - update NexusEngine-ProtoKits/protokits/
    - update ProtoKits exports/catalog/tests
 
 5. Add the experiment
-   - add a new route under NexusRealtime-Experiments/experiments/<experiment-name>/
-   - use import maps or package imports for NexusRealtime and ProtoKits
+   - add a new route under NexusEngine-Experiments/experiments/<experiment-name>/
+   - use import maps or package imports for NexusEngine and ProtoKits
    - compose kits through createRealtimeGame()
    - keep rendering and browser input in the experiment host
 
 6. Prove it
-   - run NexusRealtime checks if core changed
-   - run NexusRealtime-ProtoKits npm run check if kits changed
-   - run NexusRealtime-Experiments npm run check if experiment changed
+   - run NexusEngine checks if core changed
+   - run NexusEngine-ProtoKits npm run check if kits changed
+   - run NexusEngine-Experiments npm run check if experiment changed
    - add or update static/browser smoke tests when the experiment becomes canonical
 
 7. Feed the result back
@@ -93,7 +93,7 @@ An experiment should not become the permanent owner of reusable architecture. It
 Use the existing Experiments repo pattern:
 
 ```txt
-NexusRealtime-Experiments/
+NexusEngine-Experiments/
 |-- experiments/
 |   `-- <experiment-name>/
 |       |-- index.html
@@ -120,7 +120,7 @@ core = runtime contract
 ## What The Experiment May Own
 
 - Browser route and `index.html`.
-- Import maps for `nexusrealtime` and ProtoKits.
+- Import maps for `nexusengine` and ProtoKits.
 - Game-specific config and authored content.
 - Input mapping from keyboard/mouse/touch to kit APIs.
 - Renderer code that consumes descriptors/snapshots.
@@ -150,17 +150,17 @@ Prove that a fish tank can be a complete mini-world using reusable world, water,
 ProtoKits to create or refine:
 
 ```txt
-NexusRealtime-ProtoKits/protokits/world-space-kit/
-NexusRealtime-ProtoKits/protokits/water-volume-kit/
-NexusRealtime-ProtoKits/protokits/glass-boundary-kit/
-NexusRealtime-ProtoKits/protokits/fish-school-kit/
-NexusRealtime-ProtoKits/protokits/object-inspection-kit/
+NexusEngine-ProtoKits/protokits/world-space-kit/
+NexusEngine-ProtoKits/protokits/water-volume-kit/
+NexusEngine-ProtoKits/protokits/glass-boundary-kit/
+NexusEngine-ProtoKits/protokits/fish-school-kit/
+NexusEngine-ProtoKits/protokits/object-inspection-kit/
 ```
 
 Experiment route:
 
 ```txt
-NexusRealtime-Experiments/experiments/fish-tank-contained-world/
+NexusEngine-Experiments/experiments/fish-tank-contained-world/
 ```
 
 The experiment owns tank visuals, camera framing, fish tank content, controls, and proof page. ProtoKits own the reusable services.
@@ -186,7 +186,7 @@ protokits/camera-kit/
 Experiment route:
 
 ```txt
-NexusRealtime-Experiments/experiments/small-open-world-look-scene/
+NexusEngine-Experiments/experiments/small-open-world-look-scene/
 ```
 
 The experiment should not contain reusable terrain or object inspection logic. It should configure and render those services.
@@ -214,7 +214,7 @@ protokits/composition-audit-kit/
 Experiment route:
 
 ```txt
-NexusRealtime-Experiments/experiments/horror-corridor/
+NexusEngine-Experiments/experiments/horror-corridor/
 ```
 
 The horror corridor experiment may own monster tuning, scene copy, visual tone, route layout seed, UI, sound selection, and rendering. The reusable domain behavior belongs in ProtoKits.
@@ -252,7 +252,7 @@ Most domains should remain in ProtoKits. Core promotion is exceptional.
 ```txt
 New experiment idea -> docs/described_examples.md
 New domain/kit need -> docs/domain_ideas.md or docs/kits_ideas.md
-New reusable kit -> NexusRealtime-ProtoKits/protokits/
-New playable proof -> NexusRealtime-Experiments/experiments/
-New runtime invariant -> NexusRealtime/src/ or tests/
+New reusable kit -> NexusEngine-ProtoKits/protokits/
+New playable proof -> NexusEngine-Experiments/experiments/
+New runtime invariant -> NexusEngine/src/ or tests/
 ```

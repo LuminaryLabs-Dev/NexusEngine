@@ -18,8 +18,8 @@
   look further: Compare sibling local changes to origin before promoting DSK first-wave claims.
 - id: npm-name-not-published
   parent: ecosystem-root-002
-  lesson: GitHub and jsDelivr public consumption works for the resolved release branch, but npm registry metadata for `nexusrealtime` is unavailable.
-  evidence: `https://registry.npmjs.org/nexusrealtime` returned 404 in preflight.
+  lesson: GitHub and jsDelivr public consumption works for the resolved release branch, but npm registry metadata for `nexusengine` is unavailable.
+  evidence: `https://registry.npmjs.org/nexusengine` returned 404 in preflight.
   look further: Decide whether README should distinguish npm import syntax from GitHub/CDN consumption status.
 
 ## Related Nodes
@@ -29,7 +29,7 @@
 
 ## Next Search Branches
 - branch: sibling-branch-reconciliation
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
 - question: Which DSK first-wave local proof artifacts are intended for commit, and do they still pass after rebasing or merging latest `origin/0.0.2`?
 - branch: public-consumption-wording
 - files or folders: `README.md`, `package.json`, public GitHub/raw/jsDelivr/npm endpoints

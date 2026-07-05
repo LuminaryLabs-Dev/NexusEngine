@@ -1,8 +1,8 @@
 # Deep Bug Report Packet: 2026-06-19T06:53:41-04:00
 
 Timestamp: 2026-06-19T06:53:41-04:00
-Automation: nexusrealtime-deep-bug-report-packet
-Scope: read-only deep bug scout for NexusRealtime runtime and reusable domain-kit invariants
+Automation: nexusengine-deep-bug-report-packet
+Scope: read-only deep bug scout for NexusEngine runtime and reusable domain-kit invariants
 
 ## Lane Goal
 - Find evidence-backed runtime bugs, edge cases, scaling risks, and DSK promotion blockers.

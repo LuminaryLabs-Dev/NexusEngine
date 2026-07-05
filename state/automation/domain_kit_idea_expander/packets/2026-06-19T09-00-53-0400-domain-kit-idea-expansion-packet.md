@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T09-00-53-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -92,7 +92,7 @@
 
 ## DSK boundary notes
 - Source-state integrity should start as ProtoKit planning inventory because it describes reusable policy kits and proof rows for dataset-heavy services.
-- NexusRealtime core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for reset-source contracts, serializable snapshot enforcement, or generic validation fixtures.
+- NexusEngine core changes would only be appropriate if later implementation exposes missing runtime/DSK primitives for reset-source contracts, serializable snapshot enforcement, or generic validation fixtures.
 - Authored-source isolation should distinguish caller-owned config, runtime-owned normalized state, restored state, and reset output.
 - Retention-limit policy should define whether `0` means no retained entries, a rejected config, or a normalized minimum; this should be shared before economy, telemetry, or proof ledgers are promoted.
 - Initial terminal receipts should make initial caught/lost/completed state explicit rather than relying on a later tick to discover terminal state.

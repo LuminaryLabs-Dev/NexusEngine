@@ -65,7 +65,7 @@
   files or folders: `src/spatial-scale-kit.js`, `src/scenario-duration-kit.js`, `src/hazard-field-kit.js`, `src/vehicle-dynamics-kit.js`, smoke coverage
   question: Which transition receipts, immediate thresholds, generated hazard ids, and resource capacity rules must pass before spatial/mobility DSK promotion?
 - branch: public-proof-separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
   question: Which evidence belongs to runtime hardening versus browser-complete public proof and aggregate validation?
 
 ## Not Claimed

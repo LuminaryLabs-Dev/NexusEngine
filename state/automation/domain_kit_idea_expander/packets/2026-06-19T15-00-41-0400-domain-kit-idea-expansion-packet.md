@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T15-00-41-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -92,9 +92,9 @@
 - Did not duplicate `runtime-failure-boundary-proof-kit`; `experience-edge-proof-kit` is domain-kit edge coverage, not DSK install/scheduler hardening.
 
 ## DSK boundary notes
-- `control-recovery-receipt-kit`, `content-dataset-contract-kit`, and `experience-edge-proof-kit` default to NexusRealtime-ProtoKits because they describe reusable domain-kit validation and policy rows.
-- `launch-fallback-chain-kit` points at NexusRealtime core validation surfaces because AR launch fallback is an existing core runtime/launcher invariant.
-- `quality-profile-contract-kit` points at NexusRealtime core validation surfaces because RealismKit/presentation profile resolution is existing core presentation behavior.
+- `control-recovery-receipt-kit`, `content-dataset-contract-kit`, and `experience-edge-proof-kit` default to NexusEngine-ProtoKits because they describe reusable domain-kit validation and policy rows.
+- `launch-fallback-chain-kit` points at NexusEngine core validation surfaces because AR launch fallback is an existing core runtime/launcher invariant.
+- `quality-profile-contract-kit` points at NexusEngine core validation surfaces because RealismKit/presentation profile resolution is existing core presentation behavior.
 - Public module-source blockers remain separate from launch fallback behavior; a page can load and still fail AR fallback policy, or fail loading before AR fallback is exercised.
 - Runtime failure-boundary rows remain separate from domain-kit edge contracts; DSK install safety does not validate repeated receipts, custom profile handling, or empty content datasets.
 

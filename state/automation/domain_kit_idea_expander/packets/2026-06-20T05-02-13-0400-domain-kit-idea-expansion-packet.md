@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T05-02-13-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -84,8 +84,8 @@
 - Did not duplicate `content-dataset-validation-kit`; the new metadata isolation row may use dataset validation but focuses on read-only result mutation, not content import correctness.
 
 ## DSK boundary notes
-- New reusable gameplay/domain implementation remains out of NexusRealtime core.
-- The added rows are marked as NexusRealtime core validation surfaces because the evidence targets existing public core query helpers and engine read methods.
+- New reusable gameplay/domain implementation remains out of NexusEngine core.
+- The added rows are marked as NexusEngine core validation surfaces because the evidence targets existing public core query helpers and engine read methods.
 - New ProtoKits with metadata-heavy query helpers should inherit the same read-model contract, but this run does not add or promote any ProtoKit.
 - Proof harnesses should treat query outputs as evidence only after helper returns, engine read methods, nested metadata, and stored query fields are isolated.
 

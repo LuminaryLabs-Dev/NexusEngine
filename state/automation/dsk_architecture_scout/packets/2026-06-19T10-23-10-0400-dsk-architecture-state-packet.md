@@ -4,7 +4,7 @@
 - 2026-06-19T10-23-10-0400
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-source-state-fixture-root-2026-06-19-0925`.
@@ -85,7 +85,7 @@
 
 ## Domain and kit expansion architecture notes
 - Repo memory and docs keep the split stable: core owns ECS/runtime/DSK/composer primitives and invariants; ProtoKits owns new reusable domain kits; Experiments owns playable/browser proof.
-- `docs/how-to-protokit.md` says new reusable kits belong in NexusRealtime-ProtoKits, while core receives only runtime contract, validation invariant, scheduler, ECS, or DSK primitive changes.
+- `docs/how-to-protokit.md` says new reusable kits belong in NexusEngine-ProtoKits, while core receives only runtime contract, validation invariant, scheduler, ECS, or DSK primitive changes.
 - `docs/kits_ideas.md` now includes state-signal inventory: descriptor invalidation, action repeat policy, state-machine transition, coordinate-axis policy, derived-state boundary, and signal-contract proof rows.
 - The new DSK architecture implication is not to move these domains into core; it is to plan executable hardening fixtures that decide which signal contracts belong as core DSK invariants versus ProtoKit policy helpers.
 

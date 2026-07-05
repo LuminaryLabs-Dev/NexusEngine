@@ -70,7 +70,7 @@
   files or folders: `src/companion-command-kit.js`, `src/corruption-world-kit.js`, `src/spatial-room-kit.js`, `src/tree-runner-kit.js`
   question: Which command lifecycle, elapsed-rate, descriptor normalization, and generated-geometry rows should be bundled with traversal rows?
 - branch: proof-boundary separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, public raw/CDN/GitHub Pages URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, public raw/CDN/GitHub Pages URLs
   question: Which evidence belongs to core runtime hardening versus sibling latest-ref validation, public browser proof, aggregate proof, and distribution proof?
 
 ## Not Claimed

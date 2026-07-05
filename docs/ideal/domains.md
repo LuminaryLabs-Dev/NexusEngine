@@ -1,6 +1,6 @@
 # Domains
 
-This describes the ideal target architecture, not a guarantee that the current NexusRealtime implementation already satisfies every rule.
+This describes the ideal target architecture, not a guarantee that the current NexusEngine implementation already satisfies every rule.
 
 Reading order: Domains -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> [Composition](composition.md) -> [Shared Host](shared-host.md)
 

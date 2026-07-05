@@ -78,7 +78,7 @@
   files or folders: `src/scenario-driver-kit.js`, `src/camera-occlusion-kit.js`, `src/camera-kit.js`, route/mobility/camera proof fixtures
   question: Which helpers need explicit 2D/3D coordinate policy or source-versus-derived output boundaries?
 - branch: public-proof-separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof`, sibling fetched refs, public CDN/raw URLs
   question: Which evidence belongs to runtime hardening versus browser-complete public proof and aggregate validation?
 
 ## Not Claimed

@@ -4,7 +4,7 @@
 - 2026-06-19T14-24-17-0400
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-traversal-proof-fixture-root-2026-06-19-1324`.
@@ -24,7 +24,7 @@
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`.
 - Ahead/behind against `origin/0.0.2`: `0 0`.
 - Required GitHub/raw/jsDelivr public links passed; optional npm metadata remained 404.
-- Package metadata remains `nexusrealtime@0.1.0`.
+- Package metadata remains `nexusengine@0.1.0`.
 
 ## Files inspected
 - `.agent/start-here.md`
@@ -94,7 +94,7 @@
 
 ## Domain and kit expansion architecture notes
 - Repo memory and docs keep the ownership split stable: core owns ECS/runtime/DSK/composer primitives and validation invariants; ProtoKits owns new reusable implementations; Experiments owns browser/playable proof.
-- `docs/how-to-protokit.md` says new reusable kits belong in NexusRealtime-ProtoKits, while core receives DSK contract, validation, scheduler, ECS, or runtime primitive changes.
+- `docs/how-to-protokit.md` says new reusable kits belong in NexusEngine-ProtoKits, while core receives DSK contract, validation, scheduler, ECS, or runtime primitive changes.
 - New failure-boundary idea rows belong to core validation surfaces because they describe runtime/DSK/scheduler invariants, not gameplay-kit implementation.
 - Module-source/public-proof blockers remain ecosystem proof work, not DSK hardening proof.
 - The DSK architecture implication is now narrower and stronger: the non-scout fixture handoff should include runtime failure-boundary rows alongside prior namespace/install/dependency, traversal, lifecycle/config, source-state, state-signal, receipt, bridge, operations, and spatial rows.

@@ -4,7 +4,7 @@
 - 2026-06-19T08-23-23-0400
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-receipt-integrity-fixture-root-2026-06-19-0724`.

@@ -1,8 +1,8 @@
 # Ecosystem Proof State Packet
 
 Timestamp: 2026-06-19T07:42:18-0400
-Automation: Nexus Realtime: Ecosystem Proof State Packet
-Scope: NexusRealtime core, NexusRealtime-ProtoKits, NexusRealtime-Experiments
+Automation: Nexus Engine: Ecosystem Proof State Packet
+Scope: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 Result: partial; local latest-ref proof is green across all three repos and sibling drift is resolved for this run, but public browser proof still stalls at `Booting...`, Experiments aggregate validation still omits the DSK first-wave smoke, npm metadata remains unavailable, and DSK hardening gates have expanded to receipt integrity.
 
 ## Lane Goal
@@ -19,20 +19,20 @@ Result: partial; local latest-ref proof is green across all three repos and sibl
 
 ## Latest branch
 - `npm run automation:preflight` resolved `latestReleaseBranch: 0.0.2`.
-- NexusRealtime local branch `0.0.2` at `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`, matching `origin/0.0.2`; ahead/behind `0/0`.
+- NexusEngine local branch `0.0.2` at `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`, matching `origin/0.0.2`; ahead/behind `0/0`.
 - ProtoKits local branch `0.0.2` at `40d70b93bef6a0e88dadc48067aa4fd2844284f8`, matching `origin/0.0.2`; ahead/behind `0/0`.
 - Experiments local branch `0.0.2` at `6d90b9b01a5aeac0209a2c8f2ce30f670be92a9f`, matching `origin/0.0.2`; ahead/behind `0/0`.
-- Core package metadata remains `nexusrealtime@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
+- Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
 
 ## Commands run
-- NexusRealtime: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
-- NexusRealtime/ProtoKits/Experiments: `git fetch --prune origin`, `git status --short --branch`, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`, `git rev-list --left-right --count HEAD...origin/0.0.2`.
-- NexusRealtime: `npm test` -> passed 8 smoke tests.
+- NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
+- NexusEngine/ProtoKits/Experiments: `git fetch --prune origin`, `git status --short --branch`, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`, `git rev-list --left-right --count HEAD...origin/0.0.2`.
+- NexusEngine: `npm test` -> passed 8 smoke tests.
 - ProtoKits: `npm run check` -> passed syntax, import smoke, and listed test chain including `tests/fluid-water-kits.test.mjs`; targeted `node tests/dsk-first-wave.test.mjs` -> passed.
 - Experiments: `npm run check` -> passed listed smoke chain after generating 100 flat route wrappers; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> passed.
 - Experiments cleanup: validation-generated untracked flat-route wrapper directories were removed and generated formatting on tracked `experiments/tideglass-salvage/index.html` was restored; final sibling status was clean.
@@ -41,19 +41,19 @@ Result: partial; local latest-ref proof is green across all three repos and sibl
 - Targeted `rg` and `git show origin/0.0.2:...` scans checked DSK imports, `engine.n.*`, public import maps, aggregate check scripts, first-wave ledger state, stale pins, docs boundaries, and proof coverage inventory.
 
 ## Public links checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> 200 by preflight.
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> 200 by preflight.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> 200 by preflight.
-- `https://registry.npmjs.org/nexusrealtime` -> 404 optional preflight link.
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl; Playwright-visible state remained `Booting...`.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusRealtime-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200.
-- `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js` -> 404.
-- `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js` -> 404.
-- `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js` -> 404.
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> 200 by preflight.
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> 200 by preflight.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> 200 by preflight.
+- `https://registry.npmjs.org/nexusengine` -> 404 optional preflight link.
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl; Playwright-visible state remained `Booting...`.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusEngine-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200.
+- `https://luminarylabs-agents.github.io/NexusEngine/src/index.js` -> 404.
+- `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js` -> 404.
+- `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js` -> 404.
 
 ## ProtoKits migration state
 - First-wave DSK ledger remains public on raw `0.0.2` and lists seven `promoted-candidate` kits: token-registry, completion-ledger, scan-survey, route-checkpoint, resource-pressure, zone-field, and hazard-director.
@@ -67,9 +67,9 @@ Result: partial; local latest-ref proof is green across all three repos and sibl
 - Public proof route loads its HTML but remains human-visible stuck at `Booting...`.
 - Playwright saw body text `DSK first-wave proof ... Booting...`, `#proof-status` as `Booting...`, and 404s for deployed sibling module paths.
 - Fetched `origin/0.0.2` proof files still import from sibling relative paths:
-  - import map maps `nexusrealtime` to `../../../NexusRealtime/src/index.js`.
-  - `src/proof.js` imports `../../../../NexusRealtime/src/index.js`.
-  - `src/proof.js` imports ProtoKits from `../../../../NexusRealtime-ProtoKits/protokits/...`.
+  - import map maps `nexusengine` to `../../../NexusEngine/src/index.js`.
+  - `src/proof.js` imports `../../../../NexusEngine/src/index.js`.
+  - `src/proof.js` imports ProtoKits from `../../../../NexusEngine-ProtoKits/protokits/...`.
 - Experiments aggregate `npm run check` still does not list `tests/dsk-first-wave-experiment-smoke.mjs`; the DSK proof smoke remains targeted evidence.
 
 ## Domain and kit proof coverage
@@ -88,9 +88,9 @@ Result: partial; local latest-ref proof is green across all three repos and sibl
 
 ## Broken/stale proof paths
 - Broken public proof paths remain:
-  - `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`
 - Stale public pins remain visible in Experiments scans, including `main` and `0.0.1` CDN references in legacy routes/configs.
 - Branch/package mismatch remains: release branch `0.0.2` serves package version `0.1.0`.
 - Optional npm metadata remains 404, so npm-backed consumption is not proven.
@@ -106,7 +106,7 @@ Result: partial; local latest-ref proof is green across all three repos and sibl
 ## Blockers
 - Public proof import-map/module source strategy is unresolved: CDN `0.0.2`, same-origin deployed assets, or build-step import mapping.
 - `tests/dsk-first-wave-experiment-smoke.mjs` is not wired into Experiments aggregate validation or documented as a required targeted command.
-- npm metadata for `nexusrealtime` is unavailable.
+- npm metadata for `nexusengine` is unavailable.
 - DSK promotion hardening lacks executable fixture coverage for receipt identity and idempotency alongside earlier invariant gates.
 
 ## Suggested next review item

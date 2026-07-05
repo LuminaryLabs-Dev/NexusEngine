@@ -1,11 +1,11 @@
 # Ecosystem State Packet: 2026-06-19T20-10-14-0400
 
 ## Scope
-- Audit NexusRealtime ecosystem state across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, and proof paths.
+- Audit NexusEngine ecosystem state across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, and proof paths.
 - Lane is advisory only. It writes only this packet, one knowledge node, and the lane tracker update.
 
 ## Lane Goal
-- Audit NexusRealtime ecosystem state, drift, and proof readiness.
+- Audit NexusEngine ecosystem state, drift, and proof readiness.
 
 ## Prior State Context
 - Previous ecosystem root: `ecosystem-root-021`.
@@ -31,21 +31,21 @@
 - branch status: `current-is-latest-release-branch`
 - required public links: pass
 - optional npm metadata: 404
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - core `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - core `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - core ahead/behind: `0 0`
 
 ## Public Links Checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> 200
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> 200
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> 200
-- `https://registry.npmjs.org/nexusrealtime` -> 404, optional
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` -> 200
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime/src/index.js` -> 404
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js` -> 404
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js` -> 404
-- Playwright opened the public proof route. Human-visible state was heading `DSK first-wave proof` with status `Booting...`; console/request evidence showed 404s for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`.
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> 200
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> 200
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> 200
+- `https://registry.npmjs.org/nexusengine` -> 404, optional
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` -> 200
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine/src/index.js` -> 404
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine-ProtoKits/protokits/domain-foundation/index.js` -> 404
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js` -> 404
+- Playwright opened the public proof route. Human-visible state was heading `DSK first-wave proof` with status `Booting...`; console/request evidence showed 404s for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`.
 
 ## Files Inspected
 - `.agent/start-here.md`
@@ -69,7 +69,7 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - latest ecosystem state packets/nodes: `2026-06-19T17-10-00-0400`, `2026-06-19T18-09-41-0400`, `2026-06-19T19-10-05-0400`
 - latest neighboring packet/node sets from `dsk_architecture_scout`, `ecosystem_proof_scout`, `deep_bug_report_scout`, and `domain_kit_idea_expander`
-- sibling package metadata and DSK proof files in `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits` and `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- sibling package metadata and DSK proof files in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits` and `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
 
 ## Ecosystem Findings
 - Core remains current on the preflight-resolved latest release branch and `npm test` passed 8 smoke tests.
@@ -81,8 +81,8 @@
   - ProtoKits local `HEAD` is `40d70b9`; fetched `origin/0.0.2` is now `f0fa45a75eea2c4b88683fe3bf146b0453812820`; after fetch, ahead/behind is `0 26`.
   - Experiments local `HEAD` is `6d90b9b`; fetched `origin/0.0.2` remains `799fad882461502faa84b132f70de011e7dbe0cb`; ahead/behind is `0 24`.
 - Detached fetched-ref proof is still blocked by module-source strategy:
-  - ProtoKits fetched `origin/0.0.2` failed `npm run check` during `smoke:imports` with 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusrealtime` from `protokits/nexus-dsk-adapter/index.js`.
-  - Experiments fetched `origin/0.0.2` aggregate `npm run check` passed in a disposable tree, generated 100 flat routes, and its targeted DSK smoke failed because `experiments/dsk-first-wave-proof/src/proof.js` resolved `../../../../NexusRealtime/src/index.js` to missing `/private/tmp/NexusRealtime/src/index.js`.
+  - ProtoKits fetched `origin/0.0.2` failed `npm run check` during `smoke:imports` with 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusengine` from `protokits/nexus-dsk-adapter/index.js`.
+  - Experiments fetched `origin/0.0.2` aggregate `npm run check` passed in a disposable tree, generated 100 flat routes, and its targeted DSK smoke failed because `experiments/dsk-first-wave-proof/src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `/private/tmp/NexusEngine/src/index.js`.
 - Public proof is still HTTP-visible but browser-incomplete:
   - The proof route returns 200 and renders heading text.
   - Human-visible Playwright state remains `Booting...`.
@@ -109,10 +109,10 @@
 - `npm test` in core -> passed 8 smoke tests.
 - ProtoKits local `npm run check` -> passed; checked 294 JavaScript modules and imported 236 ProtoKit index modules.
 - ProtoKits local `node tests/dsk-first-wave.test.mjs` -> passed.
-- ProtoKits fetched-ref disposable `npm run check` -> failed; fetched ref `f0fa45a75eea2c4b88683fe3bf146b0453812820`; 110 import smoke failures rooted in missing package `nexusrealtime`.
+- ProtoKits fetched-ref disposable `npm run check` -> failed; fetched ref `f0fa45a75eea2c4b88683fe3bf146b0453812820`; 110 import smoke failures rooted in missing package `nexusengine`.
 - Experiments local `node tests/dsk-first-wave-experiment-smoke.mjs` -> passed.
 - Experiments fetched-ref disposable `npm run check` -> passed; fetched ref `799fad882461502faa84b132f70de011e7dbe0cb`; generated 100 flat experiment route wrappers.
-- Experiments fetched-ref disposable `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for `/private/tmp/NexusRealtime/src/index.js`.
+- Experiments fetched-ref disposable `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for `/private/tmp/NexusEngine/src/index.js`.
 - `curl` public proof route -> 200; sibling module URLs -> 404.
 - Playwright launch-state inspection -> visible `Booting...`; 4 console errors, including three module 404s and one favicon 404.
 

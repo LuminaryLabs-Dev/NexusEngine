@@ -1,8 +1,8 @@
 # Deep Bug Report Packet: 2026-06-19T15:53:59-04:00
 
 Timestamp: 2026-06-19T15:53:59-04:00
-Automation: nexusrealtime-deep-bug-report-packet
-Scope: read-only deep bug scout for NexusRealtime locomotion receipts, terrain chunking, and AR lifecycle cleanup
+Automation: nexusengine-deep-bug-report-packet
+Scope: read-only deep bug scout for NexusEngine locomotion receipts, terrain chunking, and AR lifecycle cleanup
 
 ## Lane Goal
 - Find evidence-backed runtime bugs, edge cases, scaling risks, and DSK promotion blockers.

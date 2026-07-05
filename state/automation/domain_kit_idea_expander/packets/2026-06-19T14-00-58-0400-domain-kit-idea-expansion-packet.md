@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T14-00-58-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -86,7 +86,7 @@
 - Did not duplicate `proof-coverage-matrix-kit`; `runtime-failure-boundary-proof-kit` narrows proof rows to DSK namespace, install rollback, dependency parity, and scheduler failure lifetime.
 
 ## DSK boundary notes
-- Runtime failure boundary policies point at NexusRealtime core validation surfaces because they describe runtime/DSK/scheduler invariants, not reusable gameplay/domain kit implementation.
+- Runtime failure boundary policies point at NexusEngine core validation surfaces because they describe runtime/DSK/scheduler invariants, not reusable gameplay/domain kit implementation.
 - ProtoKits should consume these guarantees once implemented; they should not paper over missing `engine.n`, install transaction, dependency, or scheduler semantics.
 - Experiments should prove visible compositions separately from runtime failure-boundary hardening.
 - Public route HTTP success, local green smoke tests, and available-checkout DSK proof must stay separate from runtime failure-boundary proof.
