@@ -1,7 +1,7 @@
 # DSK Architecture State Packet
 
 Timestamp: 2026-06-18T20:25:55-04:00
-Automation: nexusrealtime-dsk-architecture-state-packet
+Automation: nexusengine-dsk-architecture-state-packet
 
 ## Timestamp
 - Local: 2026-06-18T20:25:55-04:00

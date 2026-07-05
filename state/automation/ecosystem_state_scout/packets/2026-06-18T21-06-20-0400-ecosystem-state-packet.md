@@ -1,9 +1,9 @@
-# NexusRealtime Ecosystem State Packet
+# NexusEngine Ecosystem State Packet
 
 ## Timestamp
 - local: 2026-06-18T21-06-20-0400
 - preflight: 2026-06-19T01:06:57.306Z
-- automation: nexusrealtime-ecosystem-state-packet
+- automation: nexusengine-ecosystem-state-packet
 
 ## Latest branch
 - latest remote release branch: `0.0.2`
@@ -34,18 +34,18 @@
 - `src/index.js`
 - `src/domain-service-kit.js`
 - `tests/`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 
 ## Commands run
 - `sed -n '1,220p' /Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
-- `sed -n '1,220p' /Users/crimsonwheeler/.codex/automations/nexusrealtime-ecosystem-state-packet/memory.md`
-- `rg -n "NexusRealtime|ProtoKits|ecosystem state|automation" /Users/crimsonwheeler/.codex/memories/MEMORY.md`
+- `sed -n '1,220p' /Users/crimsonwheeler/.codex/automations/nexusengine-ecosystem-state-packet/memory.md`
+- `rg -n "NexusEngine|ProtoKits|ecosystem state|automation" /Users/crimsonwheeler/.codex/memories/MEMORY.md`
 - `rg --files .agent state/automation | sort`
 - `git rev-parse --show-toplevel`
 - `git branch --show-current`
@@ -61,7 +61,7 @@
 - `sed -n '1,320p' state/automation/AUTOMATION_MANIFEST.md`
 - `sed -n '1,280p' state/automation/KNOWLEDGE_NODE_CONTRACT.md`
 - `node -e "const p=require('./package.json'); ..."`
-- `rg -n "GitHub|jsDelivr|npm|import|install|package|LuminaryLabs|NexusRealtime|cdn|raw.githubusercontent|github.io" README.md package.json scripts src state/automation/ecosystem_state_scout/PROMPT.md`
+- `rg -n "GitHub|jsDelivr|npm|import|install|package|LuminaryLabs|NexusEngine|cdn|raw.githubusercontent|github.io" README.md package.json scripts src state/automation/ecosystem_state_scout/PROMPT.md`
 - `sed -n '1,260p' state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - `sed -n '1,260p' state/automation/ecosystem_state_scout/PROMPT.md`
 - `npm run automation:preflight`
@@ -83,13 +83,13 @@
 - public URL `fetch` status spot-check
 
 ## Public links checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> `200`
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> `200`
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> `200`
-- `https://registry.npmjs.org/nexusrealtime` -> `404` optional, not a required-link failure
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> `200`
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> `200`
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> `200`
+- `https://registry.npmjs.org/nexusengine` -> `404` optional, not a required-link failure
 
 ## Ecosystem state
-- Core package metadata: `nexusrealtime@0.1.0`, ESM, export root `./src/index.js`.
+- Core package metadata: `nexusengine@0.1.0`, ESM, export root `./src/index.js`.
 - Latest release branch: `0.0.2`; current core branch matches latest release branch.
 - Core public links required by preflight are reachable.
 - Core validation passed: `npm test` passed 8 smoke tests.
@@ -101,13 +101,13 @@
 
 ## Drift findings
 - Previous sibling dirty/behind drift appears resolved: both siblings are clean and exactly match `origin/0.0.2`.
-- Public consumption is still not npm-backed: the npm registry endpoint for `nexusrealtime` returns `404`.
-- README public examples import from `"nexusrealtime"`; that is valid for local/import-map/package consumers, but public npm installability is not proven.
-- The Experiments DSK proof is local-workspace coupled: `proof.js` imports from `../../../../NexusRealtime/src/index.js` and sibling ProtoKits paths. It proves local ecosystem wiring, not CDN-only or npm-only consumption.
+- Public consumption is still not npm-backed: the npm registry endpoint for `nexusengine` returns `404`.
+- README public examples import from `"nexusengine"`; that is valid for local/import-map/package consumers, but public npm installability is not proven.
+- The Experiments DSK proof is local-workspace coupled: `proof.js` imports from `../../../../NexusEngine/src/index.js` and sibling ProtoKits paths. It proves local ecosystem wiring, not CDN-only or npm-only consumption.
 - Core branch name is `0.0.2`, but package metadata is `0.1.0`; this may be intentional, but it is a review risk when release branch and package version are read as the same claim.
 
 ## Risks
-- Reviewers may overread `import "nexusrealtime"` examples as npm availability while registry metadata is missing.
+- Reviewers may overread `import "nexusengine"` examples as npm availability while registry metadata is missing.
 - DSK first-wave promotion evidence is now branch-clean, but public browser proof still depends on local sibling checkouts.
 - Existing unrelated dirty deep-bug scout artifacts and untracked `examples/described-examples/` mean the repo is not globally clean, even though this lane is isolated.
 

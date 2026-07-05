@@ -1,14 +1,14 @@
 # Ecosystem State Packet: 2026-06-19T12-08-54-0400
 
 ## Scope
-- Automation: Nexus Realtime: Ecosystem State Packet
+- Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-19T12-08-54-0400
 - UTC timestamp: 2026-06-19T16:08:54Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime`
-- Repos checked: core NexusRealtime, sibling NexusRealtime-ProtoKits, sibling NexusRealtime-Experiments
+- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Repos checked: core NexusEngine, sibling NexusEngine-ProtoKits, sibling NexusEngine-Experiments
 
 ## Lane Goal
-- Audit NexusRealtime ecosystem state, drift, and proof readiness across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, public links, and proof paths.
+- Audit NexusEngine ecosystem state, drift, and proof readiness across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, public links, and proof paths.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `ecosystem-root-013`.
@@ -40,24 +40,24 @@
 - Core `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - Core `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - Core ahead/behind against `origin/0.0.2`: `0 0`
-- Core package metadata remains `nexusrealtime@0.1.0`; raw public branch `0.0.2/package.json` also reports version `0.1.0`.
+- Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` also reports version `0.1.0`.
 - Core worktree still has pre-existing modified/untracked neighboring automation and planning docs. This lane writes only this ecosystem-state packet/node and tracker update.
 
 ## Public Links Checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> 200 by preflight
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> 200 by preflight
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> 200 by preflight
-- `https://registry.npmjs.org/nexusrealtime` -> 404, optional preflight link
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl and Playwright navigation, but visible proof remains `Booting...`
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusRealtime-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> 200 by preflight
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> 200 by preflight
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> 200 by preflight
+- `https://registry.npmjs.org/nexusengine` -> 404, optional preflight link
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl and Playwright navigation, but visible proof remains `Booting...`
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusEngine-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200
 - Public proof runtime dependency paths still fail:
-  - `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js` -> 404
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js` -> 404
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js` -> 404
+  - `https://luminarylabs-agents.github.io/NexusEngine/src/index.js` -> 404
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js` -> 404
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js` -> 404
 
 ## Files Inspected
 - `.agent/start-here.md`
@@ -82,13 +82,13 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - Latest current-lane packets and nodes from `2026-06-19T10-10-19-0400` and `2026-06-19T11-08-56-0400`.
 - Latest neighboring packets and nodes from `dsk_architecture_scout`, `ecosystem_proof_scout`, `deep_bug_report_scout`, and `domain_kit_idea_expander`.
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- Fetched `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits` `origin/0.0.2:package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
-- Fetched `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments` `origin/0.0.2:package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- Fetched `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits` `origin/0.0.2:package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- Fetched `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments` `origin/0.0.2:package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - Fetched `origin/0.0.2:experiments/dsk-first-wave-proof/index.html`
 - Fetched `origin/0.0.2:experiments/dsk-first-wave-proof/src/proof.js`
 
@@ -109,7 +109,7 @@
 - Local and fetched Experiments aggregate scripts still omit `tests/dsk-first-wave-experiment-smoke.mjs`.
 - Fetched Experiments `origin/0.0.2` aggregate script includes `tests/tropical-island-scene-static-smoke.mjs`, while the local checkout still includes `tests/fluid-water-lab-static-smoke.mjs`.
 - Public DSK proof route is still HTTP-visible but not browser-ready: Playwright snapshot showed heading text plus `Booting...`, and network requests showed 404s for missing sibling GitHub Pages module paths.
-- Local and fetched proof files still import sibling relative paths: `../../../NexusRealtime/src/index.js`, `../../../../NexusRealtime/src/index.js`, and `../../../../NexusRealtime-ProtoKits/protokits/...`.
+- Local and fetched proof files still import sibling relative paths: `../../../NexusEngine/src/index.js`, `../../../../NexusEngine/src/index.js`, and `../../../../NexusEngine-ProtoKits/protokits/...`.
 - Branch/version policy risk remains unchanged: release branch `0.0.2` serves package metadata version `0.1.0`.
 
 ## Domain And Kit Expansion Signals
@@ -132,7 +132,7 @@
 - Experiments `git fetch --prune origin`, `git status --short --branch`, `git rev-parse HEAD origin/0.0.2`, and ahead/behind checks showed a clean local checkout behind origin by 24 commits.
 - Experiments `node tests/dsk-first-wave-experiment-smoke.mjs` passed on the available checkout.
 - Direct curl checks confirmed required proof raw files and ProtoKits ledger are public, while runtime dependency paths used by the public page are 404.
-- Playwright opened the public DSK proof route; snapshot showed `Booting...`; network output showed 404s for `NexusRealtime/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
+- Playwright opened the public DSK proof route; snapshot showed `Booting...`; network output showed 404s for `NexusEngine/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
 
 ## Suggested Canonical Updates
 - Validate ProtoKits fetched `origin/0.0.2` in a disposable worktree or clean fast-forwarded checkout before claiming latest-ref ProtoKits proof.

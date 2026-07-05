@@ -30,7 +30,7 @@
   parent: dsk-main-parity-telemetry-command-context-root-2026-06-21-0619
   lesson: Telemetry/command fixtures target existing core validation surfaces; new reusable gameplay/domain implementation still belongs in ProtoKits and playable/browser proof in Experiments.
   evidence: `docs/how-to-protokit.md:7-15`, `docs/how-to-protokit.md:56-64`, and `docs/how-to-protokit.md:265-284` keep the ownership boundary explicit.
-  look further: Harden core contracts without moving proof routing or new reusable implementation into NexusRealtime core.
+  look further: Harden core contracts without moving proof routing or new reusable implementation into NexusEngine core.
 
 ## Related Nodes
 - source: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-20T18-23-40-0400-dsk-architecture-node.md`

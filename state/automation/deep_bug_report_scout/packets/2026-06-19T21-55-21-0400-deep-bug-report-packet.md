@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-19T21:55:21-04:00
 
 Timestamp: 2026-06-19T21:55:21-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for AR experience completion, WebXR hit-test helper failure, engine time policy, and greybox spatial scale normalization
 
 ## Lane Goal

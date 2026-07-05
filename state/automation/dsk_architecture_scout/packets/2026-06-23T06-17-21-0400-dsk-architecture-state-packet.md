@@ -4,7 +4,7 @@
 - 2026-06-23 06:17:21 EDT
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Latest current-lane packet `2026-06-22T18-19-08-0400` made DSK Extension Service Ownership the active DSK root: `extendDomainServiceKit()` needs API/token parity, base-plus-extension install atomicity, and ECS definition-name identity fixtures.
@@ -74,7 +74,7 @@
 - Missing executable coverage remains: reserved/prototype `apiName`, null-prototype or own-key namespace policy, failed install rollback/retry, partial extension install, duplicate binding/provider ownership, same-name ECS definition identity, direct/composer parity, scheduler/world mutation isolation, event payload isolation, returned/read state ownership, and reset/snapshot/async metadata truth.
 
 ## Domain and kit expansion architecture notes
-- Core/ProtoKits/Experiments boundary remains stable: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation invariants; new reusable implementation belongs in ProtoKits; browser/playable proof belongs in Experiments.
+- Core/ProtoKits/Experiments boundary remains stable: NexusEngine core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation invariants; new reusable implementation belongs in ProtoKits; browser/playable proof belongs in Experiments.
 - DSK Extension Service Ownership is core validation-surface work because it concerns `extendDomainServiceKit()` itself.
 - Host Public State Ownership is adjacent host graph hardening. It does not supersede DSK Extension Service Ownership, Runtime Failure Boundary, or public proof gates.
 - Proof Readiness Queue remains separate: module-source strategy, npm availability, package-version policy, public browser imports, aggregate/targeted parity, and sibling branch targets are proof claims, not DSK source hardening evidence.

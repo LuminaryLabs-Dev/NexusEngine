@@ -1,27 +1,27 @@
 # Core Kits Massive Documentation Plan
 
-This document is the implementation and documentation plan for making `NexusRealtime` robust out of the gate through broad, configurable **core capability domains**.
+This document is the implementation and documentation plan for making `NexusEngine` robust out of the gate through broad, configurable **core capability domains**.
 
 It intentionally focuses on documentation, structure, usage guides, and staged implementation. It should be used before large code movement so the project can preserve a coherent migration path while the new shape lands.
 
 This plan applies only to:
 
 ```txt
-LuminaryLabs-Dev/NexusRealtime
+LuminaryLabs-Dev/NexusEngine
 ```
 
 Do not change these repos as part of this plan yet:
 
 ```txt
-LuminaryLabs-Agents/NexusRealtime-ProtoKits
-LuminaryLabs-Agents/NexusRealtime-Experiments
-LuminaryLabs-Agents/NexusRealtime-Sandbox
-LuminaryLabs-Agents/NexusRealtime-KitBuilder01
-LuminaryLabs-Agents/NexusRealtime-KitBuilder02
-LuminaryLabs-Agents/NexusRealtime-KitBuilder03
+LuminaryLabs-Agents/NexusEngine-ProtoKits
+LuminaryLabs-Agents/NexusEngine-Experiments
+LuminaryLabs-Agents/NexusEngine-Sandbox
+LuminaryLabs-Agents/NexusEngine-KitBuilder01
+LuminaryLabs-Agents/NexusEngine-KitBuilder02
+LuminaryLabs-Agents/NexusEngine-KitBuilder03
 ```
 
-The downstream migration plan at the end assumes this will be a **breaking main-branch update**. The goal is not to preserve backward compatibility forever. The goal is to document every change clearly enough that apps using the `main` branch of `NexusRealtime` can update intentionally.
+The downstream migration plan at the end assumes this will be a **breaking main-branch update**. The goal is not to preserve backward compatibility forever. The goal is to document every change clearly enough that apps using the `main` branch of `NexusEngine` can update intentionally.
 
 ---
 
@@ -39,14 +39,14 @@ MLNN gives model capability.
 Agent gives decision orchestration.
 ```
 
-`NexusRealtime` should not be tiny.
+`NexusEngine` should not be tiny.
 
-`NexusRealtime` should not become a junk drawer.
+`NexusEngine` should not become a junk drawer.
 
 The target is:
 
 ```txt
-NexusRealtime
+NexusEngine
   = kernel
   + contracts
   + foundation primitives
@@ -58,7 +58,7 @@ NexusRealtime
 ## Push target
 
 ```txt
-Repository: LuminaryLabs-Dev/NexusRealtime
+Repository: LuminaryLabs-Dev/NexusEngine
 Target branch: main
 Primary plan file: docs/0.0.3/CORE-KITS-MASSIVE-DOCS-PLAN.md
 ```
@@ -67,7 +67,7 @@ Primary plan file: docs/0.0.3/CORE-KITS-MASSIVE-DOCS-PLAN.md
 
 ## Goal
 
-Build the long-term `NexusRealtime` core-kits documentation spine.
+Build the long-term `NexusEngine` core-kits documentation spine.
 
 Every core capability kit should eventually have:
 
@@ -93,7 +93,7 @@ This gives developers, agents, and future KitBuilders a single route for underst
 ## Final repository shape
 
 ```txt
-NexusRealtime/
+NexusEngine/
 |
 |-- src/
 |   |
@@ -366,7 +366,7 @@ Each `docs/core-kits/how-to-use-<core-kit>.md` file should use this shape:
 # How To Use <Core Kit Name>
 
 ## Install
-Import from nexusrealtime.
+Import from nexusengine.
 
 ## Basic Example
 Smallest useful example.
@@ -1261,7 +1261,7 @@ Not allowed:
 
 ## Downstream app update packet
 
-At the end of the implementation sequence, add a downstream update packet so other apps using the `main` branch of `NexusRealtime` can migrate.
+At the end of the implementation sequence, add a downstream update packet so other apps using the `main` branch of `NexusEngine` can migrate.
 
 Required files:
 
@@ -1316,16 +1316,16 @@ Example format:
 
 ```txt
 createInputIntentKit
-  old: import { createInputIntentKit } from "nexusrealtime"
-  new: import { createCoreInputKit } from "nexusrealtime"
+  old: import { createInputIntentKit } from "nexusengine"
+  new: import { createCoreInputKit } from "nexusengine"
 
 createRenderDescriptorKit
-  old: import { createRenderDescriptorKit } from "nexusrealtime"
-  new: import { createCoreGraphicsKit } from "nexusrealtime"
+  old: import { createRenderDescriptorKit } from "nexusengine"
+  new: import { createCoreGraphicsKit } from "nexusengine"
 
 createTelemetryKit
-  old: import { createTelemetryKit } from "nexusrealtime"
-  new: import { createCoreDiagnosticsKit } from "nexusrealtime"
+  old: import { createTelemetryKit } from "nexusengine"
+  new: import { createCoreDiagnosticsKit } from "nexusengine"
 ```
 
 ### BUILD-AND-VERIFY.md must include
@@ -1351,14 +1351,14 @@ Suggested verification flow:
 5. update imports using IMPORT-MIGRATION-MAP.md
 6. run downstream app smoke
 7. capture failure output in app migration issue
-8. update app docs with new NexusRealtime main-branch dependency notes
+8. update app docs with new NexusEngine main-branch dependency notes
 ```
 
 ---
 
 ## No ProtoKits change rule
 
-This plan intentionally avoids changes to `NexusRealtime-ProtoKits` and all other satellite repos.
+This plan intentionally avoids changes to `NexusEngine-ProtoKits` and all other satellite repos.
 
 ```txt
 Do not patch ProtoKits yet.
@@ -1369,7 +1369,7 @@ Do not update their imports yet.
 Do not create compatibility bridges in those repos yet.
 ```
 
-After the main `NexusRealtime` core-domain migration is documented and implemented, downstream repos can receive separate migration plans.
+After the main `NexusEngine` core-domain migration is documented and implemented, downstream repos can receive separate migration plans.
 
 ---
 
@@ -1466,7 +1466,7 @@ import {
   createCorePolicyKit,
   createCoreMLNNKit,
   createCoreAgentKit
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createRealtimeGame({
   kits: [

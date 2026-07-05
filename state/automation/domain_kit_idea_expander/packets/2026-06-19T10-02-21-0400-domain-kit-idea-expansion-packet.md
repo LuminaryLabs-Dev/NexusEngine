@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T10-02-21-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.

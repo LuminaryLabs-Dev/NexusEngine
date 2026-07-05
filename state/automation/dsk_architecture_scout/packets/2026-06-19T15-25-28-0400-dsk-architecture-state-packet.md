@@ -2,10 +2,10 @@
 
 ## Timestamp
 - local: 2026-06-19T15:25:28-0400
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current DSK tracker root before this run: `dsk-runtime-failure-boundary-root-2026-06-19-1424`.
@@ -23,9 +23,9 @@
 - Branch status: `current-is-latest-release-branch`.
 - Remote branches observed: `0.0.1`, `0.0.2`, `main`.
 - Required public links passed: GitHub repo, raw `0.0.2/package.json`, jsDelivr `0.0.2/src/index.js`.
-- Optional npm metadata remains 404 for `https://registry.npmjs.org/nexusrealtime`.
+- Optional npm metadata remains 404 for `https://registry.npmjs.org/nexusengine`.
 - `HEAD` and `origin/0.0.2` both resolve to `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`; ahead/behind `0 0`.
-- Package metadata is still `nexusrealtime@0.1.0` while the release branch is `0.0.2`.
+- Package metadata is still `nexusengine@0.1.0` while the release branch is `0.0.2`.
 
 ## Files inspected
 - `.agent/start-here.md`
@@ -108,7 +108,7 @@
   - Realism quality resolution falls back unknown/custom quality ids to built-in profiles (`src/realism-kit.js:170-184`).
   - Fishing content fallback can use `{}` for missing species/lures and initial fish are still created from empty datasets (`src/fishing-kit.js:27`, `src/fishing-kit.js:181-187`, `src/fishing-kit.js:683-689`, `src/fishing-kit.js:849-866`).
 - The DSK architecture implication is a boundary split:
-  - Runtime hardening fixtures belong in NexusRealtime core validation first.
+  - Runtime hardening fixtures belong in NexusEngine core validation first.
   - Experience-edge fixture rows belong downstream as domain-kit edge proof inventory.
   - Public/fetched-ref/browser proof remains a separate module-source strategy gate.
 
@@ -151,7 +151,7 @@
 - Do not promote idea docs as canonical runtime contract or implementation state.
 
 ## Suggested next review item
-- Use a non-scout lane to write the smallest executable NexusRealtime core fixture set for:
+- Use a non-scout lane to write the smallest executable NexusEngine core fixture set for:
   - `engine.n` reserved-key/null-prototype/own-property namespace policy
   - failed-install rollback or preflight retryability
   - direct install versus composer dependency parity

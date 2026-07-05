@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T04-01-35-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -69,7 +69,7 @@
 ## Ideas deferred
 - A second Runtime Identity And Lifecycle Ownership Domain was deferred because FishingKit ignored ids and preset collisions are first-party content-kit identity policy, not generic binding/ECS/SequenceNode lifecycle ownership.
 - A duplicate `content-dataset-contract-kit` was deferred because that row already owns empty or incomplete content dataset semantics; this run adds boundary, preset identity, objective threshold, and dataset validation proof rows around it.
-- A product-specific ReefRescue domain was deferred because product/theme presets should move to Experiments or ProtoKits rather than become durable NexusRealtime core domains.
+- A product-specific ReefRescue domain was deferred because product/theme presets should move to Experiments or ProtoKits rather than become durable NexusEngine core domains.
 - Implementation work, source fixes, and test fixtures were deferred because this lane is planning inventory only.
 
 ## Duplicates avoided
@@ -79,8 +79,8 @@
 - Did not duplicate `experience-edge-proof-kit`; the new proof row targets content boundary/objective proof, not AR launch fallback, quality profiles, recovery receipts, or empty content placeholders alone.
 
 ## DSK boundary notes
-- New reusable gameplay/content implementations should target NexusRealtime-ProtoKits by default.
-- NexusRealtime core involvement should be limited to public API boundary fixtures, compatibility deprecation decisions, existing core factory identity policy, or validation invariants while these exports remain in core.
+- New reusable gameplay/content implementations should target NexusEngine-ProtoKits by default.
+- NexusEngine core involvement should be limited to public API boundary fixtures, compatibility deprecation decisions, existing core factory identity policy, or validation invariants while these exports remain in core.
 - Product-specific ReefRescue content should not become a new core domain family.
 - Objective/content validation should become one proofable contract before content-driven proof routes use completion as evidence.
 

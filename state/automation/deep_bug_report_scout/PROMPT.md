@@ -2,11 +2,11 @@
 
 ```text
 GOAL:
-Build one deep, reviewable bug report packet for NexusRealtime.
+Build one deep, reviewable bug report packet for NexusEngine.
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 - Output lane: state/automation/deep_bug_report_scout/packets/
 - Knowledge node lane: state/automation/deep_bug_report_scout/knowledge_nodes/
 - Master tracker: state/automation/deep_bug_report_scout/master_deep_bug_reports.md

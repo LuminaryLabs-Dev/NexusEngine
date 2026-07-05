@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-21T19-03-16-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -89,10 +89,10 @@
 - Did not add a generic public proof row because host graph trust does not fix module-source resolution, npm metadata, Experiments route validation, targeted `engine.n.zoneField`, or public browser imports.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, `Nexus.Host` primitives, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, `Nexus.Host` primitives, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - Host graph lifecycle rows are core validation-surface inventory for the dirty `Nexus.Host` primitive plus ProtoKits proof tooling for future host adapters.
-- Browser pages, Three.js demos, product UI, public proof routes, import maps, and host-specific visual shells remain NexusRealtime-Experiments or app-owned work.
+- Browser pages, Three.js demos, product UI, public proof routes, import maps, and host-specific visual shells remain NexusEngine-Experiments or app-owned work.
 
 ## Open questions
 - Should host adapter definitions deep-freeze `provides`, `requires`, and metadata at definition time, or should host mount clone/freeze them into records?

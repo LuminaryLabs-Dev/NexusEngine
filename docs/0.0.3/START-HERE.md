@@ -1,11 +1,11 @@
-# NexusRealtime 0.0.3 Start Here
+# NexusEngine 0.0.3 Start Here
 
 This is the entry point for the core capability-domain rebuild.
 
-Read this first when updating `LuminaryLabs-Dev/NexusRealtime` or any app that consumes the `main` branch.
+Read this first when updating `LuminaryLabs-Dev/NexusEngine` or any app that consumes the `main` branch.
 
 ```txt
-NexusRealtime main rebuild
+NexusEngine main rebuild
   kernel
   contracts
   foundation
@@ -17,7 +17,7 @@ NexusRealtime main rebuild
 
 ## What is changing
 
-`NexusRealtime` is moving from a flat `src/*.js` kit surface toward broad, configurable core capability domains under `src/core-kits/`.
+`NexusEngine` is moving from a flat `src/*.js` kit surface toward broad, configurable core capability domains under `src/core-kits/`.
 
 The public target is:
 
@@ -38,10 +38,10 @@ and the rest of the core capability domain set.
 Do not patch satellite repositories in this phase:
 
 ```txt
-NexusRealtime-ProtoKits
-NexusRealtime-Experiments
-NexusRealtime-Sandbox
-NexusRealtime-KitBuilder01/02/03
+NexusEngine-ProtoKits
+NexusEngine-Experiments
+NexusEngine-Sandbox
+NexusEngine-KitBuilder01/02/03
 ```
 
 ## Read next

@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T18-00-21-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -77,10 +77,10 @@
 - Did not create narrow one-off Telemetry, RequestQueue, TransportRoute, or InputIntent domains because the cross-cutting reusable family is command/evidence ownership.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, existing core command APIs, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - The new rows are core validation-surface inventory for existing telemetry, operations, transport, and input APIs, plus ProtoKits proof tooling for future service commands.
-- New browser/playable proof routes remain NexusRealtime-Experiments work.
+- New browser/playable proof routes remain NexusEngine-Experiments work.
 
 ## Open questions
 - Should telemetry proof records clone on capture, clone on read, freeze, or use a combined clone/freeze policy?

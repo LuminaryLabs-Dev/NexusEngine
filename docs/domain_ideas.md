@@ -1,8 +1,8 @@
 # Domain Ideas
 
-This file is an expansion inventory for NexusRealtime DSK planning. It is not an implementation ledger. Add domain ideas here when a composition suggests a reusable ownership boundary that could become a Domain Service Kit.
+This file is an expansion inventory for NexusEngine DSK planning. It is not an implementation ledger. Add domain ideas here when a composition suggests a reusable ownership boundary that could become a Domain Service Kit.
 
-Implementation target: when a domain idea becomes a real reusable kit, create or refine it in `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/`. NexusRealtime core should only receive contract, runtime, composer, or validation changes that make domain kits safer to compose.
+Implementation target: when a domain idea becomes a real reusable kit, create or refine it in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/`. NexusEngine core should only receive contract, runtime, composer, or validation changes that make domain kits safer to compose.
 
 ## Domain Idea Rules
 

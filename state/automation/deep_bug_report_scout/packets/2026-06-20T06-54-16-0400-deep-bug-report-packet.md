@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T06:54:16-04:00
 
 Timestamp: 2026-06-20T06:54:16-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for procedural/navigation API state ownership
 
 ## Lane Goal

@@ -35,7 +35,7 @@
   parent: dsk-extension-service-ownership-root-2026-06-22-1819
   lesson: DSK extension contract fixes belong in core because they harden runtime primitives; new reusable gameplay/domain implementation still belongs in ProtoKits and playable/browser proof in Experiments.
   evidence: `docs/how-to-protokit.md` keeps core as runtime/DSK/composer/primitive owner, ProtoKits as reusable implementation owner, and Experiments as playable proof owner.
-  look further: Harden `extendDomainServiceKit()` and install contracts without moving proof routes or new reusable implementation into NexusRealtime core.
+  look further: Harden `extendDomainServiceKit()` and install contracts without moving proof routes or new reusable implementation into NexusEngine core.
 
 ## Related Nodes
 - source: `state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-22T06-19-35-0400-dsk-architecture-node.md`
@@ -68,7 +68,7 @@
   files or folders: `src/economy-kit.js`, `src/timing-window-kit.js`, `src/resource-pressure-kit.js`, `src/lifecycle-progression-kit.js`, `src/facility-operations-kit.js`
   question: Which command/config/read APIs should clone/freeze submitted nested data and return immutable summaries versus explicit mutable handles?
 - branch: protokits-local-vs-release-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
   question: Should DSK proof consume local ProtoKits `main`, `origin/main`, or the preflight-resolved release branch?
 - branch: module-source-proof-boundary
   files or folders: ecosystem proof/state packets, sibling ProtoKits and Experiments proof paths, public CDN/raw URLs

@@ -1,8 +1,8 @@
 # AGENTS.md
 
-This file defines how agents must work inside NexusRealtime.
+This file defines how agents must work inside NexusEngine.
 
-NexusRealtime is a realtime-first, kit-first operating system for agents and humans to compose boundless game and simulation domains through reusable, idempotent kits.
+NexusEngine is a realtime-first, kit-first operating system for agents and humans to compose boundless game and simulation domains through reusable, idempotent kits.
 
 ## Prime Directive
 
@@ -26,7 +26,7 @@ The app is not the architecture. The kit graph is the architecture.
 
 ## Repository Role
 
-This repository is the promoted NexusRealtime engine substrate.
+This repository is the promoted NexusEngine engine substrate.
 
 That means this repo owns:
 
@@ -41,7 +41,7 @@ That means this repo owns:
 - renderer-agnostic descriptors
 - validation paths for promoted behavior
 
-ProtoKits are the proving ground. NexusRealtime core is the promotion target. Do not promote unstable behavior into core just because it works in one demo.
+ProtoKits are the proving ground. NexusEngine core is the promotion target. Do not promote unstable behavior into core just because it works in one demo.
 
 ## Agent Work Loop
 
@@ -188,7 +188,7 @@ A change is not complete if the code changed but the kit graph became harder to 
 
 Promotion means a capability has become engine language.
 
-Do not promote a capability into NexusRealtime core unless it is:
+Do not promote a capability into NexusEngine core unless it is:
 
 - generic beyond one game
 - named as a domain
@@ -200,7 +200,7 @@ Do not promote a capability into NexusRealtime core unless it is:
 - documented for humans
 - readable for agents
 
-ProtoKits can move fast. NexusRealtime core must stay reconcilable.
+ProtoKits can move fast. NexusEngine core must stay reconcilable.
 
 ## Kit Anatomy
 

@@ -11,7 +11,7 @@
 - current branch is the latest release branch.
 
 ## Current branch
-- repo: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime`
+- repo: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
 - branch: `0.0.2`
 - local HEAD: `2b3b66da33a2c561f0ad901604ba09404f747a82`
 - origin/0.0.2: `2b3b66da33a2c561f0ad901604ba09404f747a82`
@@ -36,13 +36,13 @@
 - `src/index.js`
 - `src/domain-service-kit.js`
 - `tests/domain-service-kit-smoke.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/aaa-batch/host/game-registry.js`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js`
 
 ## Commands run
 - `git branch --show-current`
@@ -51,21 +51,21 @@
 - `git ls-remote --heads origin`
 - `npm run automation:preflight`
 - `npm test`
-- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits status --short --branch`
-- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments status --short --branch`
-- `node tests/dsk-first-wave.test.mjs` in `NexusRealtime-ProtoKits`
-- `node tests/dsk-first-wave-experiment-smoke.mjs` in `NexusRealtime-Experiments`
-- `node -e "import('/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/aaa-batch/host/game-registry.js')..."`
+- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits status --short --branch`
+- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments status --short --branch`
+- `node tests/dsk-first-wave.test.mjs` in `NexusEngine-ProtoKits`
+- `node tests/dsk-first-wave-experiment-smoke.mjs` in `NexusEngine-Experiments`
+- `node -e "import('/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js')..."`
 
 ## Public links checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime`: ok, 200
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json`: ok, 200
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js`: ok, 200
-- `https://registry.npmjs.org/nexusrealtime`: optional npm metadata check returned 404
+- `https://github.com/LuminaryLabs-Dev/NexusEngine`: ok, 200
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json`: ok, 200
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js`: ok, 200
+- `https://registry.npmjs.org/nexusengine`: optional npm metadata check returned 404
 - required public links ok: true
 
 ## Ecosystem state
-- Core package metadata: `name` is `nexusrealtime`, `version` is `0.1.0`, ESM package, export root points to `./src/index.js`.
+- Core package metadata: `name` is `nexusengine`, `version` is `0.1.0`, ESM package, export root points to `./src/index.js`.
 - Core scripts: `automation:preflight` and `test`.
 - Core README claims the ECS/runtime package shape, public API, DSK contract, and automation scout process.
 - Core source exports DSK APIs from `src/index.js`, implemented by `src/domain-service-kit.js`.
@@ -80,7 +80,7 @@
 ## Drift findings
 - Core branch state is clean against `origin/0.0.2` by commit, but the working tree contains existing dirty public-claim and automation files. This packet did not classify those changes as authored in this run.
 - The ecosystem proof path is not review-stable yet because both sibling repos are behind their remotes and contain untracked DSK first-wave artifacts.
-- README import examples use the `nexusrealtime` package name while npm registry metadata for that name returns 404. GitHub/raw/jsDelivr consumption is live; npm package availability is not.
+- README import examples use the `nexusengine` package name while npm registry metadata for that name returns 404. GitHub/raw/jsDelivr consumption is live; npm package availability is not.
 - The current DSK proof appears coherent locally, but the proof is distributed across core plus two dirty sibling checkouts.
 
 ## Risks
@@ -93,7 +93,7 @@
 - Public npm registry metadata is unavailable with 404; recorded as non-required public availability gap, not a broken required link.
 
 ## Suggested next review item
-- Reconcile `NexusRealtime-ProtoKits` and `NexusRealtime-Experiments` against `origin/0.0.2`, then rerun the DSK first-wave tests and decide whether the ledger/proof route are ready for canonical promotion.
+- Reconcile `NexusEngine-ProtoKits` and `NexusEngine-Experiments` against `origin/0.0.2`, then rerun the DSK first-wave tests and decide whether the ledger/proof route are ready for canonical promotion.
 
 ## Not claimed
 - This packet did not edit source, tests, package metadata, README, `memory.md`, or public claims.

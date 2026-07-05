@@ -1,0 +1,273 @@
+{
+  "schema": "nexusengine.dsk-manifest.v0.0.3",
+  "package": "nexusengine",
+  "version": "0.0.3",
+  "stability": "stable-candidate",
+  "generatedBy": "scripts/generate-dsk-manifest.mjs",
+  "domains": [
+    {
+      "id": "n-core-data-kit",
+      "domain": "core-data",
+      "provides": [
+        "n:core-data"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-data-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-persistence-kit",
+      "domain": "core-persistence",
+      "provides": [
+        "n:core-persistence"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-persistence-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-assets-kit",
+      "domain": "core-assets",
+      "provides": [
+        "n:core-assets"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-assets-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-platform-kit",
+      "domain": "core-platform",
+      "provides": [
+        "n:core-platform"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-platform-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-input-kit",
+      "domain": "core-input",
+      "provides": [
+        "n:core-input"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-input-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-spatial-kit",
+      "domain": "core-spatial",
+      "provides": [
+        "n:core-spatial"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-spatial-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-scene-kit",
+      "domain": "core-scene",
+      "provides": [
+        "n:core-scene"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-scene-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-physics-kit",
+      "domain": "core-physics",
+      "provides": [
+        "n:core-physics"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-physics-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-motion-kit",
+      "domain": "core-motion",
+      "provides": [
+        "n:core-motion"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-motion-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-simulation-kit",
+      "domain": "core-simulation",
+      "provides": [
+        "n:core-simulation"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-simulation-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-interaction-kit",
+      "domain": "core-interaction",
+      "provides": [
+        "n:core-interaction"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-interaction-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-graphics-kit",
+      "domain": "core-graphics",
+      "provides": [
+        "n:core-graphics"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-graphics-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-camera-kit",
+      "domain": "core-camera",
+      "provides": [
+        "n:core-camera"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-camera-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-animation-kit",
+      "domain": "core-animation",
+      "provides": [
+        "n:core-animation"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-animation-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-audio-kit",
+      "domain": "core-audio",
+      "provides": [
+        "n:core-audio"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-audio-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-ui-kit",
+      "domain": "core-ui",
+      "provides": [
+        "n:core-ui"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-ui-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-network-kit",
+      "domain": "core-network",
+      "provides": [
+        "n:core-network"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-network-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-diagnostics-kit",
+      "domain": "core-diagnostics",
+      "provides": [
+        "n:core-diagnostics"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-diagnostics-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-policy-kit",
+      "domain": "core-policy",
+      "provides": [
+        "n:core-policy"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-policy-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-composition-kit",
+      "domain": "core-composition",
+      "provides": [
+        "n:core-composition"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-composition-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-mlnn-kit",
+      "domain": "core-mlnn",
+      "provides": [
+        "n:core-mlnn"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-mlnn-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-agent-kit",
+      "domain": "core-agent",
+      "provides": [
+        "n:core-agent"
+      ],
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "source": "src/core-kits/core-agent-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    }
+  ]
+}

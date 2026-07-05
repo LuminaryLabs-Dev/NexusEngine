@@ -1,13 +1,13 @@
-# NexusRealtime 0.0.3 Release Hardening Plan
+# NexusEngine 0.0.3 Release Hardening Plan
 
 ## Release status
 
-`0.0.3` is a release-hardening branch. It is not the final `stable/0.0.3` branch until the release gate passes.
+`0.0.3` is the release-hardening branch for NexusEngine Core v0.0.3.
 
 ## Release branch
 
 ```txt
-release/0.0.3-upgrade
+0.0.3
 ```
 
 ## Scope
@@ -35,7 +35,7 @@ See `docs/API_SURFACE_0.0.3.md`.
 
 See `docs/KIT_STATUS_0.0.3.md`.
 
-## Required commands before stable branch
+## Required release-gate commands
 
 ```bash
 npm test
@@ -43,9 +43,9 @@ npm run test:release
 npm run release:manifest
 ```
 
-## Stable branch rule
+## Release gate rule
 
-Do not cut `stable/0.0.3` until:
+Do not call v0.0.3 released until:
 
 ```txt
 all release tests pass
@@ -59,4 +59,4 @@ release gate report is recorded
 
 ## Direct outcome
 
-When this branch passes the gate, NexusRealtime core can be consumed as the 0.0.3 runtime substrate for stable kits and ProtoKits compatibility work.
+When this branch passes the gate, NexusEngine core can be consumed as the 0.0.3 runtime substrate for stable kits and ProtoKits compatibility work.

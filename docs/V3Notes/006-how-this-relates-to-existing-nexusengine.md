@@ -1,13 +1,13 @@
-# 006: How This Relates To Existing NexusRealtime
+# 006: How This Relates To Existing NexusEngine
 
-These notes do not require NexusRealtime runtime changes.
+These notes do not require NexusEngine runtime changes.
 
-They describe a future authoring style for domain-based kit ecosystems that can sit around NexusRealtime.
+They describe a future authoring style for domain-based kit ecosystems that can sit around NexusEngine.
 
 ## What stays true
 
 ```txt
-Existing NexusRealtime behavior remains valid.
+Existing NexusEngine behavior remains valid.
 Existing kit loading and host patterns remain valid.
 Existing package exports remain valid.
 Existing runtime code does not need to change because of these notes.
@@ -28,7 +28,7 @@ kit graph inspection
 
 ## Why document this here
 
-NexusRealtime is the foundation that many domain kits can compose around.
+NexusEngine is the foundation that many domain kits can compose around.
 
 Documenting target authoring shapes here gives future agents a shared vocabulary before new kit repos or KitBuilder-generated products are created.
 
@@ -36,7 +36,7 @@ Documenting target authoring shapes here gives future agents a shared vocabulary
 
 `kit.json` is proposed authoring metadata.
 
-It is not a current NexusRealtime runtime requirement.
+It is not a current NexusEngine runtime requirement.
 
 A future KitBuilder or authoring tool may use it to generate release manifests, registries, docs, or promotion notes.
 

@@ -2,8 +2,8 @@ import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 import {
-  NEXUS_REALTIME_VERSION,
-  NEXUS_REALTIME_STABILITY
+  NEXUS_ENGINE_VERSION,
+  NEXUS_ENGINE_STABILITY
 } from "../src/release.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -35,17 +35,17 @@ const coreDomains = [
 ];
 
 const manifest = {
-  schema: "nexusrealtime.dsk-manifest.v0.0.3",
-  package: "nexusrealtime",
-  version: NEXUS_REALTIME_VERSION,
-  stability: NEXUS_REALTIME_STABILITY,
+  schema: "nexusengine.dsk-manifest.v0.0.3",
+  package: "nexusengine",
+  version: NEXUS_ENGINE_VERSION,
+  stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
   domains: coreDomains.map((domain) => ({
     id: `n-${domain}-kit`,
     domain,
     provides: [`n:${domain}`],
     stability: "stable-candidate",
-    version: NEXUS_REALTIME_VERSION,
+    version: NEXUS_ENGINE_VERSION,
     source: `src/core-kits/${domain}-kit/index.js`,
     snapshot: "required",
     reset: "required"

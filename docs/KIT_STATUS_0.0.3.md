@@ -1,10 +1,10 @@
-# NexusRealtime Kit Status 0.0.3
+# NexusEngine Kit Status 0.0.3
 
 ## Status taxonomy
 
 | Status | Meaning |
 |---|---|
-| `stable-core` | Runtime substrate or contract surface that belongs in `nexusrealtime` core. |
+| `stable-core` | Runtime substrate or contract surface that belongs in `nexusengine` core. |
 | `stable-candidate` | Core capability kit using the 0.0.3 DSK/core-capability contract. |
 | `stable-compat` | Export preserved for compatibility but not yet upgraded to a manifest-grade 0.0.3 kit. |
 | `adapter-host` | Host, renderer, platform, AR/XR, shader, or presentation-facing surface. |

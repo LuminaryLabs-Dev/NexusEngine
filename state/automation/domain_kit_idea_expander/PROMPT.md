@@ -2,11 +2,11 @@
 
 ```text
 GOAL:
-Expand NexusRealtime domain and kit idea inventories from described examples and automation packet evidence.
+Expand NexusEngine domain and kit idea inventories from described examples and automation packet evidence.
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 - Primary docs:
   - docs/described_examples.md
   - docs/domain_ideas.md
@@ -40,8 +40,8 @@ HARD BOUNDARIES:
 - Do not implement kits.
 - Do not create new tests.
 - Do not promote ideas to core or ProtoKits.
-- Treat every new reusable kit idea as targeting NexusRealtime-ProtoKits by default, not NexusRealtime core.
-- Recommend NexusRealtime core changes only for runtime primitives, DSK invariants, composer behavior, or validation surfaces.
+- Treat every new reusable kit idea as targeting NexusEngine-ProtoKits by default, not NexusEngine core.
+- Recommend NexusEngine core changes only for runtime primitives, DSK invariants, composer behavior, or validation surfaces.
 - Do not remove existing ideas unless they are exact duplicates or clearly obsolete.
 - Do not turn weak single-use ideas into durable domains; place them in the packet as candidates instead.
 - Keep all additions generic, product-neutral, service-oriented, and DSK-compatible.
@@ -49,7 +49,7 @@ HARD BOUNDARIES:
 EXPANSION RULES:
 - Domains must own state, lifecycle, service contract, and path ownership.
 - Kits must declare likely owns/provides/requires/used-by.
-- Kits must declare likely target repo: normally NexusRealtime-ProtoKits; only core when the idea is a runtime primitive or DSK contract concern.
+- Kits must declare likely target repo: normally NexusEngine-ProtoKits; only core when the idea is a runtime primitive or DSK contract concern.
 - Prefer domain families over one-off product ideas.
 - Every new idea should explain why it helps long-term composability.
 - Mark uncertain ideas as candidates, not accepted durable ideas.

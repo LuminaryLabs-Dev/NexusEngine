@@ -24,7 +24,7 @@
 - id: dsk-module-source-regression-separate-2026-06-20-0223
   parent: dsk-composition-proof-ownership-root-2026-06-20-0223
   lesson: Local/fetched/public DSK proof regression is now a shared module-source blocker, not DSK runtime hardening evidence.
-  evidence: Ecosystem state/proof nodes `2026-06-20T01-59-37-0400` and `2026-06-20T01-59-45-0400` show local ProtoKits/Experiments targeted proof fails on unresolved package `nexusrealtime`, fetched Experiments targeted proof fails on sibling path assumptions, public browser proof remains stuck at `Booting...`, and npm metadata remains 404.
+  evidence: Ecosystem state/proof nodes `2026-06-20T01-59-37-0400` and `2026-06-20T01-59-45-0400` show local ProtoKits/Experiments targeted proof fails on unresolved package `nexusengine`, fetched Experiments targeted proof fails on sibling path assumptions, public browser proof remains stuck at `Booting...`, and npm metadata remains 404.
   look further: Let ecosystem/proof lanes choose one package/workspace/CDN/same-origin/build-step import-map model.
 - id: dsk-core-boundary-preserved-2026-06-20-0223
   parent: dsk-composition-proof-ownership-root-2026-06-20-0223

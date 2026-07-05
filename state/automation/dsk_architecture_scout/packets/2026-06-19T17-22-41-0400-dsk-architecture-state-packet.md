@@ -2,10 +2,10 @@
 
 ## Timestamp
 - local: 2026-06-19T17:22:41-0400
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current DSK tracker root before this run: `dsk-layered-fixture-queue-root-2026-06-19-1623`.
@@ -22,9 +22,9 @@
 - Branch status: `current-is-latest-release-branch`.
 - Remote branches observed: `0.0.1`, `0.0.2`, `main`.
 - Required public links passed: GitHub repo, raw `0.0.2/package.json`, jsDelivr `0.0.2/src/index.js`.
-- Optional npm metadata remains 404 for `https://registry.npmjs.org/nexusrealtime`.
+- Optional npm metadata remains 404 for `https://registry.npmjs.org/nexusengine`.
 - `HEAD` and `origin/0.0.2` both resolve to `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`; ahead/behind `0 0`.
-- Package metadata remains `nexusrealtime@0.1.0` while latest release branch is `0.0.2`.
+- Package metadata remains `nexusengine@0.1.0` while latest release branch is `0.0.2`.
 
 ## Files inspected
 - `.agent/start-here.md`

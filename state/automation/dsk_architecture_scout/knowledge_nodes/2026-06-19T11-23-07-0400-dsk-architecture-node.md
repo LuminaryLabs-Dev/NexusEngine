@@ -60,7 +60,7 @@
   files or folders: `src/forest-placement-kit.js`, `src/interaction-kit.js`, `src/shrine-puzzle-kit.js`, `src/light-combat-kit.js`, `src/scenario-driver-kit.js`, `src/camera-occlusion-kit.js`
   question: Which invalidation, action-repeat, transition, coordinate, and derived-state rows should join DSK promotion coverage first?
 - branch: proof-boundary separation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, public raw/CDN/GitHub Pages URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, public raw/CDN/GitHub Pages URLs
   question: Which evidence belongs to core runtime hardening versus Experiments latest-ref validation, public browser proof, aggregate proof, and distribution proof?
 
 ## Not Claimed

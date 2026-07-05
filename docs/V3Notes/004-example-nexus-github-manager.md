@@ -2,7 +2,7 @@
 
 This is an example of a product-shaped domain-kit ecosystem around a GitHub management product.
 
-It is not a required NexusRealtime repo shape.
+It is not a required NexusEngine repo shape.
 
 It is an example of how a future app, core package, and kit set could be organized.
 

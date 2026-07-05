@@ -43,12 +43,12 @@ Passed 18 smoke tests.
 ## Migration verification for downstream apps
 
 ```txt
-1. Pull latest NexusRealtime main.
+1. Pull latest NexusEngine main.
 2. Search for old imports:
    grep -R "createInputIntentKit\|createRenderDescriptorKit\|createTelemetryKit" src apps examples
 3. Update imports using docs/0.0.3/IMPORT-MIGRATION-MAP.md.
 4. Prefer piece imports when the app only needs a primitive:
-   nexusrealtime/core-kits/core-simulation-kit
+   nexusengine/core-kits/core-simulation-kit
 5. Run the downstream app smoke command.
 6. Record failures in the app migration issue.
 ```
@@ -71,4 +71,4 @@ Missing config field:
 
 ## Rule
 
-Do not remove compatibility until this doc has been used to verify both NexusRealtime and at least one downstream app migration path.
+Do not remove compatibility until this doc has been used to verify both NexusEngine and at least one downstream app migration path.

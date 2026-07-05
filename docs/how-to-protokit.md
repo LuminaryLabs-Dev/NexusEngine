@@ -1,15 +1,15 @@
 # How To ProtoKit
 
-This document explains how new reusable kit work should flow across the NexusRealtime ecosystem. For playable proof routes that compose these kits into browser scenes, also read [how-to-experiment.md](how-to-experiment.md), [protokit-boundaries.md](protokit-boundaries.md), and [protokit-experiment-loop.md](protokit-experiment-loop.md).
+This document explains how new reusable kit work should flow across the NexusEngine ecosystem. For playable proof routes that compose these kits into browser scenes, also read [how-to-experiment.md](how-to-experiment.md), [protokit-boundaries.md](protokit-boundaries.md), and [protokit-experiment-loop.md](protokit-experiment-loop.md).
 
 ## Meaning
 
-When we say "do not build kits into NexusRealtime," we mean:
+When we say "do not build kits into NexusEngine," we mean:
 
 ```txt
-NexusRealtime core = runtime, ECS, scheduler, DSK contract, composer, stable primitives
-NexusRealtime-ProtoKits = new reusable domain kits and experimental service kits
-NexusRealtime-Experiments = playable proof that composes kits into games
+NexusEngine core = runtime, ECS, scheduler, DSK contract, composer, stable primitives
+NexusEngine-ProtoKits = new reusable domain kits and experimental service kits
+NexusEngine-Experiments = playable proof that composes kits into games
 ```
 
 Core should not become a dumping ground for every new gameplay, rendering, world, simulation, or interaction kit. Core owns the stable contract that lets kits exist. ProtoKits owns the growing library of reusable kits.
@@ -17,7 +17,7 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 ## Repo Layout
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine
 |-- src/
 |   |-- domain-service-kit.js
 |   |-- runtime-kit.js
@@ -31,7 +31,7 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 `-- state/automation/
     `-- packets, trackers, and knowledge nodes
 
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits
 |-- protokits/
 |   |-- <new-kit-name>/
 |   |   |-- index.js
@@ -46,16 +46,16 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 |-- package.json
 `-- tests/
 
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments
 `-- experiments that prove kit compositions in playable/browser form
 ```
 
 ## Core Rule
 
 ```txt
-If it is a new reusable kit, build it in NexusRealtime-ProtoKits.
-If it is a playable proof, build it in NexusRealtime-Experiments.
-If it is a runtime contract, validation invariant, scheduler, ECS, or DSK primitive, build it in NexusRealtime core.
+If it is a new reusable kit, build it in NexusEngine-ProtoKits.
+If it is a playable proof, build it in NexusEngine-Experiments.
+If it is a runtime contract, validation invariant, scheduler, ECS, or DSK primitive, build it in NexusEngine core.
 ```
 
 ## What Belongs In Core
@@ -114,14 +114,14 @@ experiments/large-terrain-streaming-world/
 ## ProtoKit Creation Flow
 
 ```txt
-1. Read NexusRealtime docs:
+1. Read NexusEngine docs:
    - docs/described_examples.md
    - docs/domain_ideas.md
    - docs/kits_ideas.md
    - docs/how-to-protokit.md
 
-2. Move to NexusRealtime-ProtoKits:
-   - cd /Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits
+2. Move to NexusEngine-ProtoKits:
+   - cd /Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits
 
 3. Read ProtoKits docs:
    - docs/DSM-START-HERE.md
@@ -156,7 +156,7 @@ Target direct-import shape:
 ```js
 import {
   defineDomainServiceKit
-} from "nexusrealtime";
+} from "nexusengine";
 
 export function createNWorldSpaceKit(config = {}) {
   return defineDomainServiceKit({
@@ -206,16 +206,16 @@ Do not add `createFishTankWorldKit()` to core.
 Add reusable kits in ProtoKits:
 
 ```txt
-NexusRealtime-ProtoKits/protokits/world-space-kit/
-NexusRealtime-ProtoKits/protokits/water-volume-kit/
-NexusRealtime-ProtoKits/protokits/glass-boundary-kit/
-NexusRealtime-ProtoKits/protokits/fish-school-kit/
+NexusEngine-ProtoKits/protokits/world-space-kit/
+NexusEngine-ProtoKits/protokits/water-volume-kit/
+NexusEngine-ProtoKits/protokits/glass-boundary-kit/
+NexusEngine-ProtoKits/protokits/fish-school-kit/
 ```
 
 Then prove them in Experiments:
 
 ```txt
-NexusRealtime-Experiments/experiments/fish-tank-contained-world/
+NexusEngine-Experiments/experiments/fish-tank-contained-world/
 ```
 
 ### Example 2: Small Open World Needs Edge Collision
@@ -281,7 +281,7 @@ A ProtoKit should move into core only when it is a true runtime primitive or sta
 
 ```txt
 New kit idea -> docs/kits_ideas.md
-New reusable implementation -> NexusRealtime-ProtoKits/protokits/
-New playable proof -> NexusRealtime-Experiments/experiments/
-New runtime invariant -> NexusRealtime/src/ or tests/
+New reusable implementation -> NexusEngine-ProtoKits/protokits/
+New playable proof -> NexusEngine-Experiments/experiments/
+New runtime invariant -> NexusEngine/src/ or tests/
 ```

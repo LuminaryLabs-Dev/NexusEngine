@@ -19,12 +19,12 @@
 - id: ecosystem-proof-009-c
   parent: ecosystem-proof-009
   lesson: Public DSK proof remains human-visible stuck at `Booting...`.
-  evidence: Playwright opened `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`; body text and `#proof-status` remained `Booting...`; console/request evidence showed 404s for sibling NexusRealtime and ProtoKits module paths.
+  evidence: Playwright opened `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`; body text and `#proof-status` remained `Booting...`; console/request evidence showed 404s for sibling NexusEngine and ProtoKits module paths.
   look further: Do not treat HTTP 200 on the route as browser-complete proof.
 - id: ecosystem-proof-009-d
   parent: ecosystem-proof-009
   lesson: The public proof import shape still targets sibling GitHub Pages paths that are not deployed.
-  evidence: Fetched `origin/0.0.2` proof HTML maps `nexusrealtime` to `../../../NexusRealtime/src/index.js`; `src/proof.js` imports sibling `NexusRealtime` and `NexusRealtime-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
+  evidence: Fetched `origin/0.0.2` proof HTML maps `nexusengine` to `../../../NexusEngine/src/index.js`; `src/proof.js` imports sibling `NexusEngine` and `NexusEngine-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map.
 - id: ecosystem-proof-009-e
   parent: ecosystem-proof-009
@@ -66,13 +66,13 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: expanded-protokits-public-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/fluid-water-lab`, public routes
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/fluid-water-lab`, public routes
   question: Which expanded fluid/water/domain surfaces need browser-complete proof after first-wave public loading works?
 - branch: dsk-hardening-proof-separation
   files or folders: `src/domain-service-kit.js`, `src/runtime-kit.js`, selected domain kits, sibling proof routes
@@ -81,7 +81,7 @@
   files or folders: `src/timing-window-kit.js`, `src/interaction-target-kit.js`, `src/collectible-kit.js`, `src/request-fulfillment-kit.js`, proof fixtures
   question: Which receipt identity, event idempotency, claim policy, and request identity rows must pass before broad service promotion?
 - branch: generated-flat-route-cleanliness
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
   question: Should route generation be made idempotent against tracked formatting or paired with an explicit cleanup command?
 
 ## Not Claimed

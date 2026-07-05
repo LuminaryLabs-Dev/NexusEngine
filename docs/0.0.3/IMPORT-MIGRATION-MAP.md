@@ -6,54 +6,54 @@ This file maps old flat imports to new core capability-domain imports.
 
 ```txt
 createInputIntentKit
-  old: import { createInputIntentKit } from "nexusrealtime"
-  new: import { createCoreInputKit } from "nexusrealtime"
+  old: import { createInputIntentKit } from "nexusengine"
+  new: import { createCoreInputKit } from "nexusengine"
 
 createRenderDescriptorKit
-  old: import { createRenderDescriptorKit } from "nexusrealtime"
-  new: import { createCoreGraphicsKit } from "nexusrealtime"
+  old: import { createRenderDescriptorKit } from "nexusengine"
+  new: import { createCoreGraphicsKit } from "nexusengine"
 
 createInteractionTargetKit
-  old: import { createInteractionTargetKit } from "nexusrealtime"
-  new: import { createCoreInteractionKit } from "nexusrealtime"
+  old: import { createInteractionTargetKit } from "nexusengine"
+  new: import { createCoreInteractionKit } from "nexusengine"
 
 createTimingWindowKit
-  old: import { createTimingWindowKit } from "nexusrealtime"
-  new: import { createCoreSimulationKit } from "nexusrealtime"
+  old: import { createTimingWindowKit } from "nexusengine"
+  new: import { createCoreSimulationKit } from "nexusengine"
 
 createResourcePressureKit
-  old: import { createResourcePressureKit } from "nexusrealtime"
-  new: import { createCoreSimulationKit } from "nexusrealtime"
+  old: import { createResourcePressureKit } from "nexusengine"
+  new: import { createCoreSimulationKit } from "nexusengine"
 
 createObjectiveFlowKit
-  old: import { createObjectiveFlowKit } from "nexusrealtime"
-  new: import { createCoreSimulationKit } from "nexusrealtime"
+  old: import { createObjectiveFlowKit } from "nexusengine"
+  new: import { createCoreSimulationKit } from "nexusengine"
 
 createTelemetryKit
-  old: import { createTelemetryKit } from "nexusrealtime"
-  new: import { createCoreDiagnosticsKit } from "nexusrealtime"
+  old: import { createTelemetryKit } from "nexusengine"
+  new: import { createCoreDiagnosticsKit } from "nexusengine"
 ```
 
 ## Piece import map
 
 ```txt
 Resource meters / pressure / timers
-  new: import { createResourceMeter, createPressureChannel, createProgressTimer } from "nexusrealtime/core-kits/core-simulation-kit"
+  new: import { createResourceMeter, createPressureChannel, createProgressTimer } from "nexusengine/core-kits/core-simulation-kit"
 
 Input pieces
-  new: import { createInputActionMap, createInputBindings, normalizeInputIntent } from "nexusrealtime/core-kits/core-input-kit"
+  new: import { createInputActionMap, createInputBindings, normalizeInputIntent } from "nexusengine/core-kits/core-input-kit"
 
 Graphics pieces
-  new: import { createRenderDescriptor, createMaterialDescriptor, createLightingDescriptor } from "nexusrealtime/core-kits/core-graphics-kit"
+  new: import { createRenderDescriptor, createMaterialDescriptor, createLightingDescriptor } from "nexusengine/core-kits/core-graphics-kit"
 
 Interaction pieces
-  new: import { createInteractionTarget, createAffordanceState, createInteractionPrompt } from "nexusrealtime/core-kits/core-interaction-kit"
+  new: import { createInteractionTarget, createAffordanceState, createInteractionPrompt } from "nexusengine/core-kits/core-interaction-kit"
 
 MLNN pieces
-  new: import { createModelRegistry, createInferenceRequest, createMockModelAdapter } from "nexusrealtime/core-kits/core-mlnn-kit"
+  new: import { createModelRegistry, createInferenceRequest, createMockModelAdapter } from "nexusengine/core-kits/core-mlnn-kit"
 
 Agent pieces
-  new: import { createAgentState, createAgentObservation, createActionProposal } from "nexusrealtime/core-kits/core-agent-kit"
+  new: import { createAgentState, createAgentObservation, createActionProposal } from "nexusengine/core-kits/core-agent-kit"
 ```
 
 ## Engine namespace map

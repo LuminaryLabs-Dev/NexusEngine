@@ -2,11 +2,11 @@
 
 ```text
 GOAL:
-Build one reviewable DSK architecture state packet for long-term NexusRealtime production viability.
+Build one reviewable DSK architecture state packet for long-term NexusEngine production viability.
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 - Output lane: state/automation/dsk_architecture_scout/packets/
 - Knowledge node lane: state/automation/dsk_architecture_scout/knowledge_nodes/
 - Master tracker: state/automation/dsk_architecture_scout/master_dsk_architecture.md

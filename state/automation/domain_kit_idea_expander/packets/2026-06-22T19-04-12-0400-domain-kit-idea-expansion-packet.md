@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-22T19-04-12-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -84,10 +84,10 @@
 - Did not create another proof/readiness row for package resolution, npm, browser imports, Experiments route naming, or targeted `engine.n.zoneField` because host state ownership does not fix distribution proof.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer primitives, `Nexus.Host` primitives, and validation surfaces.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer primitives, `Nexus.Host` primitives, and validation surfaces.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - Host Public State Ownership is core validation-surface inventory because it concerns the host graph primitive and proof surface trust.
-- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusRealtime-Experiments or app-owned work.
+- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusEngine-Experiments or app-owned work.
 
 ## Open questions
 - Should root host `provides` be immutable after creation, or should capability edits go through explicit lifecycle APIs that revalidate mounted adapters?

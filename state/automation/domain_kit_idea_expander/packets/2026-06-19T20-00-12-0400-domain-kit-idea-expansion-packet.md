@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T20-00-12-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -86,7 +86,7 @@
 - Did not duplicate `service-registry-kit`; `legacy-sequence-owning-kit-context-kit` narrows to sequence controller resource/invoke lookup across installed kits.
 
 ## DSK boundary notes
-- These rows are NexusRealtime core validation-surface inventory because the fresh evidence is in exported core compatibility/browser primitives: `src/sequences.js`, `src/runtime-kit.js`, `src/fishing-kit.js`, and `src/ar-renderer.js`.
+- These rows are NexusEngine core validation-surface inventory because the fresh evidence is in exported core compatibility/browser primitives: `src/sequences.js`, `src/runtime-kit.js`, `src/fishing-kit.js`, and `src/ar-renderer.js`.
 - The new rows do not imply new reusable gameplay kits; they define validation boundaries for existing exported surfaces.
 - ProtoKits and Experiments may consume the guarantees later, but implementation belongs in core only if a non-scout lane hardens legacy sequence behavior or AR default renderer safety.
 - Public module-source strategy remains separate; fixing browser import paths would not prove legacy replay, multi-kit lookup, or AR text-safety semantics.

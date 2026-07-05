@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-23T19:00:40-04:00
 
 Timestamp: 2026-06-23T19:00:40-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for `defineRuntimeKit()` nested definition immutability and composition token trust
 
 ## Lane Goal

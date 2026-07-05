@@ -1,8 +1,8 @@
 # Ecosystem Proof State Packet
 
 Timestamp: 2026-06-19T06:46:32-0400
-Automation: Nexus Realtime: Ecosystem Proof State Packet
-Scope: NexusRealtime core, NexusRealtime-ProtoKits, NexusRealtime-Experiments
+Automation: Nexus Engine: Ecosystem Proof State Packet
+Scope: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 Result: partial; core is release-aligned and available-checkout validation passes across all three repos, but sibling local checkouts remain behind fetched `origin/0.0.2`, the public DSK browser proof still stalls at `Booting...`, and aggregate DSK proof coverage remains incomplete.
 
 ## Lane Goal
@@ -19,21 +19,21 @@ Result: partial; core is release-aligned and available-checkout validation passe
 
 ## Latest branch
 - `npm run automation:preflight` resolved `latestReleaseBranch: 0.0.2`.
-- NexusRealtime local branch `0.0.2` at `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`, matching `origin/0.0.2`; ahead/behind `0/0`.
+- NexusEngine local branch `0.0.2` at `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`, matching `origin/0.0.2`; ahead/behind `0/0`.
 - ProtoKits local branch `0.0.2` at `8c1c933e5dc21cab0579dc3ae806341413f18b00`; fetched `origin/0.0.2` is `40d70b93bef6a0e88dadc48067aa4fd2844284f8`; local is behind by 22 commits.
 - Experiments local branch `0.0.2` at `b4d48101ec599ae9ca2998734040874f377c8108`; fetched `origin/0.0.2` is `6d90b9b01a5aeac0209a2c8f2ce30f670be92a9f`; local is behind by 33 commits.
-- Core package metadata remains `nexusrealtime@0.1.0` locally and on raw public branch `0.0.2`.
-- Worktree note: NexusRealtime had pre-existing modified/untracked automation/doc state before this run. ProtoKits and Experiments status output showed only behind status, not local modified/untracked files. No pull, reset, rebase, merge, deployment, or source edit was performed from this lane.
+- Core package metadata remains `nexusengine@0.1.0` locally and on raw public branch `0.0.2`.
+- Worktree note: NexusEngine had pre-existing modified/untracked automation/doc state before this run. ProtoKits and Experiments status output showed only behind status, not local modified/untracked files. No pull, reset, rebase, merge, deployment, or source edit was performed from this lane.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
+- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
 
 ## Commands run
-- NexusRealtime: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
-- NexusRealtime/ProtoKits/Experiments: `git fetch --prune origin`, `git status --short --branch`, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`, `git rev-list --left-right --count HEAD...origin/0.0.2`.
-- NexusRealtime: `npm test` -> passed 8 smoke tests.
+- NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
+- NexusEngine/ProtoKits/Experiments: `git fetch --prune origin`, `git status --short --branch`, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`, `git rev-list --left-right --count HEAD...origin/0.0.2`.
+- NexusEngine: `npm test` -> passed 8 smoke tests.
 - ProtoKits available checkout: `npm run check` -> passed syntax check, import smoke, and listed test chain; targeted `node tests/dsk-first-wave.test.mjs` -> passed.
 - Experiments available checkout: `npm run check` -> passed the local listed smoke chain with existing static smoke warnings; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> passed.
 - Fetched ref inspection: `git show origin/0.0.2:...` for Experiments DSK proof files/package script and ProtoKits DSK ledger/domain-service-kits.
@@ -42,20 +42,20 @@ Result: partial; core is release-aligned and available-checkout validation passe
 - Targeted `rg` scans checked DSK aliases, `engine.n.*`, import maps, stale public pins, proof routes, package scripts, idea docs, and proof coverage.
 
 ## Public links checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> 200 by preflight.
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> 200 by preflight; package is `nexusrealtime@0.1.0`.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> 200 by preflight.
-- `https://registry.npmjs.org/nexusrealtime` -> 404; optional preflight link.
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl, but Playwright-visible proof remains stuck at `Booting...`.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200.
-- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusRealtime-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusRealtime-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200.
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> 200 by preflight.
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> 200 by preflight; package is `nexusengine@0.1.0`.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> 200 by preflight.
+- `https://registry.npmjs.org/nexusengine` -> 404; optional preflight link.
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` -> 200 by curl, but Playwright-visible proof remains stuck at `Booting...`.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/index.html` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-Experiments/0.0.2/experiments/dsk-first-wave-proof/src/proof.js` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/docs/DSK-FIRST-WAVE-LEDGER.md` -> 200.
+- `https://raw.githubusercontent.com/LuminaryLabs-Agents/NexusEngine-ProtoKits/0.0.2/protokits/nexus-dsk-adapter/index.js` -> 200.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusEngine-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200.
 - Public proof runtime dependency paths still fail:
-  - `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js` -> 404.
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js` -> 404.
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js` -> 404.
+  - `https://luminarylabs-agents.github.io/NexusEngine/src/index.js` -> 404.
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js` -> 404.
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js` -> 404.
 
 ## ProtoKits migration state
 - Public raw `0.0.2` still includes `docs/DSK-FIRST-WAVE-LEDGER.md`.
@@ -67,16 +67,16 @@ Result: partial; core is release-aligned and available-checkout validation passe
 
 ## Experiment proof state
 - Public raw `0.0.2` still includes `experiments/dsk-first-wave-proof/index.html` and `src/proof.js`.
-- Fetched `origin/0.0.2` `index.html` still maps bare `nexusrealtime` to `../../../NexusRealtime/src/index.js`.
-- Fetched `origin/0.0.2` `src/proof.js` still imports `../../../../NexusRealtime/src/index.js`, `../../../../NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `../../../../NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`.
+- Fetched `origin/0.0.2` `index.html` still maps bare `nexusengine` to `../../../NexusEngine/src/index.js`.
+- Fetched `origin/0.0.2` `src/proof.js` still imports `../../../../NexusEngine/src/index.js`, `../../../../NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `../../../../NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`.
 - Targeted local smoke `node tests/dsk-first-wave-experiment-smoke.mjs` passed.
 - Available-checkout `npm run check` passed, but it was run against the local behind checkout.
 - Available-checkout `npm run check` and fetched `origin/0.0.2` `check` both still omit `tests/dsk-first-wave-experiment-smoke.mjs`.
 - Public route human-view result: a reviewer sees the heading, description, and `Booting...`; the proof never reaches JSON output.
 - Playwright console evidence shows 404s for:
-  - `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`
 
 ## Domain and kit proof coverage
 - Current public proof route still only attempts first-wave DSK service APIs: `zoneField`, `scanSurvey`, `routeCheckpoint`, `resourcePressure`, `hazardDirector`, and `completionLedger`.
@@ -95,7 +95,7 @@ Result: partial; core is release-aligned and available-checkout validation passe
 - Public DSK proof route remains HTTP-visible but runtime-broken because browser imports resolve to missing sibling GitHub Pages paths.
 - Optional npm package metadata still returns 404, so npm consumption remains unproved.
 - Experiments still contains stale or non-latest CDN pins including `@0.0.1` and `@main` across next-ledge, signal-bastion, high-fidelity meadow, path-meadow, zombie-orchard, fogline, and open-above surfaces.
-- ProtoKits README/apps still contain `@main` NexusRealtime/ProtoKits consumption examples.
+- ProtoKits README/apps still contain `@main` NexusEngine/ProtoKits consumption examples.
 - Available-checkout and fetched Experiments aggregate `check` still omit the DSK first-wave smoke even though the targeted smoke exists and passes locally.
 - Local sibling checkouts are behind fetched `origin/0.0.2`, so available local check pass and latest remote release-ref state are separate claims.
 - Release branch `0.0.2` continues to serve package metadata version `0.1.0`.
@@ -111,7 +111,7 @@ Result: partial; core is release-aligned and available-checkout validation passe
 
 ## Blockers
 - Fast-forward or separately validate the local ProtoKits and Experiments checkouts against fetched `origin/0.0.2` before claiming latest sibling release-ref validation.
-- The public DSK proof route must load NexusRealtime and ProtoKits from public-safe URLs, same-origin deployed assets, or a build-step import map before a public browser proof can be claimed.
+- The public DSK proof route must load NexusEngine and ProtoKits from public-safe URLs, same-origin deployed assets, or a build-step import map before a public browser proof can be claimed.
 - DSK first-wave smoke should be included in an aggregate Experiments validation path or explicitly documented as a required targeted proof command before reviewers rely on `npm run check` for DSK coverage.
 - Scout lane rules did not allow source fixes, publishing, package metadata edits, public claim edits, new tests, or pulling/merging sibling branches.
 

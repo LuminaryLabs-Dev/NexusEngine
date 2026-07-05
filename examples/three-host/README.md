@@ -1,6 +1,6 @@
 # Three Host Descriptor Example
 
-This example is an additive proof for the ideal `Nexus.Host` direction. It does not change NexusRealtime core, package exports, tests, or existing examples.
+This example is an additive proof for the ideal `Nexus.Host` direction. It does not change NexusEngine core, package exports, tests, or existing examples.
 
 ## Purpose
 
@@ -42,14 +42,14 @@ index.html
 ## Run
 
 ```bash
-cd /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+cd /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 node examples/three-host/descriptor-snapshot.mjs
 ```
 
 Open the browser proof:
 
 ```text
-/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/examples/three-host/index.html
+/Users/crimsonwheeler/Documents/GitHub/NexusEngine/examples/three-host/index.html
 ```
 
 If a browser blocks local module imports from `file://`, serve the repo with any local static server and open:

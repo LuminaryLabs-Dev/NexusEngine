@@ -2,11 +2,11 @@
 
 ```text
 GOAL:
-Audit NexusRealtime public consumption paths: GitHub branches, raw source URLs, CDN import-map URLs, package metadata, README claims, and sibling experiment links.
+Audit NexusEngine public consumption paths: GitHub branches, raw source URLs, CDN import-map URLs, package metadata, README claims, and sibling experiment links.
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusRealtime
+- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
 - Output lane: state/automation/public_link_scout/reports/
 - Knowledge node lane: state/automation/public_link_scout/knowledge_nodes/
 - Master tracker: state/automation/public_link_scout/master_public_links.md

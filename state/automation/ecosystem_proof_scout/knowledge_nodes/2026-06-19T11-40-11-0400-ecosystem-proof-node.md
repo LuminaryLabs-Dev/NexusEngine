@@ -24,18 +24,18 @@
 - id: ecosystem-proof-013-d
   parent: ecosystem-proof-013
   lesson: Public DSK proof remains HTTP-visible but browser-stuck at `Booting...`.
-  evidence: Curl returned 200 for the route; Playwright snapshot showed heading `DSK first-wave proof` plus `Booting...`; console and network output showed 404s for `NexusRealtime/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
+  evidence: Curl returned 200 for the route; Playwright snapshot showed heading `DSK first-wave proof` plus `Booting...`; console and network output showed 404s for `NexusEngine/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
   look further: Do not treat HTTP 200 on the route as browser-complete proof.
 - id: ecosystem-proof-013-e
   parent: ecosystem-proof-013
   lesson: The public proof import shape still targets sibling GitHub Pages paths that are not deployed.
-  evidence: Local and fetched proof HTML map `nexusrealtime` to `../../../NexusRealtime/src/index.js`; proof module imports sibling `NexusRealtime` and `NexusRealtime-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
+  evidence: Local and fetched proof HTML map `nexusengine` to `../../../NexusEngine/src/index.js`; proof module imports sibling `NexusEngine` and `NexusEngine-ProtoKits` relative paths; direct curls returned 404 for those deployed URLs.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step import map.
 - id: ecosystem-proof-013-f
   parent: ecosystem-proof-013
   lesson: Experiments fetched ref now contains experiment-local prototype kits that should not be mistaken for reusable ProtoKits.
   evidence: Fetched Experiments commits add tropical-island-scene plus local `protokits/*` modules such as island, palm-tree, fish, floating, orbit-camera, cel-shading, normal-style, outline-sobel, and reflect-probe kits.
-  look further: Route reusable extraction to NexusRealtime-ProtoKits before any promotion claim.
+  look further: Route reusable extraction to NexusEngine-ProtoKits before any promotion claim.
 - id: ecosystem-proof-013-g
   parent: ecosystem-proof-013
   lesson: Runtime hardening proof remains separate from public proof loading and sibling release-ref validation.
@@ -45,7 +45,7 @@
   parent: ecosystem-proof-013
   lesson: Core/ProtoKits/Experiments ownership docs still point public proof work to Experiments and reusable implementation to ProtoKits, not core.
   evidence: `docs/how-to-protokit.md`, `docs/how-to-experiment.md`, `docs/protokit-boundaries.md`, and `docs/protokit-experiment-loop.md` keep core as runtime/DSK/composer owner, ProtoKits as reusable implementation owner, and Experiments as playable/browser proof owner.
-  look further: Fix proof routing/imports without moving route ownership or reusable implementation into NexusRealtime core.
+  look further: Fix proof routing/imports without moving route ownership or reusable implementation into NexusEngine core.
 
 ## Related Nodes
 - source: state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T10-45-02-0400-ecosystem-proof-node.md
@@ -66,23 +66,23 @@
 
 ## Next Search Branches
 - branch: protokits-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
   question: Can ProtoKits fetched `origin/0.0.2` pass aggregate and targeted DSK checks without dirtying the main checkout?
 - branch: experiments-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`, fetched `origin/0.0.2`, tropical-island-scene, aggregate and targeted smoke scripts
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, tropical-island-scene, aggregate and targeted smoke scripts
   question: Can Experiments fetched `origin/0.0.2` be validated without dirtying the main checkout?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: generated-route-validation-boundary
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/package.json`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
   question: Should route generation be made idempotent, moved out of default check, or run only in disposable validation worktrees?
 - branch: experiment-local-protokit-boundary
-  files or folders: fetched `NexusRealtime-Experiments/protokits/*`, `docs/how-to-protokit.md`, `docs/protokit-boundaries.md`
-  question: Which fetched tropical-island prototype kits belong in Experiments only, and which should be extracted into NexusRealtime-ProtoKits?
+  files or folders: fetched `NexusEngine-Experiments/protokits/*`, `docs/how-to-protokit.md`, `docs/protokit-boundaries.md`
+  question: Which fetched tropical-island prototype kits belong in Experiments only, and which should be extracted into NexusEngine-ProtoKits?
 - branch: dsk-hardening-fixtures
   files or folders: `src/domain-service-kit.js`, `src/runtime-kit.js`, selected source-state and state-signal kits, proof fixtures
   question: Which executable fixture rows must pass before broad DSK promotion language is safe?

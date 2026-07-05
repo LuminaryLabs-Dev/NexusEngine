@@ -2,7 +2,7 @@
 
 ## Root Lesson
 - id: ecosystem-root-032
-- statement: Core and sibling `origin/0.0.2` refs are aligned again, and core smoke coverage now passes 9 tests from a dirty host-surface checkout, but ecosystem proof is still red: ProtoKits targeted first-wave DSK proof cannot resolve package `nexusrealtime`, Experiments aggregate proof fails on canonical route naming, Experiments targeted DSK proof reaches runtime but `engine.n.zoneField` is missing, npm metadata is 404, and the public proof route still stalls at `Booting...` on deployed module 404s.
+- statement: Core and sibling `origin/0.0.2` refs are aligned again, and core smoke coverage now passes 9 tests from a dirty host-surface checkout, but ecosystem proof is still red: ProtoKits targeted first-wave DSK proof cannot resolve package `nexusengine`, Experiments aggregate proof fails on canonical route naming, Experiments targeted DSK proof reaches runtime but `engine.n.zoneField` is missing, npm metadata is 404, and the public proof route still stalls at `Booting...` on deployed module 404s.
 - why it matters: The current state is no longer sibling main-ahead drift. Release-ref parity is green, but dirty core host work, sibling `origin/main` freshness drift, targeted package resolution, aggregate route validation, DSK API installation, npm/package policy, and browser import deployment remain separate gates.
 
 ## Child Nodes
@@ -19,8 +19,8 @@
 - id: protokits-targeted-package-resolution-2026-06-21-1805
   parent: ecosystem-root-032
   lesson: ProtoKits aggregate proof is green locally and in disposable release layout, but targeted first-wave DSK proof is still package-resolution red.
-  evidence: Local and disposable `npm run check` passed after syntax-checking 411 JavaScript modules; local and disposable `node tests/dsk-first-wave.test.mjs` both failed with `ERR_MODULE_NOT_FOUND` for package `nexusrealtime`.
-  look further: Validate targeted first-wave DSK proof with an explicit package, workspace, CDN, or link model for `nexusrealtime`.
+  evidence: Local and disposable `npm run check` passed after syntax-checking 411 JavaScript modules; local and disposable `node tests/dsk-first-wave.test.mjs` both failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
+  look further: Validate targeted first-wave DSK proof with an explicit package, workspace, CDN, or link model for `nexusengine`.
 - id: experiments-aggregate-route-regression-2026-06-21-1805
   parent: ecosystem-root-032
   lesson: Experiments aggregate validation is still red independent of targeted DSK proof.
@@ -34,12 +34,12 @@
 - id: public-browser-module-404-2026-06-21-1805
   parent: ecosystem-root-032
   lesson: The public DSK proof route remains HTTP-visible but browser-incomplete.
-  evidence: Fetch returned 200 for the proof route; Playwright snapshot showed heading `DSK first-wave proof`, description text, and `Booting...`; console output showed 404s for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`.
+  evidence: Fetch returned 200 for the proof route; Playwright snapshot showed heading `DSK first-wave proof`, description text, and `Booting...`; console output showed 404s for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, package dependency, or build-step import maps for public proof.
 - id: public-consumption-version-policy-2026-06-21-1805
   parent: ecosystem-root-032
   lesson: Public consumption and version policy remain split.
-  evidence: Required GitHub/raw/jsDelivr links returned 200, npm metadata for `nexusrealtime` returned 404, and branch `0.0.2` serves `nexusrealtime@0.1.0`.
+  evidence: Required GitHub/raw/jsDelivr links returned 200, npm metadata for `nexusengine` returned 404, and branch `0.0.2` serves `nexusengine@0.1.0`.
   look further: Branch naming policy, package version policy, public consumption wording, and npm publication policy.
 - id: hardening-inventory-separate-2026-06-21-1805
   parent: ecosystem-root-032
@@ -72,16 +72,16 @@
   files or folders: `npm run automation:preflight`, core and sibling git refs
   question: Should automation proof require checkout of branch `0.0.2`, or is commit equality against the resolved target enough?
 - branch: sibling-origin-main-freshness
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
   question: Do `origin/main` advances need separate proof before the next release branch moves?
 - branch: protokits-targeted-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/package.json`, `tests/dsk-first-wave.test.mjs`, `protokits/nexus-dsk-adapter/index.js`
-  question: Which module-source model makes targeted first-wave DSK proof resolve `nexusrealtime` locally and in detached release layouts?
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `tests/dsk-first-wave.test.mjs`, `protokits/nexus-dsk-adapter/index.js`
+  question: Which module-source model makes targeted first-wave DSK proof resolve `nexusengine` locally and in detached release layouts?
 - branch: experiments-aggregate-canonical-route
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
   question: Why does aggregate validation still see `the-open-above-v2` as versioned?
 - branch: experiments-targeted-dsk-api-installation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-foundation`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/domain-service-kits`
+  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-foundation`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-service-kits`
   question: Why are expected first-wave APIs missing from `engine.n` after proof kit installation?
 - branch: public-proof-import-shape
   files or folders: public DSK proof route, raw proof source, public CDN/raw URLs

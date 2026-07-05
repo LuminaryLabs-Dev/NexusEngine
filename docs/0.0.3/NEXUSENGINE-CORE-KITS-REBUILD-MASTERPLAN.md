@@ -1,13 +1,13 @@
-# NexusRealtime Core Kits Rebuild Masterplan
+# NexusEngine Core Kits Rebuild Masterplan
 
-This is the execution plan for rebuilding `LuminaryLabs-Dev/NexusRealtime` around broad, configurable **core capability domains**.
+This is the execution plan for rebuilding `LuminaryLabs-Dev/NexusEngine` around broad, configurable **core capability domains**.
 
 It reviews the documentation stack part by part, explains each document in simple terms, and turns each document into implementation work.
 
-This plan is intentionally scoped to the main NexusRealtime repository only.
+This plan is intentionally scoped to the main NexusEngine repository only.
 
 ```txt
-Repository: LuminaryLabs-Dev/NexusRealtime
+Repository: LuminaryLabs-Dev/NexusEngine
 Branch: main
 Plan type: breaking rebuild plan
 Compatibility goal: document migration, not preserve old imports forever
@@ -17,12 +17,12 @@ Satellite repos: do not change yet
 Do not change these repos in this rebuild pass:
 
 ```txt
-LuminaryLabs-Agents/NexusRealtime-ProtoKits
-LuminaryLabs-Agents/NexusRealtime-Experiments
-LuminaryLabs-Agents/NexusRealtime-Sandbox
-LuminaryLabs-Agents/NexusRealtime-KitBuilder01
-LuminaryLabs-Agents/NexusRealtime-KitBuilder02
-LuminaryLabs-Agents/NexusRealtime-KitBuilder03
+LuminaryLabs-Agents/NexusEngine-ProtoKits
+LuminaryLabs-Agents/NexusEngine-Experiments
+LuminaryLabs-Agents/NexusEngine-Sandbox
+LuminaryLabs-Agents/NexusEngine-KitBuilder01
+LuminaryLabs-Agents/NexusEngine-KitBuilder02
+LuminaryLabs-Agents/NexusEngine-KitBuilder03
 ```
 
 ---
@@ -30,7 +30,7 @@ LuminaryLabs-Agents/NexusRealtime-KitBuilder03
 ## Simple summary
 
 ```txt
-We are rebuilding NexusRealtime so the main package becomes:
+We are rebuilding NexusEngine so the main package becomes:
 
 kernel
   + contracts
@@ -117,7 +117,7 @@ What we need to do from it:
 ## Final architecture map
 
 ```txt
-NexusRealtime/
+NexusEngine/
 |
 |-- src/
 |   |
@@ -270,7 +270,7 @@ Implementation tasks:
 Done when:
 
 ```txt
-There is one authoritative domain map for NexusRealtime core-kits.
+There is one authoritative domain map for NexusEngine core-kits.
 ```
 
 ### A3. `docs/0.0.3/CORE-KIT-OVERRIDE-MODEL.md`
@@ -1194,16 +1194,16 @@ Example:
 
 ```txt
 createInputIntentKit
-  old: import { createInputIntentKit } from "nexusrealtime"
-  new: import { createCoreInputKit } from "nexusrealtime"
+  old: import { createInputIntentKit } from "nexusengine"
+  new: import { createCoreInputKit } from "nexusengine"
 
 createRenderDescriptorKit
-  old: import { createRenderDescriptorKit } from "nexusrealtime"
-  new: import { createCoreGraphicsKit } from "nexusrealtime"
+  old: import { createRenderDescriptorKit } from "nexusengine"
+  new: import { createCoreGraphicsKit } from "nexusengine"
 
 createTelemetryKit
-  old: import { createTelemetryKit } from "nexusrealtime"
-  new: import { createCoreDiagnosticsKit } from "nexusrealtime"
+  old: import { createTelemetryKit } from "nexusengine"
+  new: import { createCoreDiagnosticsKit } from "nexusengine"
 ```
 
 ### E4. `docs/0.0.3/BUILD-AND-VERIFY.md`
@@ -1480,7 +1480,7 @@ import {
   createCoreCompositionKit,
   createCoreMLNNKit,
   createCoreAgentKit
-} from "nexusrealtime";
+} from "nexusengine";
 ```
 
 Example stack:
@@ -1521,5 +1521,5 @@ Do not touch ProtoKits yet.
 Do not touch Experiments yet.
 Do not touch Sandbox yet.
 Do not touch KitBuilder repos yet.
-Do rebuild NexusRealtime main with clear docs, tests, and migration packets.
+Do rebuild NexusEngine main with clear docs, tests, and migration packets.
 ```

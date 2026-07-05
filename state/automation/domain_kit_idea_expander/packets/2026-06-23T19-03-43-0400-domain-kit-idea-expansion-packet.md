@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-23T19-03-43-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -86,10 +86,10 @@
 - Did not add another proof-readiness row for package resolution, npm, browser imports, Experiments route naming, optional CDN, or targeted `engine.n.zoneField` because RuntimeKit definition stability does not fix distribution proof.
 
 ## DSK boundary notes
-- Existing boundaries still hold: NexusRealtime core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation surfaces.
+- Existing boundaries still hold: NexusEngine core owns runtime, ECS, scheduler, DSK/composer/host primitives, and validation surfaces.
 - RuntimeKit definition immutability is core validation-surface inventory because `defineRuntimeKit()` is the low-level primitive under DSK, composer, SequenceNode kits, render/shader registries, and proof metadata.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
-- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusRealtime-Experiments or app-owned work.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
+- Browser pages, public proof routes, import maps, product UI, and playable proof remain NexusEngine-Experiments or app-owned work.
 
 ## Open questions
 - Should `defineRuntimeKit()` deeply freeze cloned arrays/maps and system entries, or expose cloned read snapshots while keeping internal normalized definitions private?

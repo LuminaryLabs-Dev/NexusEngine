@@ -2,7 +2,7 @@
 
 ## Purpose
 
-NexusRealtime now has a recursive SequenceNode AST for declarative game-flow, scene-flow, mission-flow, kit deployment, and interaction-flow.
+NexusEngine now has a recursive SequenceNode AST for declarative game-flow, scene-flow, mission-flow, kit deployment, and interaction-flow.
 
 ## Correct mental model
 
@@ -12,7 +12,7 @@ NexusRealtime now has a recursive SequenceNode AST for declarative game-flow, sc
 
 ## A-Frame-style layer
 
-SequenceNode is conceptually similar to A-Frame over Three.js: a declarative compositional authoring layer over lower-level runtime capability. ECS, scheduler, surfaces, and renderers remain the lower-level NexusRealtime runtime.
+SequenceNode is conceptually similar to A-Frame over Three.js: a declarative compositional authoring layer over lower-level runtime capability. ECS, scheduler, surfaces, and renderers remain the lower-level NexusEngine runtime.
 
 ## One atomic structure
 

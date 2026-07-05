@@ -8,14 +8,14 @@
 ## Child Nodes
 - id: public-consumption-npm-gap-2026-06-18T22-08-40-0400
   parent: ecosystem-root-004
-  lesson: Required GitHub/raw/jsDelivr links are reachable, while `https://registry.npmjs.org/nexusrealtime` returns 404.
+  lesson: Required GitHub/raw/jsDelivr links are reachable, while `https://registry.npmjs.org/nexusengine` returns 404.
   evidence: `npm run automation:preflight` and direct `curl` checks returned 200 for GitHub/raw/jsDelivr and 404 for npm metadata.
   look further: `README.md`, `package.json`, npm registry, release publishing policy.
 - id: dsk-proof-local-path-2026-06-18T22-08-40-0400
   parent: ecosystem-root-004
   lesson: First-wave DSK proof passes locally but still imports local sibling checkouts rather than public URLs.
-  evidence: `node tests/dsk-first-wave.test.mjs` passed; `node tests/dsk-first-wave-experiment-smoke.mjs` passed; `experiments/dsk-first-wave-proof/src/proof.js` imports local `NexusRealtime` and `NexusRealtime-ProtoKits` paths.
-  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URL variant.
+  evidence: `node tests/dsk-first-wave.test.mjs` passed; `node tests/dsk-first-wave-experiment-smoke.mjs` passed; `experiments/dsk-first-wave-proof/src/proof.js` imports local `NexusEngine` and `NexusEngine-ProtoKits` paths.
+  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URL variant.
 - id: branch-alignment-stable-2026-06-18T22-08-40-0400
   parent: ecosystem-root-004
   lesson: The prior sibling branch drift remains resolved.
@@ -23,7 +23,7 @@
   look further: repeat branch/status checks before any future public promotion review.
 - id: package-version-policy-2026-06-18T22-08-40-0400
   parent: ecosystem-root-004
-  lesson: Branch `0.0.2` serves package metadata reporting `nexusrealtime@0.1.0`.
+  lesson: Branch `0.0.2` serves package metadata reporting `nexusengine@0.1.0`.
   evidence: raw public `package.json` from branch `0.0.2` and local `package.json` both report version `0.1.0`.
   look further: release branch naming policy, package version policy, README release wording.
 - id: domain-expansion-inventory-2026-06-18T22-08-40-0400
@@ -42,7 +42,7 @@
 - files or folders: `README.md`, `package.json`, public GitHub/raw/jsDelivr/npm endpoint results
 - question: Should public docs distinguish GitHub/jsDelivr branch consumption from unavailable npm package consumption?
 - branch: public-dsk-proof
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
 - question: Can the first-wave proof be validated from public URLs without local sibling checkout imports?
 - branch: package-version-policy
 - files or folders: `package.json`, remote branch list, raw public `package.json`

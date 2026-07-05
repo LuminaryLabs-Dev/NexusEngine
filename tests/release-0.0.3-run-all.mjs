@@ -17,4 +17,4 @@ for (const test of tests) {
   }
 }
 
-console.log(`Passed ${tests.length} NexusRealtime 0.0.3 release tests.`);
+console.log(`Passed ${tests.length} NexusEngine 0.0.3 release tests.`);

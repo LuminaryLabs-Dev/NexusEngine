@@ -1,6 +1,6 @@
 # Ideal Hosts
 
-This describes the ideal target architecture, not a guarantee that the current NexusRealtime implementation already satisfies every rule.
+This describes the ideal target architecture, not a guarantee that the current NexusEngine implementation already satisfies every rule.
 
 Reading order: [Categories](categories.md) -> [Domains](domains.md) -> [Kits](kits.md) -> [Services](services.md) -> [DSK](dsk.md) -> [Composition](composition.md) -> [Shared Host](shared-host.md) -> Ideal Hosts
 
@@ -172,14 +172,14 @@ but:
 This gives every environment the same composition truth.
 
 ```text
-NexusRealtime ECS
+NexusEngine ECS
   - still ticks systems
 
 Nexus.Host
   - owns composition graph and host lifecycle
 
 Kits
-  - install into Nexus.Host / NexusRealtime engine
+  - install into Nexus.Host / NexusEngine engine
 
 Graph Kit
   - stores what is loaded, why it is valid, and how it connects
@@ -279,8 +279,8 @@ Flow:
 ```text
 DOM event
   -> browser host captures input
-  -> host sends semantic input to NexusRealtime
-  -> NexusRealtime tick updates kits
+  -> host sends semantic input to NexusEngine
+  -> NexusEngine tick updates kits
   -> kits emit descriptors/events/resources
   -> Three host syncs descriptors into Three.js objects
   -> Three renders into DOM canvas
@@ -304,10 +304,10 @@ nexusengine-host-kit
     - input.intent
 ```
 
-NexusEngine can then act as the native shell for NexusRealtime:
+NexusEngine can then act as the native shell for NexusEngine:
 
 ```text
-NexusRealtime
+NexusEngine
   - ECS
   - kits
   - domain services
@@ -455,7 +455,7 @@ Every host should report:
 
 Adding ideal hosts must be additive.
 
-Do not break current NexusRealtime compatibility:
+Do not break current NexusEngine compatibility:
 
 - Keep existing ECS APIs.
 - Keep existing kit install shape.
@@ -469,7 +469,7 @@ Do not break current NexusRealtime compatibility:
 The first validation should prove one universal descriptor packet can drive multiple hosts.
 
 ```text
-1. Headless NexusRealtime snapshot
+1. Headless NexusEngine snapshot
 2. Three.js host scene
 3. NexusEngine native host intake
 ```

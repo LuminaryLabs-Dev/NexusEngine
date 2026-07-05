@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T02-01-55-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -75,8 +75,8 @@
 - Did not duplicate `read-model-orchestration-proof-kit`; the new proof kit groups provider ownership, type registry, event history, and AR runtime-source evidence into a separate composition proof family.
 
 ## DSK boundary notes
-- New reusable implementation remains out of NexusRealtime core unless a future non-scout pass identifies a true runtime primitive, DSK invariant, composer rule, SequenceNode registry rule, or AR validation surface.
-- The added kit rows are marked as NexusRealtime core validation surfaces because they come from composer, SequenceNode, and AR launch primitives, not gameplay/domain implementation needs.
+- New reusable implementation remains out of NexusEngine core unless a future non-scout pass identifies a true runtime primitive, DSK invariant, composer rule, SequenceNode registry rule, or AR validation surface.
+- The added kit rows are marked as NexusEngine core validation surfaces because they come from composer, SequenceNode, and AR launch primitives, not gameplay/domain implementation needs.
 - Large product-neutral ProtoKit graphs should treat capability-token presence, type registration, event history, and AR support state as proof only after these ownership rules become executable.
 
 ## Open questions

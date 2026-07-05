@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-20T01:55:55-04:00
 
 Timestamp: 2026-06-20T01:55:55-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for composer capability ownership, SequenceNode type/history isolation, and AR launch device-source consistency
 
 ## Lane Goal

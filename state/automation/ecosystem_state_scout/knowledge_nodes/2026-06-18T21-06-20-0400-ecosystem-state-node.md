@@ -2,7 +2,7 @@
 
 ## Root Lesson
 - id: ecosystem-root-003
-- statement: NexusRealtime `0.0.2` is branch-clean across core, ProtoKits, and Experiments with local DSK proofs passing, but public consumption remains GitHub/raw/jsDelivr-only until npm metadata or a non-local proof path exists.
+- statement: NexusEngine `0.0.2` is branch-clean across core, ProtoKits, and Experiments with local DSK proofs passing, but public consumption remains GitHub/raw/jsDelivr-only until npm metadata or a non-local proof path exists.
 - why it matters: The main ecosystem drift moved from sibling branch reconciliation to public import/distribution clarity.
 
 ## Child Nodes
@@ -19,11 +19,11 @@
 - id: local-proof-path-003
   parent: ecosystem-root-003
   lesson: DSK first-wave proof is valid locally but still coupled to sibling checkout paths.
-  evidence: `experiments/dsk-first-wave-proof/src/proof.js` imports from `../../../../NexusRealtime/src/index.js` and `../../../../NexusRealtime-ProtoKits/...`.
+  evidence: `experiments/dsk-first-wave-proof/src/proof.js` imports from `../../../../NexusEngine/src/index.js` and `../../../../NexusEngine-ProtoKits/...`.
   look further: Add or review a public-link proof path that consumes the same contract without local relative imports.
 - id: package-version-branch-risk-003
   parent: ecosystem-root-003
-  lesson: The release branch is `0.0.2`, while `package.json` and raw public package metadata say `nexusrealtime@0.1.0`.
+  lesson: The release branch is `0.0.2`, while `package.json` and raw public package metadata say `nexusengine@0.1.0`.
   evidence: local `package.json` and raw GitHub package metadata both report version `0.1.0`.
   look further: Decide whether branch-version mismatch is intentional release policy or stale metadata.
 
@@ -37,7 +37,7 @@
 - files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, public npm registry endpoint
 - question: Should README/package language distinguish GitHub/jsDelivr consumption from npm package availability?
 - branch: non-local-dsk-proof
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
 - question: Can the first-wave DSK proof run from public URLs or vendored release artifacts instead of local sibling paths?
 - branch: package-version-policy
 - files or folders: `package.json`, release branches, public raw package metadata

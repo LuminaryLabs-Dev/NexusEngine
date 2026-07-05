@@ -2,8 +2,8 @@ import { execFileSync } from "node:child_process";
 
 const repo = {
   owner: "LuminaryLabs-Dev",
-  name: "NexusRealtime",
-  packageName: "nexusrealtime"
+  name: "NexusEngine",
+  packageName: "nexusengine"
 };
 
 function runGit(args) {

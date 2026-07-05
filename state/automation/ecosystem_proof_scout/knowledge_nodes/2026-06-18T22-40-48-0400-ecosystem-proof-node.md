@@ -10,21 +10,21 @@
   parent: ecosystem-proof-004
   lesson: Core, ProtoKits, and Experiments all still match latest release branch `origin/0.0.2`.
   evidence: `git rev-list --left-right --count HEAD...origin/0.0.2` returned `0 0` in all three repos after `git fetch --prune origin`.
-  look further: Re-run branch checks before promotion review because NexusRealtime already has unrelated automation/docs worktree changes.
+  look further: Re-run branch checks before promotion review because NexusEngine already has unrelated automation/docs worktree changes.
 - id: ecosystem-proof-004-b
   parent: ecosystem-proof-004
   lesson: Preferred local validations are green.
-  evidence: `npm run automation:preflight`, NexusRealtime `npm test`, ProtoKits `npm run check`, and Experiments `npm run check` all exited 0.
+  evidence: `npm run automation:preflight`, NexusEngine `npm test`, ProtoKits `npm run check`, and Experiments `npm run check` all exited 0.
   look further: Keep public route validation separate from local check success.
 - id: ecosystem-proof-004-c
   parent: ecosystem-proof-004
   lesson: The public proof route still stalls at `Booting...` in a browser.
-  evidence: Playwright CLI snapshot for `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`.
+  evidence: Playwright CLI snapshot for `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` showed heading text plus `Booting...`.
   look further: Do not treat route HTTP 200 as a working proof.
 - id: ecosystem-proof-004-d
   parent: ecosystem-proof-004
   lesson: The public proof import shape still points to sibling GitHub Pages repos that are not deployed at those paths.
-  evidence: Playwright requests and direct curls returned 404 for `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`, `.../NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
+  evidence: Playwright requests and direct curls returned 404 for `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`, `.../NexusEngine-ProtoKits/protokits/domain-foundation/index.js`, and `.../domain-service-kits/index.js`.
   look further: Choose CDN `0.0.2`, same-origin deployed assets, or a build-step mapping.
 - id: ecosystem-proof-004-e
   parent: ecosystem-proof-004
@@ -42,13 +42,13 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - question: Should public proof modules resolve through CDN `0.0.2` URLs, same-origin deployed assets, or a build step?
 - branch: compatibility-shim-exit
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/tests/dsk-first-wave.test.mjs`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?
 - branch: idea-proof-coverage-matrix
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/described_examples.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/domain_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime/docs/kits_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime-Experiments/experiments`
+- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/described_examples.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/domain_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/kits_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments`
 - question: Which idea domains should get the next executable proof path after first-wave DSK public loading works?
 
 ## Not Claimed

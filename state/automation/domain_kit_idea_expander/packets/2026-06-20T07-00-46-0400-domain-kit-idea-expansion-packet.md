@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-20T07-00-46-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -74,8 +74,8 @@
 - Did not duplicate `engine-read-method-snapshot-kit`; this run names navigation/procedural resource-specific proof snapshots and command returns.
 
 ## DSK boundary notes
-- The added rows are NexusRealtime core validation-surface inventory because the evidence targets existing core procedural and navigation APIs.
-- New reusable gameplay/domain implementations remain out of NexusRealtime core and should target NexusRealtime-ProtoKits by default.
+- The added rows are NexusEngine core validation-surface inventory because the evidence targets existing core procedural and navigation APIs.
+- New reusable gameplay/domain implementations remain out of NexusEngine core and should target NexusEngine-ProtoKits by default.
 - This hardening family should sit after scheduler/world mutation isolation and alongside traversal proof integrity and query read-model isolation in the DSK promotion queue.
 
 ## Open questions

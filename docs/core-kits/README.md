@@ -1,6 +1,6 @@
 # Core Kits Docs
 
-This folder documents the public-facing side of NexusRealtime core capability domains.
+This folder documents the public-facing side of NexusEngine core capability domains.
 
 The source-local contracts live under:
 
@@ -82,7 +82,7 @@ import {
   createCoreDiagnosticsKit,
   createCoreMLNNKit,
   createCoreAgentKit
-} from "nexusrealtime";
+} from "nexusengine";
 
 const engine = createRealtimeGame({
   kits: [
@@ -104,7 +104,7 @@ import {
   createResourceMeter,
   createPressureChannel,
   createProgressTimer
-} from "nexusrealtime/core-kits/core-simulation-kit";
+} from "nexusengine/core-kits/core-simulation-kit";
 ```
 
 ## Next docs to expand

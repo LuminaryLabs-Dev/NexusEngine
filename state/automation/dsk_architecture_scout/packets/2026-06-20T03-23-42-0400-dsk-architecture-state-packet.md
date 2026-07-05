@@ -3,10 +3,10 @@
 ## Timestamp
 - local: 2026-06-20T03-23-42-0400
 - UTC preflight: 2026-06-20T07:21:45.472Z
-- automation: Nexus Realtime: DSK Architecture State Packet
+- automation: Nexus Engine: DSK Architecture State Packet
 
 ## Lane Goal
-- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusRealtime production viability.
+- Audit DSK architecture, contracts, invariants, scaling, and promotion risk for long-term NexusEngine production viability.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `dsk-composition-proof-ownership-root-2026-06-20-0223`.
@@ -28,7 +28,7 @@
 - `HEAD`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - `origin/0.0.2`: `96a0c16340c50832cdb5c4c81101b87b3f0c6fa0`
 - ahead/behind against `origin/0.0.2`: `0 0`
-- package metadata: `nexusrealtime@0.1.0`
+- package metadata: `nexusengine@0.1.0`
 - worktree note: pre-existing modified docs/automation trackers and many untracked prior automation artifacts were present before this run. This lane wrote only its packet, node, and tracker update.
 
 ## Files inspected
@@ -124,7 +124,7 @@
 - Do not trust repeated SequenceNode-backed proof deployment until install-only kit idempotency is covered.
 - Do not trust SequenceNode-backed diagnostics until duplicate type policy, history isolation, and disposed listener parity are covered.
 - Do not treat `npm test`, HTTP 200 public routes, aggregate Experiments checks, fetched raw files, public CDN reachability, or npm metadata as production DSK safety.
-- Do not move proof routing, package-resolution shims, browser routes, or reusable implementation into NexusRealtime core to solve distribution proof.
+- Do not move proof routing, package-resolution shims, browser routes, or reusable implementation into NexusEngine core to solve distribution proof.
 
 ## Suggested next review item
 - Use a non-scout lane to write the smallest executable tranche 1 fixture set: `engine.n` reserved-key/null-prototype/own-property policy, failed-install rollback/retryability, direct/composer dependency parity, scheduler failed-tick semantics, and reset/snapshot/async metadata truth.

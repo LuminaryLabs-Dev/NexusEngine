@@ -1,4 +1,4 @@
-export function hashSeed(seed = "nexusrealtime") {
+export function hashSeed(seed = "nexusengine") {
   const text = String(seed);
   let hash = 2166136261;
   for (let i = 0; i < text.length; i += 1) {
@@ -8,7 +8,7 @@ export function hashSeed(seed = "nexusrealtime") {
   return hash >>> 0;
 }
 
-export function createSeededRandom(seed = "nexusrealtime") {
+export function createSeededRandom(seed = "nexusengine") {
   let state = hashSeed(seed) || 1;
   return {
     seed,

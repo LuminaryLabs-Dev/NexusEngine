@@ -1,7 +1,7 @@
 # Deep Bug Report Packet: 2026-06-23T06:49:16-04:00
 
 Timestamp: 2026-06-23T06:49:16-04:00
-Automation: nexusrealtime-deep-bug-report-packet
+Automation: nexusengine-deep-bug-report-packet
 Scope: read-only deep bug scout for `createGameKitComposer()` read-model immutability and `createRealtimeGame()` composer handoff boundaries
 
 ## Lane Goal

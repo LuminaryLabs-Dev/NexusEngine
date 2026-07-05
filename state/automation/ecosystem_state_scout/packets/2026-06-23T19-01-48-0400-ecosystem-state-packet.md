@@ -1,13 +1,13 @@
 # Ecosystem State Packet: 2026-06-23T19-01-48-0400
 
 ## Scope
-- Automation: Nexus Realtime: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusRealtime`
-- Repos checked: NexusRealtime core, NexusRealtime-ProtoKits, NexusRealtime-Experiments
+- Automation: Nexus Engine: Ecosystem State Packet
+- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core remains commit-aligned with the preflight-resolved release branch `0.0.2` and smoke-green, but ecosystem proof remains red. New drift since `ecosystem-root-035`: ProtoKits local `main` moved to 140 commits ahead of `origin/0.0.2` and 11 behind `origin/main`, ProtoKits local aggregate validation now fails, Experiments local `main` moved to 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`, and the optional ProtoKits jsDelivr path recovered to 200.
 
 ## Lane Goal
-- Audit NexusRealtime ecosystem state, drift, and proof readiness across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, public links, and proof paths.
+- Audit NexusEngine ecosystem state, drift, and proof readiness across core, ProtoKits, Experiments, DSK promotion ledgers, branch targets, public links, and proof paths.
 
 ## Prior State Context
 - Current lane tracker latest root before this run: `ecosystem-root-035`.
@@ -25,7 +25,7 @@
 - Human-view mandatory question: Have I checked what the human would actually see, and do I need screenshots, visual inspection, launch-state inspection, or before/after comparison to validate this properly? Yes; the public DSK proof route is user-visible, so Playwright launch-state inspection was used.
 - Playwright snapshot showed the public proof route still visible as heading `DSK first-wave proof`, description text, and `Booting...`; console output showed deployed module 404s. The screenshot command failed after snapshot capture because the CLI parsed the supplied output path as a selector, so no screenshot artifact was retained.
 - Experiments `npm run check` generated route wrappers and gallery data in the sibling checkout; this lane restored `index.html`, `experiments/_shared/nexus-gallery-data.js`, restored tracked `apps/_shared/generated-app-route.js`, and removed generated `apps/*` wrappers, returning Experiments to clean `main...origin/main [behind 50]`.
-- Transient `/tmp/nexusrealtime-ecosystem-state-20260623T2301Z` and `.playwright-cli` artifacts were removed after evidence capture.
+- Transient `/tmp/nexusengine-ecosystem-state-20260623T2301Z` and `.playwright-cli` artifacts were removed after evidence capture.
 
 ## Latest Branch Preflight
 - `npm run automation:preflight` passed at `2026-06-23T22:58:33.098Z`.
@@ -40,26 +40,26 @@
 - Core `origin/0.0.2`: `6c450b3073825ddd495979474f57342556658972`.
 - Core ahead/behind vs `origin/0.0.2`: `0 0`.
 - Core ahead/behind vs `origin/main`: `0 0`.
-- Core package metadata: `nexusrealtime@0.1.0`.
-- Public raw release package metadata: `nexusrealtime@0.1.0`.
+- Core package metadata: `nexusengine@0.1.0`.
+- Public raw release package metadata: `nexusengine@0.1.0`.
 - Core `npm test`: passed 9 smoke tests.
 
 ## Public Links Checked
-- `https://github.com/LuminaryLabs-Dev/NexusRealtime` -> 200 by preflight and direct fetch.
-- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusRealtime/0.0.2/package.json` -> 200; direct fetch reported `nexusrealtime@0.1.0`.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusRealtime@0.0.2/src/index.js` -> 200.
-- `https://registry.npmjs.org/nexusrealtime` -> 404.
-- `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/experiments/dsk-first-wave-proof/` -> 200 by fetch and Playwright navigation, but visible state stayed `Booting...`.
+- `https://github.com/LuminaryLabs-Dev/NexusEngine` -> 200 by preflight and direct fetch.
+- `https://raw.githubusercontent.com/LuminaryLabs-Dev/NexusEngine/0.0.2/package.json` -> 200; direct fetch reported `nexusengine@0.1.0`.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Dev/NexusEngine@0.0.2/src/index.js` -> 200.
+- `https://registry.npmjs.org/nexusengine` -> 404.
+- `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` -> 200 by fetch and Playwright navigation, but visible state stayed `Booting...`.
 - Raw Experiments proof `index.html` and `src/proof.js` at `0.0.2` -> 200.
 - Raw ProtoKits `docs/DSK-FIRST-WAVE-LEDGER.md`, `protokits/nexus-dsk-adapter/index.js`, and `protokits/scan-survey-kit/index.js` at `0.0.2` -> 200.
-- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusRealtime-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200; this recovers the optional ProtoKits jsDelivr failure from the prior packet.
+- `https://cdn.jsdelivr.net/gh/LuminaryLabs-Agents/NexusEngine-ProtoKits@0.0.2/protokits/scan-survey-kit/index.js` -> 200; this recovers the optional ProtoKits jsDelivr failure from the prior packet.
 - Public dependency paths used by the proof route remain 404:
-  - `https://luminarylabs-agents.github.io/NexusRealtime/src/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime/src/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime-ProtoKits/protokits/domain-foundation/index.js`
-  - `https://luminarylabs-agents.github.io/NexusRealtime-Experiments/NexusRealtime-ProtoKits/protokits/domain-service-kits/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine/src/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine/src/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine-ProtoKits/protokits/domain-foundation/index.js`
+  - `https://luminarylabs-agents.github.io/NexusEngine-Experiments/NexusEngine-ProtoKits/protokits/domain-service-kits/index.js`
 
 ## Files Inspected
 - `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`
@@ -83,19 +83,19 @@
 - ProtoKits local checkout is clean on `main` at `4c571ea238a4692880ce1e47830bcf092d4b9ea3`.
 - ProtoKits local `main` is now ahead of `origin/0.0.2` `a4d6a59f10df0c9967eeb72bf1552ce78e4972f6` by `140 0`.
 - ProtoKits `origin/main` advanced to `1ec419e207a001a8347eba99c065bda2a6c5bc53`; local `main...origin/main` is now `0 11`.
-- ProtoKits package metadata remains `@luminarylabs/nexusrealtime-protokits@0.0.2`.
+- ProtoKits package metadata remains `@luminarylabs/nexusengine-protokits@0.0.2`.
 - ProtoKits local `docs/DSK-FIRST-WAVE-LEDGER.md` still lists seven promoted-candidate first-wave kits and says no first-wave kit is half migrated.
 - ProtoKits local `npm run check` regressed from aggregate-green to red: syntax checked 477 JavaScript modules, then `tests/generic-promotion-gate-smoke.test.mjs` failed with `AssertionError [ERR_ASSERTION]: pressure emits warning transition`, actual `0`, expected `1`.
-- ProtoKits local targeted DSK smoke still failed with `ERR_MODULE_NOT_FOUND` for package `nexusrealtime`.
-- Disposable `origin/0.0.2` ProtoKits aggregate check still passed after syntax-checking 411 JavaScript modules; disposable targeted DSK smoke failed with the same missing package `nexusrealtime`.
+- ProtoKits local targeted DSK smoke still failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
+- Disposable `origin/0.0.2` ProtoKits aggregate check still passed after syntax-checking 411 JavaScript modules; disposable targeted DSK smoke failed with the same missing package `nexusengine`.
 - Experiments local checkout is clean on `main` at `2e66120391fa9d88e3c6a27e16bb59c82ad95a4a`.
 - Experiments local `main` is no longer equal to `origin/0.0.2`; local is ahead of release `eddb8fb6a78ff2c532fadd145d5648b0761d3be1` by `67 0`.
 - Experiments `origin/main` advanced to `0508a2af3c47857187f7d31cf898d061d65d8b37`; local `main...origin/main` is now `0 50`.
-- Experiments package metadata remains `@luminarylabs/nexusrealtime-experiments@0.0.2`.
+- Experiments package metadata remains `@luminarylabs/nexusengine-experiments@0.0.2`.
 - Experiments local and disposable `npm run check` generated 100 promoted application route wrappers and gallery data for 124 routes, then failed at `tests/canonical-game-routes-smoke.mjs` because `the-open-above-v2 route should not be versioned`.
 - Experiments local and disposable targeted DSK smoke both fail after proof execution starts: `engine.n.zoneField` is undefined at `experiments/dsk-first-wave-proof/src/proof.js:23`.
 - Experiments aggregate validation remains separate from DSK first-wave targeted proof; local `package.json` still defines `check` through `scripts/run-checks.mjs`, and the targeted DSK smoke was run separately.
-- Public DSK proof remains HTTP-visible but not browser-complete: Playwright snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console output showed 404s for deployed NexusRealtime and ProtoKits module paths.
+- Public DSK proof remains HTTP-visible but not browser-complete: Playwright snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console output showed 404s for deployed NexusEngine and ProtoKits module paths.
 - New neighboring context adds Composition Proof Ownership for mutable composer read models and supplied-composer handoff. It is core proof-trust hardening and does not fix package resolution, route naming, targeted DSK API installation, npm metadata, package-version policy, or public browser imports.
 
 ## Domain And Kit Expansion Signals
@@ -113,19 +113,19 @@
 - Direct public URL fetches returned 200 for required core GitHub/raw/jsDelivr links, 404 for npm metadata, 200 for raw proof/ledger files, 200 for ProtoKits jsDelivr `scan-survey-kit`, and 404 for deployed dependency module paths.
 - ProtoKits `git fetch --prune origin`, status, rev-parse, and ahead/behind checks showed clean local `main` at `4c571ea`, ahead of `origin/0.0.2` by 140 and behind `origin/main` by 11.
 - ProtoKits local `npm run check` failed after syntax-checking 477 JavaScript modules at `tests/generic-promotion-gate-smoke.test.mjs:23` on `pressure emits warning transition`.
-- ProtoKits local targeted `node tests/dsk-first-wave.test.mjs` failed with `ERR_MODULE_NOT_FOUND` for package `nexusrealtime`.
+- ProtoKits local targeted `node tests/dsk-first-wave.test.mjs` failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - Disposable release layout with core, ProtoKits, and Experiments extracted at `origin/0.0.2` reproduced ProtoKits aggregate pass after 411 JavaScript modules and targeted package failure.
 - Experiments `git fetch --prune origin`, status, rev-parse, and ahead/behind checks showed clean local `main` at `2e66120`, ahead of `origin/0.0.2` by 67 and behind `origin/main` by 50.
 - Experiments local and disposable `npm run check` failed at `tests/canonical-game-routes-smoke.mjs` on `the-open-above-v2 route should not be versioned`.
 - Experiments local and disposable targeted DSK smoke failed with `TypeError: Cannot read properties of undefined (reading 'zoneField')`.
-- Playwright opened the public DSK proof route; snapshot showed `Booting...`; console output showed 404s for `NexusRealtime/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
+- Playwright opened the public DSK proof route; snapshot showed `Booting...`; console output showed 404s for `NexusEngine/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
 
 ## Suggested Canonical Updates
 - Split ProtoKits proof targets into at least three explicit states: local `main` aggregate-red, release `origin/0.0.2` aggregate-green/targeted-red, and latest `origin/main` unvalidated from this lane.
 - Investigate the new local ProtoKits aggregate regression in `tests/generic-promotion-gate-smoke.test.mjs` before treating local ProtoKits proof as green again.
 - Split Experiments proof targets into local `main`, preflight release `origin/0.0.2`, and latest `origin/main`; local and release currently share the same aggregate/targeted failures, but local is no longer release-ref evidence.
 - Pick one module-source strategy for release proof: package/workspace dependency, CDN `0.0.2`, same-origin deployed assets, or build-step import maps.
-- Make ProtoKits declare or model `nexusrealtime` resolution explicitly before treating targeted first-wave DSK validation as release evidence.
+- Make ProtoKits declare or model `nexusengine` resolution explicitly before treating targeted first-wave DSK validation as release evidence.
 - Investigate why first-wave DSK kits do not install `zoneField` under `engine.n` in Experiments targeted proof after module resolution succeeds.
 - Fix or route the Experiments canonical route assertion for `the-open-above-v2` before using aggregate `npm run check` as green release evidence.
 - Keep Composition Proof Ownership, Host Public State Ownership, DSK Extension Service Ownership, and Host Graph Lifecycle Ownership as hardening inventory until fixtures exist and proof/release lanes intentionally consume them.

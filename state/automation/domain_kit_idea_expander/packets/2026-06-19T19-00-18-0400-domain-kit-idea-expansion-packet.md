@@ -2,7 +2,7 @@
 
 ## Timestamp
 - local: 2026-06-19T19-00-18-0400
-- automation: Nexus Realtime: Domain And Kit Idea Expansion
+- automation: Nexus Engine: Domain And Kit Idea Expansion
 
 ## Lane Goal
 - Expand domain and kit idea inventories from evidence and described examples.
@@ -92,7 +92,7 @@
 - Did not duplicate `proof-readiness-queue-kit`; `read-model-orchestration-proof-kit` is a proof row family, not a claim taxonomy or release checklist.
 
 ## DSK boundary notes
-- These rows are NexusRealtime core validation-surface inventory because the fresh evidence is in `src/shaders.js`, `src/surfaces.js`, `src/engine.js`, `src/ecs.js`, and `src/sequence-node.js`.
+- These rows are NexusEngine core validation-surface inventory because the fresh evidence is in `src/shaders.js`, `src/surfaces.js`, `src/engine.js`, `src/ecs.js`, and `src/sequence-node.js`.
 - `registry-descriptor-isolation-kit`, `surface-snapshot-isolation-kit`, `sequence-race-cleanup-kit`, and `sequence-any-receipt-policy-kit` should become executable core fixtures before being treated as stable proof infrastructure.
 - ProtoKits may later consume the guarantees, but implementing these rows as reusable domain kits would be premature until core read-model and SequenceNode semantics are defined.
 - Public module-source strategy remains separate from read-model/orchestration hardening; fixing browser imports would not prove these rows.
