@@ -33,6 +33,7 @@ export { createCoreMotionKit } from "./core-kits/core-motion-kit/index.js";
 export { createCoreSimulationKit } from "./core-kits/core-simulation-kit/index.js";
 export { createCoreInteractionKit } from "./core-kits/core-interaction-kit/index.js";
 export { createCoreGraphicsKit } from "./core-kits/core-graphics-kit/index.js";
+export { createCoreSkyboxKit } from "./core-kits/core-skybox-kit/index.js";
 export { createCoreCameraKit } from "./core-kits/core-camera-kit/index.js";
 export { createCoreAnimationKit } from "./core-kits/core-animation-kit/index.js";
 export { createCoreAudioKit } from "./core-kits/core-audio-kit/index.js";
