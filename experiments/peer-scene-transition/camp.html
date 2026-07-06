@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Peer Scene Transition - Camp</title>
+    <style>
+      body { font-family: system-ui, sans-serif; max-width: 760px; margin: 3rem auto; line-height: 1.5; }
+      main { border: 1px solid #ddd; border-radius: 1rem; padding: 1.5rem; }
+      button { display: block; margin: 0.5rem 0; padding: 0.6rem 0.8rem; }
+      pre { background: #f6f6f6; padding: 1rem; overflow: auto; }
+    </style>
+  </head>
+  <body>
+    <main>
+      <p>Core Scene Kit / peer HTML scene host</p>
+      <h1 id="scene-title">Camp</h1>
+      <p><strong>Scene ID:</strong> <span id="scene-id">camp</span></p>
+      <p id="message" role="status"></p>
+      <section id="actions" aria-label="Scene exits"></section>
+      <h2>Scene ledger</h2>
+      <pre id="ledger"></pre>
+    </main>
+    <script type="module">
+      import { bootPeerScene } from "./shared/scene-demo.js";
+      bootPeerScene("camp");
+    </script>
+  </body>
+</html>
