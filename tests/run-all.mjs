@@ -5,6 +5,7 @@ const tests = [
   "tests/public-api-freeze.mjs",
   "tests/domain-service-kit-smoke.mjs",
   "tests/domain-path-api-registration-smoke.mjs",
+  "tests/core-domain-kits-smoke.mjs",
   "tests/host-smoke.mjs",
   "tests/sequence-node-library-smoke.mjs",
   "tests/sequence-node-runtime-smoke.mjs",
