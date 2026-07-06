@@ -13,6 +13,8 @@ import {
   createQuerySurface,
   createResourceSurface
 } from "./surfaces.js";
+import { createRealtimeCoreKit } from "./core-kits/realtime-core-kit/index.js";
+import { createSequenceCoreKit } from "./core-kits/sequence-core-kit/index.js";
 
 function assertSurface(surface) {
   if (!surface || typeof surface.subscribe !== "function" || typeof surface.publish !== "function") {
@@ -30,6 +32,21 @@ function array(value) {
     return [];
   }
   return Array.isArray(value) ? value : [value];
+}
+
+function defaultCoreKits(options) {
+  if (options.coreKits === false) {
+    return [];
+  }
+
+  if (Array.isArray(options.coreKits)) {
+    return options.coreKits;
+  }
+
+  return [
+    createRealtimeCoreKit(options.realtimeCore ?? options.realtime ?? {}),
+    createSequenceCoreKit(options.sequenceCore ?? options.sequence ?? {})
+  ];
 }
 
 function groupRecords(records, kind, keySelector) {
@@ -297,6 +314,7 @@ export function createEngine(options = {}) {
     renderer,
     shaderRegistry,
     materialRegistry,
+    __nexusSurfaceRegistry: registry,
     kit: null,
     kits: [],
     kitBindings: {},
@@ -345,6 +363,10 @@ export function createEngine(options = {}) {
 
   engine.sequenceRuntime.bind(engine);
   engine.sequenceNodeRuntime.bind(engine);
+
+  for (const kit of defaultCoreKits(options)) {
+    engine.installKit(kit, options);
+  }
 
   if (options.sequenceNodes) {
     engine.sequenceNodeRuntime.mount(options.sequenceNodes);
