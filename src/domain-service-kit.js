@@ -1,3 +1,5 @@
+import { installDomainAddressability, normalizeDomainApiVisibility, registerDomainApiForKit } from "./domain-api.js";
+import { normalizeDomainPath } from "./domain-path.js";
 import { defineRuntimeKit, validateRuntimeKit } from "./runtime-kit.js";
 
 export const DOMAIN_SERVICE_NAMESPACE = "n";
@@ -71,6 +73,25 @@ function assertNoDuplicateSystems(baseSystems = [], extensionSystems = []) {
   }
 }
 
+function normalizeOptionalDomainPath(value, fieldName) {
+  if (value === undefined || value === null || value === "") return undefined;
+  return normalizeDomainPath(value, fieldName);
+}
+
+function assertParentDomainPath(domainPath, parentDomainPath) {
+  if (!parentDomainPath) return;
+  if (domainPath === parentDomainPath) {
+    throw new TypeError(`Domain service kit domainPath ${domainPath} cannot equal parentDomainPath.`);
+  }
+  if (!domainPath.startsWith(`${parentDomainPath}:`)) {
+    throw new TypeError(`Domain service kit domainPath ${domainPath} must be nested under parentDomainPath ${parentDomainPath}.`);
+  }
+}
+
+function createDomainPathServiceToken(domainPath, service) {
+  return `${normalizeDomainPath(domainPath, "domainPath")}:${normalizeSlug(service, "service")}`;
+}
+
 export function createDomainServiceToken(domain, service) {
   const normalizedDomain = normalizeSlug(domain, "domain");
   if (service === undefined || service === null) {
@@ -94,6 +115,13 @@ export function validateDomainServiceKit(kit) {
     throw new TypeError("validateDomainServiceKit expects a domain service kit.");
   }
   normalizeSlug(kit.metadata.domain, "metadata.domain");
+  normalizeDomainPath(kit.metadata.domainPath, "metadata.domainPath");
+  const parentDomainPath = normalizeOptionalDomainPath(kit.metadata.parentDomainPath, "metadata.parentDomainPath");
+  if (kit.metadata.apiPath !== undefined) {
+    normalizeDomainPath(kit.metadata.apiPath, "metadata.apiPath");
+  }
+  normalizeDomainApiVisibility(kit.metadata.visibility ?? "public");
+  assertParentDomainPath(kit.metadata.domainPath, parentDomainPath);
   if (typeof kit.metadata.stability !== "string" || kit.metadata.stability.trim().length === 0) {
     throw new TypeError(`Domain service kit ${kit.id} requires metadata.stability.`);
   }
@@ -103,8 +131,8 @@ export function validateDomainServiceKit(kit) {
   for (const token of [...(kit.provides ?? []), ...(kit.requires ?? [])]) {
     normalizeToken(token, "capability");
   }
-  if (!kit.provides?.some((token) => token === createDomainServiceToken(kit.metadata.domain))) {
-    throw new TypeError(`Domain service kit ${kit.id} must provide ${createDomainServiceToken(kit.metadata.domain)}.`);
+  if (!kit.provides?.some((token) => token === kit.metadata.domainPath)) {
+    throw new TypeError(`Domain service kit ${kit.id} must provide ${kit.metadata.domainPath}.`);
   }
   return kit;
 }
@@ -120,12 +148,33 @@ function buildMetadata(config, domain, id, apiName) {
     throw new TypeError(`Domain service kit ${id} requires version.`);
   }
 
+  const domainPath = normalizeDomainPath(
+    config.domainPath ?? sourceMetadata.domainPath ?? createDomainServiceToken(domain),
+    "domainPath"
+  );
+  const parentDomainPath = normalizeOptionalDomainPath(
+    config.parentDomainPath ?? sourceMetadata.parentDomainPath,
+    "parentDomainPath"
+  );
+  assertParentDomainPath(domainPath, parentDomainPath);
+  const apiPath = normalizeOptionalDomainPath(
+    config.apiPath ?? sourceMetadata.apiPath ?? `${domainPath}:api`,
+    "apiPath"
+  );
+  const visibility = normalizeDomainApiVisibility(
+    config.visibility ?? config.apiVisibility ?? sourceMetadata.visibility ?? sourceMetadata.apiVisibility ?? "public"
+  );
+
   return {
     ...sourceMetadata,
     kind: DOMAIN_SERVICE_METADATA_KIND,
     namespace: DOMAIN_SERVICE_NAMESPACE,
     domain,
+    domainPath,
+    parentDomainPath,
     apiName,
+    apiPath,
+    visibility,
     stability: stability.trim(),
     version: version.trim(),
     execution: Object.freeze({
@@ -143,9 +192,7 @@ function buildMetadata(config, domain, id, apiName) {
 function wrapInstall(config, domain, apiName) {
   return function installDomainServiceKit(context) {
     const { engine } = context;
-    if (!engine.n || typeof engine.n !== "object") {
-      engine.n = {};
-    }
+    installDomainAddressability(engine);
     if (Object.prototype.hasOwnProperty.call(engine.n, apiName)) {
       throw new TypeError(`Domain service kit ${config.id ?? domain} cannot overwrite engine.n.${apiName}.`);
     }
@@ -159,6 +206,8 @@ function wrapInstall(config, domain, apiName) {
     if (api === undefined && result !== undefined) {
       engine.n[apiName] = result;
     }
+
+    registerDomainApiForKit(engine, context.kit ?? { id: config.id ?? domain, metadata: {} }, apiName);
   };
 }
 
@@ -177,11 +226,16 @@ export function defineDomainServiceKit(config = {}) {
     throw new TypeError(`Domain service kit ${id} has an invalid apiName.`);
   }
 
-  const defaultProvides = createDomainServiceToken(domain);
-  const serviceProvides = (config.services ?? []).map((service) => createDomainServiceToken(domain, service));
-  const provides = unique([defaultProvides, ...serviceProvides, ...normalizeTokenList(config.provides, "provides")]);
-  const requires = unique(normalizeTokenList(config.requires, "requires"));
   const metadata = buildMetadata(config, domain, id, apiName);
+  const domainPath = metadata.domainPath;
+  const legacyDomainToken = createDomainServiceToken(domain);
+  const serviceProvides = (config.services ?? []).flatMap((service) => {
+    const pathToken = createDomainPathServiceToken(domainPath, service);
+    const legacyToken = createDomainServiceToken(domain, service);
+    return pathToken === legacyToken ? [pathToken] : [pathToken, legacyToken];
+  });
+  const provides = unique([domainPath, legacyDomainToken, ...serviceProvides, ...normalizeTokenList(config.provides, "provides")]);
+  const requires = unique(normalizeTokenList(config.requires, "requires"));
 
   const kit = defineRuntimeKit({
     ...config,
@@ -211,6 +265,10 @@ export function extendDomainServiceKit(baseKit, extensionConfig = {}) {
     ...extensionConfig,
     id: extensionConfig.id ?? `${baseKit.id}-extension`,
     domain: extensionConfig.domain ?? baseKit.metadata.domain,
+    domainPath: extensionConfig.domainPath ?? baseKit.metadata.domainPath,
+    parentDomainPath: extensionConfig.parentDomainPath ?? baseKit.metadata.parentDomainPath,
+    apiPath: extensionConfig.apiPath ?? baseKit.metadata.apiPath,
+    visibility: extensionConfig.visibility ?? baseKit.metadata.visibility,
     apiName: extensionConfig.apiName ?? `${baseKit.metadata.apiName}Extension`,
     stability: extensionConfig.stability ?? baseKit.metadata.stability,
     version: extensionConfig.version ?? baseKit.metadata.version,
