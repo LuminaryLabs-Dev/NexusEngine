@@ -4,6 +4,8 @@ export * from "./surfaces.js";
 export * from "./engine.js";
 export * from "./runtime-kit.js";
 export * from "./domain-service-kit.js";
+export * from "./domain-path.js";
+export * from "./domain-api.js";
 export * from "./common-game-definitions.js";
 export * from "./game-kit-composer.js";
 export * from "./host.js";
