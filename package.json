@@ -9,6 +9,8 @@
     ".": "./src/index.js",
     "./release": "./src/release.js",
     "./foundation": "./src/foundation/index.js",
+    "./domain-path": "./src/domain-path.js",
+    "./domain-api": "./src/domain-api.js",
     "./core-kits": "./src/core-kits/index.js",
     "./core-kits/core-capability-kit": "./src/core-kits/core-capability-kit.js",
     "./core-kits/core-domains": "./src/core-kits/core-domains.js",
