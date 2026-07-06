@@ -14,6 +14,7 @@ const tests = [
   "tests/core-capability-domain-barrels-smoke.mjs",
   "tests/core-kits/core-data-kit-smoke.mjs",
   "tests/core-kits/core-input-kit-smoke.mjs",
+  "tests/core-kits/core-scene-kit-smoke.mjs",
   "tests/core-kits/core-graphics-kit-smoke.mjs",
   "tests/core-kits/core-simulation-kit-smoke.mjs",
   "tests/core-kits/core-interaction-kit-smoke.mjs",
