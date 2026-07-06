@@ -11,6 +11,7 @@ export * from "./core-motion-kit/index.js";
 export * from "./core-simulation-kit/index.js";
 export * from "./core-interaction-kit/index.js";
 export * from "./core-graphics-kit/index.js";
+export * from "./core-skybox-kit/index.js";
 export * from "./core-camera-kit/index.js";
 export * from "./core-animation-kit/index.js";
 export * from "./core-audio-kit/index.js";
