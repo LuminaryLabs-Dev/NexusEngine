@@ -1,4 +1,6 @@
 export * from "./core-capability-kit.js";
+export * from "./realtime-core-kit/index.js";
+export * from "./sequence-core-kit/index.js";
 export * from "./core-data-kit/index.js";
 export * from "./core-persistence-kit/index.js";
 export * from "./core-assets-kit/index.js";
