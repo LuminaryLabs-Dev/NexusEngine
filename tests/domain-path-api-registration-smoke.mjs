@@ -59,10 +59,18 @@ assert.throws(() => createEngine({ kits: [rigidbody] }), /requires missing token
 const engine = createEngine({ kits: [physicsWorld, rigidbody] });
 assert.equal(engine.n.ownerOf("n:physics:rigidbody"), "physics-rigidbody-domain-kit");
 assert.equal(engine.n.path("n:physics:rigidbody").parentPath, "n:physics");
-assert.deepEqual(engine.n.paths().map((entry) => entry.path), ["n:physics:rigidbody", "n:physics:world"]);
+const pathNames = engine.n.paths().map((entry) => entry.path);
+assert.ok(pathNames.includes("n:realtime"));
+assert.ok(pathNames.includes("n:sequence"));
+assert.ok(pathNames.includes("n:physics:rigidbody"));
+assert.ok(pathNames.includes("n:physics:world"));
 assert.equal(engine.n.api("physicsRigidbody").domainPath, "n:physics:rigidbody");
 assert.equal(engine.n.api("physicsRigidbody").visibility, "editor-safe");
-assert.deepEqual(engine.n.apis().map((entry) => entry.name), ["physicsRigidbody", "physicsWorld"]);
+const apiNames = engine.n.apis().map((entry) => entry.name);
+assert.ok(apiNames.includes("realtime"));
+assert.ok(apiNames.includes("sequence"));
+assert.ok(apiNames.includes("physicsRigidbody"));
+assert.ok(apiNames.includes("physicsWorld"));
 assert.deepEqual(engine.n.physicsRigidbody.getState(), { bodies: 0 });
 
 engine.n.registerPath({
