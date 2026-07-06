@@ -13,6 +13,7 @@ import {
   createCoreSimulationKit,
   createCoreInteractionKit,
   createCoreGraphicsKit,
+  createCoreSkyboxKit,
   createCoreCameraKit,
   createCoreAnimationKit,
   createCoreAudioKit,
@@ -42,6 +43,7 @@ const factories = [
   createCoreSimulationKit,
   createCoreInteractionKit,
   createCoreGraphicsKit,
+  createCoreSkyboxKit,
   createCoreCameraKit,
   createCoreAnimationKit,
   createCoreAudioKit,
@@ -75,6 +77,7 @@ for (const namespace of [
   "coreSimulation",
   "coreInteraction",
   "coreGraphics",
+  "coreSkybox",
   "coreCamera",
   "coreAnimation",
   "coreAudio",
@@ -93,6 +96,8 @@ engine.n.coreData.configure({ profile: "smoke" });
 assert.equal(engine.n.coreData.getConfig().profile, "smoke", "core data config updates");
 engine.n.coreGraphics.setDescriptor("objects", "cube", { kind: "box" });
 assert.deepEqual(engine.n.coreGraphics.getDescriptors("objects").cube, { kind: "box" }, "core graphics descriptors update");
+engine.n.coreSkybox.setPreset("golden-horizon");
+assert.equal(engine.n.coreSkybox.getActivePreset().id, "golden-horizon", "core skybox preset updates");
 const inference = engine.n.coreMLNN.infer({ modelId: "mock", input: { text: "hello" } });
 assert.equal(inference.output.label, "mock", "core MLNN mock inference is deterministic");
 const proposal = engine.n.coreAgent.proposeAction("agent", { action: "inspect", evidence: { inferenceId: inference.id } });
