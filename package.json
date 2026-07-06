@@ -14,6 +14,16 @@
     "./core-kits": "./src/core-kits/index.js",
     "./core-kits/core-capability-kit": "./src/core-kits/core-capability-kit.js",
     "./core-kits/core-domains": "./src/core-kits/core-domains.js",
+    "./core-kits/core-scene-kit/constants": "./src/core-kits/core-scene-kit/constants.js",
+    "./core-kits/core-scene-kit/descriptors": "./src/core-kits/core-scene-kit/descriptors.js",
+    "./core-kits/core-scene-kit/scene-registry": "./src/core-kits/core-scene-kit/scene-registry.js",
+    "./core-kits/core-scene-kit/scene-transition-ledger": "./src/core-kits/core-scene-kit/scene-transition-ledger.js",
+    "./core-kits/core-scene-kit/host-contract": "./src/core-kits/core-scene-kit/host-contract.js",
+    "./core-kits/core-scene-kit/hosts/headless-scene-host": "./src/core-kits/core-scene-kit/hosts/headless-scene-host.js",
+    "./core-kits/core-scene-kit/hosts/web-scene-host": "./src/core-kits/core-scene-kit/hosts/web-scene-host.js",
+    "./core-kits/core-scene-kit/hosts/web-html-scene-host": "./src/core-kits/core-scene-kit/hosts/web-html-scene-host.js",
+    "./core-kits/core-scene-kit/hosts/native-scene-host": "./src/core-kits/core-scene-kit/hosts/native-scene-host.js",
+    "./core-kits/core-scene-kit/hosts/rust-native-scene-host": "./src/core-kits/core-scene-kit/hosts/rust-native-scene-host.js",
     "./core-kits/*": "./src/core-kits/*/index.js"
   },
   "scripts": {
