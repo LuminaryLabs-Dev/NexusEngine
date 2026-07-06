@@ -323,19 +323,19 @@ export function createCoreSkyboxKit(config = {}) {
       }
 
       function updateActive(presetId, extraPatch = {}, eventName = "updated") {
-        const presetMap = getPresetMap();
+        const presetMap = extraPatch.descriptors?.presets ?? getPresetMap();
         const nextPresetId = resolvePresetId(presetMap, presetId);
         const preset = presetMap[nextPresetId];
         const render = createSkyboxRenderDescriptor(preset);
         return baseApi.update({
-          config: { activePresetId: nextPresetId },
+          ...extraPatch,
+          config: { ...(extraPatch.config ?? {}), activePresetId: nextPresetId },
           descriptors: {
+            ...(extraPatch.descriptors ?? {}),
             activePresetId: nextPresetId,
             activePreset: preset,
-            render,
-            ...(extraPatch.descriptors ?? {})
-          },
-          ...extraPatch
+            render
+          }
         }, eventName);
       }
 
