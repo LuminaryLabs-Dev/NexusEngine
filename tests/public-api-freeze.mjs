@@ -88,6 +88,7 @@ for (const name of [
   "createCoreSimulationKit",
   "createCoreInteractionKit",
   "createCoreGraphicsKit",
+  "createCoreSkyboxKit",
   "createCoreCameraKit",
   "createCoreAnimationKit",
   "createCoreAudioKit",
