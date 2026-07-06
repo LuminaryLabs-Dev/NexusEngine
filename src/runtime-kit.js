@@ -1,3 +1,5 @@
+import { registerDomainPathForKit } from "./domain-path.js";
+
 function objectValues(input) {
   return input && typeof input === "object" ? Object.values(input) : [];
 }
@@ -144,7 +146,10 @@ export function installRuntimeKit(engine, kit, options = {}) {
     if (missing.length) {
       throw new TypeError(`Domain service kit ${kit.id} requires missing token(s): ${missing.join(", ")}.`);
     }
+    registerDomainPathForKit(engine, kit);
     engine.domainServiceKits[kit.id] = kit.metadata;
+  } else if (kit.metadata?.domainPath) {
+    registerDomainPathForKit(engine, kit);
   }
 
   if (!engine.kitBindings || typeof engine.kitBindings !== "object") {
