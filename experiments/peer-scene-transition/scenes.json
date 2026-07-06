@@ -1,0 +1,44 @@
+{
+  "camp": {
+    "title": "Ash Road Camp",
+    "kind": "web-html-scene",
+    "hostBinding": "web-html",
+    "entry": "./camp.html",
+    "exits": {
+      "road": { "to": "crossroads", "label": "Walk to the crossroads" }
+    }
+  },
+  "crossroads": {
+    "title": "The Crossroads",
+    "kind": "web-html-scene",
+    "hostBinding": "web-html",
+    "entry": "./crossroads.html",
+    "exits": {
+      "forest": { "to": "forest", "label": "Enter the lantern forest", "requires": ["has-lantern"] },
+      "bridge": { "to": "bridge", "label": "Take the old bridge" }
+    }
+  },
+  "forest": {
+    "title": "Lantern Forest",
+    "kind": "native-rust-scene",
+    "hostBinding": "rust-native",
+    "entry": "scenes/forest.scene.json",
+    "exits": {
+      "shrine": { "to": "shrine", "label": "Follow the light to the shrine" }
+    }
+  },
+  "shrine": {
+    "title": "Silent Shrine",
+    "kind": "native-command-scene",
+    "hostBinding": "rust-command-buffer",
+    "entry": "scenes/shrine.commands.json",
+    "exits": {
+      "ending": { "to": "ending", "label": "Finish the pilgrimage" }
+    }
+  },
+  "ending": {
+    "title": "Dawn Ending",
+    "kind": "headless-scene",
+    "hostBinding": "headless"
+  }
+}
