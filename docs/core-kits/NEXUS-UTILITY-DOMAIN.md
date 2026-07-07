@@ -14,6 +14,8 @@ src/core-kits/core-utility-kit/
 
 ```text
 transform-math-utility-kit
+angle-utility-kit
+vector-utility-kit
 camera-control-utility-kit
 rig-transform-utility-kit
 two-bone-ik-utility-kit
@@ -59,6 +61,8 @@ Import from the public engine index:
 import {
   createCoreUtilityKit,
   createTransformMathUtilityKit,
+  createAngleUtilityKit,
+  createVectorUtilityKit,
   createCameraControlUtilityKit,
   createRigTransformUtilityKit,
   createTwoBoneIKUtilityKit,
