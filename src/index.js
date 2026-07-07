@@ -44,6 +44,8 @@ export { createCorePolicyKit } from "./core-kits/core-policy-kit/index.js";
 export { createCoreCompositionKit } from "./core-kits/core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-kits/core-mlnn-kit/index.js";
 export { createCoreAgentKit } from "./core-kits/core-agent-kit/index.js";
+export { createCoreUtilityKit } from "./core-kits/core-utility-kit/index.js";
+export * from "./core-kits/core-utility-kit/index.js";
 
 export * from "./fishing-kit.js";
 export * from "./reef-rescue-kit.js";
