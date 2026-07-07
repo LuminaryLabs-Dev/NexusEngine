@@ -28,3 +28,4 @@ export { createCorePolicyKit } from "./core-policy-kit/index.js";
 export { createCoreCompositionKit } from "./core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-mlnn-kit/index.js";
 export { createCoreAgentKit } from "./core-agent-kit/index.js";
+export { createCoreUtilityKit } from "./core-utility-kit/index.js";
