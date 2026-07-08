@@ -1,0 +1,36 @@
+{
+  "id": "n-core-debug-kit",
+  "domain": "core-debug",
+  "domainPath": "n:core-debug",
+  "api": "engine.n.coreDebug",
+  "version": "0.0.3",
+  "stability": "stable-candidate",
+  "purpose": "Renderer-agnostic debug descriptors, metric rays, state captures, and serializable export packets.",
+  "owns": [
+    "debug rays",
+    "debug points",
+    "debug scalars",
+    "debug state captures",
+    "debug export packets",
+    "debug channel toggles"
+  ],
+  "doesNotOwn": [
+    "renderer meshes",
+    "WebGL lines",
+    "DOM overlays",
+    "external observability backends"
+  ],
+  "services": [
+    "state",
+    "descriptors",
+    "config",
+    "rays",
+    "points",
+    "scalars",
+    "captures",
+    "exports"
+  ],
+  "snapshot": "required",
+  "reset": "required",
+  "rendererAgnostic": true
+}
