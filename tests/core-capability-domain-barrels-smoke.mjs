@@ -20,6 +20,7 @@ import {
   createCoreUIKit,
   createCoreNetworkKit,
   createCoreDiagnosticsKit,
+  createCoreDebugKit,
   createCorePolicyKit,
   createCoreCompositionKit,
   createCoreMLNNKit,
@@ -50,6 +51,7 @@ const factories = [
   createCoreUIKit,
   createCoreNetworkKit,
   createCoreDiagnosticsKit,
+  createCoreDebugKit,
   createCorePolicyKit,
   createCoreCompositionKit,
   createCoreMLNNKit,
@@ -84,6 +86,7 @@ for (const namespace of [
   "coreUI",
   "coreNetwork",
   "coreDiagnostics",
+  "coreDebug",
   "corePolicy",
   "coreComposition",
   "coreMLNN",
@@ -98,6 +101,8 @@ engine.n.coreGraphics.setDescriptor("objects", "cube", { kind: "box" });
 assert.deepEqual(engine.n.coreGraphics.getDescriptors("objects").cube, { kind: "box" }, "core graphics descriptors update");
 engine.n.coreSkybox.setPreset("golden-horizon");
 assert.equal(engine.n.coreSkybox.getActivePreset().id, "golden-horizon", "core skybox preset updates");
+engine.n.coreDebug.registerRay({ id: "smoke.ray", color: "blue", origin: [0, 0, 0], direction: [0, 0, -1], length: 2 });
+assert.equal(engine.n.coreDebug.getRays()[0].hex, "#0a84ff", "core debug registers blue rays");
 const inference = engine.n.coreMLNN.infer({ modelId: "mock", input: { text: "hello" } });
 assert.equal(inference.output.label, "mock", "core MLNN mock inference is deterministic");
 const proposal = engine.n.coreAgent.proposeAction("agent", { action: "inspect", evidence: { inferenceId: inference.id } });
