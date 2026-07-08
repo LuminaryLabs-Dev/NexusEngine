@@ -84,19 +84,18 @@ export function rightFromYaw(yaw = 0) {
   return vec3(Math.cos(yaw), 0, Math.sin(yaw));
 }
 
-export function up() {
-  return vec3(0, 1, 0);
+export function basisFromYaw(yaw = 0) {
+  return { forward: forwardFromYaw(yaw), right: rightFromYaw(yaw) };
 }
 
-export function cameraRelativeWishVector({ forward = false, back = false, left = false, right = false } = {}, cameraYaw = 0) {
-  let wish = vec3();
-  const f = forwardFromYaw(cameraYaw);
-  const r = rightFromYaw(cameraYaw);
-  if (forward) wish = add(wish, f);
-  if (back) wish = sub(wish, f);
-  if (right) wish = add(wish, r);
-  if (left) wish = sub(wish, r);
-  return normalize(wish, vec3());
+export function yawFromForward(direction = forwardFromYaw(0), fallbackYaw = 0) {
+  const flat = projectOntoPlane(direction, up());
+  if (lengthSq(flat) <= EPSILON) return normalizeAngle(fallbackYaw);
+  return Math.atan2(flat.x, -flat.z);
+}
+
+export function up() {
+  return vec3(0, 1, 0);
 }
 
 export function directionBetween(start, end) {
@@ -114,6 +113,33 @@ export function segmentLength(start, end) {
 export function projectOntoPlane(v, normal) {
   const n = normalize(normal, up());
   return sub(v, scale(n, dot(v, n)));
+}
+
+export function planarBasisFromForward(forward = forwardFromYaw(0), planeNormal = up(), fallbackForward = forwardFromYaw(0)) {
+  const n = normalize(planeNormal, up());
+  const fallback = normalize(projectOntoPlane(fallbackForward, n), forwardFromYaw(0));
+  const f = normalize(projectOntoPlane(forward, n), fallback);
+  const r = normalize(cross(f, n), rightFromYaw(0));
+  return { forward: f, right: r };
+}
+
+export function wishVectorFromBasis({ forward = false, back = false, left = false, right = false } = {}, basis = {}) {
+  let wish = vec3();
+  const f = normalize(basis.forward ?? forwardFromYaw(0), forwardFromYaw(0));
+  const r = normalize(basis.right ?? rightFromYaw(0), rightFromYaw(0));
+  if (forward) wish = add(wish, f);
+  if (back) wish = sub(wish, f);
+  if (right) wish = add(wish, r);
+  if (left) wish = sub(wish, r);
+  return normalize(wish, vec3());
+}
+
+export function cameraRelativeWishVector({ forward = false, back = false, left = false, right = false } = {}, cameraYaw = 0) {
+  return wishVectorFromBasis({ forward, back, left, right }, basisFromYaw(cameraYaw));
+}
+
+export function cameraRelativeWishVectorFromForward(input = {}, cameraForward = forwardFromYaw(0), planeNormal = up(), fallbackForward = forwardFromYaw(0)) {
+  return wishVectorFromBasis(input, planarBasisFromForward(cameraForward, planeNormal, fallbackForward));
 }
 
 export function signedAngleOnPlane(a, b, planeNormal = up()) {
@@ -147,12 +173,17 @@ export function createTransformMathUtilityKit() {
     normalize,
     forwardFromYaw,
     rightFromYaw,
+    basisFromYaw,
+    yawFromForward,
     up,
-    cameraRelativeWishVector,
     directionBetween,
     midpoint,
     segmentLength,
     projectOntoPlane,
+    planarBasisFromForward,
+    wishVectorFromBasis,
+    cameraRelativeWishVector,
+    cameraRelativeWishVectorFromForward,
     signedAngleOnPlane
   });
 }
