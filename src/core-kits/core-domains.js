@@ -24,6 +24,8 @@ export { createCoreAudioKit } from "./core-audio-kit/index.js";
 export { createCoreUIKit } from "./core-ui-kit/index.js";
 export { createCoreNetworkKit } from "./core-network-kit/index.js";
 export { createCoreDiagnosticsKit } from "./core-diagnostics-kit/index.js";
+export { createCoreDebugKit } from "./core-debug-kit/index.js";
+export { createCoreHeadlessEditorKit } from "./core-headless-editor-kit/index.js";
 export { createCorePolicyKit } from "./core-policy-kit/index.js";
 export { createCoreCompositionKit } from "./core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-mlnn-kit/index.js";
