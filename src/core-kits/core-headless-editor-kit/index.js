@@ -2,11 +2,13 @@ import { createCoreCapabilityKit } from "../core-capability-kit.js";
 import { HEADLESS_EDITOR_STAGE_ORDER } from "./constants.js";
 import { createHeadlessEditorHarness, createHeadlessRunWorkspace, createDefaultHeadlessLifecycleKits } from "./harness.js";
 import { createNoopHeadlessEditorAdapter } from "./adapters/noop-adapter.js";
+import { createHeadlessEditorRouter } from "./router/interactive-router.js";
 
 export * from "./constants.js";
 export * from "./workspace/index.js";
 export * from "./adapters/index.js";
 export * from "./harness.js";
+export * from "./router/index.js";
 export * from "./lifecycle-kits/index.js";
 
 function clone(value) {
@@ -20,8 +22,10 @@ function initialState(config = {}) {
     stageOrder: [...(config.stageOrder ?? HEADLESS_EDITOR_STAGE_ORDER)],
     workspaceSequence: 0,
     runSequence: 0,
+    routerSequence: 0,
     lastWorkspaceKind: null,
     lastRun: null,
+    lastRouterId: null,
     lastWorkspaceSnapshot: null
   };
 }
@@ -31,11 +35,12 @@ export function createCoreHeadlessEditorKit(config = {}) {
     ...config,
     domain: "core-headless-editor",
     apiName: config.apiName ?? "coreHeadlessEditor",
-    purpose: "Headless editor evidence loop, virtual run workspaces, lifecycle harnesses, adapter contracts, durable stage artifacts, and observed-difference packets.",
+    purpose: "Headless editor evidence loop, virtual run workspaces, lifecycle harnesses, interactive agent routing, adapter contracts, durable stage artifacts, and observed-difference packets.",
     owns: [
       "headless editor sessions",
       "virtual run workspace descriptors",
       "editor lifecycle stage ordering",
+      "interactive router command surface",
       "read/capture/plan/validate/submit/observe/verify/difference ledgers",
       "workspace snapshots",
       "headless run reports"
@@ -56,6 +61,8 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "text-workspace",
       "file-workspace-adapter",
       "lifecycle-harness",
+      "interactive-router",
+      "agent-instructions",
       "evidence-ledger",
       "observed-differences",
       ...(config.services ?? [])
@@ -67,6 +74,7 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "snapshotLoaded",
       "descriptorChanged",
       "workspaceCreated",
+      "routerCreated",
       "runRecorded",
       "workspaceSnapshotCaptured"
     ],
@@ -77,6 +85,7 @@ export function createCoreHeadlessEditorKit(config = {}) {
       headless: true,
       automationSafe: true,
       rendererAgnostic: true,
+      interactiveRouter: true,
       workspaceBackends: ["memory", "file", "text"],
       stageOrder: [...HEADLESS_EDITOR_STAGE_ORDER]
     },
@@ -126,6 +135,16 @@ export function createCoreHeadlessEditorKit(config = {}) {
             workspace,
             stageOrder: options.stageOrder ?? baseApi.getState()?.stageOrder ?? HEADLESS_EDITOR_STAGE_ORDER
           });
+        },
+        createRouter(options = {}) {
+          const harness = options.harness ?? this.createHarness(options);
+          const router = createHeadlessEditorRouter({ ...options, harness });
+          const current = baseApi.getState();
+          update({
+            routerSequence: Number(current.routerSequence ?? 0) + 1,
+            lastRouterId: router.id
+          }, "routerCreated");
+          return router;
         },
         async captureWorkspaceSnapshot(workspace, label = "workspace-snapshot") {
           const snapshot = await workspace.snapshot();
