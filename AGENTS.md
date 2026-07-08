@@ -219,108 +219,152 @@ kit-name/
       └─ index.ts or index.js
 ```
 
-`README.md` explains the human purpose.
+## Headless Editor Interactive Router
 
-`kit.json` explains the machine-readable contract.
+The `core-headless-editor-kit` owns the evidence-first agent editing loop and the interactive router surface.
 
-`index.ts` or `index.js` exposes the runtime behavior.
+Use it when an agent needs to inspect, plan, validate, apply, verify, or compare changes through a reusable harness instead of ad-hoc scripts.
 
-Nested kits split large domains into smaller domains.
-
-A large kit should not become a hidden `src/` folder. A large kit should become a composition of smaller kits.
-
-## Canonical Nested Kit Pattern
-
-Use this pattern to understand nested composition:
+The canonical loop is:
 
 ```txt
-kits/
-└─ connected-card-graph/
-   ├─ README.md
-   ├─ kit.json
-   ├─ package.json
-   ├─ index.ts
-   └─ kits/
-      ├─ graph-model/
-      ├─ graph-registry/
-      ├─ graph-selection/
-      ├─ graph-layout/
-      ├─ graph-validation/
-      ├─ graph-snapshot/
-      └─ graph-events/
+read -> capture-before -> plan -> validate -> submit -> observe -> verify -> capture-after -> observed-differences
 ```
 
-From this tree alone, a human or agent can see the domain shape. The graph is not hidden in a UI file. Model, registry, selection, layout, validation, snapshots, and events are separate kit domains. Work can happen at the correct scope without rewriting the whole product.
+The router makes this loop interactive. It tells the agent what state exists, what evidence is missing, what kit owns the next step, what command to run, and what workspace file to inspect next.
 
-## 50 Kit-Composition Examples
+### Router-first agent flow
 
-These examples are intentionally repetitive. Repetition teaches the operating model.
+Prefer this flow for agentic editing and temporary CDN/domain-kit use:
 
-| # | App | Kit composition | What the agent is doing and why |
-|---:|---|---|---|
-| 01 | NexusGitHubManager | `connected-card-graph`, `github-manager-graph`, `repo-worker-template`, `approval-policy`, `workflow-packets`, `repo-memory`, `static-pages-deploy` | The agent treats GitHub management as graph, policy, worker, memory, and deployment domains instead of hiding logic in one app shell. |
-| 02 | AI Game Launcher | `game-registry`, `cover-screenshot`, `route-loader`, `search-filter`, `play-state`, `build-badge` | The agent keeps discovery, routing, screenshots, and play state separate so the launcher can grow without becoming a giant UI file. |
-| 03 | Infinite Terrain Flight Game | `terrain-streaming`, `bird-locomotion`, `wind-volumes`, `camera-follow`, `weather-atmosphere`, `lod-rings` | The agent composes terrain, movement, wind, camera, and weather domains so the world can expand while only the active slice runs. |
-| 04 | VR Platformer | `vr-input`, `jump-physics`, `platform-spawner`, `gaze-pointer`, `particle-feedback`, `comfort-camera` | The agent separates VR input from platforming rules and comfort behavior so each piece can be fixed without breaking the whole game. |
-| 05 | AR Museum Guide | `ar-session`, `marker-recognition`, `artifact-card`, `tour-flow`, `spatial-audio`, `visitor-progress` | The agent treats AR tracking, museum content, flow, audio, and progress as separate domains reusable across exhibits. |
-| 06 | Discord Build Bot | `discord-webhook`, `workflow-listener`, `build-summary`, `artifact-uploader`, `failure-classifier`, `repo-memory` | The agent separates communication, workflow state, artifacts, and memory so the bot can report builds without owning the build system. |
-| 07 | Agent Task Runner | `task-ledger`, `provider-endpoints`, `workspace-patcher`, `approval-policy`, `run-artifacts`, `validation-gate` | The agent uses ledgers and gates so autonomous work remains inspectable, repeatable, and reversible. |
-| 08 | Email Discovery Engine | `source-search`, `profile-parser`, `email-patterns`, `mx-check`, `confidence-score`, `suppression-list` | The agent separates discovery, validation, scoring, and suppression so outreach data can improve without unsafe guessing. |
-| 09 | Lead Review Dashboard | `csv-import`, `lead-table`, `verification-state`, `review-queue`, `export-packager`, `audit-log` | The agent keeps import, review, verification, export, and audit trails in distinct kits for safer human review. |
-| 10 | AI Prompt Workbench | `prompt-registry`, `model-provider`, `run-history`, `comparison-view`, `scoring-rubric`, `export-report` | The agent separates prompts, providers, outputs, scoring, and reports so experiments can be repeated and compared. |
-| 11 | Kit Builder App | `kit-scaffold`, `kit-json-editor`, `domain-selector`, `dependency-graph`, `validation-runner`, `promotion-planner` | The agent makes kit creation itself kit-based so new domains follow the same structure they are creating. |
-| 12 | Workflow Packet System | `packet-schema`, `stage-runner`, `artifact-store`, `retry-policy`, `status-surface`, `handoff-report` | The agent treats workflows as packets moving through stages so failures can be retried and explained. |
-| 13 | Static Site Publisher | `route-manifest`, `asset-bundler`, `screenshot-capture`, `deploy-target`, `cache-policy`, `publish-report` | The agent separates build, assets, screenshots, cache, and deployment so publishing remains deterministic. |
-| 14 | OpenXR Host | `android-lifecycle`, `openxr-session`, `swapchain-renderer`, `controller-actions`, `webxr-adapter`, `apk-packager` | The agent keeps platform hosting separate from game logic so WebXR-style kits can run on native targets later. |
-| 15 | Quest Build Pipeline | `gradle-build`, `apk-signing`, `artifact-zip`, `discord-upload`, `smoke-log`, `release-notes` | The agent separates build, signing, artifact packaging, reporting, and release notes so mobile builds can be automated safely. |
-| 16 | Museum Multiverse Launcher | `page-rail`, `scene-preview`, `artifact-route`, `transition-camera`, `landing-scene`, `progress-memory` | The agent treats the launcher as composed UI, scene, route, and memory domains instead of one fragile landing page. |
-| 17 | Lost Pages Comic Rail | `page-model`, `rail-layout`, `scroll-input`, `iframe-card`, `active-page-state`, `transition-motion` | The agent separates page data, layout, input, embedding, and motion so the rail can be tuned without breaking content. |
-| 18 | BlackWhole Mobile Game | `mobile-input`, `level-loader`, `save-state`, `physics-core`, `render-scale`, `platform-build` | The agent separates runtime, input, save, physics, and platform build so old game projects can be modernized safely. |
-| 19 | Cosmic Crafter Sandbox | `crafting-recipes`, `inventory-state`, `resource-spawns`, `planet-terrain`, `build-placement`, `save-ledger` | The agent turns crafting into domain kits so recipes, inventory, placement, and terrain can evolve independently. |
-| 20 | Procedural Dungeon Game | `room-generator`, `corridor-layout`, `enemy-spawns`, `loot-table`, `navigation-grid`, `difficulty-scaler` | The agent separates generation, navigation, enemies, loot, and scaling so procedural changes remain controlled. |
-| 21 | City Builder Sim | `zoning-grid`, `road-network`, `economy-flow`, `citizen-demand`, `building-lifecycle`, `traffic-sim` | The agent treats simulation systems as domains so city behavior can expand through composition instead of monolithic rules. |
-| 22 | Theme Park Sim | `guest-flow`, `ride-queue`, `facility-condition`, `ticket-economy`, `pathfinding`, `satisfaction-model` | The agent separates guests, rides, queues, economy, and satisfaction so each simulation layer can be tested. |
-| 23 | Aquarium Sim | `water-quality`, `fish-behavior`, `tank-layout`, `feeding-cycle`, `lighting-cycle`, `visitor-view` | The agent keeps ecology, environment, behavior, and presentation separate so the sim can grow into deeper systems. |
-| 24 | Wildlife Ecosystem | `animal-agents`, `food-web`, `terrain-biomes`, `weather-impact`, `migration-routes`, `population-snapshot` | The agent composes ecology from smaller domains so behavior can scale without one giant wildlife script. |
-| 25 | Farming Game | `crop-growth`, `soil-state`, `weather-cycle`, `tool-actions`, `inventory`, `market-prices` | The agent separates farming mechanics from economy and weather so seasonal systems can evolve cleanly. |
-| 26 | Fishing Game | `water-surface`, `fish-spawns`, `bait-rules`, `cast-input`, `reel-physics`, `catch-ledger` | The agent composes fishing from water, fish, bait, input, physics, and records so it can become reusable. |
-| 27 | Racing Game | `vehicle-physics`, `track-surface`, `checkpoint-flow`, `camera-rig`, `ghost-replay`, `lap-timing` | The agent separates driving, track, timing, camera, and replay so racing behavior can be tuned by domain. |
-| 28 | Skateboarding Game | `board-physics`, `trick-input`, `surface-contact`, `score-combo`, `camera-follow`, `replay-capture` | The agent keeps trick logic separate from contact and scoring so new tricks do not corrupt physics. |
-| 29 | Combat Arena | `hitbox-model`, `damage-rules`, `ability-cooldowns`, `targeting`, `spawn-waves`, `match-state` | The agent splits combat into measurable domains so balance changes are isolated and testable. |
-| 30 | Card Battler | `deck-builder`, `card-registry`, `turn-state`, `effect-resolver`, `ai-opponent`, `match-log` | The agent keeps cards, effects, turns, AI, and logs separate so new cards do not break the game loop. |
-| 31 | Puzzle Box Game | `puzzle-state`, `constraint-rules`, `hint-system`, `input-router`, `solution-validator`, `progress-save` | The agent separates puzzle data, rules, hints, input, and validation so puzzle packs can scale. |
-| 32 | Dialogue RPG | `dialogue-graph`, `character-memory`, `quest-state`, `choice-effects`, `inventory`, `scene-router` | The agent treats story as graph, memory, quest, and effect domains so narrative can expand cleanly. |
-| 33 | NPC Town Sim | `npc-schedules`, `relationship-graph`, `location-routines`, `need-state`, `dialogue-hooks`, `event-ledger` | The agent composes NPC behavior from schedules, relationships, needs, and events so town life is inspectable. |
-| 34 | AI Companion App | `memory-store`, `persona-policy`, `conversation-state`, `tool-access`, `safety-gate`, `summary-ledger` | The agent separates identity, memory, tools, safety, and summaries so companion behavior stays controlled. |
-| 35 | Personal Knowledge Graph | `document-ingest`, `entity-extract`, `graph-model`, `search-index`, `source-citation`, `note-synthesis` | The agent keeps ingestion, extraction, graph, search, and citations separate so knowledge remains traceable. |
-| 36 | File Library Navigator | `file-search`, `metadata-index`, `preview-renderer`, `tagging`, `recent-uploads`, `action-menu` | The agent separates search, metadata, preview, tags, and actions so file navigation remains understandable. |
-| 37 | Spreadsheet Analyzer | `sheet-loader`, `schema-detect`, `formula-audit`, `chart-builder`, `summary-report`, `export-writer` | The agent composes spreadsheet work into load, inspect, analyze, visualize, and export domains. |
-| 38 | Slide Deck Generator | `outline-builder`, `theme-system`, `slide-layouts`, `asset-picker`, `speaker-notes`, `pptx-export` | The agent separates content, visual theme, layout, assets, notes, and export so decks can be revised safely. |
-| 39 | Document Generator | `section-outline`, `style-guide`, `citation-manager`, `review-comments`, `version-history`, `docx-export` | The agent keeps writing, style, citations, review, and export separate so documents can be maintained. |
-| 40 | Image Prompt Studio | `concept-board`, `style-rules`, `prompt-builder`, `candidate-grid`, `feedback-memory`, `export-pack` | The agent separates concept, style, prompt, outputs, feedback, and export so image iteration has structure. |
-| 41 | 3D Asset Pipeline | `mesh-ingest`, `sdf-sampler`, `material-tags`, `lod-builder`, `preview-renderer`, `asset-report` | The agent separates ingest, geometry, materials, LOD, preview, and reporting so 3D assets can move through stages. |
-| 42 | SDF Diffusion Lab | `dataset-builder`, `sdf-trainer`, `diffusion-model`, `splat-export`, `mesh-recovery`, `metric-report` | The agent keeps training, generation, export, recovery, and metrics separate so experiments remain comparable. |
-| 43 | Local Model Runner | `model-registry`, `provider-adapter`, `prompt-router`, `stream-handler`, `usage-ledger`, `health-check` | The agent separates models, providers, routing, streaming, usage, and health so local inference is swappable. |
-| 44 | Provider Proxy | `openai-compat-api`, `anthropic-compat-api`, `lmstudio-client`, `error-mapper`, `streaming-adapter`, `auth-policy` | The agent treats API compatibility as kits so providers can change without rewriting clients. |
-| 45 | Build Log Analyzer | `log-ingest`, `error-classifier`, `root-cause-hints`, `fix-suggestions`, `artifact-links`, `report-writer` | The agent separates logs, classification, hints, fixes, artifacts, and reports so CI failures become actionable. |
-| 46 | Repo Migration Planner | `repo-scan`, `dependency-map`, `risk-register`, `migration-packets`, `validation-plan`, `progress-ledger` | The agent decomposes migrations into scan, map, risk, packets, validation, and progress so large upgrades stay manageable. |
-| 47 | Unity Migration Harness | `project-index`, `package-audit`, `scene-check`, `script-upgrade`, `asset-meta-guard`, `smoke-build` | The agent separates Unity migration concerns so assets, metadata, scenes, scripts, and builds are protected. |
-| 48 | Multi-Platform Game Builder | `web-build`, `android-build`, `ios-build`, `desktop-build`, `artifact-packager`, `release-summary` | The agent treats each platform as a build domain so multi-target releases can grow without one giant workflow. |
-| 49 | Realtime Collaboration Server | `presence-state`, `room-graph`, `message-bus`, `shared-document`, `permission-policy`, `sync-snapshot` | The agent separates presence, rooms, messaging, documents, permissions, and sync so collaboration remains reliable. |
-| 50 | Boundless World Engine | `domain-ledger`, `world-seeds`, `active-slice-runtime`, `streaming-descriptors`, `agent-build-loop`, `promotion-gate` | The agent composes the world from ledgers, seeds, active runtime, descriptors, agent loops, and gates so the world can keep expanding. |
+```js
+import {
+  createHeadlessEditorHarness,
+  createHeadlessEditorRouter
+} from "nexusengine";
 
-## Final Checklist
+const harness = createHeadlessEditorHarness({
+  workspace: "memory",
+  adapter,
+  goal: "Describe the goal here"
+});
 
-Before reporting completion, answer these:
+const router = createHeadlessEditorRouter({ harness });
 
-- What domain did I work in?
-- What kit owns the change?
-- Did I reuse or compose before creating?
-- Is the change idempotent?
-- What state proves it works?
-- What validation ran?
-- What docs or exports changed?
-- What should remain experimental?
-- What is safe to promote?
+await router.dispatch("status");
+await router.dispatch("next");
+await router.dispatch("run read");
+await router.dispatch("inspect read/packet.json");
+await router.dispatch("run-until validate");
+await router.dispatch("report");
+```
 
-If those answers are unclear, the work is not done.
+Use `workspace: "memory"` for disposable temporary runs.
+Use `workspace: "text"` when a run must be portable as a single snapshot bundle.
+Use `workspace: { kind: "file", root: ".agent/headless-editor-runs/<run-id>" }` only when a CLI/CI run needs durable artifacts.
+
+### Router commands
+
+The router supports this command surface:
+
+```txt
+status
+routes
+next
+instructions
+run <stage>
+run-until <stage>
+inspect <path>
+list [prefix]
+report
+help
+```
+
+Required behavior:
+
+- Always run `status` or `next` before choosing a manual stage.
+- Inspect the relevant evidence files before `plan`, `validate`, or `submit`.
+- Never bypass `validate` before `submit`.
+- Do not claim completion until `observed-differences` has run or the remaining manual verification is documented.
+- Prefer router commands over directly calling lifecycle kits when working interactively.
+
+### Workspace files agents should inspect
+
+The router and lifecycle kits communicate through canonical virtual paths:
+
+```txt
+run.json
+goal.md
+router/status.json
+router/routes.json
+router/next.json
+router/instructions.md
+router/transcript.md
+read/packet.json
+capture-before/manifest.json
+plan/plan.json
+plan/commands.json
+validate/validation.json
+validate/issues.json
+submit/submit.json
+observe/results.json
+verify/verification.json
+capture-after/manifest.json
+observed-differences/difference.json
+observed-differences/summary.md
+report.md
+```
+
+These are workspace paths, not guaranteed OS paths. They may be backed by memory, a real folder, or a text snapshot. Lifecycle kits must use the workspace API instead of assuming a filesystem.
+
+### Router ownership boundary
+
+The router owns:
+
+- agent-facing command routing
+- stage availability checks
+- next-route recommendation
+- router status files
+- router instructions
+- router transcript
+- workspace inspection commands
+
+The router does not own:
+
+- Unity JSON-RPC execution
+- Playwright browser rendering
+- Three.js/WebGL object mutation
+- GitHub writes
+- package installation
+- long-running servers
+
+Those capabilities must enter through adapters or separate lifecycle kits.
+
+### Disposable CDN/domain-kit rule
+
+A domain kit should be importable, installable, runnable, exportable, and disposable.
+
+For Headless Editor work, that means:
+
+```txt
+import from CDN
+create memory workspace
+create harness
+create router
+run one command at a time
+export snapshot/report if needed
+drop references to dispose
+```
+
+Do not require a clone, filesystem, `.agent` folder, or Playwright just to use the core router.
+
+### Reporting requirements
+
+When reporting Headless Editor work, include:
+
+- the goal
+- the router command sequence used
+- the key workspace files inspected
+- the final `observed-differences` result, or why it could not run
+- validation that was actually performed
+- any remaining host-specific risk
