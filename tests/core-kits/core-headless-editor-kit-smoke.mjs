@@ -3,6 +3,7 @@ import {
   HEADLESS_EDITOR_STAGE_ORDER,
   createCoreHeadlessEditorKit,
   createHeadlessEditorHarness,
+  createHeadlessEditorRouter,
   createMemoryHeadlessRunWorkspace,
   createRealtimeGame,
   createTextHeadlessRunWorkspace
@@ -87,14 +88,44 @@ assert.equal((await harness.workspace.readJson("submit/submit.json")).runId, "qu
 assert.equal(await harness.workspace.readText("capture-before/scene.txt"), "capture before");
 assert.equal(await harness.workspace.exists("observed-differences/summary.md"), true);
 
+const routerHarness = createHeadlessEditorHarness({
+  workspace: "memory",
+  adapter,
+  goal: "Route a meadow scene",
+  sessionId: "router-test-session",
+  now: () => "2026-07-08T12:00:00.000Z"
+});
+const router = createHeadlessEditorRouter({ harness: routerHarness, now: () => "2026-07-08T12:00:00.000Z" });
+const status = await router.dispatch("status");
+assert.equal(status.ok, true);
+assert.equal((await routerHarness.workspace.readJson("router/status.json")).nextStage, "read");
+const next = await router.dispatch("next");
+assert.equal(next.result.recommended.command, "run read");
+const runRead = await router.dispatch("run read");
+assert.equal(runRead.ok, true);
+assert.equal(await routerHarness.workspace.exists("read/packet.json"), true);
+const inspect = await router.dispatch("inspect read/packet.json");
+assert.equal(inspect.result.kind, "text");
+const routedUntil = await router.dispatch("run-until validate");
+assert.equal(routedUntil.ok, true);
+assert.equal(await routerHarness.workspace.exists("validate/validation.json"), true);
+const routePacket = await routerHarness.workspace.readJson("router/routes.json");
+assert.ok(routePacket.routes.find((route) => route.stage === "submit"));
+assert.equal(await routerHarness.workspace.exists("router/instructions.md"), true);
+assert.equal(await routerHarness.workspace.exists("router/transcript.md"), true);
+
 const engine = createRealtimeGame({ kits: [createCoreHeadlessEditorKit()] });
 const headless = engine.n.coreHeadlessEditor;
 assert.equal(typeof headless.createWorkspace, "function");
+assert.equal(typeof headless.createRouter, "function");
 assert.equal(headless.getStageOrder()[0], "read");
 const apiWorkspace = headless.createWorkspace("memory");
 await apiWorkspace.writeJson("run.json", { id: "api-run" });
 const apiSnapshot = await headless.captureWorkspaceSnapshot(apiWorkspace, "api-snapshot");
 assert.equal(apiSnapshot.files["run.json"].encoding, "utf8");
 assert.equal(headless.getSnapshot().lastWorkspaceSnapshot.label, "api-snapshot");
+const apiRouter = headless.createRouter({ adapter, goal: "API router" });
+await apiRouter.dispatch("status");
+assert.equal(headless.getSnapshot().lastRouterId, apiRouter.id);
 
 console.log("core headless editor kit smoke ok");
