@@ -21,6 +21,7 @@ import {
   createCoreNetworkKit,
   createCoreDiagnosticsKit,
   createCoreDebugKit,
+  createCoreHeadlessEditorKit,
   createCorePolicyKit,
   createCoreCompositionKit,
   createCoreMLNNKit,
@@ -52,6 +53,7 @@ const factories = [
   createCoreNetworkKit,
   createCoreDiagnosticsKit,
   createCoreDebugKit,
+  createCoreHeadlessEditorKit,
   createCorePolicyKit,
   createCoreCompositionKit,
   createCoreMLNNKit,
@@ -87,6 +89,7 @@ for (const namespace of [
   "coreNetwork",
   "coreDiagnostics",
   "coreDebug",
+  "coreHeadlessEditor",
   "corePolicy",
   "coreComposition",
   "coreMLNN",
@@ -103,6 +106,7 @@ engine.n.coreSkybox.setPreset("golden-horizon");
 assert.equal(engine.n.coreSkybox.getActivePreset().id, "golden-horizon", "core skybox preset updates");
 engine.n.coreDebug.registerRay({ id: "smoke.ray", color: "blue", origin: [0, 0, 0], direction: [0, 0, -1], length: 2 });
 assert.equal(engine.n.coreDebug.getRays()[0].hex, "#0a84ff", "core debug registers blue rays");
+assert.equal(engine.n.coreHeadlessEditor.getStageOrder()[0], "read", "core headless editor exposes evidence-first stage order");
 const inference = engine.n.coreMLNN.infer({ modelId: "mock", input: { text: "hello" } });
 assert.equal(inference.output.label, "mock", "core MLNN mock inference is deterministic");
 const proposal = engine.n.coreAgent.proposeAction("agent", { action: "inspect", evidence: { inferenceId: inference.id } });
