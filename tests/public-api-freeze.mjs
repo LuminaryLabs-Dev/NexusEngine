@@ -99,6 +99,7 @@ for (const name of [
   "CoreDebugColors",
   "createCoreHeadlessEditorKit",
   "createHeadlessEditorHarness",
+  "createHeadlessEditorRouter",
   "createMemoryHeadlessRunWorkspace",
   "createTextHeadlessRunWorkspace",
   "HEADLESS_EDITOR_STAGE_ORDER",
