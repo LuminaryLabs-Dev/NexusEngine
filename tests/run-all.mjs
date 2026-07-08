@@ -22,6 +22,7 @@ const tests = [
   "tests/core-kits/core-mlnn-kit-smoke.mjs",
   "tests/core-kits/core-agent-kit-smoke.mjs",
   "tests/core-kits/core-debug-kit-smoke.mjs",
+  "tests/core-kits/core-headless-editor-kit-smoke.mjs",
   "tests/core-kits/core-custom-replacement-smoke.mjs"
 ];
 
