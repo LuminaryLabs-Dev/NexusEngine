@@ -30,7 +30,8 @@ function normalizeInitialFiles(input = {}) {
 
 export function createMemoryHeadlessRunWorkspace(options = {}) {
   const files = new Map();
-  for (const [path, file] of normalizeInitialFiles(options.files ?? {})) {
+  const initialFiles = options.version && options.files ? options : options.files ?? {};
+  for (const [path, file] of normalizeInitialFiles(initialFiles)) {
     files.set(normalizeWorkspacePath(path), file);
   }
 
