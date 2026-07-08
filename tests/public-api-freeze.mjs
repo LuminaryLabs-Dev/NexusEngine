@@ -95,6 +95,8 @@ for (const name of [
   "createCoreUIKit",
   "createCoreNetworkKit",
   "createCoreDiagnosticsKit",
+  "createCoreDebugKit",
+  "CoreDebugColors",
   "createCorePolicyKit",
   "createCoreCompositionKit",
   "createCoreMLNNKit",
