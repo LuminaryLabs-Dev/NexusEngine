@@ -40,6 +40,7 @@ export { createCoreAudioKit } from "./core-kits/core-audio-kit/index.js";
 export { createCoreUIKit } from "./core-kits/core-ui-kit/index.js";
 export { createCoreNetworkKit } from "./core-kits/core-network-kit/index.js";
 export { createCoreDiagnosticsKit } from "./core-kits/core-diagnostics-kit/index.js";
+export { createCoreDebugKit, CoreDebugColors } from "./core-kits/core-debug-kit/index.js";
 export { createCorePolicyKit } from "./core-kits/core-policy-kit/index.js";
 export { createCoreCompositionKit } from "./core-kits/core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-kits/core-mlnn-kit/index.js";
