@@ -20,6 +20,7 @@ export * from "./core-audio-kit/index.js";
 export * from "./core-ui-kit/index.js";
 export * from "./core-network-kit/index.js";
 export * from "./core-diagnostics-kit/index.js";
+export * from "./core-debug-kit/index.js";
 export * from "./core-policy-kit/index.js";
 export * from "./core-composition-kit/index.js";
 export * from "./core-mlnn-kit/index.js";
