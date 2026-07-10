@@ -104,7 +104,6 @@ for (const name of [
   "createHeadlessEditorEnvironment",
   "createHeadlessEditorEnvironmentAdapter",
   "createHeadlessEditorTerminalClient",
-  "createStdioHeadlessEditorTransport",
   "createMemoryHeadlessRunWorkspace",
   "createTextHeadlessRunWorkspace",
   "HEADLESS_EDITOR_STAGE_ORDER",
