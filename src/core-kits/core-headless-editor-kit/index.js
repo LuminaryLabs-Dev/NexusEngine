@@ -14,6 +14,8 @@ export * from "./lifecycle-kits/index.js";
 export * from "./runtime/index.js";
 export * from "./environments/index.js";
 export * from "./clients/index.js";
+export * from "./transports/in-process-transport.js";
+export * from "./transports/message-port-transport.js";
 
 function clone(value) {
   if (value === undefined) return undefined;
@@ -74,6 +76,9 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "editor-loop",
       "terminal-client",
       "environment-adapter",
+      "browser-driver-adapter",
+      "in-process-transport",
+      "message-port-transport",
       "virtual-workspace",
       "memory-workspace",
       "text-workspace",
