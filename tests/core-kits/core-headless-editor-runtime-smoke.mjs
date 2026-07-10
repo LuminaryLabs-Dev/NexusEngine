@@ -1,10 +1,12 @@
 import assert from "node:assert/strict";
 import {
+  createBrowserDriverHeadlessEditorAdapter,
   createHeadlessEditorEnvironment,
   createHeadlessEditorHarness,
   createHeadlessEditorRouter,
   createHeadlessEditorRuntime,
-  createHeadlessEditorTerminalClient
+  createHeadlessEditorTerminalClient,
+  createInProcessHeadlessEditorTransport
 } from "../../src/index.js";
 
 let frame = 0;
@@ -97,6 +99,22 @@ assert.equal((await client.dispatch("call runtime.tick --amount 2")).data.frame,
 assert.equal((await client.dispatch("inspect runtime")).data.frame, 7);
 assert.equal((await client.dispatch("loop status")).loop.status, "finished");
 
+const transport = createInProcessHeadlessEditorTransport({ runtime });
+assert.equal((await transport.dispatch("runtime.tick", { amount: 1 })).data.frame, 8);
+assert.equal(transport.disconnect().connected, false);
+assert.equal((await transport.dispatch("runtime.tick", { amount: 1 })).status, "disconnected");
+transport.connect();
+
+const browserAdapter = createBrowserDriverHeadlessEditorAdapter({
+  driver: {
+    async capabilities() { return { screenshot: true }; },
+    async capture(args) { return { ok: true, data: { label: args.label ?? "capture" } }; }
+  }
+});
+assert.equal((await browserAdapter.connect()).connected, true);
+assert.equal((await browserAdapter.discover()).capabilities.screenshot, true);
+assert.equal((await browserAdapter.invoke({ action: "browser.capture", arguments: { label: "smoke" } })).data.label, "smoke");
+
 const harness = createHeadlessEditorHarness({
   workspace: "memory",
   adapter: {
@@ -111,7 +129,7 @@ const routedCapabilities = await router.dispatch("capabilities renderer");
 assert.equal(routedCapabilities.ok, true);
 assert.equal(routedCapabilities.result.capabilities.length, 1);
 const routedCall = await router.dispatch("call runtime.tick --amount 1");
-assert.equal(routedCall.result.data.frame, 8);
+assert.equal(routedCall.result.data.frame, 9);
 
 runtime.reset({ keepEnvironment: true });
 assert.equal(runtime.history().length, 0);
