@@ -5,6 +5,9 @@
   "type": "module",
   "main": "./src/index.js",
   "module": "./src/index.js",
+  "bin": {
+    "nexus-editor": "./bin/nexus-editor.mjs"
+  },
   "exports": {
     ".": "./src/index.js",
     "./release": "./src/release.js",
@@ -35,6 +38,7 @@
     "release:manifest": "node scripts/generate-dsk-manifest.mjs"
   },
   "files": [
+    "bin",
     "src",
     "docs",
     "README.md",
