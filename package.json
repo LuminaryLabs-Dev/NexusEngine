@@ -28,6 +28,7 @@
     "./core-kits/core-scene-kit/hosts/native-scene-host": "./src/core-kits/core-scene-kit/hosts/native-scene-host.js",
     "./core-kits/core-scene-kit/hosts/rust-native-scene-host": "./src/core-kits/core-scene-kit/hosts/rust-native-scene-host.js",
     "./core-kits/core-headless-editor-kit": "./src/core-kits/core-headless-editor-kit/index.js",
+    "./core-kits/core-headless-editor-kit/transports/stdio": "./src/core-kits/core-headless-editor-kit/transports/stdio-transport.js",
     "./core-kits/*": "./src/core-kits/*/index.js"
   },
   "scripts": {
