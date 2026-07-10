@@ -2,6 +2,7 @@ import { normalizeRouterCommand } from "./command-parser.js";
 import { createHeadlessEditorRoutes } from "./route-registry.js";
 import { createHeadlessEditorRouterStatus } from "./router-status.js";
 import { writeHeadlessEditorRouterInstructions } from "./router-instructions.js";
+import { createHeadlessEditorTerminalClient } from "../clients/terminal-client.js";
 
 function clone(value) {
   if (value === undefined) return undefined;
@@ -58,7 +59,7 @@ async function writeRouterPacket(workspace, command, result) {
   await appendTranscript(workspace, {
     at: packet.at,
     command: command.source,
-    summary: packet.ok ? "ok" : `failed: ${result?.error ?? "unknown"}`
+    summary: packet.ok ? "ok" : `failed: ${result?.error ?? result?.message ?? "unknown"}`
   });
   return packet;
 }
@@ -70,81 +71,93 @@ export function createHeadlessEditorRouter(config = {}) {
   }
   const workspace = config.workspace ?? harness.workspace;
   const now = config.now;
+  const runtime = config.runtime ?? null;
+  const terminal = runtime ? createHeadlessEditorTerminalClient({ runtime }) : null;
 
   async function dispatch(input = "status", options = {}) {
     const command = normalizeRouterCommand(input);
     let result;
 
-    switch (command.verb) {
-      case "status":
-        result = await createHeadlessEditorRouterStatus({ harness, workspace });
-        break;
-      case "routes":
-        result = await createHeadlessEditorRoutes({ harness, workspace });
-        break;
-      case "next": {
-        const routes = await createHeadlessEditorRoutes({ harness, workspace });
-        result = { ok: Boolean(routes.recommended), recommended: routes.recommended };
-        break;
-      }
-      case "instructions":
-      case "explain":
-        result = { ok: true, text: await writeHeadlessEditorRouterInstructions({ harness, workspace }) };
-        break;
-      case "list": {
-        const prefix = command.args[0] ?? "";
-        result = { ok: true, prefix, files: await workspace.list(prefix) };
-        break;
-      }
-      case "inspect":
-        result = await inspectWorkspacePath(workspace, command.args.join(" "));
-        break;
-      case "run":
-        result = await runStage(harness, command.args[0], options);
-        break;
-      case "run-until": {
-        const target = command.args[0];
-        const stageOrder = [...(harness.stageOrder ?? [])];
-        const targetIndex = stageOrder.indexOf(target);
-        if (targetIndex < 0) {
-          result = { ok: false, error: `Unknown run-until target stage: ${target}` };
-        } else {
-          const status = await createHeadlessEditorRouterStatus({ harness, workspace });
-          const completed = new Set(status.completedStages ?? []);
-          const selected = stageOrder.slice(0, targetIndex + 1).filter((stage) => !completed.has(stage));
-          const run = selected.length ? await harness.run({ ...options, stageOrder: selected }) : { ok: true, stageResults: [] };
-          result = { ok: run.ok, target, stageOrder: selected, stageResults: run.stageResults };
+    if (terminal?.supports(command.verb) && !["status", "inspect", "list", "report", "help"].includes(command.verb)) {
+      result = await terminal.dispatch(input);
+    } else {
+      switch (command.verb) {
+        case "status": {
+          const lifecycle = await createHeadlessEditorRouterStatus({ harness, workspace });
+          result = runtime
+            ? { ok: true, lifecycle, editor: await terminal.dispatch("status") }
+            : lifecycle;
+          break;
         }
-        break;
+        case "routes":
+          result = await createHeadlessEditorRoutes({ harness, workspace });
+          break;
+        case "next": {
+          const routes = await createHeadlessEditorRoutes({ harness, workspace });
+          result = { ok: Boolean(routes.recommended), recommended: routes.recommended };
+          break;
+        }
+        case "instructions":
+        case "explain":
+          result = { ok: true, text: await writeHeadlessEditorRouterInstructions({ harness, workspace }) };
+          break;
+        case "list": {
+          const prefix = command.args[0] ?? "";
+          result = { ok: true, prefix, files: await workspace.list(prefix) };
+          break;
+        }
+        case "inspect": {
+          const target = command.args.join(" ");
+          if (runtime && target && !target.includes("/") && !target.includes(".")) {
+            result = await terminal.dispatch(input);
+          } else {
+            result = await inspectWorkspacePath(workspace, target);
+          }
+          break;
+        }
+        case "run":
+          result = await runStage(harness, command.args[0], options);
+          break;
+        case "run-until": {
+          const target = command.args[0];
+          const stageOrder = [...(harness.stageOrder ?? [])];
+          const targetIndex = stageOrder.indexOf(target);
+          if (targetIndex < 0) {
+            result = { ok: false, error: `Unknown run-until target stage: ${target}` };
+          } else {
+            const status = await createHeadlessEditorRouterStatus({ harness, workspace });
+            const completed = new Set(status.completedStages ?? []);
+            const selected = stageOrder.slice(0, targetIndex + 1).filter((stage) => !completed.has(stage));
+            const run = selected.length ? await harness.run({ ...options, stageOrder: selected }) : { ok: true, stageResults: [] };
+            result = { ok: run.ok, target, stageOrder: selected, stageResults: run.stageResults };
+          }
+          break;
+        }
+        case "report": {
+          await writeHeadlessEditorRouterInstructions({ harness, workspace });
+          result = {
+            ok: true,
+            report: await workspace.exists("report.md") ? await workspace.readText("report.md") : null,
+            instructions: await workspace.readText("router/instructions.md"),
+            editor: runtime?.snapshot?.() ?? null
+          };
+          break;
+        }
+        case "help": {
+          const legacyCommands = [
+            "status", "routes", "next", "instructions", "run <stage>", "run-until <stage>",
+            "inspect <path-or-domain>", "list [prefix]", "report"
+          ];
+          const editorHelp = runtime ? await terminal.dispatch("help") : { commands: [] };
+          result = { ok: true, commands: [...legacyCommands, ...(editorHelp.commands ?? [])] };
+          break;
+        }
+        default:
+          result = terminal?.supports(command.verb)
+            ? await terminal.dispatch(input)
+            : { ok: false, error: `Unknown headless editor router command: ${command.verb}` };
+          break;
       }
-      case "report": {
-        await writeHeadlessEditorRouterInstructions({ harness, workspace });
-        result = {
-          ok: true,
-          report: await workspace.exists("report.md") ? await workspace.readText("report.md") : null,
-          instructions: await workspace.readText("router/instructions.md")
-        };
-        break;
-      }
-      case "help":
-        result = {
-          ok: true,
-          commands: [
-            "status",
-            "routes",
-            "next",
-            "instructions",
-            "run <stage>",
-            "run-until <stage>",
-            "inspect <path>",
-            "list [prefix]",
-            "report"
-          ]
-        };
-        break;
-      default:
-        result = { ok: false, error: `Unknown headless editor router command: ${command.verb}` };
-        break;
     }
 
     const packet = await writeRouterPacket(workspace, { ...command, source: command.source || input }, result);
@@ -157,6 +170,7 @@ export function createHeadlessEditorRouter(config = {}) {
   return {
     id: config.id ?? `${harness.id}:router`,
     harness,
+    runtime,
     workspace,
     dispatch,
     status: () => dispatch("status"),
