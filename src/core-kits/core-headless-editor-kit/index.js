@@ -3,6 +3,7 @@ import { HEADLESS_EDITOR_STAGE_ORDER } from "./constants.js";
 import { createHeadlessEditorHarness, createHeadlessRunWorkspace, createDefaultHeadlessLifecycleKits } from "./harness.js";
 import { createNoopHeadlessEditorAdapter } from "./adapters/noop-adapter.js";
 import { createHeadlessEditorRouter } from "./router/interactive-router.js";
+import { createHeadlessEditorRuntime } from "./runtime/editor-runtime.js";
 
 export * from "./constants.js";
 export * from "./workspace/index.js";
@@ -10,6 +11,10 @@ export * from "./adapters/index.js";
 export * from "./harness.js";
 export * from "./router/index.js";
 export * from "./lifecycle-kits/index.js";
+export * from "./runtime/index.js";
+export * from "./environments/index.js";
+export * from "./clients/index.js";
+export * from "./transports/index.js";
 
 function clone(value) {
   if (value === undefined) return undefined;
@@ -23,9 +28,11 @@ function initialState(config = {}) {
     workspaceSequence: 0,
     runSequence: 0,
     routerSequence: 0,
+    runtimeSequence: 0,
     lastWorkspaceKind: null,
     lastRun: null,
     lastRouterId: null,
+    lastRuntimeId: null,
     lastWorkspaceSnapshot: null
   };
 }
@@ -35,9 +42,12 @@ export function createCoreHeadlessEditorKit(config = {}) {
     ...config,
     domain: "core-headless-editor",
     apiName: config.apiName ?? "coreHeadlessEditor",
-    purpose: "Headless editor evidence loop, virtual run workspaces, lifecycle harnesses, interactive agent routing, adapter contracts, durable stage artifacts, and observed-difference packets.",
+    purpose: "Headless editor runtime, evidence loop, permissive environment capabilities, terminal and agent command surfaces, virtual workspaces, lifecycle harnesses, durable artifacts, and observed differences.",
     owns: [
       "headless editor sessions",
+      "environment and capability discovery",
+      "editor command routing and result ledgers",
+      "interactive and scripted editor loops",
       "virtual run workspace descriptors",
       "editor lifecycle stage ordering",
       "interactive router command surface",
@@ -53,9 +63,18 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "Unity scene mutation implementation",
       "GitHub write operations",
       "package manager execution",
-      "long-running server hosting"
+      "long-running server hosting",
+      "gameplay truth"
     ],
     services: [
+      "editor-runtime",
+      "editor-session",
+      "capability-registry",
+      "command-router",
+      "command-history",
+      "editor-loop",
+      "terminal-client",
+      "environment-adapter",
       "virtual-workspace",
       "memory-workspace",
       "text-workspace",
@@ -75,6 +94,7 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "descriptorChanged",
       "workspaceCreated",
       "routerCreated",
+      "runtimeCreated",
       "runRecorded",
       "workspaceSnapshotCaptured"
     ],
@@ -85,7 +105,10 @@ export function createCoreHeadlessEditorKit(config = {}) {
       headless: true,
       automationSafe: true,
       rendererAgnostic: true,
+      permissiveCapabilities: true,
       interactiveRouter: true,
+      terminalControlSurface: true,
+      futureEditorControlSurface: true,
       workspaceBackends: ["memory", "file", "text"],
       stageOrder: [...HEADLESS_EDITOR_STAGE_ORDER]
     },
@@ -135,6 +158,15 @@ export function createCoreHeadlessEditorKit(config = {}) {
             workspace,
             stageOrder: options.stageOrder ?? baseApi.getState()?.stageOrder ?? HEADLESS_EDITOR_STAGE_ORDER
           });
+        },
+        createRuntime(options = {}) {
+          const runtime = createHeadlessEditorRuntime(options);
+          const current = baseApi.getState();
+          update({
+            runtimeSequence: Number(current.runtimeSequence ?? 0) + 1,
+            lastRuntimeId: runtime.id
+          }, "runtimeCreated");
+          return runtime;
         },
         createRouter(options = {}) {
           const harness = options.harness ?? this.createHarness(options);
