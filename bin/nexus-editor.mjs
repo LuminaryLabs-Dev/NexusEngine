@@ -3,9 +3,9 @@ import { resolve } from "node:path";
 import { pathToFileURL } from "node:url";
 import {
   createHeadlessEditorRuntime,
-  createHeadlessEditorTerminalClient,
-  createStdioHeadlessEditorTransport
+  createHeadlessEditorTerminalClient
 } from "../src/core-kits/core-headless-editor-kit/index.js";
+import { createStdioHeadlessEditorTransport } from "../src/core-kits/core-headless-editor-kit/transports/stdio-transport.js";
 
 function takeOption(args, name) {
   const index = args.indexOf(name);
