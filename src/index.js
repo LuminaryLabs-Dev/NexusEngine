@@ -17,6 +17,7 @@ export * from "./sequence-node-library.js";
 export * from "./sequence-node-kit.js";
 export * from "./foundation/index.js";
 export * from "./modules/nexus-diffusion/index.js";
+export * from "./core-domains/index.js";
 
 export {
   createCoreCapabilityDescriptor,
