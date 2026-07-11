@@ -1,0 +1,32 @@
+{
+  "id": "core-world-domain",
+  "version": "0.1.0",
+  "stability": "experimental-core",
+  "entry": "./index.js",
+  "api": "coreWorld",
+  "owns": [
+    "world identity",
+    "world partitions",
+    "world cells",
+    "world surfaces",
+    "world effects",
+    "world composition",
+    "world snapshots"
+  ],
+  "doesNotOwn": [
+    "terrain generation",
+    "renderer implementation",
+    "GPU resources",
+    "physics resolution",
+    "game-specific content"
+  ],
+  "kits": [
+    "world-cell-kit",
+    "world-partition-kit",
+    "world-surface-kit",
+    "world-effect-provider-kit",
+    "world-builder-runtime-kit"
+  ],
+  "partitions": ["uniform-grid", "quadtree"],
+  "surfaces": ["flat", "curved-horizon"]
+}
