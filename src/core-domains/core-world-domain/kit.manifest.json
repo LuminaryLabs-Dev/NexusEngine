@@ -1,6 +1,6 @@
 {
   "id": "core-world-domain",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "stability": "experimental-core",
   "entry": "./index.js",
   "api": "coreWorld",
@@ -9,12 +9,14 @@
     "world partitions",
     "world cells",
     "world surfaces",
-    "world effects",
+    "world effect references",
+    "world lifecycle coordination",
     "world composition",
     "world snapshots"
   ],
   "doesNotOwn": [
     "terrain generation",
+    "provider implementation state",
     "renderer implementation",
     "GPU resources",
     "physics resolution",
@@ -27,6 +29,17 @@
     "world-effect-provider-kit",
     "world-builder-runtime-kit"
   ],
+  "providerLifecycle": [
+    "prepareCell",
+    "updateCell",
+    "releaseCell",
+    "getEffectDescriptor",
+    "snapshot",
+    "restoreSnapshot",
+    "reset"
+  ],
   "partitions": ["uniform-grid", "quadtree"],
-  "surfaces": ["flat", "curved-horizon"]
+  "surfaces": ["flat", "curved-horizon"],
+  "state": "resource-backed portable coordination metadata",
+  "heavyState": "provider-owned"
 }
