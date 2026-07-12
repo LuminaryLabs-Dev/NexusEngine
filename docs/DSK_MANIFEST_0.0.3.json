@@ -11,9 +11,9 @@
       "provides": [
         "n:core-data"
       ],
+      "source": "src/core-kits/core-data-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-data-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -23,9 +23,9 @@
       "provides": [
         "n:core-persistence"
       ],
+      "source": "src/core-kits/core-persistence-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-persistence-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -35,9 +35,9 @@
       "provides": [
         "n:core-assets"
       ],
+      "source": "src/core-kits/core-assets-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-assets-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -47,9 +47,9 @@
       "provides": [
         "n:core-platform"
       ],
+      "source": "src/core-kits/core-platform-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-platform-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -59,9 +59,9 @@
       "provides": [
         "n:core-input"
       ],
+      "source": "src/core-kits/core-input-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-input-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -71,9 +71,9 @@
       "provides": [
         "n:core-spatial"
       ],
+      "source": "src/core-kits/core-spatial-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-spatial-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -83,9 +83,9 @@
       "provides": [
         "n:core-scene"
       ],
+      "source": "src/core-kits/core-scene-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-scene-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -95,9 +95,9 @@
       "provides": [
         "n:core-physics"
       ],
+      "source": "src/core-kits/core-physics-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-physics-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -107,9 +107,9 @@
       "provides": [
         "n:core-motion"
       ],
+      "source": "src/core-kits/core-motion-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-motion-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -119,9 +119,9 @@
       "provides": [
         "n:core-simulation"
       ],
+      "source": "src/core-kits/core-simulation-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-simulation-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -131,9 +131,9 @@
       "provides": [
         "n:core-interaction"
       ],
+      "source": "src/core-kits/core-interaction-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-interaction-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -143,9 +143,9 @@
       "provides": [
         "n:core-graphics"
       ],
+      "source": "src/core-kits/core-graphics-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-graphics-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -155,9 +155,9 @@
       "provides": [
         "n:core-camera"
       ],
+      "source": "src/core-kits/core-camera-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-camera-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -167,9 +167,9 @@
       "provides": [
         "n:core-animation"
       ],
+      "source": "src/core-kits/core-animation-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-animation-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -179,9 +179,9 @@
       "provides": [
         "n:core-audio"
       ],
+      "source": "src/core-kits/core-audio-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-audio-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -191,9 +191,9 @@
       "provides": [
         "n:core-ui"
       ],
+      "source": "src/core-kits/core-ui-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-ui-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -203,9 +203,9 @@
       "provides": [
         "n:core-network"
       ],
+      "source": "src/core-kits/core-network-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-network-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -215,9 +215,9 @@
       "provides": [
         "n:core-diagnostics"
       ],
+      "source": "src/core-kits/core-diagnostics-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-diagnostics-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -227,9 +227,9 @@
       "provides": [
         "n:core-policy"
       ],
+      "source": "src/core-kits/core-policy-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-policy-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -239,9 +239,9 @@
       "provides": [
         "n:core-composition"
       ],
+      "source": "src/core-kits/core-composition-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-composition-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -251,9 +251,9 @@
       "provides": [
         "n:core-mlnn"
       ],
+      "source": "src/core-kits/core-mlnn-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-mlnn-kit/index.js",
       "snapshot": "required",
       "reset": "required"
     },
@@ -263,9 +263,57 @@
       "provides": [
         "n:core-agent"
       ],
+      "source": "src/core-kits/core-agent-kit/index.js",
       "stability": "stable-candidate",
       "version": "0.0.3",
-      "source": "src/core-kits/core-agent-kit/index.js",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-domain",
+      "domain": "presentation",
+      "provides": [
+        "n:presentation"
+      ],
+      "source": "src/core-kits/core-presentation-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-output-kit",
+      "domain": "presentation-output",
+      "provides": [
+        "n:presentation:output"
+      ],
+      "source": "src/core-kits/core-presentation-output-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-ui-scale-kit",
+      "domain": "presentation-ui-scale",
+      "provides": [
+        "n:presentation:ui-scale"
+      ],
+      "source": "src/core-kits/core-ui-scale-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-camera-framing-kit",
+      "domain": "presentation-camera-framing",
+      "provides": [
+        "n:presentation:camera-framing"
+      ],
+      "source": "src/core-kits/core-camera-framing-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
       "snapshot": "required",
       "reset": "required"
     }

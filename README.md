@@ -422,3 +422,7 @@ Every world can keep expanding.
 ```
 
 NexusEngine is the realtime substrate for that process.
+
+## Optional Core Presentation Domain
+
+Visual hosts can opt into `n:presentation` for renderer-neutral viewport policy, safe-area handling, UI scale, and subject framing. It is recommended for browser and native visual templates but is not installed automatically into headless runtimes. See `docs/CORE_PRESENTATION_DOMAIN.md`.
