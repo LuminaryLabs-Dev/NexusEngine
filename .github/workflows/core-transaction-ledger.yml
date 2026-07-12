@@ -1,0 +1,27 @@
+name: Core Transaction Ledger
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-kits/core-transaction-ledger-kit/**"
+      - "tests/core-kits/core-transaction-ledger-smoke.mjs"
+      - ".github/workflows/core-transaction-ledger.yml"
+  pull_request:
+    paths:
+      - "src/core-kits/core-transaction-ledger-kit/**"
+      - "tests/core-kits/core-transaction-ledger-smoke.mjs"
+
+permissions:
+  contents: read
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: node tests/core-kits/core-transaction-ledger-smoke.mjs
