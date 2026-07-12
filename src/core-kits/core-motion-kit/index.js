@@ -13,9 +13,24 @@ export * from "./contracts.js";
 
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
+const CORE_MOTION_EVENT_NAMES = Object.freeze([
+  "configured",
+  "updated",
+  "reset",
+  "snapshotLoaded",
+  "descriptorChanged",
+  "movementModeRegistered",
+  "intentSubmitted",
+  "intentCleared",
+  "trajectorySubmitted",
+  "motionFrameCommitted"
+]);
+
 export function createCoreMotionKit(config = {}) {
   const frameHistoryLimit = Math.max(1, Number(config.frameHistoryLimit ?? 120));
   const apiName = config.apiName ?? "coreMotion";
+  const userCreateApi = config.createApi;
+
   return createCoreCapabilityKit({
     ...config,
     domain: "core-motion",
@@ -47,18 +62,7 @@ export function createCoreMotionKit(config = {}) {
       "motion-frames",
       ...(config.services ?? [])
     ],
-    eventNames: [
-      "configured",
-      "updated",
-      "reset",
-      "snapshotLoaded",
-      "descriptorChanged",
-      "movementModeRegistered",
-      "intentSubmitted",
-      "intentCleared",
-      "trajectorySubmitted",
-      "motionFrameCommitted"
-    ],
+    eventNames: config.eventNames ?? CORE_MOTION_EVENT_NAMES,
     initialState: {
       movementModes: {},
       intents: {},
@@ -74,14 +78,11 @@ export function createCoreMotionKit(config = {}) {
       rendererAgnostic: true,
       physicsIndependent: true
     },
-    install(context) {
-      context.engine.coreMotion = context.engine.n[apiName];
-      config.install?.(context);
-    },
-    createApi({ baseApi }) {
+    createApi(context) {
+      const { baseApi, engine } = context;
       const state = () => baseApi.getState();
       const commit = (patch, eventName) => baseApi.update(patch, eventName);
-      return {
+      const motionApi = {
         registerMovementMode(input = {}) {
           const descriptor = createMovementModeDescriptor(input);
           commit({
@@ -149,6 +150,10 @@ export function createCoreMotionKit(config = {}) {
         validateIntent: validateMotionIntentDescriptor,
         validateFrame: validateMotionFrameDescriptor
       };
+      const userApi = typeof userCreateApi === "function" ? userCreateApi(context) ?? {} : {};
+      const resolvedApi = { ...baseApi, ...motionApi, ...userApi };
+      engine.coreMotion = resolvedApi;
+      return { ...motionApi, ...userApi };
     }
   });
 }
