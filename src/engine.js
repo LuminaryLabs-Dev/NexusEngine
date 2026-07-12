@@ -15,6 +15,7 @@ import {
 } from "./surfaces.js";
 import { createRealtimeCoreKit } from "./core-kits/realtime-core-kit/index.js";
 import { createSequenceCoreKit } from "./core-kits/sequence-core-kit/index.js";
+import { createTickContextScheduler } from "./tick-context-scheduler.js";
 
 function assertSurface(surface) {
   if (!surface || typeof surface.subscribe !== "function" || typeof surface.publish !== "function") {
@@ -28,21 +29,17 @@ function number(value, fallback) {
 }
 
 function array(value) {
-  if (value === undefined || value === null) {
-    return [];
-  }
+  if (value === undefined || value === null) return [];
   return Array.isArray(value) ? value : [value];
 }
 
+function clone(value) {
+  return value === undefined ? undefined : structuredClone(value);
+}
+
 function defaultCoreKits(options) {
-  if (options.coreKits === false) {
-    return [];
-  }
-
-  if (Array.isArray(options.coreKits)) {
-    return options.coreKits;
-  }
-
+  if (options.coreKits === false) return [];
+  if (Array.isArray(options.coreKits)) return options.coreKits;
   return [
     createRealtimeCoreKit(options.realtimeCore ?? options.realtime ?? {}),
     createSequenceCoreKit(options.sequenceCore ?? options.sequence ?? {})
@@ -51,20 +48,12 @@ function defaultCoreKits(options) {
 
 function groupRecords(records, kind, keySelector) {
   const grouped = new Map();
-
   for (const record of records) {
-    if (record.kind !== kind) {
-      continue;
-    }
-
+    if (record.kind !== kind) continue;
     const key = keySelector(record);
-    if (!grouped.has(key)) {
-      grouped.set(key, []);
-    }
-
+    if (!grouped.has(key)) grouped.set(key, []);
     grouped.get(key).push(record);
   }
-
   return grouped;
 }
 
@@ -74,29 +63,15 @@ function reconcileQuerySurface(surface, world) {
   const entered = [];
   const exited = [];
 
-  for (const entity of nextMembers) {
-    if (!previousMembers.has(entity)) {
-      entered.push(entity);
-    }
-  }
-
-  for (const entity of previousMembers) {
-    if (!nextMembers.has(entity)) {
-      exited.push(entity);
-    }
-  }
+  for (const entity of nextMembers) if (!previousMembers.has(entity)) entered.push(entity);
+  for (const entity of previousMembers) if (!nextMembers.has(entity)) exited.push(entity);
 
   const initialized = surface.initialized === true;
   surface.members = nextMembers;
   surface.initialized = true;
 
-  if (!initialized && entered.length === 0 && exited.length === 0) {
-    return null;
-  }
-
-  if (entered.length === 0 && exited.length === 0) {
-    return null;
-  }
+  if (!initialized && entered.length === 0 && exited.length === 0) return null;
+  if (entered.length === 0 && exited.length === 0) return null;
 
   return {
     kind: "query",
@@ -109,58 +84,69 @@ function reconcileQuerySurface(surface, world) {
 }
 
 function publishSurfaceBatch(surface, batch, context) {
-  if (batch === null || batch === undefined) {
-    return;
-  }
-
-  if (Array.isArray(batch) && batch.length === 0) {
-    return;
-  }
-
-  if (batch.kind === "query" && batch.entered.length === 0 && batch.exited.length === 0) {
-    return;
-  }
-
+  if (batch === null || batch === undefined) return;
+  if (Array.isArray(batch) && batch.length === 0) return;
+  if (batch.kind === "query" && batch.entered.length === 0 && batch.exited.length === 0) return;
   surface.publish(batch, context);
+}
+
+function stableUnique(values) {
+  return Array.from(new Set(values)).sort((left, right) => String(left).localeCompare(String(right)));
+}
+
+function createDirtySummary(journal = []) {
+  const resources = [];
+  const components = [];
+  const entitiesAdded = [];
+  const entitiesRemoved = [];
+
+  for (const record of journal) {
+    if (record.kind === "resource") resources.push(record.resource?.name ?? String(record.resource ?? ""));
+    if (record.kind === "component") {
+      components.push(`${record.entity}:${record.component?.name ?? String(record.component ?? "")}`);
+    }
+    if (record.kind === "entity" && record.action === "add") entitiesAdded.push(record.entity);
+    if (record.kind === "entity" && record.action === "remove") entitiesRemoved.push(record.entity);
+  }
+
+  return Object.freeze({
+    resources: Object.freeze(stableUnique(resources)),
+    components: Object.freeze(stableUnique(components)),
+    entitiesAdded: Object.freeze(stableUnique(entitiesAdded)),
+    entitiesRemoved: Object.freeze(stableUnique(entitiesRemoved))
+  });
 }
 
 export function createEngine(options = {}) {
   const world = options.world ?? createWorld();
-  const scheduler = options.scheduler ?? createScheduler();
+  const scheduler = createTickContextScheduler(options.scheduler ?? createScheduler());
   const clock = options.clock ?? { delta: 1 / 60, elapsed: 0, frame: 0 };
   const renderer = options.renderer ?? createHeadlessRenderer();
   const shaderRegistry = options.shaderRegistry ?? createShaderRegistry();
   const materialRegistry = options.materialRegistry ?? createMaterialRegistry();
-  const registry = {
-    event: [],
-    resource: [],
-    query: [],
-    lifecycle: []
+  const registry = { event: [], resource: [], query: [], lifecycle: [] };
+  const tickOptions = options.tick && typeof options.tick === "object" ? options.tick : {};
+  const maxDelta = Math.max(0, number(tickOptions.maxDelta, 1 / 15));
+  const rejectReentry = tickOptions.rejectReentry !== false;
+  const tickState = {
+    running: false,
+    current: null,
+    lastCommit: null,
+    revision: Math.max(0, Math.floor(number(tickOptions.initialRevision, clock.frame ?? 0)))
   };
 
   function registerSurface(surface) {
     assertSurface(surface);
-
-    if (!registry[surface.kind]) {
-      throw new Error(`Unsupported surface kind: ${surface.kind}`);
-    }
-
+    if (!registry[surface.kind]) throw new Error(`Unsupported surface kind: ${surface.kind}`);
     registry[surface.kind].push(surface);
     return surface;
   }
 
   function unregisterSurface(surface) {
     assertSurface(surface);
-
-    if (!registry[surface.kind]) {
-      return false;
-    }
-
+    if (!registry[surface.kind]) return false;
     const index = registry[surface.kind].indexOf(surface);
-    if (index === -1) {
-      return false;
-    }
-
+    if (index === -1) return false;
     registry[surface.kind].splice(index, 1);
     surface.dispose();
     return true;
@@ -183,128 +169,162 @@ export function createEngine(options = {}) {
   }
 
   function tick(delta = clock.delta) {
-    const nextDelta = number(delta, clock.delta ?? 1 / 60);
+    if (tickState.running) {
+      if (rejectReentry) throw new Error("NexusEngine tick re-entry is not allowed.");
+      return world;
+    }
+
+    const requestedDelta = number(delta, clock.delta ?? 1 / 60);
+    const nextDelta = Math.min(maxDelta, Math.max(0, requestedDelta));
     clock.delta = nextDelta;
     clock.elapsed = number(clock.elapsed, 0) + nextDelta;
     clock.frame = number(clock.frame, 0) + 1;
+    tickState.revision += 1;
+
+    const tickContext = Object.freeze({
+      tickId: `tick:${tickState.revision}`,
+      frame: clock.frame,
+      revision: tickState.revision,
+      delta: clock.delta,
+      elapsed: clock.elapsed
+    });
+
+    tickState.running = true;
+    tickState.current = tickContext;
     world.__nexusClock = clock;
+    world.__nexusTickContext = tickContext;
     world.__nexusRenderer = renderer;
 
-    const lifecycleBatch = [{
-      kind: "lifecycle",
-      topic: "tick",
-      stage: "start",
-      frame: clock.frame,
-      delta: clock.delta,
-      elapsed: clock.elapsed
-    }];
-    let journal = [];
-
-    scheduler.run(world, {
-      onPhaseStart(phaseName) {
-        lifecycleBatch.push({
-          kind: "lifecycle",
-          topic: "phase",
-          stage: "start",
-          phase: phaseName,
-          frame: clock.frame,
-          delta: clock.delta,
-          elapsed: clock.elapsed
-        });
-      },
-
-      onPhaseEnd(phaseName) {
-        lifecycleBatch.push({
-          kind: "lifecycle",
-          topic: "phase",
-          stage: "end",
-          phase: phaseName,
-          frame: clock.frame,
-          delta: clock.delta,
-          elapsed: clock.elapsed
-        });
-      },
-
-      onDrain({ journal: drainedJournal }) {
-        journal = drainedJournal.slice();
-      }
-    });
-
-    const journalContext = {
-      engine,
-      world,
-      scheduler,
-      clock,
-      frame: clock.frame,
-      delta: clock.delta,
-      elapsed: clock.elapsed
-    };
-
-    const eventGroups = groupRecords(journal, "event", (record) => record.event.name);
-    const resourceGroups = groupRecords(journal, "resource", (record) => record.resource.name);
-    const lifecycleRecords = journal
-      .filter((record) => record.kind === "component" || record.kind === "entity")
-      .map((record) => ({
-        ...record,
+    try {
+      const lifecycleBatch = [{
         kind: "lifecycle",
-        topic: record.kind
-      }));
+        topic: "tick",
+        stage: "start",
+        tickId: tickContext.tickId,
+        revision: tickContext.revision,
+        frame: clock.frame,
+        delta: clock.delta,
+        elapsed: clock.elapsed
+      }];
+      let journal = [];
 
-    for (const surface of registry.event) {
-      publishSurfaceBatch(surface, eventGroups.get(surface.event.name) ?? null, journalContext);
-    }
-
-    for (const surface of registry.resource) {
-      publishSurfaceBatch(surface, resourceGroups.get(surface.resource.name) ?? null, journalContext);
-    }
-
-    for (const surface of registry.query) {
-      publishSurfaceBatch(surface, reconcileQuerySurface(surface, world), journalContext);
-    }
-
-    lifecycleBatch.push(...lifecycleRecords);
-    lifecycleBatch.push({
-      kind: "lifecycle",
-      topic: "tick",
-      stage: "end",
-      frame: clock.frame,
-      delta: clock.delta,
-      elapsed: clock.elapsed,
-      entityCount: world.entityCount
-    });
-
-    for (const surface of registry.lifecycle) {
-      const topics = surface.topics ?? [];
-      const batch = topics.length > 0
-        ? lifecycleBatch.filter((record) => topics.includes(record.topic))
-        : lifecycleBatch.slice();
-      publishSurfaceBatch(surface, batch, journalContext);
-    }
-
-    if (engine.sequenceRuntime) {
-      engine.sequenceRuntime.tick(clock.delta);
-    }
-
-    if (engine.sequenceNodeRuntime && engine.driveSequenceNodesWithTick !== false) {
-      engine.sequenceNodeRuntime.frame({
-        source: "engine",
-        payload: {
-          delta: clock.delta,
-          elapsed: clock.elapsed,
-          frame: clock.frame
+      scheduler.run(world, {
+        onPhaseStart(phaseName) {
+          lifecycleBatch.push({
+            kind: "lifecycle",
+            topic: "phase",
+            stage: "start",
+            phase: phaseName,
+            tickId: tickContext.tickId,
+            revision: tickContext.revision,
+            frame: clock.frame,
+            delta: clock.delta,
+            elapsed: clock.elapsed
+          });
         },
+        onPhaseEnd(phaseName) {
+          lifecycleBatch.push({
+            kind: "lifecycle",
+            topic: "phase",
+            stage: "end",
+            phase: phaseName,
+            tickId: tickContext.tickId,
+            revision: tickContext.revision,
+            frame: clock.frame,
+            delta: clock.delta,
+            elapsed: clock.elapsed
+          });
+        },
+        onDrain({ journal: drainedJournal }) {
+          journal = drainedJournal.slice();
+        }
+      }, tickContext);
+
+      const journalContext = {
+        engine,
+        world,
+        scheduler,
+        clock,
+        tickContext,
+        tickId: tickContext.tickId,
+        revision: tickContext.revision,
+        frame: clock.frame,
+        delta: clock.delta,
+        elapsed: clock.elapsed
+      };
+
+      const eventGroups = groupRecords(journal, "event", (record) => record.event.name);
+      const resourceGroups = groupRecords(journal, "resource", (record) => record.resource.name);
+      const lifecycleRecords = journal
+        .filter((record) => record.kind === "component" || record.kind === "entity")
+        .map((record) => ({ ...record, kind: "lifecycle", topic: record.kind }));
+
+      for (const surface of registry.event) {
+        publishSurfaceBatch(surface, eventGroups.get(surface.event.name) ?? null, journalContext);
+      }
+      for (const surface of registry.resource) {
+        publishSurfaceBatch(surface, resourceGroups.get(surface.resource.name) ?? null, journalContext);
+      }
+      for (const surface of registry.query) {
+        publishSurfaceBatch(surface, reconcileQuerySurface(surface, world), journalContext);
+      }
+
+      lifecycleBatch.push(...lifecycleRecords);
+      lifecycleBatch.push({
+        kind: "lifecycle",
+        topic: "tick",
+        stage: "end",
+        tickId: tickContext.tickId,
+        revision: tickContext.revision,
         frame: clock.frame,
         delta: clock.delta,
         elapsed: clock.elapsed,
-        meta: {
-          engine,
-          world,
-          clock
-        }
+        entityCount: world.entityCount
       });
-    }
 
-    return world;
+      for (const surface of registry.lifecycle) {
+        const topics = surface.topics ?? [];
+        const batch = topics.length > 0
+          ? lifecycleBatch.filter((record) => topics.includes(record.topic))
+          : lifecycleBatch.slice();
+        publishSurfaceBatch(surface, batch, journalContext);
+      }
+
+      if (engine.sequenceRuntime) engine.sequenceRuntime.tick(clock.delta);
+      if (engine.sequenceNodeRuntime && engine.driveSequenceNodesWithTick !== false) {
+        engine.sequenceNodeRuntime.frame({
+          source: "engine",
+          payload: { delta: clock.delta, elapsed: clock.elapsed, frame: clock.frame },
+          frame: clock.frame,
+          delta: clock.delta,
+          elapsed: clock.elapsed,
+          meta: { engine, world, clock, tickContext }
+        });
+      }
+
+      const simulationApi = engine.coreSimulation ?? engine.n?.coreSimulation;
+      const committedSimulation = simulationApi?.getCommittedFrame?.() ?? null;
+      tickState.lastCommit = Object.freeze({
+        tickId: tickContext.tickId,
+        frame: tickContext.frame,
+        revision: tickContext.revision,
+        delta: tickContext.delta,
+        elapsed: tickContext.elapsed,
+        simulation: committedSimulation ? Object.freeze({
+          stepId: committedSimulation.stepId ?? null,
+          revision: committedSimulation.revision ?? null,
+          outcome: committedSimulation.outcome ?? "continue"
+        }) : null,
+        dirty: createDirtySummary(journal),
+        committed: true
+      });
+
+      return world;
+    } finally {
+      tickState.current = null;
+      tickState.running = false;
+      world.__nexusTickContext = null;
+    }
   }
 
   const engine = {
@@ -353,42 +373,38 @@ export function createEngine(options = {}) {
     bindSequenceNodeFrameDriver(frameOptions = {}) {
       return engine.sequenceNodeRuntime.bindFrameDriver(frameOptions);
     },
+    getLastTickCommit() {
+      return clone(tickState.lastCommit);
+    },
+    getCurrentTickContext() {
+      return tickState.current;
+    },
+    isTicking() {
+      return tickState.running;
+    },
     tick,
     step: tick
   };
 
-  for (const surface of options.surfaces ?? []) {
-    registerSurface(surface);
-  }
+  for (const surface of options.surfaces ?? []) registerSurface(surface);
 
   engine.sequenceRuntime.bind(engine);
   engine.sequenceNodeRuntime.bind(engine);
 
-  for (const kit of defaultCoreKits(options)) {
-    engine.installKit(kit, options);
-  }
+  for (const kit of defaultCoreKits(options)) engine.installKit(kit, options);
 
-  if (options.sequenceNodes) {
-    engine.sequenceNodeRuntime.mount(options.sequenceNodes);
-  }
-
+  if (options.sequenceNodes) engine.sequenceNodeRuntime.mount(options.sequenceNodes);
   if (options.bindSequenceNodeSurfaces) {
     engine.sequenceNodeRuntime.bindEngineSurfaces(options.bindSequenceNodeSurfaces);
   }
-
   if (options.autoStartSequenceNodes) {
     for (const node of array(options.sequenceNodes)) {
       if (node?.id) engine.sequenceNodeRuntime.start(node.id);
     }
   }
 
-  for (const kit of options.kits ?? []) {
-    engine.installKit(kit, options);
-  }
-
-  if (options.kit) {
-    engine.installKit(options.kit, options);
-  }
+  for (const kit of options.kits ?? []) engine.installKit(kit, options);
+  if (options.kit) engine.installKit(options.kit, options);
 
   return engine;
 }
