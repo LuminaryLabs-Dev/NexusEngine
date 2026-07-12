@@ -47,6 +47,54 @@ await run.continue();
 
 The status packet includes the route reason, inferred checks, required and missing evidence, next command, completion confidence, and whether agent or user action is required.
 
+## Synthesized reliability fixtures
+
+The reliability layer converts inferred checks into an explicit fixture plan. Repository-safe checks run automatically:
+
+```txt
+repository-integrity
+public-export-integrity
+test-coverage
+```
+
+Checks requiring real project semantics remain capability-backed instead of being guessed:
+
+```txt
+kit-composition
+installed-api-parity
+descriptor-integrity
+snapshot-reset-replay
+deterministic-replay
+runtime-tick
+browser-startup
+```
+
+The controller records automatic results, identifies missing executors, and blocks completion until every required check and hard evidence gate passes.
+
+## Repository development environment
+
+`createRepositoryDevelopmentEnvironment()` exposes a guided capability surface over a repository and, optionally, an existing NexusEngine instance and browser driver:
+
+```js
+import {
+  createHeadlessEditorRuntime,
+  createRepositoryDevelopmentEnvironment
+} from "nexusengine";
+
+const environment = createRepositoryDevelopmentEnvironment({
+  root: process.cwd(),
+  engine,
+  browserDriver,
+  executors: {
+    "kit.compareDirectAndInstalledApi": runInstalledParityFixture
+  }
+});
+
+const editor = createHeadlessEditorRuntime({ environment });
+```
+
+The environment provides repository search and inspection, module graph and public export validation, engine and kit inspection, domain invocation, test execution, risk guidance, and guided run control. Capabilities that require project-specific semantics return `unavailable` until an executor, engine, or browser driver is supplied.
+
 ## Guided CLI
 
 From a repository containing `.agent/target.md`:
