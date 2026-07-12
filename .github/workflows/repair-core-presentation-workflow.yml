@@ -1,0 +1,55 @@
+name: Repair core presentation workflow
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .agent/repair-core-presentation-workflow
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Repair duplicate barrel edit
+        shell: bash
+        run: |
+          set -euo pipefail
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/apply-core-presentation-domain.yml')
+          text = path.read_text()
+          old = '''          barrels = Path('tests/core-capability-domain-barrels-smoke.mjs')
+          replace_once(
+              barrels,
+              '  createCoreCameraKit,\n',
+              '  createCoreCameraKit,\n  createCorePresentationKit,\n  createCorePresentationOutputKit,\n  createCoreUIScaleKit,\n  createCoreCameraFramingKit,\n',
+              'barrel imports'
+          )
+          replace_once(
+              barrels,
+              '  createCoreCameraKit,\n  createCoreAnimationKit,',
+              '  createCoreCameraKit,\n  createCorePresentationKit,\n  createCorePresentationOutputKit,\n  createCoreUIScaleKit,\n  createCoreCameraFramingKit,\n  createCoreAnimationKit,',
+              'barrel factories'
+          )'''
+          new = '''          barrels = Path('tests/core-capability-domain-barrels-smoke.mjs')
+          text = barrels.read_text()
+          old_camera_pair = '  createCoreCameraKit,\\n  createCoreAnimationKit,'
+          if text.count(old_camera_pair) != 2:
+              raise SystemExit(f'barrel camera pairs: expected two matches, found {text.count(old_camera_pair)}')
+          new_camera_pair = '  createCoreCameraKit,\\n  createCorePresentationKit,\\n  createCorePresentationOutputKit,\\n  createCoreUIScaleKit,\\n  createCoreCameraFramingKit,\\n  createCoreAnimationKit,'
+          text = text.replace(old_camera_pair, new_camera_pair)
+          barrels.write_text(text)'''
+          if text.count(old) != 1:
+              raise SystemExit(f'expected one barrel edit block, found {text.count(old)}')
+          path.write_text(text.replace(old, new, 1))
+          PY
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .github/workflows/apply-core-presentation-domain.yml
+          git commit -m "Repair core presentation barrel reconciliation"
+          git push origin HEAD:main
