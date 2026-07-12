@@ -44,6 +44,19 @@ function sectionValue(sections, names = []) {
   return "";
 }
 
+function markdownList(items = []) {
+  return items.length ? items.map((item) => `- ${String(item)}`).join("\n") : "- none declared";
+}
+
+function resolveTargetPath(root, path, nodePath) {
+  const resolvedRoot = nodePath.resolve(root ?? process.cwd());
+  const resolved = nodePath.resolve(resolvedRoot, path);
+  if (resolved !== resolvedRoot && !resolved.startsWith(`${resolvedRoot}${nodePath.sep}`)) {
+    throw new TypeError(`Development target escaped repository root: ${path}`);
+  }
+  return { root: resolvedRoot, resolved };
+}
+
 export function parseDevelopmentTarget(markdown = "", options = {}) {
   const raw = String(markdown ?? "").replace(/^\uFEFF/, "");
   const sections = new Map();
@@ -96,6 +109,22 @@ export function parseDevelopmentTarget(markdown = "", options = {}) {
   return Object.freeze(target);
 }
 
+export function createDevelopmentTargetMarkdown(input = {}) {
+  if (typeof input === "string") {
+    const text = input.trim();
+    if (text.startsWith("#")) return `${text}\n`;
+    input = { goal: text };
+  }
+  const title = String(input.title ?? "Development Target").trim() || "Development Target";
+  const goal = String(input.goal ?? input.objective ?? "").trim();
+  if (!goal) throw new TypeError("Development target goal is required.");
+  const mode = String(input.mode ?? "Planning and implementation").trim();
+  const scope = input.scope ?? [];
+  const requiredOutcomes = input.requiredOutcomes ?? input.outcomes ?? [];
+  const constraints = input.constraints ?? [];
+  return `# ${title}\n\n## Goal\n\n${goal}\n\n## Mode\n\n${mode}\n\n## Scope\n\n${markdownList(scope)}\n\n## Required outcome\n\n${markdownList(requiredOutcomes)}\n\n## Constraints\n\n${markdownList(constraints)}\n`;
+}
+
 export function validateDevelopmentTarget(value) {
   const errors = [];
   if (!value || value.schema !== "nexus-headless-development-target/1") {
@@ -115,12 +144,23 @@ export async function readDevelopmentTarget(path = ".agent/target.md", options =
 
   const fs = await import("node:fs/promises");
   const nodePath = await import("node:path");
-  const root = nodePath.resolve(options.root ?? process.cwd());
-  const resolved = nodePath.resolve(root, path);
-  if (resolved !== root && !resolved.startsWith(`${root}${nodePath.sep}`)) {
-    throw new TypeError(`Development target escaped repository root: ${path}`);
-  }
+  const { resolved } = resolveTargetPath(options.root, path, nodePath);
   return parseDevelopmentTarget(await fs.readFile(resolved, "utf8"), { sourcePath: path });
+}
+
+export async function writeDevelopmentTarget(input, path = ".agent/target.md", options = {}) {
+  const markdown = createDevelopmentTargetMarkdown(input);
+  if (options.workspace) {
+    await options.workspace.writeText(path, markdown);
+    return parseDevelopmentTarget(markdown, { sourcePath: path });
+  }
+
+  const fs = await import("node:fs/promises");
+  const nodePath = await import("node:path");
+  const { resolved } = resolveTargetPath(options.root, path, nodePath);
+  await fs.mkdir(nodePath.dirname(resolved), { recursive: true });
+  await fs.writeFile(resolved, markdown, "utf8");
+  return parseDevelopmentTarget(markdown, { sourcePath: path });
 }
 
 export function cloneDevelopmentTarget(target) {
