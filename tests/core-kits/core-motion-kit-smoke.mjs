@@ -2,8 +2,18 @@ import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { createCoreMotionKit } from "../../src/core-kits/core-motion-kit/index.js";
 
-const engine = createEngine({ kits: [createCoreMotionKit({ frameHistoryLimit: 4 })] });
+const engine = createEngine({
+  kits: [createCoreMotionKit({
+    frameHistoryLimit: 4,
+    createApi() {
+      return { customMotionHook: () => "preserved" };
+    }
+  })]
+});
 const motion = engine.n.coreMotion;
+assert.equal(typeof engine.coreMotion?.submitIntent, "function", "Core Motion keeps its root compatibility API");
+assert.equal(engine.coreMotion.submitIntent, motion.submitIntent);
+assert.equal(motion.customMotionHook(), "preserved", "custom Core Motion API extensions remain composed");
 
 const mode = motion.registerMovementMode({
   id: "run",
