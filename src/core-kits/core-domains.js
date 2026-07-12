@@ -16,6 +16,7 @@ export { createCoreSceneKit } from "./core-scene-kit/index.js";
 export { createCorePhysicsKit } from "./core-physics-kit/index.js";
 export { createCoreMotionKit } from "./core-motion-kit/index.js";
 export { createCoreSimulationKit } from "./core-simulation-kit/index.js";
+export { createCoreComputeKit } from "./core-compute-kit/index.js";
 export { createCoreInteractionKit } from "./core-interaction-kit/index.js";
 export { createCoreGraphicsKit } from "./core-graphics-kit/index.js";
 export { createCoreCameraKit } from "./core-camera-kit/index.js";
