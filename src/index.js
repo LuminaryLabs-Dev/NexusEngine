@@ -64,6 +64,15 @@ export { createCoreAgentKit } from "./core-kits/core-agent-kit/index.js";
 export { createCoreUtilityKit } from "./core-kits/core-utility-kit/index.js";
 export * from "./core-kits/core-utility-kit/index.js";
 
+export { createTerrainKit } from "./terrain-kit.js";
+export { createProceduralKit } from "./procedural-kit.js";
+export { createNavMeshKit } from "./navmesh-kit.js";
+export { createPathfindingKit } from "./pathfinding-kit.js";
+export { createWaterSurfaceKit } from "./water-surface-kit.js";
+export { createVehicleDynamicsKit } from "./vehicle-dynamics-kit.js";
+export { createRouteFieldKit } from "./route-field-kit.js";
+export { createCargoManifestKit } from "./cargo-manifest-kit.js";
+
 export * from "./fishing-kit.js";
 export * from "./reef-rescue-kit.js";
 export * from "./realism-kit.js";
@@ -72,6 +81,9 @@ export * from "./procedural-kit.js";
 export * from "./navmesh-kit.js";
 export * from "./pathfinding-kit.js";
 export * from "./world-physics-kit.js";
+export * from "./water-surface-kit.js";
+export * from "./vehicle-dynamics-kit.js";
+export * from "./route-field-kit.js";
 export * from "./ar-kit.js";
 export * from "./ar-session.js";
 export * from "./ar-renderer.js";
