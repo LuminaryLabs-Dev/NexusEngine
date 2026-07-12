@@ -1,0 +1,21 @@
+{
+  "schemaVersion": "nexusengine.core-kit.v1",
+  "id": "n-core-transaction-ledger-kit",
+  "version": "0.0.3",
+  "domain": "core-transaction-ledger",
+  "domainPath": "n:core-transaction-ledger",
+  "apiName": "coreTransactionLedger",
+  "status": "stable-candidate",
+  "entry": "./index.js",
+  "provides": [
+    "n:core-transaction-ledger",
+    "n:core-transaction-ledger:ledger",
+    "n:core-transaction-ledger:idempotency",
+    "transaction:ledger",
+    "transaction:idempotency"
+  ],
+  "requires": [],
+  "rendererAgnostic": true,
+  "snapshotPolicy": "portable-resource-ledger",
+  "resetPolicy": "empty-ledgers"
+}
