@@ -41,9 +41,9 @@ export {
 } from "./core-kits/core-input-kit/index.js";
 export { createCoreSpatialKit } from "./core-kits/core-spatial-kit/index.js";
 export { createCoreSceneKit } from "./core-kits/core-scene-kit/index.js";
-export { createCorePhysicsKit } from "./core-kits/core-physics-kit/index.js";
+export * from "./core-kits/core-physics-kit/index.js";
 export { createCoreMotionKit } from "./core-kits/core-motion-kit/index.js";
-export { createCoreSimulationKit } from "./core-kits/core-simulation-kit/index.js";
+export * from "./core-kits/core-simulation-kit/index.js";
 export { createCoreInteractionKit } from "./core-kits/core-interaction-kit/index.js";
 export { createCoreGraphicsKit } from "./core-kits/core-graphics-kit/index.js";
 export { createCoreSkyboxKit } from "./core-kits/core-skybox-kit/index.js";
