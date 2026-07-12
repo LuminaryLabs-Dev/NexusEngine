@@ -1,11 +1,17 @@
 # core-physics-kit
 
-Purpose: physical contact and constraint contracts without owning a full physics engine.
+Purpose: backend-neutral physical body, collider, contact, constraint, articulation, joint-motor, and normalized frame contracts.
 
-Owns: collider descriptors, body descriptors, motion requests, normalized physics frames, contact events, grounding descriptors, constraint descriptors, collision query descriptors, and physics provider boundaries.
+Owns: body and collider descriptors, motion requests, constraint descriptors, articulation descriptors, joint-motor requests, normalized contacts, grounding descriptors, collision queries, provider boundaries, and normalized physics frames.
 
-Does not own: full simulation backend, renderer physics debug UI, movement intent, gameplay outcome meaning, GPU dispatch, or draw submission.
+Does not own: a full simulation backend, movement intent, kinematic rig pose solving, renderer physics debug UI, gameplay outcomes, GPU dispatch, or draw submission.
 
-Public API: `createCorePhysicsKit(config?)` plus backend-neutral provider, body, collider, motion-request, frame, reset, and disposal services.
+Public API: `createCorePhysicsKit(config?)` plus provider, body, collider, motion-request, constraint, articulation, motor-request, frame, reset, and disposal services.
 
-Proof required: provider lifecycle smoke, collider descriptor smoke, contact normalization smoke, backend-object isolation, deterministic one-step-per-tick smoke, reset smoke, and serializable headless output.
+Parent domain factory: `createCorePhysicsDomain(config?)`.
+
+Subdomain: `n:core-physics:articulated-dynamics`, installed by `createArticulatedDynamicsDomain(config?)`.
+
+Provider compatibility: `step()` and `getFrame()` remain mandatory. Articulation methods are optional, so existing providers continue to work unchanged.
+
+Proof required: provider lifecycle smoke, old-provider compatibility, contact normalization, articulation descriptor and motor-request smoke, backend-object isolation, deterministic one-step-per-tick behavior, snapshot/reset, and serializable headless output.
