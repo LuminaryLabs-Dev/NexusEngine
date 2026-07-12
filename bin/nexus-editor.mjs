@@ -52,6 +52,43 @@ function printResult(value, options = {}) {
   process.stdout.write(`${JSON.stringify(value, null, 2)}\n`);
 }
 
+function notStartedStatus(target) {
+  return {
+    schema: "nexus-guided-development-status/1",
+    mode: "guided-development-loop",
+    runId: null,
+    goal: target.goal,
+    status: "not-started",
+    iteration: 0,
+    phase: "bootstrap",
+    currentRoute: "start",
+    routeReason: "No guided development run exists for the current target.",
+    requiredChecks: [],
+    requiredEvidence: ["target-loaded", "agent-instructions", "repository-inspection", "module-graph-before", "kit-graph"],
+    missingEvidence: ["target-loaded", "agent-instructions", "repository-inspection", "module-graph-before", "kit-graph"],
+    failedEvidence: [],
+    routeMissingEvidence: ["target-loaded", "agent-instructions"],
+    nextCommand: { action: "development.start", arguments: {} },
+    completionConfidence: 0,
+    canClaimComplete: false,
+    canStop: false,
+    requiresAgentAction: false,
+    requiresUserDecision: false,
+    repair: null
+  };
+}
+
+async function resumeOrInitial({ root, targetPath, runId }) {
+  try {
+    const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
+    return { session, target: session.target, status: await session.status() };
+  } catch (error) {
+    if (!/No guided development run exists to resume/.test(error?.message ?? "")) throw error;
+    const target = await readDevelopmentTarget(targetPath, { root });
+    return { session: null, target, status: notStartedStatus(target) };
+  }
+}
+
 const args = process.argv.slice(2);
 const environmentPath = takeOption(args, "--environment") ?? takeOption(args, "-e");
 const targetPath = takeOption(args, "--target") ?? ".agent/target.md";
@@ -82,28 +119,39 @@ if (guided) {
         break;
       }
       case "resume": {
-        const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
-        result = { ok: true, status: await session.status(), route: await session.next() };
+        const resumed = await resumeOrInitial({ root, targetPath, runId });
+        result = resumed.session
+          ? { ok: true, status: resumed.status, route: await resumed.session.next() }
+          : { ok: true, status: resumed.status, route: { id: "start", command: resumed.status.nextCommand, reason: resumed.status.routeReason, automatic: true } };
         break;
       }
       case "status": {
-        const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
-        result = { ok: true, status: await session.status() };
+        const resumed = await resumeOrInitial({ root, targetPath, runId });
+        result = { ok: true, status: resumed.status };
         break;
       }
       case "next": {
-        const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
-        result = { ok: true, route: await session.next() };
+        const resumed = await resumeOrInitial({ root, targetPath, runId });
+        result = resumed.session
+          ? { ok: true, route: await resumed.session.next() }
+          : { ok: true, route: { id: "start", command: resumed.status.nextCommand, reason: resumed.status.routeReason, automatic: true } };
         break;
       }
       case "continue": {
-        const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
-        result = await session.continue({ maxSteps: Number(args[1] ?? 50) });
+        const resumed = await resumeOrInitial({ root, targetPath, runId });
+        if (!resumed.session) {
+          const session = await startGuidedDevelopmentSession({ root, targetPath, runId });
+          result = { ok: true, status: await session.status(), route: await session.next(), started: true };
+        } else {
+          result = await resumed.session.continue({ maxSteps: Number(args[1] ?? 50) });
+        }
         break;
       }
       case "report": {
-        const session = await resumeGuidedDevelopmentSession({ root, targetPath, runId });
-        result = { ok: true, status: await session.status(), report: await session.report() };
+        const resumed = await resumeOrInitial({ root, targetPath, runId });
+        result = resumed.session
+          ? { ok: true, status: resumed.status, report: await resumed.session.report() }
+          : { ok: true, status: resumed.status, report: null };
         break;
       }
       default:
