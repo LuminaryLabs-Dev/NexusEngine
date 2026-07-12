@@ -29,10 +29,10 @@ export function createCorePhysicsKit(config = {}) {
     services: [
       ...(config.services ?? []),
       "provider",
-      "body descriptors",
-      "collider descriptors",
-      "motion requests",
-      "physics frames"
+      "body-descriptors",
+      "collider-descriptors",
+      "motion-requests",
+      "physics-frames"
     ],
     resources: {
       ...(config.resources ?? {}),
