@@ -12,6 +12,7 @@ export * from "./core-scene-kit/index.js";
 export * from "./core-physics-kit/index.js";
 export * from "./core-motion-kit/index.js";
 export * from "./core-simulation-kit/index.js";
+export * from "./core-compute-kit/index.js";
 export * from "./core-interaction-kit/index.js";
 export * from "./core-graphics-kit/index.js";
 export * from "./core-skybox-kit/index.js";
