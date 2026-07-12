@@ -19,52 +19,10 @@ export * from "./sequence-node-kit.js";
 export * from "./foundation/index.js";
 export * from "./modules/nexus-diffusion/index.js";
 export * from "./core-domains/index.js";
+export * from "./core-kits/index.js";
 export * from "./hosts/browser/browser-presentation-surface-adapter.js";
 export * from "./renderers/three/three-presentation-output-adapter.js";
 export * from "./renderers/three/three-subject-bounds-adapter.js";
-
-export {
-  createCoreCapabilityDescriptor,
-  createCoreCapabilityKit
-} from "./core-kits/core-capability-kit.js";
-export { createCoreDataKit } from "./core-kits/core-data-kit/index.js";
-export * from "./core-kits/core-object-kit/index.js";
-export { createCorePersistenceKit } from "./core-kits/core-persistence-kit/index.js";
-export { createCoreAssetsKit } from "./core-kits/core-assets-kit/index.js";
-export { createCorePlatformKit } from "./core-kits/core-platform-kit/index.js";
-export {
-  createCoreInputKit,
-  InputIntentState,
-  InputIntentChanged,
-  InputActionPressed,
-  createInputIntentKit
-} from "./core-kits/core-input-kit/index.js";
-export { createCoreSpatialKit } from "./core-kits/core-spatial-kit/index.js";
-export { createCoreSceneKit } from "./core-kits/core-scene-kit/index.js";
-export * from "./core-kits/core-physics-kit/index.js";
-export { createCoreMotionKit } from "./core-kits/core-motion-kit/index.js";
-export * from "./core-kits/core-simulation-kit/index.js";
-export { createCoreInteractionKit } from "./core-kits/core-interaction-kit/index.js";
-export { createCoreGraphicsKit } from "./core-kits/core-graphics-kit/index.js";
-export { createCoreSkyboxKit } from "./core-kits/core-skybox-kit/index.js";
-export { createCoreCameraKit } from "./core-kits/core-camera-kit/index.js";
-export { createCorePresentationKit } from "./core-kits/core-presentation-kit/index.js";
-export * from "./core-kits/core-presentation-output-kit/index.js";
-export * from "./core-kits/core-ui-scale-kit/index.js";
-export * from "./core-kits/core-camera-framing-kit/index.js";
-export { createCoreAnimationKit } from "./core-kits/core-animation-kit/index.js";
-export { createCoreAudioKit } from "./core-kits/core-audio-kit/index.js";
-export { createCoreUIKit } from "./core-kits/core-ui-kit/index.js";
-export { createCoreNetworkKit } from "./core-kits/core-network-kit/index.js";
-export { createCoreDiagnosticsKit } from "./core-kits/core-diagnostics-kit/index.js";
-export { createCoreDebugKit, CoreDebugColors } from "./core-kits/core-debug-kit/index.js";
-export * from "./core-kits/core-headless-editor-kit/index.js";
-export { createCorePolicyKit } from "./core-kits/core-policy-kit/index.js";
-export { createCoreCompositionKit } from "./core-composition-kit/index.js";
-export { createCoreMLNNKit } from "./core-kits/core-mlnn-kit/index.js";
-export { createCoreAgentKit } from "./core-kits/core-agent-kit/index.js";
-export { createCoreUtilityKit } from "./core-kits/core-utility-kit/index.js";
-export * from "./core-kits/core-utility-kit/index.js";
 
 export { createTerrainKit } from "./terrain-kit.js";
 export { createProceduralKit } from "./procedural-kit.js";
