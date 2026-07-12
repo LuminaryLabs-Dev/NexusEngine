@@ -30,7 +30,13 @@ export { createCoreDataKit } from "./core-kits/core-data-kit/index.js";
 export { createCorePersistenceKit } from "./core-kits/core-persistence-kit/index.js";
 export { createCoreAssetsKit } from "./core-kits/core-assets-kit/index.js";
 export { createCorePlatformKit } from "./core-kits/core-platform-kit/index.js";
-export { createCoreInputKit } from "./core-kits/core-input-kit/index.js";
+export {
+  createCoreInputKit,
+  InputIntentState,
+  InputIntentChanged,
+  InputActionPressed,
+  createInputIntentKit
+} from "./core-kits/core-input-kit/index.js";
 export { createCoreSpatialKit } from "./core-kits/core-spatial-kit/index.js";
 export { createCoreSceneKit } from "./core-kits/core-scene-kit/index.js";
 export { createCorePhysicsKit } from "./core-kits/core-physics-kit/index.js";
