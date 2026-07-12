@@ -1,5 +1,9 @@
 import { defineDomainServiceKit } from "../../../domain-service-kit.js";
 import { createHeadlessReliabilityApi } from "./reliability.js";
+import {
+  runGeneratedHeadlessReliabilityFixtures,
+  synthesizeHeadlessReliabilityFixtures
+} from "./fixture-runner.js";
 
 export function createHeadlessReliabilityDomainKit(config = {}) {
   return defineDomainServiceKit({
@@ -13,17 +17,29 @@ export function createHeadlessReliabilityDomainKit(config = {}) {
     services: [
       "invariant-registry",
       "risk-classifier",
+      "fixture-synthesis",
       "required-evidence",
       "evidence-scoring",
       "completion-gate"
     ],
     provides: [
       "headless-reliability:infer",
+      "headless-reliability:fixtures",
       "headless-reliability:score",
       "headless-reliability:completion-gate"
     ],
     createApi() {
-      return createHeadlessReliabilityApi(config);
+      const reliability = createHeadlessReliabilityApi(config);
+      return Object.freeze({
+        ...reliability,
+        synthesizeFixtures(input = {}) {
+          const requirements = input.requirements ?? reliability.infer(input);
+          return synthesizeHeadlessReliabilityFixtures({ ...input, requirements });
+        },
+        runFixtures(plan, context = {}) {
+          return runGeneratedHeadlessReliabilityFixtures(plan, context);
+        }
+      });
     },
     metadata: {
       rendererAgnostic: true,
@@ -31,7 +47,7 @@ export function createHeadlessReliabilityDomainKit(config = {}) {
       optional: true,
       targetDriven: true,
       profileFree: true,
-      boundary: "Infers reliability checks from the current target, repository, kit graph, contracts, and evidence. It does not own gameplay state, repository writes, browser drivers, or test implementations."
+      boundary: "Infers reliability checks and fixture plans from the current target, repository, kit graph, contracts, and evidence. It does not own gameplay state, repository writes, browser drivers, or project-specific test implementations."
     }
   });
 }
