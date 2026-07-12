@@ -29,18 +29,39 @@ const presentationDomains = [
   { id: "core-camera-framing-kit", domain: "presentation-camera-framing", provides: ["n:presentation:camera-framing"], source: "src/core-kits/core-camera-framing-kit/index.js" }
 ];
 
+const developmentDomains = [
+  {
+    id: "n-core-headless-editor-kit",
+    domain: "core-headless-editor",
+    provides: ["n:core-headless-editor"],
+    source: "src/core-kits/core-headless-editor-kit/index.js",
+    stability: "experimental",
+    snapshot: "required",
+    reset: "required"
+  },
+  {
+    id: "headless-reliability-domain-kit",
+    domain: "headless-reliability",
+    provides: ["n:development:headless-reliability"],
+    source: "src/core-kits/core-headless-editor-kit/development/headless-reliability-domain-kit/index.js",
+    stability: "experimental",
+    snapshot: "not-required",
+    reset: "not-required"
+  }
+];
+
 const manifest = {
   schema: "nexusengine.dsk-manifest.v0.0.3",
   package: "nexusengine",
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
-  domains: [...coreDomains, ...computeDomains, ...presentationDomains].map((entry) => ({
+  domains: [...coreDomains, ...computeDomains, ...presentationDomains, ...developmentDomains].map((entry) => ({
     ...entry,
-    stability: "stable-candidate",
+    stability: entry.stability ?? "stable-candidate",
     version: NEXUS_ENGINE_VERSION,
-    snapshot: "required",
-    reset: "required"
+    snapshot: entry.snapshot ?? "required",
+    reset: entry.reset ?? "required"
   }))
 };
 
