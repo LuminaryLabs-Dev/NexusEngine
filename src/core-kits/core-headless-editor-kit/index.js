@@ -4,6 +4,13 @@ import { createHeadlessEditorHarness, createHeadlessRunWorkspace, createDefaultH
 import { createNoopHeadlessEditorAdapter } from "./adapters/noop-adapter.js";
 import { createHeadlessEditorRouter } from "./router/interactive-router.js";
 import { createHeadlessEditorRuntime } from "./runtime/editor-runtime.js";
+import {
+  createGuidedDevelopmentSession,
+  createHeadlessReliabilityApi,
+  readDevelopmentTarget,
+  resumeGuidedDevelopmentSession,
+  startGuidedDevelopmentSession
+} from "./development/index.js";
 
 export * from "./constants.js";
 export * from "./workspace/index.js";
@@ -16,6 +23,7 @@ export * from "./environments/index.js";
 export * from "./clients/index.js";
 export * from "./transports/in-process-transport.js";
 export * from "./transports/message-port-transport.js";
+export * from "./development/index.js";
 
 function clone(value) {
   if (value === undefined) return undefined;
@@ -30,10 +38,13 @@ function initialState(config = {}) {
     runSequence: 0,
     routerSequence: 0,
     runtimeSequence: 0,
+    developmentSessionSequence: 0,
     lastWorkspaceKind: null,
     lastRun: null,
     lastRouterId: null,
     lastRuntimeId: null,
+    lastDevelopmentRunId: null,
+    lastDevelopmentStatus: null,
     lastWorkspaceSnapshot: null
   };
 }
@@ -43,12 +54,16 @@ export function createCoreHeadlessEditorKit(config = {}) {
     ...config,
     domain: "core-headless-editor",
     apiName: config.apiName ?? "coreHeadlessEditor",
-    purpose: "Headless editor runtime, evidence loop, permissive environment capabilities, terminal and agent command surfaces, virtual workspaces, lifecycle harnesses, durable artifacts, and observed differences.",
+    purpose: "Headless editor runtime, target-driven guided development loops, evidence routing, permissive environment capabilities, terminal and agent command surfaces, virtual workspaces, lifecycle harnesses, durable artifacts, and observed differences.",
     owns: [
       "headless editor sessions",
       "environment and capability discovery",
       "editor command routing and result ledgers",
       "interactive and scripted editor loops",
+      "target-driven guided development runs",
+      "generated development tracker state",
+      "inferred reliability requirements",
+      "development completion gates",
       "virtual run workspace descriptors",
       "editor lifecycle stage ordering",
       "interactive router command surface",
@@ -65,7 +80,8 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "GitHub write operations",
       "package manager execution",
       "long-running server hosting",
-      "gameplay truth"
+      "gameplay truth",
+      "project-specific test implementations"
     ],
     services: [
       "editor-runtime",
@@ -88,6 +104,13 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "agent-instructions",
       "evidence-ledger",
       "observed-differences",
+      "development-target-loader",
+      "guided-development-session",
+      "development-run-resume",
+      "development-tracker-writer",
+      "reliability-inference",
+      "completion-confidence",
+      "repair-routing",
       ...(config.services ?? [])
     ],
     eventNames: [
@@ -99,6 +122,9 @@ export function createCoreHeadlessEditorKit(config = {}) {
       "workspaceCreated",
       "routerCreated",
       "runtimeCreated",
+      "developmentSessionCreated",
+      "developmentSessionResumed",
+      "developmentStatusChanged",
       "runRecorded",
       "workspaceSnapshotCaptured"
     ],
@@ -111,6 +137,9 @@ export function createCoreHeadlessEditorKit(config = {}) {
       rendererAgnostic: true,
       permissiveCapabilities: true,
       interactiveRouter: true,
+      guidedDevelopment: true,
+      targetDriven: true,
+      staticDevelopmentProfileRequired: false,
       terminalControlSurface: true,
       futureEditorControlSurface: true,
       workspaceBackends: ["memory", "file", "text"],
@@ -125,6 +154,16 @@ export function createCoreHeadlessEditorKit(config = {}) {
           lastWorkspaceKind: workspace.kind
         }, "workspaceCreated");
         return workspace;
+      };
+      const recordDevelopmentSession = async (session, eventName) => {
+        const status = await session.status();
+        const current = baseApi.getState();
+        update({
+          developmentSessionSequence: Number(current.developmentSessionSequence ?? 0) + 1,
+          lastDevelopmentRunId: status.runId,
+          lastDevelopmentStatus: clone(status)
+        }, eventName);
+        return session;
       };
 
       return {
@@ -181,6 +220,35 @@ export function createCoreHeadlessEditorKit(config = {}) {
             lastRouterId: router.id
           }, "routerCreated");
           return router;
+        },
+        readDevelopmentTarget(path = ".agent/target.md", options = {}) {
+          return readDevelopmentTarget(path, options);
+        },
+        createDevelopmentSession(options = {}) {
+          return createGuidedDevelopmentSession(options);
+        },
+        async startDevelopmentSession(options = {}) {
+          return recordDevelopmentSession(
+            await startGuidedDevelopmentSession(options),
+            "developmentSessionCreated"
+          );
+        },
+        async resumeDevelopmentSession(options = {}) {
+          return recordDevelopmentSession(
+            await resumeGuidedDevelopmentSession(options),
+            "developmentSessionResumed"
+          );
+        },
+        createReliabilityApi(options = {}) {
+          return createHeadlessReliabilityApi(options);
+        },
+        async refreshDevelopmentStatus(session) {
+          const status = await session.status();
+          update({
+            lastDevelopmentRunId: status.runId,
+            lastDevelopmentStatus: clone(status)
+          }, "developmentStatusChanged");
+          return status;
         },
         async captureWorkspaceSnapshot(workspace, label = "workspace-snapshot") {
           const snapshot = await workspace.snapshot();
