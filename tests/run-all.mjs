@@ -3,6 +3,7 @@ import { spawnSync } from "node:child_process";
 const tests = [
   "tests/procedural-navigation-smoke.mjs",
   "tests/public-api-freeze.mjs",
+  "tests/public-entrypoint-relative-targets-smoke.mjs",
   "tests/domain-service-kit-smoke.mjs",
   "tests/domain-path-api-registration-smoke.mjs",
   "tests/core-domain-kits-smoke.mjs",
