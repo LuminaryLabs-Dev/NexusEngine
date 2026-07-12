@@ -1,0 +1,1491 @@
+name: Apply core presentation domain
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - .agent/apply-core-presentation-domain
+
+permissions:
+  contents: write
+
+jobs:
+  apply:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Add optional core presentation domain
+        shell: bash
+        run: |
+          set -o pipefail
+          {
+          set -euo pipefail
+          mkdir -p \
+            src/core-domains/core-presentation-domain \
+            src/core-kits/core-presentation-kit \
+            src/core-kits/core-presentation-output-kit \
+            src/core-kits/core-ui-scale-kit \
+            src/core-kits/core-camera-framing-kit \
+            src/hosts/browser \
+            src/renderers/three \
+            tests/core-kits
+
+          cat > src/core-domains/core-presentation-domain/contracts.js <<'JS'
+          export const PRESENTATION_FRAME_MODES = Object.freeze([
+            "native",
+            "contain",
+            "cover",
+            "width",
+            "height",
+            "stretch",
+            "safe-contain"
+          ]);
+
+          export const UI_SCALE_MODES = Object.freeze([
+            "constant",
+            "match-width",
+            "match-height",
+            "match-shortest-side",
+            "match-longest-side",
+            "expand",
+            "shrink"
+          ]);
+
+          export const CAMERA_PROJECTIONS = Object.freeze(["perspective", "orthographic"]);
+
+          export const DEFAULT_PRESENTATION_OUTPUT_POLICY = Object.freeze({
+            referenceAspect: 16 / 9,
+            frameMode: "native",
+            renderScale: 1,
+            minimumRenderScale: 0.5,
+            maximumRenderScale: 1,
+            maximumPixelRatio: 2,
+            barColor: "#000000"
+          });
+
+          export const DEFAULT_UI_SCALE_POLICY = Object.freeze({
+            referenceWidth: 1920,
+            referenceHeight: 1080,
+            mode: "match-shortest-side",
+            match: 0.5,
+            constantScale: 1,
+            minimumScale: 0.5,
+            maximumScale: 2
+          });
+
+          export const DEFAULT_CAMERA_FRAMING_POLICY = Object.freeze({
+            padding: 1.18,
+            smoothTime: 0.18,
+            minimumDistance: 0.1,
+            maximumDistance: 1000,
+            teleportThreshold: 50,
+            nearPadding: 0.5,
+            farPadding: 4,
+            preferredDirection: [0.72, 0.32, 1]
+          });
+          JS
+
+          cat > src/core-kits/core-presentation-kit/index.js <<'JS'
+          import { defineEvent, defineResource } from "../../ecs.js";
+          import { defineDomainServiceKit } from "../../domain-service-kit.js";
+
+          const VERSION = "0.0.3";
+          const State = defineResource("core.presentation.state");
+          const Configured = defineEvent("core.presentation.configured");
+          const Reset = defineEvent("core.presentation.reset");
+          const SnapshotLoaded = defineEvent("core.presentation.snapshot-loaded");
+
+          const clone = (value) => value === undefined ? undefined : structuredClone(value);
+
+          function initialState(config = {}) {
+            return {
+              version: VERSION,
+              status: "ready",
+              optional: true,
+              sequence: 0,
+              config: clone(config.config ?? {}),
+              graph: {
+                root: "n:presentation",
+                output: "n:presentation:output",
+                uiScale: "n:presentation:ui-scale",
+                cameraFraming: "n:presentation:camera-framing"
+              }
+            };
+          }
+
+          export function createCorePresentationKit(config = {}) {
+            return defineDomainServiceKit({
+              id: config.id ?? "core-presentation-domain",
+              domain: "presentation",
+              domainPath: "n:presentation",
+              apiName: config.apiName ?? "corePresentation",
+              version: VERSION,
+              stability: "stable-candidate",
+              services: ["composition", "snapshot"],
+              resources: { State },
+              events: { Configured, Reset, SnapshotLoaded },
+              metadata: {
+                purpose: "Optional parent domain for renderer-neutral output, UI scaling, and camera framing policy.",
+                owns: ["presentation domain composition", "presentation capability graph"],
+                doesNotOwn: ["canvas creation", "DOM layout", "renderer objects", "platform measurement"],
+                rendererAgnostic: true,
+                deterministic: true,
+                optional: true,
+                snapshot: true,
+                reset: true
+              },
+              initWorld({ world }) {
+                world.setResource(State, initialState(config));
+              },
+              createApi({ world }) {
+                const setState = (state, event, payload = {}) => {
+                  world.setResource(State, state);
+                  world.emit(event, { state: clone(state), ...clone(payload) });
+                  return clone(state);
+                };
+                return {
+                  getGraph: () => clone(world.getResource(State).graph),
+                  getState: () => clone(world.getResource(State)),
+                  getSnapshot: () => clone(world.getResource(State)),
+                  configure(patch = {}) {
+                    const current = world.getResource(State);
+                    return setState({
+                      ...current,
+                      sequence: current.sequence + 1,
+                      config: { ...current.config, ...clone(patch) }
+                    }, Configured, { patch });
+                  },
+                  loadSnapshot(snapshot = {}) {
+                    const next = { ...initialState(config), ...clone(snapshot), version: VERSION, status: "ready" };
+                    return setState(next, SnapshotLoaded);
+                  },
+                  reset() {
+                    return setState(initialState(config), Reset);
+                  }
+                };
+              }
+            });
+          }
+          JS
+
+          cat > src/core-kits/core-presentation-output-kit/math.js <<'JS'
+          import {
+            DEFAULT_PRESENTATION_OUTPUT_POLICY,
+            PRESENTATION_FRAME_MODES
+          } from "../../core-domains/core-presentation-domain/contracts.js";
+
+          const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+          const positive = (value, fallback = 1) => Math.max(0, finite(value, fallback));
+          const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
+
+          export function normalizePresentationSurface(input = {}) {
+            const cssWidth = positive(input.cssWidth ?? input.width, 0);
+            const cssHeight = positive(input.cssHeight ?? input.height, 0);
+            const pixelRatio = Math.max(0.01, finite(input.pixelRatio, 1));
+            const sourceInsets = input.safeInsets ?? {};
+            const safeInsets = {
+              top: positive(sourceInsets.top, 0),
+              right: positive(sourceInsets.right, 0),
+              bottom: positive(sourceInsets.bottom, 0),
+              left: positive(sourceInsets.left, 0)
+            };
+            return {
+              surfaceId: String(input.surfaceId ?? "main"),
+              cssWidth,
+              cssHeight,
+              pixelRatio,
+              safeInsets,
+              orientation: input.orientation ?? (cssWidth >= cssHeight ? "landscape" : "portrait"),
+              fullscreen: input.fullscreen === true,
+              visible: input.visible !== false
+            };
+          }
+
+          export function normalizePresentationPolicy(input = {}) {
+            const frameMode = PRESENTATION_FRAME_MODES.includes(input.frameMode)
+              ? input.frameMode
+              : DEFAULT_PRESENTATION_OUTPUT_POLICY.frameMode;
+            const minimumRenderScale = Math.max(0.01, finite(input.minimumRenderScale, DEFAULT_PRESENTATION_OUTPUT_POLICY.minimumRenderScale));
+            const maximumRenderScale = Math.max(minimumRenderScale, finite(input.maximumRenderScale, DEFAULT_PRESENTATION_OUTPUT_POLICY.maximumRenderScale));
+            return {
+              referenceAspect: Math.max(0.01, finite(input.referenceAspect, DEFAULT_PRESENTATION_OUTPUT_POLICY.referenceAspect)),
+              frameMode,
+              renderScale: clamp(finite(input.renderScale, DEFAULT_PRESENTATION_OUTPUT_POLICY.renderScale), minimumRenderScale, maximumRenderScale),
+              minimumRenderScale,
+              maximumRenderScale,
+              maximumPixelRatio: Math.max(0.1, finite(input.maximumPixelRatio, DEFAULT_PRESENTATION_OUTPUT_POLICY.maximumPixelRatio)),
+              barColor: typeof input.barColor === "string" ? input.barColor : DEFAULT_PRESENTATION_OUTPUT_POLICY.barColor
+            };
+          }
+
+          export function calculateSafeRect(surfaceInput = {}) {
+            const surface = normalizePresentationSurface(surfaceInput);
+            const width = Math.max(0, surface.cssWidth - surface.safeInsets.left - surface.safeInsets.right);
+            const height = Math.max(0, surface.cssHeight - surface.safeInsets.top - surface.safeInsets.bottom);
+            return {
+              x: Math.min(surface.cssWidth, surface.safeInsets.left),
+              y: Math.min(surface.cssHeight, surface.safeInsets.top),
+              width,
+              height
+            };
+          }
+
+          function centerRect(container, width, height) {
+            return {
+              x: container.x + (container.width - width) * 0.5,
+              y: container.y + (container.height - height) * 0.5,
+              width,
+              height
+            };
+          }
+
+          export function calculateViewport(containerInput = {}, policyInput = {}) {
+            const container = {
+              x: finite(containerInput.x, 0),
+              y: finite(containerInput.y, 0),
+              width: positive(containerInput.width, 0),
+              height: positive(containerInput.height, 0)
+            };
+            const policy = normalizePresentationPolicy(policyInput);
+            if (container.width <= 0 || container.height <= 0) return { ...container, width: 0, height: 0 };
+            const aspect = policy.referenceAspect;
+            const currentAspect = container.width / container.height;
+
+            if (policy.frameMode === "native" || policy.frameMode === "stretch") return { ...container };
+            if (policy.frameMode === "width") {
+              return centerRect(container, container.width, container.width / aspect);
+            }
+            if (policy.frameMode === "height") {
+              return centerRect(container, container.height * aspect, container.height);
+            }
+            if (policy.frameMode === "cover") {
+              return currentAspect > aspect
+                ? centerRect(container, container.width, container.width / aspect)
+                : centerRect(container, container.height * aspect, container.height);
+            }
+            return currentAspect > aspect
+              ? centerRect(container, container.height * aspect, container.height)
+              : centerRect(container, container.width, container.width / aspect);
+          }
+
+          export function intersectRects(left, right) {
+            const x = Math.max(left.x, right.x);
+            const y = Math.max(left.y, right.y);
+            const rightEdge = Math.min(left.x + left.width, right.x + right.width);
+            const bottomEdge = Math.min(left.y + left.height, right.y + right.height);
+            return {
+              x,
+              y,
+              width: Math.max(0, rightEdge - x),
+              height: Math.max(0, bottomEdge - y)
+            };
+          }
+
+          export function calculateBars(surfaceRect, viewport) {
+            return {
+              top: Math.max(0, viewport.y - surfaceRect.y),
+              right: Math.max(0, surfaceRect.x + surfaceRect.width - (viewport.x + viewport.width)),
+              bottom: Math.max(0, surfaceRect.y + surfaceRect.height - (viewport.y + viewport.height)),
+              left: Math.max(0, viewport.x - surfaceRect.x)
+            };
+          }
+
+          export function calculateRenderSize(surfaceInput = {}, policyInput = {}) {
+            const surface = normalizePresentationSurface(surfaceInput);
+            const policy = normalizePresentationPolicy(policyInput);
+            const pixelRatio = Math.min(surface.pixelRatio, policy.maximumPixelRatio) * policy.renderScale;
+            return {
+              scale: policy.renderScale,
+              pixelRatio,
+              pixelWidth: Math.max(0, Math.round(surface.cssWidth * pixelRatio)),
+              pixelHeight: Math.max(0, Math.round(surface.cssHeight * pixelRatio))
+            };
+          }
+
+          export function createPresentationDescriptor(surfaceInput = {}, policyInput = {}, revision = 0) {
+            const surface = normalizePresentationSurface(surfaceInput);
+            const policy = normalizePresentationPolicy(policyInput);
+            const surfaceRect = { x: 0, y: 0, width: surface.cssWidth, height: surface.cssHeight };
+            const safeRect = calculateSafeRect(surface);
+            const fitRect = policy.frameMode === "safe-contain" ? safeRect : surfaceRect;
+            const viewport = calculateViewport(fitRect, policy);
+            const visibleViewport = intersectRects(surfaceRect, viewport);
+            const naturalAspect = viewport.height > 0 ? viewport.width / viewport.height : policy.referenceAspect;
+            return {
+              kind: "presentation-output",
+              surface,
+              policy,
+              safeRect,
+              frame: {
+                mode: policy.frameMode,
+                aspect: policy.referenceAspect,
+                viewport,
+                visibleViewport,
+                bars: calculateBars(surfaceRect, viewport),
+                barColor: policy.barColor
+              },
+              render: calculateRenderSize(surface, policy),
+              cameraAspect: policy.frameMode === "native" ? naturalAspect : policy.referenceAspect,
+              revision: Math.max(0, Math.floor(finite(revision, 0)))
+            };
+          }
+          JS
+
+          cat > src/core-kits/core-presentation-output-kit/index.js <<'JS'
+          import { defineEvent, defineResource } from "../../ecs.js";
+          import { defineDomainServiceKit } from "../../domain-service-kit.js";
+          import {
+            createPresentationDescriptor,
+            normalizePresentationPolicy,
+            normalizePresentationSurface
+          } from "./math.js";
+
+          export * from "./math.js";
+
+          const VERSION = "0.0.3";
+          const Surface = defineResource("core.presentation.surface");
+          const Policy = defineResource("core.presentation.policy");
+          const Descriptor = defineResource("core.presentation.descriptor");
+          const SurfaceChanged = defineEvent("core.presentation.surface-changed");
+          const PolicyChanged = defineEvent("core.presentation.policy-changed");
+          const OutputChanged = defineEvent("core.presentation.output-changed");
+          const Reset = defineEvent("core.presentation.output-reset");
+          const SnapshotLoaded = defineEvent("core.presentation.output-snapshot-loaded");
+          const clone = (value) => value === undefined ? undefined : structuredClone(value);
+
+          function initial(config = {}) {
+            const surface = normalizePresentationSurface(config.surface ?? {});
+            const policy = normalizePresentationPolicy(config.policy ?? config);
+            return {
+              surface,
+              policy,
+              descriptor: createPresentationDescriptor(surface, policy, 0)
+            };
+          }
+
+          export function createCorePresentationOutputKit(config = {}) {
+            return defineDomainServiceKit({
+              id: config.id ?? "core-presentation-output-kit",
+              domain: "presentation-output",
+              domainPath: "n:presentation:output",
+              parentDomainPath: "n:presentation",
+              apiName: config.apiName ?? "presentationOutput",
+              version: VERSION,
+              stability: "stable-candidate",
+              services: ["surface-input", "viewport-policy", "render-resolution", "safe-area"],
+              resources: { Surface, Policy, Descriptor },
+              events: { SurfaceChanged, PolicyChanged, OutputChanged, Reset, SnapshotLoaded },
+              metadata: {
+                purpose: "Renderer-neutral surface, safe-area, aspect-ratio, viewport, bar, and render-resolution policy.",
+                owns: ["surface descriptors", "viewport policy", "safe rectangles", "render resolution descriptors"],
+                doesNotOwn: ["DOM measurement", "canvas creation", "renderer mutation", "subject framing"],
+                rendererAgnostic: true,
+                deterministic: true,
+                optional: true,
+                snapshot: true,
+                reset: true,
+                fitModes: ["native", "contain", "cover", "width", "height", "stretch", "safe-contain"]
+              },
+              initWorld({ world }) {
+                const state = initial(config);
+                world.setResource(Surface, state.surface);
+                world.setResource(Policy, state.policy);
+                world.setResource(Descriptor, state.descriptor);
+              },
+              createApi({ world }) {
+                const recompute = (event = OutputChanged) => {
+                  const previous = world.getResource(Descriptor);
+                  const descriptor = createPresentationDescriptor(
+                    world.getResource(Surface),
+                    world.getResource(Policy),
+                    Number(previous?.revision ?? 0) + 1
+                  );
+                  world.setResource(Descriptor, descriptor);
+                  world.emit(event, { descriptor: clone(descriptor) });
+                  if (event !== OutputChanged) world.emit(OutputChanged, { descriptor: clone(descriptor) });
+                  return clone(descriptor);
+                };
+                const reset = () => {
+                  const state = initial(config);
+                  world.setResource(Surface, state.surface);
+                  world.setResource(Policy, state.policy);
+                  world.setResource(Descriptor, state.descriptor);
+                  world.emit(Reset, { descriptor: clone(state.descriptor) });
+                  return clone(state.descriptor);
+                };
+                return {
+                  setSurface(surface = {}) {
+                    const normalized = normalizePresentationSurface(surface);
+                    world.setResource(Surface, normalized);
+                    world.emit(SurfaceChanged, { surface: clone(normalized) });
+                    return recompute();
+                  },
+                  configure(policy = {}) {
+                    const normalized = normalizePresentationPolicy({ ...world.getResource(Policy), ...policy });
+                    world.setResource(Policy, normalized);
+                    world.emit(PolicyChanged, { policy: clone(normalized) });
+                    return recompute();
+                  },
+                  getSurface: () => clone(world.getResource(Surface)),
+                  getPolicy: () => clone(world.getResource(Policy)),
+                  getDescriptor: () => clone(world.getResource(Descriptor)),
+                  getState: () => ({
+                    surface: clone(world.getResource(Surface)),
+                    policy: clone(world.getResource(Policy)),
+                    descriptor: clone(world.getResource(Descriptor))
+                  }),
+                  getSnapshot() {
+                    return this.getState();
+                  },
+                  loadSnapshot(snapshot = {}) {
+                    const surface = normalizePresentationSurface(snapshot.surface ?? {});
+                    const policy = normalizePresentationPolicy(snapshot.policy ?? {});
+                    const revision = Number(snapshot.descriptor?.revision ?? 0);
+                    const descriptor = createPresentationDescriptor(surface, policy, revision);
+                    world.setResource(Surface, surface);
+                    world.setResource(Policy, policy);
+                    world.setResource(Descriptor, descriptor);
+                    world.emit(SnapshotLoaded, { descriptor: clone(descriptor) });
+                    return clone(descriptor);
+                  },
+                  reset
+                };
+              }
+            });
+          }
+          JS
+
+          cat > src/core-kits/core-ui-scale-kit/math.js <<'JS'
+          import {
+            DEFAULT_UI_SCALE_POLICY,
+            UI_SCALE_MODES
+          } from "../../core-domains/core-presentation-domain/contracts.js";
+
+          const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+          const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
+
+          export function normalizeUIScalePolicy(input = {}) {
+            const minimumScale = Math.max(0.01, finite(input.minimumScale, DEFAULT_UI_SCALE_POLICY.minimumScale));
+            const maximumScale = Math.max(minimumScale, finite(input.maximumScale, DEFAULT_UI_SCALE_POLICY.maximumScale));
+            return {
+              referenceWidth: Math.max(1, finite(input.referenceWidth, DEFAULT_UI_SCALE_POLICY.referenceWidth)),
+              referenceHeight: Math.max(1, finite(input.referenceHeight, DEFAULT_UI_SCALE_POLICY.referenceHeight)),
+              mode: UI_SCALE_MODES.includes(input.mode) ? input.mode : DEFAULT_UI_SCALE_POLICY.mode,
+              match: clamp(finite(input.match, DEFAULT_UI_SCALE_POLICY.match), 0, 1),
+              constantScale: Math.max(0.01, finite(input.constantScale, DEFAULT_UI_SCALE_POLICY.constantScale)),
+              minimumScale,
+              maximumScale
+            };
+          }
+
+          export function normalizeUIViewport(input = {}) {
+            const source = input.frame?.viewport ?? input.viewport ?? input;
+            return {
+              width: Math.max(0, finite(source.width, 0)),
+              height: Math.max(0, finite(source.height, 0))
+            };
+          }
+
+          export function createUIScaleDescriptor(viewportInput = {}, policyInput = {}) {
+            const viewport = normalizeUIViewport(viewportInput);
+            const policy = normalizeUIScalePolicy(policyInput);
+            const widthScale = viewport.width / policy.referenceWidth;
+            const heightScale = viewport.height / policy.referenceHeight;
+            let scale = policy.constantScale;
+            if (policy.mode === "match-width") scale = widthScale;
+            else if (policy.mode === "match-height") scale = heightScale;
+            else if (policy.mode === "match-shortest-side") {
+              scale = Math.min(viewport.width, viewport.height) / Math.min(policy.referenceWidth, policy.referenceHeight);
+            } else if (policy.mode === "match-longest-side") {
+              scale = Math.max(viewport.width, viewport.height) / Math.max(policy.referenceWidth, policy.referenceHeight);
+            } else if (policy.mode === "expand") scale = Math.min(widthScale, heightScale);
+            else if (policy.mode === "shrink") scale = Math.max(widthScale, heightScale);
+            if (!Number.isFinite(scale) || scale <= 0) scale = policy.minimumScale;
+            scale = clamp(scale, policy.minimumScale, policy.maximumScale);
+            return {
+              kind: "presentation-ui-scale",
+              mode: policy.mode,
+              scale,
+              referenceWidth: policy.referenceWidth,
+              referenceHeight: policy.referenceHeight,
+              viewportWidth: viewport.width,
+              viewportHeight: viewport.height
+            };
+          }
+          JS
+
+          cat > src/core-kits/core-ui-scale-kit/index.js <<'JS'
+          import { defineEvent, defineResource } from "../../ecs.js";
+          import { defineDomainServiceKit } from "../../domain-service-kit.js";
+          import { createUIScaleDescriptor, normalizeUIScalePolicy, normalizeUIViewport } from "./math.js";
+
+          export * from "./math.js";
+
+          const VERSION = "0.0.3";
+          const UIScale = defineResource("core.presentation.ui-scale");
+          const Changed = defineEvent("core.presentation.ui-scale-changed");
+          const Reset = defineEvent("core.presentation.ui-scale-reset");
+          const SnapshotLoaded = defineEvent("core.presentation.ui-scale-snapshot-loaded");
+          const clone = (value) => value === undefined ? undefined : structuredClone(value);
+
+          function initial(config = {}) {
+            const policy = normalizeUIScalePolicy(config.policy ?? config);
+            const viewport = normalizeUIViewport(config.viewport ?? {});
+            return { policy, viewport, descriptor: createUIScaleDescriptor(viewport, policy), revision: 0 };
+          }
+
+          export function createCoreUIScaleKit(config = {}) {
+            return defineDomainServiceKit({
+              id: config.id ?? "core-ui-scale-kit",
+              domain: "presentation-ui-scale",
+              domainPath: "n:presentation:ui-scale",
+              parentDomainPath: "n:presentation",
+              apiName: config.apiName ?? "uiScale",
+              version: VERSION,
+              stability: "stable-candidate",
+              services: ["reference-resolution", "viewport-scale", "scale-policy"],
+              resources: { UIScale },
+              events: { Changed, Reset, SnapshotLoaded },
+              metadata: {
+                purpose: "Renderer-neutral reference-resolution and UI scale policy.",
+                owns: ["reference resolution", "UI scale policy", "UI scale descriptor"],
+                doesNotOwn: ["HTML layout", "font rendering", "widget hierarchy", "canvas sizing"],
+                rendererAgnostic: true,
+                deterministic: true,
+                optional: true,
+                snapshot: true,
+                reset: true
+              },
+              initWorld({ world }) {
+                world.setResource(UIScale, initial(config));
+              },
+              createApi({ world }) {
+                const commit = (next, event = Changed) => {
+                  world.setResource(UIScale, next);
+                  world.emit(event, { state: clone(next) });
+                  return clone(next.descriptor);
+                };
+                return {
+                  configure(patch = {}) {
+                    const current = world.getResource(UIScale);
+                    const policy = normalizeUIScalePolicy({ ...current.policy, ...patch });
+                    return commit({
+                      policy,
+                      viewport: current.viewport,
+                      descriptor: createUIScaleDescriptor(current.viewport, policy),
+                      revision: current.revision + 1
+                    });
+                  },
+                  setViewport(viewportInput = {}) {
+                    const current = world.getResource(UIScale);
+                    const viewport = normalizeUIViewport(viewportInput);
+                    return commit({
+                      policy: current.policy,
+                      viewport,
+                      descriptor: createUIScaleDescriptor(viewport, current.policy),
+                      revision: current.revision + 1
+                    });
+                  },
+                  getDescriptor: () => clone(world.getResource(UIScale).descriptor),
+                  getState: () => clone(world.getResource(UIScale)),
+                  getSnapshot: () => clone(world.getResource(UIScale)),
+                  loadSnapshot(snapshot = {}) {
+                    const policy = normalizeUIScalePolicy(snapshot.policy ?? {});
+                    const viewport = normalizeUIViewport(snapshot.viewport ?? {});
+                    return commit({
+                      policy,
+                      viewport,
+                      descriptor: createUIScaleDescriptor(viewport, policy),
+                      revision: Math.max(0, Number(snapshot.revision ?? 0))
+                    }, SnapshotLoaded);
+                  },
+                  reset() {
+                    return commit(initial(config), Reset);
+                  }
+                };
+              }
+            });
+          }
+          JS
+
+          cat > src/core-kits/core-camera-framing-kit/perspective-fit.js <<'JS'
+          import { DEFAULT_CAMERA_FRAMING_POLICY } from "../../core-domains/core-presentation-domain/contracts.js";
+
+          export const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+          export const clamp = (value, minimum, maximum) => Math.min(maximum, Math.max(minimum, value));
+          export const add3 = (a, b) => [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+          export const scale3 = (v, scalar) => [v[0] * scalar, v[1] * scalar, v[2] * scalar];
+          export const subtract3 = (a, b) => [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+          export const length3 = (v) => Math.hypot(v[0], v[1], v[2]);
+          export const dot3 = (a, b) => a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+          export const cross3 = (a, b) => [
+            a[1] * b[2] - a[2] * b[1],
+            a[2] * b[0] - a[0] * b[2],
+            a[0] * b[1] - a[1] * b[0]
+          ];
+
+          export function normalizeVector3(value, fallback = [0, 0, 1]) {
+            const vector = Array.isArray(value)
+              ? [finite(value[0], fallback[0]), finite(value[1], fallback[1]), finite(value[2], fallback[2])]
+              : [finite(value?.x, fallback[0]), finite(value?.y, fallback[1]), finite(value?.z, fallback[2])];
+            const magnitude = length3(vector);
+            return magnitude > 1e-8 ? scale3(vector, 1 / magnitude) : [...fallback];
+          }
+
+          export function normalizeBounds(input = {}) {
+            const minimum = normalizeVector3(input.minimum ?? input.min, [0, 0, 0]);
+            const maximum = normalizeVector3(input.maximum ?? input.max, [0, 0, 0]);
+            const min = minimum.map((value, index) => Math.min(value, maximum[index]));
+            const max = maximum.map((value, index) => Math.max(value, minimum[index]));
+            const center = min.map((value, index) => (value + max[index]) * 0.5);
+            const size = max.map((value, index) => value - min[index]);
+            return { minimum: min, maximum: max, center, size, empty: size.every((value) => value <= 1e-9) };
+          }
+
+          export function createCameraBasis(directionInput, upInput = [0, 1, 0]) {
+            const direction = normalizeVector3(directionInput, DEFAULT_CAMERA_FRAMING_POLICY.preferredDirection);
+            const forward = scale3(direction, -1);
+            let right = normalizeVector3(cross3(upInput, forward), [1, 0, 0]);
+            if (Math.abs(dot3(right, forward)) > 0.99) right = [1, 0, 0];
+            const up = normalizeVector3(cross3(forward, right), [0, 1, 0]);
+            return { direction, forward, right, up };
+          }
+
+          export function projectHalfExtents(size, basis) {
+            const half = size.map((value) => value * 0.5);
+            const project = (axis) => Math.abs(axis[0]) * half[0] + Math.abs(axis[1]) * half[1] + Math.abs(axis[2]) * half[2];
+            return {
+              width: project(basis.right),
+              height: project(basis.up),
+              depth: project(basis.forward)
+            };
+          }
+
+          export function normalizeCameraFramingRequest(request = {}) {
+            const viewportSource = request.viewport ?? {};
+            const camera = request.camera ?? {};
+            const bounds = normalizeBounds(request.subjectBounds ?? request.bounds ?? {});
+            return {
+              bounds,
+              viewport: {
+                width: Math.max(1e-6, finite(viewportSource.width, 1)),
+                height: Math.max(1e-6, finite(viewportSource.height, 1))
+              },
+              camera: {
+                projection: camera.projection === "orthographic" ? "orthographic" : "perspective",
+                verticalFov: clamp(finite(camera.verticalFov ?? camera.fov, 42), 1, 179),
+                preferredDirection: normalizeVector3(camera.preferredDirection, DEFAULT_CAMERA_FRAMING_POLICY.preferredDirection),
+                up: normalizeVector3(camera.up, [0, 1, 0]),
+                nearPadding: Math.max(0, finite(camera.nearPadding, DEFAULT_CAMERA_FRAMING_POLICY.nearPadding)),
+                farPadding: Math.max(0, finite(camera.farPadding, DEFAULT_CAMERA_FRAMING_POLICY.farPadding)),
+                orthographicDistance: Math.max(0.01, finite(camera.orthographicDistance, 10))
+              },
+              padding: Math.max(1, finite(request.padding, DEFAULT_CAMERA_FRAMING_POLICY.padding))
+            };
+          }
+
+          export function calculatePerspectiveCameraFit(request = {}) {
+            const normalized = normalizeCameraFramingRequest(request);
+            const { bounds, viewport, camera, padding } = normalized;
+            const aspect = viewport.width / viewport.height;
+            const basis = createCameraBasis(camera.preferredDirection, camera.up);
+            const projected = projectHalfExtents(bounds.size, basis);
+            const verticalFov = camera.verticalFov * Math.PI / 180;
+            const horizontalFov = 2 * Math.atan(Math.tan(verticalFov * 0.5) * aspect);
+            const fitHeight = projected.height / Math.max(1e-6, Math.tan(verticalFov * 0.5));
+            const fitWidth = projected.width / Math.max(1e-6, Math.tan(horizontalFov * 0.5));
+            const distance = Math.max(fitHeight, fitWidth) * padding + projected.depth;
+            const position = add3(bounds.center, scale3(basis.direction, distance));
+            return {
+              kind: "camera-framing",
+              projection: "perspective",
+              status: bounds.empty ? "empty" : "fitted",
+              target: bounds.center,
+              position,
+              direction: basis.direction,
+              distance,
+              near: Math.max(0.01, distance - projected.depth - camera.nearPadding),
+              far: Math.max(0.02, distance + projected.depth + camera.farPadding),
+              aspect,
+              verticalFov: camera.verticalFov,
+              projectedExtents: projected
+            };
+          }
+          JS
+
+          cat > src/core-kits/core-camera-framing-kit/orthographic-fit.js <<'JS'
+          import {
+            add3,
+            createCameraBasis,
+            normalizeCameraFramingRequest,
+            projectHalfExtents,
+            scale3
+          } from "./perspective-fit.js";
+
+          export function calculateOrthographicCameraFit(request = {}) {
+            const normalized = normalizeCameraFramingRequest(request);
+            const { bounds, viewport, camera, padding } = normalized;
+            const aspect = viewport.width / viewport.height;
+            const basis = createCameraBasis(camera.preferredDirection, camera.up);
+            const projected = projectHalfExtents(bounds.size, basis);
+            const orthographicHeight = Math.max(projected.height * 2, projected.width * 2 / aspect) * padding;
+            const distance = Math.max(camera.orthographicDistance, projected.depth + camera.nearPadding + 0.01);
+            return {
+              kind: "camera-framing",
+              projection: "orthographic",
+              status: bounds.empty ? "empty" : "fitted",
+              target: bounds.center,
+              position: add3(bounds.center, scale3(basis.direction, distance)),
+              direction: basis.direction,
+              distance,
+              near: Math.max(0.01, distance - projected.depth - camera.nearPadding),
+              far: Math.max(0.02, distance + projected.depth + camera.farPadding),
+              aspect,
+              orthographicHeight,
+              orthographicWidth: orthographicHeight * aspect,
+              projectedExtents: projected
+            };
+          }
+          JS
+
+          cat > src/core-kits/core-camera-framing-kit/index.js <<'JS'
+          import { defineEvent, defineResource } from "../../ecs.js";
+          import { defineDomainServiceKit } from "../../domain-service-kit.js";
+          import { DEFAULT_CAMERA_FRAMING_POLICY } from "../../core-domains/core-presentation-domain/contracts.js";
+          import {
+            add3,
+            calculatePerspectiveCameraFit,
+            clamp,
+            finite,
+            length3,
+            normalizeVector3,
+            scale3,
+            subtract3
+          } from "./perspective-fit.js";
+          import { calculateOrthographicCameraFit } from "./orthographic-fit.js";
+
+          export * from "./perspective-fit.js";
+          export * from "./orthographic-fit.js";
+
+          const VERSION = "0.0.3";
+          const Framing = defineResource("core.presentation.camera-framing");
+          const FramingChanged = defineEvent("core.presentation.framing-changed");
+          const Reset = defineEvent("core.presentation.framing-reset");
+          const SnapshotLoaded = defineEvent("core.presentation.framing-snapshot-loaded");
+          const clone = (value) => value === undefined ? undefined : structuredClone(value);
+
+          function normalizeControllerConfig(input = {}) {
+            return {
+              id: String(input.id ?? "main"),
+              padding: Math.max(1, finite(input.padding, DEFAULT_CAMERA_FRAMING_POLICY.padding)),
+              smoothTime: Math.max(0, finite(input.smoothTime, DEFAULT_CAMERA_FRAMING_POLICY.smoothTime)),
+              minimumDistance: Math.max(0.01, finite(input.minimumDistance, DEFAULT_CAMERA_FRAMING_POLICY.minimumDistance)),
+              maximumDistance: Math.max(0.01, finite(input.maximumDistance, DEFAULT_CAMERA_FRAMING_POLICY.maximumDistance)),
+              teleportThreshold: Math.max(0, finite(input.teleportThreshold, DEFAULT_CAMERA_FRAMING_POLICY.teleportThreshold))
+            };
+          }
+
+          function initialState() {
+            return { version: VERSION, status: "ready", controllers: {}, sequence: 0 };
+          }
+
+          function rawFit(request, config) {
+            const nextRequest = { ...request, padding: request.padding ?? config.padding };
+            const descriptor = request.camera?.projection === "orthographic"
+              ? calculateOrthographicCameraFit(nextRequest)
+              : calculatePerspectiveCameraFit(nextRequest);
+            descriptor.distance = clamp(descriptor.distance, config.minimumDistance, config.maximumDistance);
+            descriptor.position = add3(descriptor.target, scale3(normalizeVector3(descriptor.direction), descriptor.distance));
+            descriptor.near = Math.max(0.01, Math.min(descriptor.near, descriptor.distance));
+            descriptor.far = Math.max(descriptor.near + 0.01, descriptor.far);
+            return descriptor;
+          }
+
+          function dampVector(current, target, alpha) {
+            return current.map((value, index) => value + (target[index] - value) * alpha);
+          }
+
+          export function createCoreCameraFramingKit(config = {}) {
+            return defineDomainServiceKit({
+              id: config.id ?? "core-camera-framing-kit",
+              domain: "presentation-camera-framing",
+              domainPath: "n:presentation:camera-framing",
+              parentDomainPath: "n:presentation",
+              apiName: config.apiName ?? "cameraFraming",
+              version: VERSION,
+              stability: "stable-candidate",
+              services: ["subject-framing", "perspective-fit", "orthographic-fit", "framing-damping"],
+              resources: { Framing },
+              events: { FramingChanged, Reset, SnapshotLoaded },
+              metadata: {
+                purpose: "Renderer-neutral, aspect-aware perspective and orthographic subject framing.",
+                owns: ["subject bounds fit", "camera target descriptors", "distance policy", "near/far policy", "framing damping"],
+                doesNotOwn: ["renderer camera objects", "Three.js bounds", "DOM measurement", "gameplay camera intent"],
+                rendererAgnostic: true,
+                deterministic: true,
+                optional: true,
+                snapshot: true,
+                reset: true
+              },
+              initWorld({ world }) {
+                world.setResource(Framing, initialState());
+              },
+              createApi({ world }) {
+                const commitController = (id, record, event = FramingChanged) => {
+                  const state = world.getResource(Framing);
+                  const next = {
+                    ...state,
+                    sequence: state.sequence + 1,
+                    controllers: { ...state.controllers, [id]: record }
+                  };
+                  world.setResource(Framing, next);
+                  world.emit(event, { id, controller: clone(record) });
+                  return clone(record.descriptor);
+                };
+                const getRecord = (id) => world.getResource(Framing).controllers[String(id)];
+                const updateController = (id, request = {}) => {
+                  const record = getRecord(id);
+                  if (!record) throw new RangeError(`Unknown camera framing controller: ${id}`);
+                  const target = rawFit(request, record.config);
+                  const dt = Math.max(0, Math.min(0.25, finite(request.deltaTime, 1 / 60)));
+                  const current = record.descriptor;
+                  const teleported = !record.initialized || !current || length3(subtract3(target.target, current.target)) > record.config.teleportThreshold || request.reset === true;
+                  let descriptor = target;
+                  if (!teleported && record.config.smoothTime > 0) {
+                    const alpha = 1 - Math.exp(-dt / Math.max(1e-6, record.config.smoothTime));
+                    descriptor = {
+                      ...target,
+                      target: dampVector(current.target, target.target, alpha),
+                      position: dampVector(current.position, target.position, alpha),
+                      distance: current.distance + (target.distance - current.distance) * alpha,
+                      near: current.near + (target.near - current.near) * alpha,
+                      far: current.far + (target.far - current.far) * alpha,
+                      status: "damping"
+                    };
+                  }
+                  return commitController(String(id), {
+                    ...record,
+                    initialized: true,
+                    descriptor,
+                    targetDescriptor: target,
+                    updates: record.updates + 1
+                  });
+                };
+                const controllerApi = (id) => Object.freeze({
+                  update: (request) => updateController(id, request),
+                  getDescriptor: () => clone(getRecord(id)?.descriptor ?? null),
+                  getSnapshot: () => clone(getRecord(id) ?? null),
+                  loadSnapshot(snapshot = {}) {
+                    const record = {
+                      config: normalizeControllerConfig({ id, ...(snapshot.config ?? {}) }),
+                      initialized: snapshot.initialized === true,
+                      descriptor: clone(snapshot.descriptor ?? null),
+                      targetDescriptor: clone(snapshot.targetDescriptor ?? null),
+                      updates: Math.max(0, Number(snapshot.updates ?? 0))
+                    };
+                    commitController(String(id), record, SnapshotLoaded);
+                    return clone(record);
+                  },
+                  reset(request) {
+                    const record = getRecord(id);
+                    const resetRecord = { ...record, initialized: false, descriptor: null, targetDescriptor: null, updates: 0 };
+                    commitController(String(id), resetRecord, Reset);
+                    return request ? updateController(id, { ...request, reset: true }) : null;
+                  }
+                });
+                return {
+                  create(controllerConfig = {}) {
+                    const normalized = normalizeControllerConfig({ ...config, ...controllerConfig });
+                    const existing = getRecord(normalized.id);
+                    if (!existing) {
+                      commitController(normalized.id, {
+                        config: normalized,
+                        initialized: false,
+                        descriptor: null,
+                        targetDescriptor: null,
+                        updates: 0
+                      });
+                    }
+                    return controllerApi(normalized.id);
+                  },
+                  get(id) {
+                    return getRecord(id) ? controllerApi(String(id)) : null;
+                  },
+                  has: (id) => Boolean(getRecord(id)),
+                  remove(id) {
+                    const key = String(id);
+                    const state = world.getResource(Framing);
+                    if (!state.controllers[key]) return false;
+                    const controllers = { ...state.controllers };
+                    delete controllers[key];
+                    world.setResource(Framing, { ...state, sequence: state.sequence + 1, controllers });
+                    return true;
+                  },
+                  list: () => Object.keys(world.getResource(Framing).controllers),
+                  getState: () => clone(world.getResource(Framing)),
+                  getSnapshot: () => clone(world.getResource(Framing)),
+                  loadSnapshot(snapshot = {}) {
+                    const next = { ...initialState(), ...clone(snapshot), version: VERSION, status: "ready" };
+                    world.setResource(Framing, next);
+                    world.emit(SnapshotLoaded, { state: clone(next) });
+                    return clone(next);
+                  },
+                  reset() {
+                    const next = initialState();
+                    world.setResource(Framing, next);
+                    world.emit(Reset, { state: clone(next) });
+                    return clone(next);
+                  }
+                };
+              }
+            });
+          }
+          JS
+
+          cat > src/core-domains/core-presentation-domain/index.js <<'JS'
+          import { createCorePresentationKit } from "../../core-kits/core-presentation-kit/index.js";
+          import { createCorePresentationOutputKit } from "../../core-kits/core-presentation-output-kit/index.js";
+          import { createCoreUIScaleKit } from "../../core-kits/core-ui-scale-kit/index.js";
+          import { createCoreCameraFramingKit } from "../../core-kits/core-camera-framing-kit/index.js";
+
+          export * from "./contracts.js";
+          export { createCorePresentationKit } from "../../core-kits/core-presentation-kit/index.js";
+          export { createCorePresentationOutputKit } from "../../core-kits/core-presentation-output-kit/index.js";
+          export { createCoreUIScaleKit } from "../../core-kits/core-ui-scale-kit/index.js";
+          export { createCoreCameraFramingKit } from "../../core-kits/core-camera-framing-kit/index.js";
+
+          export function createCorePresentationDomain(config = {}) {
+            return [
+              createCorePresentationKit(config.root ?? {}),
+              createCorePresentationOutputKit(config.output ?? {}),
+              createCoreUIScaleKit(config.ui ?? {}),
+              createCoreCameraFramingKit(config.framing ?? {})
+            ];
+          }
+          JS
+
+          cat > src/core-domains/core-presentation-domain/README.md <<'MD'
+          # Core Presentation Domain
+
+          `n:presentation` is an optional promoted domain family for visual applications.
+
+          ```txt
+          host measures the platform
+          -> presentation-output determines viewport and render policy
+          -> ui-scale determines reference-resolution scale
+          -> camera-framing fits subjects to the active viewport
+          -> renderer adapter applies descriptors
+          ```
+
+          It is not installed automatically. Browser, desktop, mobile, and editor hosts should opt in. Headless simulations and dedicated servers can omit it.
+
+          The domain is renderer-neutral. DOM measurement and Three.js mutation live in adapters outside domain state.
+          MD
+
+          cat > src/hosts/browser/browser-presentation-surface-adapter.js <<'JS'
+          const finite = (value, fallback = 0) => Number.isFinite(Number(value)) ? Number(value) : fallback;
+
+          function createSafeAreaProbe(documentRef) {
+            if (!documentRef?.createElement || !documentRef.body) return null;
+            const probe = documentRef.createElement("div");
+            Object.assign(probe.style, {
+              position: "fixed",
+              inset: "0",
+              pointerEvents: "none",
+              visibility: "hidden",
+              paddingTop: "env(safe-area-inset-top)",
+              paddingRight: "env(safe-area-inset-right)",
+              paddingBottom: "env(safe-area-inset-bottom)",
+              paddingLeft: "env(safe-area-inset-left)"
+            });
+            documentRef.body.append(probe);
+            return probe;
+          }
+
+          export function createBrowserPresentationSurfaceAdapter(options = {}) {
+            const element = options.element;
+            if (!element) throw new TypeError("Browser presentation surface adapter requires an element.");
+            const windowRef = options.window ?? globalThis.window ?? null;
+            const documentRef = options.document ?? globalThis.document ?? null;
+            const ResizeObserverRef = options.ResizeObserver ?? globalThis.ResizeObserver;
+            const onChange = typeof options.onChange === "function" ? options.onChange : () => {};
+            const surfaceId = String(options.surfaceId ?? "main");
+            let observer = null;
+            let probe = null;
+            let started = false;
+            let lastSurface = null;
+            let lastSignature = "";
+
+            const safeInsets = () => {
+              if (typeof options.getSafeInsets === "function") return options.getSafeInsets();
+              probe ??= createSafeAreaProbe(documentRef);
+              if (!probe || !windowRef?.getComputedStyle) return { top: 0, right: 0, bottom: 0, left: 0 };
+              const style = windowRef.getComputedStyle(probe);
+              return {
+                top: finite(style.paddingTop, 0),
+                right: finite(style.paddingRight, 0),
+                bottom: finite(style.paddingBottom, 0),
+                left: finite(style.paddingLeft, 0)
+              };
+            };
+
+            const measure = () => {
+              const rect = element.getBoundingClientRect?.() ?? {};
+              const cssWidth = Math.max(0, finite(rect.width, finite(element.clientWidth, finite(windowRef?.visualViewport?.width, windowRef?.innerWidth ?? 0))));
+              const cssHeight = Math.max(0, finite(rect.height, finite(element.clientHeight, finite(windowRef?.visualViewport?.height, windowRef?.innerHeight ?? 0))));
+              return {
+                surfaceId,
+                cssWidth,
+                cssHeight,
+                pixelRatio: Math.max(0.1, finite(windowRef?.devicePixelRatio, 1)),
+                safeInsets: safeInsets(),
+                orientation: cssWidth >= cssHeight ? "landscape" : "portrait",
+                fullscreen: Boolean(documentRef?.fullscreenElement),
+                visible: documentRef?.visibilityState !== "hidden"
+              };
+            };
+
+            const emit = () => {
+              const surface = measure();
+              const signature = JSON.stringify(surface);
+              lastSurface = surface;
+              if (signature === lastSignature) return surface;
+              lastSignature = signature;
+              onChange(structuredClone(surface));
+              return surface;
+            };
+
+            const start = () => {
+              if (started) return lastSurface ?? emit();
+              started = true;
+              if (typeof ResizeObserverRef === "function") {
+                observer = new ResizeObserverRef(emit);
+                observer.observe(element);
+              }
+              windowRef?.addEventListener?.("resize", emit);
+              windowRef?.visualViewport?.addEventListener?.("resize", emit);
+              windowRef?.visualViewport?.addEventListener?.("scroll", emit);
+              documentRef?.addEventListener?.("fullscreenchange", emit);
+              documentRef?.addEventListener?.("visibilitychange", emit);
+              return emit();
+            };
+
+            const stop = () => {
+              if (!started) return;
+              started = false;
+              observer?.disconnect?.();
+              observer = null;
+              windowRef?.removeEventListener?.("resize", emit);
+              windowRef?.visualViewport?.removeEventListener?.("resize", emit);
+              windowRef?.visualViewport?.removeEventListener?.("scroll", emit);
+              documentRef?.removeEventListener?.("fullscreenchange", emit);
+              documentRef?.removeEventListener?.("visibilitychange", emit);
+              probe?.remove?.();
+              probe = null;
+            };
+
+            const api = Object.freeze({ start, stop, measure, emit, getSurface: () => structuredClone(lastSurface) });
+            if (options.autoStart !== false) start();
+            return api;
+          }
+          JS
+
+          cat > src/renderers/three/three-presentation-output-adapter.js <<'JS'
+          export function createThreePresentationOutputAdapter(options = {}) {
+            let lastDescriptor = null;
+            return Object.freeze({
+              apply({ renderer, camera, descriptor }) {
+                if (!renderer || !camera || !descriptor?.surface || !descriptor?.frame) {
+                  throw new TypeError("Three presentation output adapter requires renderer, camera, and descriptor.");
+                }
+                const width = Math.max(0, descriptor.surface.cssWidth);
+                const height = Math.max(0, descriptor.surface.cssHeight);
+                const viewport = descriptor.frame.viewport;
+                const glY = height - viewport.y - viewport.height;
+                renderer.setPixelRatio?.(descriptor.render.pixelRatio);
+                renderer.setSize?.(width, height, false);
+                renderer.setScissorTest?.(false);
+                renderer.setViewport?.(0, 0, width, height);
+                renderer.setClearColor?.(descriptor.frame.barColor, 1);
+                renderer.clear?.(true, true, true);
+                renderer.setViewport?.(viewport.x, glY, viewport.width, viewport.height);
+                renderer.setScissor?.(viewport.x, glY, viewport.width, viewport.height);
+                renderer.setScissorTest?.(descriptor.frame.mode !== "native" && descriptor.frame.mode !== "stretch");
+                camera.aspect = descriptor.cameraAspect;
+                camera.updateProjectionMatrix?.();
+                if (renderer.domElement?.style) {
+                  renderer.domElement.style.display = "block";
+                  renderer.domElement.style.width = `${width}px`;
+                  renderer.domElement.style.height = `${height}px`;
+                }
+                lastDescriptor = structuredClone(descriptor);
+                return structuredClone(descriptor);
+              },
+              getDescriptor: () => structuredClone(lastDescriptor),
+              reset() {
+                lastDescriptor = null;
+              },
+              options: structuredClone(options)
+            });
+          }
+          JS
+
+          cat > src/renderers/three/three-subject-bounds-adapter.js <<'JS'
+          export function getThreeSubjectBounds(THREE, subject, options = {}) {
+            if (!THREE?.Box3) throw new TypeError("getThreeSubjectBounds requires the active Three.js module.");
+            const subjects = Array.isArray(subject) ? subject : [subject];
+            const box = new THREE.Box3();
+            box.makeEmpty();
+            for (const entry of subjects) {
+              if (!entry) continue;
+              entry.updateMatrixWorld?.(true);
+              entry.computeBoundingBox?.();
+              if (typeof box.expandByObject === "function") box.expandByObject(entry, options.precise !== false);
+              else box.union(new THREE.Box3().setFromObject(entry));
+            }
+            if (box.isEmpty()) {
+              return { minimum: [0, 0, 0], maximum: [0, 0, 0], center: [0, 0, 0], size: [0, 0, 0], empty: true };
+            }
+            const center = new THREE.Vector3();
+            const size = new THREE.Vector3();
+            box.getCenter(center);
+            box.getSize(size);
+            const padding = Math.max(0, Number(options.padding ?? 0));
+            if (padding > 0) box.expandByScalar(padding);
+            return {
+              minimum: box.min.toArray(),
+              maximum: box.max.toArray(),
+              center: center.toArray(),
+              size: size.toArray(),
+              empty: false
+            };
+          }
+
+          export function createThreeSubjectBoundsAdapter(THREE, options = {}) {
+            return Object.freeze({
+              measure: (subject, overrides = {}) => getThreeSubjectBounds(THREE, subject, { ...options, ...overrides })
+            });
+          }
+          JS
+
+          cat > docs/CORE_PRESENTATION_DOMAIN.md <<'MD'
+          # Core Presentation Domain
+
+          The optional core presentation domain separates platform measurement, presentation policy, subject framing, and renderer application.
+
+          ```txt
+          Browser/native host measures the surface.
+          n:presentation:output computes aspect, viewport, bars, safe area, and render resolution.
+          n:presentation:ui-scale computes reference-resolution UI scale.
+          n:presentation:camera-framing fits subject bounds to the active viewport.
+          Renderer adapters apply the descriptors.
+          ```
+
+          ## Installation
+
+          ```js
+          import { createCorePresentationDomain, createRealtimeGame } from "nexusengine";
+
+          const engine = createRealtimeGame({
+            kits: createCorePresentationDomain({
+              output: { referenceAspect: 16 / 9, frameMode: "contain" },
+              ui: { referenceWidth: 1920, referenceHeight: 1080 },
+              framing: { padding: 1.18, smoothTime: 0.18 }
+            })
+          });
+          ```
+
+          The domain is recommended for visual hosts and omitted from headless simulations by default.
+          MD
+
+          cat > tests/core-kits/core-presentation-domain-smoke.mjs <<'JS'
+          import assert from "node:assert/strict";
+          import {
+            createBrowserPresentationSurfaceAdapter,
+            createCorePresentationDomain,
+            createPresentationDescriptor,
+            createRealtimeGame,
+            createThreePresentationOutputAdapter
+          } from "../../src/index.js";
+
+          const engine = createRealtimeGame({
+            kits: createCorePresentationDomain({
+              output: { referenceAspect: 16 / 9, frameMode: "contain", maximumPixelRatio: 2 },
+              ui: { referenceWidth: 1920, referenceHeight: 1080, mode: "match-shortest-side" },
+              framing: { padding: 1.18, smoothTime: 0.18 }
+            })
+          });
+
+          assert.equal(engine.n.ownerOf("n:presentation"), "core-presentation-domain");
+          assert.equal(engine.n.ownerOf("n:presentation:output"), "core-presentation-output-kit");
+          assert.equal(engine.n.ownerOf("n:presentation:ui-scale"), "core-ui-scale-kit");
+          assert.equal(engine.n.ownerOf("n:presentation:camera-framing"), "core-camera-framing-kit");
+
+          const output = engine.n.presentationOutput;
+          const descriptor = output.setSurface({ cssWidth: 1000, cssHeight: 1000, pixelRatio: 3 });
+          assert.equal(descriptor.frame.viewport.width, 1000);
+          assert.ok(Math.abs(descriptor.frame.viewport.height - 562.5) < 1e-8);
+          assert.ok(descriptor.frame.bars.top > 0);
+          assert.equal(descriptor.render.pixelRatio, 2);
+
+          for (const frameMode of ["native", "contain", "cover", "width", "height", "stretch", "safe-contain"]) {
+            const next = createPresentationDescriptor(
+              { cssWidth: 853, cssHeight: 480, pixelRatio: 1.5, safeInsets: { top: 8, right: 12, bottom: 10, left: 14 } },
+              { referenceAspect: 16 / 9, frameMode }
+            );
+            assert.ok(next.frame.visibleViewport.width >= 0);
+            assert.ok(next.frame.visibleViewport.height >= 0);
+            assert.ok(Number.isInteger(next.render.pixelWidth));
+            assert.ok(Number.isInteger(next.render.pixelHeight));
+            assert.ok(Object.values(next.frame.bars).every((value) => value >= 0));
+          }
+
+          const ui = engine.n.uiScale;
+          const uiDescriptor = ui.setViewport(descriptor);
+          assert.ok(uiDescriptor.scale > 0);
+          assert.equal(uiDescriptor.viewportWidth, descriptor.frame.viewport.width);
+
+          const framing = engine.n.cameraFraming.create({ id: "preview", padding: 1.15, smoothTime: 0.2 });
+          const first = framing.update({
+            subjectBounds: { minimum: [-3, 0, -1], maximum: [3, 2, 1] },
+            viewport: { width: 1280, height: 720 },
+            camera: { projection: "perspective", verticalFov: 42, preferredDirection: [0.72, 0.32, 1] },
+            deltaTime: 1 / 60
+          });
+          assert.equal(first.projection, "perspective");
+          assert.ok(first.distance > 0);
+          const second = framing.update({
+            subjectBounds: { minimum: [-4, 0, -1], maximum: [4, 2.5, 1] },
+            viewport: { width: 720, height: 1280 },
+            camera: { projection: "perspective", verticalFov: 42 },
+            deltaTime: 1 / 60
+          });
+          assert.equal(second.status, "damping");
+          const ortho = engine.n.cameraFraming.create({ id: "ortho" }).update({
+            subjectBounds: { minimum: [-1, -1, -1], maximum: [1, 1, 1] },
+            viewport: { width: 800, height: 600 },
+            camera: { projection: "orthographic" },
+            deltaTime: 1 / 60
+          });
+          assert.equal(ortho.projection, "orthographic");
+          assert.ok(ortho.orthographicHeight > 0);
+
+          const fakeElement = {
+            clientWidth: 640,
+            clientHeight: 360,
+            getBoundingClientRect: () => ({ width: 640, height: 360 })
+          };
+          const surfaceAdapter = createBrowserPresentationSurfaceAdapter({
+            element: fakeElement,
+            autoStart: false,
+            window: null,
+            document: null
+          });
+          assert.equal(surfaceAdapter.measure().orientation, "landscape");
+
+          const calls = [];
+          const renderer = {
+            domElement: { style: {} },
+            setPixelRatio: (value) => calls.push(["pixelRatio", value]),
+            setSize: (...args) => calls.push(["size", ...args]),
+            setScissorTest: (value) => calls.push(["scissorTest", value]),
+            setViewport: (...args) => calls.push(["viewport", ...args]),
+            setScissor: (...args) => calls.push(["scissor", ...args]),
+            setClearColor: (...args) => calls.push(["clearColor", ...args]),
+            clear: () => calls.push(["clear"])
+          };
+          const camera = { aspect: 0, updateProjectionMatrix: () => calls.push(["projection"]) };
+          createThreePresentationOutputAdapter().apply({ renderer, camera, descriptor });
+          assert.equal(camera.aspect, descriptor.cameraAspect);
+          assert.ok(calls.some(([name]) => name === "viewport"));
+
+          const snapshot = output.getSnapshot();
+          output.reset();
+          output.loadSnapshot(snapshot);
+          assert.equal(output.getDescriptor().frame.mode, "contain");
+
+          console.log("core presentation domain smoke ok");
+          JS
+
+          cat > scripts/generate-dsk-manifest.mjs <<'JS'
+          import { writeFileSync } from "node:fs";
+          import { dirname, resolve } from "node:path";
+          import { fileURLToPath } from "node:url";
+          import { NEXUS_ENGINE_VERSION, NEXUS_ENGINE_STABILITY } from "../src/release.js";
+
+          const __dirname = dirname(fileURLToPath(import.meta.url));
+          const root = resolve(__dirname, "..");
+
+          const coreDomains = [
+            "core-data", "core-persistence", "core-assets", "core-platform", "core-input", "core-spatial",
+            "core-scene", "core-physics", "core-motion", "core-simulation", "core-interaction", "core-graphics",
+            "core-camera", "core-animation", "core-audio", "core-ui", "core-network", "core-diagnostics",
+            "core-policy", "core-composition", "core-mlnn", "core-agent"
+          ].map((domain) => ({
+            id: `n-${domain}-kit`,
+            domain,
+            provides: [`n:${domain}`],
+            source: `src/core-kits/${domain}-kit/index.js`
+          }));
+
+          const presentationDomains = [
+            { id: "core-presentation-domain", domain: "presentation", provides: ["n:presentation"], source: "src/core-kits/core-presentation-kit/index.js" },
+            { id: "core-presentation-output-kit", domain: "presentation-output", provides: ["n:presentation:output"], source: "src/core-kits/core-presentation-output-kit/index.js" },
+            { id: "core-ui-scale-kit", domain: "presentation-ui-scale", provides: ["n:presentation:ui-scale"], source: "src/core-kits/core-ui-scale-kit/index.js" },
+            { id: "core-camera-framing-kit", domain: "presentation-camera-framing", provides: ["n:presentation:camera-framing"], source: "src/core-kits/core-camera-framing-kit/index.js" }
+          ];
+
+          const manifest = {
+            schema: "nexusengine.dsk-manifest.v0.0.3",
+            package: "nexusengine",
+            version: NEXUS_ENGINE_VERSION,
+            stability: NEXUS_ENGINE_STABILITY,
+            generatedBy: "scripts/generate-dsk-manifest.mjs",
+            domains: [...coreDomains, ...presentationDomains].map((entry) => ({
+              ...entry,
+              stability: "stable-candidate",
+              version: NEXUS_ENGINE_VERSION,
+              snapshot: "required",
+              reset: "required"
+            }))
+          };
+
+          const outputPath = resolve(root, "docs", "DSK_MANIFEST_0.0.3.json");
+          writeFileSync(outputPath, `${JSON.stringify(manifest, null, 2)}\n`);
+          console.log(`Wrote ${outputPath}`);
+          JS
+
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          def replace_once(path, old, new, label):
+              text = path.read_text()
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{label}: expected one match, found {count}")
+              path.write_text(text.replace(old, new, 1))
+
+          replace_once(
+              Path('src/core-kits/index.js'),
+              'export * from "./core-camera-kit/index.js";\n',
+              'export * from "./core-camera-kit/index.js";\nexport * from "./core-presentation-kit/index.js";\nexport * from "./core-presentation-output-kit/index.js";\nexport * from "./core-ui-scale-kit/index.js";\nexport * from "./core-camera-framing-kit/index.js";\n',
+              'core kit barrels'
+          )
+          replace_once(
+              Path('src/core-domains/index.js'),
+              'export * from "./core-world-domain/index.js";\n',
+              'export * from "./core-world-domain/index.js";\nexport * from "./core-presentation-domain/index.js";\n',
+              'core domain barrel'
+          )
+          replace_once(
+              Path('src/index.js'),
+              'export { createCoreCameraKit } from "./core-kits/core-camera-kit/index.js";\n',
+              'export { createCoreCameraKit } from "./core-kits/core-camera-kit/index.js";\nexport { createCorePresentationKit } from "./core-kits/core-presentation-kit/index.js";\nexport * from "./core-kits/core-presentation-output-kit/index.js";\nexport * from "./core-kits/core-ui-scale-kit/index.js";\nexport * from "./core-kits/core-camera-framing-kit/index.js";\n',
+              'root presentation kit exports'
+          )
+          replace_once(
+              Path('src/index.js'),
+              'export * from "./core-domains/index.js";\n',
+              'export * from "./core-domains/index.js";\nexport * from "./hosts/browser/browser-presentation-surface-adapter.js";\nexport * from "./renderers/three/three-presentation-output-adapter.js";\nexport * from "./renderers/three/three-subject-bounds-adapter.js";\n',
+              'root adapter exports'
+          )
+
+          package_path = Path('package.json')
+          package = json.loads(package_path.read_text())
+          package['exports']['./hosts/browser/presentation-surface'] = './src/hosts/browser/browser-presentation-surface-adapter.js'
+          package['exports']['./renderers/three/presentation-output'] = './src/renderers/three/three-presentation-output-adapter.js'
+          package['exports']['./renderers/three/subject-bounds'] = './src/renderers/three/three-subject-bounds-adapter.js'
+          package_path.write_text(json.dumps(package, indent=2) + '\n')
+
+          freeze = Path('tests/public-api-freeze.mjs')
+          replace_once(
+              freeze,
+              '  "createCoreCameraKit",\n',
+              '  "createCoreCameraKit",\n  "createCorePresentationKit",\n  "createCorePresentationOutputKit",\n  "createCoreUIScaleKit",\n  "createCoreCameraFramingKit",\n  "createCorePresentationDomain",\n  "createBrowserPresentationSurfaceAdapter",\n  "createThreePresentationOutputAdapter",\n  "getThreeSubjectBounds",\n',
+              'public API freeze'
+          )
+
+          barrels = Path('tests/core-capability-domain-barrels-smoke.mjs')
+          replace_once(
+              barrels,
+              '  createCoreCameraKit,\n',
+              '  createCoreCameraKit,\n  createCorePresentationKit,\n  createCorePresentationOutputKit,\n  createCoreUIScaleKit,\n  createCoreCameraFramingKit,\n',
+              'barrel imports'
+          )
+          replace_once(
+              barrels,
+              '  createCoreCameraKit,\n  createCoreAnimationKit,',
+              '  createCoreCameraKit,\n  createCorePresentationKit,\n  createCorePresentationOutputKit,\n  createCoreUIScaleKit,\n  createCoreCameraFramingKit,\n  createCoreAnimationKit,',
+              'barrel factories'
+          )
+          replace_once(
+              barrels,
+              '  "coreCamera",\n  "coreAnimation",',
+              '  "coreCamera",\n  "corePresentation",\n  "presentationOutput",\n  "uiScale",\n  "cameraFraming",\n  "coreAnimation",',
+              'barrel namespaces'
+          )
+
+          run_all = Path('tests/run-all.mjs')
+          replace_once(
+              run_all,
+              '  "tests/core-kits/core-debug-kit-smoke.mjs",\n',
+              '  "tests/core-kits/core-debug-kit-smoke.mjs",\n  "tests/core-kits/core-presentation-domain-smoke.mjs",\n',
+              'run-all presentation smoke'
+          )
+
+          readme = Path('README.md')
+          text = readme.read_text()
+          marker = '\n## Optional Core Presentation Domain\n'
+          if marker not in text:
+              text += '''\n## Optional Core Presentation Domain\n\nVisual hosts can opt into `n:presentation` for renderer-neutral viewport policy, safe-area handling, UI scale, and subject framing. It is included by visual templates, but it is not installed automatically into headless runtimes. See `docs/CORE_PRESENTATION_DOMAIN.md`.\n'''
+              readme.write_text(text)
+          PY
+
+          npm run release:manifest
+
+          node --check src/core-domains/core-presentation-domain/contracts.js
+          node --check src/core-domains/core-presentation-domain/index.js
+          node --check src/core-kits/core-presentation-kit/index.js
+          node --check src/core-kits/core-presentation-output-kit/math.js
+          node --check src/core-kits/core-presentation-output-kit/index.js
+          node --check src/core-kits/core-ui-scale-kit/math.js
+          node --check src/core-kits/core-ui-scale-kit/index.js
+          node --check src/core-kits/core-camera-framing-kit/perspective-fit.js
+          node --check src/core-kits/core-camera-framing-kit/orthographic-fit.js
+          node --check src/core-kits/core-camera-framing-kit/index.js
+          node --check src/hosts/browser/browser-presentation-surface-adapter.js
+          node --check src/renderers/three/three-presentation-output-adapter.js
+          node --check src/renderers/three/three-subject-bounds-adapter.js
+          node tests/core-kits/core-presentation-domain-smoke.mjs
+          node tests/public-api-freeze.mjs
+          node tests/core-capability-domain-barrels-smoke.mjs
+          npm test
+          } 2>&1 | tee /tmp/core-presentation-domain.log
+
+      - name: Commit core presentation domain
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          rm -f .agent/core-presentation-domain/workflow-error.log
+          git add -A
+          git commit -m "Add optional core presentation domain"
+          git push origin HEAD:main
+
+      - name: Record failure
+        if: failure()
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          mkdir -p .agent/core-presentation-domain
+          cp /tmp/core-presentation-domain.log .agent/core-presentation-domain/workflow-error.log 2>/dev/null || echo "workflow failed before log creation" > .agent/core-presentation-domain/workflow-error.log
+          git add .agent/core-presentation-domain/workflow-error.log
+          git commit -m "Record core presentation domain failure" || true
+          git push origin HEAD:main || true
