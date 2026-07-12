@@ -15,6 +15,7 @@ const tests = [
   "tests/sequence-node-surface-bridge-smoke.mjs",
   "tests/core-capability-domain-barrels-smoke.mjs",
   "tests/core-kits/core-data-kit-smoke.mjs",
+  "tests/core-kits/core-object-kit-smoke.mjs",
   "tests/core-kits/core-input-kit-smoke.mjs",
   "tests/core-kits/core-scene-kit-smoke.mjs",
   "tests/core-kits/core-graphics-kit-smoke.mjs",

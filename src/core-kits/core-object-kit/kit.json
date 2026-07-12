@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "nexusengine.core-kit.v1",
+  "id": "n-core-object-kit",
+  "version": "0.0.3",
+  "domain": "core-object",
+  "domainPath": "n:core-object",
+  "apiName": "coreObject",
+  "status": "stable-candidate",
+  "entry": "./index.js",
+  "provides": [
+    "object:descriptor-contract",
+    "object:registry",
+    "object:lifecycle"
+  ],
+  "requires": [],
+  "rendererAgnostic": true,
+  "snapshotPolicy": "portable",
+  "resetPolicy": "empty-object-registry"
+}

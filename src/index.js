@@ -28,6 +28,7 @@ export {
   createCoreCapabilityKit
 } from "./core-kits/core-capability-kit.js";
 export { createCoreDataKit } from "./core-kits/core-data-kit/index.js";
+export * from "./core-kits/core-object-kit/index.js";
 export { createCorePersistenceKit } from "./core-kits/core-persistence-kit/index.js";
 export { createCoreAssetsKit } from "./core-kits/core-assets-kit/index.js";
 export { createCorePlatformKit } from "./core-kits/core-platform-kit/index.js";
@@ -59,7 +60,7 @@ export { createCoreDiagnosticsKit } from "./core-kits/core-diagnostics-kit/index
 export { createCoreDebugKit, CoreDebugColors } from "./core-kits/core-debug-kit/index.js";
 export * from "./core-kits/core-headless-editor-kit/index.js";
 export { createCorePolicyKit } from "./core-kits/core-policy-kit/index.js";
-export { createCoreCompositionKit } from "./core-kits/core-composition-kit/index.js";
+export { createCoreCompositionKit } from "./core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-kits/core-mlnn-kit/index.js";
 export { createCoreAgentKit } from "./core-kits/core-agent-kit/index.js";
 export { createCoreUtilityKit } from "./core-kits/core-utility-kit/index.js";
