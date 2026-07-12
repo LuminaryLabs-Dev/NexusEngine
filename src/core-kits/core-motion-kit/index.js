@@ -15,10 +15,11 @@ const clone = (value) => value === undefined ? undefined : structuredClone(value
 
 export function createCoreMotionKit(config = {}) {
   const frameHistoryLimit = Math.max(1, Number(config.frameHistoryLimit ?? 120));
+  const apiName = config.apiName ?? "coreMotion";
   return createCoreCapabilityKit({
     ...config,
     domain: "core-motion",
-    apiName: config.apiName ?? "coreMotion",
+    apiName,
     purpose: "Intent-to-motion descriptors, movement modes, trajectories, root-motion requests, velocity state, and movement policies.",
     owns: [
       "movement modes",
@@ -72,6 +73,10 @@ export function createCoreMotionKit(config = {}) {
       coreDomain: true,
       rendererAgnostic: true,
       physicsIndependent: true
+    },
+    install(context) {
+      context.engine.coreMotion = context.engine.n[apiName];
+      config.install?.(context);
     },
     createApi({ baseApi }) {
       const state = () => baseApi.getState();
