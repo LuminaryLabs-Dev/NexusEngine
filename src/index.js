@@ -18,6 +18,9 @@ export * from "./sequence-node-kit.js";
 export * from "./foundation/index.js";
 export * from "./modules/nexus-diffusion/index.js";
 export * from "./core-domains/index.js";
+export * from "./hosts/browser/browser-presentation-surface-adapter.js";
+export * from "./renderers/three/three-presentation-output-adapter.js";
+export * from "./renderers/three/three-subject-bounds-adapter.js";
 
 export {
   createCoreCapabilityDescriptor,
@@ -37,6 +40,10 @@ export { createCoreInteractionKit } from "./core-kits/core-interaction-kit/index
 export { createCoreGraphicsKit } from "./core-kits/core-graphics-kit/index.js";
 export { createCoreSkyboxKit } from "./core-kits/core-skybox-kit/index.js";
 export { createCoreCameraKit } from "./core-kits/core-camera-kit/index.js";
+export { createCorePresentationKit } from "./core-kits/core-presentation-kit/index.js";
+export * from "./core-kits/core-presentation-output-kit/index.js";
+export * from "./core-kits/core-ui-scale-kit/index.js";
+export * from "./core-kits/core-camera-framing-kit/index.js";
 export { createCoreAnimationKit } from "./core-kits/core-animation-kit/index.js";
 export { createCoreAudioKit } from "./core-kits/core-audio-kit/index.js";
 export { createCoreUIKit } from "./core-kits/core-ui-kit/index.js";
