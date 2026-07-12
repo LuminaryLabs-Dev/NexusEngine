@@ -34,7 +34,8 @@ export function createRenderLayerGraphKit(config = {}) {
       "game-specific pass selection",
       "world semantic truth"
     ],
-    services: [...RENDER_LAYER_GRAPH_CAPABILITIES],
+    services: ["render-layer-graph", "render-pass-contract", "render-layer-validation"],
+    provides: [...RENDER_LAYER_GRAPH_CAPABILITIES],
     initialState: {
       graph: clone(initialGraph),
       validation: clone(initialValidation)
