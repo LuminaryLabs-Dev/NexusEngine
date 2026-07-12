@@ -38,6 +38,7 @@
     "./core-domains/core-physics-domain": "./src/core-domains/core-physics-domain/index.js",
     "./core-domains/core-physics-domain/articulated-dynamics": "./src/core-domains/core-physics-domain/subdomains/articulated-dynamics-domain/index.js",
     "./core-domains/core-physics-domain/articulated-motion-drive-adapter": "./src/core-domains/core-physics-domain/adapters/articulated-motion-drive-adapter/index.js",
+    "./core-domains/core-compute-domain": "./src/core-domains/core-compute-domain/index.js",
     "./core-domains/*": "./src/core-domains/*/index.js",
     "./hosts/browser/presentation-surface": "./src/hosts/browser/browser-presentation-surface-adapter.js",
     "./renderers/three/presentation-output": "./src/renderers/three/three-presentation-output-adapter.js",
