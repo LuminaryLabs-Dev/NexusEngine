@@ -32,7 +32,10 @@
     "./core-kits/*": "./src/core-kits/*/index.js",
     "./core-domains": "./src/core-domains/index.js",
     "./core-domains/core-world-domain": "./src/core-domains/core-world-domain/index.js",
-    "./core-domains/*": "./src/core-domains/*/index.js"
+    "./core-domains/*": "./src/core-domains/*/index.js",
+    "./hosts/browser/presentation-surface": "./src/hosts/browser/browser-presentation-surface-adapter.js",
+    "./renderers/three/presentation-output": "./src/renderers/three/three-presentation-output-adapter.js",
+    "./renderers/three/subject-bounds": "./src/renderers/three/three-subject-bounds-adapter.js"
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",
