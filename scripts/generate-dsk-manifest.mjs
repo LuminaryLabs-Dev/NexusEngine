@@ -1,37 +1,28 @@
 import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import {
-  NEXUS_ENGINE_VERSION,
-  NEXUS_ENGINE_STABILITY
-} from "../src/release.js";
+import { NEXUS_ENGINE_VERSION, NEXUS_ENGINE_STABILITY } from "../src/release.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 
 const coreDomains = [
-  "core-data",
-  "core-persistence",
-  "core-assets",
-  "core-platform",
-  "core-input",
-  "core-spatial",
-  "core-scene",
-  "core-physics",
-  "core-motion",
-  "core-simulation",
-  "core-interaction",
-  "core-graphics",
-  "core-camera",
-  "core-animation",
-  "core-audio",
-  "core-ui",
-  "core-network",
-  "core-diagnostics",
-  "core-policy",
-  "core-composition",
-  "core-mlnn",
-  "core-agent"
+  "core-data", "core-persistence", "core-assets", "core-platform", "core-input", "core-spatial",
+  "core-scene", "core-physics", "core-motion", "core-simulation", "core-interaction", "core-graphics",
+  "core-camera", "core-animation", "core-audio", "core-ui", "core-network", "core-diagnostics",
+  "core-policy", "core-composition", "core-mlnn", "core-agent"
+].map((domain) => ({
+  id: `n-${domain}-kit`,
+  domain,
+  provides: [`n:${domain}`],
+  source: `src/core-kits/${domain}-kit/index.js`
+}));
+
+const presentationDomains = [
+  { id: "core-presentation-domain", domain: "presentation", provides: ["n:presentation"], source: "src/core-kits/core-presentation-kit/index.js" },
+  { id: "core-presentation-output-kit", domain: "presentation-output", provides: ["n:presentation:output"], source: "src/core-kits/core-presentation-output-kit/index.js" },
+  { id: "core-ui-scale-kit", domain: "presentation-ui-scale", provides: ["n:presentation:ui-scale"], source: "src/core-kits/core-ui-scale-kit/index.js" },
+  { id: "core-camera-framing-kit", domain: "presentation-camera-framing", provides: ["n:presentation:camera-framing"], source: "src/core-kits/core-camera-framing-kit/index.js" }
 ];
 
 const manifest = {
@@ -40,13 +31,10 @@ const manifest = {
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
-  domains: coreDomains.map((domain) => ({
-    id: `n-${domain}-kit`,
-    domain,
-    provides: [`n:${domain}`],
+  domains: [...coreDomains, ...presentationDomains].map((entry) => ({
+    ...entry,
     stability: "stable-candidate",
     version: NEXUS_ENGINE_VERSION,
-    source: `src/core-kits/${domain}-kit/index.js`,
     snapshot: "required",
     reset: "required"
   }))
