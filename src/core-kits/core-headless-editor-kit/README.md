@@ -2,7 +2,66 @@
 
 The Core Headless Editor Kit is the control-plane runtime used by humans, agents, terminal clients, automation scripts, and future visual editors to operate a NexusEngine environment.
 
-It does not replace the Realtime Core. The Realtime Core advances game and simulation state. The Headless Editor Runtime advances editor sessions, discovers environment capabilities, routes commands, records evidence, and manages iterative work loops.
+It does not replace the Realtime Core. The Realtime Core advances game and simulation state. The Headless Editor advances editor sessions, discovers environment capabilities, routes commands, records evidence, and manages iterative work loops.
+
+## Target-driven repository development
+
+NexusEngine repository development uses:
+
+```txt
+AGENTS.md
+→ mandatory development protocol
+
+.agent/target.md
+→ current goal and acceptance contract
+
+.agent/tracker.md
+→ generated controller state and resume point
+
+.agent/runs/<run-id>/
+→ plans, ledgers, validation, verification, differences, and reports
+
+.agent/evidence/<run-id>/
+→ machine-readable repository, module, kit, test, runtime, and snapshot evidence
+```
+
+There is no static development profile. The guided controller discovers the repository and infers reliability checks from the target, changed files, module graph, kit graph, contracts, state ownership, renderer or host involvement, and existing tests.
+
+```js
+import {
+  startGuidedDevelopmentSession,
+  resumeGuidedDevelopmentSession
+} from "nexusengine";
+
+const run = await startGuidedDevelopmentSession({
+  root: process.cwd()
+});
+
+console.log(await run.status());
+console.log(await run.next());
+
+// The controller advances automatic routes and stops when code or fixture
+// evidence must be supplied by the agent or an adapter.
+await run.continue();
+```
+
+The status packet includes the route reason, inferred checks, required and missing evidence, next command, completion confidence, and whether agent or user action is required.
+
+## Guided CLI
+
+From a repository containing `.agent/target.md`:
+
+```bash
+nexus-editor target
+nexus-editor start
+nexus-editor resume
+nexus-editor status
+nexus-editor next
+nexus-editor continue
+nexus-editor report
+```
+
+Use `--runtime` to force the generic terminal runtime command surface.
 
 ## Runtime
 
@@ -29,7 +88,7 @@ console.log(editor.listCapabilities());
 await editor.executeAction("runtime.tick", { dt: 1 / 60 });
 ```
 
-Capabilities are permissive. An environment only registers what it supports. Missing capabilities return an `unavailable` result and do not prevent other domains from being inspected or controlled.
+Capabilities remain permissive. An environment registers only what it supports. Missing capabilities return an `unavailable` result and do not prevent other domains from being inspected or controlled.
 
 ## Terminal client
 
@@ -42,12 +101,12 @@ await terminal.dispatch("capabilities renderer");
 await terminal.dispatch("call renderer.capture --label baseline");
 ```
 
-Installed packages expose the `nexus-editor` binary. An environment module can be supplied with:
+Installed packages expose the `nexus-editor` binary. A custom environment module can be supplied with:
 
 ```bash
-nexus-editor --environment ./my-environment.mjs status
-nexus-editor --environment ./my-environment.mjs capabilities
-nexus-editor --environment ./my-environment.mjs call runtime.tick --dt 0.016
+nexus-editor --runtime --environment ./my-environment.mjs status
+nexus-editor --runtime --environment ./my-environment.mjs capabilities
+nexus-editor --runtime --environment ./my-environment.mjs call runtime.tick --dt 0.016
 ```
 
 ## Iterative loops
@@ -69,12 +128,10 @@ await editor.loopContinue();
 editor.acceptLoop(undefined, { note: "The iteration improved the result." });
 ```
 
-## Existing evidence harness
+## Finite evidence harness
 
-The original finite evidence harness remains available and compatible:
+The bounded evidence harness remains available inside guided development and for disposable integrations:
 
 ```txt
 read -> capture-before -> plan -> validate -> submit -> observe -> verify -> capture-after -> observed-differences
 ```
-
-The persistent runtime can be passed to `createHeadlessEditorRouter({ harness, runtime })` so lifecycle commands and environment commands share one router surface.
