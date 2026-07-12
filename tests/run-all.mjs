@@ -39,6 +39,7 @@ const tests = [
   "tests/core-kits/core-headless-editor-kit-smoke.mjs",
   "tests/core-kits/core-headless-editor-runtime-smoke.mjs",
   "tests/core-kits/core-headless-editor-guided-development-smoke.mjs",
+  "tests/core-kits/core-headless-editor-repository-environment-smoke.mjs",
   "tests/core-kits/core-custom-replacement-smoke.mjs",
   "tests/modules/nexus-diffusion-domain-smoke.mjs"
 ];
