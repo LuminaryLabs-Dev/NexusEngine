@@ -9,12 +9,14 @@ export function createCorePhysicsKit(config = {}) {
     ...config,
     domain: "core-physics",
     apiName: config.apiName ?? "corePhysics",
-    purpose: "Physics descriptors, colliders, contacts, grounding, constraints, collision queries, and backend-neutral provider boundaries.",
+    purpose: "Physics descriptors, colliders, contacts, grounding, constraints, articulated dynamics inputs, collision queries, and backend-neutral provider boundaries.",
     owns: [
       "colliders",
       "contacts",
       "grounding",
       "constraints",
+      "articulation descriptors",
+      "joint motor requests",
       "collision query descriptors",
       "physics provider contract",
       "normalized physics frames",
@@ -23,6 +25,7 @@ export function createCorePhysicsKit(config = {}) {
     doesNotOwn: [
       "full physics engine implementation",
       "movement intent",
+      "kinematic rig pose solving",
       "gameplay outcome meaning",
       ...(config.doesNotOwn ?? [])
     ],
@@ -32,7 +35,11 @@ export function createCorePhysicsKit(config = {}) {
       "body-descriptors",
       "collider-descriptors",
       "motion-requests",
-      "physics-frames"
+      "constraint-descriptors",
+      "articulation-descriptors",
+      "joint-motor-requests",
+      "physics-frames",
+      "articulation-frames"
     ],
     resources: {
       ...(config.resources ?? {}),
@@ -55,7 +62,8 @@ export function createCorePhysicsKit(config = {}) {
       ...(config.metadata ?? {}),
       piecesFirst: true,
       providerNeutral: true,
-      rendererAgnostic: true
+      rendererAgnostic: true,
+      articulationCompatible: true
     }
   });
 }
