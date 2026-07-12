@@ -23,20 +23,23 @@ export function createRealtimeCoreKit(config = {}) {
       "events",
       "resources",
       "components",
-      "surfaces"
+      "surfaces",
+      "tick-context",
+      "tick-commit"
     ],
     provides: config.provides ?? [],
     requires: config.requires ?? [],
     metadata: {
       name: "Realtime Core Kit",
-      summary: "Default core domain facade for deterministic world, scheduler, clock, tick, events, resources, components, and surfaces.",
+      summary: "Default core domain facade for deterministic world, scheduler, clock, tick, events, resources, components, surfaces, tick context, and committed tick records.",
       layer: "core-domain",
       status: "stable",
       ownsLoop: true,
       snapshotPolicy: "engine-world-resource-ledger",
       resetPolicy: "host-or-test-explicit-reset",
-      descriptors: ["realtime.clock", "realtime.scheduler", "realtime.world"],
+      descriptors: ["realtime.clock", "realtime.scheduler", "realtime.world", "realtime.tick-context", "realtime.tick-commit"],
       tags: ["core", "realtime", "scheduler", "tick"],
+      rendererAgnosticTick: true,
       ...(config.metadata ?? {})
     },
     createApi({ engine, world }) {
@@ -54,6 +57,15 @@ export function createRealtimeCoreKit(config = {}) {
         },
         getRenderer() {
           return engine.renderer;
+        },
+        getCurrentTickContext() {
+          return engine.getCurrentTickContext?.() ?? null;
+        },
+        getLastTickCommit() {
+          return engine.getLastTickCommit?.() ?? null;
+        },
+        isTicking() {
+          return engine.isTicking?.() === true;
         },
         getPhases() {
           return engine.scheduler?.phases ?? [];
