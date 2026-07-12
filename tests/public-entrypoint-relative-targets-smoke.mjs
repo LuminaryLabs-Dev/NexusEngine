@@ -9,7 +9,7 @@ const packageJson = JSON.parse(await readFile(packagePath, "utf8"));
 
 function collectPackageTargets(value, output = new Set()) {
   if (typeof value === "string") {
-    if (value.startsWith("./")) output.add(value);
+    if (value.startsWith("./") && !value.includes("*")) output.add(value);
     return output;
   }
   if (Array.isArray(value)) {
