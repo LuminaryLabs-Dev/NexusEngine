@@ -7,7 +7,8 @@ import {
   createHeadlessEditorTerminalClient,
   readDevelopmentTarget,
   resumeGuidedDevelopmentSession,
-  startGuidedDevelopmentSession
+  startGuidedDevelopmentSession,
+  writeDevelopmentTarget
 } from "../src/core-kits/core-headless-editor-kit/index.js";
 import { createStdioHeadlessEditorTransport } from "../src/core-kits/core-headless-editor-kit/transports/stdio-transport.js";
 
@@ -110,9 +111,14 @@ if (guided) {
   let result;
   try {
     switch (verb) {
-      case "target":
-        result = { ok: true, target: await readDevelopmentTarget(targetPath, { root }) };
+      case "target": {
+        const requestedGoal = args.slice(1).join(" ").trim();
+        const target = requestedGoal
+          ? await writeDevelopmentTarget({ goal: requestedGoal }, targetPath, { root })
+          : await readDevelopmentTarget(targetPath, { root });
+        result = { ok: true, target, written: Boolean(requestedGoal) };
         break;
+      }
       case "start": {
         const session = await startGuidedDevelopmentSession({ root, targetPath, runId });
         result = { ok: true, status: await session.status(), route: await session.next() };
