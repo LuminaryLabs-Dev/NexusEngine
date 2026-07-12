@@ -1,0 +1,29 @@
+{
+  "id": "headless-reliability-domain-kit",
+  "version": "0.1.0",
+  "stability": "experimental",
+  "domain": "headless-reliability",
+  "domainPath": "n:development:headless-reliability",
+  "parentDomainPath": "n:development",
+  "apiName": "headlessReliability",
+  "optional": true,
+  "rendererAgnostic": true,
+  "headless": true,
+  "targetDriven": true,
+  "staticDevelopmentProfileRequired": false,
+  "services": [
+    "invariant-registry",
+    "risk-classifier",
+    "fixture-synthesis",
+    "required-evidence",
+    "evidence-scoring",
+    "completion-gate"
+  ],
+  "provides": [
+    "headless-reliability:infer",
+    "headless-reliability:fixtures",
+    "headless-reliability:score",
+    "headless-reliability:completion-gate"
+  ],
+  "requires": []
+}
