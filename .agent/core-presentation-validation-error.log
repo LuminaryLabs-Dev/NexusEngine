@@ -4,24 +4,19 @@
 
 Wrote /home/runner/work/NexusEngine/NexusEngine/docs/DSK_MANIFEST_0.0.3.json
 core presentation domain smoke ok
-node:internal/modules/run_main:123
-    triggerUncaughtException(
-    ^
+public-api-freeze ok
+core capability domain barrel smoke ok
 
-AssertionError [ERR_ASSERTION]: createWaterSurfaceKit should be exported
+> nexusengine@0.0.3 test
+> node tests/run-all.mjs
 
-false !== true
-
-    at file:///home/runner/work/NexusEngine/NexusEngine/tests/public-api-freeze.mjs:131:10
-    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+file:///home/runner/work/NexusEngine/NexusEngine/tests/procedural-navigation-smoke.mjs:57
+  AssistanceTargetState,
+  ^^^^^^^^^^^^^^^^^^^^^
+SyntaxError: The requested module '../src/index.js' does not provide an export named 'AssistanceTargetState'
+    at ModuleJob._instantiate (node:internal/modules/esm/module_job:226:21)
+    at async ModuleJob.run (node:internal/modules/esm/module_job:335:5)
     at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
-    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5) {
-  generatedMessage: false,
-  code: 'ERR_ASSERTION',
-  actual: false,
-  expected: true,
-  operator: 'strictEqual',
-  diff: 'simple'
-}
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
 
 Node.js v22.23.1
