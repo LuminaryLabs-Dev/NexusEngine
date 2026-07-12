@@ -20,7 +20,7 @@ export function createCoreSimulationKit(config = {}) {
   const baseServices = ["resource meters", "pressure channels", "timers", "cooldowns", "objectives", "routes", "checkpoints", "hazards"];
   const services = [
     ...(config.services ?? []),
-    ...(resolutionEnabled ? ["step resolution", "proposal collection", "observation collection", "committed simulation frame"] : [])
+    ...(resolutionEnabled ? ["step-resolution", "proposal-collection", "observation-collection", "committed-frame"] : [])
   ];
 
   return createCoreCapabilityKit({
