@@ -180,6 +180,27 @@ const camera = createCameraKit({
 const domainEngine = createEngine({ kits: [terrain, locomotion, physics, camera] });
 domainEngine.tick(1 / 60);
 const terrainQuery = createTerrainQuery(domainEngine.world, terrain);
+const terrainSnapshot = domainEngine.world.getResource(terrain.resources.TerrainSnapshot);
+const chunksById = new Map(terrainSnapshot.visibleChunks.map((chunk) => [chunk.id, chunk]));
+for (const chunk of terrainSnapshot.visibleChunks) {
+  const east = chunksById.get(`${chunk.cx + 1},${chunk.cz}`);
+  if (!east || east.resolution !== chunk.resolution) continue;
+  const size = chunk.resolution + 1;
+  for (let z = 0; z < size; z += 1) {
+    const leftIndex = z * size + chunk.resolution;
+    const rightIndex = z * size;
+    assert.ok(
+      Math.abs(chunk.heightField[leftIndex] - east.heightField[rightIndex]) <= 1e-6,
+      "adjacent terrain chunk heights should share an exact edge"
+    );
+    for (let axis = 0; axis < 3; axis += 1) {
+      assert.ok(
+        Math.abs(chunk.normalField[leftIndex * 3 + axis] - east.normalField[rightIndex * 3 + axis]) <= 1e-6,
+        "adjacent terrain chunk normals should share an exact edge"
+      );
+    }
+  }
+}
 assert.equal(typeof terrainQuery.surfaceAt(0, 0).traction, "number", "TerrainQuery should expose surface descriptors");
 assert.ok(terrainQuery.ledgeAt(3, 3), "TerrainQuery should expose ledge features");
 assert.ok(terrainQuery.fallZoneAt(-12, -12), "TerrainQuery should expose fall zones");

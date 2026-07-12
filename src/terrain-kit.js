@@ -407,17 +407,45 @@ function applySlopeLimit(config, chunk, heights) {
   }
 }
 
-function computeNormals(chunk, heights) {
+function generateHeightFields(config, chunk, layers) {
+  const sampleCount = (chunk.resolution + 1) * (chunk.resolution + 1);
+  const heights = new Float32Array(sampleCount);
+  const wetness = new Float32Array(sampleCount);
+  for (const entry of layers) {
+    if (entry.kind === "erosion") applyErosion(entry, chunk, heights);
+    else applyHeightLayer(entry, config, chunk, heights, wetness);
+  }
+  applySlopeLimit(config, chunk, heights);
+  return { heights, wetness };
+}
+
+function computeNormals(config, chunk, heights) {
   const size = chunk.resolution + 1;
   const normals = new Float32Array(heights.length * 3);
   const step = chunk.size / chunk.resolution;
+  const neighborFields = new Map();
+  const sample = (x, z) => {
+    if (x >= 0 && x < size && z >= 0 && z < size) return heights[z * size + x];
+    const dx = x < 0 ? -1 : x >= size ? 1 : 0;
+    const dz = z < 0 ? -1 : z >= size ? 1 : 0;
+    const key = `${dx},${dz}`;
+    if (!neighborFields.has(key)) {
+      const bounds = makeBounds(chunk.cx + dx, chunk.cz + dz, chunk.size);
+      const neighbor = { ...chunk, id: `${chunk.cx + dx},${chunk.cz + dz}`, cx: chunk.cx + dx, cz: chunk.cz + dz, bounds };
+      const layers = config.layers.filter((entry) => layerAffectsChunk(entry, config, bounds));
+      neighborFields.set(key, generateHeightFields(config, neighbor, layers).heights);
+    }
+    const localX = x < 0 ? x + chunk.resolution : x >= size ? x - chunk.resolution : x;
+    const localZ = z < 0 ? z + chunk.resolution : z >= size ? z - chunk.resolution : z;
+    return neighborFields.get(key)[localZ * size + localX];
+  };
   for (let z = 0; z < size; z += 1) {
     for (let x = 0; x < size; x += 1) {
       const i = z * size + x;
-      const left = heights[z * size + Math.max(0, x - 1)];
-      const right = heights[z * size + Math.min(size - 1, x + 1)];
-      const down = heights[Math.max(0, z - 1) * size + x];
-      const up = heights[Math.min(size - 1, z + 1) * size + x];
+      const left = sample(x - 1, z);
+      const right = sample(x + 1, z);
+      const down = sample(x, z - 1);
+      const up = sample(x, z + 1);
       const nx = left - right;
       const ny = step * 2;
       const nz = down - up;
@@ -556,15 +584,8 @@ function bakeChunk(config, palette, cx, cz, lod, previous) {
     return { chunk: previous, rebuilt: false };
   }
 
-  const sampleCount = (chunk.resolution + 1) * (chunk.resolution + 1);
-  const heights = new Float32Array(sampleCount);
-  const wetness = new Float32Array(sampleCount);
-  for (const entry of layers) {
-    if (entry.kind === "erosion") applyErosion(entry, chunk, heights);
-    else applyHeightLayer(entry, config, chunk, heights, wetness);
-  }
-  applySlopeLimit(config, chunk, heights);
-  const normals = computeNormals(chunk, heights);
+  const { heights, wetness } = generateHeightFields(config, chunk, layers);
+  const normals = computeNormals(config, chunk, heights);
   const materials = assignMaterials(layers, config, chunk, heights, normals, wetness, palette);
   const realismFields = computeRealismFields(config, chunk, heights, normals, wetness, materials, palette);
   return {
