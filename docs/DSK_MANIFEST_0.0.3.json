@@ -328,6 +328,30 @@
       "version": "0.0.3",
       "snapshot": "required",
       "reset": "required"
+    },
+    {
+      "id": "n-core-headless-editor-kit",
+      "domain": "core-headless-editor",
+      "provides": [
+        "n:core-headless-editor"
+      ],
+      "source": "src/core-kits/core-headless-editor-kit/index.js",
+      "stability": "experimental",
+      "snapshot": "required",
+      "reset": "required",
+      "version": "0.0.3"
+    },
+    {
+      "id": "headless-reliability-domain-kit",
+      "domain": "headless-reliability",
+      "provides": [
+        "n:development:headless-reliability"
+      ],
+      "source": "src/core-kits/core-headless-editor-kit/development/headless-reliability-domain-kit/index.js",
+      "stability": "experimental",
+      "snapshot": "not-required",
+      "reset": "not-required",
+      "version": "0.0.3"
     }
   ]
 }
