@@ -3,6 +3,11 @@ import fs from "node:fs/promises";
 import os from "node:os";
 import path from "node:path";
 import {
+  createCoreHeadlessEditorKit,
+  createHeadlessReliabilityDomainKit,
+  createRealtimeGame
+} from "../../src/index.js";
+import {
   parseDevelopmentTarget,
   readDevelopmentTarget,
   resumeGuidedDevelopmentSession,
@@ -70,6 +75,21 @@ assert.equal(parsed.mode, "Implementation");
 assert.equal(parsed.scope.length, 3);
 assert.equal(parsed.requiredOutcomes.length, 4);
 assert.equal(parsed.constraints.length, 2);
+
+const engine = createRealtimeGame({
+  kits: [
+    createCoreHeadlessEditorKit(),
+    createHeadlessReliabilityDomainKit()
+  ]
+});
+const installedHeadless = engine.n.coreHeadlessEditor;
+assert.equal(typeof installedHeadless.readDevelopmentTarget, "function");
+assert.equal(typeof installedHeadless.createDevelopmentSession, "function");
+assert.equal(typeof installedHeadless.startDevelopmentSession, "function");
+assert.equal(typeof installedHeadless.resumeDevelopmentSession, "function");
+assert.equal(typeof installedHeadless.createReliabilityApi, "function");
+assert.equal(typeof engine.n.headlessReliability.infer, "function");
+assert.equal(engine.n.headlessReliability.infer({ target: parsed }).requiredChecks.includes("installed-api-parity"), true);
 
 const completeRoot = await createFixture("complete");
 const target = await readDevelopmentTarget(".agent/target.md", { root: completeRoot });
