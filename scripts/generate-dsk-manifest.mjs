@@ -18,6 +18,10 @@ const coreDomains = [
   source: `src/core-kits/${domain}-kit/index.js`
 }));
 
+const computeDomains = [
+  { id: "core-compute-domain", domain: "compute", provides: ["n:compute"], source: "src/core-kits/core-compute-kit/index.js" }
+];
+
 const presentationDomains = [
   { id: "core-presentation-domain", domain: "presentation", provides: ["n:presentation"], source: "src/core-kits/core-presentation-kit/index.js" },
   { id: "core-presentation-output-kit", domain: "presentation-output", provides: ["n:presentation:output"], source: "src/core-kits/core-presentation-output-kit/index.js" },
@@ -31,7 +35,7 @@ const manifest = {
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
-  domains: [...coreDomains, ...presentationDomains].map((entry) => ({
+  domains: [...coreDomains, ...computeDomains, ...presentationDomains].map((entry) => ({
     ...entry,
     stability: "stable-candidate",
     version: NEXUS_ENGINE_VERSION,
