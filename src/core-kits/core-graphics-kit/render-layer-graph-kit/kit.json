@@ -1,0 +1,14 @@
+{
+  "id": "n-core-graphics-render-layer-graph-kit",
+  "domain": "core-graphics-render-layer-graph",
+  "version": "0.0.3",
+  "stability": "stable-candidate",
+  "provides": [
+    "n:graphics:render-layer-graph",
+    "n:graphics:render-pass-contract",
+    "n:graphics:render-layer-validation"
+  ],
+  "rendererAgnostic": true,
+  "deterministic": true,
+  "snapshotSafe": true
+}
