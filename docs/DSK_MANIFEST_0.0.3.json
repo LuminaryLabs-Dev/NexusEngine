@@ -270,6 +270,18 @@
       "reset": "required"
     },
     {
+      "id": "core-compute-domain",
+      "domain": "compute",
+      "provides": [
+        "n:compute"
+      ],
+      "source": "src/core-kits/core-compute-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
       "id": "core-presentation-domain",
       "domain": "presentation",
       "provides": [
