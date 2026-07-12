@@ -18,6 +18,8 @@ const tests = [
   "tests/core-kits/core-input-kit-smoke.mjs",
   "tests/core-kits/core-scene-kit-smoke.mjs",
   "tests/core-kits/core-graphics-kit-smoke.mjs",
+  "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+  "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
   "tests/core-kits/core-simulation-kit-smoke.mjs",
   "tests/core-kits/core-interaction-kit-smoke.mjs",
   "tests/core-kits/core-mlnn-kit-smoke.mjs",
@@ -35,9 +37,7 @@ for (const test of tests) {
     cwd: process.cwd()
   });
 
-  if (result.status !== 0) {
-    process.exit(result.status ?? 1);
-  }
+  if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
 console.log(`Passed ${tests.length} smoke tests.`);
