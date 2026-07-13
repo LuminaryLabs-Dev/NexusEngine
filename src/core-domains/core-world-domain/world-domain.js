@@ -2,6 +2,9 @@ import { createCoreCapabilityKit } from "../../core-kits/core-capability-kit.js"
 import { createWorldBuilderRuntime } from "./kits/world-builder-runtime-kit/index.js";
 import { createInitialWorldState } from "./state.js";
 import { validateCoreWorldState } from "./validation.js";
+import { createWorldFoundationDomain } from "./subdomains/world-foundation-domain/index.js";
+import { createWorldFeatureDomain } from "./subdomains/world-feature-domain/index.js";
+import { createLandformFeatureDomain } from "./subdomains/world-feature-domain/subdomains/landform-feature-domain/index.js";
 
 const EVENT_NAMES = [
   "configured",
@@ -17,10 +20,18 @@ const EVENT_NAMES = [
   "snapshotReconciled"
 ];
 
+function installIfMissing(engine, kit) {
+  if (!kit) return null;
+  if (engine.domainServiceKits?.[kit.id]) return kit;
+  return engine.installKit(kit);
+}
+
 export function createCoreWorldDomain(config = {}) {
+  const userInstall = config.install;
   return createCoreCapabilityKit({
     ...config,
     domain: "core-world",
+    domainPath: config.domainPath ?? "n:world",
     apiName: config.apiName ?? "coreWorld",
     eventNames: config.eventNames ?? EVENT_NAMES,
     purpose: "Host-agnostic world identity, partitioning, cells, surfaces, effects, providers, composition, and snapshots.",
@@ -29,7 +40,7 @@ export function createCoreWorldDomain(config = {}) {
     services: ["world-definition", "world-partition", "world-cell", "world-surface", "world-effects", "world-builder", "world-snapshot"],
     initialState: createInitialWorldState(config),
     metadata: { ...(config.metadata ?? {}), piecesFirst: true, coreDomain: true, hostAgnostic: true, rendererAgnostic: true },
-    createApi({ baseApi }) {
+    createApi({ engine, baseApi }) {
       const runtime = createWorldBuilderRuntime({
         getState: baseApi.getState,
         diagnosticLimit: config.diagnosticLimit,
@@ -40,8 +51,7 @@ export function createCoreWorldDomain(config = {}) {
       const baseLoadSnapshot = baseApi.loadSnapshot.bind(baseApi);
       const baseReset = baseApi.reset.bind(baseApi);
 
-      return {
-        ...baseApi,
+      const api = {
         registerWorld: runtime.registerWorld,
         removeWorld: runtime.removeWorld,
         setFocus: runtime.setFocus,
@@ -77,6 +87,21 @@ export function createCoreWorldDomain(config = {}) {
         },
         resetWorlds: runtime.reset
       };
+      return api;
+    },
+    install(context) {
+      const { engine } = context;
+      engine.coreWorld = engine.n.coreWorld;
+      if (config.childDomains !== false) {
+        if (config.foundation !== false) installIfMissing(engine, createWorldFoundationDomain(config.foundation ?? {}));
+        if (config.features !== false) {
+          installIfMissing(engine, createWorldFeatureDomain(config.features ?? {}));
+          if (config.landforms !== false) {
+            installIfMissing(engine, createLandformFeatureDomain(config.landforms ?? config.features?.landforms ?? {}));
+          }
+        }
+      }
+      userInstall?.(context);
     }
   });
 }

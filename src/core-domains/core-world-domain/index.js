@@ -12,4 +12,6 @@ export * from "./partitions/uniform-grid-partition-kit/index.js";
 export * from "./partitions/quadtree-partition-kit/index.js";
 export * from "./surfaces/flat-world-surface-kit/index.js";
 export * from "./surfaces/curved-horizon-surface-kit/index.js";
+export * from "./subdomains/world-foundation-domain/index.js";
+export * from "./subdomains/world-feature-domain/index.js";
 export * from "./adapters/terrain-provider-adapter/index.js";
