@@ -10,10 +10,11 @@ export * from "./contracts.js";
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
 export function createCoreCreatureKit(config = {}) {
+  const apiName = config.apiName ?? "coreCreature";
   const baseKit = createCoreCapabilityKit({
     ...config,
     domain: "core-creature",
-    apiName: config.apiName ?? "coreCreature",
+    apiName,
     purpose: "Neutral creature embodiment definitions and references.",
     owns: [
       "creature identity",
@@ -100,11 +101,17 @@ export function createCoreCreatureKit(config = {}) {
       contractSchema: "nexus-creature-definition/1"
     }
   });
+  const install = baseKit.install;
 
   return Object.freeze({
     ...baseKit,
     requires: [...(baseKit.requires ?? [])],
-    provides: [...(baseKit.provides ?? []), "creature:definition", "creature:registry"]
+    provides: [...(baseKit.provides ?? []), "creature:definition", "creature:registry"],
+    install(context) {
+      const result = install(context);
+      context.engine.coreCreature = context.engine.n[apiName];
+      return result;
+    }
   });
 }
 
