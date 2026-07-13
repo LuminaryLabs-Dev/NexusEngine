@@ -6,6 +6,7 @@ export * from "./core-object-kit/index.js";
 export * from "./core-persistence-kit/index.js";
 export * from "./core-assets-kit/index.js";
 export * from "./core-platform-kit/index.js";
+export * from "./core-startup-kit/index.js";
 export * from "./core-input-kit/index.js";
 export * from "./core-spatial-kit/index.js";
 export * from "./core-scene-kit/index.js";
