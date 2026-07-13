@@ -131,6 +131,8 @@ export function createCoreSimulationKit(config = {}) {
       engine.n.genericPressureLoop ??= api.pressure;
       engine.genericPressureLoop ??= api.pressure;
       engine.n.actionWindows ??= api.windows;
+      engine.n.genericActionWindow ??= api.windows;
+      engine.genericActionWindow ??= api.windows;
       engine.timingWindows ??= api.windows;
     },
     metadata: {
