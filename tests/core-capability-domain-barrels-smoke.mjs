@@ -5,6 +5,7 @@ import {
   createCorePersistenceKit,
   createCoreAssetsKit,
   createCorePlatformKit,
+  createCoreStartupKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -42,6 +43,7 @@ const factories = [
   createCorePersistenceKit,
   createCoreAssetsKit,
   createCorePlatformKit,
+  createCoreStartupKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -83,6 +85,7 @@ for (const namespace of [
   "corePersistence",
   "coreAssets",
   "corePlatform",
+  "coreStartup",
   "coreInput",
   "coreSpatial",
   "coreScene",
@@ -115,6 +118,12 @@ for (const namespace of [
 
 engine.n.coreData.configure({ profile: "smoke" });
 assert.equal(engine.n.coreData.getConfig().profile, "smoke", "core data config updates");
+engine.n.coreStartup.launch({
+  launchId: "barrel:startup:1",
+  projectId: "barrel-smoke",
+  preparations: [{ id: "runtime", label: "Runtime" }]
+});
+assert.equal(engine.n.coreStartup.getDescriptor().projectId, "barrel-smoke", "core startup launches through barrel export");
 engine.n.coreGraphics.setDescriptor("objects", "cube", { kind: "box" });
 assert.deepEqual(engine.n.coreGraphics.getDescriptors("objects").cube, { kind: "box" }, "core graphics descriptors update");
 engine.n.coreSkybox.setPreset("golden-horizon");
