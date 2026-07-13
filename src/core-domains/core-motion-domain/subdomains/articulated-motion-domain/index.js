@@ -9,6 +9,9 @@ import {
 import {
   quatFromUnitVectors,
   quatIdentity,
+  quatInverse,
+  quatMultiply,
+  quatRotateVector,
   quatSlerp
 } from "../../../../core-kits/core-utility-kit/quaternion-utility-kit.js";
 import {
@@ -47,35 +50,73 @@ function boneMap(rig) {
   return new Map(rig.bones.map((bone) => [bone.id, bone]));
 }
 
-function worldRestPositions(rig) {
+function evaluatePoseTransforms(rig, pose) {
   const bones = boneMap(rig);
   const cache = new Map();
+
   const resolve = (boneId, stack = new Set()) => {
     if (cache.has(boneId)) return cache.get(boneId);
     if (stack.has(boneId)) throw new TypeError(`Articulated rig ${rig.id} contains a parent cycle at ${boneId}.`);
     const bone = bones.get(boneId);
     if (!bone) throw new RangeError(`Unknown articulated bone ${boneId}.`);
+
     stack.add(boneId);
-    const parent = bone.parentId == null ? { x: 0, y: 0, z: 0 } : resolve(bone.parentId, stack);
-    const position = add(parent, bone.restPosition);
+    const transform = pose?.bones?.[boneId] ?? {};
+    const localPosition = clone(transform.position ?? bone.restPosition);
+    const localRotation = clone(transform.rotation ?? bone.restRotation ?? quatIdentity());
+    const parent = bone.parentId == null ? null : resolve(bone.parentId, stack);
+    const rigRotation = parent
+      ? quatMultiply(parent.rigRotation, localRotation)
+      : localRotation;
+    const rigPosition = parent
+      ? add(parent.rigPosition, quatRotateVector(parent.rigRotation, localPosition))
+      : localPosition;
     stack.delete(boneId);
-    cache.set(boneId, position);
-    return position;
+
+    const evaluated = {
+      boneId,
+      parentId: bone.parentId,
+      localPosition,
+      localRotation,
+      rigPosition,
+      rigRotation
+    };
+    cache.set(boneId, evaluated);
+    return evaluated;
   };
+
   for (const bone of rig.bones) resolve(bone.id);
-  return Object.fromEntries(cache);
+  const result = {
+    schema: "nexus-articulated-pose-evaluation/1",
+    rigId: rig.id,
+    poseId: pose?.id ?? null,
+    bones: Object.fromEntries(cache)
+  };
+  structuredClone(result);
+  return result;
 }
 
-function chainLengths(rig, chain, restPositions) {
+function chainLengths(chain, transforms) {
   if (chain.lengths?.upper > 0 && chain.lengths?.lower > 0) return chain.lengths;
   const [rootId, midId, endId] = chain.bones;
   return {
-    upper: length(sub(restPositions[midId], restPositions[rootId])),
-    lower: length(sub(restPositions[endId], restPositions[midId]))
+    upper: length(sub(transforms.bones[midId].rigPosition, transforms.bones[rootId].rigPosition)),
+    lower: length(sub(transforms.bones[endId].rigPosition, transforms.bones[midId].rigPosition))
   };
 }
 
-function solveChain(rig, chain, target, poseBones) {
+function solveChain(rig, chain, target, poseBones, transforms) {
+  if (target.space !== "rig") {
+    return {
+      solved: false,
+      diagnostic: {
+        type: "unsupported-target-space",
+        chainId: chain.id,
+        targetSpace: target.space
+      }
+    };
+  }
+
   if (chain.solver !== "two-bone" || chain.bones.length !== 3) {
     return {
       solved: false,
@@ -88,36 +129,62 @@ function solveChain(rig, chain, target, poseBones) {
     };
   }
 
-  const positions = worldRestPositions(rig);
+  const bones = boneMap(rig);
   const [rootId, midId, endId] = chain.bones;
-  const lengths = chainLengths(rig, chain, positions);
+  const rootBone = bones.get(rootId);
+  const midBone = bones.get(midId);
+  const endBone = bones.get(endId);
+  if (midBone?.parentId !== rootId || endBone?.parentId !== midId) {
+    return {
+      solved: false,
+      diagnostic: {
+        type: "non-contiguous-chain",
+        chainId: chain.id,
+        bones: chain.bones.slice()
+      }
+    };
+  }
+
+  const rootTransform = transforms.bones[rootId];
+  const midTransform = transforms.bones[midId];
+  const endTransform = transforms.bones[endId];
+  const lengths = chainLengths(chain, transforms);
+  const currentUpperDirection = normalize(sub(midTransform.rigPosition, rootTransform.rigPosition));
+  const currentLowerDirection = normalize(sub(endTransform.rigPosition, midTransform.rigPosition));
   const solution = solveTwoBoneIK({
-    root: positions[rootId],
+    root: rootTransform.rigPosition,
     target: target.position,
     upperLength: lengths.upper,
     lowerLength: lengths.lower,
     poleDirection: target.poleDirection ?? chain.poleDirection
   });
-  const restUpper = normalize(sub(positions[midId], positions[rootId]));
-  const restLower = normalize(sub(positions[endId], positions[midId]));
-  const rootRotation = quatFromUnitVectors(restUpper, solution.upperDirection);
-  const midRotation = quatFromUnitVectors(restLower, solution.lowerDirection);
+
+  const rootDelta = quatFromUnitVectors(currentUpperDirection, solution.upperDirection);
+  const solvedRootRigRotation = quatMultiply(rootDelta, rootTransform.rigRotation);
+  const provisionalLowerDirection = quatRotateVector(rootDelta, currentLowerDirection);
+  const provisionalMidRigRotation = quatMultiply(rootDelta, midTransform.rigRotation);
+  const midDelta = quatFromUnitVectors(provisionalLowerDirection, solution.lowerDirection);
+  const solvedMidRigRotation = quatMultiply(midDelta, provisionalMidRigRotation);
+  const rootParentRigRotation = rootBone.parentId == null
+    ? quatIdentity()
+    : transforms.bones[rootBone.parentId].rigRotation;
+  const solvedRootLocalRotation = quatMultiply(
+    quatInverse(rootParentRigRotation),
+    solvedRootRigRotation
+  );
+  const solvedMidLocalRotation = quatMultiply(
+    quatInverse(solvedRootRigRotation),
+    solvedMidRigRotation
+  );
   const weight = target.weight;
 
   poseBones[rootId] = {
     ...(poseBones[rootId] ?? {}),
-    rotation: quatSlerp(poseBones[rootId]?.rotation ?? quatIdentity(), rootRotation, weight),
-    weight
+    rotation: quatSlerp(rootTransform.localRotation, solvedRootLocalRotation, weight)
   };
   poseBones[midId] = {
     ...(poseBones[midId] ?? {}),
-    rotation: quatSlerp(poseBones[midId]?.rotation ?? quatIdentity(), midRotation, weight),
-    weight
-  };
-  poseBones[endId] = {
-    ...(poseBones[endId] ?? {}),
-    position: solution.end,
-    weight
+    rotation: quatSlerp(midTransform.localRotation, solvedMidLocalRotation, weight)
   };
 
   return {
@@ -125,11 +192,13 @@ function solveChain(rig, chain, target, poseBones) {
     diagnostic: {
       type: "two-bone-ik",
       chainId: chain.id,
+      targetSpace: target.space,
       clamped: solution.clamped,
       clampedMinimum: solution.clampedMinimum,
       clampedMaximum: solution.clampedMaximum,
       targetError: length(sub(solution.end, target.position)),
       bendNormal: solution.bendNormal,
+      chainLengths: lengths,
       solvedPositions: {
         root: solution.root,
         mid: solution.mid,
@@ -147,6 +216,17 @@ function createApi(config, world) {
     return next;
   };
   const update = (patch) => setState({ ...state(), ...patch });
+  const resolveRigAndPose = (input = {}) => {
+    const current = state();
+    const rigId = String(input.rigId ?? "");
+    const rig = current.rigs?.[rigId];
+    if (!rig) throw new RangeError(`Unknown articulated rig ${rigId}.`);
+    const pose = input.pose
+      ? createArticulatedPoseDescriptor({ ...input.pose, rigId })
+      : current.poses?.[String(input.poseId ?? "")]
+        ?? createArticulatedPoseDescriptor({ rigId, id: `${rigId}:rest-pose` });
+    return { current, rigId, rig, pose };
+  };
 
   return Object.freeze({
     registerRig(input = {}) {
@@ -173,6 +253,10 @@ function createApi(config, world) {
     getPose(id) {
       return clone(state().poses?.[String(id)] ?? null);
     },
+    evaluatePose(input = {}) {
+      const { rig, pose } = resolveRigAndPose(input);
+      return clone(evaluatePoseTransforms(rig, pose));
+    },
     submitTargets(inputs = []) {
       const targets = (Array.isArray(inputs) ? inputs : [inputs]).map(createArticulatedTargetDescriptor);
       const next = { ...(state().targets ?? {}) };
@@ -186,18 +270,10 @@ function createApi(config, world) {
       return clone(targets);
     },
     solve(input = {}) {
-      const current = state();
-      const rigId = String(input.rigId ?? "");
-      const rig = current.rigs?.[rigId];
-      if (!rig) throw new RangeError(`Unknown articulated rig ${rigId}.`);
-      const sourcePose = input.pose
-        ? createArticulatedPoseDescriptor({ ...input.pose, rigId })
-        : current.poses?.[String(input.poseId ?? "")] ?? createArticulatedPoseDescriptor({ rigId, id: `${rigId}:rest-pose` });
+      const { current, rigId, rig, pose: sourcePose } = resolveRigAndPose(input);
       const targetInputs = input.targets ?? Object.values(current.targets ?? {}).filter((target) => target.rigId === rigId);
       const targets = (Array.isArray(targetInputs) ? targetInputs : [targetInputs]).map((target) =>
-        target?.schema === "nexus-articulated-target/1"
-          ? clone(target)
-          : createArticulatedTargetDescriptor({ ...target, rigId })
+        createArticulatedTargetDescriptor({ ...target, rigId: target?.rigId ?? rigId })
       );
       const poseBones = clone(sourcePose.bones ?? {});
       const diagnostics = [];
@@ -207,7 +283,8 @@ function createApi(config, world) {
           diagnostics.push({ type: "missing-chain", chainId: target.chainId });
           continue;
         }
-        diagnostics.push(solveChain(rig, chain, target, poseBones).diagnostic);
+        const transforms = evaluatePoseTransforms(rig, { ...sourcePose, bones: poseBones });
+        diagnostics.push(solveChain(rig, chain, target, poseBones, transforms).diagnostic);
       }
       const pose = createArticulatedPoseDescriptor({
         id: input.outputPoseId ?? `${rigId}:solved:${input.tickId ?? Number(current.frames?.length ?? 0) + 1}`,
@@ -274,11 +351,12 @@ export function createArticulatedMotionDomain(config = {}) {
     apiName: config.apiName ?? "articulatedMotion",
     stability: config.stability ?? "stable-candidate",
     version: ARTICULATED_MOTION_DOMAIN_VERSION,
-    services: ["rig", "pose", "targets", "inverse-kinematics", "pose-resolution", "frames", "snapshot", "reset"],
+    services: ["rig", "pose", "forward-kinematics", "targets", "inverse-kinematics", "pose-resolution", "frames", "snapshot", "reset"],
     requires: config.requires ?? ["n:core-motion"],
     provides: [
       "motion:articulated-rig",
       "motion:articulated-pose",
+      "motion:forward-kinematics",
       "motion:inverse-kinematics",
       "motion:articulated-frame"
     ],
@@ -293,7 +371,7 @@ export function createArticulatedMotionDomain(config = {}) {
       coreSubdomain: true,
       rendererAgnostic: true,
       physicsIndependent: true,
-      owns: ["rig descriptors", "pose descriptors", "IK targets", "kinematic pose solving", "articulated motion frames"],
+      owns: ["rig descriptors", "pose descriptors", "forward kinematics", "IK targets", "kinematic pose solving", "articulated motion frames"],
       doesNotOwn: ["rigid bodies", "contact impulses", "physics joints", "renderer bones", "authored animation clips"]
     }
   });
