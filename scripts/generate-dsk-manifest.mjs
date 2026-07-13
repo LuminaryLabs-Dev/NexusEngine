@@ -7,10 +7,10 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 
 const coreDomains = [
-  "core-data", "core-persistence", "core-assets", "core-platform", "core-input", "core-spatial",
-  "core-scene", "core-physics", "core-motion", "core-simulation", "core-interaction", "core-graphics",
-  "core-camera", "core-animation", "core-audio", "core-ui", "core-network", "core-diagnostics",
-  "core-policy", "core-composition", "core-mlnn", "core-agent"
+  "core-data", "core-persistence", "core-assets", "core-platform", "core-creature", "core-character",
+  "core-player", "core-input", "core-spatial", "core-scene", "core-physics", "core-motion",
+  "core-simulation", "core-interaction", "core-graphics", "core-camera", "core-animation", "core-audio",
+  "core-ui", "core-network", "core-diagnostics", "core-policy", "core-composition", "core-mlnn", "core-agent"
 ].map((domain) => ({
   id: `n-${domain}-kit`,
   domain,
