@@ -10,10 +10,11 @@ export * from "./contracts.js";
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
 export function createCorePlayerKit(config = {}) {
+  const apiName = config.apiName ?? "corePlayer";
   const baseKit = createCoreCapabilityKit({
     ...config,
     domain: "core-player",
-    apiName: config.apiName ?? "corePlayer",
+    apiName,
     purpose: "Neutral player identity, possession, control authority, and spawn generations.",
     owns: [
       "player identity",
@@ -150,11 +151,17 @@ export function createCorePlayerKit(config = {}) {
       contractSchema: "nexus-player/1"
     }
   });
+  const install = baseKit.install;
 
   return Object.freeze({
     ...baseKit,
     requires: [...new Set([...(baseKit.requires ?? []), "n:core-character"])],
-    provides: [...(baseKit.provides ?? []), "player:identity", "player:possession", "player:control-authority"]
+    provides: [...(baseKit.provides ?? []), "player:identity", "player:possession", "player:control-authority"],
+    install(context) {
+      const result = install(context);
+      context.engine.corePlayer = context.engine.n[apiName];
+      return result;
+    }
   });
 }
 
