@@ -20,6 +20,7 @@ export * from "./foundation/index.js";
 export * from "./modules/nexus-diffusion/index.js";
 export * from "./core-domains/index.js";
 export * from "./core-kits/index.js";
+export * from "./hosts/browser/browser-startup-presentation-adapter.js";
 export * from "./hosts/browser/browser-presentation-surface-adapter.js";
 export * from "./renderers/three/three-presentation-output-adapter.js";
 export * from "./renderers/three/three-subject-bounds-adapter.js";
