@@ -101,6 +101,7 @@ export function createArticulatedTargetDescriptor(input = {}) {
     id: text(input.id, `${rigId}:${chainId}:target`, "Articulated target id"),
     rigId,
     chainId,
+    space: String(input.space ?? "rig"),
     position: motionVector3(input.position ?? input.target),
     poleDirection: input.poleDirection == null ? null : motionVector3(input.poleDirection),
     weight: Math.max(0, Math.min(1, finite(input.weight, 1))),
