@@ -10,6 +10,7 @@ export { createCoreDataKit } from "./core-data-kit/index.js";
 export { createCorePersistenceKit } from "./core-persistence-kit/index.js";
 export { createCoreAssetsKit } from "./core-assets-kit/index.js";
 export { createCorePlatformKit } from "./core-platform-kit/index.js";
+export { createCoreStartupKit } from "./core-startup-kit/index.js";
 export { createCoreInputKit } from "./core-input-kit/index.js";
 export { createCoreSpatialKit } from "./core-spatial-kit/index.js";
 export { createCoreSceneKit } from "./core-scene-kit/index.js";
