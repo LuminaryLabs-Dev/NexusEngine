@@ -11,6 +11,9 @@ const engine = createEngine({
     ...createCorePlayerDomain()
   ]
 });
+assert.equal(engine.coreCreature, engine.n.coreCreature);
+assert.equal(engine.coreCharacter, engine.n.coreCharacter);
+assert.equal(engine.corePlayer, engine.n.corePlayer);
 
 const creatureInput = {
   id: "raptor",
