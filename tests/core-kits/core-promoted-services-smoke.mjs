@@ -55,6 +55,8 @@ const digestA = engine.n.coreData.digest.digest({ b: 2, a: 1 });
 const digestB = engine.n.coreData.digest.digest({ a: 1, b: 2 });
 assert.equal(digestA.digest, digestB.digest, "state digest ignores object key order");
 assert.equal(engine.n.seedStream, random, "seed compatibility alias points to Core Data");
+assert.equal(engine.n.genericSeed, random, "generic seed alias points to Core Data");
+assert.equal(engine.n.completionLedger, completion, "completion ledger alias points to Core Data");
 
 const registry = engine.n.coreComposition.registry;
 registry.registerKit({ id: "provider-kit", status: "official", domain: "foundation", provides: ["capability:provider"] });
@@ -75,6 +77,7 @@ assert.equal(engine.n.kitRegistry, registry, "registry compatibility alias point
 const windows = engine.n.coreSimulation.windows;
 assert.equal(windows.action("parry", { actorId: "player" }).quality, "perfect");
 assert.equal(windows.action("parry", { actorId: "player" }).reason, "cooldown");
+assert.equal(engine.n.genericActionWindow, windows, "generic action-window alias points to Core Simulation");
 
 engine.tick(1);
 
