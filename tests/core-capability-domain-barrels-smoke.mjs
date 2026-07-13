@@ -6,6 +6,9 @@ import {
   createCoreAssetsKit,
   createCorePlatformKit,
   createCoreStartupKit,
+  createCoreCreatureKit,
+  createCoreCharacterKit,
+  createCorePlayerKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -44,6 +47,9 @@ const factories = [
   createCoreAssetsKit,
   createCorePlatformKit,
   createCoreStartupKit,
+  createCoreCreatureKit,
+  createCoreCharacterKit,
+  createCorePlayerKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -86,6 +92,9 @@ for (const namespace of [
   "coreAssets",
   "corePlatform",
   "coreStartup",
+  "coreCreature",
+  "coreCharacter",
+  "corePlayer",
   "coreInput",
   "coreSpatial",
   "coreScene",
@@ -115,6 +124,9 @@ for (const namespace of [
 ]) {
   assert.equal(typeof engine.n?.[namespace]?.getSnapshot, "function", `${namespace} installed under engine.n`);
 }
+assert.equal(engine.coreCreature, engine.n.coreCreature);
+assert.equal(engine.coreCharacter, engine.n.coreCharacter);
+assert.equal(engine.corePlayer, engine.n.corePlayer);
 
 engine.n.coreData.configure({ profile: "smoke" });
 assert.equal(engine.n.coreData.getConfig().profile, "smoke", "core data config updates");
