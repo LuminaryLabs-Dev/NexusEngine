@@ -10,10 +10,11 @@ export * from "./contracts.js";
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
 export function createCoreCharacterKit(config = {}) {
+  const apiName = config.apiName ?? "coreCharacter";
   const baseKit = createCoreCapabilityKit({
     ...config,
     domain: "core-character",
-    apiName: config.apiName ?? "coreCharacter",
+    apiName,
     purpose: "Active embodied character identity and neutral runtime bindings.",
     owns: [
       "character identity",
@@ -133,11 +134,17 @@ export function createCoreCharacterKit(config = {}) {
       contractSchema: "nexus-character/1"
     }
   });
+  const install = baseKit.install;
 
   return Object.freeze({
     ...baseKit,
     requires: [...new Set([...(baseKit.requires ?? []), "n:core-creature"])],
-    provides: [...(baseKit.provides ?? []), "character:descriptor", "character:registry", "character:resolution"]
+    provides: [...(baseKit.provides ?? []), "character:descriptor", "character:registry", "character:resolution"],
+    install(context) {
+      const result = install(context);
+      context.engine.coreCharacter = context.engine.n[apiName];
+      return result;
+    }
   });
 }
 
