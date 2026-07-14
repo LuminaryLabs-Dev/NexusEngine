@@ -7,6 +7,8 @@
 // or the public top-level exports from src/index.js.
 
 export { createCoreDataKit } from "./core-data-kit/index.js";
+export { createCoreObjectFidelityKit } from "./core-object-fidelity-kit/index.js";
+export { createCoreCaptureKit } from "./core-capture-kit/index.js";
 export { createCorePersistenceKit } from "./core-persistence-kit/index.js";
 export { createCoreAssetsKit } from "./core-assets-kit/index.js";
 export { createCorePlatformKit } from "./core-platform-kit/index.js";
