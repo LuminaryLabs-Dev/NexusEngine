@@ -7,3 +7,5 @@ export * from "./core-presentation-domain/index.js";
 export * from "./core-motion-domain/index.js";
 export * from "./core-physics-domain/index.js";
 export * from "./core-compute-domain/index.js";
+export * from "./core-capture-domain/index.js";
+export * from "./core-object-fidelity-domain/index.js";
