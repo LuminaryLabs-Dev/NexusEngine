@@ -2,7 +2,7 @@
 
 ## Goal
 
-Make the NexusEngine root `AGENTS.md` an executable, target-driven development entry contract backed by the Core Headless Editor.
+Add optional Core Object Fidelity and Core Capture domains that preserve object identity across multiple visual forms and coordinate view-derived evidence without owning renderer or GPU implementation.
 
 ## Mode
 
@@ -10,28 +10,27 @@ Implementation
 
 ## Scope
 
-- NexusEngine `AGENTS.md`
-- `.agent/target.md`, `.agent/tracker.md`, runs, evidence, and repository environment
-- `core-headless-editor-kit`
-- `nexus-editor` CLI
-- focused and full smoke tests
+- `core-object-fidelity-kit` and `core-object-fidelity-domain`
+- `core-capture-kit` and `core-capture-domain`
+- public exports, package subpaths, manifests, docs, and focused smoke tests
+- Core Headless Editor evidence for installed composition, snapshots, readiness, adaptation, and atomic replacement
 
 ## Required outcome
 
-- No static development profile is required.
-- `.agent/target.md` is the only task-specific input.
-- The Headless Editor creates or resumes a run under `.agent/runs/<run-id>/`.
-- `.agent/tracker.md` is generated from run state and always explains the next route.
-- Reliability checks are inferred from the target, repository, kit graph, contracts, changes, and existing tests.
-- Failed evidence routes through diagnosis and replanning.
-- Missing evidence prevents completion.
-- The CLI exposes target, start, resume, status, next, continue, and report.
-- Tests prove target loading, tracking, resumption, inference, repair routing, and completion gates.
+- Core Capture supports serializable requests, jobs, results, provider replacement, duplicate request reuse, failure, cancellation, snapshot, and reset.
+- Object Fidelity supports profiles, forms, builds, capture dependencies, visible and complete readiness, contextual adaptation, stale-build rejection, and atomic active-package replacement.
+- The active fidelity package remains usable while a replacement waits for capture.
+- Duplicate builds and package commits do not repeat work.
+- A tree-like object and a non-tree object use the same core contracts.
+- All public state passes `structuredClone()` and contains no renderer, GPU, DOM, Canvas, Worker, or platform objects.
+- Headless Editor smoke evidence completes through observed differences with zero regressions.
 
 ## Constraints
 
 - Work directly on `main`.
-- Do not create a pull request or a new branch.
-- Reuse the existing Headless Editor runtime, workspaces, and evidence contracts.
-- Keep the development layer optional and outside gameplay truth.
+- Do not create a pull request or branch.
+- Keep Capture independent of why observations are requested.
+- Keep Object Fidelity independent of tree morphology, creature anatomy, and renderer implementation.
+- Reuse Core Object and Core Transaction Ledger contracts.
+- Keep Core Compute optional.
 - Validate before reporting completion.
