@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createRealtimeGame } from "../../src/index.js";
 import {
   createCoreGraphicsKit,
+  createGraphicsAdapterBoundary,
   createRenderDescriptor,
   createInstanceDescriptor,
   createMaterialDescriptor,
@@ -44,6 +45,44 @@ const water = createMaterialDescriptor({
 assert.equal(water.transmission, 0.92);
 assert.equal(water.depthWrite, false);
 assert.equal(water.premultipliedAlpha, true);
+
+const clay = createMaterialDescriptor({
+  id: "shiny-clay",
+  kind: "physical",
+  textures: {
+    baseColor: { assetId: "clay-base-color.png", colorSpace: "srgb" },
+    normal: "clay-normal.png",
+    roughness: { assetId: "clay-mask.png", channel: "g" },
+    ambientOcclusion: { assetId: "clay-mask.png", channel: "r", uvSet: 1 },
+    clearcoat: { assetId: "clay-mask.png", channel: "b" }
+  },
+  textureResolution: 2048,
+  clearcoat: 0.72,
+  clearcoatRoughness: 0.24,
+  normalScale: 0.25,
+  environmentIntensity: 1.15,
+  uv: { scale: [2, 2], texelDensity: 512 }
+});
+assert.equal(clay.textureResolution.width, 2048);
+assert.equal(clay.textures.baseColor.colorSpace, "srgb");
+assert.equal(clay.textures.roughness.channel, "g");
+assert.deepEqual(clay.normalScale, [0.25, 0.25]);
+assert.equal(clay.clearcoat, 0.72);
+assert.equal(clay.environmentIntensity, 1.15);
+
+const adapter = createGraphicsAdapterBoundary({
+  id: "webgl-adapter",
+  capabilities: { reflectionTechniques: ["environment-probe", "screen-space"] }
+});
+const negotiation = adapter.negotiate({
+  preferredTechnique: "ray-traced",
+  fallbackOrder: ["environment-probe"],
+  materialRevision: 2,
+  reflectionRevision: 3
+});
+assert.equal(negotiation.status, "degraded");
+assert.equal(negotiation.acceptedTechnique, "environment-probe");
+assert.equal(adapter.createFrameReceipt({ frameId: "frame-1" }).adapterId, "webgl-adapter");
 
 const engine = createRealtimeGame({ kits: [createCoreGraphicsKit()] });
 engine.n.coreGraphics.setDescriptor("objects", "cube", createRenderDescriptor({ id: "cube" }));

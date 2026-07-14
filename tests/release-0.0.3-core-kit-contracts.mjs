@@ -6,6 +6,7 @@ import {
   createCoreDataKit,
   createCoreInputKit,
   createCoreGraphicsKit,
+  createCoreReflectionKit,
   createCoreInteractionKit
 } from "../src/index.js";
 
@@ -40,6 +41,7 @@ const coreFactories = [
   createCoreDataKit,
   createCoreInputKit,
   createCoreGraphicsKit,
+  createCoreReflectionKit,
   createCoreInteractionKit
 ];
 const engine = createEngine({ kits: coreFactories.map((factory) => factory()) });

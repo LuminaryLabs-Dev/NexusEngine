@@ -21,6 +21,7 @@ import {
   createCoreComputeKit,
   createCoreInteractionKit,
   createCoreGraphicsKit,
+  createCoreReflectionKit,
   createCoreSkyboxKit,
   createCoreCameraKit,
   createCorePresentationKit,
@@ -65,6 +66,7 @@ const factories = [
   createCoreComputeKit,
   createCoreInteractionKit,
   createCoreGraphicsKit,
+  createCoreReflectionKit,
   createCoreSkyboxKit,
   createCoreCameraKit,
   createCorePresentationKit,
@@ -113,6 +115,7 @@ for (const namespace of [
   "coreCompute",
   "coreInteraction",
   "coreGraphics",
+  "coreReflection",
   "coreSkybox",
   "coreCamera",
   "corePresentation",
@@ -149,6 +152,7 @@ engine.n.coreStartup.launch({
 assert.equal(engine.n.coreStartup.getDescriptor().projectId, "barrel-smoke", "core startup launches through barrel export");
 engine.n.coreGraphics.setDescriptor("objects", "cube", { kind: "box" });
 assert.deepEqual(engine.n.coreGraphics.getDescriptors("objects").cube, { kind: "box" }, "core graphics descriptors update");
+assert.equal(engine.n.coreReflection.getActivePolicy().preferredTechnique, "environment-probe", "core reflection installs a portable default policy");
 engine.n.coreSkybox.setPreset("golden-horizon");
 assert.equal(engine.n.coreSkybox.getActivePreset().id, "golden-horizon", "core skybox preset updates");
 engine.n.coreDebug.registerRay({ id: "smoke.ray", color: "blue", origin: [0, 0, 0], direction: [0, 0, -1], length: 2 });

@@ -27,6 +27,22 @@ const computeDomains = [
   { id: "core-compute-domain", domain: "compute", provides: ["n:compute"], source: "src/core-kits/core-compute-kit/index.js" }
 ];
 
+const graphicsDomains = [
+  {
+    id: "n-core-graphics-reflection-kit",
+    domain: "core-graphics-reflection",
+    provides: [
+      "n:core-graphics-reflection",
+      "n:graphics:reflection",
+      "n:graphics:reflection-descriptor",
+      "n:graphics:reflection-policy",
+      "n:graphics:reflection-negotiation",
+      "n:graphics:reflection-frame-receipt"
+    ],
+    source: "src/core-kits/core-graphics-kit/reflection-kit/index.js"
+  }
+];
+
 const presentationDomains = [
   { id: "core-presentation-domain", domain: "presentation", provides: ["n:presentation"], source: "src/core-kits/core-presentation-kit/index.js" },
   { id: "core-presentation-output-kit", domain: "presentation-output", provides: ["n:presentation:output"], source: "src/core-kits/core-presentation-output-kit/index.js" },
@@ -61,7 +77,7 @@ const manifest = {
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
-  domains: [...coreDomains, ...semanticDomains, ...computeDomains, ...presentationDomains, ...developmentDomains].map((entry) => ({
+  domains: [...coreDomains, ...semanticDomains, ...computeDomains, ...graphicsDomains, ...presentationDomains, ...developmentDomains].map((entry) => ({
     ...entry,
     stability: entry.stability ?? "stable-candidate",
     version: NEXUS_ENGINE_VERSION,

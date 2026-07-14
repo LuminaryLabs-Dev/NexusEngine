@@ -50,6 +50,7 @@
     "./core-domains/core-character-domain": "./src/core-domains/core-character-domain/index.js",
     "./core-domains/core-player-domain": "./src/core-domains/core-player-domain/index.js",
     "./core-domains/core-world-domain": "./src/core-domains/core-world-domain/index.js",
+    "./core-domains/core-graphics-domain": "./src/core-domains/core-graphics-domain/index.js",
     "./core-domains/core-motion-domain": "./src/core-domains/core-motion-domain/index.js",
     "./core-domains/core-motion-domain/articulated-motion": "./src/core-domains/core-motion-domain/subdomains/articulated-motion-domain/index.js",
     "./core-domains/core-physics-domain": "./src/core-domains/core-physics-domain/index.js",
