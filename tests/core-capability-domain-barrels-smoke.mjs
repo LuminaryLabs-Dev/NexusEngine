@@ -9,6 +9,9 @@ import {
   createCoreCreatureKit,
   createCoreCharacterKit,
   createCorePlayerKit,
+  createCoreObjectKit,
+  createCoreObjectFidelityKit,
+  createCoreCaptureKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -50,6 +53,9 @@ const factories = [
   createCoreCreatureKit,
   createCoreCharacterKit,
   createCorePlayerKit,
+  createCoreObjectKit,
+  createCoreCaptureKit,
+  createCoreObjectFidelityKit,
   createCoreInputKit,
   createCoreSpatialKit,
   createCoreSceneKit,
@@ -95,6 +101,9 @@ for (const namespace of [
   "coreCreature",
   "coreCharacter",
   "corePlayer",
+  "coreObject",
+  "coreCapture",
+  "objectFidelity",
   "coreInput",
   "coreSpatial",
   "coreScene",
@@ -127,6 +136,8 @@ for (const namespace of [
 assert.equal(engine.coreCreature, engine.n.coreCreature);
 assert.equal(engine.coreCharacter, engine.n.coreCharacter);
 assert.equal(engine.corePlayer, engine.n.corePlayer);
+assert.equal(engine.coreCapture, engine.n.coreCapture);
+assert.equal(engine.objectFidelity, engine.n.objectFidelity);
 
 engine.n.coreData.configure({ profile: "smoke" });
 assert.equal(engine.n.coreData.getConfig().profile, "smoke", "core data config updates");
