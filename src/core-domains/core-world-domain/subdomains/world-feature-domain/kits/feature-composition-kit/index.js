@@ -3,5 +3,6 @@ export function sortWorldFeatures(features = []) {
 }
 
 export function flattenFeatureContributions(values = []) {
-  return values.flatMap((value) => Array.isArray(value) ? value : value == null ? [] : [value]);
+  const list = Array.isArray(values) ? values : values == null ? [] : [values];
+  return list.flatMap((value) => Array.isArray(value) ? value : value == null ? [] : [value]);
 }
