@@ -122,8 +122,14 @@ export function createCoreCapabilityKit(config = {}) {
   return defineDomainServiceKit({
     id: config.id ?? `n-${domain}-kit`,
     domain,
+    domainPath: config.domainPath,
+    parentDomainPath: config.parentDomainPath,
+    apiPath: config.apiPath,
+    visibility: config.visibility ?? config.apiVisibility,
     apiName,
     services: ["state", "descriptors", "config", ...(config.services ?? [])],
+    requires: config.requires ?? [],
+    provides: config.provides ?? [],
     stability: config.stability ?? "stable-candidate",
     version: config.version ?? "0.0.3",
     resources: { State, ...(config.resources ?? {}) },
@@ -194,6 +200,7 @@ export function createCoreCapabilityKit(config = {}) {
       return typeof config.createApi === "function"
         ? { ...api, ...config.createApi({ engine, world, State, events, descriptor, baseApi: api }) }
         : api;
-    }
+    },
+    install: config.install
   });
 }
