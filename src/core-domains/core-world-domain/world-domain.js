@@ -5,6 +5,10 @@ import { validateCoreWorldState } from "./validation.js";
 import { createWorldFoundationDomain } from "./subdomains/world-foundation-domain/index.js";
 import { createWorldFeatureDomain } from "./subdomains/world-feature-domain/index.js";
 import { createLandformFeatureDomain } from "./subdomains/world-feature-domain/subdomains/landform-feature-domain/index.js";
+import { createHydrologyFeatureDomain } from "./subdomains/world-feature-domain/subdomains/hydrology-feature-domain/index.js";
+import { createEcologyFeatureDomain } from "./subdomains/world-feature-domain/subdomains/ecology-feature-domain/index.js";
+import { createSettlementFeatureDomain } from "./subdomains/world-feature-domain/subdomains/settlement-feature-domain/index.js";
+import { createAtmosphereFeatureDomain } from "./subdomains/world-feature-domain/subdomains/atmosphere-feature-domain/index.js";
 
 const EVENT_NAMES = [
   "configured",
@@ -26,6 +30,15 @@ function installIfMissing(engine, kit) {
   return engine.installKit(kit);
 }
 
+function featureFamilyConfig(config, name, aliases = []) {
+  for (const key of [name, ...aliases]) {
+    if (config[key] !== undefined) return config[key];
+    if (config.features && typeof config.features === "object" && config.features[key] !== undefined) return config.features[key];
+    if (config.features?.families?.[key] !== undefined) return config.features.families[key];
+  }
+  return {};
+}
+
 export function createCoreWorldDomain(config = {}) {
   const userInstall = config.install;
   return createCoreCapabilityKit({
@@ -34,7 +47,7 @@ export function createCoreWorldDomain(config = {}) {
     domainPath: config.domainPath ?? "n:world",
     apiName: config.apiName ?? "coreWorld",
     eventNames: config.eventNames ?? EVENT_NAMES,
-    purpose: "Host-agnostic world identity, partitioning, cells, surfaces, effects, providers, composition, and snapshots.",
+    purpose: "Host-agnostic world identity, partitioning, cells, surfaces, effects, providers, composition, features, and snapshots.",
     owns: ["world identity", "world definitions", "world partitions", "world cells", "world surfaces", "world effect descriptors", "world provider contracts", "world composition", "world snapshots"],
     doesNotOwn: ["terrain generation", "foliage generation", "renderer meshes", "GPU resources", "physics resolution", "game-specific world content"],
     services: ["world-definition", "world-partition", "world-cell", "world-surface", "world-effects", "world-builder", "world-snapshot"],
@@ -95,9 +108,18 @@ export function createCoreWorldDomain(config = {}) {
       if (config.childDomains !== false) {
         if (config.foundation !== false) installIfMissing(engine, createWorldFoundationDomain(config.foundation ?? {}));
         if (config.features !== false) {
-          installIfMissing(engine, createWorldFeatureDomain(config.features ?? {}));
-          if (config.landforms !== false) {
-            installIfMissing(engine, createLandformFeatureDomain(config.landforms ?? config.features?.landforms ?? {}));
+          installIfMissing(engine, createWorldFeatureDomain(typeof config.features === "object" ? config.features : {}));
+          if (config.featureFamilies !== false) {
+            const landforms = featureFamilyConfig(config, "landforms", ["landform"]);
+            const hydrology = featureFamilyConfig(config, "hydrology");
+            const ecology = featureFamilyConfig(config, "ecology");
+            const settlement = featureFamilyConfig(config, "settlement", ["settlements"]);
+            const atmosphere = featureFamilyConfig(config, "atmosphere");
+            if (landforms !== false) installIfMissing(engine, createLandformFeatureDomain(landforms ?? {}));
+            if (hydrology !== false) installIfMissing(engine, createHydrologyFeatureDomain(hydrology ?? {}));
+            if (ecology !== false) installIfMissing(engine, createEcologyFeatureDomain(ecology ?? {}));
+            if (settlement !== false) installIfMissing(engine, createSettlementFeatureDomain(settlement ?? {}));
+            if (atmosphere !== false) installIfMissing(engine, createAtmosphereFeatureDomain(atmosphere ?? {}));
           }
         }
       }
