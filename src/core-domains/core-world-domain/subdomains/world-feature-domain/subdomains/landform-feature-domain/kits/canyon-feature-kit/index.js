@@ -1,5 +1,2 @@
-export function createCanyonFeatureKit() {
-  return Object.freeze({ type: "canyon", version: "0.1.0", implemented: false, status: "contract-only" });
-}
-
-export default createCanyonFeatureKit;
+export { createCanyonFeatureKit } from "../landform-feature-kits.js";
+export { createCanyonFeatureKit as default } from "../landform-feature-kits.js";
