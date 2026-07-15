@@ -11,6 +11,7 @@ const tests = [
   "tests/core-domains/world-foundation-domain-smoke.mjs",
   "tests/core-domains/world-feature-domain-smoke.mjs",
   "tests/core-domains/landform-feature-domain-smoke.mjs",
+  "tests/core-domains/world-feature-catalog-smoke.mjs",
   "tests/core-domains/world-feature-foundation-integration.mjs",
   "tests/core-domains/world-terrain-compatibility.mjs",
   "tests/host-smoke.mjs",
@@ -61,7 +62,6 @@ for (const test of tests) {
     stdio: "inherit",
     cwd: process.cwd()
   });
-
   if (result.status !== 0) process.exit(result.status ?? 1);
 }
 
