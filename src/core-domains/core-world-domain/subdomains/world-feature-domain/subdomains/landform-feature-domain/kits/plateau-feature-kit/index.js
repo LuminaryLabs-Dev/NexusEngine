@@ -1,5 +1,2 @@
-export function createPlateauFeatureKit() {
-  return Object.freeze({ type: "plateau", version: "0.1.0", implemented: false, status: "contract-only" });
-}
-
-export default createPlateauFeatureKit;
+export { createPlateauFeatureKit } from "../landform-feature-kits.js";
+export { createPlateauFeatureKit as default } from "../landform-feature-kits.js";
