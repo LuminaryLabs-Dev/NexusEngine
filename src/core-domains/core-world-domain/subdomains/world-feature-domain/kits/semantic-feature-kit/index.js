@@ -49,10 +49,17 @@ export function normalizeFeaturePoint(input = {}) {
 }
 
 export function normalizeFeaturePath(input = [], fallback = null) {
-  const source = Array.isArray(input) ? input : [];
-  const path = source
-    .filter((point) => point && typeof point === "object")
-    .map(normalizeFeaturePoint);
+  const path = [];
+  const visit = (value) => {
+    if (!Array.isArray(value)) return;
+    for (const entry of value) {
+      if (Array.isArray(entry)) visit(entry);
+      else if (entry && typeof entry === "object" && (Number.isFinite(Number(entry.x)) || Number.isFinite(Number(entry.z)))) {
+        path.push(normalizeFeaturePoint(entry));
+      }
+    }
+  };
+  visit(input);
   if (path.length > 0) return Object.freeze(path);
   return Object.freeze([normalizeFeaturePoint(fallback ?? { x: 0, z: 0 })]);
 }
@@ -249,6 +256,7 @@ export function normalizeWorldFeatureKitHandler(type, handler = {}) {
       : typeof handler.compile === "function"
         ? handler.compile.bind(handler)
         : () => [],
+    services: WORLD_FEATURE_KIT_METHODS,
     describeFidelity: typeof handler.describeFidelity === "function"
       ? handler.describeFidelity.bind(handler)
       : (input = {}) => createFeatureFidelityDescriptor(input.fidelity ?? input)
