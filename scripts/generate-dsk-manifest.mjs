@@ -20,6 +20,7 @@ const coreDomains = [
 
 const semanticDomains = [
   { id: "core-capture-domain", domain: "capture", provides: ["n:capture"], source: "src/core-kits/core-capture-kit/index.js" },
+  { id: "core-object-shape-domain", domain: "object-shape", provides: ["n:object:shape"], source: "src/core-kits/core-object-shape-kit/index.js" },
   { id: "core-object-fidelity-domain", domain: "object-fidelity", provides: ["n:object:fidelity"], source: "src/core-kits/core-object-fidelity-kit/index.js" }
 ];
 
