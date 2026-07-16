@@ -1,0 +1,89 @@
+name: Record Core Object Shape Evidence
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-kits/core-object-shape-kit/**"
+      - "src/core-domains/core-object-shape-domain/**"
+      - "src/core-domains/core-object-domain/**"
+      - "src/core-domains/core-capture-domain/**"
+      - "src/core-kits/core-capture-kit/**"
+      - "src/core-kits/core-object-fidelity-kit/**"
+      - "tests/core-domains/core-object-shape-domain-smoke.mjs"
+      - "tests/core-domains/core-capture-shape-visual-smoke.mjs"
+      - "tests/fixtures/object-shape-fixtures.mjs"
+      - ".github/workflows/record-core-object-shape-evidence.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: core-object-shape-evidence-main
+  cancel-in-progress: false
+
+jobs:
+  record-evidence:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install package metadata
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Run post-push geometry and capture smokes
+        shell: bash
+        run: |
+          set -euo pipefail
+          evidence_dir="docs/evidence/core-object-shape"
+          rm -rf "$evidence_dir"
+          mkdir -p "$evidence_dir"
+
+          node tests/core-domains/core-object-shape-domain-smoke.mjs \
+            | tee "$evidence_dir/object-shape-geometry.log"
+
+          node tests/core-domains/core-capture-shape-visual-smoke.mjs \
+            | tee "$evidence_dir/object-shape-capture.log"
+
+          visual_path="$(find /tmp -path '*/nexus-object-shape-capture-*/source-vs-reduced.svg' -print -quit)"
+          test -n "$visual_path"
+          cp "$visual_path" "$evidence_dir/source-vs-reduced.svg"
+
+          cat > "$evidence_dir/result.json" <<JSON
+          {
+            "schema": "nexus-object-shape-smoke-evidence/1",
+            "sourceCommit": "${GITHUB_SHA}",
+            "geometrySmoke": "passed",
+            "captureVisualSmoke": "passed",
+            "visualArtifact": "source-vs-reduced.svg",
+            "geometryLog": "object-shape-geometry.log",
+            "captureLog": "object-shape-capture.log"
+          }
+          JSON
+
+      - name: Commit successful evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/evidence/core-object-shape
+          if git diff --cached --quiet; then
+            echo "Evidence is already current."
+            exit 0
+          fi
+          git commit -m "test: record Core Object Shape smoke evidence [skip ci]"
+          git push origin HEAD:main
