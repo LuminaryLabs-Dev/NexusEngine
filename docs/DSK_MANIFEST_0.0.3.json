@@ -1,1 +1,446 @@
-{"schema":"nexusengine.dsk-manifest.v0.0.3","package":"nexusengine","version":"0.0.3","stability":"stable-candidate","generatedBy":"scripts/generate-dsk-manifest.mjs","domains":[{"id":"n-core-data-kit","domain":"core-data","provides":["n:core-data"],"source":"src/core-kits/core-data-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-persistence-kit","domain":"core-persistence","provides":["n:core-persistence"],"source":"src/core-kits/core-persistence-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-assets-kit","domain":"core-assets","provides":["n:core-assets"],"source":"src/core-kits/core-assets-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-platform-kit","domain":"core-platform","provides":["n:core-platform"],"source":"src/core-kits/core-platform-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-creature-kit","domain":"core-creature","provides":["n:core-creature"],"source":"src/core-kits/core-creature-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-character-kit","domain":"core-character","provides":["n:core-character"],"source":"src/core-kits/core-character-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-player-kit","domain":"core-player","provides":["n:core-player"],"source":"src/core-kits/core-player-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-input-kit","domain":"core-input","provides":["n:core-input"],"source":"src/core-kits/core-input-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-spatial-kit","domain":"core-spatial","provides":["n:core-spatial"],"source":"src/core-kits/core-spatial-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-scene-kit","domain":"core-scene","provides":["n:core-scene"],"source":"src/core-kits/core-scene-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-physics-kit","domain":"core-physics","provides":["n:core-physics"],"source":"src/core-kits/core-physics-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-motion-kit","domain":"core-motion","provides":["n:core-motion"],"source":"src/core-kits/core-motion-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-simulation-kit","domain":"core-simulation","provides":["n:core-simulation"],"source":"src/core-kits/core-simulation-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-interaction-kit","domain":"core-interaction","provides":["n:core-interaction"],"source":"src/core-kits/core-interaction-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-graphics-kit","domain":"core-graphics","provides":["n:core-graphics"],"source":"src/core-kits/core-graphics-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-camera-kit","domain":"core-camera","provides":["n:core-camera"],"source":"src/core-kits/core-camera-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-animation-kit","domain":"core-animation","provides":["n:core-animation"],"source":"src/core-kits/core-animation-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-audio-kit","domain":"core-audio","provides":["n:core-audio"],"source":"src/core-kits/core-audio-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-ui-kit","domain":"core-ui","provides":["n:core-ui"],"source":"src/core-kits/core-ui-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-network-kit","domain":"core-network","provides":["n:core-network"],"source":"src/core-kits/core-network-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-diagnostics-kit","domain":"core-diagnostics","provides":["n:core-diagnostics"],"source":"src/core-kits/core-diagnostics-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-policy-kit","domain":"core-policy","provides":["n:core-policy"],"source":"src/core-kits/core-policy-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-composition-kit","domain":"core-composition","provides":["n:core-composition"],"source":"src/core-kits/core-composition-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-mlnn-kit","domain":"core-mlnn","provides":["n:core-mlnn"],"source":"src/core-kits/core-mlnn-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-agent-kit","domain":"core-agent","provides":["n:core-agent"],"source":"src/core-kits/core-agent-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-capture-domain","domain":"capture","provides":["n:capture"],"source":"src/core-kits/core-capture-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-object-fidelity-domain","domain":"object-fidelity","provides":["n:object:fidelity"],"source":"src/core-kits/core-object-fidelity-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-compute-domain","domain":"compute","provides":["n:compute"],"source":"src/core-kits/core-compute-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-graphics-reflection-kit","domain":"core-graphics-reflection","provides":["n:core-graphics-reflection","n:graphics:reflection","n:graphics:reflection-descriptor","n:graphics:reflection-policy","n:graphics:reflection-negotiation","n:graphics:reflection-frame-receipt"],"source":"src/core-kits/core-graphics-kit/reflection-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-presentation-domain","domain":"presentation","provides":["n:presentation"],"source":"src/core-kits/core-presentation-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-presentation-output-kit","domain":"presentation-output","provides":["n:presentation:output"],"source":"src/core-kits/core-presentation-output-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-ui-scale-kit","domain":"presentation-ui-scale","provides":["n:presentation:ui-scale"],"source":"src/core-kits/core-ui-scale-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"core-camera-framing-kit","domain":"presentation-camera-framing","provides":["n:presentation:camera-framing"],"source":"src/core-kits/core-camera-framing-kit/index.js","stability":"stable-candidate","version":"0.0.3","snapshot":"required","reset":"required"},{"id":"n-core-headless-editor-kit","domain":"core-headless-editor","provides":["n:core-headless-editor"],"source":"src/core-kits/core-headless-editor-kit/index.js","stability":"experimental","snapshot":"required","reset":"required","version":"0.0.3"},{"id":"headless-reliability-domain-kit","domain":"headless-reliability","provides":["n:development:headless-reliability"],"source":"src/core-kits/core-headless-editor-kit/development/headless-reliability-domain-kit/index.js","stability":"experimental","snapshot":"not-required","reset":"not-required","version":"0.0.3"}]}
+{
+  "schema": "nexusengine.dsk-manifest.v0.0.3",
+  "package": "nexusengine",
+  "version": "0.0.3",
+  "stability": "stable-candidate",
+  "generatedBy": "scripts/generate-dsk-manifest.mjs",
+  "domains": [
+    {
+      "id": "n-core-data-kit",
+      "domain": "core-data",
+      "provides": [
+        "n:core-data"
+      ],
+      "source": "src/core-kits/core-data-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-persistence-kit",
+      "domain": "core-persistence",
+      "provides": [
+        "n:core-persistence"
+      ],
+      "source": "src/core-kits/core-persistence-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-assets-kit",
+      "domain": "core-assets",
+      "provides": [
+        "n:core-assets"
+      ],
+      "source": "src/core-kits/core-assets-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-platform-kit",
+      "domain": "core-platform",
+      "provides": [
+        "n:core-platform"
+      ],
+      "source": "src/core-kits/core-platform-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-creature-kit",
+      "domain": "core-creature",
+      "provides": [
+        "n:core-creature"
+      ],
+      "source": "src/core-kits/core-creature-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-character-kit",
+      "domain": "core-character",
+      "provides": [
+        "n:core-character"
+      ],
+      "source": "src/core-kits/core-character-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-player-kit",
+      "domain": "core-player",
+      "provides": [
+        "n:core-player"
+      ],
+      "source": "src/core-kits/core-player-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-input-kit",
+      "domain": "core-input",
+      "provides": [
+        "n:core-input"
+      ],
+      "source": "src/core-kits/core-input-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-spatial-kit",
+      "domain": "core-spatial",
+      "provides": [
+        "n:core-spatial"
+      ],
+      "source": "src/core-kits/core-spatial-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-scene-kit",
+      "domain": "core-scene",
+      "provides": [
+        "n:core-scene"
+      ],
+      "source": "src/core-kits/core-scene-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-physics-kit",
+      "domain": "core-physics",
+      "provides": [
+        "n:core-physics"
+      ],
+      "source": "src/core-kits/core-physics-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-motion-kit",
+      "domain": "core-motion",
+      "provides": [
+        "n:core-motion"
+      ],
+      "source": "src/core-kits/core-motion-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-simulation-kit",
+      "domain": "core-simulation",
+      "provides": [
+        "n:core-simulation"
+      ],
+      "source": "src/core-kits/core-simulation-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-interaction-kit",
+      "domain": "core-interaction",
+      "provides": [
+        "n:core-interaction"
+      ],
+      "source": "src/core-kits/core-interaction-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-graphics-kit",
+      "domain": "core-graphics",
+      "provides": [
+        "n:core-graphics"
+      ],
+      "source": "src/core-kits/core-graphics-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-camera-kit",
+      "domain": "core-camera",
+      "provides": [
+        "n:core-camera"
+      ],
+      "source": "src/core-kits/core-camera-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-animation-kit",
+      "domain": "core-animation",
+      "provides": [
+        "n:core-animation"
+      ],
+      "source": "src/core-kits/core-animation-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-audio-kit",
+      "domain": "core-audio",
+      "provides": [
+        "n:core-audio"
+      ],
+      "source": "src/core-kits/core-audio-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-ui-kit",
+      "domain": "core-ui",
+      "provides": [
+        "n:core-ui"
+      ],
+      "source": "src/core-kits/core-ui-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-network-kit",
+      "domain": "core-network",
+      "provides": [
+        "n:core-network"
+      ],
+      "source": "src/core-kits/core-network-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-diagnostics-kit",
+      "domain": "core-diagnostics",
+      "provides": [
+        "n:core-diagnostics"
+      ],
+      "source": "src/core-kits/core-diagnostics-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-policy-kit",
+      "domain": "core-policy",
+      "provides": [
+        "n:core-policy"
+      ],
+      "source": "src/core-kits/core-policy-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-composition-kit",
+      "domain": "core-composition",
+      "provides": [
+        "n:core-composition"
+      ],
+      "source": "src/core-kits/core-composition-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-mlnn-kit",
+      "domain": "core-mlnn",
+      "provides": [
+        "n:core-mlnn"
+      ],
+      "source": "src/core-kits/core-mlnn-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-agent-kit",
+      "domain": "core-agent",
+      "provides": [
+        "n:core-agent"
+      ],
+      "source": "src/core-kits/core-agent-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-capture-domain",
+      "domain": "capture",
+      "provides": [
+        "n:capture"
+      ],
+      "source": "src/core-kits/core-capture-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-object-shape-domain",
+      "domain": "object-shape",
+      "provides": [
+        "n:object:shape"
+      ],
+      "source": "src/core-kits/core-object-shape-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-object-fidelity-domain",
+      "domain": "object-fidelity",
+      "provides": [
+        "n:object:fidelity"
+      ],
+      "source": "src/core-kits/core-object-fidelity-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-compute-domain",
+      "domain": "compute",
+      "provides": [
+        "n:compute"
+      ],
+      "source": "src/core-kits/core-compute-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-graphics-reflection-kit",
+      "domain": "core-graphics-reflection",
+      "provides": [
+        "n:core-graphics-reflection",
+        "n:graphics:reflection",
+        "n:graphics:reflection-descriptor",
+        "n:graphics:reflection-policy",
+        "n:graphics:reflection-negotiation",
+        "n:graphics:reflection-frame-receipt"
+      ],
+      "source": "src/core-kits/core-graphics-kit/reflection-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-domain",
+      "domain": "presentation",
+      "provides": [
+        "n:presentation"
+      ],
+      "source": "src/core-kits/core-presentation-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-output-kit",
+      "domain": "presentation-output",
+      "provides": [
+        "n:presentation:output"
+      ],
+      "source": "src/core-kits/core-presentation-output-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-ui-scale-kit",
+      "domain": "presentation-ui-scale",
+      "provides": [
+        "n:presentation:ui-scale"
+      ],
+      "source": "src/core-kits/core-ui-scale-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-camera-framing-kit",
+      "domain": "presentation-camera-framing",
+      "provides": [
+        "n:presentation:camera-framing"
+      ],
+      "source": "src/core-kits/core-camera-framing-kit/index.js",
+      "stability": "stable-candidate",
+      "version": "0.0.3",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-headless-editor-kit",
+      "domain": "core-headless-editor",
+      "provides": [
+        "n:core-headless-editor"
+      ],
+      "source": "src/core-kits/core-headless-editor-kit/index.js",
+      "stability": "experimental",
+      "snapshot": "required",
+      "reset": "required",
+      "version": "0.0.3"
+    },
+    {
+      "id": "headless-reliability-domain-kit",
+      "domain": "headless-reliability",
+      "provides": [
+        "n:development:headless-reliability"
+      ],
+      "source": "src/core-kits/core-headless-editor-kit/development/headless-reliability-domain-kit/index.js",
+      "stability": "experimental",
+      "snapshot": "not-required",
+      "reset": "not-required",
+      "version": "0.0.3"
+    }
+  ]
+}
