@@ -14,6 +14,7 @@ const tests = [
   "tests/core-domains/world-feature-catalog-smoke.mjs",
   "tests/core-domains/world-feature-foundation-integration.mjs",
   "tests/core-domains/world-terrain-compatibility.mjs",
+  "tests/core-domains/core-weather-domain-smoke.mjs",
   "tests/host-smoke.mjs",
   "tests/sequence-node-library-smoke.mjs",
   "tests/sequence-node-runtime-smoke.mjs",
