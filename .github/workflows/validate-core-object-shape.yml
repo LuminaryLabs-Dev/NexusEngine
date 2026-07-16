@@ -1,0 +1,60 @@
+name: Validate Core Object Shape
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-kits/core-object-shape-kit/**"
+      - "src/core-domains/core-object-shape-domain/**"
+      - "src/core-domains/core-object-domain/**"
+      - "src/core-domains/core-capture-domain/**"
+      - "src/core-kits/core-capture-kit/**"
+      - "src/core-kits/core-object-fidelity-kit/**"
+      - "tests/core-domains/core-object-shape-domain-smoke.mjs"
+      - "tests/core-domains/core-capture-shape-visual-smoke.mjs"
+      - "tests/fixtures/object-shape-fixtures.mjs"
+      - ".github/workflows/validate-core-object-shape.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  validate-object-shape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Install package metadata
+        run: npm install --ignore-scripts --no-audit --no-fund
+
+      - name: Validate input and output meshes
+        run: |
+          set -euo pipefail
+          node tests/core-domains/core-object-shape-domain-smoke.mjs | tee object-shape-geometry.log
+
+      - name: Validate capture visual output
+        run: |
+          set -euo pipefail
+          node tests/core-domains/core-capture-shape-visual-smoke.mjs | tee object-shape-capture.log
+
+      - name: Upload geometry and visual evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: core-object-shape-smoke-evidence
+          if-no-files-found: error
+          path: |
+            object-shape-geometry.log
+            object-shape-capture.log
+            /tmp/nexus-object-shape-capture-*/source-vs-reduced.svg
+          retention-days: 14
