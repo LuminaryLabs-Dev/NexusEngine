@@ -1,0 +1,11 @@
+{
+  "schema": "nexus-object-shape-smoke-evidence/1",
+  "sourceCommit": "b8353b7c3e90835b1404e4e31f2ae0e14ce02f21",
+  "geometrySmoke": "failed",
+  "geometryExitCode": 1,
+  "captureVisualSmoke": "failed",
+  "captureExitCode": 1,
+  "visualArtifact": "missing",
+  "geometryLog": "object-shape-geometry.log",
+  "captureLog": "object-shape-capture.log"
+}

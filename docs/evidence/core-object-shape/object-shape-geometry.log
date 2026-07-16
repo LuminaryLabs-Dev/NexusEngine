@@ -1,0 +1,16 @@
+file:///home/runner/work/NexusEngine/NexusEngine/src/domain-service-kit.js:87
+    throw new TypeError(`Domain service kit domainPath ${domainPath} must be nested under parentDomainPath ${parentDomainPath}.`);
+          ^
+
+TypeError: Domain service kit domainPath n:object:shape must be nested under parentDomainPath n:core-object.
+    at assertParentDomainPath (file:///home/runner/work/NexusEngine/NexusEngine/src/domain-service-kit.js:87:11)
+    at buildMetadata (file:///home/runner/work/NexusEngine/NexusEngine/src/domain-service-kit.js:159:3)
+    at defineDomainServiceKit (file:///home/runner/work/NexusEngine/NexusEngine/src/domain-service-kit.js:229:20)
+    at createCoreObjectShapeKit (file:///home/runner/work/NexusEngine/NexusEngine/src/core-kits/core-object-shape-kit/index.js:85:10)
+    at createCoreObjectDomain (file:///home/runner/work/NexusEngine/NexusEngine/src/core-domains/core-object-domain/index.js:13:41)
+    at file:///home/runner/work/NexusEngine/NexusEngine/tests/core-domains/core-object-shape-domain-smoke.mjs:11:9
+    at ModuleJob.run (node:internal/modules/esm/module_job:439:25)
+    at async node:internal/modules/esm/loader:643:26
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5)
+
+Node.js v24.18.0
