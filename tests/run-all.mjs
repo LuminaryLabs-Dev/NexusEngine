@@ -42,6 +42,8 @@ const tests = [
   "tests/core-domains/core-physics-domain-smoke.mjs",
   "tests/core-domains/core-compute-domain-smoke.mjs",
   "tests/core-domains/core-capture-domain-smoke.mjs",
+  "tests/core-domains/core-object-shape-domain-smoke.mjs",
+  "tests/core-domains/core-capture-shape-visual-smoke.mjs",
   "tests/core-domains/core-object-fidelity-domain-smoke.mjs",
   "tests/core-domains/core-creature-character-player-smoke.mjs",
   "tests/core-kits/core-interaction-kit-smoke.mjs",
