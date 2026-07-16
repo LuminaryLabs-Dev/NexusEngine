@@ -29,6 +29,7 @@ const tests = [
   "tests/core-kits/core-motion-kit-smoke.mjs",
   "tests/core-kits/core-utility-articulation-smoke.mjs",
   "tests/core-kits/core-graphics-kit-smoke.mjs",
+  "tests/core-kits/core-graphics-procedural-material-smoke.mjs",
   "tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
   "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
   "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
