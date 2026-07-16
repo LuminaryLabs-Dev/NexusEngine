@@ -10,6 +10,7 @@ import {
   createCoreCharacterKit,
   createCorePlayerKit,
   createCoreObjectKit,
+  createCoreObjectShapeKit,
   createCoreObjectFidelityKit,
   createCoreCaptureKit,
   createCoreInputKit,
@@ -55,6 +56,7 @@ const factories = [
   createCoreCharacterKit,
   createCorePlayerKit,
   createCoreObjectKit,
+  createCoreObjectShapeKit,
   createCoreCaptureKit,
   createCoreObjectFidelityKit,
   createCoreInputKit,
@@ -104,6 +106,7 @@ for (const namespace of [
   "coreCharacter",
   "corePlayer",
   "coreObject",
+  "objectShape",
   "coreCapture",
   "objectFidelity",
   "coreInput",
@@ -139,6 +142,7 @@ for (const namespace of [
 assert.equal(engine.coreCreature, engine.n.coreCreature);
 assert.equal(engine.coreCharacter, engine.n.coreCharacter);
 assert.equal(engine.corePlayer, engine.n.corePlayer);
+assert.equal(engine.objectShape, engine.n.objectShape);
 assert.equal(engine.coreCapture, engine.n.coreCapture);
 assert.equal(engine.objectFidelity, engine.n.objectFidelity);
 
