@@ -1,6 +1,8 @@
 import { defineEvent, defineResource } from "../../ecs.js";
 import { defineDomainServiceKit } from "../../domain-service-kit.js";
 
+export * from "./pocket-tts-provider.js";
+
 export const CORE_SPEECH_VERSION = "0.1.0";
 export const TINY_TTS_DEFAULT_ASSET_ID = "speech-model:tiny-tts-en-v1:model";
 export const TINY_TTS_DEFAULT_PHONEMIZER_ID = "speech-model:tiny-tts-en-v1:phonemizer";
