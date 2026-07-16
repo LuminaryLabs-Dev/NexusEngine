@@ -30,6 +30,7 @@ export * from "./core-ui-scale-kit/index.js";
 export * from "./core-camera-framing-kit/index.js";
 export * from "./core-animation-kit/index.js";
 export * from "./core-audio-kit/index.js";
+export * from "./core-speech-kit/index.js";
 export * from "./core-ui-kit/index.js";
 export * from "./core-network-kit/index.js";
 export * from "./core-diagnostics-kit/index.js";
