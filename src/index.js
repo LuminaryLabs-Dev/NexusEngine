@@ -22,8 +22,10 @@ export * from "./core-domains/index.js";
 export * from "./core-kits/index.js";
 export * from "./hosts/browser/browser-startup-presentation-adapter.js";
 export * from "./hosts/browser/browser-presentation-surface-adapter.js";
+export * from "./hosts/browser/browser-indexeddb-asset-cache-adapter.js";
 export * from "./renderers/three/three-presentation-output-adapter.js";
 export * from "./renderers/three/three-subject-bounds-adapter.js";
+export * from "./renderers/three/three-object-capture-provider.js";
 
 export { createTerrainKit } from "./terrain-kit.js";
 export { createProceduralKit } from "./procedural-kit.js";
