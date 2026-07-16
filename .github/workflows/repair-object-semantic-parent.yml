@@ -1,0 +1,55 @@
+name: Repair Object Semantic Parent Metadata
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/repair-object-semantic-parent.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  repair:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Remove invalid lexical parent defaults
+        shell: bash
+        run: |
+          set -euo pipefail
+          shape="src/core-kits/core-object-shape-kit/index.js"
+          fidelity="src/core-kits/core-object-fidelity-kit/index.js"
+
+          grep -F 'parentDomainPath: config.parentDomainPath ?? "n:core-object",' "$shape"
+          grep -F 'parentDomainPath: config.parentDomainPath ?? "n:core-object",' "$fidelity"
+
+          sed -i 's/parentDomainPath: config.parentDomainPath ?? "n:core-object",/parentDomainPath: config.parentDomainPath,/' "$shape"
+          sed -i 's/parentDomainPath: config.parentDomainPath ?? "n:core-object",/parentDomainPath: config.parentDomainPath,/' "$fidelity"
+
+          grep -F 'parentDomainPath: config.parentDomainPath,' "$shape"
+          grep -F 'parentDomainPath: config.parentDomainPath,' "$fidelity"
+
+      - name: Commit repair
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            src/core-kits/core-object-shape-kit/index.js \
+            src/core-kits/core-object-fidelity-kit/index.js
+          if git diff --cached --quiet; then
+            echo "Semantic parent metadata is already repaired."
+            exit 0
+          fi
+          git commit -m "fix: compose Object Shape and Fidelity semantically"
+          git push origin HEAD:main
