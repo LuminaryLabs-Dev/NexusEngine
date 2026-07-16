@@ -1,5 +1,6 @@
 export * from "./core-startup-domain/index.js";
 export * from "./core-world-domain/index.js";
+export * from "./core-weather-domain/index.js";
 export * from "./core-creature-domain/index.js";
 export * from "./core-character-domain/index.js";
 export * from "./core-player-domain/index.js";
