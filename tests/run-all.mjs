@@ -36,6 +36,7 @@ const tests = [
   "tests/core-domains/core-graphics-domain-smoke.mjs",
   "tests/core-kits/core-simulation-kit-smoke.mjs",
   "tests/core-kits/core-promoted-services-smoke.mjs",
+  "tests/core-kits/core-child-capabilities-smoke.mjs",
   "tests/core-kits/core-simulation-resolution-smoke.mjs",
   "tests/core-kits/core-physics-provider-smoke.mjs",
   "tests/core-domains/core-motion-domain-smoke.mjs",
