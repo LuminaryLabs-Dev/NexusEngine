@@ -184,7 +184,7 @@ export function createCoreObjectFidelityKit(config = {}) {
     id: config.id ?? "core-object-fidelity-domain",
     domain: "object-fidelity",
     domainPath: config.domainPath ?? "n:object:fidelity",
-    parentDomainPath: config.parentDomainPath ?? "n:core-object",
+    parentDomainPath: config.parentDomainPath,
     apiName: config.apiName ?? "objectFidelity",
     version: CORE_OBJECT_FIDELITY_VERSION,
     stability: config.stability ?? "stable-candidate",

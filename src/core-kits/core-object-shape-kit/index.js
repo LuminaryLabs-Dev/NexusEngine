@@ -86,7 +86,7 @@ export function createCoreObjectShapeKit(config = {}) {
     id: config.id ?? "core-object-shape-domain",
     domain: "object-shape",
     domainPath: config.domainPath ?? "n:object:shape",
-    parentDomainPath: config.parentDomainPath ?? "n:core-object",
+    parentDomainPath: config.parentDomainPath,
     apiName: config.apiName ?? "objectShape",
     version: CORE_OBJECT_SHAPE_VERSION,
     stability: config.stability ?? "stable-candidate",
