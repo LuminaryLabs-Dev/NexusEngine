@@ -1,0 +1,88 @@
+name: Render Object Shape Capture Preview
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/render-object-shape-ascii.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  render-preview:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Create readable silhouette preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          node --input-type=module <<'NODE'
+          import { readFileSync, writeFileSync } from "node:fs";
+
+          const inputPath = "docs/evidence/core-object-shape/source-vs-reduced.svg";
+          const outputPath = "docs/evidence/core-object-shape/source-vs-reduced-preview.txt";
+          const svg = readFileSync(inputPath, "utf8");
+          const width = 256;
+          const height = 1024;
+          const source = new Uint8Array(width * height);
+          const reduced = new Uint8Array(width * height);
+
+          for (const match of svg.matchAll(/<g fill="(#[0-9a-fA-F]+)">([\s\S]*?)<\/g>/g)) {
+            const target = match[1].toLowerCase() === "#18361f" ? source : reduced;
+            for (const rect of match[2].matchAll(/<rect x="(\d+)" y="(\d+)" width="(\d+)" height="(\d+)"\/>/g)) {
+              const x = Number(rect[1]);
+              const y = Number(rect[2]);
+              const w = Number(rect[3]);
+              const h = Number(rect[4]);
+              for (let py = y; py < Math.min(height, y + h); py += 1) {
+                for (let px = x; px < Math.min(width, x + w); px += 1) target[py * width + px] = 1;
+              }
+            }
+          }
+
+          const block = 8;
+          const rows = [];
+          rows.push("Source (#) versus reduced (+), eight azimuth views");
+          rows.push("");
+          for (let by = 0; by < height; by += block) {
+            if (by % 128 === 0) rows.push(`view ${by / 128}`);
+            let row = "";
+            for (let bx = 0; bx < width; bx += block) {
+              let sourceHit = false;
+              let reducedHit = false;
+              for (let y = by; y < Math.min(height, by + block); y += 1) {
+                for (let x = bx; x < Math.min(width, bx + block); x += 1) {
+                  sourceHit ||= source[y * width + x] === 1;
+                  reducedHit ||= reduced[y * width + x] === 1;
+                }
+              }
+              row += sourceHit ? "#" : reducedHit ? "+" : " ";
+            }
+            rows.push(row.replaceEnd?.() ?? row);
+          }
+          writeFileSync(outputPath, `${rows.join("\n")}\n`);
+          NODE
+
+      - name: Commit preview
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/evidence/core-object-shape/source-vs-reduced-preview.txt
+          if git diff --cached --quiet; then
+            echo "Preview is already current."
+            exit 0
+          fi
+          git commit -m "test: record readable Object Shape capture preview [skip ci]"
+          git push origin HEAD:main
