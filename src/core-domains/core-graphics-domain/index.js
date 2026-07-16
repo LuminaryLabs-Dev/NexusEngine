@@ -6,6 +6,7 @@ export { createCoreGraphicsKit } from "../../core-kits/core-graphics-kit/index.j
 export { createRenderLayerGraphKit } from "../../core-kits/core-graphics-kit/render-layer-graph-kit/index.js";
 export { createCoreReflectionKit } from "../../core-kits/core-graphics-kit/reflection-kit/index.js";
 export * from "../../core-kits/core-graphics-kit/material-descriptors.js";
+export * from "../../core-kits/core-graphics-kit/procedural-material-descriptors.js";
 export * from "../../core-kits/core-graphics-kit/terrain-lod-descriptors.js";
 export * from "../../core-kits/core-graphics-kit/adapters.js";
 export * from "../../core-kits/core-graphics-kit/render-layer-graph-kit/contract.js";
