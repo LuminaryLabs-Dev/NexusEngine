@@ -50,7 +50,8 @@ export function createWorldPatchPreparationController(config = {}) {
   const queue = [];
   const queued = new Set();
   const inflight = new Set();
-  const desired = new Set();
+  const desiredActive = new Set();
+  const desiredPrefetch = new Set();
   const ready = [];
   const released = new Set();
   const diagnostics = [];
@@ -71,7 +72,7 @@ export function createWorldPatchPreparationController(config = {}) {
     record.priority = Math.min(record.priority, finite(options.priority, 0));
     record.reason = String(options.reason ?? record.reason ?? "requested");
     if (record.patch) {
-      if (desired.has(record.id) && !ready.includes(record.id)) ready.push(record.id);
+      if (desiredActive.has(record.id) && !ready.includes(record.id)) ready.push(record.id);
       return record;
     }
     if (!queued.has(record.id) && !inflight.has(record.id)) { queued.add(record.id); queue.push(record.id); record.status = "requested"; }
@@ -95,10 +96,11 @@ export function createWorldPatchPreparationController(config = {}) {
   }
 
   function updateDesired(cells = []) {
-    const next = new Set();
+    const nextActive = new Set();
+    const nextPrefetch = new Set();
     for (const cell of cells) {
       const record = getOrCreate(cell);
-      next.add(record.id);
+      nextActive.add(record.id);
       enqueue(record, { priority: cell.priority ?? 0, reason: cell.reason ?? "active" });
     }
     if (prefetchDistance > 0) {
@@ -106,13 +108,21 @@ export function createWorldPatchPreparationController(config = {}) {
         const x = focus.center.x + Math.round(focus.forward.x * step);
         const z = focus.center.z + Math.round(focus.forward.z * step);
         const record = getOrCreate({ x, z });
-        next.add(record.id);
-        enqueue(record, { priority: 100 + step, reason: "prefetch" });
+        if (!nextActive.has(record.id)) {
+          nextPrefetch.add(record.id);
+          enqueue(record, { priority: 100 + step, reason: "prefetch" });
+        }
       }
     }
-    for (const idValue of desired) if (!next.has(idValue)) release(idValue);
-    desired.clear();
-    for (const idValue of next) desired.add(idValue);
+    for (const idValue of desiredActive) if (!nextActive.has(idValue)) release(idValue);
+    desiredActive.clear();
+    desiredPrefetch.clear();
+    for (const idValue of nextActive) desiredActive.add(idValue);
+    for (const idValue of nextPrefetch) desiredPrefetch.add(idValue);
+    for (const idValue of desiredActive) {
+      const record = records.get(idValue);
+      if (record?.patch && !ready.includes(idValue)) ready.push(idValue);
+    }
     evict();
     return getStats();
   }
@@ -127,11 +137,11 @@ export function createWorldPatchPreparationController(config = {}) {
   function completeRecord(record, patch) {
     if (!patch || typeof patch !== "object") throw new TypeError(`Patch generator returned no descriptor for ${record.id}.`);
     record.patch = patch;
-    record.status = desired.has(record.id) ? "ready" : "cached";
+    record.status = desiredActive.has(record.id) ? "ready" : desiredPrefetch.has(record.id) ? "prefetched" : "cached";
     record.priority = Infinity;
     record.error = null;
     record.lastTouched = ++sequence;
-    if (desired.has(record.id) && !ready.includes(record.id)) ready.push(record.id);
+    if (desiredActive.has(record.id) && !ready.includes(record.id)) ready.push(record.id);
   }
 
   function startRecord(record) {
@@ -179,7 +189,7 @@ export function createWorldPatchPreparationController(config = {}) {
   function release(idOrCell) {
     const record = records.get(typeof idOrCell === "string" ? idOrCell : coordinateFrom(idOrCell).id);
     if (!record) return false;
-    desired.delete(record.id);
+    desiredActive.delete(record.id);
     released.add(record.id);
     const distance = Math.max(Math.abs(record.x - focus.center.x), Math.abs(record.z - focus.center.z));
     record.status = distance <= retainRadius ? "retained" : "cached";
@@ -192,7 +202,7 @@ export function createWorldPatchPreparationController(config = {}) {
     const output = [];
     while (output.length < maximum && ready.length) {
       const record = records.get(ready.shift());
-      if (!record?.patch || !desired.has(record.id)) continue;
+      if (!record?.patch || !desiredActive.has(record.id)) continue;
       record.status = "active";
       output.push({ id: record.id, key: record.cacheKey, x: record.x, z: record.z, patch: record.patch });
     }
@@ -202,18 +212,18 @@ export function createWorldPatchPreparationController(config = {}) {
   function takeReleased() { const output = [...released].sort(); released.clear(); return output; }
 
   function evict() {
-    const candidates = [...records.values()].filter((record) => !desired.has(record.id) && !inflight.has(record.id)).sort((a, b) => a.lastTouched - b.lastTouched);
+    const candidates = [...records.values()].filter((record) => !desiredActive.has(record.id) && !desiredPrefetch.has(record.id) && !inflight.has(record.id)).sort((a, b) => a.lastTouched - b.lastTouched);
     while (records.size > cacheLimit && candidates.length) records.delete(candidates.shift().id);
   }
 
   function getStats() {
     const statuses = {};
     for (const record of records.values()) statuses[record.status] = (statuses[record.status] ?? 0) + 1;
-    return { id, patchSize, retainRadius, prefetchDistance, cacheLimit, generationBudget, activationBudget, generatorVersion, settingsHash, focus: clone(focus), desired: desired.size, cached: records.size, ready: ready.length, queued: queue.length, inflight: inflight.size, statuses, diagnostics: diagnostics.slice(-16).map(clone) };
+    return { id, patchSize, retainRadius, prefetchDistance, cacheLimit, generationBudget, activationBudget, generatorVersion, settingsHash, focus: clone(focus), desiredActive: desiredActive.size, desiredPrefetch: desiredPrefetch.size, cached: records.size, ready: ready.length, queued: queue.length, inflight: inflight.size, statuses, diagnostics: diagnostics.slice(-16).map(clone) };
   }
 
   function getSnapshot() {
-    return { schema: "nexusengine.core-world.patch-preparation/1", id, config: { patchSize, retainRadius, prefetchDistance, cacheLimit, generationBudget, activationBudget, generatorVersion, settingsHash }, focus: clone(focus), desiredPatchIds: [...desired].sort(), cachedPatchIds: [...records.keys()].sort(), cacheDigest: stableHash([...records.values()].map((record) => `${record.cacheKey}:${record.status}`).sort().join("|")), stats: getStats() };
+    return { schema: "nexusengine.core-world.patch-preparation/1", id, config: { patchSize, retainRadius, prefetchDistance, cacheLimit, generationBudget, activationBudget, generatorVersion, settingsHash }, focus: clone(focus), desiredActivePatchIds: [...desiredActive].sort(), desiredPrefetchPatchIds: [...desiredPrefetch].sort(), cachedPatchIds: [...records.keys()].sort(), cacheDigest: stableHash([...records.values()].map((record) => `${record.cacheKey}:${record.status}`).sort().join("|")), stats: getStats() };
   }
 
   function loadSnapshot(snapshot = {}) {
@@ -224,7 +234,7 @@ export function createWorldPatchPreparationController(config = {}) {
   }
 
   function reset() {
-    records.clear(); queue.length = 0; queued.clear(); inflight.clear(); desired.clear(); ready.length = 0; released.clear(); diagnostics.length = 0; sequence = 0;
+    records.clear(); queue.length = 0; queued.clear(); inflight.clear(); desiredActive.clear(); desiredPrefetch.clear(); ready.length = 0; released.clear(); diagnostics.length = 0; sequence = 0;
     focus = { position: { x: 0, z: 0 }, velocity: { x: 0, z: 0 }, forward: { x: 0, z: 1 }, center: { x: 0, z: 0 } };
     return getSnapshot();
   }
