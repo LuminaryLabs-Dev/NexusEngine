@@ -1,0 +1,107 @@
+name: Record Core Object Shape Smoke
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-kits/core-object-shape-kit/**"
+      - "src/core-domains/core-object-shape-domain/**"
+      - "src/core-domains/core-object-domain/**"
+      - "src/core-domains/core-capture-domain/**"
+      - "src/core-kits/core-capture-kit/**"
+      - "src/core-kits/core-object-fidelity-kit/**"
+      - "tests/core-domains/core-object-shape-domain-smoke.mjs"
+      - "tests/core-domains/core-capture-shape-visual-smoke.mjs"
+      - "tests/fixtures/object-shape-fixtures.mjs"
+      - ".github/workflows/record-core-object-shape-smoke.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: core-object-shape-smoke-main
+  cancel-in-progress: false
+
+jobs:
+  record-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: Checkout current main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 24
+
+      - name: Run and record geometry and visual smokes
+        id: smoke
+        shell: bash
+        run: |
+          set +e
+          evidence_dir="docs/evidence/core-object-shape"
+          rm -rf "$evidence_dir"
+          mkdir -p "$evidence_dir"
+
+          node tests/core-domains/core-object-shape-domain-smoke.mjs \
+            > >(tee "$evidence_dir/object-shape-geometry.log") 2>&1
+          geometry_status=$?
+
+          node tests/core-domains/core-capture-shape-visual-smoke.mjs \
+            > >(tee "$evidence_dir/object-shape-capture.log") 2>&1
+          capture_status=$?
+
+          visual_path="$(find /tmp -path '*/nexus-object-shape-capture-*/source-vs-reduced.svg' -print -quit)"
+          if [ -n "$visual_path" ]; then
+            cp "$visual_path" "$evidence_dir/source-vs-reduced.svg"
+            visual_status="created"
+          else
+            visual_status="missing"
+          fi
+
+          if [ "$geometry_status" -eq 0 ]; then geometry_result="passed"; else geometry_result="failed"; fi
+          if [ "$capture_status" -eq 0 ]; then capture_result="passed"; else capture_result="failed"; fi
+
+          cat > "$evidence_dir/result.json" <<JSON
+          {
+            "schema": "nexus-object-shape-smoke-evidence/1",
+            "sourceCommit": "${GITHUB_SHA}",
+            "geometrySmoke": "${geometry_result}",
+            "geometryExitCode": ${geometry_status},
+            "captureVisualSmoke": "${capture_result}",
+            "captureExitCode": ${capture_status},
+            "visualArtifact": "${visual_status}",
+            "geometryLog": "object-shape-geometry.log",
+            "captureLog": "object-shape-capture.log"
+          }
+          JSON
+
+          echo "geometry_status=$geometry_status" >> "$GITHUB_OUTPUT"
+          echo "capture_status=$capture_status" >> "$GITHUB_OUTPUT"
+
+      - name: Commit smoke evidence
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs/evidence/core-object-shape
+          if git diff --cached --quiet; then
+            echo "Smoke evidence is already current."
+          else
+            git commit -m "test: record Core Object Shape smoke evidence [skip ci]"
+            git push origin HEAD:main
+          fi
+
+      - name: Enforce smoke result
+        if: always()
+        shell: bash
+        run: |
+          test "${{ steps.smoke.outputs.geometry_status }}" = "0"
+          test "${{ steps.smoke.outputs.capture_status }}" = "0"
