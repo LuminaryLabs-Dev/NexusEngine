@@ -72,12 +72,17 @@ meters.tick(1);
 assert.equal(meters.get("remaining-time").value, 299, "meter rates advance deterministically");
 
 const smoothing = engine.n.coreCamera.smoothing;
-smoothing.createController({ id: "player", position: [0, 4, 10], lookPoint: [0, 0, 0], fov: 60 });
+smoothing.createController({ id: "player", position: [0, 4, 10], lookPoint: [0, 0, 0], fov: 60, positionSharpness: 3, teleportThreshold: 80 });
 smoothing.setTarget("player", { position: [10, 6, 12], lookPoint: [5, 1, 0], fov: 55, mode: "chase" });
 smoothing.update("player", 1 / 60);
 const cameraDescriptor = smoothing.getDescriptor("player");
 assert.equal(cameraDescriptor.kind, "camera-pose", "camera smoothing publishes portable pose descriptors");
-assert.equal(structuredClone(smoothing.getSnapshot()).schema, "nexusengine.core-camera.smoothing/1", "camera smoothing snapshots clone");
+const smoothingSnapshot = structuredClone(smoothing.getSnapshot());
+assert.equal(smoothingSnapshot.schema, "nexusengine.core-camera.smoothing/1", "camera smoothing snapshots clone");
+smoothing.reset();
+smoothing.loadSnapshot(smoothingSnapshot);
+assert.equal(smoothing.getSnapshot().controllers[0].config.positionSharpness, 3, "camera tuning survives snapshot restore");
+assert.equal(smoothing.getSnapshot().controllers[0].config.teleportThreshold, 80, "camera teleport policy survives snapshot restore");
 
 const batches = engine.n.coreGraphics.instanceBatches;
 batches.createBatch({ id: "trees", assetId: "pine", materialId: "pine-material", capacity: 4, updateMode: "incremental" });
@@ -95,6 +100,7 @@ assert.equal(structuredClone(batches.getSnapshot()).schema, "nexusengine.core-gr
 const preparation = createWorldPatchPreparationController({
   id: "terrain",
   patchSize: 192,
+  prefetchDistance: 1,
   generationBudget: 2,
   activationBudget: 2,
   generatePatch(request) { return { id: request.patchId, x: request.x, z: request.z }; }
@@ -102,7 +108,10 @@ const preparation = createWorldPatchPreparationController({
 preparation.setFocus({ position: { x: 0, z: 0 }, forward: { x: 0, z: 1 } });
 preparation.updateDesired([{ x: 0, z: 0 }]);
 preparation.pump();
-assert.equal(preparation.takeReady()[0].patch.id, "0:0", "patch preparation produces ready descriptors");
+const readyPatches = preparation.takeReady();
+assert.equal(readyPatches.length, 1, "prefetched patches do not enter the active-ready queue");
+assert.equal(readyPatches[0].patch.id, "0:0", "patch preparation produces the active descriptor");
+assert.equal(preparation.hasPatch("0:1"), true, "forward patch is prepared for prefetch");
 preparation.release("0:0");
 assert.deepEqual(preparation.takeReleased(), ["0:0"], "patch preparation reports provider releases");
 assert.equal(structuredClone(preparation.getSnapshot()).schema, "nexusengine.core-world.patch-preparation/1", "patch preparation snapshots clone");
