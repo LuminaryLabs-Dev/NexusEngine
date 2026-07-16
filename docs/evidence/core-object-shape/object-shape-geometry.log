@@ -1,18 +1,6 @@
-node:internal/modules/run_main:107
-    triggerUncaughtException(
-    ^
-
-AssertionError [ERR_ASSERTION]: The expression evaluated to a falsy value:
-
-  assert.ok(reduced.quality.triangleRatio < 0.8)
-
-    at file:///home/runner/work/NexusEngine/NexusEngine/tests/core-domains/core-object-shape-domain-smoke.mjs:47:8 {
-  generatedMessage: true,
-  code: 'ERR_ASSERTION',
-  actual: false,
-  expected: true,
-  operator: '==',
-  diff: 'simple'
+core object shape input-output smoke ok {
+  sourceTriangles: 952,
+  reducedTriangles: 345,
+  proxyTriangles: 187,
+  boundsDeviation: 0.04441004986648385
 }
-
-Node.js v24.18.0
