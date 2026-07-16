@@ -3,6 +3,7 @@ export * from "./portable.js";
 export * from "./state.js";
 export * from "./snapshot.js";
 export * from "./validation.js";
+export * from "./preparation/world-patch-preparation-controller.js";
 export * from "./kits/world-cell-kit/index.js";
 export * from "./kits/world-partition-kit/index.js";
 export * from "./kits/world-surface-kit/index.js";
