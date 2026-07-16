@@ -27,7 +27,7 @@ export function normalizeShapeProviderResult(result = {}) {
     geometry: result.geometry == null ? null : clone(result.geometry),
     asset: result.asset == null ? null : clone(result.asset),
     metrics: result.metrics == null ? null : clone(result.metrics),
-    quality: clone(result.quality ?? {}),
+    quality: result.quality == null ? null : clone(result.quality),
     preservation: clone(result.preservation ?? {}),
     metadata: clone(result.metadata ?? {})
   };
