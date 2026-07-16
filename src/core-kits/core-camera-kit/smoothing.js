@@ -77,6 +77,7 @@ function smoothVector(current, target, sharpness, delta) {
 
 function normalizeController(input = {}, fallbackId = null) {
   const id = stableId(input.id, fallbackId, "Camera smoothing controller");
+  const tuning = { ...(input.config ?? {}), ...input };
   const position = vector3(input.position);
   const lookPoint = vector3(input.lookPoint, [0, 0, 1]);
   const targetPosition = vector3(input.targetPosition ?? position);
@@ -96,13 +97,13 @@ function normalizeController(input = {}, fallbackId = null) {
     targetFov: finite(input.targetFov ?? input.fov, 60),
     shake: clone(input.shake ?? null),
     config: {
-      positionSharpness: Math.max(0.0001, finite(input.positionSharpness ?? input.positionSmoothSharpness, 8)),
-      lookSharpness: Math.max(0.0001, finite(input.lookSharpness ?? input.lookSmoothSharpness, 11)),
-      rotationSharpness: Math.max(0.0001, finite(input.rotationSharpness, 12)),
-      fovSharpness: Math.max(0.0001, finite(input.fovSharpness, 9)),
-      maximumDelta: Math.max(0.0001, finite(input.maximumDelta, 1 / 30)),
-      teleportThreshold: Math.max(0, finite(input.teleportThreshold, 30)),
-      up: vector3(input.up, [0, 1, 0])
+      positionSharpness: Math.max(0.0001, finite(tuning.positionSharpness ?? tuning.positionSmoothSharpness, 8)),
+      lookSharpness: Math.max(0.0001, finite(tuning.lookSharpness ?? tuning.lookSmoothSharpness, 11)),
+      rotationSharpness: Math.max(0.0001, finite(tuning.rotationSharpness, 12)),
+      fovSharpness: Math.max(0.0001, finite(tuning.fovSharpness, 9)),
+      maximumDelta: Math.max(0.0001, finite(tuning.maximumDelta, 1 / 30)),
+      teleportThreshold: Math.max(0, finite(tuning.teleportThreshold, 30)),
+      up: vector3(tuning.up, [0, 1, 0])
     }
   };
 }
