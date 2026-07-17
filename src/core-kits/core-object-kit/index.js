@@ -127,6 +127,7 @@ export function createCoreObjectKit(config = {}) {
     }
   });
 
+  const install = baseKit.install;
   return Object.freeze({
     ...baseKit,
     requires: [...(baseKit.requires ?? [])],
@@ -136,7 +137,23 @@ export function createCoreObjectKit(config = {}) {
       "object:descriptor-contract",
       "object:registry",
       "object:lifecycle"
-    ]
+    ],
+    install(context) {
+      const result = install?.(context);
+      context.engine.n.registerPath({
+        path: "n:object",
+        ownerKitId: baseKit.id,
+        domain: "object",
+        status: baseKit.metadata?.stability,
+        version: baseKit.metadata?.version,
+        metadata: {
+          aliasOf: baseKit.metadata?.domainPath,
+          apiName: config.apiName ?? "coreObject",
+          kind: "domain-alias"
+        }
+      });
+      return result;
+    }
   });
 }
 
