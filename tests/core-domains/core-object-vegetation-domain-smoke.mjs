@@ -44,9 +44,10 @@ assert.ok(instanceA.variation.groundSink >= 0.1 && instanceA.variation.groundSin
 vegetation.registerInstance(instanceA);
 assert.equal(vegetation.setLifecycleState(instanceA.id, "damaged").lifecycle.state, "damaged");
 
-assert.ok(ecology.score(species, { moisture: 0.65, elevation: 0.35, slope: 0.3, temperature: 0.55 }) > 0.9);
-assert.equal(ecology.select([species], { moisture: 0.65 }, "selection").id, species.id);
-assert.equal(vegetation.selectSpecies({ moisture: 0.65 }, "selection").id, species.id);
+const idealEnvironment = { moisture: 0.65, elevation: 0.35, slope: 0.3, temperature: 0.55, cluster: 1 };
+assert.ok(ecology.score(species, idealEnvironment) > 1);
+assert.equal(ecology.select([species], idealEnvironment, "selection").id, species.id);
+assert.equal(vegetation.selectSpecies(idealEnvironment, "selection").id, species.id);
 
 const tree = trees.register({
   id: "fixture-oak:tree",
