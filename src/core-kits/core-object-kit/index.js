@@ -132,6 +132,7 @@ export function createCoreObjectKit(config = {}) {
     requires: [...(baseKit.requires ?? [])],
     provides: [
       ...(baseKit.provides ?? []),
+      "n:object",
       "object:descriptor-contract",
       "object:registry",
       "object:lifecycle"
