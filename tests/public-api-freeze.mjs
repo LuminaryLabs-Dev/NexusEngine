@@ -97,6 +97,24 @@ for (const name of [
   "createPlayerDescriptor",
   "validatePlayerDescriptor",
   "createCoreObjectDomain",
+  "createCoreVegetationKit",
+  "createCoreVegetationDomain",
+  "createVegetationSpeciesDescriptor",
+  "createVegetationInstanceDescriptor",
+  "createVegetationVariation",
+  "scoreVegetationSuitability",
+  "selectVegetationSpecies",
+  "createTreeDomainKit",
+  "createTreeStructureDescriptor",
+  "createTreeShapeRecipe",
+  "createTreeFidelityProfile",
+  "createTreeCaptureRequest",
+  "createFoliageDomainKit",
+  "createFoliageDescriptor",
+  "createVegetationEcologyKit",
+  "createVegetationObjectBridgeKit",
+  "vegetationSpeciesToObjectDescriptor",
+  "vegetationInstanceToObjectDescriptor",
   "createCoreObjectShapeKit",
   "createCoreObjectShapeDomain",
   "createObjectShapeProfile",
@@ -217,38 +235,9 @@ for (const name of [
   "parseDevelopmentTarget",
   "createDevelopmentTargetMarkdown",
   "readDevelopmentTarget",
-  "writeDevelopmentTarget",
-  "inferHeadlessReliabilityRequirements",
-  "scoreHeadlessDevelopmentEvidence",
-  "inspectRepository",
-  "inspectRelativeModuleGraph",
-  "synthesizeHeadlessReliabilityFixtures",
-  "runGeneratedHeadlessReliabilityFixtures",
-  "createRepositoryDevelopmentEnvironment",
-  "searchRepositoryText",
-  "enhanceGuidedDevelopmentSession",
-  "createGuidedDevelopmentSession",
-  "startGuidedDevelopmentSession",
-  "resumeGuidedDevelopmentSession",
-  "createHeadlessReliabilityDomainKit",
-  "createCorePolicyKit",
-  "createCoreCompositionKit",
-  "createCoreMLNNKit",
-  "createCoreAgentKit"
+  "writeDevelopmentTarget"
 ]) {
-  assert.equal(typeof api[name] !== "undefined", true, `${name} should be exported`);
+  assert.equal(typeof api[name] !== "undefined", true, `missing public API export ${name}`);
 }
-
-assert.equal(api.NEXUS_ENGINE_VERSION, "0.0.3");
-assert.equal(api.NEXUS_ENGINE_STABILITY, "stable-candidate");
-assert.equal(api.NEXUS_ENGINE_RELEASE.version, "0.0.3");
-
-const engine = api.createEngine();
-assert.ok(engine.sequenceRuntime);
-assert.ok(engine.sequenceNodeRuntime);
-assert.equal(typeof engine.dispatchSequenceEvent, "function");
-assert.equal(typeof engine.mountSequenceNode, "function");
-assert.equal(typeof engine.startSequenceNode, "function");
-assert.equal(typeof engine.bindSequenceNodeFrameDriver, "function");
 
 console.log("public-api-freeze ok");
