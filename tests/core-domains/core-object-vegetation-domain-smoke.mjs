@@ -10,7 +10,11 @@ const foliage = engine.n.vegetationFoliage;
 const bridge = engine.n.vegetationObjectBridge;
 
 assert.ok(vegetation && ecology && trees && foliage && bridge);
-assert.ok(engine.kits.some((kit) => kit.provides.includes("n:object")), "Core Object provides semantic n:object namespace");
+assert.equal(engine.n.ownerOf("n:object"), "n-core-object-kit");
+assert.equal(engine.n.path("n:object").metadata.aliasOf, "n:core-object");
+assert.equal(engine.n.path("n:object:vegetation").parentPath, "n:object");
+assert.equal(engine.n.path("n:object:vegetation:tree").parentPath, "n:object:vegetation");
+assert.equal(engine.n.path("n:object:vegetation:foliage").parentPath, "n:object:vegetation");
 
 const species = vegetation.registerSpecies({
   id: "fixture-oak",
