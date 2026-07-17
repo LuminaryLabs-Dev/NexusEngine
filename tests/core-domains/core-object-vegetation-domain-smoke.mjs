@@ -71,7 +71,7 @@ assert.equal(leaves.schema, "nexus-foliage-descriptor/1");
 const object = bridge.registerSpeciesObject(species.id);
 assert.equal(object.objectType, "vegetation:tree");
 assert.equal(object.metadata.speciesId, species.id);
-assert.equal(engine.coreObject.get(object.id).id, object.id);
+assert.equal(engine.n.coreObject.get(object.id).id, object.id);
 const instanceObject = bridge.toInstanceObjectDescriptor(instanceA);
 assert.equal(instanceObject.id, instanceA.id);
 assert.equal(instanceObject.metadata.vegetationInstanceId, instanceA.id);
@@ -79,7 +79,7 @@ assert.doesNotThrow(() => structuredClone({
   vegetation: vegetation.getSnapshot(),
   tree: trees.getSnapshot(),
   foliage: foliage.getSnapshot(),
-  object: engine.coreObject.getSnapshot()
+  object: engine.n.coreObject.getSnapshot()
 }));
 
 console.log("core object vegetation domain smoke passed");
