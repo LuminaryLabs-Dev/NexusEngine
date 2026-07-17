@@ -6,6 +6,7 @@ export * from "./core-character-domain/index.js";
 export * from "./core-player-domain/index.js";
 export * from "./core-object-domain/index.js";
 export * from "./core-object-shape-domain/index.js";
+export * from "./core-object-vegetation-domain/index.js";
 export * from "./core-presentation-domain/index.js";
 export * from "./core-graphics-domain/index.js";
 export * from "./core-motion-domain/index.js";
