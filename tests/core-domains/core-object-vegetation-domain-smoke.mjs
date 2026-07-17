@@ -1,6 +1,16 @@
 import assert from "node:assert/strict";
-import { createEngine } from "../../src/engine.js";
-import { createCoreObjectDomain } from "../../src/core-domains/core-object-domain/index.js";
+import {
+  createEngine,
+  createCoreObjectDomain,
+  createFoliageCardFamilyDescriptor,
+  createFoliageClusterDescriptor,
+  createFoliagePlacementRecipe,
+  createTreeCanopyComposition
+} from "../../src/index.js";
+
+for (const factory of [createFoliageCardFamilyDescriptor, createFoliageClusterDescriptor, createFoliagePlacementRecipe, createTreeCanopyComposition]) {
+  assert.equal(typeof factory, "function", `${factory.name} is publicly exported`);
+}
 
 const engine = createEngine({ kits: createCoreObjectDomain({ shape: false, fidelity: false }) });
 const vegetation = engine.n.vegetation;
