@@ -209,7 +209,7 @@ export function createFoliageDomainKit(config = {}) {
         list: () => Object.values(records()).sort((a, b) => a.id.localeCompare(b.id)).map(clone),
         createCardFamily: createFoliageCardFamilyDescriptor,
         createCluster: createFoliageClusterDescriptor,
-        createPlacementRecipe,
+        createPlacementRecipe: createFoliagePlacementRecipe,
         validate(value) {
           try { createFoliageDescriptor(value); return { valid: true, errors: [] }; }
           catch (error) { return { valid: false, errors: [error instanceof Error ? error.message : String(error)] }; }
