@@ -53,25 +53,73 @@ assert.ok(ecology.score(species, idealEnvironment) > 1);
 assert.equal(ecology.select([species], idealEnvironment, "selection").id, species.id);
 assert.equal(vegetation.selectSpecies(idealEnvironment, "selection").id, species.id);
 
-const tree = trees.register({
-  id: "fixture-oak:tree",
-  speciesId: species.id,
-  averageHeight: 18,
-  averageWidth: 8,
-  shape: "broad-canopy"
+const cardFamily = foliage.createCardFamily({
+  id: "fixture-oak:broadleaf-card",
+  kind: "broadleaf-spray",
+  atlas: { assetId: "fixture-foliage-atlas", frameId: "broadleaf", uvRect: [0, 0.5, 0.25, 0.5] },
+  size: { minimum: [0.45, 0.4], maximum: [1.8, 1.4] },
+  alphaCutoff: 0.42,
+  wind: { amplitude: 0.11, frequency: 0.74 }
 });
-assert.equal(trees.createShapeRecipe(tree).targets.length, 2);
-assert.deepEqual(trees.createFidelityProfile(tree).forms.map((form) => form.id), ["near", "medium", "far", "horizon"]);
-assert.equal(trees.createCaptureRequest(tree, "far").viewSet.azimuthCount, 8);
+assert.equal(cardFamily.schema, "nexus-foliage-card-family/1");
+const cluster = foliage.createCluster({
+  id: "fixture-oak:crown-ring",
+  familyId: cardFamily.id,
+  mode: "crown-ring",
+  count: 18,
+  position: [0, 14, 0],
+  extent: [4, 2.5, 4],
+  fidelity: { nearMultiplier: 1, mediumMultiplier: 0.45 }
+});
+assert.equal(cluster.schema, "nexus-foliage-cluster/1");
 
 const leaves = foliage.register({
   id: "fixture-oak:foliage",
   speciesId: species.id,
   kind: "leaf-cluster",
-  card: { crossedPlanes: 2, alphaCutoff: 0.4 },
-  wind: { mode: "branch-relative", amplitude: 0.08 }
+  card: { familyId: cardFamily.id, crossedPlanes: 2, alphaCutoff: 0.42 },
+  cardFamilies: [cardFamily],
+  clusters: [cluster],
+  wind: { mode: "branch-relative", amplitude: 0.08 },
+  fidelity: {
+    near: { mode: "cards", density: 1 },
+    medium: { mode: "cards", density: 0.45 },
+    far: { mode: "captured-impostor" },
+    horizon: { mode: "captured-impostor" }
+  }
 });
-assert.equal(leaves.schema, "nexus-foliage-descriptor/1");
+assert.equal(leaves.schema, "nexus-foliage-descriptor/2");
+assert.equal(leaves.cardFamilies.length, 1);
+assert.equal(leaves.clusters[0].familyId, cardFamily.id);
+const placement = foliage.createPlacementRecipe(leaves);
+assert.equal(placement.schema, "nexus-foliage-placement-recipe/1");
+assert.deepEqual(placement.cardFamilyIds, [cardFamily.id]);
+
+const tree = trees.register({
+  id: "fixture-oak:tree",
+  speciesId: species.id,
+  averageHeight: 18,
+  averageWidth: 8,
+  shape: "broad-canopy",
+  canopy: {
+    foliageIds: [leaves.id],
+    clusterCount: 18,
+    layerCount: 3,
+    edgeIrregularity: 0.42,
+    hangingFoliage: 0.12,
+    anchors: [{ id: "left-crown", position: [-2.5, 14, 0], foliageId: leaves.id }]
+  },
+  foliage: { ids: [leaves.id], nearDensity: 1, mediumDensity: 0.45 }
+});
+assert.equal(tree.schema, "nexus-tree-structure/2");
+assert.equal(tree.canopy.schema, "nexus-tree-canopy-composition/1");
+assert.equal(tree.canopy.foliageIds[0], leaves.id);
+assert.equal(trees.createShapeRecipe(tree).targets.length, 2);
+const fidelityProfile = trees.createFidelityProfile(tree);
+assert.deepEqual(fidelityProfile.forms.map((form) => form.id), ["near", "medium", "far", "horizon"]);
+assert.equal(fidelityProfile.forms[0].metadata.foliageDensity, 1);
+assert.equal(fidelityProfile.forms[1].metadata.foliageDensity, 0.45);
+assert.equal(trees.createCaptureRequest(tree, "far").viewSet.azimuthCount, 8);
 
 const object = bridge.registerSpeciesObject(species.id);
 assert.equal(object.objectType, "vegetation:tree");
