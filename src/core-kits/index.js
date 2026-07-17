@@ -3,6 +3,7 @@ export * from "./realtime-core-kit/index.js";
 export * from "./sequence-core-kit/index.js";
 export * from "./core-data-kit/index.js";
 export * from "./core-object-kit/index.js";
+export * from "./core-vegetation-kit/index.js";
 export * from "./core-object-shape-kit/index.js";
 export * from "./core-object-fidelity-kit/index.js";
 export * from "./core-capture-kit/index.js";
