@@ -41,6 +41,9 @@ const reducedJob = await engine.n.objectShape.derive({
 });
 assert.equal(reducedJob.state, "ready");
 const reduced = engine.n.objectShape.getShape(reducedJob.resultShapeId);
+assert.equal(reduced.qualification.status, "approved");
+assert.equal(reduced.qualification.id, reducedJob.qualificationId);
+assert.equal(engine.n.objectShape.getCandidate(reducedJob.candidateShapeId).state, "candidate");
 assert.ok(reduced.metrics.triangleCount < source.metrics.triangleCount);
 assert.equal(reduced.metrics.degenerateTriangles, 0);
 assert.ok(reduced.metrics.usedVertexCount > 3);
@@ -58,6 +61,7 @@ const duplicate = await engine.n.objectShape.derive({
 });
 assert.equal(duplicate.id, reducedJob.id);
 assert.equal(engine.n.objectShape.getSnapshot().shapes[reduced.id].contentHash, reduced.contentHash);
+assert.equal(engine.n.objectShape.listQualifications(reducedJob.id).length, 1);
 
 const proxyJob = await engine.n.objectShape.derive({
   sourceShapeId: source.id,
@@ -66,6 +70,7 @@ const proxyJob = await engine.n.objectShape.derive({
 });
 assert.equal(proxyJob.state, "ready");
 const proxy = engine.n.objectShape.getShape(proxyJob.resultShapeId);
+assert.equal(proxy.qualification.status, "approved");
 assert.ok(proxy.metrics.triangleCount <= reduced.metrics.triangleCount);
 assert.equal(proxy.metrics.degenerateTriangles, 0);
 
@@ -97,16 +102,19 @@ const packageValue = engine.n.objectFidelity.getActivePackage(object.id);
 const reducedForm = engine.n.objectFidelity.getForm(packageValue.forms.reduced);
 assert.equal(reducedForm.layers[0].metadata.shapeId, reduced.id);
 assert.equal(reducedForm.layers[0].metadata.metrics.triangleCount, reduced.metrics.triangleCount);
+assert.equal(reducedForm.layers[0].metadata.qualificationId, reduced.qualification.id);
 
 structuredClone(engine.n.objectShape.getSnapshot());
 const snapshot = engine.n.objectShape.getSnapshot();
 engine.n.objectShape.reset();
 engine.n.objectShape.loadSnapshot(snapshot);
 assert.equal(engine.n.objectShape.getShape(reduced.id).contentHash, reduced.contentHash);
+assert.equal(engine.n.objectShape.getShape(reduced.id).qualification.status, "approved");
 
 console.log("core object shape input-output smoke ok", {
   sourceTriangles: source.metrics.triangleCount,
   reducedTriangles: reduced.metrics.triangleCount,
   proxyTriangles: proxy.metrics.triangleCount,
-  boundsDeviation: reduced.quality.normalizedBoundsDeviation
+  boundsDeviation: reduced.quality.normalizedBoundsDeviation,
+  qualification: reduced.qualification.status
 });
