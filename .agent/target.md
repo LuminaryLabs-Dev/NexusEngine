@@ -2,7 +2,7 @@
 
 ## Goal
 
-Promote a semantic Core Object Shape domain under `n:core-object` that derives validated lower-complexity geometric shapes, composes with Object Fidelity, and proves geometry and capture output through post-push smoke fixtures.
+Make skinned-object and skinned-tree shape reduction provably safe inside the existing `n:object:shape` domain by treating provider output as a candidate that must pass structural, deformation, and silhouette qualification before Object Fidelity may consume it.
 
 ## Mode
 
@@ -11,27 +11,32 @@ Implementation
 ## Scope
 
 - `core-object-shape-kit`
-- `core-object-shape-domain`
-- Meshoptimizer and portable reference shape providers
+- Meshoptimizer and deterministic reference shape providers
+- `skinned-organic-production` shape profile
 - Object Shape to Object Fidelity adapter
-- optional Core Object composite domain
-- public exports, package subpaths, manifest, docs, and focused tests
-- input/output mesh and software capture visual smoke evidence
+- candidate, qualification, fallback, rejection, snapshot, and stale-work contracts
+- focused Headless Editor and installed-composition smoke tests
+- public exports and test registration
 
 ## Required outcome
 
-- Object Shape owns profiles, sources, jobs, providers, derived shapes, metrics, snapshots, reset, cancellation, duplicate reuse, and stale-work rejection.
-- The installed domain performs real geometry reduction through a provider, not through Unity code or Draco.
-- Meshoptimizer is an interchangeable backend; a deterministic reference provider keeps headless validation operational.
-- Derived shapes preserve valid indices, finite positions, nondegenerate triangles, bounds, and measurable quality evidence.
-- Object Fidelity can consume a ready derived shape through `object-shape-form`.
-- Capture smoke tests compare source and reduced silhouettes from multiple views and produce inspectable visual evidence.
-- The solution is pushed to `main` before post-push smoke execution.
+- Meshoptimizer output is recorded as a candidate, not immediately published as a ready shape.
+- Safe production mode keeps the original skeleton, bind contract, vertex layout, skin indices, and skin weights.
+- Protected branch roots and deformation zones must remain referenced by approved geometry.
+- Deterministic validation checks indices, finite values, bones, weights, weight normalization, protected vertices, multi-pose deformation, and multi-view silhouette overlap.
+- Rejected candidates retain inspectable qualification evidence.
+- Failed reductions retry progressively safer ratios and finally the source shape.
+- Only approved shapes are published through `getShape()` and accepted by `object-shape-form`.
+- Stale, failed, and rejected work cannot replace an approved shape or Fidelity package.
+- Snapshots preserve candidates, qualification evidence, jobs, rejected results, and approved shapes.
+- Headless fixtures prove approval, rejection, fallback, duplicate reuse, stale blocking, Fidelity gating, snapshot restore, and deterministic evidence.
 
 ## Constraints
 
 - Work directly on `main`.
 - Do not create a pull request or branch.
-- Keep renderer, GPU, Draco, and object-specific morphology outside Object Shape.
-- Preserve snapshots and renderer-neutral state.
+- Extend Object Shape; do not add another domain.
+- Keep renderer, GPU, capture implementation, tree morphology, and production skeleton reduction outside this change.
+- Keep automatic skeleton reduction experimental and disabled by default.
+- Preserve renderer-neutral serializable state.
 - Validate before reporting completion.
