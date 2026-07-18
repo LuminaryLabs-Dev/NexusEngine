@@ -1,0 +1,7 @@
+core object shape skinned qualification smoke ok {
+  requestedRatio: 0.4,
+  approvedRatio: 0.7,
+  qualificationAttempts: 3,
+  poseCount: 3,
+  silhouetteViews: 36
+}
