@@ -76,7 +76,7 @@ function qualificationConfig(profile = {}, target = {}) {
       sampleLimit: Math.max(16, Math.floor(finiteNumber(targetConfig.deformation?.sampleLimit ?? profileConfig.deformation?.sampleLimit, 256)))
     },
     silhouette: {
-      enabled: targetConfig.silhouette?.enabled ?? profileConfig.silhouette?.enabled ?? true,
+      enabled: targetConfig.silhouette?.enabled ?? profileConfig.silhouette?.enabled ?? Boolean(profile.preserve?.skinning),
       minimumIoU: Math.max(0, Math.min(1, finiteNumber(targetConfig.silhouette?.minimumIoU ?? profileConfig.silhouette?.minimumIoU, target.id === "proxy" ? 0.9 : 0.95))),
       gridSize: Math.max(16, Math.min(96, Math.floor(finiteNumber(targetConfig.silhouette?.gridSize ?? profileConfig.silhouette?.gridSize, 40)))),
       views: clone(targetConfig.silhouette?.views ?? profileConfig.silhouette?.views ?? DEFAULT_VIEWS),
@@ -209,7 +209,7 @@ function validateSkinStructure(source, candidateGeometry, config, candidateMetad
 function identityMatrices(count) {
   const values = [];
   for (let index = 0; index < count; index += 1) {
-    values.push(1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1);
+    values.push(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1);
   }
   return values;
 }
