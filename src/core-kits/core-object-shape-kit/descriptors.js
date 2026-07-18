@@ -1,14 +1,28 @@
 import { clonePortableGeometry, compareShapeMetrics, computeShapeMetrics } from "./metrics.js";
+import { createObjectShapeQualification, NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA } from "./qualification.js";
 
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
 export const NEXUS_OBJECT_SHAPE_PROFILE_SCHEMA = "nexus-object-shape-profile/1";
 export const NEXUS_OBJECT_SHAPE_SOURCE_SCHEMA = "nexus-object-shape-source/1";
 export const NEXUS_OBJECT_SHAPE_JOB_SCHEMA = "nexus-object-shape-job/1";
+export const NEXUS_OBJECT_SHAPE_CANDIDATE_SCHEMA = "nexus-object-shape-candidate/1";
 export const NEXUS_OBJECT_SHAPE_SCHEMA = "nexus-object-shape/1";
+export { NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA };
 
 export const OBJECT_SHAPE_JOB_STATES = Object.freeze([
-  "queued", "waiting-for-provider", "preparing", "simplifying", "optimizing", "validating", "ready", "failed", "cancelled", "stale"
+  "queued",
+  "waiting-for-provider",
+  "preparing",
+  "simplifying",
+  "optimizing",
+  "validating",
+  "qualifying",
+  "ready",
+  "rejected",
+  "failed",
+  "cancelled",
+  "stale"
 ]);
 
 function text(value, fallback, label) {
@@ -61,6 +75,7 @@ function normalizeTarget(input = {}, index = 0) {
     maximumDeviation: Math.max(0, finite(input.maximumDeviation ?? input.targetError, ratio === 1 ? 0 : 0.01, "shape maximumDeviation")),
     mode: text(input.mode, ratio === 1 ? "source" : "simplify", "shape target mode"),
     preserve: clone(input.preserve ?? {}),
+    qualification: clone(input.qualification ?? {}),
     options: clone(input.options ?? {})
   };
 }
@@ -86,6 +101,7 @@ export function createObjectShapeProfile(input = {}) {
       vertexColors: input.preserve?.vertexColors !== false,
       ...clone(input.preserve ?? {})
     },
+    qualification: clone(input.qualification ?? {}),
     targets,
     metadata: clone(input.metadata ?? {})
   };
@@ -132,7 +148,12 @@ export function createObjectShapeJob(input = {}) {
       completed: Math.max(0, finite(input.progress?.completed, 0, "shape job completed")),
       total: Math.max(1, finite(input.progress?.total, 1, "shape job total"))
     },
+    candidateShapeId: input.candidateShapeId == null ? null : text(input.candidateShapeId, null, "shape job candidateShapeId"),
+    qualificationId: input.qualificationId == null ? null : text(input.qualificationId, null, "shape job qualificationId"),
     resultShapeId: input.resultShapeId == null ? null : text(input.resultShapeId, null, "shape job resultShapeId"),
+    attempt: Math.max(0, Math.floor(finite(input.attempt, 0, "shape job attempt"))),
+    attemptedRatio: input.attemptedRatio == null ? null : Math.max(0.001, Math.min(1, finite(input.attemptedRatio, 1, "shape job attemptedRatio"))),
+    fallbackUsed: Boolean(input.fallbackUsed),
     error: input.error == null ? null : clone(input.error),
     revision: Math.max(0, Math.floor(finite(input.revision, 0, "shape job revision"))),
     operationId: text(input.operationId, null, "shape job operationId")
@@ -141,31 +162,61 @@ export function createObjectShapeJob(input = {}) {
   return Object.freeze(job);
 }
 
-export function createObjectShape(input = {}, source = null) {
+function normalizeShapeBase(input = {}, source = null, label = "object shape") {
   const geometry = input.geometry == null ? null : clonePortableGeometry(input.geometry);
-  const asset = normalizeAssetReference(input.asset, "derived shape asset");
-  if (!geometry && !asset) throw new TypeError("Derived object shape requires geometry or an asset reference.");
+  const asset = normalizeAssetReference(input.asset, label);
+  if (!geometry && !asset) throw new TypeError(`${label} requires geometry or an asset reference.`);
   const metrics = geometry ? computeShapeMetrics(geometry) : clone(input.metrics ?? null);
-  const shape = {
-    schema: NEXUS_OBJECT_SHAPE_SCHEMA,
-    id: text(input.id, null, "derived object shape id"),
-    objectId: text(input.objectId, source?.objectId, "derived object shape objectId"),
-    objectContentHash: text(input.objectContentHash, source?.objectContentHash, "derived object shape objectContentHash"),
-    sourceShapeId: text(input.sourceShapeId, source?.id, "derived object shape sourceShapeId"),
-    sourceContentHash: text(input.sourceContentHash, source?.contentHash, "derived object shape sourceContentHash"),
-    profileId: text(input.profileId, null, "derived object shape profileId"),
-    targetId: text(input.targetId, null, "derived object shape targetId"),
-    purpose: text(input.purpose, input.targetId ?? "derived", "derived object shape purpose"),
+  return {
+    id: text(input.id, null, `${label} id`),
+    objectId: text(input.objectId, source?.objectId, `${label} objectId`),
+    objectContentHash: text(input.objectContentHash, source?.objectContentHash, `${label} objectContentHash`),
+    sourceShapeId: text(input.sourceShapeId, source?.id, `${label} sourceShapeId`),
+    sourceContentHash: text(input.sourceContentHash, source?.contentHash, `${label} sourceContentHash`),
+    profileId: text(input.profileId, null, `${label} profileId`),
+    targetId: text(input.targetId, null, `${label} targetId`),
+    purpose: text(input.purpose, input.targetId ?? "derived", `${label} purpose`),
     geometry,
     asset,
     metrics,
     quality: clone(input.quality ?? (source?.metrics && metrics ? compareShapeMetrics(source.metrics, metrics) : {})),
     preservation: clone(input.preservation ?? {}),
     provider: {
-      id: text(input.provider?.id ?? input.providerId, "object-shape-provider", "derived shape provider id"),
-      version: text(input.provider?.version, "0.1.0", "derived shape provider version")
+      id: text(input.provider?.id ?? input.providerId, "object-shape-provider", `${label} provider id`),
+      version: text(input.provider?.version, "0.1.0", `${label} provider version`)
     },
-    metadata: clone(input.metadata ?? {}),
+    metadata: clone(input.metadata ?? {})
+  };
+}
+
+export function createObjectShapeCandidate(input = {}, source = null) {
+  const base = normalizeShapeBase(input, source, "object shape candidate");
+  const candidate = {
+    schema: NEXUS_OBJECT_SHAPE_CANDIDATE_SCHEMA,
+    ...base,
+    requestedTargetId: text(input.requestedTargetId, input.targetId, "object shape candidate requestedTargetId"),
+    requestedRatio: Math.max(0.001, Math.min(1, finite(input.requestedRatio, 1, "candidate requestedRatio"))),
+    attemptedRatio: Math.max(0.001, Math.min(1, finite(input.attemptedRatio, input.requestedRatio ?? 1, "candidate attemptedRatio"))),
+    attempt: Math.max(0, Math.floor(finite(input.attempt, 0, "candidate attempt"))),
+    fallback: Boolean(input.fallback),
+    state: "candidate"
+  };
+  candidate.contentHash = hashShapeValue(candidate);
+  structuredClone(candidate);
+  return Object.freeze(candidate);
+}
+
+export function createObjectShape(input = {}, source = null) {
+  const base = normalizeShapeBase(input, source, "derived object shape");
+  const qualification = input.qualification == null ? null : createObjectShapeQualification(input.qualification);
+  if (qualification && qualification.status !== "approved") {
+    throw new TypeError("Derived object shape can only publish approved qualification evidence.");
+  }
+  const shape = {
+    schema: NEXUS_OBJECT_SHAPE_SCHEMA,
+    ...base,
+    candidateShapeId: input.candidateShapeId == null ? null : text(input.candidateShapeId, null, "derived object shape candidateShapeId"),
+    qualification,
     state: "ready"
   };
   shape.contentHash = hashShapeValue(shape);
