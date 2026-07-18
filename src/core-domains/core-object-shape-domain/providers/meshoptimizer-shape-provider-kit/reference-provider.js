@@ -1,5 +1,45 @@
 import { computeShapeMetrics, validatePortableTriangleGeometry } from "../../../../core-kits/core-object-shape-kit/metrics.js";
 
+function protectedVertices(source) {
+  const metadata = source.metadata ?? {};
+  const constraints = metadata.vertexConstraints ?? {};
+  const skinning = metadata.skinning ?? metadata.deformation ?? {};
+  return new Set([
+    ...(metadata.protectedVertices ?? []),
+    ...(constraints.lockPosition ?? []),
+    ...(constraints.lockTopology ?? []),
+    ...(constraints.preserveWeights ?? []),
+    ...(skinning.protectedVertices ?? [])
+  ].map(Number).filter(Number.isInteger));
+}
+
+function subsetGeometry(sourceInput, targetRatio, preserveProtected = true) {
+  const source = validatePortableTriangleGeometry(sourceInput.geometry ?? sourceInput);
+  const targetTriangles = Math.max(1, Math.floor(source.indices.length / 3 * targetRatio));
+  if (targetTriangles >= source.indices.length / 3) return source;
+  const protectedSet = protectedVertices(sourceInput);
+  const protectedTriangles = [];
+  const ordinaryTriangles = [];
+  for (let index = 0; index < source.indices.length; index += 3) {
+    const triangle = [source.indices[index], source.indices[index + 1], source.indices[index + 2]];
+    (preserveProtected && triangle.some((vertex) => protectedSet.has(vertex)) ? protectedTriangles : ordinaryTriangles).push(triangle);
+  }
+  const result = protectedTriangles.slice();
+  const remaining = Math.max(0, targetTriangles - result.length);
+  if (remaining > 0 && ordinaryTriangles.length) {
+    const stride = ordinaryTriangles.length / remaining;
+    for (let index = 0; index < remaining; index += 1) {
+      result.push(ordinaryTriangles[Math.min(ordinaryTriangles.length - 1, Math.floor(index * stride))]);
+    }
+  }
+  if (!result.length) result.push(ordinaryTriangles[0] ?? protectedTriangles[0]);
+  return {
+    positions: source.positions,
+    indices: result.flat(),
+    attributes: source.attributes
+  };
+}
+
 function clusterGeometry(geometry, targetRatio, preserveBorders) {
   const source = validatePortableTriangleGeometry(geometry);
   const targetTriangles = Math.max(1, Math.floor(source.indices.length / 3 * targetRatio));
@@ -90,23 +130,36 @@ function clusterGeometry(geometry, targetRatio, preserveBorders) {
 export function createReferenceObjectShapeProvider(options = {}) {
   return {
     id: options.id ?? "reference-object-shape-provider",
-    version: "0.1.0",
-    metadata: { algorithm: "deterministic-spatial-clustering", portableFallback: true },
+    version: "0.2.0",
+    metadata: {
+      algorithm: "deterministic-spatial-clustering-or-safe-index-subset",
+      portableFallback: true,
+      qualificationCandidateOnly: true
+    },
     async derive(request, { updateProgress, isCancelled }) {
       if (!request.source.geometry) throw new TypeError("Reference Object Shape provider requires inline geometry.");
       updateProgress?.(0.2, 1, "analyze");
       if (isCancelled?.()) throw new Error("Object Shape derivation cancelled.");
+      const safeSkinned = request.profile.qualification?.mode === "safe-skinned" || request.target.qualification?.mode === "safe-skinned";
       const geometry = request.target.mode === "source"
         ? validatePortableTriangleGeometry(request.source.geometry)
-        : clusterGeometry(request.source.geometry, request.target.ratio, request.target.preserve?.borders ?? request.profile.preserve.borders);
-      updateProgress?.(0.8, 1, "validate");
+        : safeSkinned
+          ? subsetGeometry(request.source, request.target.ratio, request.target.options?.preserveProtectedTriangles !== false)
+          : clusterGeometry(request.source.geometry, request.target.ratio, request.target.preserve?.borders ?? request.profile.preserve.borders);
+      updateProgress?.(0.8, 1, "validate-candidate");
       const metrics = computeShapeMetrics(geometry);
-      updateProgress?.(1, 1, "ready");
+      updateProgress?.(1, 1, "candidate-ready");
       return {
         geometry,
         metrics,
         preservation: { ...request.profile.preserve, ...request.target.preserve },
-        metadata: { algorithm: "deterministic-spatial-clustering", targetRatio: request.target.ratio }
+        metadata: {
+          algorithm: safeSkinned ? "deterministic-safe-index-subset" : "deterministic-spatial-clustering",
+          targetRatio: request.target.ratio,
+          skeletonReduced: false,
+          attributeArraysPreserved: safeSkinned,
+          candidateOnly: true
+        }
       };
     }
   };
