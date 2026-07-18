@@ -3,7 +3,7 @@ const clone = (value) => value === undefined ? undefined : structuredClone(value
 export function createObjectShapeFidelityAdapterKit(options = {}) {
   return Object.freeze({
     id: options.id ?? "object-shape-fidelity-adapter-kit",
-    version: "0.1.0",
+    version: "0.2.0",
     install({ engine }) {
       const fidelity = engine.n?.objectFidelity ?? engine.objectFidelity;
       const shape = engine.n?.objectShape ?? engine.objectShape;
@@ -25,9 +25,16 @@ export function createObjectShapeFidelityAdapterKit(options = {}) {
             providerId: settings.providerId
           });
           if (job.state !== "ready") {
-            throw new Error(`Object Shape job ${job.id} is ${job.state}; resume it before building Fidelity.`);
+            const qualification = job.qualificationId ? shape.getQualification?.(job.qualificationId) : null;
+            throw new Error(
+              `Object Shape job ${job.id} is ${job.state}; only qualified ready shapes may become Fidelity forms.`
+              + (qualification?.failures?.length ? ` ${qualification.failures.map((failure) => failure.check).join(", ")}` : "")
+            );
           }
           const derived = shape.getShape(job.resultShapeId);
+          if (!derived?.qualification || derived.qualification.status !== "approved") {
+            throw new Error(`Object Shape result ${job.resultShapeId} has no approved qualification evidence.`);
+          }
           return {
             form: {
               id: `${buildId}:${requirement.id}`,
@@ -44,14 +51,20 @@ export function createObjectShapeFidelityAdapterKit(options = {}) {
                 metadata: {
                   shapeId: derived.id,
                   metrics: clone(derived.metrics),
-                  quality: clone(derived.quality)
+                  quality: clone(derived.quality),
+                  qualificationId: derived.qualification.id,
+                  qualificationContentHash: derived.qualification.contentHash,
+                  approvedRatio: derived.metadata?.approvedRatio,
+                  fallbackUsed: Boolean(derived.metadata?.fallbackUsed)
                 }
               }],
               metadata: {
                 source: "object-shape",
                 shapeJobId: job.id,
                 shapeId: derived.id,
-                shapeContentHash: derived.contentHash
+                shapeContentHash: derived.contentHash,
+                qualificationId: derived.qualification.id,
+                qualificationContentHash: derived.qualification.contentHash
               }
             }
           };
@@ -61,7 +74,7 @@ export function createObjectShapeFidelityAdapterKit(options = {}) {
     metadata: {
       scope: "object-shape-fidelity-adapter",
       ownsLoop: false,
-      boundary: "Turns ready Object Shape results into Object Fidelity forms without moving shape derivation or fidelity ownership."
+      boundary: "Turns only qualified ready Object Shape results into Object Fidelity forms without moving shape derivation, qualification, fallback, or fidelity ownership."
     }
   });
 }
