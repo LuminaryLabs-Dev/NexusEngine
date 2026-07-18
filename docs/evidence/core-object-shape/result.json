@@ -1,6 +1,6 @@
 {
   "schema": "nexus-object-shape-smoke-evidence/1",
-  "sourceCommit": "0aae485739013cf254e20f0ee083a3f080746830",
+  "sourceCommit": "7e5d0fc2d71b2136d6d5c3d13fc164de0de68680",
   "geometrySmoke": "passed",
   "geometryExitCode": 0,
   "captureVisualSmoke": "passed",
