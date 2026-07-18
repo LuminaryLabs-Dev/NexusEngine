@@ -2,5 +2,6 @@ core object shape input-output smoke ok {
   sourceTriangles: 952,
   reducedTriangles: 345,
   proxyTriangles: 187,
-  boundsDeviation: 0.04441004986648385
+  boundsDeviation: 0.04441004986648385,
+  qualification: 'approved'
 }
