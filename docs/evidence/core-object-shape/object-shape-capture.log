@@ -1,5 +1,5 @@
 core capture shape visual smoke ok {
-  outputPath: '/tmp/nexus-object-shape-capture-Twnzop/source-vs-reduced.svg',
+  outputPath: '/tmp/nexus-object-shape-capture-EnFJFq/source-vs-reduced.svg',
   minimumSilhouetteIou: 0.9287020109689214,
   averageSilhouetteIou: 0.9490706471294997,
   sourceTriangles: 1140,
