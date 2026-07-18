@@ -8,7 +8,7 @@ export const NEXUS_OBJECT_SHAPE_SOURCE_SCHEMA = "nexus-object-shape-source/1";
 export const NEXUS_OBJECT_SHAPE_JOB_SCHEMA = "nexus-object-shape-job/1";
 export const NEXUS_OBJECT_SHAPE_CANDIDATE_SCHEMA = "nexus-object-shape-candidate/1";
 export const NEXUS_OBJECT_SHAPE_SCHEMA = "nexus-object-shape/1";
-export { NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA };
+export { createObjectShapeQualification, NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA };
 
 export const OBJECT_SHAPE_JOB_STATES = Object.freeze([
   "queued",
