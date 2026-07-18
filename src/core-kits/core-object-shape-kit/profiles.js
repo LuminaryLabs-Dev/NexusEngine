@@ -8,6 +8,10 @@ export const GENERAL_RIGID_OBJECT_SHAPE_PROFILE = Object.freeze({
     normals: true,
     vertexColors: true
   },
+  qualification: {
+    deformation: { enabled: false },
+    silhouette: { enabled: false }
+  },
   targets: [
     { id: "full", ratio: 1, maximumDeviation: 0, mode: "source" },
     { id: "reduced", ratio: 0.4, maximumDeviation: 0.01, mode: "simplify" },
@@ -25,6 +29,10 @@ export const HARD_SURFACE_OBJECT_SHAPE_PROFILE = Object.freeze({
     uvSeams: true,
     normals: true
   },
+  qualification: {
+    deformation: { enabled: false },
+    silhouette: { enabled: false }
+  },
   targets: [
     { id: "full", ratio: 1, maximumDeviation: 0, mode: "source" },
     { id: "reduced", ratio: 0.55, maximumDeviation: 0.006, mode: "simplify" },
@@ -40,6 +48,10 @@ export const ORGANIC_STATIC_OBJECT_SHAPE_PROFILE = Object.freeze({
     materialBoundaries: false,
     uvSeams: true,
     normals: true
+  },
+  qualification: {
+    deformation: { enabled: false },
+    silhouette: { enabled: false }
   },
   targets: [
     { id: "full", ratio: 1, maximumDeviation: 0, mode: "source" },
