@@ -45,6 +45,7 @@ const tests = [
   "tests/core-domains/core-compute-domain-smoke.mjs",
   "tests/core-domains/core-capture-domain-smoke.mjs",
   "tests/core-domains/core-object-shape-domain-smoke.mjs",
+  "tests/core-domains/core-object-shape-skinned-qualification-smoke.mjs",
   "tests/core-domains/core-capture-shape-visual-smoke.mjs",
   "tests/core-domains/core-object-fidelity-domain-smoke.mjs",
   "tests/core-domains/core-object-vegetation-domain-smoke.mjs",
