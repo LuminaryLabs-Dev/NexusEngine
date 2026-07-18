@@ -1,11 +1,11 @@
 {
   "schema": "nexus-object-shape-smoke-evidence/1",
-  "sourceCommit": "6b211fbc343b348f2b36f60863d390aef2171178",
-  "geometrySmoke": "passed",
-  "geometryExitCode": 0,
-  "captureVisualSmoke": "passed",
-  "captureExitCode": 0,
-  "visualArtifact": "created",
+  "sourceCommit": "5e6e90be9edd1e000dcf031dfad27615547b51ae",
+  "geometrySmoke": "failed",
+  "geometryExitCode": 1,
+  "captureVisualSmoke": "failed",
+  "captureExitCode": 1,
+  "visualArtifact": "missing",
   "geometryLog": "object-shape-geometry.log",
   "captureLog": "object-shape-capture.log"
 }
