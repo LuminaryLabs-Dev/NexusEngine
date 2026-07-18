@@ -1,5 +1,5 @@
 name: Record Core Object Shape Smoke
-# Evidence workflow revision 2: rerun after semantic parent repair.
+# Evidence workflow revision 3: include safe skinned qualification and fallback.
 
 on:
   push:
@@ -12,6 +12,7 @@ on:
       - "src/core-kits/core-capture-kit/**"
       - "src/core-kits/core-object-fidelity-kit/**"
       - "tests/core-domains/core-object-shape-domain-smoke.mjs"
+      - "tests/core-domains/core-object-shape-skinned-qualification-smoke.mjs"
       - "tests/core-domains/core-capture-shape-visual-smoke.mjs"
       - "tests/fixtures/object-shape-fixtures.mjs"
       - ".github/workflows/record-core-object-shape-smoke.yml"
@@ -41,7 +42,7 @@ jobs:
         with:
           node-version: 24
 
-      - name: Run and record geometry and visual smokes
+      - name: Run and record geometry, skinned qualification, and visual smokes
         id: smoke
         shell: bash
         run: |
@@ -53,6 +54,10 @@ jobs:
           node tests/core-domains/core-object-shape-domain-smoke.mjs \
             > >(tee "$evidence_dir/object-shape-geometry.log") 2>&1
           geometry_status=$?
+
+          node tests/core-domains/core-object-shape-skinned-qualification-smoke.mjs \
+            > >(tee "$evidence_dir/object-shape-skinned-qualification.log") 2>&1
+          skinned_status=$?
 
           node tests/core-domains/core-capture-shape-visual-smoke.mjs \
             > >(tee "$evidence_dir/object-shape-capture.log") 2>&1
@@ -67,23 +72,28 @@ jobs:
           fi
 
           if [ "$geometry_status" -eq 0 ]; then geometry_result="passed"; else geometry_result="failed"; fi
+          if [ "$skinned_status" -eq 0 ]; then skinned_result="passed"; else skinned_result="failed"; fi
           if [ "$capture_status" -eq 0 ]; then capture_result="passed"; else capture_result="failed"; fi
 
           cat > "$evidence_dir/result.json" <<JSON
           {
-            "schema": "nexus-object-shape-smoke-evidence/1",
+            "schema": "nexus-object-shape-smoke-evidence/2",
             "sourceCommit": "${GITHUB_SHA}",
             "geometrySmoke": "${geometry_result}",
             "geometryExitCode": ${geometry_status},
+            "skinnedQualificationSmoke": "${skinned_result}",
+            "skinnedQualificationExitCode": ${skinned_status},
             "captureVisualSmoke": "${capture_result}",
             "captureExitCode": ${capture_status},
             "visualArtifact": "${visual_status}",
             "geometryLog": "object-shape-geometry.log",
+            "skinnedQualificationLog": "object-shape-skinned-qualification.log",
             "captureLog": "object-shape-capture.log"
           }
           JSON
 
           echo "geometry_status=$geometry_status" >> "$GITHUB_OUTPUT"
+          echo "skinned_status=$skinned_status" >> "$GITHUB_OUTPUT"
           echo "capture_status=$capture_status" >> "$GITHUB_OUTPUT"
 
       - name: Commit smoke evidence
@@ -105,4 +115,5 @@ jobs:
         shell: bash
         run: |
           test "${{ steps.smoke.outputs.geometry_status }}" = "0"
+          test "${{ steps.smoke.outputs.skinned_status }}" = "0"
           test "${{ steps.smoke.outputs.capture_status }}" = "0"
