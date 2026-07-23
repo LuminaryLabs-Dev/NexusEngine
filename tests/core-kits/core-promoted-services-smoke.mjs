@@ -1,5 +1,13 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import {
+  createCoreRegistrySnapshot,
+  createRealtimeGame,
+  mergeRegistrySnapshots,
+  normalizeCompositionTree,
+  normalizeRegistrySnapshot,
+  planCompositionTree,
+  validateCompositionTree
+} from "../../src/index.js";
 import { createCoreDataKit } from "../../src/core-kits/core-data-kit/index.js";
 import { createCoreCompositionKit } from "../../src/core-kits/core-composition-kit/index.js";
 import { createCoreSimulationKit } from "../../src/core-kits/core-simulation-kit/index.js";
@@ -74,6 +82,107 @@ assert.equal(plan.ok, true, "composition plan is valid");
 assert.deepEqual(plan.selected, ["consumer-kit", "provider-kit"]);
 assert.equal(engine.n.coreComposition.health.getSnapshot().healthy, true);
 assert.equal(engine.n.kitRegistry, registry, "registry compatibility alias points to Core Composition");
+
+const coreRegistry = createCoreRegistrySnapshot();
+assert.equal(coreRegistry.schema, "nexusengine.core-composition.registry/2");
+assert.ok(coreRegistry.kits.every((kit) => kit.source.exportName), "core catalog resolves trusted exports by name");
+assert.ok(coreRegistry.domains.every((domain) => !("children" in domain)), "domain children are derived rather than stored");
+
+const demoImport = {
+  schema: "nexusengine.core-composition.registry/2",
+  registryId: "demo-registry",
+  revision: 1,
+  sources: [{ registryId: "demo-registry", package: "demo-registry", version: "1.0.0", contentHash: "sha256-demo", trusted: true }],
+  domains: [{
+    id: "demo-domain",
+    domainPath: "n:demo",
+    parentDomainPath: null,
+    label: "Demo",
+    ownedMeaning: ["demo rules"],
+    forbiddenResponsibilities: ["renderer implementation"],
+    sourceRegistryId: "demo-registry"
+  }],
+  kits: [
+    {
+      id: "demo-provider-kit",
+      domain: "demo",
+      domainPath: "n:demo",
+      provides: ["demo:clock"],
+      source: { registryId: "demo-registry", exportName: "untrustedFactory", trusted: true }
+    },
+    {
+      id: "demo-consumer-kit",
+      domain: "demo",
+      domainPath: "n:demo",
+      requires: ["demo:clock"],
+      settingsSchema: {
+        type: "object",
+        required: ["mode"],
+        additionalProperties: false,
+        properties: { mode: { type: "string", enum: ["arcade", "simulation"] } }
+      },
+      source: { registryId: "demo-registry", exportName: "alsoUntrusted", trusted: true }
+    }
+  ],
+  bundles: []
+};
+const mergedRegistry = mergeRegistrySnapshots(coreRegistry, demoImport);
+assert.equal(mergedRegistry.sources.find((source) => source.registryId === "demo-registry").trusted, false, "imported JSON cannot authorize executable code");
+assert.equal(mergedRegistry.kits.find((kit) => kit.id === "demo-provider-kit").source.trusted, false);
+assert.throws(() => normalizeRegistrySnapshot({ ...demoImport, sources: [{ ...demoImport.sources[0], version: "" }] }), /valid version/);
+assert.throws(() => normalizeRegistrySnapshot({ ...demoImport, sources: [{ ...demoImport.sources[0], contentHash: "bad hash" }] }), /valid contentHash/);
+assert.throws(() => normalizeRegistrySnapshot({ ...demoImport, bundles: [{ id: "broken-bundle", domains: ["missing-domain"] }] }), /unknown domain/);
+assert.throws(
+  () => mergeRegistrySnapshots(coreRegistry, { ...demoImport, kits: [{ ...demoImport.kits[0], id: coreRegistry.kits[0].id }] }),
+  /cannot replace core record/
+);
+
+const demoTree = normalizeCompositionTree({
+  id: "demo-composition",
+  registryHash: mergedRegistry.contentHash,
+  rootNodeId: "demo-root",
+  nodes: [
+    { id: "demo-root", kind: "domain", registryId: "demo-domain", parentNodeId: null, order: 0, config: {} },
+    { id: "consumer", kind: "kit", registryId: "demo-consumer-kit", parentNodeId: "demo-root", order: 0, config: { mode: "arcade" } },
+    { id: "provider", kind: "kit", registryId: "demo-provider-kit", parentNodeId: "demo-root", order: 99, config: {} }
+  ]
+});
+const demoValidation = validateCompositionTree(demoTree, mergedRegistry);
+assert.equal(demoValidation.ok, true, JSON.stringify(demoValidation.errors));
+assert.deepEqual(demoValidation.installOrderNodeIds, ["provider", "consumer"], "dependency order ignores visual order");
+const scopedPlan = planCompositionTree(demoTree, mergedRegistry, { scopeNodeId: "consumer" });
+assert.equal(scopedPlan.ok, true);
+assert.deepEqual(scopedPlan.order.map((entry) => entry.nodeId), ["provider", "consumer"], "kit scope includes transitive dependencies");
+assert.ok(scopedPlan.order.every((entry) => entry.trustedProvider === false), "imported registry exports remain non-executable");
+
+const invalidTree = {
+  ...demoTree,
+  nodes: [
+    ...demoTree.nodes.map((node) => node.id === "consumer" ? { ...node, config: {} } : node),
+    { id: "provider-copy", kind: "kit", registryId: "demo-provider-kit", parentNodeId: "consumer", order: 0, config: {} }
+  ]
+};
+const invalidReport = validateCompositionTree(invalidTree, mergedRegistry);
+assert.equal(invalidReport.ok, false);
+assert.ok(invalidReport.errors.some((entry) => entry.code === "invalid-node-config"));
+assert.ok(invalidReport.errors.some((entry) => entry.code === "kit-has-children"));
+assert.ok(invalidReport.errors.some((entry) => entry.code === "duplicate-kit-placement"));
+
+const migratedV1 = normalizeRegistrySnapshot({
+  schema: "nexusengine.core-composition.registry/1",
+  revision: 4,
+  domains: [{ id: "legacy", domainPath: "n:legacy", kits: ["legacy-kit"] }],
+  kits: [{ id: "legacy-kit", domain: "legacy", domainPath: "n:legacy" }],
+  bundles: []
+});
+assert.equal(migratedV1.schema, "nexusengine.core-composition.registry/2");
+assert.equal(migratedV1.revision, 4);
+
+const registrySnapshot = registry.getSnapshot();
+registry.registerKit({ id: "temporary-kit", domain: "temporary", provides: ["temporary:service"] });
+assert.ok(registry.getKit("temporary-kit"));
+registry.loadSnapshot(registrySnapshot);
+assert.equal(registry.getKit("temporary-kit"), null, "registry snapshot restores without retaining later mutations");
 
 const windows = engine.n.coreSimulation.windows;
 assert.equal(windows.action("parry", { actorId: "player" }).quality, "perfect");

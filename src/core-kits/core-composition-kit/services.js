@@ -1,96 +1,119 @@
+import {
+  CORE_COMPOSITION_REGISTRY_SCHEMA,
+  hashRegistryValue,
+  mergeRegistrySnapshots,
+  normalizeBundleRegistryRecord,
+  normalizeDomainRegistryRecord,
+  normalizeKitRegistryRecord,
+  normalizeRegistrySnapshot
+} from "./registry.js";
+import { planCompositionTree } from "./composition-tree.js";
+
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 const asList = (value) => Array.isArray(value) ? value : value == null ? [] : [value];
-const unique = (values) => [...new Set(values)];
-
-function stableId(value, label) {
-  const id = String(value ?? "").trim();
-  if (!id) throw new TypeError(`${label} requires a stable id.`);
-  return id;
-}
 
 function sameValue(left, right) { return JSON.stringify(left) === JSON.stringify(right); }
 
-function normalizeKitManifest(input = {}) {
-  const id = stableId(input.id, "Kit manifest");
-  const domain = String(input.domain ?? id.replace(/-(domain-)?kit$/, "")).trim() || id;
-  return Object.freeze({
-    id,
-    version: String(input.version ?? "0.0.0"),
-    status: String(input.status ?? input.stability ?? "experimental"),
-    kind: String(input.kind ?? input.type ?? "domain-service-kit"),
-    domain,
-    domainPath: String(input.domainPath ?? `n:${domain}`),
-    apiName: input.apiName == null ? null : String(input.apiName),
-    requires: Object.freeze(unique(asList(input.requires).map(String)).sort()),
-    provides: Object.freeze(unique(asList(input.provides).map(String)).sort()),
-    composes: Object.freeze(unique(asList(input.composes ?? input.children).map(String)).sort()),
-    metadata: Object.freeze(clone(input.metadata ?? {}))
+const RUNTIME_SOURCE_ID = "runtime-registry";
+
+function configSnapshot(config = {}) {
+  if (config.schema) return normalizeRegistrySnapshot(config, { allowTrustedSources: true });
+  const content = { kits: asList(config.kits), domains: asList(config.domains), bundles: asList(config.bundles) };
+  return normalizeRegistrySnapshot({
+    schema: CORE_COMPOSITION_REGISTRY_SCHEMA,
+    revision: 0,
+    registryId: config.registryId ?? RUNTIME_SOURCE_ID,
+    sources: [{ registryId: RUNTIME_SOURCE_ID, package: "runtime-registry", version: "0.0.0", contentHash: hashRegistryValue(content), trusted: false }],
+    kits: content.kits.map((kit) => ({ ...kit, source: { ...(kit.source ?? {}), registryId: kit.source?.registryId ?? RUNTIME_SOURCE_ID } })),
+    domains: content.domains.map((domain) => ({ ...domain, sourceRegistryId: domain.sourceRegistryId ?? RUNTIME_SOURCE_ID })),
+    bundles: content.bundles.map((bundle) => ({ ...bundle, sourceRegistryId: bundle.sourceRegistryId ?? RUNTIME_SOURCE_ID }))
   });
 }
 
-function normalizeDomainManifest(input = {}) {
-  const id = stableId(input.id, "Domain manifest");
-  return Object.freeze({ id, label: String(input.label ?? id), domainPath: String(input.domainPath ?? `n:${id}`), kits: Object.freeze(unique(asList(input.kits).map(String)).sort()), metadata: Object.freeze(clone(input.metadata ?? {})) });
-}
-
-function normalizeBundleManifest(input = {}) {
-  const id = stableId(input.id, "Bundle manifest");
-  return Object.freeze({ id, label: String(input.label ?? id), domains: Object.freeze(unique(asList(input.domains).map(String)).sort()), kits: Object.freeze(unique(asList(input.kits).map(String)).sort()), metadata: Object.freeze(clone(input.metadata ?? {})) });
-}
-
 export function createKitRegistryService(config = {}) {
-  const initial = { kits: asList(config.kits).map(normalizeKitManifest), domains: asList(config.domains).map(normalizeDomainManifest), bundles: asList(config.bundles).map(normalizeBundleManifest) };
-  let kits = new Map(); let domains = new Map(); let bundles = new Map(); let revision = 0;
+  const initial = configSnapshot(config);
+  let kits = new Map(); let domains = new Map(); let bundles = new Map(); let sources = new Map(); let revision = 0;
+  let protectedIds = new Set(); let protectedDomainPaths = new Set();
+
+  function ensureRuntimeSource() {
+    if (!sources.has(RUNTIME_SOURCE_ID)) sources.set(RUNTIME_SOURCE_ID, Object.freeze({
+      registryId: RUNTIME_SOURCE_ID,
+      package: "runtime-registry",
+      version: "0.0.0",
+      contentHash: "runtime-mutable",
+      trusted: false,
+      metadata: Object.freeze({})
+    }));
+  }
 
   function register(map, value, normalize, label, replace = false) {
+    ensureRuntimeSource();
     const normalized = normalize(value);
     const existing = map.get(normalized.id);
     if (existing && sameValue(existing, normalized)) return clone(existing);
+    if (existing && protectedIds.has(normalized.id)) throw new TypeError(`Core ${label.toLowerCase()} ${normalized.id} cannot be replaced.`);
     if (existing && !replace) throw new TypeError(`${label} id collision: ${normalized.id}`);
+    if (label === "Domain") {
+      const pathCollision = [...domains.values()].find((domain) => domain.domainPath === normalized.domainPath && domain.id !== normalized.id);
+      if (pathCollision) throw new TypeError(`Domain path collision: ${normalized.domainPath}`);
+      if (protectedDomainPaths.has(normalized.domainPath) && existing?.domainPath !== normalized.domainPath) throw new TypeError(`Core domain path ${normalized.domainPath} cannot be replaced.`);
+    }
     map.set(normalized.id, normalized); revision += 1; return clone(normalized);
   }
   function sortedValues(map) { return [...map.values()].sort((left, right) => left.id.localeCompare(right.id)).map(clone); }
-  function snapshot() { return { schema: "nexusengine.core-composition.registry/1", revision, kits: sortedValues(kits), domains: sortedValues(domains), bundles: sortedValues(bundles) }; }
+  function snapshot() {
+    return normalizeRegistrySnapshot({
+      schema: CORE_COMPOSITION_REGISTRY_SCHEMA,
+      revision,
+      registryId: initial.registryId,
+      sources: [...sources.values()].map(clone),
+      kits: sortedValues(kits),
+      domains: sortedValues(domains),
+      bundles: sortedValues(bundles)
+    }, { allowTrustedSources: true });
+  }
   function loadSnapshot(value = {}) {
-    if (value.schema !== "nexusengine.core-composition.registry/1") throw new TypeError("Unsupported Core Composition registry snapshot.");
-    kits = new Map(); domains = new Map(); bundles = new Map();
-    for (const kit of asList(value.kits)) register(kits, kit, normalizeKitManifest, "Kit", true);
-    for (const domain of asList(value.domains)) register(domains, domain, normalizeDomainManifest, "Domain", true);
-    for (const bundle of asList(value.bundles)) register(bundles, bundle, normalizeBundleManifest, "Bundle", true);
-    revision = Math.max(0, Number(value.revision ?? revision)); return snapshot();
+    const normalized = normalizeRegistrySnapshot(value, { allowTrustedSources: true });
+    kits = new Map(normalized.kits.map((record) => [record.id, record]));
+    domains = new Map(normalized.domains.map((record) => [record.id, record]));
+    bundles = new Map(normalized.bundles.map((record) => [record.id, record]));
+    sources = new Map(normalized.sources.map((record) => [record.registryId, record]));
+    revision = normalized.revision;
+    protectedIds = new Set([...normalized.domains, ...normalized.kits, ...normalized.bundles].filter((record) => {
+      const sourceId = record.sourceRegistryId ?? record.source?.registryId;
+      return sources.get(sourceId)?.trusted === true;
+    }).map((record) => record.id));
+    protectedDomainPaths = new Set(normalized.domains.filter((record) => protectedIds.has(record.id)).map((record) => record.domainPath));
+    return snapshot();
   }
   function reset(value = initial) {
-    kits = new Map(); domains = new Map(); bundles = new Map(); revision = 0;
-    for (const kit of asList(value.kits)) register(kits, kit, normalizeKitManifest, "Kit", true);
-    for (const domain of asList(value.domains)) register(domains, domain, normalizeDomainManifest, "Domain", true);
-    for (const bundle of asList(value.bundles)) register(bundles, bundle, normalizeBundleManifest, "Bundle", true);
-    return snapshot();
+    return loadSnapshot(value.schema ? value : configSnapshot(value));
   }
 
   reset();
   return Object.freeze({
-    normalizeKitManifest,
-    normalizeDomainManifest,
-    normalizeBundleManifest,
-    registerKit: (value, options = {}) => register(kits, value, normalizeKitManifest, "Kit", options.replace === true),
-    registerDomain: (value, options = {}) => register(domains, value, normalizeDomainManifest, "Domain", options.replace === true),
-    registerBundle: (value, options = {}) => register(bundles, value, normalizeBundleManifest, "Bundle", options.replace === true),
+    normalizeKitManifest: (value) => normalizeKitRegistryRecord(value, { defaultSourceId: RUNTIME_SOURCE_ID, allowTrustedSource: false }),
+    normalizeDomainManifest: (value) => normalizeDomainRegistryRecord({ ...value, sourceRegistryId: value.sourceRegistryId ?? RUNTIME_SOURCE_ID }),
+    normalizeBundleManifest: (value) => normalizeBundleRegistryRecord({ ...value, sourceRegistryId: value.sourceRegistryId ?? RUNTIME_SOURCE_ID }),
+    registerKit: (value, options = {}) => register(kits, value, (entry) => normalizeKitRegistryRecord(entry, { defaultSourceId: RUNTIME_SOURCE_ID, allowTrustedSource: false }), "Kit", options.replace === true),
+    registerDomain: (value, options = {}) => register(domains, value, (entry) => normalizeDomainRegistryRecord({ ...entry, sourceRegistryId: entry.sourceRegistryId ?? RUNTIME_SOURCE_ID }), "Domain", options.replace === true),
+    registerBundle: (value, options = {}) => register(bundles, value, (entry) => normalizeBundleRegistryRecord({ ...entry, sourceRegistryId: entry.sourceRegistryId ?? RUNTIME_SOURCE_ID }), "Bundle", options.replace === true),
     registerRegistry(value = {}, options = {}) {
-      const results = { kits: [], domains: [], bundles: [] };
-      for (const kit of asList(value.kits)) results.kits.push(register(kits, kit, normalizeKitManifest, "Kit", options.replace === true));
-      for (const domain of asList(value.domains)) results.domains.push(register(domains, domain, normalizeDomainManifest, "Domain", options.replace === true));
-      for (const bundle of asList(value.bundles)) results.bundles.push(register(bundles, bundle, normalizeBundleManifest, "Bundle", options.replace === true));
-      return results;
+      if (options.replace === true) throw new TypeError("Imported registries cannot replace existing records.");
+      const merged = mergeRegistrySnapshots(snapshot(), value);
+      loadSnapshot(merged);
+      return { kits: clone(merged.kits), domains: clone(merged.domains), bundles: clone(merged.bundles), snapshot: clone(merged) };
     },
-    removeKit(id) { const removed = kits.delete(String(id)); if (removed) revision += 1; return removed; },
-    removeDomain(id) { const removed = domains.delete(String(id)); if (removed) revision += 1; return removed; },
-    removeBundle(id) { const removed = bundles.delete(String(id)); if (removed) revision += 1; return removed; },
+    removeKit(id) { if (protectedIds.has(String(id))) throw new TypeError(`Core kit ${id} cannot be removed.`); const removed = kits.delete(String(id)); if (removed) revision += 1; return removed; },
+    removeDomain(id) { if (protectedIds.has(String(id))) throw new TypeError(`Core domain ${id} cannot be removed.`); const removed = domains.delete(String(id)); if (removed) revision += 1; return removed; },
+    removeBundle(id) { if (protectedIds.has(String(id))) throw new TypeError(`Core bundle ${id} cannot be removed.`); const removed = bundles.delete(String(id)); if (removed) revision += 1; return removed; },
     getKit: (id) => clone(kits.get(String(id)) ?? null),
     getDomain: (id) => clone(domains.get(String(id)) ?? null),
     getBundle: (id) => clone(bundles.get(String(id)) ?? null),
     listKits: () => sortedValues(kits),
     listDomains: () => sortedValues(domains),
     listBundles: () => sortedValues(bundles),
+    listSources: () => [...sources.values()].sort((a, b) => a.registryId.localeCompare(b.registryId)).map(clone),
     findProviders(token) { return sortedValues(kits).filter((kit) => kit.provides.includes(String(token))); },
     findConsumers(token) { return sortedValues(kits).filter((kit) => kit.requires.includes(String(token))); },
     search(query = "") {
@@ -186,14 +209,18 @@ export function createCompositionPlanningService(registry, capabilities) {
     const selected = new Set(asList(request.kits).map(String));
     for (const domainId of asList(request.domains)) {
       const domain = registry.getDomain(domainId); if (!domain) throw new RangeError(`Unknown composition domain: ${domainId}`);
-      for (const kitId of domain.kits) selected.add(kitId);
+      for (const kit of registry.listKits()) {
+        if (kit.domainPath === domain.domainPath || kit.domainPath.startsWith(`${domain.domainPath}:`)) selected.add(kit.id);
+      }
     }
     for (const bundleId of asList(request.bundles)) {
       const bundle = registry.getBundle(bundleId); if (!bundle) throw new RangeError(`Unknown composition bundle: ${bundleId}`);
       for (const kitId of bundle.kits) selected.add(kitId);
       for (const domainId of bundle.domains) {
         const domain = registry.getDomain(domainId); if (!domain) throw new RangeError(`Bundle ${bundleId} references unknown domain ${domainId}.`);
-        for (const kitId of domain.kits) selected.add(kitId);
+        for (const kit of registry.listKits()) {
+          if (kit.domainPath === domain.domainPath || kit.domainPath.startsWith(`${domain.domainPath}:`)) selected.add(kit.id);
+        }
       }
     }
     return [...selected].sort();
@@ -230,6 +257,7 @@ export function createCompositionPlanningService(registry, capabilities) {
   }
   return Object.freeze({
     plan,
+    planTree(tree, options = {}) { return planCompositionTree(tree, registry, options); },
     validate(request = {}, options = {}) {
       const result = plan(request, options);
       if (!result.ok && options.throwOnError === true) throw new Error(`Composition plan rejected: ${JSON.stringify({ missing: result.missing, rejected: result.rejected, cycles: result.cycles })}`);

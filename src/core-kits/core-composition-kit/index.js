@@ -1,4 +1,6 @@
 import { createCoreCapabilityKit } from "../core-capability-kit.js";
+import { createCompositionHierarchyService } from "./composition-tree.js";
+import { createCoreRegistrySnapshot } from "./registry.js";
 import {
   createCapabilityGraphService,
   createCompositionHealthService,
@@ -7,6 +9,8 @@ import {
 } from "./services.js";
 
 export * from "./services.js";
+export * from "./registry.js";
+export * from "./composition-tree.js";
 
 export function createCoreCompositionKit(config = {}) {
   const customCreateApi = config.createApi;
@@ -30,9 +34,13 @@ export function createCoreCompositionKit(config = {}) {
       ...(config.owns ?? [])
     ],
     doesNotOwn: ["low-level kit install mechanics", "game-specific kit bundles", ...(config.doesNotOwn ?? [])],
-    services: [...(config.services ?? []), "registry", "capabilities", "planning", "health"],
+    services: [...(config.services ?? []), "registry", "hierarchy", "capabilities", "planning", "health"],
     createApi(context) {
-      const registry = createKitRegistryService(config.registry ?? config);
+      const initialRegistry = config.registry === false
+        ? { kits: [], domains: [], bundles: [] }
+        : config.registry ?? createCoreRegistrySnapshot();
+      const registry = createKitRegistryService(initialRegistry);
+      const hierarchy = createCompositionHierarchyService(registry);
       const capabilities = createCapabilityGraphService(registry);
       const planning = createCompositionPlanningService(registry, capabilities);
       const health = createCompositionHealthService(registry, capabilities);
@@ -45,6 +53,7 @@ export function createCoreCompositionKit(config = {}) {
       return {
         ...customApi,
         registry,
+        hierarchy,
         capabilities,
         planning,
         health,
@@ -56,7 +65,7 @@ export function createCoreCompositionKit(config = {}) {
         },
         reset(payload = {}) {
           const base = context.baseApi.reset(payload);
-          registry.reset(payload.registry ?? config.registry ?? config);
+          registry.reset(payload.registry ?? initialRegistry);
           return { ...base, services: servicesSnapshot() };
         }
       };
@@ -70,6 +79,8 @@ export function createCoreCompositionKit(config = {}) {
       engine.kitRegistry ??= api.registry;
       engine.n.capabilityGraph ??= api.capabilities;
       engine.capabilityGraph ??= api.capabilities;
+      engine.n.compositionHierarchy ??= api.hierarchy;
+      engine.compositionHierarchy ??= api.hierarchy;
       engine.n.compositionPlanning ??= api.planning;
       engine.compositionPlanning ??= api.planning;
     },

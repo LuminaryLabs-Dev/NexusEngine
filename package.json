@@ -30,6 +30,7 @@
     "./core-object-fidelity": "./src/core-kits/core-object-fidelity-kit/index.js",
     "./core-capture": "./src/core-kits/core-capture-kit/index.js",
     "./core-transaction-ledger": "./src/core-kits/core-transaction-ledger-kit/index.js",
+    "./core-composition": "./src/core-kits/core-composition-kit/index.js",
     "./core-kits": "./src/core-kits/index.js",
     "./core-kits/core-capability-kit": "./src/core-kits/core-capability-kit.js",
     "./core-kits/core-domains": "./src/core-kits/core-domains.js",
