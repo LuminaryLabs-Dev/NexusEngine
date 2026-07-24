@@ -19,7 +19,8 @@ docs/0.0.3/
 ```txt
 Core domains expose composable pieces first.
 Umbrella factories are convenience only.
-Games and ProtoKits may use individual pieces, umbrella factories, or custom replacement kits.
+Games and trusted registry kits may use individual pieces, umbrella factories,
+or custom replacement kits.
 ```
 
 `core-capability-kit.js` is the shared helper. Domain-specific logic lives inside each `src/core-kits/<core-kit>/` folder.

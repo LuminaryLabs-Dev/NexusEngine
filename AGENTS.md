@@ -65,7 +65,7 @@ The app is not the architecture. The kit graph is the architecture.
 
 ## Repository Role
 
-This repository is the promoted NexusEngine engine substrate.
+This repository is the NexusEngine Core substrate.
 
 This repository owns:
 
@@ -74,7 +74,7 @@ This repository owns:
 - events, resources, queries, and surfaces
 - runtime kit contracts
 - domain service kit contracts
-- promoted reusable engine kits
+- atomic, idempotent, fully reusable Core domains
 - deterministic ticks
 - reset and snapshot expectations
 - renderer-agnostic descriptors
@@ -82,7 +82,10 @@ This repository owns:
 - the Core Headless Editor control plane
 - target-driven guided development infrastructure
 
-ProtoKits are the proving ground. NexusEngine core is the promotion target. Do not promote unstable behavior into core only because it works in one demo.
+Reusable optional, niche, genre, or platform behavior belongs in
+NexusEngine-Kits or another trusted registry. Complete games and presets belong
+in experiment or game repositories. The retired ProtoKit workflow is not an
+implementation destination.
 
 ## Agent Work Loop
 
@@ -241,7 +244,8 @@ How can it be reapplied safely?
 
 A domain is a named area of engine meaning.
 
-Examples include terrain, physics, locomotion, camera, interaction, navigation, rendering descriptors, AR session, XR stereo view, economy, lifecycle progression, schedule, telemetry, and world patch streaming.
+Examples include data, deterministic scheduling, physics contracts, motion
+contracts, composition, diagnostics, persistence, and snapshot/replay.
 
 Before editing code, classify the work:
 
@@ -249,7 +253,7 @@ Before editing code, classify the work:
 atomic mechanic
 scoped domain
 composite domain
-promoted engine kit
+Core domain candidate
 renderer adapter
 host application
 proof harness
@@ -257,7 +261,9 @@ test fixture
 documentation
 ```
 
-Reusable behavior belongs in a kit or domain service kit. Host, demo, route, and renderer wiring must remain outside reusable domain logic.
+Classify reusable behavior again: only universal behavior may enter Core.
+Optional reusable behavior belongs in a trusted registry kit. Host, game, demo,
+route, and renderer wiring stays outside Core production logic.
 
 ## Idempotency Rules
 
@@ -326,6 +332,9 @@ A change is not complete if the code changed but the kit graph or development ev
 Do not promote a capability into NexusEngine core unless it is:
 
 - generic beyond one game
+- atomic, with one clear responsibility
+- idempotent under install, reset, and reapplication
+- fully reusable without genre, product, or platform assumptions
 - named as a domain
 - stable enough to reuse
 - deterministic where required
@@ -336,7 +345,8 @@ Do not promote a capability into NexusEngine core unless it is:
 - readable for agents
 - represented in the public and installed composition paths
 
-ProtoKits can move fast. NexusEngine core must stay reconcilable.
+Unknown or unproven ownership fails closed: keep the capability outside Core.
+Consult `docs/KIT-OWNERSHIP.md` before implementation.
 
 ## Kit Anatomy
 

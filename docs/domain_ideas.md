@@ -2,7 +2,9 @@
 
 This file is an expansion inventory for NexusEngine DSK planning. It is not an implementation ledger. Add domain ideas here when a composition suggests a reusable ownership boundary that could become a Domain Service Kit.
 
-Implementation target: when a domain idea becomes a real reusable kit, create or refine it in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/`. NexusEngine core should only receive contract, runtime, composer, or validation changes that make domain kits safer to compose.
+This is a suggestion inventory, not an implementation queue. If an idea is
+approved and proves reusable but non-Core, its first-party destination is
+`NexusEngine-Kits`. NexusEngine changes require the Core ownership gate.
 
 ## Domain Idea Rules
 
@@ -11,7 +13,7 @@ Implementation target: when a domain idea becomes a real reusable kit, create or
 - A domain should expose bridge services through `engine.n.*`, not by sharing private resources.
 - A domain should be reusable across multiple products through config, datasets, and composition.
 - A domain should declare likely `provides`, `requires`, snapshot/reset expectations, and path ownership.
-- Treat domain ideas as ProtoKit candidates by default, not core kit requests.
+- Treat domain ideas as unapproved registry suggestions, not Core requests.
 
 ## 1. World Space Domain
 
@@ -1392,7 +1394,7 @@ Fits:
 - DSK extensions where a distinct `apiName`, `services`, or `provides` entry must correspond to an installed API or an explicitly base-API-only contract
 - base and extension install flows where installing after the base must be idempotent, transactional, and retryable rather than leaving partial extension APIs or metadata
 - extension merges where component, resource, and event identity must be checked by ECS definition name as well as config key
-- ProtoKit service-expansion paths that add services to existing domains without rewriting the base domain kit
+- registry kit service-expansion paths that add services to existing domains without rewriting the base domain kit
 - DSK hardening fixtures that need extension API/token parity separate from generic install rollback, duplicate runtime binding ownership, and public module-source proof
 
 Owned paths:

@@ -2,26 +2,21 @@
 
 Status: active
 
-## Mentality
+Agents gather live evidence, follow the Core ownership gate, and write concise
+results into the repository without silently changing architecture.
 
-Agents should make the NexusEngine ecosystem easier to understand, validate, and promote by writing structured evidence back into the repo.
+## Outputs
 
-## Operating Shape
+- `state/automation/`: manifests, lane prompts, trackers, and packets
+- `state/automation/*/knowledge_nodes/`: reusable evidence-backed lessons
+- `memory.md`: durable current decisions only
+- `.agent/CHANGE_LOG.md`: agent-operating-layer changes
 
-- Gather facts from the live checkout before making claims.
-- Always resolve the latest remote release branch before comparing branch state.
-- Prefer evidence files over chat-only conclusions.
-- Keep reports short, inspectable, and linked to commands or files.
-- Separate source changes from evidence updates.
-- Do not hide important findings inside automation logs only.
+## Scope
 
-## Agent Outputs
+Track NexusEngine Core, NexusEngine-Kits, experiments and games, public package
+consumption, and runtime risks.
 
-- `state/automation/` for automation manifests, lane prompts, trackers, and run packets.
-- `state/automation/*/knowledge_nodes/` for reusable lessons.
-- `memory.md` for durable repo decisions only.
-- `.agent/CHANGE_LOG.md` for agent-operating-layer changes.
-
-## Ecosystem Scope
-
-Track NexusEngine core, ProtoKits, Experiments, public GitHub/CDN consumption, DSK promotion readiness, and long-term runtime issues without turning product-specific experiment behavior into core runtime code.
+Do not turn suggestions into implementations. Do not direct work to the retired
+ProtoKit workflow. Use `docs/KIT-OWNERSHIP.md` to route every production
+capability.

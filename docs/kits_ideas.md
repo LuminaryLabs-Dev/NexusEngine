@@ -2,7 +2,9 @@
 
 This file is an expansion inventory for possible NexusEngine kits. It is not a promise that every kit should be implemented. Use it to collect reusable kit candidates, decide ownership boundaries, and feed audit automations with concrete DSK expansion targets.
 
-Implementation target: new reusable kits should be built in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/`, not directly in NexusEngine core. NexusEngine core should only change when the kit idea exposes a missing runtime primitive, DSK invariant, composer rule, or validation surface.
+This is a suggestion inventory, not an implementation queue. If an idea is
+approved and proves reusable but non-Core, its first-party destination is
+`NexusEngine-Kits`. NexusEngine changes require the Core ownership gate.
 
 ## Kit Idea Rules
 
@@ -10,7 +12,8 @@ Implementation target: new reusable kits should be built in `/Users/crimsonwheel
 - Keep helpers internal when they do not need lifecycle, service tokens, or snapshot/reset ownership.
 - Prefer config and datasets over product-specific logic.
 - Every promoted DSK candidate should declare likely `provides`, `requires`, `engine.n.*` API, snapshot/reset expectations, and path ownership.
-- Treat this file as planning inventory. Implementation belongs in ProtoKits until a later human-reviewed promotion decision says otherwise.
+- Every destination is suggestion-only until ownership review and explicit
+  human approval.
 
 ## World And Space Kits
 
@@ -321,35 +324,35 @@ immutable-config-kit
 |-- provides: n:config:immutable-source
 |-- requires: n:config:normalize
 |-- used by: occupant-flow, facility-operations, schedule, objective, experiment datasets
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 stable-id-allocation-kit
 |-- owns: generated id namespaces, collision checks, sequence restore policy
 |-- provides: n:identity:allocation
 |-- requires: n:state:snapshot
 |-- used by: occupant-flow, request-queue, cargo-manifest, transport-route, telemetry
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 finite-transaction-policy-kit
 |-- owns: finite amount validation, rejection receipts, ledger-safe transaction requests
 |-- provides: n:ledger:finite-transaction
 |-- requires: n:economy:ledger, n:mutation:acceptance
 |-- used by: facility-operations, lifecycle-progression, request-queue, economy
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 restored-resource-state-kit
 |-- owns: initial/restored value normalization, aggregate flag derivation, reset consistency
 |-- provides: n:state:restored-consistency
 |-- requires: n:state:snapshot, n:config:normalize
 |-- used by: resource-pressure, scenario-driver, telemetry, proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 operations-invariant-proof-kit
 |-- owns: operations invariant rows, replay/reset proof snapshots, data-integrity coverage reports
 |-- provides: n:proof:operations-invariants
 |-- requires: n:proof:coverage, n:operations:data-integrity
 |-- used by: city operations, logistics, social simulation, service-flow proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Spatial, Hazard, And Mobility Invariant Kits
@@ -360,35 +363,35 @@ transition-state-policy-kit
 |-- provides: n:spatial:transition
 |-- requires: n:world:space, n:state:terminal-policy
 |-- used by: spatial-scale, landmark-guidance, environmental-affordance, interaction-target, AR training
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 immediate-threshold-policy-kit
 |-- owns: zero-duration scenario settlement, zero-time checkpoint policy, reset/init threshold receipts
 |-- provides: n:time:immediate-threshold
 |-- requires: n:time:step-policy, n:mutation:completion-idempotency
 |-- used by: scenario-duration, timing-window, objective-flow, proof harness setup phases
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 hazard-identity-policy-kit
 |-- owns: authored/restored/spawned hazard id namespaces, generated id collision checks, hazard attribution ids
 |-- provides: n:hazard:identity
 |-- requires: n:identity:allocation, n:hazard:field
 |-- used by: hazard-field, hazard-director, route-field, telemetry, replay and collision proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 resource-bound-normalization-kit
 |-- owns: min/max capacity normalization, start-value clamping, active-state gates, reset-safe resource bounds
 |-- provides: n:resource:bounds
 |-- requires: n:config:normalize, n:state:restored-consistency
 |-- used by: vehicle-dynamics, resource-pressure, locomotion, timing-window, mobility proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 spatial-mobility-invariant-proof-kit
 |-- owns: transition-state, zero-threshold, generated-id, and resource-bound proof rows
 |-- provides: n:proof:spatial-mobility-invariants
 |-- requires: n:proof:coverage, n:spatial:transition, n:time:immediate-threshold
 |-- used by: AR training, rescue mobility, hazard fields, runner scenes, spatial guidance proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Receipt Identity And Event Idempotency Kits
@@ -399,35 +402,35 @@ receipt-identity-kit
 |-- provides: n:receipt:identity
 |-- requires: n:mutation:acceptance, n:event:handoff
 |-- used by: timing-window, interaction-target, reward, telemetry, replay and proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 event-idempotency-kit
 |-- owns: transition-only event emission, duplicate event suppression/reporting, already-complete receipts
 |-- provides: n:event:idempotency
 |-- requires: n:mutation:completion-idempotency, n:event:handoff
 |-- used by: interaction-target, objective-flow, collectible, request fulfillment, telemetry
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 claim-receipt-policy-kit
 |-- owns: first-claim versus already-claimed receipts, persisted claim reconciliation, reward attribution ids
 |-- provides: n:reward:claim-policy
 |-- requires: n:event:idempotency, n:state:restored-consistency
 |-- used by: collectible, objective-flow, economy-ledger, progression and persistence proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 request-identity-policy-kit
 |-- owns: authored/restored/manual request id namespaces, generated request collision checks, request attribution ids
 |-- provides: n:request:identity
 |-- requires: n:identity:allocation, n:request:fulfillment
 |-- used by: request-fulfillment, request-queue, cargo-manifest, route-field, logistics proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 receipt-integrity-proof-kit
 |-- owns: receipt identity, event idempotency, claim policy, and request identity proof rows
 |-- provides: n:proof:receipt-integrity
 |-- requires: n:proof:coverage, n:receipt:identity, n:event:idempotency
 |-- used by: timing/action, interaction/objective, reward, logistics, replay and telemetry proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Bridge Phase And Wrapper State Kits
@@ -438,35 +441,35 @@ bridge-phase-policy-kit
 |-- provides: n:bridge:phase
 |-- requires: n:event:handoff, n:audit:composition
 |-- used by: surface-placement, AR placement, objective-flow, SequenceNode bridges, proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 step-transition-receipt-kit
 |-- owns: incomplete-to-complete step receipts, final-step receipts, reset-safe one-shot step emission
 |-- provides: n:receipt:step-transition
 |-- requires: n:event:idempotency, n:mutation:completion-idempotency
 |-- used by: objective-flow, AR-experience, tutorial, onboarding, telemetry, proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 delegated-action-reconciliation-kit
 |-- owns: delegated action outcome mapping, interaction-target completion mirroring, adapter result receipts
 |-- provides: n:action:delegation
 |-- requires: n:event:idempotency, n:receipt:identity
 |-- used by: symbol-alignment, lock-and-socket, reveal-light, sorting, moving-target, micro-platformer wrappers
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 wrapper-state-contract-kit
 |-- owns: stateful versus stateless adapter declarations, wrapper-owned snapshot paths, reset/snapshot ownership reports
 |-- provides: n:adapter:state-contract
 |-- requires: n:state:snapshot, n:audit:composition
 |-- used by: puzzle wrappers, platformer wrappers, AR lesson adapters, public API proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 bridge-state-proof-kit
 |-- owns: bridge phase, step receipt, delegated action, and wrapper state proof rows
 |-- provides: n:proof:bridge-state
 |-- requires: n:proof:coverage, n:bridge:phase, n:adapter:state-contract
 |-- used by: AR placement proof, objective/lesson proof, puzzle wrapper proof, public DSK hardening reviews
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Source State Integrity Kits
@@ -477,35 +480,35 @@ authored-source-isolation-kit
 |-- provides: n:config:authored-isolation
 |-- requires: n:config:immutable-source, n:config:normalize
 |-- used by: water-surface, route-field, render-descriptor, dataset-heavy proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 reset-source-policy-kit
 |-- owns: reset-from-source snapshots, runtime-field scrubbing, source-versus-restored reset reports
 |-- provides: n:state:reset-source
 |-- requires: n:state:snapshot, n:config:authored-isolation
 |-- used by: water, route, rendering descriptors, pursuit, scenario-driver, replay proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 retention-limit-policy-kit
 |-- owns: zero/negative/non-finite retention normalization, prune receipts, bounded evidence history
 |-- provides: n:state:retention-limit
 |-- requires: n:state:retention, n:proof:coverage
 |-- used by: economy-ledger, telemetry, proof-surface, replay and audit history
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 initial-terminal-receipt-kit
 |-- owns: initial terminal-state derivation, terminal/recovered receipt policy, contradictory-state rejection
 |-- provides: n:state:initial-terminal
 |-- requires: n:state:terminal-policy, n:event:idempotency
 |-- used by: pursuit-pressure, assistance-target, scenario-duration, recovery and pressure proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 source-state-integrity-proof-kit
 |-- owns: authored-isolation, reset-source, retention-limit, and initial-terminal proof rows
 |-- provides: n:proof:source-state
 |-- requires: n:proof:coverage, n:config:authored-isolation, n:state:retention-limit
 |-- used by: reset/replay reviews, dataset-heavy DSK promotion, economy/proof retention audits, scenario pressure proofs
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## State Signal Contract Kits
@@ -516,42 +519,42 @@ descriptor-invalidation-kit
 |-- provides: n:signal:invalidation
 |-- requires: n:state:snapshot, n:config:authored-isolation
 |-- used by: forest-placement, terrain descriptors, route-aware rendering, object streaming, proof snapshots
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 action-repeat-policy-kit
 |-- owns: edge, held, repeat, duplicate-attempt, accepted, and ignored action semantics
 |-- provides: n:action:repeat-policy
 |-- requires: n:input:edge, n:event:idempotency
 |-- used by: interaction, character interaction, shrine puzzle, combat, objective actions, telemetry
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 state-machine-transition-kit
 |-- owns: false-to-true transition receipts, initial terminal normalization, contradictory-state rejection
 |-- provides: n:state-machine:transition
 |-- requires: n:state:initial-terminal, n:mutation:completion-idempotency
 |-- used by: shrine puzzle, light combat, objective flow, pressure/recovery domains, proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 coordinate-axis-policy-kit
 |-- owns: `{ x, y }` versus `{ x, z }` point normalization, axis-contract reports, 2D/3D adapter decisions
 |-- provides: n:coordinate:axis-policy
 |-- requires: n:world:space, n:config:normalize
 |-- used by: scenario-driver, route-field, terrain, camera, mobility, validation helpers
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 derived-state-boundary-kit
 |-- owns: source state versus derived adjustment paths, view-safe output state, reset-safe derived reports
 |-- provides: n:state:derived-boundary
 |-- requires: n:state:snapshot, n:presentation
 |-- used by: camera-occlusion, camera safety, render descriptors, debug overlays, replay proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 state-signal-contract-proof-kit
 |-- owns: invalidation, action repeat, state-machine transition, coordinate axis, and derived-state proof rows
 |-- provides: n:proof:signal-contract
 |-- requires: n:proof:coverage, n:signal:invalidation, n:action:repeat-policy, n:coordinate:axis-policy
 |-- used by: placement, interaction, puzzle/combat, validation-driver, camera proof reviews
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Service Lifecycle And Config Kits
@@ -562,35 +565,35 @@ command-lifecycle-kit
 |-- provides: n:command:lifecycle
 |-- requires: n:event:idempotency, n:receipt:identity
 |-- used by: companion command, assistance, guide, AR training, tutorial, interaction services
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 elapsed-rate-policy-kit
 |-- owns: per-second versus per-tick progression policy, elapsed-time terminal settlement, floating threshold receipts
 |-- provides: n:time:elapsed-rate
 |-- requires: n:time:step-policy, n:time:catchup
 |-- used by: corruption/world-state, resource pressure, scenario duration, lifecycle progression, proof harnesses
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 descriptor-normalization-kit
 |-- owns: canonical numeric descriptor fields, spread/override ordering policy, nested source clone/freeze reports
 |-- provides: n:descriptor:normalization
 |-- requires: n:config:normalize, n:config:authored-isolation
 |-- used by: spatial-room, greybox-building, render descriptors, AR anchors, room/building proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 generated-geometry-bounds-kit
 |-- owns: positive count/lane/spacing bounds, finite coordinate assertions, invalid generation rejection receipts
 |-- provides: n:geometry:finite-bounds
 |-- requires: n:config:normalize, n:world:space
 |-- used by: tree-runner, procedural generation, route traversal, terrain/object streaming, renderer snapshots
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 service-lifecycle-config-proof-kit
 |-- owns: command lifecycle, elapsed-rate, descriptor normalization, and finite generated-geometry proof rows
 |-- provides: n:proof:lifecycle-config
 |-- requires: n:proof:coverage, n:command:lifecycle, n:time:elapsed-rate, n:descriptor:normalization
 |-- used by: DSK hardening fixtures, companion/guide flows, world-state progression, spatial room proof, generated traversal proof
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Traversal Proof Integrity Kits
@@ -601,35 +604,35 @@ navigation-cost-policy-kit
 |-- provides: n:navigation:cost-policy
 |-- requires: n:pathfinding, n:config:normalize
 |-- used by: pathfinding, terrain walkability, route-field, navmesh adapters, traversal proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 navmesh-identity-policy-kit
 |-- owns: unique walkability keys, canonical cell ids, waypoint/portal/link identity assertions
 |-- provides: n:navmesh:identity-policy
 |-- requires: n:identity:allocation, n:navmesh
 |-- used by: navmesh generation, procedural walkability, imported maps, graph telemetry, proof snapshots
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 procedural-signature-taxonomy-kit
 |-- owns: content, topology, algorithm/config, and proof signature boundaries
 |-- provides: n:procedural:signature-taxonomy
 |-- requires: n:procedural, n:signal:invalidation
 |-- used by: procedural generation, forest placement, navmesh rebuilds, route generation, proof metadata
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 recovery-receipt-state-kit
 |-- owns: one-shot recovery receipts, final recovered-state publication, event/state consistency rows
 |-- provides: n:recovery:state-consistency
 |-- requires: n:event:idempotency, n:state:snapshot
 |-- used by: world physics, action movement, fall recovery, boundary recovery, replay and analytics proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 traversal-proof-integrity-kit
 |-- owns: navigation cost, navmesh identity, procedural signature, and recovery receipt/state proof rows
 |-- provides: n:proof:traversal-integrity
 |-- requires: n:proof:coverage, n:navigation:cost-policy, n:navmesh:identity-policy, n:procedural:signature-taxonomy
 |-- used by: DSK hardening fixtures, navigation/procedural/physics promotion reviews, playable traversal proof routes
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Runtime Failure Boundary Kits
@@ -679,7 +682,7 @@ control-recovery-receipt-kit
 |-- provides: n:control:recovery-receipts
 |-- requires: n:event:idempotency, n:recovery:state-consistency
 |-- used by: character ragdoll, fall recovery, tutorial prompts, objective bridges, telemetry proof rows
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 launch-fallback-chain-kit
 |-- owns: preferred mode try order, support-pass/start-fail diagnostics, fallback selected-mode updates, no-fallback policy
@@ -700,14 +703,14 @@ content-dataset-contract-kit
 |-- provides: n:content:dataset-contract
 |-- requires: n:config:authored-isolation, n:config:normalize
 |-- used by: fishing, reef rescue, wildlife, collectibles, authored experiment datasets
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 
 experience-edge-proof-kit
 |-- owns: recovery receipt, launch fallback, quality profile, and content dataset edge proof rows
 |-- provides: n:proof:experience-edge
 |-- requires: n:proof:coverage, n:control:recovery-receipts, n:launch:fallback-chain, n:presentation:quality-profile, n:content:dataset-contract
 |-- used by: domain-kit edge fixtures, AR/presentation/content promotion reviews, public proof readiness gates
-|-- likely target repo: NexusEngine-ProtoKits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits
 ```
 
 ## Lifecycle Parity And Cleanup Kits
@@ -796,21 +799,21 @@ hardening-fixture-queue-kit
 |-- provides: n:proof:fixture-queue
 |-- requires: n:proof:coverage, n:proof:failure-boundary, n:proof:lifecycle-parity, n:proof:query-command-semantics
 |-- used by: DSK promotion reviews, automation trackers, non-scout fixture planning, release evidence packets
-|-- likely target repo: NexusEngine-ProtoKits proof tooling or NexusEngine core validation surface
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits proof tooling or NexusEngine core validation surface
 
 proof-claim-taxonomy-kit
 |-- owns: local, fetched-ref, aggregate, targeted, browser-complete, npm, package-version, and hardening claim labels
 |-- provides: n:proof:claim-taxonomy
 |-- requires: n:proof:surface, n:proof:coverage
 |-- used by: ecosystem state/proof packets, release checklists, public proof reviews, not-claimed sections
-|-- likely target repo: NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits proof tooling
 
 module-source-gate-kit
 |-- owns: package, workspace, CDN branch, same-origin asset, and build-step import-map resolution decisions
 |-- provides: n:proof:module-source-gate
 |-- requires: n:proof:surface, n:proof:claim-taxonomy
-|-- used by: ProtoKits fetched-ref validation, Experiments targeted proof, public browser proof, CDN/raw proof routes
-|-- likely target repo: NexusEngine-Experiments proof routing or NexusEngine-ProtoKits proof tooling
+|-- used by: trusted registry kits fetched-ref validation, Experiments targeted proof, public browser proof, CDN/raw proof routes
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Experiments proof routing or NexusEngine-Kits proof tooling
 
 aggregate-targeted-proof-parity-kit
 |-- owns: aggregate script coverage rows, required targeted commands, omitted proof diagnostics, generated-route write boundaries
@@ -824,7 +827,7 @@ release-evidence-checklist-kit
 |-- provides: n:proof:release-evidence
 |-- requires: n:proof:claim-taxonomy, n:proof:fixture-queue, n:proof:module-source-gate
 |-- used by: DSK promotion packets, public proof readiness reviews, release branch decisions, package/public claim audits
-|-- likely target repo: NexusEngine-ProtoKits proof tooling or release automation
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits proof tooling or release automation
 ```
 
 ## Read Model Orchestration Isolation Kits
@@ -990,7 +993,7 @@ capability-provider-ownership-kit
 |-- owns: capability token provider registry, duplicate provider diagnostics, intentional override policy, provider owner lookup
 |-- provides: n:composition:provider-ownership
 |-- requires: n:composition:registry, n:proof:claim-taxonomy
-|-- used by: createGameKitComposer, DSK dependency planning, large ProtoKit graphs, proof harness provider checks
+|-- used by: createGameKitComposer, DSK dependency planning, large registry kit graphs, proof harness provider checks
 |-- likely target repo: NexusEngine core validation surface
 
 composer-read-model-immutability-kit
@@ -1004,7 +1007,7 @@ realtime-game-composer-handoff-kit
 |-- owns: supplied-composer validation, stale array rejection, fake composer diagnostics, provider/install-order parity
 |-- provides: n:composition:composer-handoff-contract
 |-- requires: n:composition:composer-read-model, n:install:dependency-parity
-|-- used by: createRealtimeGame, Experiments proof routes, ProtoKit graph smoke tests, host composition wrappers
+|-- used by: createRealtimeGame, Experiments proof routes, registry kit graph smoke tests, host composition wrappers
 |-- likely target repo: NexusEngine core validation surface
 
 composer-proof-metadata-parity-kit
@@ -1012,7 +1015,7 @@ composer-proof-metadata-parity-kit
 |-- provides: n:composition:proof-metadata-parity
 |-- requires: n:composition:composer-handoff-contract, n:runtime:binding-ownership
 |-- used by: proof dashboards, host inspectors, release evidence packets, human-view composition tools
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 
 sequence-type-registry-policy-kit
 |-- owns: duplicate SequenceNode type registration policy, built-in/custom override diagnostics, kit install ordering rows
@@ -1039,7 +1042,7 @@ composition-proof-ownership-kit
 |-- owns: provider ownership, composer read-model/handoff parity, type registry policy, event-history isolation, and AR runtime-source consistency proof rows
 |-- provides: n:proof:composition-ownership
 |-- requires: n:proof:coverage, n:composition:provider-ownership, n:composition:composer-read-model, n:composition:composer-handoff-contract, n:composition:proof-metadata-parity, n:sequence:type-registry-policy, n:sequence:event-history-isolation, n:ar:runtime-source-consistency
-|-- used by: DSK promotion fixtures, large composition proof reviews, SequenceNode-backed ProtoKit checks, AR/browser proof readiness
+|-- used by: DSK promotion fixtures, large composition proof reviews, SequenceNode-backed registry kit checks, AR/browser proof readiness
 |-- likely target repo: NexusEngine core validation surface
 ```
 
@@ -1057,7 +1060,7 @@ runtime-provider-token-parity-kit
 |-- owns: provider/require token snapshots, post-definition mutation diagnostics, composer provider-set parity, forged capability rejection
 |-- provides: n:runtime-kit:provider-token-parity
 |-- requires: n:runtime-kit:definition-immutability, n:composition:provider-ownership
-|-- used by: createGameKitComposer, DSK dependency proof, ProtoKit graph validators, direct/composed install comparison
+|-- used by: createGameKitComposer, DSK dependency proof, registry kit graph validators, direct/composed install comparison
 |-- likely target repo: NexusEngine core validation surface
 
 runtime-install-definition-parity-kit
@@ -1107,39 +1110,39 @@ runtime-identity-lifecycle-proof-kit
 
 ```txt
 public-api-product-boundary-kit
-|-- owns: product/themed export detection, compatibility preset labels, core-vs-ProtoKit boundary diagnostics, public API allowlist rows
+|-- owns: product/themed export detection, compatibility preset labels, core-vs-registry kit boundary diagnostics, public API allowlist rows
 |-- provides: n:public-api:product-boundary
 |-- requires: n:proof:claim-taxonomy, n:proof:release-evidence
-|-- used by: public API freeze reviews, core boundary audits, ProtoKit migration planning, release claim checks
+|-- used by: public API freeze reviews, core boundary audits, registry kit migration planning, release claim checks
 |-- likely target repo: NexusEngine core validation surface
 
 preset-runtime-identity-kit
 |-- owns: factory option id policy, preset id ownership, duplicate preset diagnostics, installed metadata ownership rows
 |-- provides: n:kit:preset-identity
 |-- requires: n:runtime:binding-ownership, n:runtime:identity
-|-- used by: FishingKit, compatibility presets, ProtoKit preset adapters, multi-variant composition proof
-|-- likely target repo: NexusEngine core validation surface for existing exports; NexusEngine-ProtoKits for new presets
+|-- used by: FishingKit, compatibility presets, registry kit preset adapters, multi-variant composition proof
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface for existing exports; NexusEngine-Kits for new presets
 
 objective-threshold-policy-kit
 |-- owns: positive target normalization, disabled-objective semantics, malformed objective diagnostics, zero-progress completion guards
 |-- provides: n:objective:threshold-policy
 |-- requires: n:state:terminal-policy, n:config:normalize
 |-- used by: fishing objectives, request fulfillment, scenario duration, tutorials, completion ledgers, proof routes
-|-- likely target repo: NexusEngine-ProtoKits by default; NexusEngine core validation surface for existing core objective kits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits by default; NexusEngine core validation surface for existing core objective kits
 
 content-dataset-validation-kit
 |-- owns: required content fields, duplicate/unknown ids, placeholder-entity prevention, objective/content cross-validation diagnostics
 |-- provides: n:content:dataset-validation
 |-- requires: n:content:dataset-contract, n:objective:threshold-policy
 |-- used by: fishing content, lure/species datasets, authored scenario packs, generated proof state, import pipelines
-|-- likely target repo: NexusEngine-ProtoKits by default
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine-Kits by default
 
 content-boundary-objective-proof-kit
 |-- owns: public API boundary, preset identity, objective threshold, and dataset validation proof rows
 |-- provides: n:proof:content-boundary-objective
 |-- requires: n:proof:coverage, n:public-api:product-boundary, n:kit:preset-identity, n:objective:threshold-policy, n:content:dataset-validation
-|-- used by: content-driven kit promotion reviews, FishingKit compatibility decisions, ProtoKit extraction plans, public proof readiness gates
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- used by: content-driven kit promotion reviews, FishingKit compatibility decisions, registry kit extraction plans, public proof readiness gates
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```
 
 ## Query Read Model Isolation Kits
@@ -1164,7 +1167,7 @@ nested-metadata-read-isolation-kit
 |-- provides: n:metadata:read-isolation
 |-- requires: n:config:authored-isolation, n:query:helper-contract
 |-- used by: logistics, spatial guidance, affordance, hazard, water, content datasets, AI/proof adapters
-|-- likely target repo: NexusEngine core validation surface by default; NexusEngine-ProtoKits for new metadata-heavy kits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface by default; NexusEngine-Kits for new metadata-heavy kits
 
 stored-query-proof-snapshot-kit
 |-- owns: lastQuery/lastCollision snapshot storage, returned-result alias checks, audit-field mutation diagnostics
@@ -1178,7 +1181,7 @@ query-read-model-isolation-proof-kit
 |-- provides: n:proof:query-read-model-isolation
 |-- requires: n:proof:coverage, n:query:helper-contract, n:engine-read:snapshot-contract, n:metadata:read-isolation, n:stored-query:proof-snapshot
 |-- used by: DSK promotion fixtures, logistics/spatial/hazard/water proof reviews, renderer and AI adapter hardening
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```
 
 ## Scheduler World Mutation Isolation Kits
@@ -1280,8 +1283,8 @@ service-command-payload-ownership-kit
 |-- owns: submitted command metadata clone/freeze policy, returned state snapshot policy, command event payload ownership rows
 |-- provides: n:service-command:payload-ownership
 |-- requires: n:command:accepted-mutation, n:event-queue:payload-isolation
-|-- used by: request queues, transport routes, operations services, logistics ProtoKits, SequenceNode service bridges
-|-- likely target repo: NexusEngine core validation surface for existing core command APIs; NexusEngine-ProtoKits for new service commands
+|-- used by: request queues, transport routes, operations services, logistics trusted registry kits, SequenceNode service bridges
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface for existing core command APIs; NexusEngine-Kits for new service commands
 
 input-frame-ownership-kit
 |-- owns: submitted input metadata isolation, current-frame snapshot policy, returned input state summary semantics, replay-frame diagnostics
@@ -1295,7 +1298,7 @@ telemetry-command-evidence-proof-kit
 |-- provides: n:proof:telemetry-command-evidence
 |-- requires: n:proof:coverage, n:telemetry:selected-value-snapshot, n:telemetry:path-selector-isolation, n:service-command:payload-ownership, n:input-frame:ownership
 |-- used by: DSK promotion fixtures, operations/input hardening, proof history reviews, replay and automation evidence gates
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```
 
 ## Domain Command Config Ownership Kits
@@ -1334,7 +1337,7 @@ domain-command-config-ownership-proof-kit
 |-- provides: n:proof:domain-command-config-ownership
 |-- requires: n:proof:coverage, n:economy:transaction-metadata-ownership, n:timing:action-read-ownership, n:pressure:resource-command-ownership, n:lifecycle-facility:add-payload-ownership
 |-- used by: DSK promotion fixtures, operations hardening, replay-safe command validation, editor/config boundary audits
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```
 
 ## Host Graph Lifecycle Ownership Kits
@@ -1401,7 +1404,7 @@ host-graph-lifecycle-proof-kit
 |-- provides: n:proof:host-graph-lifecycle-ownership
 |-- requires: n:proof:coverage, n:host-adapter:capability-ownership, n:host-root:capability-ownership, n:host-adapter-record:ownership, n:host-record:lifecycle-parity, n:host-graph:identity-policy, n:host-lifecycle:failure-boundary, n:host-mount:transaction-boundary, n:host-snapshot:purity
 |-- used by: Nexus.Host hardening, DSK promotion fixtures, browser/native host release reviews, public proof readiness gates
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```
 
 ## DSK Extension Service Ownership Kits
@@ -1411,7 +1414,7 @@ dsk-extension-api-token-parity-kit
 |-- owns: extension apiName/service/provides parity, API-less extension diagnostics, base-API-only extension policy
 |-- provides: n:dsk-extension:api-token-parity
 |-- requires: n:dsk:namespace-policy, n:composition:registry
-|-- used by: extendDomainServiceKit, ProtoKit service expansions, first-wave DSK proof adapters, engine.n service inspectors
+|-- used by: extendDomainServiceKit, registry kit service expansions, first-wave DSK proof adapters, engine.n service inspectors
 |-- likely target repo: NexusEngine core validation surface
 
 dsk-extension-install-atomicity-kit
@@ -1432,6 +1435,6 @@ dsk-extension-service-ownership-proof-kit
 |-- owns: extension API/token parity, install atomicity, and definition identity proof rows
 |-- provides: n:proof:dsk-extension-service-ownership
 |-- requires: n:proof:coverage, n:dsk-extension:api-token-parity, n:dsk-extension:install-atomicity, n:dsk-extension:definition-identity
-|-- used by: DSK promotion fixtures, ProtoKit extension promotion reviews, first-wave service expansion proof, runtime contract audits
-|-- likely target repo: NexusEngine core validation surface plus NexusEngine-ProtoKits proof tooling
+|-- used by: DSK promotion fixtures, registry kit extension promotion reviews, first-wave service expansion proof, runtime contract audits
+|-- disposition: suggestion only; possible destination after ownership review: NexusEngine core validation surface plus NexusEngine-Kits proof tooling
 ```

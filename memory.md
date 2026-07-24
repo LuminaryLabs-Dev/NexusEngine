@@ -1,55 +1,68 @@
-# NexusEngine memory
+# NexusEngine Memory
 
-Long-term repo shape: NexusEngine is a single ESM realtime ECS engine package. `src/ecs.js` owns the deterministic ECS core, `src/engine.js` owns ticking and subscribable surfaces, `src/runtime-kit.js` owns installable and composable data-driven kits, `src/renderers.js` owns render adapter selection and scene modes, `src/shaders.js` owns shader/material registries, `src/sequences.js` owns event-driven sequence control, `src/terrain-kit.js` owns reusable chunked/layered terrain semantics, `src/world-physics-kit.js` owns reusable physics contact/stability state, `src/action-movement-kit.js` owns reusable locomotion profiles, `src/character-camera-kit.js` owns reusable camera rigs/safety, `src/realism-kit.js` owns reusable PBR/water/atmosphere/scatter/performance realism state, `src/ar-kit.js` / `src/ar-session.js` / `src/ar-renderer.js` / `src/ar-experience-kit.js` own reusable browser AR ECS/session/rendering/multi-step flow, and kit files such as `src/fishing-kit.js` own reusable domain systems.
+## Durable Purpose
 
-Procedural/navigation pattern: `src/common-game-definitions.js` owns shared generic components/resources/events, `src/procedural-kit.js` owns deterministic game-space descriptors and walkability snapshots, `src/navmesh-kit.js` owns walkability-to-navmesh/3D graph conversion, `src/pathfinding-kit.js` owns A* plus grid/navmesh2d/navmesh3d adapters, and `src/game-kit-composer.js` owns additive dependency ordering for composed kits. Host games render snapshots and pass inputs; they should not duplicate procedural generation, navmesh construction, or A* logic.
+NexusEngine is the atomic, idempotent, fully reusable Core runtime for
+deterministic games and simulations. It owns contracts and universal behavior,
+not a broad catalog of useful gameplay features.
 
-Reply and intent preferences: keep replies small, direct, action-oriented, and token-optimized; when chats are small, infer from this repo memory but ask first if acting would be risky.
+## Ownership
 
-Architecture preference: keep simulation systems deterministic and render-agnostic. Engine features should be additive modules that install into `createEngine()` through kits, adapters, registries, or sequence runtime hooks instead of replacing the ECS core.
+- `NexusEngine`: Core ECS, scheduling, events, resources, queries, surfaces,
+  runtime-kit and DSK contracts, universal Core domains, composition,
+  snapshot/reset/replay, and validation.
+- `NexusEngine-Kits`: trusted reusable behavior that is optional, niche,
+  genre-specific, or platform-specific.
+- Experiment and game repositories: complete games, presets, authored content,
+  routes, UI, product behavior, and product tuning.
+- `tests/`: isolated fixtures may use niche scenarios only to prove generic
+  Core invariants. They are never exported or imported by production source.
 
-Domain Service Kit architecture: `defineRuntimeKit()` remains the low-level installable kit primitive. `defineDomainServiceKit()` is the promoted DSK contract for reusable domains, with `n:` capability tokens, stable `n-<domain>-kit` ids, `engine.n.<domainApi>` installation, required version/stability metadata, linear execution today, and serializable reset/snapshot expectations for future async-ready partitioning. ProtoKits should import this contract directly and extend it through adapters or explicit DSK definitions, never by monkey-patching NexusEngine runtime behavior.
-ProtoKit boundary: new reusable kit implementations should target `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/` by default. NexusEngine core should stay focused on ECS/runtime/DSK/composer primitives, invariants, exports, and validation; experiments prove compositions in NexusEngine-Experiments. Promotion into core is exceptional and requires proof that the feature is a stable runtime primitive, not merely a useful gameplay/domain kit.
-Experiment boundary: new playable proofs should target `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/` and compose NexusEngine core plus ProtoKits. Experiments may own browser routes, rendering, input mapping, authored content, and presets, but reusable domain logic should be extracted to ProtoKits before it becomes architecture.
+Ownership is fail-closed. A production feature remains in Core only after every
+Core requirement is proved. No compatibility forwarding export keeps migrated
+behavior in the Core API.
 
-Automation pattern: NexusEngine uses `.agent/` as the repo-local agent entrypoint and `state/automation/` for read-only scout lanes. Every automation run should start with `npm run automation:preflight`, resolve the latest remote release branch instead of hardcoding `0.0.2`, check public GitHub/raw/CDN links, then write lane-local packets, knowledge nodes, and tracker updates without editing source or public claims from scout lanes.
+## Runtime Shape
 
-Generic kit pattern: NexusEngine must not contain product-specific copy, routes, assets, level names, or app lore. Product apps pass authored datasets into generic kits; NexusEngine interprets room, placement, objective, interaction, collectible, sorting, platformer, reveal-light, symbol-alignment, socket-lock, and render-descriptor data.
+- `src/ecs.js`: deterministic ECS primitives.
+- `src/engine.js`: engine construction, ticking, and surfaces.
+- `src/runtime-kit.js`: installable and composable runtime kits.
+- `src/domain-service-kit.js`: addressable DSK contracts.
+- `src/game-kit-composer.js`: additive dependency-ordered composition.
+- `src/core-kits/` and `src/core-domains/`: intentional Core capabilities.
+- `src/renderers.js`: generic headless adapter only; presentation adapters are
+  resolved outside Core.
+- `src/shaders.js`: generic shader and material registries only.
+- `src/sequences.js`: generic deterministic orchestration with host-supplied
+  controllers.
 
-Courier/logistics domain pattern: `RequestFulfillmentKit`, `CargoManifestKit`, `PursuitPressureKit`, `InputIntentKit`, `ScenarioDurationKit`, `WaterSurfaceKit`, `VehicleDynamicsKit`, `RouteFieldKit`, `HazardFieldKit`, `ResourcePressureKit`, `ScenarioDriverKit`, and `TelemetryKit` are neutral ECS/domain kits. Apps may use them for courier, transport, rescue, or logistics games, but NexusEngine must keep them free of arcade UI, product fiction, retained-folder contracts, and game-specific loops.
+Simulation stays deterministic and presentation-agnostic. Stateful Core
+behavior has stable defaults and explicit snapshot/reset expectations.
 
-AR kit pattern: `createARKit()` owns AR ECS components/resources/events and placement state, `ar-session.js` owns WebXR support/session/hit-test helpers with deterministic unsupported results, `createARRenderer()` owns browser-safe overlay/fallback rendering, and generic objective/interaction kits own reusable intro/surface/place/interact/complete/reset flow. Product apps should import these APIs as a local package now and later as a GitHub/CDN package, while keeping product copy/routes/assets outside NexusEngine.
+## Current Migrations
 
-Device-specific AR pattern: `ar-device.js` classifies secure mobile/desktop capability, `ar-launcher.js` chooses a mode from page-marker, webxr-plane, camera-overlay, and fallback-preview, and `src/ar-modes/*` owns mode startup/stop behavior. Product apps should not duplicate WebXR, camera, or mode fallback policy.
+- Fishing behavior, its renderers, shaders, realism profile, and terrain binding
+  live in `@luminarylabs/nexusengine-kits/fishing-kit`.
+- Optional AR, interaction, combat, companion, camera, ragdoll, placement,
+  objective, spatial, collectible, sorting, reveal, target, lock, and render
+  descriptor factories live in `@luminarylabs/nexusengine-kits`.
+- Reef Rescue lives in its own game repository.
+- Shrine Puzzle, Corruption World, Tree Runner, and Micro Platformer live in a
+  dedicated legacy game-presets repository.
 
-Rendering preference: support `headless`, `canvas2d`, and first-party `custom-webgl` renderer types through the same renderer adapter shape. NexusEngine should not depend on third-party rendering libraries; compatibility calls to `createRenderer("three")` should route to the custom WebGL renderer while older hosts migrate.
+## Retired Workflow
 
-Sequence preference: legacy `src/sequences.js` remains available for deterministic linear sequence graphs. New orchestration should use `src/sequence-node.js`, `src/sequence-node-library.js`, and `src/sequence-node-kit.js`: a recursive JS object / JSON AST layer that sits above ECS, reacts to direct events, surfaces, lifecycle/frame events, timers, and manual calls, and may deploy runtime kits. SequenceNode never replaces `engine.tick()`; it receives optional frame events from the engine after ECS systems and surface publishing.
+The ProtoKit authoring workflow is retired. Its original guides are preserved
+under `docs/legacy/protokits/` for history and migration context. New reusable
+non-Core work targets NexusEngine-Kits or another trusted registry package.
+Automations may record suggestions, but may not implement retired ProtoKits or
+add niche production behavior to Core.
 
-SequenceNode browser demo pattern: `examples/sequence-node/storm-skiff-browser.html` is the canonical small playable loop. Keep realtime motion in `engine.tick()` plus generic runtime kits, bind surfaces into SequenceNode for objective progression, let SequenceNode emit objective/game events, and keep the browser WebGL renderer visualization-only.
+## Agent Conventions
 
-Fishing kit pattern: `createFishingKit()` owns fishing ECS definitions, systems, sequence reactions, and render snapshots. NexusArcade games should only pass content/config/input and should not duplicate fishing systems.
-
-Terrain kit pattern: `createTerrainKit()` owns chunk grids, additive terrain layers, carving, erosion, material/wetness fields, surface descriptors, ledges/steps/climb faces, route markers, fall zones, camera volumes, dirty chunk/version tracking, LOD snapshots, and terrain query APIs. Games should pass `terrainLayers.*` settings and kit bindings instead of writing terrain algorithms.
-
-Realism kit pattern: `createRealismKit()` owns visual quality profiles, PBR lighting, atmospheric state, water realism settings, terrain material descriptors, scatter budgets, wildlife visual descriptors, and adaptive render snapshots. Renderers consume realism snapshots; ECS gameplay systems stay deterministic and render-agnostic.
-
-Cozy Fishing pattern: `cozy-fishing` replaces `tideglass-angler` as the Arcade-facing fishing playable. NexusEngine owns `beach-side` scene rendering, transparent water, TerrainKit terrain/shoreline, sky/clouds, camera rig, screen-to-water aim, and the fishing sequences; NexusArcade only provides build folder, config, UI, and input forwarding.
-Grounded traversal pattern: reusable embodied control should be composed from `createTerrainKit()`, `createPhysicsKit()`, `createLocomotionKit()`, `createCameraKit()`, plus separate interaction and ragdoll/recovery kits. `createCharacterMovementKit()`, `createActionMovementKit()`, `createWorldPhysicsKit()`, `createCharacterCameraKit()`, and `createCameraOcclusionKit()` are migration-window compatibility exports.
-Terrain streaming note: `createTerrainKit()` now treats chunk focus plus `streaming.activeRadius` as the default infinite-world policy. Keep seam continuity, LOD, and erosion tuning in terrain config rather than baking finite maps. Shared chunk-edge normals must use the processed interior samples from adjacent chunks so neighboring chunks remain lighting-seamless after erosion and chunk-local smoothing.
-Riftwarden forest expansion pattern: `createForestPlacementKit()` owns render-agnostic chunk/route prop descriptors and `createCameraKit()` owns reusable third-person camera safety. Host games should render those descriptors locally and keep game-specific forests, routes, and objectives outside NexusEngine.
-Tree runner pattern: `createTreeRunnerKit()` owns reusable infinite-runner branch generation, sky-fall starts, branch catch cones, vine swing arcs, jump chaining, fall lose-state, and telemetry. Arcade games render the specific canopy/art/camera locally while keeping runner mechanics in NexusEngine.
-Timing and pressure pattern: `createTimingWindowKit()` owns generic repeating action windows and quality judgment, and `createResourcePressureKit()` owns generic draining/recovering resource meters plus adjustments/depletion. Host games may map these to pulses, heat, oxygen, morale, stamina, or similar authored resources without adding arcade-specific kits to NexusEngine.
-Hazard field pattern: `createHazardFieldKit()` owns generic bounded hazard spawning, movement, bounce behavior, snapshots, and collision queries. Host apps may map those hazards to clouds, mines, storms, enemies, or particles, but product copy, rendering, player controls, objective framing, and campaign tuning stay outside NexusEngine.
-Cargo manifest pattern: `createCargoManifestKit()` owns generic cargo/item availability, carried capacity, pickup, deposit, quota completion, reset, and snapshot state. Host apps may map cargo to freight, parcels, salvage, ingredients, evidence, or other transferable items, but product copy, rendering, player controls, objective framing, and campaign tuning stay outside NexusEngine.
-Request/pursuit/validation domain pattern: `createRequestFulfillmentKit()`, `createPursuitPressureKit()`, `createInputIntentKit()`, and `createScenarioDurationKit()` are generic simulation and validation domains. Keep request destinations/deadlines/completion, spatial threat pressure, normalized input telemetry, and long-running checkpoints reusable across courier, medical, salvage, security, storm, evacuation, or service-flow hosts; do not encode arcade loops, pizza/food copy, chase fiction, UI, retained-game folder contracts, or NexusArcade product naming in NexusEngine. `createCargoManifestKit()` may own generic carried-item condition decay and condition-adjusted value.
-Water/vehicle recovery domain pattern: `createWaterSurfaceKit()`, `createVehicleDynamicsKit()`, `createAssistanceTargetKit()`, `createTransferZoneKit()`, `createRouteFieldKit()`, and `createScenarioDriverKit()` are generic simulation and validation domains. Host apps may map them to rescue patrols, ferries, salvage, courier routes, medical extraction, or other recovery/transfer loops, but product copy, rendering, player controls, retained-folder contracts, objective framing, and campaign tuning stay outside NexusEngine.
-Operations domain pattern: `createScheduleKit()`, `createEconomyKit()`, `createLifecycleProgressionKit()`, `createFacilityOperationsKit()`, `createOccupantFlowKit()`, `createTransportRouteKit()`, `createRequestQueueKit()`, and `createTelemetryKit()` are generic management/logistics/service-flow domains. Keep them reusable across buildings, transit, facilities, queues, settlements, and validation harnesses; do not encode arcade loops, side-panel UI, retained-game folder contracts, or NexusArcade product naming in NexusEngine.
-Spatial guidance domain pattern: `createSpatialScaleKit()`, `createLandmarkGuidanceKit()`, and `createEnvironmentalAffordanceKit()` are generic spatial interaction domains. Keep subject-to-world scale anchors, proximity bands, landmark discovery/reach/completion, and affordance activation progress reusable across traversal, restoration, inspection, training, accessibility, AR, and simulation hosts; do not encode arcade loops, product fiction, side-panel UI, retained-game folder contracts, or NexusArcade naming in NexusEngine.
-
-# SELF REMINDERS
-
-1. Preserve the deterministic ECS core while adding engine features through composable kits, renderers, registries, and sequence runtime hooks.
-2. Keep TerrainKit state-driven and performant: unchanged chunks reuse cached outputs, carve/erosion/material/realism mask layers remain additive, and render LOD stays separate from gameplay queries.
-3. Keep Cozy Fishing reusable in NexusEngine so NexusArcade remains a thin config/input host, including hyper-real visuals through renderer defaults and optional RealismKit bindings.
-Next sub-goal: continue tuning Cozy Fishing realism from NexusEngine systems only, especially water depth readability, scatter density, and fish/lure/line presentation.
+- Read `AGENTS.md`, `.agent/target.md`, and `.agent/tracker.md`.
+- Run the Headless Editor loop and inspect its evidence.
+- Consult `docs/KIT-OWNERSHIP.md` before production changes.
+- Preserve generated evidence as history; it is not current architecture.
+- Do not push, release, deploy, or destructively clean without explicit
+  approval.

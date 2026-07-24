@@ -22,7 +22,9 @@ The host should make composition visible, inspectable, reusable, and portable ac
 
 Everything is a kit.
 
-`ProtoKit`, `experiment kit`, `deploy kit`, `host kit`, `adapter kit`, `descriptor kit`, and `validation kit` are naming, status, or usage conventions. They are not separate architecture species.
+Legacy names such as `ProtoKit`, plus `experiment kit`, `deploy kit`, `host
+kit`, `adapter kit`, `descriptor kit`, and `validation kit`, are naming,
+status, or usage conventions. They are not separate architecture species.
 
 The durable structure is:
 

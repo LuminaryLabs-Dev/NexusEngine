@@ -33,7 +33,7 @@ diagnostics read model
 
 ## What Stays Outside Core
 
-These stay in editors, ProtoKits, kit registries, game repos, or adapter repos:
+These stay in editors, trusted kit registries, game repos, or adapter repos:
 
 ```txt
 editor UI

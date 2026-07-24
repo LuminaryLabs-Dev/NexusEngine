@@ -4,31 +4,36 @@ Status: active
 
 ## Before Running
 
-- Read `.agent/start-here.md`.
+- Read `.agent/start-here.md`, `.agent/target.md`, and `.agent/tracker.md`.
 - Run `npm run automation:preflight` before writing an automation packet.
-- Treat the preflight `latestReleaseBranch` as the branch to compare against.
-- If the preflight cannot resolve remote branches or public links, record the failure and continue with local evidence only.
+- Prefer current source, tests, and canonical docs over packet history.
 
 ## Safety
 
-- Audit lanes do not edit `src/`, `tests/`, public docs, release claims, or package metadata unless the user explicitly asks for implementation.
-- Do not promote ProtoKits into core automatically.
-- Do not change ECS, scheduler, renderer, or DSK architecture from scout lanes.
-- Do not store secrets, tokens, credentials, or private URLs in reports.
-- Public-link checks must use published URLs only.
+- Audit lanes do not edit production source, tests, public docs, package
+  metadata, release claims, or other repositories.
+- Automations may record non-Core suggestions but may not implement them.
+- Automations may not create or update ProtoKits.
+- Automations may not add niche, genre, platform, or product production behavior
+  to NexusEngine.
+- Core implementation requires the ownership gate in
+  `docs/KIT-OWNERSHIP.md` and explicit implementation approval.
+- Reusable non-Core implementation targets NexusEngine-Kits or another trusted
+  registry only after approval.
+- Complete game behavior targets an experiment or game repository.
+- Do not store secrets, credentials, tokens, or private URLs.
 
-## Evidence Rules
+## Evidence
 
-- Every report must say what was inspected.
-- Every validation claim must include command evidence, file evidence, or public URL status.
-- If a command fails, preserve the failure summary and exact next fix.
-- If a report finds no issue, state the remaining risk.
-- Prefer one recommended next action over a broad roadmap.
+- Name what was inspected and the exact command, file, or public URL.
+- Preserve failures and identify one next repair.
+- A suggestion is not an implementation decision.
+- Generated packets are evidence, not current architecture.
 
-## Current Priority Order
+## Priority
 
-1. DSK contract and promotion readiness
-2. ProtoKits direct-import compatibility
-3. Experiments proof paths
-4. Public GitHub/CDN consumption
-5. Runtime bug and long-term ecosystem risks
+1. Core ownership and public-entrypoint integrity
+2. Trusted registry installability
+3. Experiment and game proof
+4. Public package consumption
+5. Runtime and long-term ecosystem risks

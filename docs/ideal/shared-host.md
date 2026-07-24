@@ -16,7 +16,7 @@ An ideal shared host owns:
 
 - Instance isolation.
 - Loading the core runtime.
-- Loading ProtoKits.
+- Loading trusted registry kits.
 - Mounting experiments or game slices.
 - Routing inputs.
 - Collecting snapshots.
