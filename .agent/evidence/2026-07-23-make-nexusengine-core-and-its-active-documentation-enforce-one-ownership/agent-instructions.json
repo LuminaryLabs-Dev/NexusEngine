@@ -1,0 +1,12 @@
+{
+  "id": "agent-instructions",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.569Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "path": "AGENTS.md",
+    "characterCount": 13084
+  }
+}

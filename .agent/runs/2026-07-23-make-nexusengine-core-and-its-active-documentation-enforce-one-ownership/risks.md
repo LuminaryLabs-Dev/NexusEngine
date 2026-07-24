@@ -1,0 +1,29 @@
+# Inferred Reliability Risks
+
+## repository-integrity
+
+Every development run must prove the repository and relative module graph can be inspected.
+
+## test-coverage
+
+Every completed change needs an executed test result, not only source inspection.
+
+## kit-composition
+
+Kit or domain changes must be exercised through a composed engine path.
+
+## installed-api-parity
+
+Public direct APIs and APIs installed into engine.n must agree.
+
+## snapshot-reset-replay
+
+Stateful domains must prove snapshot, reset, and replay behavior.
+
+## public-export-integrity
+
+Public entrypoints and package exports must resolve after the change.
+
+## browser-startup
+
+Browser-facing work must prove startup and console health in a browser-capable environment.

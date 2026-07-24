@@ -1,0 +1,21 @@
+{
+  "id": "fixture-result:browser-startup:1",
+  "ok": false,
+  "at": "2026-07-24T00:08:51.389Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-007-browser-startup",
+    "checkId": "browser-startup",
+    "mode": "capability",
+    "action": "fixture.browserStartup",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "browser-startup has no registered executor.",
+    "requiredCapabilities": [
+      "test.runBrowserStartup",
+      "browser.getErrors"
+    ]
+  }
+}

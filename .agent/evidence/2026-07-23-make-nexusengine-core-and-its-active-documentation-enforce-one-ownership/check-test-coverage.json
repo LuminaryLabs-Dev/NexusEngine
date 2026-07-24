@@ -1,0 +1,14 @@
+{
+  "id": "check:test-coverage",
+  "ok": true,
+  "at": "2026-07-24T00:08:51.333Z",
+  "iteration": 1,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "npm test",
+    "summary": "Repository test script passed.",
+    "details": null,
+    "artifacts": []
+  }
+}

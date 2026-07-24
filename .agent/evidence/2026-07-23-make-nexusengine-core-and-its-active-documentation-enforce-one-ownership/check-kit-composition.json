@@ -1,0 +1,17 @@
+{
+  "id": "check:kit-composition",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.161Z",
+  "iteration": 1,
+  "source": "test-or-reliability-kit",
+  "value": {
+    "ok": true,
+    "command": "NexusEngine-Kits: npm run check; Reef Rescue: npm test",
+    "summary": "External fishing and 20 migrated gameplay kits compose through public Core APIs; Reef Rescue consumes the external fishing kit.",
+    "details": null,
+    "artifacts": [
+      "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine-Kits/kits/aquatic/fishing-kit",
+      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/tests/headless-smoke.mjs"
+    ]
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "plan:1",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.743Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "goal": "Make NexusEngine Core and its active documentation enforce one ownership rule:",
+    "mode": "Implementation",
+    "scope": [
+      "Inventory every NexusEngine production module and public export.",
+      "Record canonical ownership and destination in `docs/KIT-OWNERSHIP.md`.",
+      "Move stable reusable non-Core fishing behavior, renderer bindings, and shaders",
+      "Move Reef Rescue to a dedicated game repository because the existing",
+      "Remove migrated implementation files and public exports from NexusEngine.",
+      "Remove fishing-specific renderer, shader, sequence, terrain, and realism",
+      "Keep niche test fixtures only when they prove generic Core invariants and",
+      "Create `docs/README.md` as the active documentation router.",
+      "Convert ProtoKit creation guidance to historical migration guidance.",
+      "Correct repo instructions, memory, manifests, inventories, and automation",
+      "Add a breaking migration guide with no compatibility forwarding exports."
+    ],
+    "requiredOutcomes": [
+      "Every NexusEngine public production module has a recorded owner,",
+      "NexusEngine public entrypoints cannot reach fishing, Reef Rescue, or another",
+      "`createFishingKit` and `createReefRescueKit` are not NexusEngine exports.",
+      "The fishing kit installs through NexusEngine-Kits using only public",
+      "Reef Rescue runs from a dedicated game repository using NexusEngine plus the",
+      "No active documentation or automation instructs a human or agent to create,",
+      "Historical and generated evidence remains unchanged and clearly non-current.",
+      "A fresh reader can answer the five ownership questions in the approved plan",
+      "All focused Core tests, full NexusEngine tests, NexusEngine-Kits checks,"
+    ],
+    "constraints": [
+      "Work on local integration branches; do not push, release, or deploy.",
+      "Do not touch the dirty NexusEngine-Experiments worktree.",
+      "Do not modify generated vendor snapshots or historical evidence.",
+      "Do not stash, reset, discard, force, or delete preservation assets.",
+      "Fail closed: unknown or unproven production behavior does not remain Core.",
+      "A reusable but optional, niche, or genre-specific capability belongs in",
+      "Complete games, authored presets, and product behavior belong in Experiments",
+      "Niche scenarios may remain only under tests as minimal, non-exported fixtures",
+      "Immediate API removal occurs only after the external replacement passes.",
+      "Do not add deprecated or forwarding exports in NexusEngine."
+    ],
+    "requiredChecks": [
+      "repository-integrity",
+      "test-coverage",
+      "kit-composition",
+      "installed-api-parity",
+      "snapshot-reset-replay",
+      "public-export-integrity",
+      "browser-startup"
+    ],
+    "steps": [
+      "Inspect the owning domain and nearest existing kit.",
+      "Implement the smallest compositional change that satisfies the target.",
+      "Reconcile public exports, package surfaces, docs, snapshots, and fixtures.",
+      "Run and record repository-integrity.",
+      "Run and record test-coverage.",
+      "Run and record kit-composition.",
+      "Run and record installed-api-parity.",
+      "Run and record snapshot-reset-replay.",
+      "Run and record public-export-integrity.",
+      "Run and record browser-startup.",
+      "Verify and compare observed evidence before claiming completion."
+    ]
+  }
+}

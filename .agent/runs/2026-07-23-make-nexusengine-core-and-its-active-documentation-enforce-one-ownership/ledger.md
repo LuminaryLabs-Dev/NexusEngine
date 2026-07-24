@@ -1,0 +1,47 @@
+# Development Run Ledger
+
+- 2026-07-23T23:07:12.569Z | iteration 1 | evidence | bootstrap | target-loaded: ok
+- 2026-07-23T23:07:12.569Z | iteration 1 | evidence | bootstrap | agent-instructions: ok
+- 2026-07-23T23:07:12.570Z | iteration 1 | route-complete | bootstrap | Loaded AGENTS.md and the current target.
+- 2026-07-23T23:07:12.722Z | iteration 1 | evidence | inspect | repository-inspection: ok
+- 2026-07-23T23:07:12.724Z | iteration 1 | evidence | inspect | module-graph-before: ok
+- 2026-07-23T23:07:12.726Z | iteration 1 | evidence | inspect | kit-graph: ok
+- 2026-07-23T23:07:12.728Z | iteration 1 | route-complete | inspect | Inspected repository, kit graph, and public relative module graph.
+- 2026-07-23T23:07:12.733Z | iteration 1 | evidence | classify-risk | risk-classification: ok
+- 2026-07-23T23:07:12.735Z | iteration 1 | evidence | classify-risk | required-checks: ok
+- 2026-07-23T23:07:12.737Z | iteration 1 | route-complete | classify-risk | Inferred reliability checks from target, repository, changes, contracts, and module graph.
+- 2026-07-23T23:07:12.741Z | iteration 1 | evidence | plan | fixture-plan: ok
+- 2026-07-23T23:07:12.743Z | iteration 1 | evidence | plan | plan:1: ok
+- 2026-07-23T23:07:12.746Z | iteration 1 | route-complete | plan | Generated a target-driven plan from inferred reliability requirements.
+- 2026-07-23T23:07:12.750Z | iteration 1 | evidence | validate-plan | plan-validation:1: ok
+- 2026-07-23T23:07:12.752Z | iteration 1 | evidence | validate-plan | validation: ok
+- 2026-07-23T23:07:12.756Z | iteration 1 | route-complete | validate-plan | Validated that the plan has a goal, steps, and inferred checks.
+- 2026-07-24T00:08:39.565Z | iteration 1 | evidence | apply | applied-changes:1: ok
+- 2026-07-24T00:08:39.566Z | iteration 1 | route-complete | apply | Moved non-Core behavior to owned repositories, removed its Core reachability, and rewrote active ownership documentation.
+- 2026-07-24T00:08:39.754Z | iteration 1 | evidence | reload | module-graph-after:1: ok
+- 2026-07-24T00:08:39.830Z | iteration 1 | evidence | reload | public-entry-import:1: ok
+- 2026-07-24T00:08:39.836Z | iteration 1 | route-complete | reload | Reloaded and revalidated the public relative module graph.
+- 2026-07-24T00:08:51.307Z | iteration 1 | evidence | run-fixtures | fixture-run:1: ok
+- 2026-07-24T00:08:51.323Z | iteration 1 | evidence | run-fixtures | check:repository-integrity: ok
+- 2026-07-24T00:08:51.333Z | iteration 1 | evidence | run-fixtures | check:test-coverage: ok
+- 2026-07-24T00:08:51.344Z | iteration 1 | evidence | run-fixtures | fixture-result:kit-composition:1: failed
+- 2026-07-24T00:08:51.354Z | iteration 1 | evidence | run-fixtures | fixture-result:installed-api-parity:1: failed
+- 2026-07-24T00:08:51.364Z | iteration 1 | evidence | run-fixtures | fixture-result:snapshot-reset-replay:1: failed
+- 2026-07-24T00:08:51.378Z | iteration 1 | evidence | run-fixtures | check:public-export-integrity: ok
+- 2026-07-24T00:08:51.389Z | iteration 1 | evidence | run-fixtures | fixture-result:browser-startup:1: failed
+- 2026-07-24T00:15:18.161Z | iteration 1 | evidence | run-fixtures | check:kit-composition: ok
+- 2026-07-24T00:15:18.176Z | iteration 1 | evidence | run-fixtures | check:installed-api-parity: ok
+- 2026-07-24T00:15:18.189Z | iteration 1 | evidence | run-fixtures | check:snapshot-reset-replay: ok
+- 2026-07-24T00:15:18.198Z | iteration 1 | evidence | run-fixtures | check:browser-startup: ok
+- 2026-07-24T00:15:18.211Z | iteration 1 | route-complete | run-fixtures | All inferred reliability fixtures have successful recorded evidence.
+- 2026-07-24T00:15:18.238Z | iteration 1 | evidence | verify | verification:1: ok
+- 2026-07-24T00:15:18.255Z | iteration 1 | evidence | verify | verification: ok
+- 2026-07-24T00:15:18.274Z | iteration 1 | route-complete | verify | All inferred reliability checks passed.
+- 2026-07-24T00:15:18.304Z | iteration 1 | evidence | compare | differences:1: ok
+- 2026-07-24T00:15:18.316Z | iteration 1 | evidence | compare | differences: ok
+- 2026-07-24T00:15:18.335Z | iteration 1 | route-complete | compare | Compared before and after evidence without finding new module regressions.
+- 2026-07-24T00:15:18.371Z | iteration 1 | evidence | decide | remaining-risk-report:1: ok
+- 2026-07-24T00:15:18.391Z | iteration 1 | evidence | decide | remaining-risk-report: ok
+- 2026-07-24T00:15:18.413Z | iteration 1 | route-complete | decide | Completion evidence is sufficient and no unresolved reliability risk remains.
+- 2026-07-24T00:15:18.455Z | iteration 1 | evidence | report | report: ok
+- 2026-07-24T00:15:18.469Z | iteration 1 | run-complete | report | Guided development target proven complete.

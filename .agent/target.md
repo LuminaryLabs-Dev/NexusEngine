@@ -2,7 +2,9 @@
 
 ## Goal
 
-Make skinned-object and skinned-tree shape reduction provably safe inside the existing `n:object:shape` domain by treating provider output as a candidate that must pass structural, deformation, and silhouette qualification before Object Fidelity may consume it.
+Make NexusEngine Core and its active documentation enforce one ownership rule:
+production code in NexusEngine must be atomic, idempotent, fully reusable,
+product-agnostic Core behavior.
 
 ## Mode
 
@@ -10,33 +12,56 @@ Implementation
 
 ## Scope
 
-- `core-object-shape-kit`
-- Meshoptimizer and deterministic reference shape providers
-- `skinned-organic-production` shape profile
-- Object Shape to Object Fidelity adapter
-- candidate, qualification, fallback, rejection, snapshot, and stale-work contracts
-- focused Headless Editor and installed-composition smoke tests
-- public exports and test registration
+- Inventory every NexusEngine production module and public export.
+- Record canonical ownership and destination in `docs/KIT-OWNERSHIP.md`.
+- Move stable reusable non-Core fishing behavior, renderer bindings, and shaders
+  to NexusEngine-Kits.
+- Move Reef Rescue to a dedicated game repository because the existing
+  NexusEngine-Experiments worktree has unrelated uncommitted Image Editor work.
+- Remove migrated implementation files and public exports from NexusEngine.
+- Remove fishing-specific renderer, shader, sequence, terrain, and realism
+  production hooks.
+- Keep niche test fixtures only when they prove generic Core invariants and
+  have no production reachability.
+- Create `docs/README.md` as the active documentation router.
+- Convert ProtoKit creation guidance to historical migration guidance.
+- Correct repo instructions, memory, manifests, inventories, and automation
+  language so no active workflow creates ProtoKits.
+- Add a breaking migration guide with no compatibility forwarding exports.
 
 ## Required outcome
 
-- Meshoptimizer output is recorded as a candidate, not immediately published as a ready shape.
-- Safe production mode keeps the original skeleton, bind contract, vertex layout, skin indices, and skin weights.
-- Protected branch roots and deformation zones must remain referenced by approved geometry.
-- Deterministic validation checks indices, finite values, bones, weights, weight normalization, protected vertices, multi-pose deformation, and multi-view silhouette overlap.
-- Rejected candidates retain inspectable qualification evidence.
-- Failed reductions retry progressively safer ratios and finally the source shape.
-- Only approved shapes are published through `getShape()` and accepted by `object-shape-form`.
-- Stale, failed, and rejected work cannot replace an approved shape or Fidelity package.
-- Snapshots preserve candidates, qualification evidence, jobs, rejected results, and approved shapes.
-- Headless fixtures prove approval, rejection, fallback, duplicate reuse, stale blocking, Fidelity gating, snapshot restore, and deterministic evidence.
+- Every NexusEngine public production module has a recorded owner,
+  classification, destination, consumer evidence, and proof.
+- NexusEngine public entrypoints cannot reach fishing, Reef Rescue, or another
+  migrated niche implementation.
+- `createFishingKit` and `createReefRescueKit` are not NexusEngine exports.
+- The fishing kit installs through NexusEngine-Kits using only public
+  NexusEngine APIs and passes behavior, export, manifest, registry, and
+  installer checks.
+- Reef Rescue runs from a dedicated game repository using NexusEngine plus the
+  external fishing kit.
+- No active documentation or automation instructs a human or agent to create,
+  implement, or update a ProtoKit.
+- Historical and generated evidence remains unchanged and clearly non-current.
+- A fresh reader can answer the five ownership questions in the approved plan
+  from the README documentation path.
+- All focused Core tests, full NexusEngine tests, NexusEngine-Kits checks,
+  registry installation proof, documentation links, import boundaries, and Git
+  cleanliness checks pass.
 
 ## Constraints
 
-- Work directly on `main`.
-- Do not create a pull request or branch.
-- Extend Object Shape; do not add another domain.
-- Keep renderer, GPU, capture implementation, tree morphology, and production skeleton reduction outside this change.
-- Keep automatic skeleton reduction experimental and disabled by default.
-- Preserve renderer-neutral serializable state.
-- Validate before reporting completion.
+- Work on local integration branches; do not push, release, or deploy.
+- Do not touch the dirty NexusEngine-Experiments worktree.
+- Do not modify generated vendor snapshots or historical evidence.
+- Do not stash, reset, discard, force, or delete preservation assets.
+- Fail closed: unknown or unproven production behavior does not remain Core.
+- A reusable but optional, niche, or genre-specific capability belongs in
+  NexusEngine-Kits or another trusted registry package.
+- Complete games, authored presets, and product behavior belong in Experiments
+  or a dedicated game repository.
+- Niche scenarios may remain only under tests as minimal, non-exported fixtures
+  that prove a documented generic Core invariant.
+- Immediate API removal occurs only after the external replacement passes.
+- Do not add deprecated or forwarding exports in NexusEngine.

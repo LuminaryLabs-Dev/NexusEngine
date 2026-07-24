@@ -1,0 +1,27 @@
+{
+  "id": "differences:1",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.303Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "moduleCountBefore": 374,
+    "moduleCountAfter": 339,
+    "missingBefore": [],
+    "missingAfter": [],
+    "regressions": [],
+    "requiredOutcomes": [
+      "Every NexusEngine public production module has a recorded owner,",
+      "NexusEngine public entrypoints cannot reach fishing, Reef Rescue, or another",
+      "`createFishingKit` and `createReefRescueKit` are not NexusEngine exports.",
+      "The fishing kit installs through NexusEngine-Kits using only public",
+      "Reef Rescue runs from a dedicated game repository using NexusEngine plus the",
+      "No active documentation or automation instructs a human or agent to create,",
+      "Historical and generated evidence remains unchanged and clearly non-current.",
+      "A fresh reader can answer the five ownership questions in the approved plan",
+      "All focused Core tests, full NexusEngine tests, NexusEngine-Kits checks,"
+    ]
+  }
+}

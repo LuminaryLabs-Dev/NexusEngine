@@ -1,0 +1,76 @@
+{
+  "id": "kit-graph",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.726Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "schema": "nexus-headless-kit-graph/1",
+    "nodes": [
+      {
+        "id": "core-world-domain",
+        "path": "src/core-domains/core-world-domain/kit.manifest.json",
+        "domain": null,
+        "requires": [],
+        "provides": []
+      },
+      {
+        "id": "n-core-debug-kit",
+        "path": "src/core-kits/core-debug-kit/kit.json",
+        "domain": "core-debug",
+        "requires": [],
+        "provides": []
+      },
+      {
+        "id": "n-core-graphics-render-layer-graph-kit",
+        "path": "src/core-kits/core-graphics-kit/render-layer-graph-kit/kit.json",
+        "domain": "core-graphics-render-layer-graph",
+        "requires": [],
+        "provides": [
+          "n:graphics:render-layer-graph",
+          "n:graphics:render-pass-contract",
+          "n:graphics:render-layer-validation"
+        ]
+      },
+      {
+        "id": "headless-reliability-domain-kit",
+        "path": "src/core-kits/core-headless-editor-kit/development/headless-reliability-domain-kit/kit.json",
+        "domain": "headless-reliability",
+        "requires": [],
+        "provides": [
+          "headless-reliability:infer",
+          "headless-reliability:fixtures",
+          "headless-reliability:score",
+          "headless-reliability:completion-gate"
+        ]
+      },
+      {
+        "id": "n-core-object-kit",
+        "path": "src/core-kits/core-object-kit/kit.json",
+        "domain": "core-object",
+        "requires": [],
+        "provides": [
+          "object:descriptor-contract",
+          "object:registry",
+          "object:lifecycle"
+        ]
+      },
+      {
+        "id": "n-core-transaction-ledger-kit",
+        "path": "src/core-kits/core-transaction-ledger-kit/kit.json",
+        "domain": "core-transaction-ledger",
+        "requires": [],
+        "provides": [
+          "n:core-transaction-ledger",
+          "n:core-transaction-ledger:ledger",
+          "n:core-transaction-ledger:idempotency",
+          "transaction:ledger",
+          "transaction:idempotency"
+        ]
+      }
+    ],
+    "edges": [],
+    "unresolved": [],
+    "valid": true
+  }
+}

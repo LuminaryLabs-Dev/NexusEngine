@@ -1,0 +1,84 @@
+{
+  "id": "fixture-plan",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.741Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-plan/1",
+    "targetHash": "0cdc3626",
+    "fixtures": [
+      {
+        "id": "fixture-001-repository-integrity",
+        "checkId": "repository-integrity",
+        "mode": "automatic",
+        "action": "fixture.repositoryIntegrity",
+        "description": "Inspect repository structure, relative module resolution, tests, and kit manifests.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-002-test-coverage",
+        "checkId": "test-coverage",
+        "mode": "automatic",
+        "action": "fixture.testCoverage",
+        "description": "Run the repository's declared test script and record exit status and output.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-003-kit-composition",
+        "checkId": "kit-composition",
+        "mode": "capability",
+        "action": "fixture.kitComposition",
+        "requiredCapabilities": [
+          "engine.compose",
+          "kit.runCompositionFixture"
+        ],
+        "description": "Install the relevant kit list into a real NexusEngine composition and inspect the result.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-004-installed-api-parity",
+        "checkId": "installed-api-parity",
+        "mode": "capability",
+        "action": "fixture.installedApiParity",
+        "requiredCapabilities": [
+          "kit.compareDirectAndInstalledApi"
+        ],
+        "description": "Invoke equivalent direct and engine.n APIs and compare their contracts.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-005-snapshot-reset-replay",
+        "checkId": "snapshot-reset-replay",
+        "mode": "capability",
+        "action": "fixture.snapshotResetReplay",
+        "requiredCapabilities": [
+          "engine.snapshotResetReplay",
+          "test.runSnapshotReplay"
+        ],
+        "description": "Capture state, reset, restore or replay, and compare deterministic results.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-006-public-export-integrity",
+        "checkId": "public-export-integrity",
+        "mode": "automatic",
+        "action": "fixture.publicExportIntegrity",
+        "description": "Resolve the public relative module graph and import the public entrypoint.",
+        "status": "pending"
+      },
+      {
+        "id": "fixture-007-browser-startup",
+        "checkId": "browser-startup",
+        "mode": "capability",
+        "action": "fixture.browserStartup",
+        "requiredCapabilities": [
+          "test.runBrowserStartup",
+          "browser.getErrors"
+        ],
+        "description": "Open the browser target, wait for readiness, and reject console or startup errors.",
+        "status": "pending"
+      }
+    ]
+  }
+}

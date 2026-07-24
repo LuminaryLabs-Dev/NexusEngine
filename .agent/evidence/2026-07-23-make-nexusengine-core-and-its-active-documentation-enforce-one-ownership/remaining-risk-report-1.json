@@ -1,0 +1,12 @@
+{
+  "id": "remaining-risk-report:1",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.371Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "remainingRisks": [],
+    "iteration": 1
+  }
+}

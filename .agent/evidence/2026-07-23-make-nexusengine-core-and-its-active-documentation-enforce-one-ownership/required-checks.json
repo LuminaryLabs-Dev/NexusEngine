@@ -1,0 +1,31 @@
+{
+  "id": "required-checks",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.735Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "checks": [
+      "repository-integrity",
+      "test-coverage",
+      "kit-composition",
+      "installed-api-parity",
+      "snapshot-reset-replay",
+      "public-export-integrity",
+      "browser-startup"
+    ],
+    "evidence": [
+      "repository-inspection",
+      "module-graph-before",
+      "check:test-coverage",
+      "kit-graph",
+      "check:kit-composition",
+      "check:installed-api-parity",
+      "check:snapshot-reset-replay",
+      "module-graph-after",
+      "check:public-export-integrity",
+      "check:browser-startup"
+    ]
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "id": "check:installed-api-parity",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.176Z",
+  "iteration": 1,
+  "source": "test-or-reliability-kit",
+  "value": {
+    "ok": true,
+    "command": "NexusEngine-Kits: npm run check; NexusEngine: npm test",
+    "summary": "Trusted installer, package exports, manifests, public entrypoints, and removed-symbol API freeze checks passed.",
+    "details": null,
+    "artifacts": [
+      "docs/KIT-OWNERSHIP.json",
+      "tests/public-api-freeze.mjs"
+    ]
+  }
+}

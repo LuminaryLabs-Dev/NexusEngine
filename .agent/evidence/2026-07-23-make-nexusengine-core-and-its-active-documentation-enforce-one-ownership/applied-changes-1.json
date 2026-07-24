@@ -1,0 +1,19 @@
+{
+  "id": "applied-changes:1",
+  "ok": true,
+  "at": "2026-07-24T00:08:39.565Z",
+  "iteration": 1,
+  "source": "agent",
+  "value": {
+    "ok": true,
+    "files": [
+      "src/index.js",
+      "docs/KIT-OWNERSHIP.md",
+      "docs/KIT-OWNERSHIP.json",
+      "scripts/check-core-boundaries.mjs",
+      "tests/public-entrypoint-relative-targets-smoke.mjs"
+    ],
+    "summary": "Moved non-Core behavior to owned repositories, removed its Core reachability, and rewrote active ownership documentation.",
+    "commit": null
+  }
+}

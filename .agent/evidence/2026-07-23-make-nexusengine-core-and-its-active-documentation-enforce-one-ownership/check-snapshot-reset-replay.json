@@ -1,0 +1,17 @@
+{
+  "id": "check:snapshot-reset-replay",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.189Z",
+  "iteration": 1,
+  "source": "test-or-reliability-kit",
+  "value": {
+    "ok": true,
+    "command": "NexusEngine: npm test; NexusEngine-LegacyGamePresets: npm test",
+    "summary": "Core snapshot, reset, replay, deterministic service, and extracted preset tests passed.",
+    "details": null,
+    "artifacts": [
+      "tests/run-all.mjs",
+      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-LegacyGamePresets/tests/presets-smoke.mjs"
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "id": "report",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.455Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "score": {
+      "schema": "nexus-headless-development-evidence-score/1",
+      "confidence": 1,
+      "canClaimComplete": true,
+      "requiredEvidence": [
+        "repository-inspection",
+        "module-graph-before",
+        "check:test-coverage",
+        "kit-graph",
+        "check:kit-composition",
+        "check:installed-api-parity",
+        "check:snapshot-reset-replay",
+        "module-graph-after",
+        "check:public-export-integrity",
+        "check:browser-startup"
+      ],
+      "presentEvidence": [
+        "repository-inspection",
+        "module-graph-before",
+        "check:test-coverage",
+        "kit-graph",
+        "check:kit-composition",
+        "check:installed-api-parity",
+        "check:snapshot-reset-replay",
+        "module-graph-after",
+        "check:public-export-integrity",
+        "check:browser-startup"
+      ],
+      "missingEvidence": [],
+      "failedEvidence": [],
+      "hardGates": [
+        "validation",
+        "verification",
+        "differences",
+        "remaining-risk-report"
+      ],
+      "missingHardGates": []
+    },
+    "path": ".agent/runs/2026-07-23-make-nexusengine-core-and-its-active-documentation-enforce-one-ownership/report.md"
+  }
+}

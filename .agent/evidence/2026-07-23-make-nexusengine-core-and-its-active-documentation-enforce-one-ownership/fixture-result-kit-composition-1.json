@@ -1,0 +1,21 @@
+{
+  "id": "fixture-result:kit-composition:1",
+  "ok": false,
+  "at": "2026-07-24T00:08:51.344Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-003-kit-composition",
+    "checkId": "kit-composition",
+    "mode": "capability",
+    "action": "fixture.kitComposition",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "kit-composition has no registered executor.",
+    "requiredCapabilities": [
+      "engine.compose",
+      "kit.runCompositionFixture"
+    ]
+  }
+}

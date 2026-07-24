@@ -1,0 +1,13 @@
+{
+  "id": "target-loaded",
+  "ok": true,
+  "at": "2026-07-23T23:07:12.569Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "path": ".agent/target.md",
+    "targetHash": "0cdc3626",
+    "goal": "Make NexusEngine Core and its active documentation enforce one ownership rule:"
+  }
+}

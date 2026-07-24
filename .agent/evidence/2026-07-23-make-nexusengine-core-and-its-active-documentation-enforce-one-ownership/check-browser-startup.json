@@ -1,0 +1,17 @@
+{
+  "id": "check:browser-startup",
+  "ok": true,
+  "at": "2026-07-24T00:15:18.198Z",
+  "iteration": 1,
+  "source": "test-or-reliability-kit",
+  "value": {
+    "ok": true,
+    "command": "Playwright CLI against http://127.0.0.1:4177",
+    "summary": "Desktop and 390x844 mobile launch passed; Space advanced Explore to Drift; zero console errors or warnings; 169 of 169 frame-synchronized WebGL samples were populated.",
+    "details": null,
+    "artifacts": [
+      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-desktop.png",
+      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-mobile.png"
+    ]
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "id": "fixture-result:installed-api-parity:1",
+  "ok": false,
+  "at": "2026-07-24T00:08:51.354Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-004-installed-api-parity",
+    "checkId": "installed-api-parity",
+    "mode": "capability",
+    "action": "fixture.installedApiParity",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "installed-api-parity has no registered executor.",
+    "requiredCapabilities": [
+      "kit.compareDirectAndInstalledApi"
+    ]
+  }
+}

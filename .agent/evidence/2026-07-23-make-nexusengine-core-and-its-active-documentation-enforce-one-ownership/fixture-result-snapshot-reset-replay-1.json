@@ -1,0 +1,21 @@
+{
+  "id": "fixture-result:snapshot-reset-replay:1",
+  "ok": false,
+  "at": "2026-07-24T00:08:51.364Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-005-snapshot-reset-replay",
+    "checkId": "snapshot-reset-replay",
+    "mode": "capability",
+    "action": "fixture.snapshotResetReplay",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "snapshot-reset-replay has no registered executor.",
+    "requiredCapabilities": [
+      "engine.snapshotResetReplay",
+      "test.runSnapshotReplay"
+    ]
+  }
+}
