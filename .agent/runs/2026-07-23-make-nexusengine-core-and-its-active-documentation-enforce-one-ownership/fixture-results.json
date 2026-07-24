@@ -27,7 +27,7 @@
       "details": {
         "repository": {
           "schema": "nexus-headless-repository-inspection/1",
-          "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+          "root": "<NEXUS_ENGINE_ROOT>",
           "package": {
             "name": "nexusengine",
             "version": "0.0.3",
@@ -1756,7 +1756,7 @@
         },
         "moduleGraph": {
           "schema": "nexus-headless-module-graph/1",
-          "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+          "root": "<NEXUS_ENGINE_ROOT>",
           "entry": "src/index.js",
           "moduleCount": 339,
           "edgeCount": 743,
@@ -8697,7 +8697,7 @@
       "details": {
         "moduleGraph": {
           "schema": "nexus-headless-module-graph/1",
-          "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+          "root": "<NEXUS_ENGINE_ROOT>",
           "entry": "src/index.js",
           "moduleCount": 339,
           "edgeCount": 743,

@@ -17,7 +17,7 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 ## Repo Layout
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine
+<NEXUS_ENGINE_ROOT>
 |-- src/
 |   |-- domain-service-kit.js
 |   |-- runtime-kit.js
@@ -31,7 +31,7 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 `-- state/automation/
     `-- packets, trackers, and knowledge nodes
 
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits
+<LEGACY_PROTOKITS_ROOT>
 |-- protokits/
 |   |-- <new-kit-name>/
 |   |   |-- index.js
@@ -46,7 +46,7 @@ Core should not become a dumping ground for every new gameplay, rendering, world
 |-- package.json
 `-- tests/
 
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments
+<NEXUS_ENGINE_EXPERIMENTS_ROOT>
 `-- experiments that prove kit compositions in playable/browser form
 ```
 
@@ -121,7 +121,7 @@ experiments/large-terrain-streaming-world/
    - docs/how-to-protokit.md
 
 2. Move to NexusEngine-ProtoKits:
-   - cd /Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits
+   - cd <LEGACY_PROTOKITS_ROOT>
 
 3. Read ProtoKits docs:
    - docs/DSM-START-HERE.md

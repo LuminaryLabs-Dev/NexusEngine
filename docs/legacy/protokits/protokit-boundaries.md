@@ -43,7 +43,7 @@ NexusEngine/memory.md
 Put reusable domain behavior here:
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/
+<LEGACY_PROTOKITS_ROOT>/protokits/
 ```
 
 ProtoKits may own:
@@ -78,7 +78,7 @@ requestAnimationFrame loops
 Put playable proof here:
 
 ```txt
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/
+<NEXUS_ENGINE_EXPERIMENTS_ROOT>/experiments/
 ```
 
 Experiments may own:

@@ -11,7 +11,7 @@
     "details": null,
     "artifacts": [
       "tests/run-all.mjs",
-      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-LegacyGamePresets/tests/presets-smoke.mjs"
+      "<NEXUS_ENGINE_LEGACY_PRESETS_ROOT>/tests/presets-smoke.mjs"
     ]
   }
 }

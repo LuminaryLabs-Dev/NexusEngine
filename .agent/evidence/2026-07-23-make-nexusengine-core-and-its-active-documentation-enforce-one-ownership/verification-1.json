@@ -16,7 +16,7 @@
         "details": {
           "repository": {
             "schema": "nexus-headless-repository-inspection/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+            "root": "<NEXUS_ENGINE_ROOT>",
             "package": {
               "name": "nexusengine",
               "version": "0.0.3",
@@ -1745,7 +1745,7 @@
           },
           "moduleGraph": {
             "schema": "nexus-headless-module-graph/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+            "root": "<NEXUS_ENGINE_ROOT>",
             "entry": "src/index.js",
             "moduleCount": 339,
             "edgeCount": 743,
@@ -8633,8 +8633,8 @@
         "summary": "External fishing and 20 migrated gameplay kits compose through public Core APIs; Reef Rescue consumes the external fishing kit.",
         "details": null,
         "artifacts": [
-          "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine-Kits/kits/aquatic/fishing-kit",
-          "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/tests/headless-smoke.mjs"
+          "<NEXUS_ENGINE_KITS_ROOT>/kits/aquatic/fishing-kit",
+          "<NEXUS_ENGINE_REEF_RESCUE_ROOT>/tests/headless-smoke.mjs"
         ]
       },
       {
@@ -8656,7 +8656,7 @@
         "details": null,
         "artifacts": [
           "tests/run-all.mjs",
-          "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-LegacyGamePresets/tests/presets-smoke.mjs"
+          "<NEXUS_ENGINE_LEGACY_PRESETS_ROOT>/tests/presets-smoke.mjs"
         ]
       },
       {
@@ -8667,7 +8667,7 @@
         "details": {
           "moduleGraph": {
             "schema": "nexus-headless-module-graph/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+            "root": "<NEXUS_ENGINE_ROOT>",
             "entry": "src/index.js",
             "moduleCount": 339,
             "edgeCount": 743,
@@ -16551,8 +16551,8 @@
         "summary": "Desktop and 390x844 mobile launch passed; Space advanced Explore to Drift; zero console errors or warnings; 169 of 169 frame-synchronized WebGL samples were populated.",
         "details": null,
         "artifacts": [
-          "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-desktop.png",
-          "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-mobile.png"
+          "<NEXUS_ENGINE_REEF_RESCUE_ROOT>/proof/reef-rescue-desktop.png",
+          "<NEXUS_ENGINE_REEF_RESCUE_ROOT>/proof/reef-rescue-mobile.png"
         ]
       }
     ],

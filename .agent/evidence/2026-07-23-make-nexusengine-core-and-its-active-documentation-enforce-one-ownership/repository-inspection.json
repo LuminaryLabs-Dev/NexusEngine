@@ -6,7 +6,7 @@
   "source": "guided-development-session",
   "value": {
     "schema": "nexus-headless-repository-inspection/1",
-    "root": "/Users/crimsonwheeler/Documents/Codex/NexusEngineCleanup/2026-07-23/NexusEngine",
+    "root": "<NEXUS_ENGINE_ROOT>",
     "package": {
       "name": "nexusengine",
       "version": "0.0.3",

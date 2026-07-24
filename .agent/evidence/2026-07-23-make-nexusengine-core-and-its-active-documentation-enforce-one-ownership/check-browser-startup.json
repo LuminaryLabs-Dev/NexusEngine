@@ -10,8 +10,8 @@
     "summary": "Desktop and 390x844 mobile launch passed; Space advanced Explore to Drift; zero console errors or warnings; 169 of 169 frame-synchronized WebGL samples were populated.",
     "details": null,
     "artifacts": [
-      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-desktop.png",
-      "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ReefRescue/proof/reef-rescue-mobile.png"
+      "<NEXUS_ENGINE_REEF_RESCUE_ROOT>/proof/reef-rescue-desktop.png",
+      "<NEXUS_ENGINE_REEF_RESCUE_ROOT>/proof/reef-rescue-mobile.png"
     ]
   }
 }
