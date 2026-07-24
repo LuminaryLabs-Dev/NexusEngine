@@ -7,7 +7,7 @@
   ],
   "coreRule": "atomic, idempotent, fully reusable, product-agnostic, composable, and proven",
   "counts": {
-    "currentCoreModules": 346,
+    "currentCoreModules": 348,
     "migratedProductionOwners": 28
   },
   "records": [
@@ -2422,10 +2422,59 @@
       "status": "current"
     },
     {
+      "path": "src/core-kits/core-composition-kit/composition-tree.js",
+      "publicExports": [
+        "COMPOSITION_TREE_SCHEMA",
+        "createCompositionHierarchyService",
+        "normalizeCompositionTree",
+        "planCompositionTree",
+        "validateCompositionTree"
+      ],
+      "responsibility": "core composition kit",
+      "owner": "core-composition-kit",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-kits plus npm test",
+      "status": "current"
+    },
+    {
       "path": "src/core-kits/core-composition-kit/index.js",
       "publicExports": [
         "*",
         "createCoreCompositionKit"
+      ],
+      "responsibility": "core composition kit",
+      "owner": "core-composition-kit",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-kits plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-kits/core-composition-kit/registry.js",
+      "publicExports": [
+        "CORE_COMPOSITION_REGISTRY_SCHEMA",
+        "LEGACY_CORE_COMPOSITION_REGISTRY_SCHEMA",
+        "createCoreRegistrySnapshot",
+        "hashRegistryValue",
+        "mergeRegistrySnapshots",
+        "normalizeBundleRegistryRecord",
+        "normalizeDomainRegistryRecord",
+        "normalizeKitRegistryRecord",
+        "normalizeRegistrySnapshot",
+        "normalizeRegistrySource"
       ],
       "responsibility": "core composition kit",
       "owner": "core-composition-kit",
