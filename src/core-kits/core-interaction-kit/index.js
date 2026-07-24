@@ -1,6 +1,5 @@
 import { createCoreCapabilityKit } from "../core-capability-kit.js";
 
-export { InteractionTargetState, InteractionTargetInput, InteractionTargetCompleted, createInteractionTargetKit } from "../../interaction-target-kit.js";
 export * from "./targets.js";
 export * from "./affordances.js";
 export * from "./activation.js";

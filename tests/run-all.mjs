@@ -1,6 +1,8 @@
 import { spawnSync } from "node:child_process";
 
 const tests = [
+  "scripts/check-core-boundaries.mjs",
+  "scripts/check-active-docs.mjs",
   "tests/procedural-navigation-smoke.mjs",
   "tests/public-api-freeze.mjs",
   "tests/public-entrypoint-relative-targets-smoke.mjs",

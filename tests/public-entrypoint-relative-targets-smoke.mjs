@@ -105,4 +105,35 @@ assert.deepEqual(
   `Missing relative module targets:\n${failures.map((failure) => `- ${failure}`).join("\n")}`
 );
 
+const ownershipLedger = JSON.parse(
+  await readFile(path.join(repositoryRoot, "docs", "KIT-OWNERSHIP.json"), "utf8")
+);
+const currentOwnership = new Map(
+  ownershipLedger.records
+    .filter((record) => record.status === "current")
+    .map((record) => [path.normalize(record.path), record])
+);
+const reachableModules = [...visited]
+  .filter((modulePath) => /\.(?:m?js)$/i.test(modulePath))
+  .map((modulePath) => path.normalize(path.relative(repositoryRoot, modulePath)));
+
+assert.deepEqual(
+  [...currentOwnership.keys()].sort(),
+  reachableModules.sort(),
+  "KIT-OWNERSHIP.json must exactly cover the public Core module graph"
+);
+
+for (const modulePath of reachableModules) {
+  const record = currentOwnership.get(modulePath);
+  assert.equal(record.destination, "NexusEngine Core", `${modulePath} has the wrong owner`);
+  assert.equal(record.atomic, true, `${modulePath} is not classified atomic`);
+  assert.equal(record.idempotent, true, `${modulePath} is not classified idempotent`);
+  assert.equal(record.fullyReusable, true, `${modulePath} is not classified fully reusable`);
+  assert.equal(
+    record.productOrGenreSpecific,
+    false,
+    `${modulePath} is classified as product or genre specific`
+  );
+}
+
 console.log(`Validated ${visited.size} modules reachable from ${entrySpecifiers.size} public entrypoints.`);

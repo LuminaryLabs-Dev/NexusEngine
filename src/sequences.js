@@ -148,11 +148,16 @@ export class UIControllerSequence extends BaseSequence {
   };
 
   tick(node, state, context) {
-    const resource = context.engine?.kit?.resources?.FishingSession;
-    if (resource) {
-      const session = context.world.getResource(resource) ?? {};
-      session.uiPanel = node?.params?.panel ?? session.uiPanel;
-      context.world.setResource(resource, session);
+    const handler = context.engine?.kit?.invokes?.setPanel
+      ?? context.engine?.sequenceControllers?.setPanel;
+    if (typeof handler === "function") {
+      handler({
+        ...context,
+        node,
+        state,
+        panel: node?.params?.panel,
+        action: node?.params?.action
+      });
     }
     return { status: "completed" };
   }

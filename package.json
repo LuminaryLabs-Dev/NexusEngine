@@ -18,6 +18,7 @@
     "./domain-service-kit": "./src/domain-service-kit.js",
     "./domain-path": "./src/domain-path.js",
     "./domain-api": "./src/domain-api.js",
+    "./terrain": "./src/terrain-kit.js",
     "./core-startup": "./src/core-kits/core-startup-kit/index.js",
     "./core-assets": "./src/core-kits/core-assets-kit/index.js",
     "./core-creature": "./src/core-kits/core-creature-kit/index.js",
@@ -81,6 +82,9 @@
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",
+    "boundaries:check": "node scripts/check-core-boundaries.mjs",
+    "docs:check": "node scripts/check-active-docs.mjs",
+    "ownership:generate": "node scripts/generate-kit-ownership-ledger.mjs",
     "test": "node tests/run-all.mjs",
     "test:release": "node tests/release-0.0.3-run-all.mjs",
     "benchmark:scene": "node benchmarks/core-scene-kit-loop.mjs",

@@ -44,6 +44,7 @@ export function createCoreReflectionKit(config = {}) {
     ...config,
     id: config.id ?? "n-core-graphics-reflection-kit",
     domain: "core-graphics-reflection",
+    domainPath: config.domainPath ?? "n:graphics:reflection",
     apiName: config.apiName ?? "coreReflection",
     purpose: "Renderer-neutral reflection descriptors, quality budgets, fallback negotiation, normalized provider results, revisions, and visible-frame receipts.",
     owns: [

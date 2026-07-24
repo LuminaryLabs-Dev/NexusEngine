@@ -883,22 +883,7 @@ export function createTerrainKit(options = {}) {
   return {
     ...kit,
     definitions,
-    config,
-    bindings: {
-      fishing(bindingOptions = {}) {
-        return {
-          __nexusTerrainBinding: true,
-          resources: definitions.resources,
-          components: definitions.components,
-          events: definitions.events,
-          waterLevel: number(bindingOptions.waterLevel, config.waterLevel),
-          shorelineMaterial: bindingOptions.shorelineMaterial ?? "wet-sand",
-          queryResource: definitions.resources.TerrainQuery,
-          snapshotResource: definitions.resources.TerrainSnapshot,
-          focusResource: definitions.resources.TerrainFocusState
-        };
-      }
-    }
+    config
   };
 }
 

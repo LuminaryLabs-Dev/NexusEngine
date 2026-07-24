@@ -14,7 +14,9 @@ Core capability domain
   + snapshot/reset expectations
 ```
 
-The goal is to make NexusEngine useful out of the gate while still keeping niche, genre-specific, app-specific, and experimental kits in `NexusEngine-ProtoKits`.
+The goal is to keep NexusEngine useful without absorbing optional, niche,
+genre-specific, platform-specific, or product-specific behavior. Those
+capabilities belong in NexusEngine-Kits or another trusted registry.
 
 ---
 
@@ -53,7 +55,8 @@ What must stay outside this domain?
 
 ## Why this exists
 
-The core should be robust enough that a user or agent can build a useful realtime app without immediately importing dozens of niche ProtoKits.
+Core should provide the universal substrate needed to compose a realtime app.
+Applications import optional trusted kits when their domain requires them.
 
 But the core should not become a dumping ground for every game, genre, renderer, or product idea.
 
@@ -69,8 +72,8 @@ NexusEngine contracts
 NexusEngine core-kits
   broad configurable capability domains
 
-NexusEngine-ProtoKits
-  niche, genre, platform, app, and composite kits
+NexusEngine-Kits or another trusted registry
+  reusable optional, niche, genre, and platform kits
 
 NexusEngine-Experiments
   playable proof routes and compositions
@@ -91,7 +94,7 @@ A core capability domain should be promoted only when it is:
 [ ] renderer agnostic unless it is explicitly an adapter boundary
 [ ] small enough at the public API layer
 [ ] broad enough to be useful out of the gate
-[ ] extendable by ProtoKits without copying internal logic
+[ ] extendable through public contracts without copying private logic
 ```
 
 A core capability domain should not be promoted when it is:
@@ -103,7 +106,7 @@ A core capability domain should not be promoted when it is:
 [ ] tied to one platform device
 [ ] mostly authored content
 [ ] a temporary compatibility bridge
-[ ] a large composite game loop that belongs in ProtoKits
+[ ] a large composite game loop that belongs in a game repository
 ```
 
 ---
@@ -215,7 +218,8 @@ createCoreGraphicsKit({
 
 ### 4. Domain extension
 
-Use this when a ProtoKit needs to build a larger domain bubble on top of a core domain.
+Use this when a trusted external kit builds a larger domain bubble on a Core
+domain.
 
 ```js
 extendDomainServiceKit(coreInputKit, {
@@ -397,12 +401,12 @@ Each core capability domain should prove:
 
 Core capability domains provide trusted defaults.
 
-ProtoKits compose and override them.
+Trusted external kits compose and override them.
 
 Experiments prove the composition.
 
 ```txt
 Core capability domains are the stable bubbles.
-ProtoKits build bigger bubbles from them.
+Trusted external kits build bigger bubbles from them.
 Experiments show the bubbles working together.
 ```

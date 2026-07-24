@@ -38,6 +38,10 @@ for (const name of [
   "createDomainApiRegistry",
   "installDomainAddressability",
   "createSequenceRuntime",
+  "createHeadlessRenderer",
+  "createRenderer",
+  "createShaderRegistry",
+  "createMaterialRegistry",
   "BaseSequence",
   "GroupSequence",
   "WaitForEventSequence",
@@ -262,11 +266,51 @@ for (const name of [
   assert.equal(typeof api[name] !== "undefined", true, `${name} should be exported`);
 }
 
+for (const name of [
+  "createFishingKit",
+  "createReefRescueKit",
+  "createRealismKit",
+  "fishingShaders",
+  "createCanvas2DRenderer",
+  "createCustomWebGLRenderer",
+  "createThreeRenderer",
+  "createARKit",
+  "createARExperienceKit",
+  "createARLaunchRuntime",
+  "createInteractionKit",
+  "createCharacterInteractionKit",
+  "createLightCombatKit",
+  "createCompanionCommandKit",
+  "createCameraOcclusionKit",
+  "createCharacterRagdollKit",
+  "createForestPlacementKit",
+  "createObjectiveFlowKit",
+  "createSpatialRoomKit",
+  "createGreyboxBuildingKit",
+  "createSurfacePlacementKit",
+  "createInteractionTargetKit",
+  "createCollectibleKit",
+  "createSymbolAlignmentKit",
+  "createSortingKit",
+  "createRevealLightKit",
+  "createMovingTargetKit",
+  "createLockAndSocketKit",
+  "createRenderDescriptorKit",
+  "createShrinePuzzleKit",
+  "createCorruptionWorldKit",
+  "createTreeRunnerKit",
+  "createMicroPlatformerKit"
+]) {
+  assert.equal(name in api, false, `${name} must not be exported by NexusEngine Core`);
+}
+
 assert.equal(api.NEXUS_ENGINE_VERSION, "0.0.3");
 assert.equal(api.NEXUS_ENGINE_STABILITY, "stable-candidate");
 assert.equal(api.NEXUS_ENGINE_RELEASE.version, "0.0.3");
 
 const engine = api.createEngine();
+assert.equal(typeof engine.renderer.render, "function");
+assert.equal("renderFishing" in engine.renderer, false);
 assert.ok(engine.sequenceRuntime);
 assert.ok(engine.sequenceNodeRuntime);
 assert.equal(typeof engine.dispatchSequenceEvent, "function");

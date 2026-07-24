@@ -1,7 +1,6 @@
 import { createCoreCapabilityKit } from "../core-capability-kit.js";
 import { createInstanceBatchService } from "./instance-batches.js";
 
-export { RenderDescriptorState, createRenderDescriptorKit, createRenderDescriptorSnapshot } from "../../render-descriptor-kit.js";
 export * from "./render-descriptors.js";
 export * from "./material-descriptors.js";
 export * from "./procedural-material-descriptors.js";

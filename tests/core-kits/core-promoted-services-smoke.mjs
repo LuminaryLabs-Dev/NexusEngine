@@ -5,6 +5,7 @@ import { createCoreCompositionKit } from "../../src/core-kits/core-composition-k
 import { createCoreSimulationKit } from "../../src/core-kits/core-simulation-kit/index.js";
 
 const engine = createRealtimeGame({
+  tick: { maxDelta: 1 },
   kits: [
     createCoreDataKit({
       random: { seed: "promotion-smoke", streams: ["world"] },

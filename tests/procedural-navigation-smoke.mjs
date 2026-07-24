@@ -295,7 +295,10 @@ const timing = createTimingWindowKit({
 const pressure = createResourcePressureKit({
   resources: [{ id: "heat", label: "Heat", start: 50, max: 100, drainPerSecond: 2 }]
 });
-const timingPressureEngine = createEngine({ kits: [timing, pressure] });
+const timingPressureEngine = createEngine({
+  tick: { maxDelta: 1 },
+  kits: [timing, pressure]
+});
 timingPressureEngine.tick(1);
 const activeStrike = gradeTimingWindow(timingPressureEngine.world.getResource(TimingWindowState), "strike");
 assert.equal(activeStrike.quality, "perfect", "TimingWindowKit should grade cycle peaks");
@@ -312,7 +315,10 @@ const hazardField = createHazardFieldKit({
   maxHazards: 3,
   spawnRules: [{ id: "pulse", intervalSeconds: 0.5, speed: 20, radius: 8 }]
 });
-const hazardEngine = createEngine({ kits: [hazardField] });
+const hazardEngine = createEngine({
+  tick: { maxDelta: 0.5 },
+  kits: [hazardField]
+});
 hazardEngine.tick(0.5);
 hazardEngine.tick(0.5);
 const hazardState = hazardEngine.world.getResource(HazardFieldState);
@@ -373,7 +379,10 @@ const cargo = createCargoManifestKit({
     { id: "cargo-b", x: 12, y: 10, value: 2, weight: 2 }
   ]
 });
-const cargoEngine = createEngine({ kits: [cargo] });
+const cargoEngine = createEngine({
+  tick: { maxDelta: 1 },
+  kits: [cargo]
+});
 const cargoState = cargoEngine.world.getResource(CargoManifestState);
 assert.equal(cargoEngine.cargoManifest.nearestAvailable({ x: 10, y: 9 }, 8).item.id, "cargo-a", "CargoManifestKit should query nearest available cargo");
 assert.equal(cargoState.quotaComplete, false, "CargoManifestKit should start before quota completion");
@@ -391,7 +400,10 @@ const requestKit = createRequestFulfillmentKit({
 const pursuitKit = createPursuitPressureKit({ startDistance: 40, closeRatePerSecond: 10, catchDistance: 8, warningDistance: 30 });
 const inputKit = createInputIntentKit();
 const durationKit = createScenarioDurationKit({ durationSeconds: 10, checkpoints: [{ id: "half", atSeconds: 5 }, { id: "done", atSeconds: 10 }] });
-const requestEngine = createEngine({ kits: [requestKit, pursuitKit, inputKit, durationKit] });
+const requestEngine = createEngine({
+  tick: { maxDelta: 5 },
+  kits: [requestKit, pursuitKit, inputKit, durationKit]
+});
 assert.equal(requestEngine.requestFulfillment.nearestOpen({ x: 25, y: 0 }, 20).request.id, "request-a", "RequestFulfillmentKit should query nearest open request");
 requestEngine.inputIntent.set({ x: 1, primary: true });
 assert.equal(requestEngine.world.getResource(InputIntentState).inputSeen, true, "InputIntentKit should publish input seen telemetry");
