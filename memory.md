@@ -66,3 +66,11 @@ add niche production behavior to Core.
 - Preserve generated evidence as history; it is not current architecture.
 - Do not push, release, deploy, or destructively clean without explicit
   approval.
+
+## Branch Policy
+
+- Keep only `main` and the version branches `0.0.1`, `0.0.2`, and `0.0.3`.
+- Integrate validated feature behavior into `main` before retiring temporary
+  feature, integration, test, or preservation branches.
+- Summarize historical preservation material without publishing raw run state,
+  machine paths, prompts, logs, environment details, or secret-bearing data.

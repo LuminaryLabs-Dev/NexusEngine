@@ -7,6 +7,9 @@ They are not active instructions and do not override current source, tests,
 
 - `protokits/`: verbatim copies of the retired authoring workflow
 - `0.0.3-planning/`: superseded package and branch planning documents
+- [July 2026 branch consolidation](branch-consolidation-2026-07-27.md):
+  public-safe disposition of preserved registry, documentation, validation,
+  and generated evidence material
 
 The versioned `docs/0.0.3/` folder and root `*_0.0.3` files are immutable
 release-era snapshots. Their paths remain stable for historical links; they are
