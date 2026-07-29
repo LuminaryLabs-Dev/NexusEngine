@@ -21,7 +21,8 @@ const bridge = engine.n.vegetationObjectBridge;
 
 assert.ok(vegetation && ecology && trees && foliage && bridge);
 assert.equal(engine.n.ownerOf("n:object"), "n-core-object-kit");
-assert.equal(engine.n.path("n:object").metadata.aliasOf, "n:core-object");
+assert.equal(engine.n.path("n:core-object"), null);
+assert.equal(engine.kits[0].provides.includes("n:core-object"), false);
 assert.equal(engine.n.path("n:object:vegetation").parentPath, "n:object");
 assert.equal(engine.n.path("n:object:vegetation:tree").parentPath, "n:object:vegetation");
 assert.equal(engine.n.path("n:object:vegetation:foliage").parentPath, "n:object:vegetation");

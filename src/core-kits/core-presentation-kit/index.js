@@ -1,7 +1,7 @@
 import { defineEvent, defineResource } from "../../ecs.js";
 import { defineDomainServiceKit } from "../../domain-service-kit.js";
 
-const VERSION = "0.0.3";
+const VERSION = "0.0.4";
 const State = defineResource("core.presentation.state");
 const Configured = defineEvent("core.presentation.configured");
 const Reset = defineEvent("core.presentation.reset");

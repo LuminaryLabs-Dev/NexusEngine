@@ -1,7 +1,7 @@
 import { writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCoreRegistrySnapshot } from "../src/core-kits/core-composition-kit/registry.js";
+import { createCoreRegistrySnapshot } from "../src/core-domains/core-composition-domain/kits/composition-registry-kit/registry.js";
 import { NEXUS_ENGINE_VERSION, NEXUS_ENGINE_STABILITY } from "../src/release.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
@@ -9,7 +9,7 @@ const root = resolve(__dirname, "..");
 const registry = createCoreRegistrySnapshot();
 
 const manifest = {
-  schema: "nexusengine.dsk-manifest.v0.0.3",
+  schema: "nexusengine.dsk-manifest.v0.0.4",
   package: "nexusengine",
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
@@ -32,6 +32,6 @@ const manifest = {
   }))
 };
 
-const outputPath = resolve(root, "docs", "DSK_MANIFEST_0.0.3.json");
+const outputPath = resolve(root, "docs", "DSK_MANIFEST_0.0.4.json");
 writeFileSync(outputPath, `${JSON.stringify(manifest, null, 2)}\n`);
 console.log(`Wrote ${outputPath}`);

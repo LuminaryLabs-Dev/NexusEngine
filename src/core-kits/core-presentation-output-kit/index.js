@@ -8,7 +8,7 @@ import {
 
 export * from "./math.js";
 
-const VERSION = "0.0.3";
+const VERSION = "0.0.4";
 const Surface = defineResource("core.presentation.surface");
 const Policy = defineResource("core.presentation.policy");
 const Descriptor = defineResource("core.presentation.descriptor");

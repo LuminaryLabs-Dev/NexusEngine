@@ -1,7 +1,7 @@
 {
   "schemaVersion": "nexusengine.core-kit.v1",
   "id": "n-core-transaction-ledger-kit",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "domain": "core-transaction-ledger",
   "domainPath": "n:core-transaction-ledger",
   "apiName": "coreTransactionLedger",

@@ -3,7 +3,7 @@
   "domain": "core-debug",
   "domainPath": "n:core-debug",
   "api": "engine.n.coreDebug",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "stability": "stable-candidate",
   "purpose": "Renderer-agnostic debug descriptors, metric rays, state captures, and serializable export packets.",
   "owns": [

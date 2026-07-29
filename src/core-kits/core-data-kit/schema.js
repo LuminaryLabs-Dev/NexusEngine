@@ -70,7 +70,7 @@ export function createDataSchema(config = {}) {
   if (!id) throw new TypeError("Data schema requires a non-empty id.");
   return Object.freeze({
     id,
-    version: String(config.version ?? "0.0.3"),
+    version: String(config.version ?? "0.0.4"),
     fields: Object.freeze(clone(config.fields ?? {})),
     required: Object.freeze([...(config.required ?? [])].map(String)),
     additionalProperties: config.additionalProperties !== false,

@@ -1,0 +1,921 @@
+{
+  "schema": "nexusengine.dsk-manifest.v0.0.4",
+  "package": "nexusengine",
+  "version": "0.0.4",
+  "stability": "stable-candidate",
+  "generatedBy": "scripts/generate-dsk-manifest.mjs",
+  "registrySchema": "nexusengine.core-composition.registry/2",
+  "registryHash": "fnv1a32-ee588c78",
+  "domains": [
+    {
+      "id": "core-camera-framing-kit",
+      "domain": "presentation-camera-framing",
+      "domainPath": "n:presentation:camera-framing",
+      "parentDomainPath": "n:presentation",
+      "provides": [
+        "n:presentation:camera-framing"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-camera-framing-kit/index.js",
+      "exportName": "createCoreCameraFramingKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-capture-domain",
+      "domain": "capture",
+      "domainPath": "n:capture",
+      "parentDomainPath": null,
+      "provides": [
+        "n:capture"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-capture-kit/index.js",
+      "exportName": "createCoreCaptureKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-compute-domain",
+      "domain": "compute",
+      "domainPath": "n:compute",
+      "parentDomainPath": null,
+      "provides": [
+        "n:compute"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-compute-kit/index.js",
+      "exportName": "createCoreComputeKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-object-fidelity-domain",
+      "domain": "object-fidelity",
+      "domainPath": "n:object:fidelity",
+      "parentDomainPath": "n:object",
+      "provides": [
+        "n:object:fidelity",
+        "object:fidelity-forms",
+        "object:fidelity-packages"
+      ],
+      "requires": [
+        "object:descriptor-contract"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/fidelity/kits/object-fidelity-kit/index.js",
+      "exportName": "createCoreObjectFidelityKit",
+      "stability": "stable-candidate",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-object-shape-domain",
+      "domain": "object-shape",
+      "domainPath": "n:object:shape",
+      "parentDomainPath": "n:object",
+      "provides": [
+        "n:object:shape",
+        "object:shape-candidate",
+        "object:shape-derived",
+        "object:shape-jobs",
+        "object:shape-qualified",
+        "object:shape-source"
+      ],
+      "requires": [
+        "object:descriptor-contract"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/index.js",
+      "exportName": "createCoreObjectShapeKit",
+      "stability": "stable-candidate",
+      "version": "0.2.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-domain",
+      "domain": "presentation",
+      "domainPath": "n:presentation",
+      "parentDomainPath": null,
+      "provides": [
+        "n:presentation"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-presentation-kit/index.js",
+      "exportName": "createCorePresentationKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-presentation-output-kit",
+      "domain": "presentation-output",
+      "domainPath": "n:presentation:output",
+      "parentDomainPath": "n:presentation",
+      "provides": [
+        "n:presentation:output"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-presentation-output-kit/index.js",
+      "exportName": "createCorePresentationOutputKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-speech-domain",
+      "domain": "speech",
+      "domainPath": "n:speech",
+      "parentDomainPath": null,
+      "provides": [
+        "n:speech"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-speech-kit/index.js",
+      "exportName": "createCoreSpeechKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-startup-domain",
+      "domain": "core-startup",
+      "domainPath": "n:core-startup",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-startup"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-startup-kit/index.js",
+      "exportName": "createCoreStartupKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "core-ui-scale-kit",
+      "domain": "presentation-ui-scale",
+      "domainPath": "n:presentation:ui-scale",
+      "parentDomainPath": "n:presentation",
+      "provides": [
+        "n:presentation:ui-scale"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-ui-scale-kit/index.js",
+      "exportName": "createCoreUIScaleKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "mcp-registry-kit",
+      "domain": "core-mcp",
+      "domainPath": "n:core-mcp",
+      "parentDomainPath": null,
+      "provides": [
+        "mcp:prompts",
+        "mcp:registry",
+        "mcp:resources",
+        "mcp:tools",
+        "n:core-mcp",
+        "protocol:mcp"
+      ],
+      "requires": [],
+      "source": "src/core-domains/core-mcp-domain/kits/mcp-registry-kit/index.js",
+      "exportName": "createMcpRegistryKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "meshoptimizer-shape-provider-kit",
+      "domain": "object-shape",
+      "domainPath": "n:object:shape",
+      "parentDomainPath": null,
+      "provides": [
+        "object:shape-provider"
+      ],
+      "requires": [
+        "object:shape-jobs"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js",
+      "exportName": "createMeshoptimizerShapeProviderKit",
+      "stability": "stable-candidate",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-agent-kit",
+      "domain": "core-agent",
+      "domainPath": "n:core-agent",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-agent"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-agent-kit/index.js",
+      "exportName": "createCoreAgentKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-animation-kit",
+      "domain": "core-animation",
+      "domainPath": "n:core-animation",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-animation"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-animation-kit/index.js",
+      "exportName": "createCoreAnimationKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-assets-kit",
+      "domain": "core-assets",
+      "domainPath": "n:core-assets",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-assets"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-assets-kit/index.js",
+      "exportName": "createCoreAssetsKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-audio-kit",
+      "domain": "core-audio",
+      "domainPath": "n:core-audio",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-audio"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-audio-kit/index.js",
+      "exportName": "createCoreAudioKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-camera-kit",
+      "domain": "core-camera",
+      "domainPath": "n:core-camera",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-camera"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-camera-kit/index.js",
+      "exportName": "createCoreCameraKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-character-kit",
+      "domain": "core-character",
+      "domainPath": "n:core-character",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-character"
+      ],
+      "requires": [
+        "n:core-creature"
+      ],
+      "source": "src/core-kits/core-character-kit/index.js",
+      "exportName": "createCoreCharacterKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-composition-kit",
+      "domain": "core-composition",
+      "domainPath": "n:core-composition",
+      "parentDomainPath": null,
+      "provides": [
+        "composition:capability-graph",
+        "composition:planning",
+        "composition:registry",
+        "n:core-composition"
+      ],
+      "requires": [],
+      "source": "src/core-domains/core-composition-domain/kits/composition-registry-kit/index.js",
+      "exportName": "createCoreCompositionKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-creature-kit",
+      "domain": "core-creature",
+      "domainPath": "n:core-creature",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-creature"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-creature-kit/index.js",
+      "exportName": "createCoreCreatureKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-data-kit",
+      "domain": "core-data",
+      "domainPath": "n:core-data",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-data"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-data-kit/index.js",
+      "exportName": "createCoreDataKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-debug-kit",
+      "domain": "core-debug",
+      "domainPath": "n:core-debug",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-debug"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-debug-kit/index.js",
+      "exportName": "createCoreDebugKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-diagnostics-kit",
+      "domain": "core-diagnostics",
+      "domainPath": "n:core-diagnostics",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-diagnostics"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-diagnostics-kit/index.js",
+      "exportName": "createCoreDiagnosticsKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-graphics-kit",
+      "domain": "core-graphics",
+      "domainPath": "n:core-graphics",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-graphics"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-graphics-kit/index.js",
+      "exportName": "createCoreGraphicsKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-graphics-reflection-kit",
+      "domain": "core-graphics-reflection",
+      "domainPath": "n:graphics:reflection",
+      "parentDomainPath": "n:graphics",
+      "provides": [
+        "n:graphics:reflection"
+      ],
+      "requires": [
+        "n:core-graphics"
+      ],
+      "source": "src/core-kits/core-graphics-kit/reflection-kit/index.js",
+      "exportName": "createCoreReflectionKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-headless-editor-kit",
+      "domain": "core-headless-editor",
+      "domainPath": "n:core-headless-editor",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-headless-editor"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-headless-editor-kit/index.js",
+      "exportName": "createCoreHeadlessEditorKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-input-kit",
+      "domain": "core-input",
+      "domainPath": "n:core-input",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-input"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-input-kit/index.js",
+      "exportName": "createCoreInputKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-interaction-kit",
+      "domain": "core-interaction",
+      "domainPath": "n:core-interaction",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-interaction"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-interaction-kit/index.js",
+      "exportName": "createCoreInteractionKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-mlnn-kit",
+      "domain": "core-mlnn",
+      "domainPath": "n:core-mlnn",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-mlnn"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-mlnn-kit/index.js",
+      "exportName": "createCoreMLNNKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-motion-kit",
+      "domain": "core-motion",
+      "domainPath": "n:core-motion",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-motion"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-motion-kit/index.js",
+      "exportName": "createCoreMotionKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-network-kit",
+      "domain": "core-network",
+      "domainPath": "n:core-network",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-network"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-network-kit/index.js",
+      "exportName": "createCoreNetworkKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-object-kit",
+      "domain": "core-object",
+      "domainPath": "n:object",
+      "parentDomainPath": null,
+      "provides": [
+        "n:object",
+        "object:descriptor-contract",
+        "object:lifecycle",
+        "object:registry"
+      ],
+      "requires": [],
+      "source": "src/core-domains/core-object-domain/kits/object-registry-kit/index.js",
+      "exportName": "createCoreObjectKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-object-placement-kit",
+      "domain": "core-object-placement",
+      "domainPath": "n:object:placement",
+      "parentDomainPath": "n:object",
+      "provides": [
+        "n:object:placement",
+        "object:placement-anchor-alignment",
+        "object:placement-contract",
+        "object:placement-validation"
+      ],
+      "requires": [
+        "n:object",
+        "object:descriptor-contract"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/placement/kits/object-placement-kit/index.js",
+      "exportName": "createObjectPlacementKit",
+      "stability": "stable-candidate",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-persistence-kit",
+      "domain": "core-persistence",
+      "domainPath": "n:core-persistence",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-persistence"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-persistence-kit/index.js",
+      "exportName": "createCorePersistenceKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-physics-kit",
+      "domain": "core-physics",
+      "domainPath": "n:core-physics",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-physics"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-physics-kit/index.js",
+      "exportName": "createCorePhysicsKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-platform-kit",
+      "domain": "core-platform",
+      "domainPath": "n:core-platform",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-platform"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-platform-kit/index.js",
+      "exportName": "createCorePlatformKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-player-kit",
+      "domain": "core-player",
+      "domainPath": "n:core-player",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-player"
+      ],
+      "requires": [
+        "n:core-character"
+      ],
+      "source": "src/core-kits/core-player-kit/index.js",
+      "exportName": "createCorePlayerKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-policy-kit",
+      "domain": "core-policy",
+      "domainPath": "n:core-policy",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-policy"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-policy-kit/index.js",
+      "exportName": "createCorePolicyKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-scene-kit",
+      "domain": "core-scene",
+      "domainPath": "n:core-scene",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-scene"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-scene-kit/index.js",
+      "exportName": "createCoreSceneKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-simulation-kit",
+      "domain": "core-simulation",
+      "domainPath": "n:core-simulation",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-simulation"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-simulation-kit/index.js",
+      "exportName": "createCoreSimulationKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-skybox-kit",
+      "domain": "core-skybox",
+      "domainPath": "n:core-skybox",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-skybox"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-skybox-kit/index.js",
+      "exportName": "createCoreSkyboxKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-spatial-kit",
+      "domain": "core-spatial",
+      "domainPath": "n:core-spatial",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-spatial"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-spatial-kit/index.js",
+      "exportName": "createCoreSpatialKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-transaction-ledger-kit",
+      "domain": "core-transaction-ledger",
+      "domainPath": "n:core-transaction-ledger",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-transaction-ledger"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-transaction-ledger-kit/index.js",
+      "exportName": "createCoreTransactionLedgerKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-ui-kit",
+      "domain": "core-ui",
+      "domainPath": "n:core-ui",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-ui"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-ui-kit/index.js",
+      "exportName": "createCoreUIKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-utility-kit",
+      "domain": "core-utility",
+      "domainPath": "n:core-utility",
+      "parentDomainPath": null,
+      "provides": [
+        "n:core-utility"
+      ],
+      "requires": [],
+      "source": "src/core-kits/core-utility-kit/index.js",
+      "exportName": "createCoreUtilityKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-core-vegetation-kit",
+      "domain": "core-vegetation",
+      "domainPath": "n:object:vegetation",
+      "parentDomainPath": "n:object",
+      "provides": [
+        "n:object:vegetation",
+        "vegetation:instances",
+        "vegetation:lifecycle",
+        "vegetation:species"
+      ],
+      "requires": [
+        "n:object"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/vegetation/kits/object-vegetation-kit/index.js",
+      "exportName": "createCoreVegetationKit",
+      "stability": "experimental",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-vegetation-ecology-domain-kit",
+      "domain": "core-vegetation-ecology",
+      "domainPath": "n:object:vegetation:ecology",
+      "parentDomainPath": "n:object:vegetation",
+      "provides": [
+        "n:object:vegetation:ecology",
+        "vegetation:ecology-score",
+        "vegetation:ecology-selection"
+      ],
+      "requires": [
+        "n:object:vegetation"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/ecology-domain/index.js",
+      "exportName": "createVegetationEcologyKit",
+      "stability": "experimental",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-vegetation-foliage-domain-kit",
+      "domain": "core-vegetation-foliage",
+      "domainPath": "n:object:vegetation:foliage",
+      "parentDomainPath": "n:object:vegetation",
+      "provides": [
+        "n:object:vegetation:foliage",
+        "vegetation:foliage"
+      ],
+      "requires": [
+        "n:object:vegetation"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/foliage-domain/index.js",
+      "exportName": "createFoliageDomainKit",
+      "stability": "experimental",
+      "version": "0.2.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-vegetation-object-bridge-kit",
+      "domain": "vegetation-object-bridge",
+      "domainPath": "n:object:vegetation",
+      "parentDomainPath": null,
+      "provides": [
+        "vegetation:object-bridge"
+      ],
+      "requires": [
+        "n:object",
+        "n:object:vegetation"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/vegetation/adapters/vegetation-object-bridge-kit/index.js",
+      "exportName": "createVegetationObjectBridgeKit",
+      "stability": "experimental",
+      "version": "0.1.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "n-vegetation-tree-domain-kit",
+      "domain": "core-vegetation-tree",
+      "domainPath": "n:object:vegetation:tree",
+      "parentDomainPath": "n:object:vegetation",
+      "provides": [
+        "n:object:vegetation:tree",
+        "vegetation:tree-canopy",
+        "vegetation:tree-fidelity",
+        "vegetation:tree-growth",
+        "vegetation:tree-structure"
+      ],
+      "requires": [
+        "n:object:vegetation"
+      ],
+      "source": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/tree-domain/index.js",
+      "exportName": "createTreeDomainKit",
+      "stability": "experimental",
+      "version": "0.3.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "object-shape-fidelity-adapter-kit",
+      "domain": "object-shape-fidelity",
+      "domainPath": "n:object:fidelity",
+      "parentDomainPath": null,
+      "provides": [
+        "object:shape-fidelity-adapter"
+      ],
+      "requires": [
+        "object:fidelity-forms",
+        "object:shape-qualified"
+      ],
+      "source": "src/core-domains/core-object-domain/adapters/object-shape-fidelity-adapter-kit/index.js",
+      "exportName": "createObjectShapeFidelityAdapterKit",
+      "stability": "stable-candidate",
+      "version": "0.2.0",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "realtime-core-kit",
+      "domain": "realtime",
+      "domainPath": "n:realtime",
+      "parentDomainPath": null,
+      "provides": [
+        "n:realtime"
+      ],
+      "requires": [],
+      "source": "src/core-kits/realtime-core-kit/index.js",
+      "exportName": "createRealtimeCoreKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    },
+    {
+      "id": "sequence-core-kit",
+      "domain": "sequence",
+      "domainPath": "n:sequence",
+      "parentDomainPath": null,
+      "provides": [
+        "n:sequence"
+      ],
+      "requires": [
+        "n:realtime"
+      ],
+      "source": "src/core-kits/sequence-core-kit/index.js",
+      "exportName": "createSequenceCoreKit",
+      "stability": "stable-candidate",
+      "version": "0.0.4",
+      "snapshot": "required",
+      "reset": "required"
+    }
+  ]
+}

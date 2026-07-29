@@ -1,6 +1,6 @@
-export const NEXUS_ENGINE_VERSION = "0.0.3";
+export const NEXUS_ENGINE_VERSION = "0.0.4";
 export const NEXUS_ENGINE_STABILITY = "stable-candidate";
-export const NEXUS_ENGINE_RELEASE_BRANCH = "0.0.3";
+export const NEXUS_ENGINE_RELEASE_BRANCH = "main";
 
 export const NEXUS_ENGINE_RELEASE = Object.freeze({
   name: "nexusengine",
@@ -11,7 +11,11 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "runtime-substrate",
     "runtime-kit-contract",
     "domain-service-kit-contract",
+    "domain-manifest-contract",
     "core-capability-kit-contract",
+    "core-composition-domain",
+    "core-mcp-domain",
+    "core-object-domain",
     "sequence-runtime",
     "sequence-node-runtime",
     "surface-contracts",
@@ -27,7 +31,8 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "sequences",
     "sequence-node",
     "foundation",
-    "core-kits"
+    "core-kits",
+    "core-domains"
   ]),
-  notes: "0.0.3 is the release-hardening branch for NexusEngine Core v0.0.3."
+  notes: "0.0.4 is the active domain-owned composition and MCP integration target on main."
 });

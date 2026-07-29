@@ -29,7 +29,11 @@ behavior in the Core API.
 - `src/runtime-kit.js`: installable and composable runtime kits.
 - `src/domain-service-kit.js`: addressable DSK contracts.
 - `src/game-kit-composer.js`: additive dependency-ordered composition.
-- `src/core-kits/` and `src/core-domains/`: intentional Core capabilities.
+- `src/core-domains/`: semantic owners of Core capabilities. Each migrated
+  domain owns its contracts, state, Kits, providers, adapters, and manifest.
+- `src/core-kits/`: transitional home for unmigrated Core capabilities and the
+  shared `core-capability-kit.js` helper. Delete it only after domain-by-domain
+  parity and zero-import gates pass.
 - `src/renderers.js`: generic headless adapter only; presentation adapters are
   resolved outside Core.
 - `src/shaders.js`: generic shader and material registries only.
@@ -40,6 +44,16 @@ Simulation stays deterministic and presentation-agnostic. Stateful Core
 behavior has stable defaults and explicit snapshot/reset expectations.
 
 ## Current Migrations
+
+- Core Composition reads explicit domain manifests without filesystem scanning.
+  It owns stable plans and exactly-once apply receipts; the application host
+  owns trusted factory resolution, approval, mutation, and runtime lifecycle.
+  `core-composition-domain`, `core-mcp-domain`, and the complete Object family
+  are the first domain-owned implementations.
+- Core MCP is opt-in. Applications install `mcp-registry-kit`, register their
+  own providers, and explicitly connect a transport.
+- `n:object` owns Object, Shape, Fidelity, Vegetation, and Placement. Placement
+  derives intrinsic bounds, pivot, and ground anchor from registered Objects.
 
 - Fishing behavior, its renderers, shaders, realism profile, and terrain binding
   live in `@luminarylabs/nexusengine-kits/fishing-kit`.
@@ -69,8 +83,8 @@ add niche production behavior to Core.
 
 ## Branch Policy
 
-- Keep only `main` and the version branches `0.0.1`, `0.0.2`, and `0.0.3`.
-- Integrate validated feature behavior into `main` before retiring temporary
-  feature, integration, test, or preservation branches.
+- Integrate validated `0.0.4` work into `main`; no dedicated `0.0.4` branch is
+  required.
+- Keep preservation and feature branches until explicit deletion approval.
 - Summarize historical preservation material without publishing raw run state,
   machine paths, prompts, logs, environment details, or secret-bearing data.

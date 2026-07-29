@@ -1,6 +1,6 @@
 import { createCoreCapabilityKit } from "../core-capability-kit.js";
 
-export const CORE_SKYBOX_KIT_VERSION = "0.0.3";
+export const CORE_SKYBOX_KIT_VERSION = "0.0.4";
 
 const DEFAULT_SHADER_MODEL = "shader-sky-dome";
 const DEFAULT_PRESET_ID = "clear-day";

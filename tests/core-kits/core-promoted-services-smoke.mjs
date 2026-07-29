@@ -9,7 +9,7 @@ import {
   validateCompositionTree
 } from "../../src/index.js";
 import { createCoreDataKit } from "../../src/core-kits/core-data-kit/index.js";
-import { createCoreCompositionKit } from "../../src/core-kits/core-composition-kit/index.js";
+import { createCoreCompositionKit } from "../../src/core-domains/core-composition-domain/index.js";
 import { createCoreSimulationKit } from "../../src/core-kits/core-simulation-kit/index.js";
 
 const engine = createRealtimeGame({

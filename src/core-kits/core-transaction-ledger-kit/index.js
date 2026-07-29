@@ -22,7 +22,7 @@ export function createCoreTransactionLedgerKit(config = {}) {
     id: config.id ?? "n-core-transaction-ledger-kit",
     domain: "core-transaction-ledger",
     apiName: config.apiName ?? "coreTransactionLedger",
-    version: config.version ?? "0.0.3",
+    version: config.version ?? "0.0.4",
     stability: config.stability ?? "stable-candidate",
     purpose: "Portable idempotency ledgers for repeat-safe commands, transactions, claims, harvests, and other durable operations.",
     owns: [

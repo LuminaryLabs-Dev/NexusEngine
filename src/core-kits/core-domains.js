@@ -7,8 +7,6 @@
 // or the public top-level exports from src/index.js.
 
 export { createCoreDataKit } from "./core-data-kit/index.js";
-export { createCoreObjectShapeKit } from "./core-object-shape-kit/index.js";
-export { createCoreObjectFidelityKit } from "./core-object-fidelity-kit/index.js";
 export { createCoreCaptureKit } from "./core-capture-kit/index.js";
 export { createCorePersistenceKit } from "./core-persistence-kit/index.js";
 export { createCoreAssetsKit } from "./core-assets-kit/index.js";
@@ -32,7 +30,6 @@ export { createCoreDiagnosticsKit } from "./core-diagnostics-kit/index.js";
 export { createCoreDebugKit } from "./core-debug-kit/index.js";
 export { createCoreHeadlessEditorKit } from "./core-headless-editor-kit/index.js";
 export { createCorePolicyKit } from "./core-policy-kit/index.js";
-export { createCoreCompositionKit } from "./core-composition-kit/index.js";
 export { createCoreMLNNKit } from "./core-mlnn-kit/index.js";
 export { createCoreAgentKit } from "./core-agent-kit/index.js";
 export { createCoreUtilityKit } from "./core-utility-kit/index.js";

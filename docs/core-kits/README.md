@@ -2,13 +2,20 @@
 
 This folder documents the public-facing side of NexusEngine core capability domains.
 
-The source-local contracts live under:
+New and migrated Core capability contracts live under their owning domains:
 
 ```txt
-src/core-kits/<core-kit>/core-domain.md
+src/core-domains/<domain>/
+├── domain.manifest.js
+├── contracts/
+├── state/
+├── kits/
+├── subdomains/
+├── providers/
+└── adapters/
 ```
 
-The canonical rebuild docs live under:
+Historical `0.0.3` rebuild docs live under:
 
 ```txt
 docs/0.0.3/
@@ -23,9 +30,28 @@ Games and trusted registry kits may use individual pieces, umbrella factories,
 or custom replacement kits.
 ```
 
-`core-capability-kit.js` is the shared helper. Domain-specific logic lives inside each `src/core-kits/<core-kit>/` folder.
+`src/core-kits/` is transitional. Unmigrated capabilities remain there while
+domain-owned manifests and the legacy catalog coexist. A validation gate rejects
+any Kit declared by both sources.
 
-`core-domains.js` is only a temporary compatibility bridge.
+`core-domains.js` remains transitional for unmigrated Core capabilities. It no
+longer forwards migrated Composition or Object implementations.
+
+The first completed physical migrations are:
+
+```txt
+core-mcp-domain
+core-composition-domain
+core-object-domain
+├── shape
+├── fidelity
+├── vegetation
+└── placement
+```
+
+Core Composition imports the manifest catalog explicitly. It never scans the
+filesystem or executes unknown modules. Agents can inspect and plan Kits, while
+the trusted host remains responsible for importing and installing factories.
 
 ## Core capability domains
 
@@ -49,7 +75,6 @@ core-ui-kit
 core-network-kit
 core-diagnostics-kit
 core-policy-kit
-core-composition-kit
 core-mlnn-kit
 core-agent-kit
 ```
@@ -68,7 +93,11 @@ core-agent-kit
 [x] barrel smoke test added
 [x] per-domain piece smoke tests added
 [ ] individual public how-to docs expanded
-[ ] old flat import compatibility removed
+[x] Core MCP and Object moved under domain ownership
+[x] explicit domain manifest catalog added
+[ ] remaining root Core Kits migrated domain by domain
+[x] old Composition and Object flat import compatibility removed
+[ ] transitional `src/core-kits/` removed after parity
 ```
 
 ## Public API example

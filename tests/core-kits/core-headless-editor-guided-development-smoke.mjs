@@ -141,6 +141,9 @@ assert.equal(status.status, "complete");
 assert.equal(status.canClaimComplete, true);
 assert.equal(status.completionConfidence, 1);
 assert.match(await session.report(), /Can claim complete: true/);
+const completedTracker = await fs.readFile(trackerPath, "utf8");
+assert.match(completedTracker, /- \[x\] installed-api-parity/);
+assert.doesNotMatch(completedTracker, /- \[ \] (?:repository-integrity|test-coverage|kit-composition|installed-api-parity|descriptor-integrity|snapshot-reset-replay|public-export-integrity|browser-startup|deterministic-replay)/);
 
 const resumed = await resumeGuidedDevelopmentSession({ root: completeRoot, runId: status.runId, now: fixedNow });
 const resumedStatus = await resumed.status();

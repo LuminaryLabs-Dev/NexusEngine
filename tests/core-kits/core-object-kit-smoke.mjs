@@ -5,7 +5,7 @@ import {
   createObjectDescriptor,
   updateObjectLifecycle,
   validateObjectDescriptor
-} from "../../src/core-kits/core-object-kit/index.js";
+} from "../../src/core-domains/core-object-domain/kits/object-registry-kit/index.js";
 
 const descriptor = createObjectDescriptor({
   id: "tree-1737",

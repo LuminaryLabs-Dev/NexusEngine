@@ -18,6 +18,7 @@ This page is the active documentation router.
 
 ## Migration
 
+- [0.0.4 Domain Cutover](migrations/0.0.4-domain-cutover.md)
 - [0.0.3 Non-Core API Migration](migrations/0.0.3-non-core-apis.md)
 - [Retired ProtoKit Workflow](how-to-protokit.md)
 - [Legacy Documentation](legacy/README.md)

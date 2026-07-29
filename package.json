@@ -1,6 +1,6 @@
 {
   "name": "nexusengine",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "A realtime ECS runtime with subscribable engine surfaces.",
   "type": "module",
   "main": "./src/index.js",
@@ -24,13 +24,8 @@
     "./core-creature": "./src/core-kits/core-creature-kit/index.js",
     "./core-character": "./src/core-kits/core-character-kit/index.js",
     "./core-player": "./src/core-kits/core-player-kit/index.js",
-    "./core-object": "./src/core-kits/core-object-kit/index.js",
-    "./core-vegetation": "./src/core-kits/core-vegetation-kit/index.js",
-    "./core-object-shape": "./src/core-kits/core-object-shape-kit/index.js",
-    "./core-object-fidelity": "./src/core-kits/core-object-fidelity-kit/index.js",
     "./core-capture": "./src/core-kits/core-capture-kit/index.js",
     "./core-transaction-ledger": "./src/core-kits/core-transaction-ledger-kit/index.js",
-    "./core-composition": "./src/core-kits/core-composition-kit/index.js",
     "./core-kits": "./src/core-kits/index.js",
     "./core-kits/core-capability-kit": "./src/core-kits/core-capability-kit.js",
     "./core-kits/core-domains": "./src/core-kits/core-domains.js",
@@ -50,19 +45,27 @@
     "./core-kits/core-headless-editor-kit/transports/stdio": "./src/core-kits/core-headless-editor-kit/transports/stdio-transport.js",
     "./core-kits/*": "./src/core-kits/*/index.js",
     "./core-domains": "./src/core-domains/index.js",
+    "./core-domains/catalog": "./src/core-domains/catalog.js",
+    "./core-domains/domain-manifest": "./src/core-domains/domain-manifest.js",
+    "./core-domains/core-composition-domain": "./src/core-domains/core-composition-domain/index.js",
+    "./core-domains/core-mcp-domain": "./src/core-domains/core-mcp-domain/index.js",
+    "./core-domains/core-mcp-domain/node": "./src/core-domains/core-mcp-domain/adapters/node-mcp-sdk-adapter/index.js",
     "./core-domains/core-startup-domain": "./src/core-domains/core-startup-domain/index.js",
     "./core-domains/core-creature-domain": "./src/core-domains/core-creature-domain/index.js",
     "./core-domains/core-character-domain": "./src/core-domains/core-character-domain/index.js",
     "./core-domains/core-player-domain": "./src/core-domains/core-player-domain/index.js",
     "./core-domains/core-object-domain": "./src/core-domains/core-object-domain/index.js",
-    "./core-domains/core-object-vegetation-domain": "./src/core-domains/core-object-vegetation-domain/index.js",
-    "./core-domains/core-object-vegetation-domain/tree": "./src/core-domains/core-object-vegetation-domain/subdomains/tree-domain/index.js",
-    "./core-domains/core-object-vegetation-domain/foliage": "./src/core-domains/core-object-vegetation-domain/subdomains/foliage-domain/index.js",
-    "./core-domains/core-object-vegetation-domain/ecology": "./src/core-domains/core-object-vegetation-domain/subdomains/ecology-domain/index.js",
-    "./core-domains/core-object-vegetation-domain/object-bridge": "./src/core-domains/core-object-vegetation-domain/adapters/vegetation-object-bridge-kit/index.js",
-    "./core-domains/core-object-shape-domain": "./src/core-domains/core-object-shape-domain/index.js",
-    "./core-domains/core-object-shape-domain/meshoptimizer-provider": "./src/core-domains/core-object-shape-domain/providers/meshoptimizer-shape-provider-kit/index.js",
-    "./core-domains/core-object-shape-domain/fidelity-adapter": "./src/core-domains/core-object-shape-domain/adapters/object-shape-fidelity-adapter-kit/index.js",
+    "./core-domains/core-object-domain/object-registry": "./src/core-domains/core-object-domain/kits/object-registry-kit/index.js",
+    "./core-domains/core-object-domain/shape": "./src/core-domains/core-object-domain/subdomains/shape/index.js",
+    "./core-domains/core-object-domain/shape/meshoptimizer-provider": "./src/core-domains/core-object-domain/subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js",
+    "./core-domains/core-object-domain/fidelity": "./src/core-domains/core-object-domain/subdomains/fidelity/index.js",
+    "./core-domains/core-object-domain/vegetation": "./src/core-domains/core-object-domain/subdomains/vegetation/index.js",
+    "./core-domains/core-object-domain/vegetation/tree": "./src/core-domains/core-object-domain/subdomains/vegetation/subdomains/tree-domain/index.js",
+    "./core-domains/core-object-domain/vegetation/foliage": "./src/core-domains/core-object-domain/subdomains/vegetation/subdomains/foliage-domain/index.js",
+    "./core-domains/core-object-domain/vegetation/ecology": "./src/core-domains/core-object-domain/subdomains/vegetation/subdomains/ecology-domain/index.js",
+    "./core-domains/core-object-domain/placement": "./src/core-domains/core-object-domain/subdomains/placement/index.js",
+    "./core-domains/core-object-domain/adapters/shape-fidelity": "./src/core-domains/core-object-domain/adapters/object-shape-fidelity-adapter-kit/index.js",
+    "./core-domains/core-object-domain/adapters/vegetation-object-bridge": "./src/core-domains/core-object-domain/subdomains/vegetation/adapters/vegetation-object-bridge-kit/index.js",
     "./core-domains/core-world-domain": "./src/core-domains/core-world-domain/index.js",
     "./core-domains/core-graphics-domain": "./src/core-domains/core-graphics-domain/index.js",
     "./core-domains/core-motion-domain": "./src/core-domains/core-motion-domain/index.js",
@@ -72,7 +75,6 @@
     "./core-domains/core-physics-domain/articulated-motion-drive-adapter": "./src/core-domains/core-physics-domain/adapters/articulated-motion-drive-adapter/index.js",
     "./core-domains/core-compute-domain": "./src/core-domains/core-compute-domain/index.js",
     "./core-domains/core-capture-domain": "./src/core-domains/core-capture-domain/index.js",
-    "./core-domains/core-object-fidelity-domain": "./src/core-domains/core-object-fidelity-domain/index.js",
     "./core-domains/*": "./src/core-domains/*/index.js",
     "./hosts/browser/startup-presentation": "./src/hosts/browser/browser-startup-presentation-adapter.js",
     "./hosts/browser/presentation-surface": "./src/hosts/browser/browser-presentation-surface-adapter.js",
@@ -87,7 +89,7 @@
     "docs:check": "node scripts/check-active-docs.mjs",
     "ownership:generate": "node scripts/generate-kit-ownership-ledger.mjs",
     "test": "node tests/run-all.mjs",
-    "test:release": "node tests/release-0.0.3-run-all.mjs",
+    "test:release": "node tests/release-0.0.4-run-all.mjs",
     "benchmark:scene": "node benchmarks/core-scene-kit-loop.mjs",
     "release:manifest": "node scripts/generate-dsk-manifest.mjs"
   },
@@ -96,10 +98,22 @@
     "src",
     "docs",
     "README.md",
-    "RELEASE_0.0.3.md"
+    "CHANGELOG.md",
+    "RELEASE_0.0.4.md"
   ],
   "license": "MIT",
   "engines": {
     "node": ">=18"
+  },
+  "peerDependencies": {
+    "@modelcontextprotocol/sdk": "^1.29.0"
+  },
+  "peerDependenciesMeta": {
+    "@modelcontextprotocol/sdk": {
+      "optional": true
+    }
+  },
+  "devDependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0"
   }
 }

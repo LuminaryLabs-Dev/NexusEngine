@@ -16,7 +16,7 @@ import { calculateOrthographicCameraFit } from "./orthographic-fit.js";
 export * from "./perspective-fit.js";
 export * from "./orthographic-fit.js";
 
-const VERSION = "0.0.3";
+const VERSION = "0.0.4";
 const Framing = defineResource("core.presentation.camera-framing");
 const FramingChanged = defineEvent("core.presentation.framing-changed");
 const Reset = defineEvent("core.presentation.framing-reset");

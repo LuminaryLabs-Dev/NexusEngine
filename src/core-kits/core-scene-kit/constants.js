@@ -1,4 +1,4 @@
-export const CORE_SCENE_DOMAIN_VERSION = "0.0.3";
+export const CORE_SCENE_DOMAIN_VERSION = "0.0.4";
 export const DEFAULT_SCENE_KIND = "headless-scene";
 export const DEFAULT_SCENE_HOST_BINDING = "headless";
 export const SCENE_PAYLOAD_STORAGE_KEY = "nexus.scenePayload";

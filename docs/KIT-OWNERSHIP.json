@@ -7,7 +7,7 @@
   ],
   "coreRule": "atomic, idempotent, fully reusable, product-agnostic, composable, and proven",
   "counts": {
-    "currentCoreModules": 348,
+    "currentCoreModules": 376,
     "migratedProductionOwners": 28
   },
   "records": [
@@ -229,6 +229,25 @@
       "status": "migrated"
     },
     {
+      "path": "src/core-domains/catalog.js",
+      "publicExports": [
+        "CORE_DOMAIN_CATALOG",
+        "CORE_DOMAIN_MANIFESTS"
+      ],
+      "responsibility": "catalog.js",
+      "owner": "catalog.js",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/catalog"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
       "path": "src/core-domains/core-capture-domain/index.js",
       "publicExports": [
         "*",
@@ -261,6 +280,171 @@
       "productOrGenreSpecific": false,
       "currentConsumers": [
         "./core-domains/core-character-domain"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/adapters/mcp/composition-mcp-provider.js",
+      "publicExports": [
+        "createCompositionMcpProvider"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/domain.manifest.js",
+      "publicExports": [
+        "coreCompositionDomainManifest"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/index.js",
+      "publicExports": [
+        "*",
+        "createCoreCompositionDomain"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-composition-domain"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/kits/composition-registry-kit/composition-tree.js",
+      "publicExports": [
+        "COMPOSITION_TREE_SCHEMA",
+        "createCompositionHierarchyService",
+        "normalizeCompositionTree",
+        "planCompositionTree",
+        "validateCompositionTree"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/kits/composition-registry-kit/index.js",
+      "publicExports": [
+        "*",
+        "createCoreCompositionKit"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/kits/composition-registry-kit/registry.js",
+      "publicExports": [
+        "CORE_COMPOSITION_REGISTRY_SCHEMA",
+        "LEGACY_CORE_COMPOSITION_REGISTRY_SCHEMA",
+        "createCoreRegistrySnapshot",
+        "hashRegistryValue",
+        "mergeRegistrySnapshots",
+        "normalizeBundleRegistryRecord",
+        "normalizeDomainRegistryRecord",
+        "normalizeKitRegistryRecord",
+        "normalizeRegistrySnapshot",
+        "normalizeRegistrySource"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/kits/composition-registry-kit/services.js",
+      "publicExports": [
+        "createCapabilityGraphService",
+        "createCompositionHealthService",
+        "createCompositionPlanningService",
+        "createKitRegistryService"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-composition-domain/services/composition-apply-controller.js",
+      "publicExports": [
+        "COMPOSITION_APPLY_RECEIPT_SCHEMA",
+        "COMPOSITION_APPLY_STATE_SCHEMA",
+        "COMPOSITION_PREPARATION_SCHEMA",
+        "createCompositionApplyController"
+      ],
+      "responsibility": "core composition domain",
+      "owner": "core-composition-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
@@ -321,6 +505,263 @@
       "productOrGenreSpecific": false,
       "currentConsumers": [
         "./core-domains/core-graphics-domain"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/adapters/node-mcp-sdk-adapter/index.js",
+      "publicExports": [
+        "connectMcpStdio",
+        "createMcpSdkServer"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-mcp-domain/node"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/contract-utilities.js",
+      "publicExports": [
+        "MCP_NAME_PATTERN",
+        "asList",
+        "clone",
+        "jsonClone",
+        "normalizeSchema",
+        "stableName",
+        "stableUri",
+        "validateSchemaValue"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/prompt-contract.js",
+      "publicExports": [
+        "normalizeMcpPrompt",
+        "publicMcpPrompt"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/provider-contract.js",
+      "publicExports": [
+        "defineMcpProvider",
+        "defineMcpProviderTemplate"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/resource-contract.js",
+      "publicExports": [
+        "cloneTemplateParameters",
+        "matchMcpResourceTemplate",
+        "normalizeMcpResource",
+        "normalizeMcpResourceTemplate",
+        "publicMcpResource",
+        "publicMcpResourceTemplate"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/result-contract.js",
+      "publicExports": [
+        "normalizeMcpPromptResult",
+        "normalizeMcpResourceResult",
+        "normalizeMcpToolResult"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/contracts/tool-contract.js",
+      "publicExports": [
+        "normalizeMcpTool",
+        "publicMcpTool",
+        "validateMcpToolInput"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/domain.manifest.js",
+      "publicExports": [
+        "coreMcpDomainManifest"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/index.js",
+      "publicExports": [
+        "*",
+        "createCoreMcpDomain"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-mcp-domain"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/kits/mcp-registry-kit/authorization.js",
+      "publicExports": [
+        "authorizeMcpTool"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/kits/mcp-registry-kit/index.js",
+      "publicExports": [
+        "*",
+        "createMcpRegistryKit"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/kits/mcp-registry-kit/registry.js",
+      "publicExports": [
+        "createMcpRegistry"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-mcp-domain/state/registry-snapshot.js",
+      "publicExports": [
+        "CORE_MCP_VERSION",
+        "MCP_REGISTRY_SCHEMA",
+        "createMcpRegistrySnapshot"
+      ],
+      "responsibility": "core mcp domain",
+      "owner": "core-mcp-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
@@ -389,6 +830,66 @@
       "status": "current"
     },
     {
+      "path": "src/core-domains/core-object-domain/adapters/object-shape-fidelity-adapter-kit/index.js",
+      "publicExports": [
+        "createObjectShapeFidelityAdapterKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-object-domain/adapters/shape-fidelity"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/contracts/object-descriptor.js",
+      "publicExports": [
+        "CORE_OBJECT_LIFECYCLE_STATES",
+        "NEXUS_OBJECT_DESCRIPTOR_SCHEMA",
+        "NEXUS_OBJECT_DESCRIPTOR_VERSION",
+        "createObjectDescriptor",
+        "hashObjectDescriptor",
+        "updateObjectLifecycle",
+        "validateObjectDescriptor"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/domain.manifest.js",
+      "publicExports": [
+        "coreObjectDomainManifest"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
       "path": "src/core-domains/core-object-domain/index.js",
       "publicExports": [
         "*",
@@ -408,87 +909,453 @@
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-fidelity-domain/index.js",
+      "path": "src/core-domains/core-object-domain/kits/object-registry-kit/index.js",
+      "publicExports": [
+        "*",
+        "createCoreObjectKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-object-domain/object-registry"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/state/object-registry-state.js",
+      "publicExports": [
+        "createObjectRegistryState"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/fidelity/index.js",
       "publicExports": [
         "*",
         "createCoreObjectFidelityDomain"
       ],
-      "responsibility": "core object fidelity domain",
-      "owner": "core-object-fidelity-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-fidelity-domain"
+        "./core-domains/core-object-domain/fidelity"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-shape-domain/adapters/object-shape-fidelity-adapter-kit/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/fidelity/kits/object-fidelity-kit/descriptors.js",
       "publicExports": [
-        "createObjectShapeFidelityAdapterKit"
+        "FIDELITY_BUILD_STATES",
+        "NEXUS_OBJECT_FIDELITY_BUILD_SCHEMA",
+        "NEXUS_OBJECT_FIDELITY_PACKAGE_SCHEMA",
+        "NEXUS_OBJECT_FIDELITY_PROFILE_SCHEMA",
+        "NEXUS_OBJECT_FORM_SCHEMA",
+        "OBJECT_FORM_STATES",
+        "createObjectFidelityBuild",
+        "createObjectFidelityPackage",
+        "createObjectFidelityProfile",
+        "createObjectForm",
+        "hashFidelityValue",
+        "validateObjectFidelityPackage",
+        "validateObjectFidelityProfile",
+        "validateObjectForm"
       ],
-      "responsibility": "core object shape domain",
-      "owner": "core-object-shape-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-shape-domain/fidelity-adapter"
+        "reachable public Core composition"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-shape-domain/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/fidelity/kits/object-fidelity-kit/index.js",
+      "publicExports": [
+        "*",
+        "CORE_OBJECT_FIDELITY_VERSION",
+        "createCoreObjectFidelityKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/contracts/placement-descriptor.js",
+      "publicExports": [
+        "OBJECT_PLACEMENT_FRAME",
+        "OBJECT_PLACEMENT_SCHEMA",
+        "OBJECT_PLACEMENT_VERSION",
+        "createObjectPlacementDescriptor",
+        "validateObjectPlacementDescriptor"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/domain.manifest.js",
+      "publicExports": [
+        "objectPlacementKitManifest",
+        "objectPlacementSubdomainManifest"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/index.js",
+      "publicExports": [
+        "*"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/core-object-domain/placement"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/kits/object-placement-kit/index.js",
+      "publicExports": [
+        "*",
+        "createObjectPlacementKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/kits/object-placement-kit/placement-math.js",
+      "publicExports": [
+        "PLACEMENT_EPSILON",
+        "addPlacementVectors",
+        "clonePlacementValue",
+        "crossPlacementVectors",
+        "dotPlacementVectors",
+        "fallbackPlacementForward",
+        "finitePlacementValue",
+        "multiplyPlacementQuaternions",
+        "multiplyPlacementVectors",
+        "normalizePlacementBounds",
+        "normalizePlacementQuaternion",
+        "placementBoundsCorners",
+        "placementBoundsOverlap",
+        "placementPointInsideBounds",
+        "placementQuaternionFromAxisAngle",
+        "placementQuaternionFromUnitVectors",
+        "placementVector3",
+        "placementVectorMagnitude",
+        "projectPlacementVectorToPlane",
+        "rotatePlacementVector",
+        "scalePlacementVector",
+        "subtractPlacementVectors",
+        "unitPlacementVector"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/kits/object-placement-kit/placement-operations.js",
+      "publicExports": [
+        "alignPlacementAnchors",
+        "computePlacementWorldDirection",
+        "computePlacementWorldPoint",
+        "fitPlacementWithinBounds",
+        "getPlacementWorldAnchor",
+        "getPlacementWorldBounds",
+        "groundPlacement"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/placement/kits/object-placement-kit/placement-validation.js",
+      "publicExports": [
+        "validatePlacement"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/index.js",
       "publicExports": [
         "*",
         "createCoreObjectShapeDomain"
       ],
-      "responsibility": "core object shape domain",
-      "owner": "core-object-shape-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-shape-domain"
+        "./core-domains/core-object-domain/shape"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-shape-domain/providers/meshoptimizer-shape-provider-kit/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/descriptors.js",
+      "publicExports": [
+        "NEXUS_OBJECT_SHAPE_CANDIDATE_SCHEMA",
+        "NEXUS_OBJECT_SHAPE_JOB_SCHEMA",
+        "NEXUS_OBJECT_SHAPE_PROFILE_SCHEMA",
+        "NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA",
+        "NEXUS_OBJECT_SHAPE_SCHEMA",
+        "NEXUS_OBJECT_SHAPE_SOURCE_SCHEMA",
+        "OBJECT_SHAPE_JOB_STATES",
+        "createObjectShape",
+        "createObjectShapeCandidate",
+        "createObjectShapeJob",
+        "createObjectShapeProfile",
+        "createObjectShapeQualification",
+        "createObjectShapeSource",
+        "hashShapeValue",
+        "validateObjectShape"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/index.js",
+      "publicExports": [
+        "*",
+        "CORE_OBJECT_SHAPE_VERSION",
+        "createCoreObjectShapeKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/metrics.js",
+      "publicExports": [
+        "clonePortableGeometry",
+        "compareShapeMetrics",
+        "computeShapeMetrics",
+        "validatePortableTriangleGeometry"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/profiles.js",
+      "publicExports": [
+        "CORE_OBJECT_SHAPE_PROFILES",
+        "GENERAL_RIGID_OBJECT_SHAPE_PROFILE",
+        "HARD_SURFACE_OBJECT_SHAPE_PROFILE",
+        "ORGANIC_STATIC_OBJECT_SHAPE_PROFILE",
+        "SKINNED_ORGANIC_PRODUCTION_SHAPE_PROFILE"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/provider.js",
+      "publicExports": [
+        "createShapeDerivationRequest",
+        "normalizeShapeProviderResult",
+        "validateObjectShapeProvider"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/kits/object-shape-kit/qualification.js",
+      "publicExports": [
+        "NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA",
+        "createObjectShapeQualification",
+        "createShapeFallbackTargets",
+        "qualifyObjectShapeCandidate"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js",
       "publicExports": [
         "*",
         "createMeshoptimizerShapeProviderKit"
       ],
-      "responsibility": "core object shape domain",
-      "owner": "core-object-shape-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-shape-domain/meshoptimizer-provider"
+        "./core-domains/core-object-domain/shape/meshoptimizer-provider"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-shape-domain/providers/meshoptimizer-shape-provider-kit/meshoptimizer-provider.js",
+      "path": "src/core-domains/core-object-domain/subdomains/shape/providers/meshoptimizer-shape-provider-kit/meshoptimizer-provider.js",
       "publicExports": [
         "createMeshoptimizerShapeProvider"
       ],
-      "responsibility": "core object shape domain",
-      "owner": "core-object-shape-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
@@ -501,12 +1368,12 @@
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-shape-domain/providers/meshoptimizer-shape-provider-kit/reference-provider.js",
+      "path": "src/core-domains/core-object-domain/subdomains/shape/providers/meshoptimizer-shape-provider-kit/reference-provider.js",
       "publicExports": [
         "createReferenceObjectShapeProvider"
       ],
-      "responsibility": "core object shape domain",
-      "owner": "core-object-shape-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
@@ -519,64 +1386,112 @@
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-vegetation-domain/adapters/vegetation-object-bridge-kit/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/adapters/vegetation-object-bridge-kit/index.js",
       "publicExports": [
         "createVegetationObjectBridgeKit",
         "vegetationInstanceToObjectDescriptor",
         "vegetationSpeciesToObjectDescriptor"
       ],
-      "responsibility": "core object vegetation domain",
-      "owner": "core-object-vegetation-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-vegetation-domain/object-bridge"
+        "./core-domains/core-object-domain/adapters/vegetation-object-bridge"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-vegetation-domain/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/index.js",
       "publicExports": [
         "*",
         "createCoreVegetationDomain"
       ],
-      "responsibility": "core object vegetation domain",
-      "owner": "core-object-vegetation-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-vegetation-domain"
+        "./core-domains/core-object-domain/vegetation"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-vegetation-domain/subdomains/ecology-domain/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/kits/object-vegetation-kit/contracts.js",
+      "publicExports": [
+        "NEXUS_VEGETATION_INSTANCE_SCHEMA",
+        "NEXUS_VEGETATION_SPECIES_SCHEMA",
+        "VEGETATION_LIFECYCLE_STATES",
+        "createVegetationInstanceDescriptor",
+        "createVegetationSpeciesDescriptor",
+        "createVegetationVariation",
+        "equalVegetationDescriptors",
+        "scoreVegetationSuitability",
+        "selectVegetationSpecies",
+        "updateVegetationLifecycle",
+        "validateVegetationInstance",
+        "validateVegetationSpecies"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/kits/object-vegetation-kit/index.js",
+      "publicExports": [
+        "*",
+        "createCoreVegetationKit"
+      ],
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "reachable public Core composition"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/ecology-domain/index.js",
       "publicExports": [
         "createVegetationEcologyKit"
       ],
-      "responsibility": "core object vegetation domain",
-      "owner": "core-object-vegetation-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-vegetation-domain/ecology"
+        "./core-domains/core-object-domain/vegetation/ecology"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-vegetation-domain/subdomains/foliage-domain/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/foliage-domain/index.js",
       "publicExports": [
         "NEXUS_FOLIAGE_CARD_FAMILY_SCHEMA",
         "NEXUS_FOLIAGE_CLUSTER_SCHEMA",
@@ -588,21 +1503,21 @@
         "createFoliageDomainKit",
         "createFoliagePlacementRecipe"
       ],
-      "responsibility": "core object vegetation domain",
-      "owner": "core-object-vegetation-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-vegetation-domain/foliage"
+        "./core-domains/core-object-domain/vegetation/foliage"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
       "status": "current"
     },
     {
-      "path": "src/core-domains/core-object-vegetation-domain/subdomains/tree-domain/index.js",
+      "path": "src/core-domains/core-object-domain/subdomains/vegetation/subdomains/tree-domain/index.js",
       "publicExports": [
         "NEXUS_TREE_CANOPY_COMPOSITION_SCHEMA",
         "NEXUS_TREE_GROWTH_COMPUTE_SCHEMA",
@@ -618,14 +1533,14 @@
         "createTreeStructureDescriptor",
         "validateTreeGrowthPlan"
       ],
-      "responsibility": "core object vegetation domain",
-      "owner": "core-object-vegetation-domain",
+      "responsibility": "core object domain",
+      "owner": "core-object-domain",
       "atomic": true,
       "idempotent": true,
       "fullyReusable": true,
       "productOrGenreSpecific": false,
       "currentConsumers": [
-        "./core-domains/core-object-vegetation-domain/tree"
+        "./core-domains/core-object-domain/vegetation/tree"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-domains plus npm test",
@@ -1926,6 +2841,26 @@
       "status": "current"
     },
     {
+      "path": "src/core-domains/domain-manifest.js",
+      "publicExports": [
+        "CORE_DOMAIN_MANIFEST_SCHEMA",
+        "defineCoreDomainManifest",
+        "flattenCoreDomainManifests"
+      ],
+      "responsibility": "domain manifest.js",
+      "owner": "domain-manifest.js",
+      "atomic": true,
+      "idempotent": true,
+      "fullyReusable": true,
+      "productOrGenreSpecific": false,
+      "currentConsumers": [
+        "./core-domains/domain-manifest"
+      ],
+      "destination": "NexusEngine Core",
+      "proof": "tests/core-domains plus npm test",
+      "status": "current"
+    },
+    {
       "path": "src/core-domains/index.js",
       "publicExports": [
         "*"
@@ -2422,95 +3357,6 @@
       "status": "current"
     },
     {
-      "path": "src/core-kits/core-composition-kit/composition-tree.js",
-      "publicExports": [
-        "COMPOSITION_TREE_SCHEMA",
-        "createCompositionHierarchyService",
-        "normalizeCompositionTree",
-        "planCompositionTree",
-        "validateCompositionTree"
-      ],
-      "responsibility": "core composition kit",
-      "owner": "core-composition-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-composition-kit/index.js",
-      "publicExports": [
-        "*",
-        "createCoreCompositionKit"
-      ],
-      "responsibility": "core composition kit",
-      "owner": "core-composition-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "./core-composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-composition-kit/registry.js",
-      "publicExports": [
-        "CORE_COMPOSITION_REGISTRY_SCHEMA",
-        "LEGACY_CORE_COMPOSITION_REGISTRY_SCHEMA",
-        "createCoreRegistrySnapshot",
-        "hashRegistryValue",
-        "mergeRegistrySnapshots",
-        "normalizeBundleRegistryRecord",
-        "normalizeDomainRegistryRecord",
-        "normalizeKitRegistryRecord",
-        "normalizeRegistrySnapshot",
-        "normalizeRegistrySource"
-      ],
-      "responsibility": "core composition kit",
-      "owner": "core-composition-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-composition-kit/services.js",
-      "publicExports": [
-        "createCapabilityGraphService",
-        "createCompositionHealthService",
-        "createCompositionPlanningService",
-        "createKitRegistryService"
-      ],
-      "responsibility": "core composition kit",
-      "owner": "core-composition-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
       "path": "src/core-kits/core-compute-kit/descriptors.js",
       "publicExports": [
         "NEXUS_COMPUTE_BUFFER_SCHEMA",
@@ -2820,7 +3666,6 @@
         "createCoreAudioKit",
         "createCoreCameraKit",
         "createCoreCaptureKit",
-        "createCoreCompositionKit",
         "createCoreComputeKit",
         "createCoreDataKit",
         "createCoreDebugKit",
@@ -2832,8 +3677,6 @@
         "createCoreMLNNKit",
         "createCoreMotionKit",
         "createCoreNetworkKit",
-        "createCoreObjectFidelityKit",
-        "createCoreObjectShapeKit",
         "createCorePersistenceKit",
         "createCorePhysicsKit",
         "createCorePlatformKit",
@@ -4291,236 +5134,6 @@
       "status": "current"
     },
     {
-      "path": "src/core-kits/core-object-fidelity-kit/descriptors.js",
-      "publicExports": [
-        "FIDELITY_BUILD_STATES",
-        "NEXUS_OBJECT_FIDELITY_BUILD_SCHEMA",
-        "NEXUS_OBJECT_FIDELITY_PACKAGE_SCHEMA",
-        "NEXUS_OBJECT_FIDELITY_PROFILE_SCHEMA",
-        "NEXUS_OBJECT_FORM_SCHEMA",
-        "OBJECT_FORM_STATES",
-        "createObjectFidelityBuild",
-        "createObjectFidelityPackage",
-        "createObjectFidelityProfile",
-        "createObjectForm",
-        "hashFidelityValue",
-        "validateObjectFidelityPackage",
-        "validateObjectFidelityProfile",
-        "validateObjectForm"
-      ],
-      "responsibility": "core object fidelity kit",
-      "owner": "core-object-fidelity-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-fidelity-kit/index.js",
-      "publicExports": [
-        "*",
-        "CORE_OBJECT_FIDELITY_VERSION",
-        "createCoreObjectFidelityKit"
-      ],
-      "responsibility": "core object fidelity kit",
-      "owner": "core-object-fidelity-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "./core-object-fidelity"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-kit/index.js",
-      "publicExports": [
-        "*",
-        "createCoreObjectKit"
-      ],
-      "responsibility": "core object kit",
-      "owner": "core-object-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "./core-object"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-kit/object-descriptor.js",
-      "publicExports": [
-        "CORE_OBJECT_LIFECYCLE_STATES",
-        "NEXUS_OBJECT_DESCRIPTOR_SCHEMA",
-        "NEXUS_OBJECT_DESCRIPTOR_VERSION",
-        "createObjectDescriptor",
-        "hashObjectDescriptor",
-        "updateObjectLifecycle",
-        "validateObjectDescriptor"
-      ],
-      "responsibility": "core object kit",
-      "owner": "core-object-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/descriptors.js",
-      "publicExports": [
-        "NEXUS_OBJECT_SHAPE_CANDIDATE_SCHEMA",
-        "NEXUS_OBJECT_SHAPE_JOB_SCHEMA",
-        "NEXUS_OBJECT_SHAPE_PROFILE_SCHEMA",
-        "NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA",
-        "NEXUS_OBJECT_SHAPE_SCHEMA",
-        "NEXUS_OBJECT_SHAPE_SOURCE_SCHEMA",
-        "OBJECT_SHAPE_JOB_STATES",
-        "createObjectShape",
-        "createObjectShapeCandidate",
-        "createObjectShapeJob",
-        "createObjectShapeProfile",
-        "createObjectShapeQualification",
-        "createObjectShapeSource",
-        "hashShapeValue",
-        "validateObjectShape"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/index.js",
-      "publicExports": [
-        "*",
-        "CORE_OBJECT_SHAPE_VERSION",
-        "createCoreObjectShapeKit"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "./core-object-shape"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/metrics.js",
-      "publicExports": [
-        "clonePortableGeometry",
-        "compareShapeMetrics",
-        "computeShapeMetrics",
-        "validatePortableTriangleGeometry"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/profiles.js",
-      "publicExports": [
-        "CORE_OBJECT_SHAPE_PROFILES",
-        "GENERAL_RIGID_OBJECT_SHAPE_PROFILE",
-        "HARD_SURFACE_OBJECT_SHAPE_PROFILE",
-        "ORGANIC_STATIC_OBJECT_SHAPE_PROFILE",
-        "SKINNED_ORGANIC_PRODUCTION_SHAPE_PROFILE"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/provider.js",
-      "publicExports": [
-        "createShapeDerivationRequest",
-        "normalizeShapeProviderResult",
-        "validateObjectShapeProvider"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-object-shape-kit/qualification.js",
-      "publicExports": [
-        "NEXUS_OBJECT_SHAPE_QUALIFICATION_SCHEMA",
-        "createObjectShapeQualification",
-        "createShapeFallbackTargets",
-        "qualifyObjectShapeCandidate"
-      ],
-      "responsibility": "core object shape kit",
-      "owner": "core-object-shape-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
       "path": "src/core-kits/core-persistence-kit/index.js",
       "publicExports": [
         "createCorePersistenceKit"
@@ -5644,54 +6257,6 @@
       "productOrGenreSpecific": false,
       "currentConsumers": [
         "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-vegetation-kit/contracts.js",
-      "publicExports": [
-        "NEXUS_VEGETATION_INSTANCE_SCHEMA",
-        "NEXUS_VEGETATION_SPECIES_SCHEMA",
-        "VEGETATION_LIFECYCLE_STATES",
-        "createVegetationInstanceDescriptor",
-        "createVegetationSpeciesDescriptor",
-        "createVegetationVariation",
-        "equalVegetationDescriptors",
-        "scoreVegetationSuitability",
-        "selectVegetationSpecies",
-        "updateVegetationLifecycle",
-        "validateVegetationInstance",
-        "validateVegetationSpecies"
-      ],
-      "responsibility": "core vegetation kit",
-      "owner": "core-vegetation-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "reachable public Core composition"
-      ],
-      "destination": "NexusEngine Core",
-      "proof": "tests/core-kits plus npm test",
-      "status": "current"
-    },
-    {
-      "path": "src/core-kits/core-vegetation-kit/index.js",
-      "publicExports": [
-        "*",
-        "createCoreVegetationKit"
-      ],
-      "responsibility": "core vegetation kit",
-      "owner": "core-vegetation-kit",
-      "atomic": true,
-      "idempotent": true,
-      "fullyReusable": true,
-      "productOrGenreSpecific": false,
-      "currentConsumers": [
-        "./core-vegetation"
       ],
       "destination": "NexusEngine Core",
       "proof": "tests/core-kits plus npm test",

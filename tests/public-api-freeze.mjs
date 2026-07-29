@@ -304,9 +304,10 @@ for (const name of [
   assert.equal(name in api, false, `${name} must not be exported by NexusEngine Core`);
 }
 
-assert.equal(api.NEXUS_ENGINE_VERSION, "0.0.3");
+assert.equal(api.NEXUS_ENGINE_VERSION, "0.0.4");
 assert.equal(api.NEXUS_ENGINE_STABILITY, "stable-candidate");
-assert.equal(api.NEXUS_ENGINE_RELEASE.version, "0.0.3");
+assert.equal(api.NEXUS_ENGINE_RELEASE.version, "0.0.4");
+assert.equal(api.NEXUS_ENGINE_RELEASE.branch, "main");
 
 const engine = api.createEngine();
 assert.equal(typeof engine.renderer.render, "function");

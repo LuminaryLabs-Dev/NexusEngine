@@ -2,7 +2,7 @@ export function createMigrationPlan(config = {}) {
   return Object.freeze({
     id: config.id ?? "migration-plan",
     from: config.from ?? "0.0.0",
-    to: config.to ?? "0.0.3",
+    to: config.to ?? "0.0.4",
     steps: Object.freeze([...(config.steps ?? [])])
   });
 }

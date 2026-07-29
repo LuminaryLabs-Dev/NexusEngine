@@ -229,12 +229,20 @@ export function defineDomainServiceKit(config = {}) {
   const metadata = buildMetadata(config, domain, id, apiName);
   const domainPath = metadata.domainPath;
   const legacyDomainToken = createDomainServiceToken(domain);
+  const includeLegacyDomainTokens = config.legacyDomainTokens !== false;
   const serviceProvides = (config.services ?? []).flatMap((service) => {
     const pathToken = createDomainPathServiceToken(domainPath, service);
     const legacyToken = createDomainServiceToken(domain, service);
-    return pathToken === legacyToken ? [pathToken] : [pathToken, legacyToken];
+    return pathToken === legacyToken || !includeLegacyDomainTokens
+      ? [pathToken]
+      : [pathToken, legacyToken];
   });
-  const provides = unique([domainPath, legacyDomainToken, ...serviceProvides, ...normalizeTokenList(config.provides, "provides")]);
+  const provides = unique([
+    domainPath,
+    ...(includeLegacyDomainTokens ? [legacyDomainToken] : []),
+    ...serviceProvides,
+    ...normalizeTokenList(config.provides, "provides")
+  ]);
   const requires = unique(normalizeTokenList(config.requires, "requires"));
 
   const kit = defineRuntimeKit({

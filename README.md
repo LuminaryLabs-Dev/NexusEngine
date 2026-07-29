@@ -64,11 +64,38 @@ const engine = createEngine({ kits: [createFishingKit()] });
 Complete games consume Core and optional kits. They are not exported by either
 package.
 
+## Domain-Owned Core
+
+Core Composition exposes an explicit, agent-readable domain catalog. Migrated
+domains keep their contracts, state, Kits, providers, and adapters together
+under `src/core-domains/`. The Object family and Core MCP establish this
+structure; unmigrated capabilities remain temporarily under `src/core-kits/`.
+
+MCP is present in the package but inactive by default:
+
+```js
+import { createEngine } from "nexusengine";
+import {
+  createCoreMcpDomain,
+  defineMcpProvider
+} from "nexusengine/core-domains/core-mcp-domain";
+
+const engine = createEngine({ kits: createCoreMcpDomain() });
+engine.n.coreMcp.registerProvider(defineMcpProvider({
+  id: "application",
+  tools: []
+}));
+```
+
+An application receives no MCP surface until it installs the domain, registers
+its provider, and connects a transport.
+
 ## Public API
 
 The root export intentionally excludes optional and game-specific symbols.
 Removed APIs have no compatibility forwarding exports. See the
-[0.0.3 non-Core migration guide](docs/migrations/0.0.3-non-core-apis.md).
+[0.0.4 domain cutover guide](docs/migrations/0.0.4-domain-cutover.md) and the
+[earlier non-Core migration guide](docs/migrations/0.0.3-non-core-apis.md).
 
 The machine-readable ownership ledger is
 [`docs/KIT-OWNERSHIP.json`](docs/KIT-OWNERSHIP.json).

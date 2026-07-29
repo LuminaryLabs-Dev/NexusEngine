@@ -4,7 +4,7 @@ import { createUIScaleDescriptor, normalizeUIScalePolicy, normalizeUIViewport } 
 
 export * from "./math.js";
 
-const VERSION = "0.0.3";
+const VERSION = "0.0.4";
 const UIScale = defineResource("core.presentation.ui-scale");
 const Changed = defineEvent("core.presentation.ui-scale-changed");
 const Reset = defineEvent("core.presentation.ui-scale-reset");

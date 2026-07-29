@@ -60,9 +60,15 @@ Core capabilities must pass the ownership gate in
 `defineDomainServiceKit()` adds stable domain identity and addressability.
 `createGameKitComposer()` performs additive dependency-ordered composition.
 
+`core-composition-domain` owns explicit Domain and Kit discovery, dependency
+planning, stable plan identity, and persistent exactly-once receipts. Its
+opt-in MCP provider exposes discovery and planning while the application host
+owns executable trust, approval, mutation, and runtime lifecycle.
+
 Core provides these contracts. Optional implementations are imported from a
 trusted registry package and installed through the public contract. They must
-not import private NexusEngine files.
+not import private NexusEngine files. Disconnecting MCP does not stop or own an
+already-created runtime.
 
 ## Hosts And Renderers
 

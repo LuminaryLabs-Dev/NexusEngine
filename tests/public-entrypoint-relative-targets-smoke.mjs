@@ -6,6 +6,34 @@ import { fileURLToPath, pathToFileURL } from "node:url";
 const repositoryRoot = process.cwd();
 const packagePath = path.join(repositoryRoot, "package.json");
 const packageJson = JSON.parse(await readFile(packagePath, "utf8"));
+const packageExports = packageJson.exports ?? {};
+
+for (const entrypoint of [
+  "./core-domains/core-composition-domain",
+  "./core-domains/core-mcp-domain",
+  "./core-domains/core-object-domain",
+  "./core-domains/core-object-domain/object-registry",
+  "./core-domains/core-object-domain/shape",
+  "./core-domains/core-object-domain/fidelity",
+  "./core-domains/core-object-domain/vegetation",
+  "./core-domains/core-object-domain/placement"
+]) {
+  assert.equal(typeof packageExports[entrypoint], "string", `Missing canonical entrypoint: ${entrypoint}`);
+}
+
+for (const entrypoint of [
+  "./core-object",
+  "./core-vegetation",
+  "./core-object-shape",
+  "./core-object-fidelity",
+  "./core-object-placement",
+  "./core-composition",
+  "./core-domains/core-object-vegetation-domain",
+  "./core-domains/core-object-shape-domain",
+  "./core-domains/core-object-fidelity-domain"
+]) {
+  assert.equal(entrypoint in packageExports, false, `Legacy entrypoint must remain removed: ${entrypoint}`);
+}
 
 function collectPackageTargets(value, output = new Set()) {
   if (typeof value === "string") {

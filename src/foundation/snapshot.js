@@ -2,7 +2,7 @@ function clone(value) {
   return value === undefined ? undefined : structuredClone(value);
 }
 
-export function createSnapshotEnvelope({ id = "snapshot", version = "0.0.3", state = {}, metadata = {} } = {}) {
+export function createSnapshotEnvelope({ id = "snapshot", version = "0.0.4", state = {}, metadata = {} } = {}) {
   return {
     id,
     version,
@@ -28,7 +28,7 @@ export function assertSnapshotEnvelope(snapshot = {}) {
   return snapshot;
 }
 
-export function createSnapshotController({ getState, setState, createInitialState, id = "snapshot-controller", version = "0.0.3" } = {}) {
+export function createSnapshotController({ getState, setState, createInitialState, id = "snapshot-controller", version = "0.0.4" } = {}) {
   if (typeof getState !== "function" || typeof setState !== "function") {
     throw new TypeError("createSnapshotController requires getState and setState functions.");
   }
