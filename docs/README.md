@@ -6,7 +6,11 @@ This page is the active documentation router.
 
 1. [Kit Ownership](KIT-OWNERSHIP.md) defines which repository owns behavior.
 2. [Current Architecture](CURRENT-ARCHITECTURE.md) defines the live runtime.
-3. [Experiment Workflow](how-to-experiment.md) defines how games consume Core
+3. [Operations](OPERATIONS.md) defines repository validation and packaging.
+4. [Contributing](../CONTRIBUTING.md) defines the change and evidence workflow.
+5. [Security](../SECURITY.md) records trust boundaries and reporting limits.
+6. [Visual Identity](VISUAL-IDENTITY.md) documents reusable repository assets.
+7. [Experiment Workflow](how-to-experiment.md) defines how games consume Core
    and trusted kits.
 
 ## Contracts

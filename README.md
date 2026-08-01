@@ -1,77 +1,77 @@
 # NexusEngine
 
-NexusEngine is the reusable Core runtime for deterministic games and
-simulations.
+![NexusEngine runtime composition](docs/assets/brand/social-card.png)
 
-## Ownership Rule
+NexusEngine is the deterministic Core runtime for composing games and
+simulations from reusable Domain Service Kits. It provides ECS state,
+scheduler phases, events, resources, queries, surfaces, composition,
+snapshots, reset, replay, validation, and agent-readable Core domains.
 
-```txt
+## Start Here
+
+1. Read the [documentation router](docs/README.md).
+2. Read [Kit Ownership](docs/KIT-OWNERSHIP.md) before changing production
+   behavior.
+3. Read [Current Architecture](docs/CURRENT-ARCHITECTURE.md) for the live
+   runtime shape.
+4. Follow [AGENTS.md](AGENTS.md), `.agent/target.md`, and `.agent/tracker.md`
+   for repository work.
+
+## Quick Start
+
+```js
+import { createEngine } from "nexusengine";
+
+const engine = createEngine();
+engine.tick(1 / 60);
+```
+
+`createEngine()` creates the world, deterministic scheduler, clock, surfaces,
+sequence runtimes, and default Realtime and Sequence Core Kits. Additional
+trusted Kits can be installed during construction:
+
+```js
+import { createEngine, defineRuntimeKit } from "nexusengine";
+
+const telemetryKit = defineRuntimeKit({
+  id: "example-telemetry-kit",
+  install({ engine }) {
+    engine.exampleTelemetryReady = true;
+  }
+});
+
+const engine = createEngine({ kits: [telemetryKit] });
+```
+
+## Ownership Boundary
+
+```text
 NexusEngine
   atomic, idempotent, fully reusable Core behavior
 
-@luminarylabs/nexusengine-kits
+NexusEngine-Kits or another trusted registry
   reusable optional, niche, genre, or platform behavior
 
 Experiment and game repositories
   complete games, presets, authored content, and product behavior
-
-NexusEngine tests
-  isolated scenarios that prove generic Core invariants
 ```
 
-Core is a contract, not a catalog of every useful feature. A production module
-remains here only when it is:
-
-- atomic, with one clear responsibility
-- safe to install or apply repeatedly
-- reusable without product, genre, or platform assumptions
-- independently testable
-- part of an intentional public Core contract
-
-Unknown or unproven ownership fails closed: move it out of Core until evidence
-supports promotion.
-
-## Start Here
-
-1. Read [Documentation](docs/README.md).
-2. Read [Kit Ownership](docs/KIT-OWNERSHIP.md) before changing production code.
-3. Read [Current Architecture](docs/CURRENT-ARCHITECTURE.md) for runtime shape.
-4. Follow [AGENTS.md](AGENTS.md) and the active `.agent/target.md` for repository
-   work.
-
-## Runtime
-
-The public package provides deterministic ECS state, scheduler phases, events,
-resources, queries, surfaces, runtime-kit and domain-service-kit contracts,
-Core domains, composition, snapshots, reset, replay, and validation.
-
-```js
-import { createEngine } from "nexusengine";
-
-const engine = createEngine({ kits: [] });
-engine.tick(1 / 60);
-```
-
-Optional behavior is installed from a trusted registry package:
-
-```js
-import { createFishingKit } from "@luminarylabs/nexusengine-kits/fishing-kit";
-import { createEngine } from "nexusengine";
-
-const engine = createEngine({ kits: [createFishingKit()] });
-```
-
-Complete games consume Core and optional kits. They are not exported by either
-package.
+Core behavior must have one clear responsibility, remain product-neutral, be
+safe to install or apply repeatedly, and have focused proof for its direct and
+composed paths. Unknown or unproven ownership stays outside Core.
 
 ## Domain-Owned Core
 
-Core Composition exposes an explicit, agent-readable domain catalog. Migrated
-domains keep their contracts, state, Kits, providers, and adapters together
-under `src/core-domains/`. The Object family and Core MCP establish this
-structure; unmigrated capabilities remain temporarily under `src/core-kits/`.
+- `defineRuntimeKit()` defines the low-level installation contract.
+- `defineDomainServiceKit()` adds stable domain identity and addressability.
+- `createGameKitComposer()` performs additive, dependency-ordered composition.
+- `src/core-domains/` owns migrated domain contracts, state, Kits, providers,
+  adapters, and tests.
+- `src/core-kits/` is the transitional home of unmigrated Core capabilities.
 
-MCP is present in the package but inactive by default:
+Core MCP is opt-in. Installing NexusEngine does not expose MCP capabilities. An
+application must install the Core MCP Domain, register an application-owned
+provider, and connect an explicit transport.
 
 ```js
 import { createEngine } from "nexusengine";
@@ -81,32 +81,50 @@ import {
 } from "nexusengine/core-domains/core-mcp-domain";
 
 const engine = createEngine({ kits: createCoreMcpDomain() });
+
 engine.n.coreMcp.registerProvider(defineMcpProvider({
-  id: "application",
+  id: "example-application",
   tools: []
 }));
 ```
 
-An application receives no MCP surface until it installs the domain, registers
-its provider, and connects a transport.
-
 ## Public API
 
-The root export intentionally excludes optional and game-specific symbols.
-Removed APIs have no compatibility forwarding exports. See the
-[0.0.4 domain cutover guide](docs/migrations/0.0.4-domain-cutover.md) and the
-[earlier non-Core migration guide](docs/migrations/0.0.3-non-core-apis.md).
+The package root and documented subpaths expose Core runtime contracts and
+domain-owned capabilities. Removed Composition and Object aliases have no
+forwarding exports. See the
+[0.0.4 Domain Cutover](docs/migrations/0.0.4-domain-cutover.md) for replacements
+and [`KIT-OWNERSHIP.json`](docs/KIT-OWNERSHIP.json) for the machine-readable
+ownership ledger.
 
-The machine-readable ownership ledger is
-[`docs/KIT-OWNERSHIP.json`](docs/KIT-OWNERSHIP.json).
+The `nexus-editor` CLI provides the repository's target-driven Headless Editor
+workflow.
 
 ## Validation
 
 ```bash
+npm ci --ignore-scripts --no-audit --no-fund
 npm test
+npm run test:release
 npm run ownership:generate
+npm run release:manifest
 npm run docs:check
+npm run boundaries:check
 ```
 
-Tests may use niche names or data only when they are isolated, synthetic,
-unexported fixtures proving a generic Core invariant.
+See [Operations](docs/OPERATIONS.md) for the purpose and expected evidence of
+each command.
+
+## Project Status
+
+- Package metadata version: `0.0.4`
+- Runtime: ESM on Node.js 18 or later
+- API status: stable candidate
+- MCP SDK: optional peer dependency, loaded only by an explicit Node transport
+- Publication: no npm publication, Git tag, or GitHub release was verified for
+  `0.0.4` during this documentation review
+- License metadata: `package.json` declares MIT, but this repository does not
+  currently contain a license file
+
+See [CHANGELOG.md](CHANGELOG.md), [RELEASE_0.0.4.md](RELEASE_0.0.4.md), and
+[Security](SECURITY.md) for current documented boundaries.
