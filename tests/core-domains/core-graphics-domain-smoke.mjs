@@ -1,19 +1,23 @@
 import assert from "node:assert/strict";
 import {
-  createCoreGraphicsDomain,
-  createRealtimeGame
-} from "../../src/index.js";
+  createGraphicsKit,
+  createReflectionKit,
+  createRenderLayerGraphKit,
+  createPresentationKit,
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({
-  kits: createCoreGraphicsDomain({
-    root: {
+const engine = createEngine({
+  kits: [
+    createPresentationKit(),
+    createGraphicsKit({
       descriptors: {
         materials: {
           clay: { id: "clay", kind: "physical", roughness: 0.4, clearcoat: 0.7 }
         }
       }
-    },
-    layers: {
+    }),
+    createRenderLayerGraphKit({
       graph: {
         id: "reflection-pipeline",
         version: "1.0.0",
@@ -62,19 +66,19 @@ const engine = createRealtimeGame({
           }
         ]
       }
-    },
-    reflections: {
+    }),
+    createReflectionKit({
       reflections: [{ id: "environment", kind: "environment-probe", textureId: "environment.ktx2" }],
       policy: { preferredTechnique: "environment-probe", fallbackOrder: ["screen-space"] }
-    }
-  })
+    })
+  ]
 });
 
-assert.equal(typeof engine.n.coreGraphics.getSnapshot, "function");
+assert.equal(typeof engine.n.graphics.getSnapshot, "function");
 assert.equal(typeof engine.n.renderLayerGraph.getSnapshot, "function");
-assert.equal(typeof engine.n.coreReflection.getSnapshot, "function");
-assert.equal(engine.n.ownerOf("n:graphics:reflection"), "n-core-graphics-reflection-kit");
-assert.equal(engine.n.coreGraphics.getDescriptors("materials").clay.id, "clay");
+assert.equal(typeof engine.n.reflection.getSnapshot, "function");
+assert.ok(engine.n.ownersOf("n:presentation:graphics").includes("reflection-descriptor-kit"));
+assert.equal(engine.n.graphics.getDescriptors("materials").clay.id, "clay");
 assert.deepEqual(engine.n.renderLayerGraph.getOrderedPasses().map(pass => pass.id), [
   "reflection-capture",
   "reflection-filter",

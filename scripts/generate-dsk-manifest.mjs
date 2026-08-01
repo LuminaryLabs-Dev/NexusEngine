@@ -1,37 +1,48 @@
-import { writeFileSync } from "node:fs";
+import assert from "node:assert/strict";
+import { existsSync, readFileSync, writeFileSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
-import { createCoreRegistrySnapshot } from "../src/core-domains/core-composition-domain/kits/composition-registry-kit/registry.js";
+import { createEngineRegistrySnapshot } from "../src/core-domains/composition/kits/composition-registry-kit/registry.js";
 import { NEXUS_ENGINE_VERSION, NEXUS_ENGINE_STABILITY } from "../src/release.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
-const registry = createCoreRegistrySnapshot();
+const check = process.argv.includes("--check");
+const registry = createEngineRegistrySnapshot();
+const coreSource = registry.sources.find((source) => source.registryId === "nexusengine-core");
+if (!coreSource) throw new Error("Composition registry is missing the nexusengine-core source record.");
+
+const generatedCoreHash = readFileSync(resolve(root, "docs", "generated", "CORE-REGISTRY-SHA256"), "utf8").trim();
+assert.equal(
+  coreSource.integrity,
+  `sha256:${generatedCoreHash}`,
+  "MCP registry source integrity must equal the generated Core catalog hash."
+);
 
 const manifest = {
-  schema: "nexusengine.dsk-manifest.v0.0.4",
+  schema: "nexusengine.dsk-manifest/0.0.4",
   package: "nexusengine",
   version: NEXUS_ENGINE_VERSION,
   stability: NEXUS_ENGINE_STABILITY,
   generatedBy: "scripts/generate-dsk-manifest.mjs",
   registrySchema: registry.schema,
-  registryHash: registry.contentHash,
-  domains: registry.kits.map((kit) => ({
-    id: kit.id,
-    domain: kit.domain,
-    domainPath: kit.domainPath,
-    parentDomainPath: kit.parentDomainPath,
-    provides: kit.provides,
-    requires: kit.requires,
-    source: kit.source.module,
-    exportName: kit.source.exportName,
-    stability: kit.status,
-    version: kit.version,
-    snapshot: kit.metadata?.execution?.snapshot ?? "required",
-    reset: kit.metadata?.execution?.reset ?? "required"
-  }))
+  registryHash: coreSource.integrity,
+  compositionRegistryHash: registry.contentHash,
+  sources: registry.sources,
+  domains: registry.domains,
+  kits: registry.kits,
+  recipes: registry.recipes
 };
 
 const outputPath = resolve(root, "docs", "DSK_MANIFEST_0.0.4.json");
-writeFileSync(outputPath, `${JSON.stringify(manifest, null, 2)}\n`);
-console.log(`Wrote ${outputPath}`);
+const contents = `${JSON.stringify(manifest, null, 2)}\n`;
+
+if (check) {
+  if (!existsSync(outputPath) || readFileSync(outputPath, "utf8") !== contents) {
+    throw new Error("Generated file drift: docs/DSK_MANIFEST_0.0.4.json");
+  }
+  console.log(`Checked ${outputPath}`);
+} else {
+  writeFileSync(outputPath, contents);
+  console.log(`Wrote ${outputPath}`);
+}

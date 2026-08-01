@@ -1,15 +1,19 @@
 import assert from "node:assert/strict";
 import {
-  createCoreWeatherDomain,
-  createEngine,
-  createLayeredWeatherDomain,
   createWeatherDomain,
+  createEngine,
+  createSpatialKit,
+  createWorldDomain,
+  createLayeredWeatherDomain,
+  createWeatherKit,
   createWeatherLayerDescriptor
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
-assert.equal(createCoreWeatherDomain().length, 2);
+assert.equal(createWeatherDomain().length, 2);
 const engine = createEngine({ kits: [
-  createWeatherDomain({
+  createSpatialKit(),
+  createWorldDomain({ childDomains: false }),
+  createWeatherKit({
     conditions: { humidity: 0.6, cloudiness: 0.45, wind: { x: 2, z: 1 } },
     tendencies: { cloudinessPerSecond: 0.001 }
   }),
@@ -18,8 +22,9 @@ const engine = createEngine({ kits: [
 
 assert.ok(engine.n.weather);
 assert.ok(engine.n.layeredWeather);
-assert.equal(engine.weather, engine.n.weather);
-assert.equal(engine.layeredWeather, engine.n.layeredWeather);
+assert.deepEqual(engine.n.ownersOf("n:world:weather"), ["layered-weather-kit", "weather-state-kit"]);
+assert.equal(engine.weather, undefined, "Domain APIs are addressed only through engine.n");
+assert.equal(engine.layeredWeather, undefined, "Domain APIs are addressed only through engine.n");
 
 engine.n.weather.registerRegion({
   id: "wet-valley",

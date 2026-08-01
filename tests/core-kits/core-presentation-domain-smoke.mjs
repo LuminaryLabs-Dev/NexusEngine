@@ -1,24 +1,22 @@
 import assert from "node:assert/strict";
 import {
-  createBrowserPresentationSurfaceAdapter,
-  createCorePresentationDomain,
+  createPresentationDomain,
   createPresentationDescriptor,
-  createRealtimeGame,
-  createThreePresentationOutputAdapter
-} from "../../src/index.js";
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({
-  kits: createCorePresentationDomain({
+const engine = createEngine({
+  kits: createPresentationDomain({
     output: { referenceAspect: 16 / 9, frameMode: "contain", maximumPixelRatio: 2 },
     ui: { referenceWidth: 1920, referenceHeight: 1080, mode: "match-shortest-side" },
     framing: { padding: 1.18, smoothTime: 0.18 }
   })
 });
 
-assert.equal(engine.n.ownerOf("n:presentation"), "core-presentation-domain");
-assert.equal(engine.n.ownerOf("n:presentation:output"), "core-presentation-output-kit");
-assert.equal(engine.n.ownerOf("n:presentation:ui-scale"), "core-ui-scale-kit");
-assert.equal(engine.n.ownerOf("n:presentation:camera-framing"), "core-camera-framing-kit");
+assert.equal(engine.n.ownerOf("n:presentation"), "presentation-registry-kit");
+assert.equal(engine.n.ownerOf("n:presentation:output"), "presentation-output-kit");
+assert.ok(engine.n.ownersOf("n:presentation:ui").includes("ui-scale-kit"));
+assert.ok(engine.n.ownersOf("n:presentation:camera").includes("camera-framing-kit"));
 
 const output = engine.n.presentationOutput;
 const descriptor = output.setSurface({ cssWidth: 1000, cssHeight: 1000, pixelRatio: 3 });
@@ -59,33 +57,5 @@ const second = framing.update({
   deltaTime: 1 / 60
 });
 assert.equal(second.status, "damping");
-
-const fakeElement = {
-  clientWidth: 640,
-  clientHeight: 360,
-  getBoundingClientRect: () => ({ width: 640, height: 360 })
-};
-const surfaceAdapter = createBrowserPresentationSurfaceAdapter({
-  element: fakeElement,
-  autoStart: false,
-  window: null,
-  document: null
-});
-assert.equal(surfaceAdapter.measure().orientation, "landscape");
-
-const calls = [];
-const renderer = {
-  setPixelRatio: (value) => calls.push(["pixelRatio", value]),
-  setSize: (...args) => calls.push(["size", ...args]),
-  setScissorTest: (value) => calls.push(["scissorTest", value]),
-  setViewport: (...args) => calls.push(["viewport", ...args]),
-  setScissor: (...args) => calls.push(["scissor", ...args]),
-  setClearColor: (...args) => calls.push(["clearColor", ...args]),
-  clear: () => calls.push(["clear"])
-};
-const camera = { aspect: 0, updateProjectionMatrix: () => calls.push(["projection"]) };
-createThreePresentationOutputAdapter().apply({ renderer, camera, descriptor });
-assert.equal(camera.aspect, descriptor.cameraAspect);
-assert.ok(calls.some(([name]) => name === "viewport"));
 
 console.log("core presentation domain smoke ok");

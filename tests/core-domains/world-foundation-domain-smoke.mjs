@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { createCoreWorldDomain, createEngine } from "../../src/index.js";
+import { createWorldDomain, createSpatialKit, createEngine } from "../helpers/public-package-surface.mjs";
 
-const engine = createEngine({ kits: [createCoreWorldDomain()] });
-assert.ok(engine.n.coreWorld);
+const engine = createEngine({ kits: [createSpatialKit(), createWorldDomain()] });
+assert.ok(engine.n.world);
 assert.ok(engine.n.worldFoundation);
-assert.equal(engine.coreWorld, engine.n.coreWorld);
-assert.equal(engine.worldFoundation, engine.n.worldFoundation);
+assert.notEqual(engine.world, engine.n.world, "engine.world remains the ECS state owner");
+assert.equal(engine.worldFoundation, undefined, "Domain APIs are addressed only through engine.n");
 
 const foundation = engine.n.worldFoundation;
 foundation.setContributions("cell-a", [

@@ -1,60 +1,19 @@
 export * from "./release.js";
 export * from "./ecs.js";
-export * from "./surfaces.js";
+export * from "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js";
 export * from "./engine.js";
 export * from "./runtime-kit.js";
 export * from "./domain-service-kit.js";
 export * from "./domain-path.js";
 export * from "./domain-api.js";
-export * from "./common-game-definitions.js";
-export * from "./procedural-navigation-extensions.js";
-export * from "./game-kit-composer.js";
-export * from "./host.js";
-export * from "./renderers.js";
-export * from "./shaders.js";
-export * from "./sequences.js";
-export * from "./sequence-node.js";
-export * from "./sequence-node-library.js";
-export * from "./sequence-node-kit.js";
-export * from "./foundation/index.js";
-export * from "./modules/nexus-diffusion/index.js";
-export * from "./core-domains/index.js";
-export * from "./core-kits/index.js";
-export * from "./hosts/browser/browser-startup-presentation-adapter.js";
-export * from "./hosts/browser/browser-presentation-surface-adapter.js";
-export * from "./hosts/browser/browser-indexeddb-asset-cache-adapter.js";
-export * from "./renderers/three/three-presentation-output-adapter.js";
-export * from "./renderers/three/three-subject-bounds-adapter.js";
-export * from "./renderers/three/three-object-capture-provider.js";
-
-export { createTerrainKit } from "./terrain-kit.js";
-export { createProceduralKit } from "./procedural-kit.js";
-export { createNavMeshKit } from "./navmesh-kit.js";
-export { createPathfindingKit } from "./pathfinding-kit.js";
-export { createWaterSurfaceKit } from "./water-surface-kit.js";
-export { createVehicleDynamicsKit } from "./vehicle-dynamics-kit.js";
-export { createRouteFieldKit } from "./route-field-kit.js";
-export { createCargoManifestKit } from "./cargo-manifest-kit.js";
-
-export * from "./terrain-kit.js";
-export * from "./procedural-kit.js";
-export * from "./navmesh-kit.js";
-export * from "./pathfinding-kit.js";
-export * from "./world-physics-kit.js";
-export * from "./water-surface-kit.js";
-export * from "./vehicle-dynamics-kit.js";
-export * from "./route-field-kit.js";
-export * from "./action-movement-kit.js";
-export * from "./character-camera-kit.js";
-export * from "./schedule-kit.js";
-export * from "./economy-kit.js";
-export * from "./lifecycle-progression-kit.js";
-export * from "./facility-operations-kit.js";
-export * from "./occupant-flow-kit.js";
-export * from "./transport-route-kit.js";
-export * from "./request-queue-kit.js";
-export * from "./telemetry-kit.js";
-export * from "./timing-window-kit.js";
-export * from "./resource-pressure-kit.js";
-export * from "./hazard-field-kit.js";
-export * from "./cargo-manifest-kit.js";
+export {
+  CORE_DOMAIN_CATALOG,
+  CORE_DOMAIN_MANIFESTS,
+  CORE_REGISTRY_SHA256
+} from "./core-domains/catalog.js";
+export {
+  createCompositionDomain,
+  createCompositionKit,
+  createCompositionApplyController,
+  createCompositionMcpProvider
+} from "./core-domains/composition/index.js";

@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import { createEngine } from "../helpers/public-package-surface.mjs";
 import {
-  createCoreDataKit,
+  createDataKit,
   createSnapshotEnvelope,
   createCompletionLedger,
   createIdempotencyLedger,
   createStateSelector,
   createDataSchema,
   validateDataSchema
-} from "../../src/core-kits/core-data-kit/index.js";
+} from "../../src/core-domains/runtime/subdomains/data/kits/data-kit/index.js";
 
 const snapshot = createSnapshotEnvelope({ id: "data", state: { value: 1 } });
 assert.equal(snapshot.state.value, 1, "snapshot stores state");
@@ -27,7 +27,7 @@ assert.equal(selector.read({ unit: { value: 3 } }), 3, "selector reads nested st
 const schema = createDataSchema({ required: ["id"] });
 assert.equal(validateDataSchema(schema, { id: "state" }).id, "state", "schema validates required data");
 
-const engine = createRealtimeGame({ kits: [createCoreDataKit({ config: { profile: "piece-smoke" } })] });
-assert.equal(engine.n.coreData.getConfig().profile, "piece-smoke", "core data installs under engine.n");
+const engine = createEngine({ kits: [createDataKit({ config: { profile: "piece-smoke" } })] });
+assert.equal(engine.n.data.getConfig().profile, "piece-smoke", "core data installs under engine.n");
 
 console.log("core-data-kit piece smoke ok");

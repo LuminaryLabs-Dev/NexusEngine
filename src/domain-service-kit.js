@@ -88,10 +88,6 @@ function assertParentDomainPath(domainPath, parentDomainPath) {
   }
 }
 
-function createDomainPathServiceToken(domainPath, service) {
-  return `${normalizeDomainPath(domainPath, "domainPath")}:${normalizeSlug(service, "service")}`;
-}
-
 export function createDomainServiceToken(domain, service) {
   const normalizedDomain = normalizeSlug(domain, "domain");
   if (service === undefined || service === null) {
@@ -131,9 +127,6 @@ export function validateDomainServiceKit(kit) {
   for (const token of [...(kit.provides ?? []), ...(kit.requires ?? [])]) {
     normalizeToken(token, "capability");
   }
-  if (!kit.provides?.some((token) => token === kit.metadata.domainPath)) {
-    throw new TypeError(`Domain service kit ${kit.id} must provide ${kit.metadata.domainPath}.`);
-  }
   return kit;
 }
 
@@ -157,8 +150,9 @@ function buildMetadata(config, domain, id, apiName) {
     "parentDomainPath"
   );
   assertParentDomainPath(domainPath, parentDomainPath);
+  const apiSlug = apiName.replace(/([a-z0-9])([A-Z])/g, "$1-$2").toLowerCase();
   const apiPath = normalizeOptionalDomainPath(
-    config.apiPath ?? sourceMetadata.apiPath ?? `${domainPath}:api`,
+    config.apiPath ?? sourceMetadata.apiPath ?? `${domainPath}:api:${apiSlug}`,
     "apiPath"
   );
   const visibility = normalizeDomainApiVisibility(
@@ -227,22 +221,7 @@ export function defineDomainServiceKit(config = {}) {
   }
 
   const metadata = buildMetadata(config, domain, id, apiName);
-  const domainPath = metadata.domainPath;
-  const legacyDomainToken = createDomainServiceToken(domain);
-  const includeLegacyDomainTokens = config.legacyDomainTokens !== false;
-  const serviceProvides = (config.services ?? []).flatMap((service) => {
-    const pathToken = createDomainPathServiceToken(domainPath, service);
-    const legacyToken = createDomainServiceToken(domain, service);
-    return pathToken === legacyToken || !includeLegacyDomainTokens
-      ? [pathToken]
-      : [pathToken, legacyToken];
-  });
-  const provides = unique([
-    domainPath,
-    ...(includeLegacyDomainTokens ? [legacyDomainToken] : []),
-    ...serviceProvides,
-    ...normalizeTokenList(config.provides, "provides")
-  ]);
+  const provides = unique(normalizeTokenList(config.provides, "provides"));
   const requires = unique(normalizeTokenList(config.requires, "requires"));
 
   const kit = defineRuntimeKit({

@@ -1,103 +1,117 @@
 # Current NexusEngine Architecture
 
 **Status:** canonical current architecture
-**Updated:** 2026-07-23
+**Updated:** 2026-07-31
 
 ## Package Boundary
 
-NexusEngine is a bootstrap shell plus atomic, idempotent, fully reusable Core
-domains.
+NexusEngine is a deterministic runtime substrate plus manifest-owned semantic
+Core Domains.
 
 ```txt
 NexusEngine
-├─ deterministic ECS and scheduler
-├─ events, resources, queries, and surfaces
-├─ runtime-kit and domain-service-kit contracts
-├─ composition and dependency ordering
-├─ default Core services
-├─ universal Core capability domains
-├─ snapshot, reset, replay, and validation
-└─ generic host and presentation contracts
+├── ECS, scheduler, events, resources, queries, and surfaces
+├── Runtime Kit and Domain Service Kit contracts
+├── Runtime Lifecycle, Realtime, and Sequence defaults
+├── semantic Domain manifests and generated catalog
+├── deterministic composition planning and validation
+├── opt-in MCP contracts and registry
+├── snapshot, reset, replay, and exactly-once receipts
+└── host, provider, adapter, and presentation contracts
 ```
 
-It does not own optional gameplay catalogs, genre systems, platform launchers,
-complete games, authored presets, or product behavior.
+It does not own concrete hosts, renderers, SDKs, storage drivers, transports,
+model implementations, authored presets, optional gameplay, complete games, or
+repository tooling.
 
 ## Bootstrap
 
-`createEngine()` creates the engine object, binds primitive runtime services,
-installs the default Core kits, installs configured user kits, and mounts
-configured sequence nodes.
+`createEngine()` creates ECS state, deterministic tick services, and installs
+three manifest-backed atoms:
 
-Default services include:
+```txt
+runtime-lifecycle-kit
+realtime-runtime-kit
+runtime-sequence-kit
+```
 
-- `n:realtime`: deterministic ticks, world, scheduler, clock, events,
-  resources, queries, and lifecycle surfaces
-- `n:sequence`: generic authored orchestration and node dispatch
+It selects no concrete renderer, shader compiler, material registry, host, or
+transport. Additional Core Domains are imported from generated semantic package
+subpaths and installed explicitly.
 
-Compatibility aliases for those Core services remain where covered by the
-public contract.
+## Semantic Domains
 
-## Core Domains
+Every Core production module is reachable through exactly one manifest in
+`src/core-domains/<semantic-domain>/domain.manifest.js`. A manifest records:
 
-Core domains are open, addressable, and product-neutral. Installed domains
-declare their path, API, ownership, requirements, version, and stability.
+```txt
+identity and parent path
+semantic ownership and forbidden responsibilities
+owned state, inputs, systems, outputs, and lifecycle
+dependencies and capabilities
+public atoms, providers, adapters, and settings
+executable source, package subpath, and proof references
+```
+
+Generation fails when ownership or proof is missing. Manifests exclusively
+generate the Core catalog, package exports, ownership ledger, API reference,
+guide indexes, MCP records, and registry SHA-256.
+
+## Addressability
+
+Domain APIs are available through `engine.n`:
 
 ```js
-engine.n.path("n:realtime");
-engine.n.ownerOf("n:realtime");
-engine.n.api("realtime");
+engine.n.path("n:runtime:realtime");
+engine.n.ownerOf("n:object:placement");
+engine.n.api("objectPlacement");
 engine.n.paths();
 engine.n.apis();
 ```
 
-Core capabilities must pass the ownership gate in
-[`KIT-OWNERSHIP.md`](KIT-OWNERSHIP.md).
+Semantic paths never use the retired Core-prefixed namespace.
 
 ## Composition
 
-`defineRuntimeKit()` is the low-level install contract.
-`defineDomainServiceKit()` adds stable domain identity and addressability.
-`createGameKitComposer()` performs additive dependency-ordered composition.
-
-`core-composition-domain` owns explicit Domain and Kit discovery, dependency
-planning, stable plan identity, and persistent exactly-once receipts. Its
-opt-in MCP provider exposes discovery and planning while the application host
-owns executable trust, approval, mutation, and runtime lifecycle.
-
-Core provides these contracts. Optional implementations are imported from a
-trusted registry package and installed through the public contract. They must
-not import private NexusEngine files. Disconnecting MCP does not stop or own an
-already-created runtime.
-
-## Hosts And Renderers
+Core Composition owns non-executable discovery, dependency validation, stable
+plans, exact source review, and persistent apply receipts. The host owns trusted
+module resolution, explicit human approval, mutation, rollback snapshots,
+persistence, and the running application.
 
 ```txt
-Core simulation owns state truth.
-Kits own reusable optional meaning.
-Hosts adapt lifecycle and input.
-Renderers present snapshots and descriptors.
-Games own authored experience.
+discover metadata
+-> validate request
+-> plan dependency order and exact sources
+-> human reviews plan ID and source details
+-> host resolves without runtime installation
+-> host snapshots and applies once
+-> receipt persists
+-> runtime continues without MCP
 ```
 
-Core exposes a generic headless renderer and generic presentation contracts.
-Browser, WebGL, Three.js, platform, genre, or product adapters live outside
-Core unless a separately proven universal adapter contract requires otherwise.
+Repeated application of the same plan returns the original receipt. Reusing a
+Kit ID with changed content fails before mutation. Failed apply or persistence
+restores the host snapshot.
+
+## Hosts, Providers, And Adapters
+
+Core may define a capability contract or renderer-neutral descriptor. Concrete
+Node/browser/native hosts, Three.js/WebGL renderers, SDKs, storage drivers,
+network transports, and model providers are leaf implementations owned by
+NexusEngine-Editor, NexusEngine-Kits, or another approved package.
 
 ## Tests
 
-Niche scenarios are allowed only as isolated fixtures for generic Core
-invariants. Production code never imports test fixtures, and fixtures are not
-exports or runtime registry entries.
+Niche scenarios are permitted only as isolated fixtures for generic Core
+invariants. Production source never imports test fixtures, and fixtures are not
+package exports or registry entries.
 
 ## Source Of Truth
 
-In order:
+1. Domain manifests, current source, and passing generated checks
+2. [Kit Ownership](KIT-OWNERSHIP.md)
+3. this architecture page and the [NexusEngine Guide](NexusEngine-Guide.md)
+4. migration records and frozen extraction evidence
 
-1. current source and passing tests
-2. [`KIT-OWNERSHIP.md`](KIT-OWNERSHIP.md)
-3. this architecture page
-4. active contract documentation
-
-Planning inventories, generated packets, and legacy pages are evidence or
-history. They are not architecture authority.
+Historical plans and generated run packets are evidence, not active
+architecture.

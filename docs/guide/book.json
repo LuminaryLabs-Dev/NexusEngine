@@ -1,0 +1,28 @@
+{
+  "schema": "nexusengine.guide-book/1",
+  "id": "nexusengine-guide",
+  "title": "NexusEngine Guide",
+  "subtitle": "Core architecture, composition, integration, and migration reference",
+  "version": "0.0.4",
+  "chapters": [
+    { "id": "start-here", "title": "Start Here", "source": "docs/guide/chapters/01-start-here.md", "googleDocTab": "01 Start Here" },
+    { "id": "mental-model", "title": "The NexusEngine Mental Model", "source": "docs/guide/chapters/02-mental-model.md", "googleDocTab": "02 Mental Model" },
+    { "id": "first-runtime", "title": "Build A First Runtime", "source": "docs/guide/chapters/03-first-runtime.md", "googleDocTab": "03 First Runtime" },
+    { "id": "domains-atoms", "title": "Domains And Atomic Kits", "source": "docs/guide/chapters/04-domains-and-atoms.md", "googleDocTab": "04 Domains And Atoms" },
+    { "id": "lifecycle", "title": "State, Lifecycle, And Idempotence", "source": "docs/guide/chapters/05-state-lifecycle-idempotence.md", "googleDocTab": "05 Lifecycle" },
+    { "id": "composition", "title": "Composition And Recipes", "source": "docs/guide/chapters/06-composition-and-recipes.md", "googleDocTab": "06 Composition" },
+    { "id": "mcp", "title": "MCP Agent Workflow", "source": "docs/guide/chapters/07-mcp-agent-workflow.md", "googleDocTab": "07 MCP" },
+    { "id": "registry-security", "title": "Registries And Security", "source": "docs/guide/chapters/08-registry-and-security.md", "googleDocTab": "08 Registries" },
+    { "id": "integration-boundaries", "title": "Hosts, Providers, And Adapters", "source": "docs/guide/chapters/09-hosts-providers-adapters.md", "googleDocTab": "09 Integration" },
+    { "id": "testing", "title": "Testing And Proof", "source": "docs/guide/chapters/10-testing-and-proof.md", "googleDocTab": "10 Testing" },
+    { "id": "migration", "title": "Migrating To 0.0.4", "source": "docs/guide/chapters/11-migration-0.0.4.md", "googleDocTab": "11 Migration" },
+    { "id": "protokit-extraction", "title": "ProtoKit Extraction", "source": "docs/guide/chapters/12-protokit-extraction.md", "googleDocTab": "12 ProtoKit Extraction" },
+    { "id": "release-operation", "title": "Release And Operating Model", "source": "docs/guide/chapters/13-release-and-operation.md", "googleDocTab": "13 Release" },
+    { "id": "domain-index", "title": "Generated Domain Index", "source": "docs/guide/generated/domain-index.md", "googleDocTab": "A Domain Index", "generated": true },
+    { "id": "dependency-table", "title": "Generated Dependency Table", "source": "docs/guide/generated/dependency-table.md", "googleDocTab": "B Dependencies", "generated": true },
+    { "id": "api-reference", "title": "Generated Atomic API Reference", "source": "docs/generated/API-REFERENCE.md", "googleDocTab": "C API Reference", "generated": true },
+    { "id": "ownership-ledger", "title": "Generated Ownership Ledger", "source": "docs/KIT-OWNERSHIP.md", "googleDocTab": "D Ownership", "generated": true },
+    { "id": "root-migration-map", "title": "Generated Root Migration Map", "source": "docs/migrations/0.0.4-root-module-dispositions.md", "googleDocTab": "E Migration Map", "generated": true },
+    { "id": "extraction-summary", "title": "Generated ProtoKit Extraction Summary", "source": "docs/protokit-extraction/README.md", "googleDocTab": "F Extraction Summary", "generated": true }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "canonicalSubdirectory": "protokits",
+  "commit": "0d102649267737230d618b30fe6f9465b198d234",
+  "dirtyPaths": [],
+  "executedSourceCode": false,
+  "fileCount": 905,
+  "folderCount": 530,
+  "readOnlyExtraction": true,
+  "repository": "https://github.com/LuminaryLabs-Agents/NexusEngine-ProtoKits.git",
+  "schema": "nexusengine.protokit-frozen-source/1",
+  "snapshotSha256": "sha256:5fcedb55e1ba4877ad00c0173626ee0b433ee9c669ea91194e0cc4c68eaacd53"
+}

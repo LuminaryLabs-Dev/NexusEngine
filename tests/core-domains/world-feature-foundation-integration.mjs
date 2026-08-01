@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { createCoreWorldDomain, createEngine } from "../../src/index.js";
+import { createWorldDomain, createSpatialKit, createEngine } from "../helpers/public-package-surface.mjs";
 
 function createProof(order) {
-  const engine = createEngine({ kits: [createCoreWorldDomain()] });
+  const engine = createEngine({ kits: [createSpatialKit(), createWorldDomain()] });
   for (const id of order) {
-    engine.n.worldFeatures.registerFeature({
+    engine.n.worldFeature.registerFeature({
       id,
       type: "mountain",
       priority: id === "large" ? 10 : 20,
@@ -17,11 +17,11 @@ function createProof(order) {
       }
     });
   }
-  const result = engine.n.worldFeatures.compileCell({
+  const result = engine.n.worldFeature.compileCell({
     id: "cell-0",
     bounds: { minX: -1000, minZ: -1000, maxX: 1000, maxZ: 1000 }
   }, { baseFoundation: { elevation: 5 } });
-  const sample = engine.n.worldFoundation.sampleElevation("cell-0", { x: 0, z: 0 }, engine.n.worldFeatures.getSamplers());
+  const sample = engine.n.worldFoundation.sampleElevation("cell-0", { x: 0, z: 0 }, engine.n.worldFeature.getSamplers());
   return { result, sample };
 }
 
@@ -31,7 +31,7 @@ assert.equal(first.sample, 505);
 assert.equal(second.sample, first.sample);
 assert.deepEqual(first.result.resolved.contributionIds, second.result.resolved.contributionIds);
 
-const dependencyEngine = createEngine({ kits: [createCoreWorldDomain()] });
+const dependencyEngine = createEngine({ kits: [createSpatialKit(), createWorldDomain()] });
 dependencyEngine.n.worldFoundation.setContributions("missing", [{
   id: "dependent",
   featureId: "dependent",

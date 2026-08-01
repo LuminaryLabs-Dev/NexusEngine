@@ -1,9 +1,10 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
+import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 import {
-  createArticulatedMotionDriveAdapter,
-  createCorePhysicsDomain
-} from "../../src/core-domains/core-physics-domain/index.js";
+  createArticulatedMotionDriveOperations,
+  createPhysicsDomain
+} from "../../src/core-domains/simulation/subdomains/physics/index.js";
 
 let constraints = [];
 let articulations = [];
@@ -48,10 +49,10 @@ const provider = {
   dispose() {}
 };
 
-const engine = createEngine({ kits: createCorePhysicsDomain() });
-engine.corePhysics.setProvider(provider);
+const engine = createEngine({ kits: [createSimulationKit(), ...createPhysicsDomain()] });
+engine.n.physics.setProvider(provider);
 
-const articulation = engine.n.articulatedDynamics.syncArticulation({
+const articulation = engine.n.articulatedPhysics.syncArticulation({
   id: "raptor-dynamics",
   rigId: "raptor-rig",
   bodies: [
@@ -71,10 +72,10 @@ const articulation = engine.n.articulatedDynamics.syncArticulation({
 assert.equal(constraints.length, 1);
 assert.equal(articulations.length, 1);
 
-const drive = createArticulatedMotionDriveAdapter();
+const drive = createArticulatedMotionDriveOperations();
 const requests = drive.drive({
   articulation,
-  corePhysics: engine.corePhysics,
+  physics: engine.n.physics,
   tickId: "tick:1",
   pose: {
     id: "raptor:pose",
@@ -87,7 +88,7 @@ const requests = drive.drive({
 assert.equal(requests.length, 1);
 assert.equal(motors[0].jointId, "knee-L");
 
-const physicsFrame = engine.corePhysics.step({
+const physicsFrame = engine.n.physics.step({
   tickId: "tick:1",
   frame: 1,
   delta: 1 / 60,
@@ -97,8 +98,8 @@ assert.equal(physicsFrame.jointResults[0].jointId, "knee-L");
 assert.equal(physicsFrame.articulationResults[0].articulationId, articulation.id);
 assert.equal("backendObject" in physicsFrame, false);
 
-const dynamicsFrame = engine.n.articulatedDynamics.commitFrame({ physicsFrame });
+const dynamicsFrame = engine.n.articulatedPhysics.commitFrame({ physicsFrame });
 assert.equal(dynamicsFrame.schema, "nexus-articulated-dynamics-frame/1");
-assert.doesNotThrow(() => structuredClone(engine.n.articulatedDynamics.getSnapshot()));
+assert.doesNotThrow(() => structuredClone(engine.n.articulatedPhysics.getSnapshot()));
 
 console.log("core physics domain smoke ok");

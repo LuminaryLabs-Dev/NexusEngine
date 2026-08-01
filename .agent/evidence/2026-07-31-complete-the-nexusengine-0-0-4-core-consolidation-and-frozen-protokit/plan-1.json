@@ -1,0 +1,64 @@
+{
+  "id": "plan:1",
+  "ok": true,
+  "at": "2026-07-31T20:39:30.708Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "goal": "Complete the NexusEngine `0.0.4` Core consolidation and frozen ProtoKit",
+    "mode": "Implementation",
+    "scope": [
+      "Build manifest v2, strict validation, and manifest-only generated catalogs.",
+      "Freeze, inventory, and disposition every exported ProtoKit surface.",
+      "Migrate all retained Core behavior into semantic Domain-owned folders.",
+      "Remove transitional paths, hardcoded catalogs, aliases, and old identifiers.",
+      "Complete registry, MCP, guide, PDF, consumer, and release-gate proof."
+    ],
+    "requiredOutcomes": [
+      "ProtoKit export disposition coverage is exactly 100 percent.",
+      "Every universal atom is implemented and evidence-backed.",
+      "Every public Core module has exactly one manifest owner.",
+      "No transitional Core Kit folder, old identifier, old import, or forwarding export remains.",
+      "Engine, Kits, Editor, Simulator, clean-install, MCP, registry, docs, PDF, Playwright, and Human View gates pass.",
+      "No external publication or mutation occurs without its separate human approval."
+    ],
+    "constraints": [
+      "Do not modify the frozen ProtoKit worktree.",
+      "Do not touch or absorb unrelated dirty worktrees.",
+      "Do not stash, reset, discard, force, or delete preservation assets.",
+      "Do not push, release, archive, mutate Google Drive, or create a numeric release branch.",
+      "Unknown or unproven behavior fails closed outside Core.",
+      "Do not add compatibility forwarding exports."
+    ],
+    "requiredChecks": [
+      "repository-integrity",
+      "test-coverage",
+      "kit-composition",
+      "installed-api-parity",
+      "descriptor-integrity",
+      "snapshot-reset-replay",
+      "public-export-integrity",
+      "browser-startup",
+      "deterministic-replay",
+      "runtime-tick"
+    ],
+    "steps": [
+      "Inspect the owning domain and nearest existing kit.",
+      "Implement the smallest compositional change that satisfies the target.",
+      "Reconcile public exports, package surfaces, docs, snapshots, and fixtures.",
+      "Run and record repository-integrity.",
+      "Run and record test-coverage.",
+      "Run and record kit-composition.",
+      "Run and record installed-api-parity.",
+      "Run and record descriptor-integrity.",
+      "Run and record snapshot-reset-replay.",
+      "Run and record public-export-integrity.",
+      "Run and record browser-startup.",
+      "Run and record deterministic-replay.",
+      "Run and record runtime-tick.",
+      "Verify and compare observed evidence before claiming completion."
+    ]
+  }
+}

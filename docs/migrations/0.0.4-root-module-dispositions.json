@@ -1,0 +1,1297 @@
+{
+  "schema": "nexusengine.root-module-dispositions/1",
+  "source": {
+    "repository": "NexusEngine",
+    "commit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
+  },
+  "policy": "Hard cutover: no runtime forwarding exports. Git history and this ledger preserve lineage.",
+  "counts": {
+    "core-reuse": 0,
+    "core-composition": 0,
+    "core-new-atom": 0,
+    "external-kit": 55,
+    "recipe-data": 2,
+    "game-owned": 2,
+    "duplicate": 2,
+    "rejected-unproven": 0
+  },
+  "removedExports": [
+    {
+      "sourcePath": "src/core-domains/compute/subdomains/model/kits/model-kit/index.js",
+      "exportNames": [
+        "createMockModelAdapter"
+      ],
+      "disposition": "recipe-data",
+      "targetOwner": "NexusEngine tests",
+      "replacement": "Inject createModelAdapterBoundary({ infer }) into createModelKit({ adapters }).",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
+    },
+    {
+      "sourcePath": "src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js",
+      "exportNames": [
+        "CORE_SKYBOX_PRESETS"
+      ],
+      "disposition": "recipe-data",
+      "targetOwner": "NexusEngine-Kits recipes or game repositories",
+      "replacement": "Pass caller-owned preset data to createSkyDescriptorKit({ presets }) or registerPreset().",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
+    },
+    {
+      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js",
+      "exportNames": [
+        "createTinyTTSAssetManifest",
+        "createTinyTTSProvider",
+        "registerTinyTTSAssets"
+      ],
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "replacement": "Install a model, network, and asset implementation through createSpeechKit().registerProvider().",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
+    },
+    {
+      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js",
+      "exportNames": [
+        "createPocketTTSAssetManifest",
+        "createPocketTTSHttpAssetProvider",
+        "createPocketTTSProvider",
+        "registerPocketTTSAssets"
+      ],
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "replacement": "Install PocketTTS through createSpeechKit().registerProvider().",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
+    }
+  ],
+  "records": [
+    {
+      "sourcePath": "bin/nexus-editor.mjs",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor",
+      "requiredCoreAtoms": [
+        "n:composition",
+        "n:host",
+        "n:mcp"
+      ],
+      "reconstructionRecipe": "Ship the CLI from NexusEngine-Editor against committed NexusEngine contracts.",
+      "semanticBehavior": "Headless editor command-line host.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": []
+    },
+    {
+      "sourcePath": "src/action-movement-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:interaction:input",
+        "n:simulation:motion"
+      ],
+      "reconstructionRecipe": "Compose actor state, normalized input, and Motion atoms with a product movement policy.",
+      "semanticBehavior": "Character and action movement policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createActionMovementKit",
+        "createCharacterMovementKit",
+        "createLocomotionKit"
+      ]
+    },
+    {
+      "sourcePath": "src/assistance-target-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:interaction",
+        "n:object",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Compose actor, interaction, object registry, and simulation state with assistance-target rules.",
+      "semanticBehavior": "Assist, attach, stabilize, and complete target behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "AssistanceTargetAttached",
+        "AssistanceTargetCompleted",
+        "AssistanceTargetLost",
+        "AssistanceTargetStabilized",
+        "AssistanceTargetState",
+        "createAssistanceTargetKit"
+      ]
+    },
+    {
+      "sourcePath": "src/cargo-manifest-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:object",
+        "n:runtime:data",
+        "n:runtime:transaction"
+      ],
+      "reconstructionRecipe": "Store cargo descriptors in Data and commit pickup/deposit changes through Transaction.",
+      "semanticBehavior": "Cargo pickup, condition, deposit, and quota policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "CargoConditionChanged",
+        "CargoConditionDepleted",
+        "CargoDeposited",
+        "CargoManifestState",
+        "CargoPickedUp",
+        "CargoQuotaCompleted",
+        "createCargoManifestKit",
+        "queryNearestCargo"
+      ]
+    },
+    {
+      "sourcePath": "src/character-camera-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor:character",
+        "n:presentation:camera",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Combine character pose, Spatial math, and Camera descriptors with an external host adapter.",
+      "semanticBehavior": "Authored third-person camera behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createCameraKit",
+        "createCharacterCameraKit"
+      ]
+    },
+    {
+      "sourcePath": "src/common-game-definitions.js",
+      "disposition": "recipe-data",
+      "targetOwner": "NexusEngine-Kits recipes",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:interaction",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Replace shared game-shaped ECS definitions with recipe-local descriptors over semantic Core atoms.",
+      "semanticBehavior": "Legacy shared game component, resource, and event definitions.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "CommonGameComponents",
+        "CommonGameEvents",
+        "CommonGameResources",
+        "commonGameDefinitions",
+        "getCommonGameDefinitions"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/compute/subdomains/model/kits/model-kit/mock-model-adapter.js",
+      "disposition": "recipe-data",
+      "targetOwner": "NexusEngine tests",
+      "requiredCoreAtoms": [
+        "n:compute:model"
+      ],
+      "reconstructionRecipe": "Inject a deterministic fixture adapter through the neutral Model adapter contract when testing inference flows.",
+      "semanticBehavior": "Concrete mock inference implementation used only for tests.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": []
+    },
+    {
+      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:asset",
+        "n:compute:model",
+        "n:presentation:speech"
+      ],
+      "reconstructionRecipe": "Install PocketTTS or another model/network implementation through the neutral Speech provider contract.",
+      "semanticBehavior": "Concrete hosted PocketTTS HTTP provider and model asset manifest.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "POCKET_TTS_DEFAULT_BUNDLE_ID",
+        "POCKET_TTS_DEFAULT_LANGUAGE",
+        "POCKET_TTS_DEFAULT_MODEL_REPOSITORY",
+        "POCKET_TTS_DEFAULT_MODEL_REVISION",
+        "POCKET_TTS_PROVIDER_ID",
+        "createPocketTTSAssetManifest",
+        "createPocketTTSHttpAssetProvider",
+        "createPocketTTSProvider",
+        "registerPocketTTSAssets"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/headless-scene-host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.",
+      "semanticBehavior": "Concrete web navigation, native loading, and headless scene host implementations.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createHeadlessSceneHostBinding"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/native-scene-host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.",
+      "semanticBehavior": "Concrete web navigation, native loading, and headless scene host implementations.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createNativeSceneHostBinding"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/rust-native-scene-host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.",
+      "semanticBehavior": "Concrete web navigation, native loading, and headless scene host implementations.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createNativeSceneHostBinding",
+        "createRustNativeSceneHostBinding"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-html-scene-host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.",
+      "semanticBehavior": "Concrete web navigation, native loading, and headless scene host implementations.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createWebHtmlSceneHostBinding",
+        "createWebSceneHostBinding"
+      ]
+    },
+    {
+      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-scene-host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.",
+      "semanticBehavior": "Concrete web navigation, native loading, and headless scene host implementations.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createWebHtmlSceneHostBinding",
+        "createWebSceneHostBinding"
+      ]
+    },
+    {
+      "sourcePath": "src/economy-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:runtime:data",
+        "n:runtime:transaction",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Represent balances in Data and apply policy-specific transfers through Transaction receipts.",
+      "semanticBehavior": "Balances, costs, rewards, and economy transaction policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "EconomyState",
+        "EconomyTransactionCompleted",
+        "EconomyTransactionRejected",
+        "EconomyTransactionRequest",
+        "createEconomyKit"
+      ]
+    },
+    {
+      "sourcePath": "src/environmental-affordance-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:interaction",
+        "n:object",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Attach affordance descriptors to objects and resolve product interaction policy outside Core.",
+      "semanticBehavior": "Environmental affordance activation and completion.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "AffordanceActivated",
+        "AffordanceCompleted",
+        "AffordanceEntered",
+        "EnvironmentalAffordanceState",
+        "createEnvironmentalAffordanceKit",
+        "queryNearbyAffordances"
+      ]
+    },
+    {
+      "sourcePath": "src/facility-operations-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:runtime:sequence",
+        "n:runtime:transaction",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Compose Sequence, Transaction, and Simulation atoms with facility recipes.",
+      "semanticBehavior": "Facility production and condition policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "FacilityConditionChanged",
+        "FacilityOperationsState",
+        "FacilityOutputProduced",
+        "createFacilityOperationsKit"
+      ]
+    },
+    {
+      "sourcePath": "src/game-kit-composer.js",
+      "disposition": "duplicate",
+      "targetOwner": "n:composition",
+      "requiredCoreAtoms": [
+        "n:composition",
+        "n:policy"
+      ],
+      "reconstructionRecipe": "Use the manifest-backed Composition registry, planner, validator, apply controller, and receipts.",
+      "semanticBehavior": "Legacy game composition helper superseded by Core Composition.",
+      "stateAndLifecycle": "Replacement owns lifecycle through manifest-backed composition receipts.",
+      "proofStatus": "replacement-proved",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createGameKitComposer",
+        "createRealtimeGame"
+      ]
+    },
+    {
+      "sourcePath": "src/hazard-field-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:object",
+        "n:simulation",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Combine object descriptors, Spatial queries, and Simulation state with hazard rules.",
+      "semanticBehavior": "Spawned hazard fields and collision policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "HazardFieldCollision",
+        "HazardFieldSpawned",
+        "HazardFieldState",
+        "createHazardFieldKit",
+        "queryHazardCircle"
+      ]
+    },
+    {
+      "sourcePath": "src/host.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor",
+      "requiredCoreAtoms": [
+        "n:composition",
+        "n:host",
+        "n:policy"
+      ],
+      "reconstructionRecipe": "Implement host lifecycle and adapter mounting in the owning application against Core host capability contracts.",
+      "semanticBehavior": "Concrete host orchestration and adapter lifecycle.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createHostGraphSnapshot",
+        "createNexusHost",
+        "defineHostAdapter"
+      ]
+    },
+    {
+      "sourcePath": "src/hosts/browser/browser-indexeddb-asset-cache-adapter.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:asset",
+        "n:host",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install browser storage and presentation implementations as host-owned leaf adapters.",
+      "semanticBehavior": "Browser IndexedDB, presentation surface, and startup adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBrowserIndexedDbAssetCacheAdapter"
+      ]
+    },
+    {
+      "sourcePath": "src/hosts/browser/browser-presentation-surface-adapter.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:asset",
+        "n:host",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install browser storage and presentation implementations as host-owned leaf adapters.",
+      "semanticBehavior": "Browser IndexedDB, presentation surface, and startup adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBrowserPresentationSurfaceAdapter"
+      ]
+    },
+    {
+      "sourcePath": "src/hosts/browser/browser-startup-presentation-adapter.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor adapters",
+      "requiredCoreAtoms": [
+        "n:asset",
+        "n:host",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install browser storage and presentation implementations as host-owned leaf adapters.",
+      "semanticBehavior": "Browser IndexedDB, presentation surface, and startup adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBrowserStartupPresentationAdapter"
+      ]
+    },
+    {
+      "sourcePath": "src/landmark-guidance-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:object",
+        "n:spatial",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Store landmark descriptors in Object/World and apply guidance policy in an optional Kit.",
+      "semanticBehavior": "Landmark discovery, activation, and guidance.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "LandmarkActivated",
+        "LandmarkDiscovered",
+        "LandmarkGuidanceState",
+        "LandmarkReached",
+        "createLandmarkGuidanceKit",
+        "queryNearestLandmark"
+      ]
+    },
+    {
+      "sourcePath": "src/lifecycle-progression-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:runtime:sequence",
+        "n:runtime:transaction",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Represent steps as Sequence data and commit progression through deterministic Simulation/Transaction receipts.",
+      "semanticBehavior": "Product progression stages and rewards.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "LifecycleProgressionCompleted",
+        "LifecycleProgressionStart",
+        "LifecycleProgressionState",
+        "createLifecycleProgressionKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "*"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/nexus-diffusion-domain.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createNexusDiffusionDomain",
+        "createNexusDiffusionKits"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/backend/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBackendAutoSelectKit",
+        "createBackendCapabilityReportKit",
+        "createCpuBackendKit",
+        "createDiffusionBackendDomain",
+        "createWebGPUBackendDescriptorKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/checkpoint/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createCheckpointDescriptorKit",
+        "createCheckpointRestoreKit",
+        "createDiffusionCheckpointDomain",
+        "createMemoryCheckpointKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/dataset/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDatasetBatchStreamKit",
+        "createDiffusionDatasetDomain",
+        "createProceduralShapeDatasetKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/model/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDiffusionModelDomain",
+        "createModelDescriptorKit",
+        "createModelWeightKit",
+        "createTimestepEmbeddingKit",
+        "createTinyDenoiserKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/noise/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createAddNoiseKit",
+        "createDiffusionNoiseDomain",
+        "createEducationalStepNoiseKit",
+        "createLinearNoiseScheduleKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/preview/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBackendStatusKit",
+        "createDatasetPreviewKit",
+        "createDenoisePreviewKit",
+        "createDiffusionPreviewDomain",
+        "createLossChartKit",
+        "createNoisePreviewKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/sampling/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDDPMSamplerKit",
+        "createDiffusionSamplingDomain",
+        "createReverseStepKit",
+        "createSampleFrameKit",
+        "createSeededNoiseKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/tensor/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createCpuTensorBufferKit",
+        "createDiffusionTensorDomain",
+        "createTensorDescriptorKit",
+        "createTensorNormalizeKit",
+        "createTensorOpsKit",
+        "createTensorRandomKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/subdomains/training/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDiffusionTrainingDomain",
+        "createEpochRunnerKit",
+        "createMSELossKit",
+        "createSGDOptimizerKit",
+        "createTrainingMetricsKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/utils/seeded-random.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "clamp01",
+        "createDiffusionSeededRandom",
+        "randomNormal"
+      ]
+    },
+    {
+      "sourcePath": "src/navmesh-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:spatial",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Build navigation mesh data through an optional Compute provider over Spatial and World descriptors.",
+      "semanticBehavior": "Navigation mesh generation and graph policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "create3DNavigationGraph",
+        "createNavMeshFromWalkability",
+        "createNavMeshKit"
+      ]
+    },
+    {
+      "sourcePath": "src/occupant-flow-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:runtime:sequence",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Compose Actor registry, Sequence, and Simulation state with occupant-flow policy.",
+      "semanticBehavior": "Spawn, need, service, and abandonment behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "OccupantAbandoned",
+        "OccupantFlowState",
+        "OccupantNeedCreated",
+        "OccupantServed",
+        "OccupantSpawn",
+        "createOccupantFlowKit"
+      ]
+    },
+    {
+      "sourcePath": "src/pathfinding-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:spatial",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Resolve path queries through an optional provider selected by a Kit; Core retains only neutral graph/compute contracts.",
+      "semanticBehavior": "A-star and navigation query implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createAStarPathfinder",
+        "createNavigationQuery",
+        "createPathfindingKit",
+        "navigationAdapters",
+        "navigationHeuristics"
+      ]
+    },
+    {
+      "sourcePath": "src/procedural-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:runtime:data",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Use deterministic Compute providers and recipe data; keep authored generation policy in optional Kits.",
+      "semanticBehavior": "Procedural generation algorithms and product query facade.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createProceduralKit",
+        "createProceduralQuery",
+        "createProceduralSnapshot",
+        "proceduralAlgorithms"
+      ]
+    },
+    {
+      "sourcePath": "src/procedural-navigation-extensions.js",
+      "disposition": "duplicate",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:composition"
+      ],
+      "reconstructionRecipe": "Use registry recipes to compose the independently owned optional Kits instead of a forwarding barrel.",
+      "semanticBehavior": "Forwarding barrel for unrelated procedural-navigation mechanics.",
+      "stateAndLifecycle": "Replacement owns lifecycle through manifest-backed composition receipts.",
+      "proofStatus": "replacement-proved",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "*"
+      ]
+    },
+    {
+      "sourcePath": "src/pursuit-pressure-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:simulation",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Combine actor distance observations with Simulation pressure channels and product pursuit thresholds.",
+      "semanticBehavior": "Pursuit pressure and caught/recovery policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "PursuitPressureCaught",
+        "PursuitPressureChanged",
+        "PursuitPressureRecovered",
+        "PursuitPressureState",
+        "createPursuitPressureKit",
+        "pursuitBand"
+      ]
+    },
+    {
+      "sourcePath": "src/renderers.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:presentation:output"
+      ],
+      "reconstructionRecipe": "Inject a renderer/output adapter into the engine host; Core never selects or constructs one.",
+      "semanticBehavior": "Concrete headless renderer implementation and renderer selector.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createHeadlessRenderer",
+        "createRenderer"
+      ]
+    },
+    {
+      "sourcePath": "src/renderers/three/three-object-capture-provider.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:object",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install Three.js capture/output/bounds implementations as approved leaf adapters.",
+      "semanticBehavior": "Three.js capture, presentation output, and subject-bounds adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createThreeObjectCaptureProvider"
+      ]
+    },
+    {
+      "sourcePath": "src/renderers/three/three-presentation-output-adapter.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:object",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install Three.js capture/output/bounds implementations as approved leaf adapters.",
+      "semanticBehavior": "Three.js capture, presentation output, and subject-bounds adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createThreePresentationOutputAdapter"
+      ]
+    },
+    {
+      "sourcePath": "src/renderers/three/three-subject-bounds-adapter.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:object",
+        "n:presentation"
+      ],
+      "reconstructionRecipe": "Install Three.js capture/output/bounds implementations as approved leaf adapters.",
+      "semanticBehavior": "Three.js capture, presentation output, and subject-bounds adapters.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createThreeSubjectBoundsAdapter",
+        "getThreeSubjectBounds"
+      ]
+    },
+    {
+      "sourcePath": "src/request-fulfillment-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:interaction",
+        "n:runtime:sequence",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Model requests as recipe data and resolve them with Sequence and Simulation atoms.",
+      "semanticBehavior": "Request creation, expiration, proximity, and fulfillment policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "RequestFulfillmentCompleted",
+        "RequestFulfillmentCreated",
+        "RequestFulfillmentExpired",
+        "RequestFulfillmentState",
+        "createRequestFulfillmentKit",
+        "queryNearestOpenRequest"
+      ]
+    },
+    {
+      "sourcePath": "src/request-queue-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:runtime:sequence",
+        "n:runtime:transaction"
+      ],
+      "reconstructionRecipe": "Store queue descriptors in Data and coordinate product-specific fulfillment through Sequence/Transaction.",
+      "semanticBehavior": "Queued service requests and cross-feature event bindings.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "RequestQueueAdd",
+        "RequestQueueExpired",
+        "RequestQueueFulfill",
+        "RequestQueueFulfilled",
+        "RequestQueueState",
+        "createRequestQueueKit"
+      ]
+    },
+    {
+      "sourcePath": "src/route-field-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:object",
+        "n:spatial",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Represent route markers as World/Object data and expose optional spatial route queries.",
+      "semanticBehavior": "Route marker field and nearest-marker queries.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "RouteFieldState",
+        "createRouteFieldKit",
+        "queryNearestRouteMarker"
+      ]
+    },
+    {
+      "sourcePath": "src/scenario-driver-kit.js",
+      "disposition": "game-owned",
+      "targetOwner": "Experiments or game repository",
+      "requiredCoreAtoms": [
+        "n:composition",
+        "n:runtime:sequence",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Express the scenario as a game-owned composition recipe and authored sequence.",
+      "semanticBehavior": "Complete scenario orchestration policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "ScenarioDriverState",
+        "createScenarioDriverKit"
+      ]
+    },
+    {
+      "sourcePath": "src/scenario-duration-kit.js",
+      "disposition": "game-owned",
+      "targetOwner": "Experiments or game repository",
+      "requiredCoreAtoms": [
+        "n:runtime:sequence",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Use generic timers and checkpoints with game-owned duration thresholds and completion rules.",
+      "semanticBehavior": "Authored scenario duration and checkpoint rules.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "ScenarioCheckpointReached",
+        "ScenarioDurationCompleted",
+        "ScenarioDurationState",
+        "createScenarioDurationKit"
+      ]
+    },
+    {
+      "sourcePath": "src/schedule-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:runtime:sequence",
+        "n:simulation"
+      ],
+      "reconstructionRecipe": "Build schedule policy over generic sequence and simulation clocks.",
+      "semanticBehavior": "Cyclic product schedule behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "ScheduleCycle",
+        "ScheduleState",
+        "createScheduleKit"
+      ]
+    },
+    {
+      "sourcePath": "src/shaders.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits adapters",
+      "requiredCoreAtoms": [
+        "n:host",
+        "n:presentation:graphics"
+      ],
+      "reconstructionRecipe": "Keep descriptors in Presentation and compile them only inside an approved renderer adapter.",
+      "semanticBehavior": "WebGL shader compilation and concrete material registry.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createMaterialRegistry",
+        "createShaderRegistry"
+      ]
+    },
+    {
+      "sourcePath": "src/spatial-scale-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:object",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Represent scale anchors as Object data and evaluate authored scale bands in an optional Kit.",
+      "semanticBehavior": "Authored spatial scale bands and anchor behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "SpatialScaleAnchorEntered",
+        "SpatialScaleBandChanged",
+        "SpatialScaleState",
+        "createSpatialScaleKit",
+        "queryNearestScaleAnchor"
+      ]
+    },
+    {
+      "sourcePath": "src/terrain-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:world",
+        "n:world:scene"
+      ],
+      "reconstructionRecipe": "Resolve terrain generation through a trusted Compute/World provider and keep authored layer policy external.",
+      "semanticBehavior": "Terrain algorithms, layers, and query facade.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createTerrainKit",
+        "createTerrainQuery",
+        "terrainLayers"
+      ]
+    },
+    {
+      "sourcePath": "src/transfer-zone-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:interaction",
+        "n:object",
+        "n:spatial"
+      ],
+      "reconstructionRecipe": "Attach transfer-zone descriptors to objects and resolve transfer policy in an optional Kit.",
+      "semanticBehavior": "Zone membership and transfer completion policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "TransferZoneCompleted",
+        "TransferZoneState",
+        "createTransferZoneKit"
+      ]
+    },
+    {
+      "sourcePath": "src/transport-route-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:actor",
+        "n:runtime:sequence",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Compose actor registry, World route data, and Sequence timing with transport policy.",
+      "semanticBehavior": "Transport call, travel, and arrival behavior.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "TransportRouteArrived",
+        "TransportRouteCall",
+        "TransportRouteState",
+        "createTransportRouteKit"
+      ]
+    },
+    {
+      "sourcePath": "src/vehicle-dynamics-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:interaction:input",
+        "n:simulation:motion",
+        "n:simulation:physics"
+      ],
+      "reconstructionRecipe": "Use Motion and Physics providers with normalized input; retain vehicle tuning externally.",
+      "semanticBehavior": "Authored vehicle dynamics and impact policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "VehicleDynamicsInput",
+        "VehicleDynamicsState",
+        "VehicleImpact",
+        "createVehicleDynamicsKit"
+      ]
+    },
+    {
+      "sourcePath": "src/water-surface-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:presentation:graphics",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Keep neutral water surface descriptors in World/Presentation and authored evaluation policy external.",
+      "semanticBehavior": "Authored water surface state and queries.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "WaterSurfaceState",
+        "createWaterSurfaceKit",
+        "queryWaterSurface"
+      ]
+    },
+    {
+      "sourcePath": "src/world-physics-kit.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:simulation:motion",
+        "n:simulation:physics",
+        "n:world"
+      ],
+      "reconstructionRecipe": "Resolve a Physics provider through composition and keep world-specific collision/tuning policy external.",
+      "semanticBehavior": "Legacy world physics implementation and policy.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createPhysicsKit",
+        "createWorldPhysicsKit"
+      ]
+    },
+    {
+      "sourcePath": "tools/headless-editor/",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Editor",
+      "requiredCoreAtoms": [
+        "n:composition",
+        "n:host",
+        "n:mcp",
+        "n:policy"
+      ],
+      "reconstructionRecipe": "Own editor routing, transports, workspaces, repository tools, and guided-development implementation in NexusEngine-Editor.",
+      "semanticBehavior": "Headless editor implementation and repository development tooling.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": []
+    }
+  ]
+}

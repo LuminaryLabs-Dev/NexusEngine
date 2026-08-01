@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import {
   solveTwoBoneIK
-} from "../../src/core-kits/core-utility-kit/two-bone-ik-utility-kit.js";
+} from "../../src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js";
 import {
   quatFromUnitVectors,
   quatRotateVector,
   quatSlerp
-} from "../../src/core-kits/core-utility-kit/quaternion-utility-kit.js";
+} from "../../src/core-domains/spatial/kits/quaternion-math-kit.js";
 
 const solution = solveTwoBoneIK({
   root: { x: 0, y: 0, z: 0 },

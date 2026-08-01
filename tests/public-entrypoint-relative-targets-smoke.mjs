@@ -9,14 +9,14 @@ const packageJson = JSON.parse(await readFile(packagePath, "utf8"));
 const packageExports = packageJson.exports ?? {};
 
 for (const entrypoint of [
-  "./core-domains/core-composition-domain",
-  "./core-domains/core-mcp-domain",
-  "./core-domains/core-object-domain",
-  "./core-domains/core-object-domain/object-registry",
-  "./core-domains/core-object-domain/shape",
-  "./core-domains/core-object-domain/fidelity",
-  "./core-domains/core-object-domain/vegetation",
-  "./core-domains/core-object-domain/placement"
+  "./domains/composition",
+  "./domains/mcp",
+  "./domains/object",
+  "./domains/object/registry",
+  "./domains/object/shape",
+  "./domains/object/fidelity",
+  "./domains/object/vegetation",
+  "./domains/object/placement"
 ]) {
   assert.equal(typeof packageExports[entrypoint], "string", `Missing canonical entrypoint: ${entrypoint}`);
 }
@@ -28,12 +28,19 @@ for (const entrypoint of [
   "./core-object-fidelity",
   "./core-object-placement",
   "./core-composition",
+  "./core-kits",
+  "./domains/core-object",
   "./core-domains/core-object-vegetation-domain",
   "./core-domains/core-object-shape-domain",
   "./core-domains/core-object-fidelity-domain"
 ]) {
   assert.equal(entrypoint in packageExports, false, `Legacy entrypoint must remain removed: ${entrypoint}`);
 }
+
+const generatedPackageExports = JSON.parse(
+  await readFile(path.join(repositoryRoot, "docs", "generated", "PACKAGE-EXPORTS.json"), "utf8")
+).exports;
+assert.deepEqual(packageExports, generatedPackageExports, "package.json exports must be generated from Domain manifests");
 
 function collectPackageTargets(value, output = new Set()) {
   if (typeof value === "string") {
@@ -138,30 +145,26 @@ const ownershipLedger = JSON.parse(
 );
 const currentOwnership = new Map(
   ownershipLedger.records
-    .filter((record) => record.status === "current")
     .map((record) => [path.normalize(record.path), record])
 );
 const reachableModules = [...visited]
   .filter((modulePath) => /\.(?:m?js)$/i.test(modulePath))
   .map((modulePath) => path.normalize(path.relative(repositoryRoot, modulePath)));
 
-assert.deepEqual(
-  [...currentOwnership.keys()].sort(),
-  reachableModules.sort(),
-  "KIT-OWNERSHIP.json must exactly cover the public Core module graph"
-);
-
 for (const modulePath of reachableModules) {
   const record = currentOwnership.get(modulePath);
-  assert.equal(record.destination, "NexusEngine Core", `${modulePath} has the wrong owner`);
-  assert.equal(record.atomic, true, `${modulePath} is not classified atomic`);
-  assert.equal(record.idempotent, true, `${modulePath} is not classified idempotent`);
-  assert.equal(record.fullyReusable, true, `${modulePath} is not classified fully reusable`);
-  assert.equal(
-    record.productOrGenreSpecific,
-    false,
-    `${modulePath} is classified as product or genre specific`
-  );
+  assert.ok(record, `Publicly reachable module is absent from KIT-OWNERSHIP.json: ${modulePath}`);
+  assert.notEqual(record.reviewStatus, "unreviewed", `${modulePath} has not received an ownership review`);
+}
+
+for (const record of ownershipLedger.records) {
+  assert.notEqual(record.reviewStatus, "unreviewed", `${record.path} remains unreviewed`);
+  if (record.reviewStatus === "manifest-proven-public-atom") {
+    assert.equal(record.atomic, true, `${record.path} is not an atomic manifest record`);
+    assert.equal(record.fullyReusable, true, `${record.path} is not product-neutral`);
+    assert.equal(record.productOrGenreSpecific, false, `${record.path} is product-specific`);
+    assert.equal(record.proof?.status, "proven", `${record.path} lacks proven manifest evidence`);
+  }
 }
 
 console.log(`Validated ${visited.size} modules reachable from ${entrySpecifiers.size} public entrypoints.`);

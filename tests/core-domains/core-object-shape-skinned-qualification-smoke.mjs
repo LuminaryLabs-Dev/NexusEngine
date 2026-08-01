@@ -1,10 +1,8 @@
 import assert from "node:assert/strict";
 import {
-  createCoreObjectDomain,
-  createHeadlessEditorHarness,
-  createHeadlessEditorRouter,
-  createRealtimeGame
-} from "../../src/index.js";
+  createObjectDomain,
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
 function identityMatrix(tx = 0, ty = 0, tz = 0) {
   return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, tx, ty, tz, 1];
@@ -122,7 +120,7 @@ function fallbackProvider() {
 }
 
 function registerTree(engine, id, revision, geometry = createSkinnedBoxGeometry()) {
-  const object = engine.n.coreObject.register({
+  const object = engine.n.object.register({
     id,
     objectType: "skinned-tree",
     bounds: { min: [-0.5, 0, -0.5], max: [0.5, 2, 0.5] },
@@ -153,8 +151,8 @@ function registerTree(engine, id, revision, geometry = createSkinnedBoxGeometry(
   return { object, source };
 }
 
-const engine = createRealtimeGame({
-  kits: createCoreObjectDomain({
+const engine = createEngine({
+  kits: createObjectDomain({
     shapeProvider: fallbackProvider()
   })
 });
@@ -262,7 +260,7 @@ const stalePromise = engine.n.objectShape.derive({
   providerId: "deferred-shape-provider"
 });
 await Promise.resolve();
-engine.n.coreObject.register({
+engine.n.object.register({
   id: "stale-tree",
   objectType: "skinned-tree",
   bounds: { min: [-0.5, 0, -0.5], max: [0.5, 2.2, 0.5] },
@@ -284,77 +282,11 @@ engine.n.objectShape.loadSnapshot(snapshot);
 assert.equal(engine.n.objectShape.getShape(shape.id).qualification.status, "approved");
 assert.equal(engine.n.objectShape.getJob(invalidJob.id).state, "rejected");
 
-const adapter = {
-  id: "skinned-shape-qualification-proof",
-  async read() {
-    return { ok: true, snapshot: engine.n.objectShape.getSnapshot() };
-  },
-  async capture({ phase }) {
-    return { ok: true, phase, captures: [{ id: `${phase}:qualification`, kind: "snapshot" }] };
-  },
-  async plan() {
-    return {
-      ok: true,
-      commands: [{ action: "object-shape.qualify-skinned" }],
-      notes: ["Prove approved, rejected, fallback, stale, snapshot, and Fidelity-gated paths."]
-    };
-  },
-  async validate() {
-    const current = engine.n.objectShape.getSnapshot();
-    const issues = [];
-    if (!current.shapes[shape.id]?.qualification) issues.push({ severity: "error", code: "missing-qualification" });
-    if (current.jobs[invalidJob.id]?.state !== "rejected") issues.push({ severity: "error", code: "missing-rejection" });
-    return { ok: issues.length === 0, issues };
-  },
-  async submit() {
-    return { ok: true, submitted: true };
-  },
-  async observe() {
-    return { ok: true, status: "completed" };
-  },
-  async verify() {
-    const current = engine.n.objectShape.getSnapshot();
-    return {
-      ok: true,
-      checks: [
-        { id: "approved-shape", ok: current.shapes[shape.id]?.qualification?.status === "approved" },
-        { id: "fallback-used", ok: current.jobs[job.id]?.fallbackUsed === true },
-        { id: "invalid-rejected", ok: current.jobs[invalidJob.id]?.state === "rejected" },
-        { id: "stale-blocked", ok: current.jobs[staleJob.id]?.state === "stale" }
-      ],
-      readAfter: current
-    };
-  },
-  async observedDifferences() {
-    return {
-      ok: true,
-      structured: [{ key: "shape.qualification", before: "candidate", after: "approved-or-rejected" }],
-      visual: [],
-      validation: [{ id: "skinned-shape-qualification", ok: true }],
-      regressions: [],
-      unverifiedClaims: []
-    };
-  }
-};
-
-const harness = createHeadlessEditorHarness({
-  workspace: "memory",
-  adapter,
-  goal: "Prove safe skinned Object Shape qualification and fallback.",
-  sessionId: "skinned-shape-qualification",
-  now: () => "2026-07-18T12:00:00.000Z"
-});
-const router = createHeadlessEditorRouter({
-  harness,
-  now: () => "2026-07-18T12:00:00.000Z"
-});
-assert.equal((await router.dispatch("status")).ok, true);
-assert.equal((await router.dispatch("next")).ok, true);
-const run = await router.dispatch("run-until observed-differences");
-assert.equal(run.result.ok, true);
-const differences = await router.dispatch("inspect observed-differences/difference.json");
-assert.equal(JSON.parse(differences.result.text).regressions.length, 0);
-assert.equal((await router.dispatch("report")).result.ok, true);
+const finalSnapshot = engine.n.objectShape.getSnapshot();
+assert.equal(finalSnapshot.shapes[shape.id].qualification.status, "approved");
+assert.equal(finalSnapshot.jobs[job.id].fallbackUsed, true);
+assert.equal(finalSnapshot.jobs[invalidJob.id].state, "rejected");
+assert.equal(finalSnapshot.jobs[staleJob.id].state, "stale");
 
 console.log("core object shape skinned qualification smoke ok", {
   requestedRatio: shape.metadata.requestedRatio,

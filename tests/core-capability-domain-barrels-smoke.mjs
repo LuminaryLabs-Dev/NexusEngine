@@ -1,171 +1,53 @@
 import assert from "node:assert/strict";
+import path from "node:path";
+import { pathToFileURL } from "node:url";
 import {
-  createRealtimeGame,
-  createCoreDataKit,
-  createCorePersistenceKit,
-  createCoreAssetsKit,
-  createCorePlatformKit,
-  createCoreStartupKit,
-  createCoreCreatureKit,
-  createCoreCharacterKit,
-  createCorePlayerKit,
-  createCoreObjectKit,
-  createCoreObjectShapeKit,
-  createCoreObjectFidelityKit,
-  createCoreCaptureKit,
-  createCoreInputKit,
-  createCoreSpatialKit,
-  createCoreSceneKit,
-  createCorePhysicsKit,
-  createCoreMotionKit,
-  createCoreSimulationKit,
-  createCoreComputeKit,
-  createCoreInteractionKit,
-  createCoreGraphicsKit,
-  createCoreReflectionKit,
-  createCoreSkyboxKit,
-  createCoreCameraKit,
-  createCorePresentationKit,
-  createCorePresentationOutputKit,
-  createCoreUIScaleKit,
-  createCoreCameraFramingKit,
-  createCoreAnimationKit,
-  createCoreAudioKit,
-  createCoreUIKit,
-  createCoreNetworkKit,
-  createCoreDiagnosticsKit,
-  createCoreDebugKit,
-  createCoreHeadlessEditorKit,
-  createCorePolicyKit,
-  createCoreCompositionKit,
-  createCoreMLNNKit,
-  createCoreAgentKit,
-  createSeededRandom,
-  createSnapshotEnvelope,
+  CORE_DOMAIN_CATALOG,
   createCompletionLedger,
-  createProgressTimer
-} from "../src/index.js";
+  createEngine,
+  createProgressTimer,
+  createSeededRandom,
+  createSnapshotEnvelope
+} from "./helpers/public-package-surface.mjs";
 
-const factories = [
-  createCoreDataKit,
-  createCorePersistenceKit,
-  createCoreAssetsKit,
-  createCorePlatformKit,
-  createCoreStartupKit,
-  createCoreCreatureKit,
-  createCoreCharacterKit,
-  createCorePlayerKit,
-  createCoreObjectKit,
-  createCoreObjectShapeKit,
-  createCoreCaptureKit,
-  createCoreObjectFidelityKit,
-  createCoreInputKit,
-  createCoreSpatialKit,
-  createCoreSceneKit,
-  createCorePhysicsKit,
-  createCoreMotionKit,
-  createCoreSimulationKit,
-  createCoreComputeKit,
-  createCoreInteractionKit,
-  createCoreGraphicsKit,
-  createCoreReflectionKit,
-  createCoreSkyboxKit,
-  createCoreCameraKit,
-  createCorePresentationKit,
-  createCorePresentationOutputKit,
-  createCoreUIScaleKit,
-  createCoreCameraFramingKit,
-  createCoreAnimationKit,
-  createCoreAudioKit,
-  createCoreUIKit,
-  createCoreNetworkKit,
-  createCoreDiagnosticsKit,
-  createCoreDebugKit,
-  createCoreHeadlessEditorKit,
-  createCorePolicyKit,
-  createCoreCompositionKit,
-  createCoreMLNNKit,
-  createCoreAgentKit
-];
-
-for (const factory of factories) {
-  assert.equal(typeof factory, "function", `${factory.name} is exported`);
+const repositoryRoot = process.cwd();
+const factories = [];
+for (const record of CORE_DOMAIN_CATALOG.kits) {
+  const modulePath = path.resolve(repositoryRoot, record.source.module.replace(/^\.\//, ""));
+  const module = await import(pathToFileURL(modulePath));
+  const factory = module[record.source.exportName];
+  assert.equal(typeof factory, "function", `${record.id} factory is executable`);
+  factories.push({ record, factory });
 }
 
-const engine = createRealtimeGame({
-  kits: factories.map((factory) => factory())
-});
+const engine = createEngine();
+const installedIds = new Set(engine.kits.map((kit) => kit.id));
+const provided = new Set(engine.kits.flatMap((kit) => kit.provides ?? []));
+const pending = factories
+  .filter(({ record }) => !installedIds.has(record.id))
+  .map(({ record, factory }) => ({
+    record,
+    kit: factory(record.id === "world-state-kit" ? { childDomains: false } : {})
+  }))
+  .sort((left, right) => left.record.id.localeCompare(right.record.id));
 
-for (const namespace of [
-  "coreData",
-  "corePersistence",
-  "coreAssets",
-  "corePlatform",
-  "coreStartup",
-  "coreCreature",
-  "coreCharacter",
-  "corePlayer",
-  "coreObject",
-  "objectShape",
-  "coreCapture",
-  "objectFidelity",
-  "coreInput",
-  "coreSpatial",
-  "coreScene",
-  "corePhysics",
-  "coreMotion",
-  "coreSimulation",
-  "coreCompute",
-  "coreInteraction",
-  "coreGraphics",
-  "coreReflection",
-  "coreSkybox",
-  "coreCamera",
-  "corePresentation",
-  "presentationOutput",
-  "uiScale",
-  "cameraFraming",
-  "coreAnimation",
-  "coreAudio",
-  "coreUI",
-  "coreNetwork",
-  "coreDiagnostics",
-  "coreDebug",
-  "coreHeadlessEditor",
-  "corePolicy",
-  "coreComposition",
-  "coreMLNN",
-  "coreAgent"
-]) {
-  assert.equal(typeof engine.n?.[namespace]?.getSnapshot, "function", `${namespace} installed under engine.n`);
+while (pending.length) {
+  const index = pending.findIndex(({ kit }) =>
+    (kit.requires ?? []).every((token) => provided.has(token))
+  );
+  assert.notEqual(index, -1, `No dependency-complete install order for: ${pending.map(({ record }) => record.id).join(", ")}`);
+  const [{ kit, record }] = pending.splice(index, 1);
+  engine.installKit(kit);
+  installedIds.add(record.id);
+  for (const token of kit.provides ?? []) provided.add(token);
 }
-assert.equal(engine.coreCreature, engine.n.coreCreature);
-assert.equal(engine.coreCharacter, engine.n.coreCharacter);
-assert.equal(engine.corePlayer, engine.n.corePlayer);
-assert.equal(engine.objectShape, engine.n.objectShape);
-assert.equal(engine.coreCapture, engine.n.coreCapture);
-assert.equal(engine.objectFidelity, engine.n.objectFidelity);
 
-engine.n.coreData.configure({ profile: "smoke" });
-assert.equal(engine.n.coreData.getConfig().profile, "smoke", "core data config updates");
-engine.n.coreStartup.launch({
-  launchId: "barrel:startup:1",
-  projectId: "barrel-smoke",
-  preparations: [{ id: "runtime", label: "Runtime" }]
-});
-assert.equal(engine.n.coreStartup.getDescriptor().projectId, "barrel-smoke", "core startup launches through barrel export");
-engine.n.coreGraphics.setDescriptor("objects", "cube", { kind: "box" });
-assert.deepEqual(engine.n.coreGraphics.getDescriptors("objects").cube, { kind: "box" }, "core graphics descriptors update");
-assert.equal(engine.n.coreReflection.getActivePolicy().preferredTechnique, "environment-probe", "core reflection installs a portable default policy");
-engine.n.coreSkybox.setPreset("golden-horizon");
-assert.equal(engine.n.coreSkybox.getActivePreset().id, "golden-horizon", "core skybox preset updates");
-engine.n.coreDebug.registerRay({ id: "smoke.ray", color: "blue", origin: [0, 0, 0], direction: [0, 0, -1], length: 2 });
-assert.equal(engine.n.coreDebug.getRays()[0].hex, "#0a84ff", "core debug registers blue rays");
-assert.equal(engine.n.coreHeadlessEditor.getStageOrder()[0], "read", "core headless editor exposes evidence-first stage order");
-const inference = engine.n.coreMLNN.infer({ modelId: "mock", input: { text: "hello" } });
-assert.equal(inference.output.label, "mock", "core MLNN mock inference is deterministic");
-const proposal = engine.n.coreAgent.proposeAction("agent", { action: "inspect", evidence: { inferenceId: inference.id } });
-assert.equal(proposal.action, "inspect", "core agent proposal records action");
+assert.equal(installedIds.size, CORE_DOMAIN_CATALOG.kits.length, "Every manifest-backed atomic Kit installs in one composition");
+for (const record of CORE_DOMAIN_CATALOG.kits) {
+  assert.ok(engine.domainServiceKits[record.id], `${record.id} is registered`);
+  if (record.apiName) assert.ok(engine.n[record.apiName], `${record.apiName} is installed under engine.n`);
+  assert.equal(record.apiName?.startsWith("core"), false, `${record.id} retains a transitional API name`);
+}
 
 const rngA = createSeededRandom("seed");
 const rngB = createSeededRandom("seed");
@@ -174,4 +56,4 @@ assert.equal(createSnapshotEnvelope({ id: "snap", state: { ok: true } }).state.o
 assert.equal(createCompletionLedger().complete("once").accepted, true, "completion ledger accepts first completion");
 assert.equal(createProgressTimer({ durationSeconds: 2 }).tick(1).progress, 0.5, "progress timer advances deterministically");
 
-console.log("core capability domain barrel smoke ok");
+console.log(`core capability package surface installed ${installedIds.size} manifest-backed Kits`);

@@ -5,7 +5,7 @@ import {
   defineEvent,
   defineRuntimeKit,
   deploySequenceNode
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const DemoEvent = defineEvent("DemoEvent");
 

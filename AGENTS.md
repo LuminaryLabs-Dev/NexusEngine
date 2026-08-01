@@ -11,7 +11,8 @@ For every planning, implementation, repair, promotion, or validation task:
 3. Read `.agent/tracker.md` as the generated controller state and resume point.
 4. Resume the active guided-development run when one exists.
 5. Otherwise create a new run under `.agent/runs/<run-id>/`.
-6. Initialize the Core Headless Editor using that run folder as its workspace.
+6. Initialize the NexusEngine-Editor guided-development controller using that
+   run folder as its workspace.
 7. Set `.agent/target.md` as the run goal.
 8. Run `status`, then follow `next` or `continue` through the guided development loop.
 9. Inspect every evidence file named by the tracker before planning, applying, validating, or claiming completion.
@@ -41,7 +42,8 @@ nexus-editor continue
 nexus-editor report
 ```
 
-Use `--runtime` to access the legacy generic runtime command surface when `.agent/target.md` exists.
+The `nexus-editor` executable is owned and supplied by NexusEngine-Editor. This
+Core package does not ship repository, terminal, or guided-development tooling.
 
 ## Prime Directive
 
@@ -79,8 +81,7 @@ This repository owns:
 - reset and snapshot expectations
 - renderer-agnostic descriptors
 - validation paths for promoted behavior
-- the Core Headless Editor control plane
-- target-driven guided development infrastructure
+- transport-neutral host, policy, MCP, and composition contracts
 
 Reusable optional, niche, genre, or platform behavior belongs in
 NexusEngine-Kits or another trusted registry. Complete games and presets belong
@@ -110,7 +111,8 @@ Do not skip the loop because a change appears small. Small scattered changes are
 
 ## Guided Development Loop
 
-The Core Headless Editor wraps the finite evidence lifecycle in a persistent development loop:
+The NexusEngine-Editor controller wraps the finite evidence lifecycle in a
+persistent development loop:
 
 ```txt
 BOOTSTRAP
@@ -184,7 +186,7 @@ Ownership rules:
 | Path | Owner |
 | --- | --- |
 | `.agent/target.md` | User or agent translating the user request |
-| `.agent/tracker.md` | Core Headless Editor |
+| `.agent/tracker.md` | NexusEngine-Editor guided-development controller |
 | `.agent/runs/<id>/state.json` | Guided development controller |
 | `.agent/runs/<id>/plan.md` | Headless Editor and agent |
 | `.agent/runs/<id>/ledger.md` | Headless Editor |
@@ -350,20 +352,22 @@ Consult `docs/KIT-OWNERSHIP.md` before implementation.
 
 ## Kit Anatomy
 
-Every kit should aim for this structure when applicable:
+Every Core Domain uses the manifest-owned structure:
 
 ```txt
-kit-name/
+src/core-domains/<semantic-domain>/
+├─ domain.manifest.js
 ├─ README.md
-├─ kit.json
-├─ package.json
-├─ index.ts or index.js
-└─ kits/
-   └─ nested-domain-kit/
-      ├─ README.md
-      ├─ kit.json
-      └─ index.ts or index.js
+├─ contracts/
+├─ state/
+├─ kits/
+├─ subdomains/
+├─ providers/
+└─ adapters/
 ```
+
+The manifest is the ownership and public-surface contract. Do not add legacy
+Kit metadata or an unmanifested public Kit factory.
 
 ## Headless Editor Evidence Lifecycle
 
@@ -448,7 +452,9 @@ Those capabilities enter through environments, adapters, lifecycle kits, test ki
 
 A domain kit should remain importable, installable, runnable, exportable, and disposable.
 
-The core router can still operate with memory or text workspaces. Repository development uses file workspaces under `.agent/runs/<run-id>/` so work can be resumed and audited.
+The external controller may use memory or text workspaces. Repository
+development uses file workspaces under `.agent/runs/<run-id>/` so work can be
+resumed and audited.
 
 ## Reporting Requirements
 

@@ -17,15 +17,17 @@ async function markdownFiles(directory, exclude = () => false) {
   return output;
 }
 
+function historical(relativePath, entry) {
+  const parts = relativePath.split(path.sep);
+  if (entry.isDirectory() && ["legacy", "0.0.3", "evidence"].includes(entry.name)) return true;
+  return parts.length === 2 && /_0\.0\.3\.md$/i.test(entry.name);
+}
+
 const activeDocs = [
   path.join(root, "README.md"),
   path.join(root, "AGENTS.md"),
   path.join(root, "memory.md"),
-  ...await markdownFiles(path.join(root, "docs"), (relativePath, entry) => {
-    const parts = relativePath.split(path.sep);
-    if (entry.isDirectory() && ["legacy", "0.0.3", "evidence"].includes(entry.name)) return true;
-    return parts.length === 2 && /_0\.0\.3\.md$/i.test(entry.name);
-  }),
+  ...await markdownFiles(path.join(root, "docs"), historical),
   ...await markdownFiles(path.join(root, ".agent"), (relativePath, entry) => {
     return entry.isDirectory() && ["runs", "evidence"].includes(entry.name);
   }),
@@ -33,22 +35,41 @@ const activeDocs = [
 ];
 
 const uniqueDocs = [...new Set(activeDocs.map((filePath) => path.normalize(filePath)))];
-const staleRouting = [];
+const staleSurfaces = [];
+const activeProtoKitInstructions = [];
 const brokenLinks = [];
 
 for (const filePath of uniqueDocs) {
   const source = await readFile(filePath, "utf8");
-  if (/NexusEngine-ProtoKits|NexusEngine-ProtoKits\/protokits\//i.test(source)) {
-    staleRouting.push(path.relative(root, filePath));
+  const relative = path.relative(root, filePath);
+  const isMigrationEvidence = relative.startsWith(`docs${path.sep}migrations${path.sep}`)
+    || relative.startsWith(`docs${path.sep}protokit-extraction${path.sep}`)
+    || relative === path.join(".agent", "target.md");
+
+  if (!isMigrationEvidence) {
+    const forbidden = [
+      /from\s+["']nexusengine\/(?:core-kits|core-domains\/core-|core-[a-z0-9-]+)/i,
+      /import\s*\(\s*["']nexusengine\/(?:core-kits|core-domains\/core-|core-[a-z0-9-]+)/i,
+      /\bcreateCore[A-Z][A-Za-z0-9]*\s*\(/,
+      /\bengine\.n\.core[A-Z][A-Za-z0-9]*/,
+      /src\/core-kits\/[^\n]*(?:transitional|temporary|current|active)/i,
+      /(?:transitional|temporary|current|active)[^\n]*src\/core-kits\//i,
+      /compatibility aliases?[^\n]*remain|remain[^\n]*compatibility aliases?/i
+    ];
+    for (const pattern of forbidden) {
+      if (pattern.test(source)) staleSurfaces.push(`${relative}: ${pattern}`);
+    }
+
+    for (const line of source.split("\n")) {
+      if (!/\b(create|build|author|update|implement)\b.*\bProtoKits?\b/i.test(line)) continue;
+      if (/\b(do not|does not|may not|never|must not|cannot|retired|no new|disable|forbid)\b/i.test(line)) continue;
+      activeProtoKitInstructions.push(`${relative}: ${line.trim()}`);
+    }
   }
 
   for (const match of source.matchAll(/!?\[[^\]]*]\(([^)]+)\)/g)) {
     let target = match[1].trim();
-    if (
-      !target ||
-      target.startsWith("#") ||
-      /^[a-z][a-z0-9+.-]*:/i.test(target)
-    ) continue;
+    if (!target || target.startsWith("#") || /^[a-z][a-z0-9+.-]*:/i.test(target)) continue;
     if (target.startsWith("<") && target.endsWith(">")) target = target.slice(1, -1);
     target = target.split("#", 1)[0];
     if (!target) continue;
@@ -58,15 +79,20 @@ for (const filePath of uniqueDocs) {
       await access(resolved);
       await stat(resolved);
     } catch {
-      brokenLinks.push(`${path.relative(root, filePath)} -> ${target}`);
+      brokenLinks.push(`${relative} -> ${target}`);
     }
   }
 }
 
 assert.deepEqual(
-  staleRouting,
+  staleSurfaces,
   [],
-  `Active documentation still routes work to ProtoKits:\n${staleRouting.join("\n")}`
+  `Active documentation retains a removed runtime surface:\n${staleSurfaces.join("\n")}`
+);
+assert.deepEqual(
+  activeProtoKitInstructions,
+  [],
+  `Active documentation still instructs ProtoKit authoring:\n${activeProtoKitInstructions.join("\n")}`
 );
 assert.deepEqual(
   brokenLinks,
@@ -76,9 +102,7 @@ assert.deepEqual(
 
 const kitIdeas = await readFile(path.join(root, "docs", "kits_ideas.md"), "utf8");
 const reclassified = [
-  ...kitIdeas.matchAll(
-    /disposition: suggestion only; possible destination after ownership review:/g
-  )
+  ...kitIdeas.matchAll(/disposition: suggestion only; possible destination after ownership review:/g)
 ].length;
 assert.ok(
   reclassified >= 60,

@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { defineEvent, defineResource } from "../../src/ecs.js";
 import {
-  createCoreSimulationKit,
+  createSimulationKit,
   SimulationResolutionLedger
-} from "../../src/core-kits/core-simulation-kit/index.js";
+} from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 
 const ResultState = defineResource("test.simulation.result");
 const AcceptedEvent = defineEvent("test.simulation.accepted");
@@ -13,25 +13,25 @@ let acceptedOrder = null;
 let observationOrder = null;
 
 const engine = createEngine({
-  kits: [createCoreSimulationKit({ resolution: true })]
+  kits: [createSimulationKit({ resolution: true })]
 });
 engine.world.setResource(ResultState, { value: 0 });
 
-engine.coreSimulation.registerObservationSource({
+engine.n.simulation.registerObservationSource({
   id: "source-z",
   order: 20,
   observe() {
     return { id: "observation-z", type: "probe", value: { id: "z" } };
   }
 });
-engine.coreSimulation.registerObservationSource({
+engine.n.simulation.registerObservationSource({
   id: "source-a",
   order: 10,
   observe() {
     return { id: "observation-a", type: "probe", value: { id: "a" } };
   }
 });
-engine.coreSimulation.setResolutionPolicy({
+engine.n.simulation.setResolutionPolicy({
   id: "test-policy",
   version: 3,
   resolve({ proposals, observations }) {
@@ -51,14 +51,14 @@ engine.coreSimulation.setResolutionPolicy({
 });
 
 engine.scheduler.addSystem("simulate", (_world, tickContext) => {
-  engine.coreSimulation.submitProposal({ id: "proposal-z", source: "z", type: "test", order: 20 });
-  engine.coreSimulation.submitProposal({ id: "proposal-a", source: "a", type: "test", order: 10 });
-  engine.coreSimulation.submitProposal({ id: "proposal-a", source: "a", type: "test", order: 10 });
+  engine.n.simulation.submitProposal({ id: "proposal-z", source: "z", type: "test", order: 20 });
+  engine.n.simulation.submitProposal({ id: "proposal-a", source: "a", type: "test", order: 10 });
+  engine.n.simulation.submitProposal({ id: "proposal-a", source: "a", type: "test", order: 10 });
   assert.equal(tickContext.tickId, engine.getCurrentTickContext().tickId);
 });
 
 engine.tick(1 / 60);
-const committed = engine.coreSimulation.getCommittedFrame();
+const committed = engine.n.simulation.getCommittedFrame();
 assert.equal(policyCalls, 1, "policy runs once per tick");
 assert.deepEqual(acceptedOrder, ["proposal-a", "proposal-z"], "proposals are ordered deterministically and deduplicated");
 assert.deepEqual(observationOrder, ["observation-a", "observation-z"], "observations are ordered deterministically");
@@ -71,13 +71,13 @@ assert.doesNotThrow(() => structuredClone(committed), "committed simulation fram
 
 engine.tick(1 / 60);
 assert.equal(policyCalls, 2, "next tick commits once");
-assert.equal(engine.coreSimulation.getCommittedFrame().revision, 2);
+assert.equal(engine.n.simulation.getCommittedFrame().revision, 2);
 
 const duplicateEngine = createEngine({
-  kits: [createCoreSimulationKit({ resolution: true })]
+  kits: [createSimulationKit({ resolution: true })]
 });
 let duplicatePolicyCalls = 0;
-duplicateEngine.coreSimulation.setResolutionPolicy({
+duplicateEngine.n.simulation.setResolutionPolicy({
   id: "duplicate-test",
   version: 1,
   resolve() {
@@ -91,9 +91,9 @@ duplicateEngine.world.setResource(SimulationResolutionLedger, {
 });
 duplicateEngine.tick(1 / 60);
 assert.equal(duplicatePolicyCalls, 0, "duplicate step is rejected before policy execution");
-assert.equal(duplicateEngine.coreSimulation.getCommittedFrame(), null, "duplicate step does not create another commit");
+assert.equal(duplicateEngine.n.simulation.getCommittedFrame(), null, "duplicate step does not create another commit");
 
-duplicateEngine.coreSimulation.resetResolution();
-assert.equal(duplicateEngine.coreSimulation.getResolutionLedger().revision, 0, "reset clears resolution ledger");
+duplicateEngine.n.simulation.resetResolution();
+assert.equal(duplicateEngine.n.simulation.getResolutionLedger().revision, 0, "reset clears resolution ledger");
 
 console.log("core simulation resolution smoke ok");

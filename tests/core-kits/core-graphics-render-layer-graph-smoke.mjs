@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import { createEngine, createGraphicsKit, createPresentationKit } from "../helpers/public-package-surface.mjs";
 import {
   createRenderPassContract,
   createRenderLayerGraph,
   validateRenderLayerGraph,
   resolveRenderLayerGraph,
   createRenderLayerGraphKit
-} from "../../src/core-kits/core-graphics-kit/index.js";
+} from "../../src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js";
 
 const graph = createRenderLayerGraph({
   id: "anime-water-stack",
@@ -84,7 +84,7 @@ assert.equal(invalid.valid, false);
 assert.ok(invalid.issues.includes("transparent-pass-writes-depth:foam"));
 assert.ok(invalid.issues.includes("scene-content-after-final:late-world-content"));
 
-const engine = createRealtimeGame({ kits: [createRenderLayerGraphKit({ graph })] });
+const engine = createEngine({ kits: [createPresentationKit(), createGraphicsKit(), createRenderLayerGraphKit({ graph })] });
 assert.equal(engine.n.renderLayerGraph.validate().valid, true);
 assert.equal(engine.n.renderLayerGraph.getOrderedPasses().at(-2).id, "foam-overlay");
 assert.doesNotThrow(() => JSON.stringify(engine.n.renderLayerGraph.getSnapshot()));

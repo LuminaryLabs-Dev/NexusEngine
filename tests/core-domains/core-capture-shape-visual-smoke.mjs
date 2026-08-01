@@ -3,11 +3,12 @@ import { mkdtemp, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import {
-  createCoreCaptureDomain,
-  createCoreObjectDomain,
+  createCaptureKit,
+  createObjectDomain,
+  createPresentationKit,
   createReferenceObjectShapeProvider,
-  createRealtimeGame
-} from "../../src/index.js";
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 import {
   createRockGeometry,
   rasterizeSilhouette,
@@ -17,14 +18,15 @@ import {
 } from "../fixtures/object-shape-fixtures.mjs";
 
 const shapeProvider = createReferenceObjectShapeProvider();
-const engine = createRealtimeGame({
+const engine = createEngine({
   kits: [
-    ...createCoreObjectDomain({ shapeProvider, fidelity: false }),
-    ...createCoreCaptureDomain()
+    ...createObjectDomain({ shapeProvider, fidelity: false }),
+    createPresentationKit(),
+    createCaptureKit()
   ]
 });
 
-const object = engine.n.coreObject.register({
+const object = engine.n.object.register({
   id: "capture-rock",
   objectType: "procedural-rock",
   bounds: { min: [-1.3, -1, -1.2], max: [1.3, 1, 1.2] },
@@ -50,7 +52,7 @@ const geometryByForm = new Map([
   ["reduced", reduced.geometry]
 ]);
 const artifacts = new Map();
-engine.n.coreCapture.registerProvider({
+engine.n.capture.registerProvider({
   id: "software-silhouette-capture",
   async capture(request, { updateProgress }) {
     const geometry = geometryByForm.get(request.subject.formId);
@@ -84,7 +86,7 @@ engine.n.coreCapture.registerProvider({
 });
 
 async function capture(formId) {
-  const job = await engine.n.coreCapture.request({
+  const job = await engine.n.capture.request({
     id: `capture-rock:${formId}:views`,
     subject: { objectId: object.id, formId },
     viewSet: { pattern: "around-subject", azimuthCount: 8, elevations: [0] },
@@ -93,7 +95,7 @@ async function capture(formId) {
     output: { kind: "atlas", frameSize: 128 }
   });
   assert.equal(job.state, "ready");
-  const result = engine.n.coreCapture.getResult(job.id);
+  const result = engine.n.capture.getResult(job.id);
   return artifacts.get(result.observations.silhouette.assetId);
 }
 
@@ -120,7 +122,7 @@ const outputDirectory = await mkdtemp(join(tmpdir(), "nexus-object-shape-capture
 const outputPath = join(outputDirectory, "source-vs-reduced.svg");
 await writeFile(outputPath, writeSilhouetteSvg(pairs), "utf8");
 assert.ok((await import("node:fs/promises")).stat(outputPath));
-structuredClone(engine.n.coreCapture.getSnapshot());
+structuredClone(engine.n.capture.getSnapshot());
 
 console.log("core capture shape visual smoke ok", {
   outputPath,

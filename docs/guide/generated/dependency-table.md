@@ -1,0 +1,63 @@
+# Core Dependency Table
+
+Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+
+| Owner | Requires | Optional |
+| --- | --- | --- |
+| `n:actor` | - | - |
+| `n:actor:creature` | `n:actor` | - |
+| `n:actor:character` | `n:actor` | - |
+| `n:actor:player` | `n:actor:character` | - |
+| `n:agent` | - | - |
+| `n:asset` | - | - |
+| `n:composition` | - | `n:mcp` |
+| `n:compute` | - | - |
+| `n:compute:model` | `n:compute` | - |
+| `n:diagnostics` | - | - |
+| `n:host` | - | - |
+| `n:interaction` | - | - |
+| `n:interaction:input` | - | - |
+| `n:mcp` | - | `n:composition` |
+| `n:network` | - | - |
+| `n:object` | - | `n:asset`, `n:simulation:physics` |
+| `n:object:shape` | `object:descriptor-contract` | - |
+| `n:object:fidelity` | `object:descriptor-contract` | - |
+| `n:object:vegetation` | `n:object` | - |
+| `n:object:vegetation:tree` | `n:object:vegetation` | - |
+| `n:object:vegetation:foliage` | `n:object:vegetation` | - |
+| `n:object:vegetation:ecology` | `n:object:vegetation` | - |
+| `n:object:placement` | `object:descriptor-contract` | - |
+| `n:policy` | - | - |
+| `n:presentation` | - | - |
+| `n:presentation:output` | `n:presentation` | - |
+| `n:presentation:graphics` | `n:presentation` | - |
+| `n:presentation:camera` | `n:presentation` | - |
+| `n:presentation:animation` | `n:presentation` | - |
+| `n:presentation:audio` | `n:presentation` | - |
+| `n:presentation:ui` | `n:presentation` | - |
+| `n:presentation:speech` | `n:presentation` | - |
+| `n:presentation:capture` | `n:presentation` | - |
+| `n:presentation:sky` | `n:presentation` | - |
+| `n:runtime` | - | - |
+| `n:runtime:realtime` | `n:runtime` | - |
+| `n:runtime:data` | `n:runtime` | - |
+| `n:runtime:transaction` | `n:runtime` | - |
+| `n:runtime:persistence` | `n:runtime:data` | - |
+| `n:runtime:sequence` | `n:runtime` | - |
+| `n:runtime:startup` | `n:runtime` | `n:asset` |
+| `n:simulation` | `n:runtime:realtime` | - |
+| `n:simulation:physics` | `n:simulation` | - |
+| `n:simulation:physics:articulated` | `n:simulation:physics` | - |
+| `n:simulation:motion` | `n:simulation` | - |
+| `n:simulation:motion:articulated` | `n:simulation:motion` | - |
+| `n:spatial` | - | - |
+| `n:world` | `n:spatial` | - |
+| `n:world:scene` | `n:world` | - |
+| `n:world:weather` | `n:world` | - |
+| `n:world:foundation` | `n:world` | - |
+| `n:world:feature` | `n:world` | - |
+| `n:world:feature:landform` | `n:world:feature` | - |
+| `n:world:feature:hydrology` | `n:world:feature` | - |
+| `n:world:feature:ecology` | `n:world:feature` | - |
+| `n:world:feature:settlement` | `n:world:feature` | - |
+| `n:world:feature:atmosphere` | `n:world:feature` | - |

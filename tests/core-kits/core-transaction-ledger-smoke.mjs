@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createCoreTransactionLedgerKit } from "../../src/core-kits/core-transaction-ledger-kit/index.js";
+import { createTransactionLedgerKit } from "../../src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js";
 
-const engine = createEngine({ kits: [createCoreTransactionLedgerKit()] });
-const ledger = engine.n.coreTransactionLedger;
+const engine = createEngine({ kits: [createTransactionLedgerKit()] });
+const ledger = engine.n.transaction;
 
 let applications = 0;
 const first = ledger.applyOnce("farming", "plant:plot-1:1", () => {
@@ -22,12 +22,12 @@ assert.equal(applications, 1);
 assert.deepEqual(duplicate.result, { plotId: "plot-1", cropId: "taro" });
 
 const snapshot = ledger.getSnapshot();
-const replacement = createEngine({ kits: [createCoreTransactionLedgerKit()] });
-replacement.n.coreTransactionLedger.loadSnapshot(snapshot);
-assert.equal(replacement.n.coreTransactionLedger.has("farming", "plant:plot-1:1"), true);
-assert.equal(replacement.n.coreTransactionLedger.list("farming").length, 1);
+const replacement = createEngine({ kits: [createTransactionLedgerKit()] });
+replacement.n.transaction.loadSnapshot(snapshot);
+assert.equal(replacement.n.transaction.has("farming", "plant:plot-1:1"), true);
+assert.equal(replacement.n.transaction.list("farming").length, 1);
 
-replacement.n.coreTransactionLedger.reset();
-assert.equal(replacement.n.coreTransactionLedger.list("farming").length, 0);
+replacement.n.transaction.reset();
+assert.equal(replacement.n.transaction.list("farming").length, 0);
 
 console.log("core transaction ledger smoke: ok");

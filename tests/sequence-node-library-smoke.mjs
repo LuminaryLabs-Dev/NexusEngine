@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import {
   createDefaultSequenceNodeLibrary,
   defineSequenceNodeType
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const library = createDefaultSequenceNodeLibrary();
 

@@ -1,11 +1,11 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import { createEngine } from "../helpers/public-package-surface.mjs";
 import {
-  createCoreObjectKit,
+  createObjectRegistryKit,
   createObjectDescriptor,
   updateObjectLifecycle,
   validateObjectDescriptor
-} from "../../src/core-domains/core-object-domain/kits/object-registry-kit/index.js";
+} from "../../src/core-domains/object/kits/object-registry-kit/index.js";
 
 const descriptor = createObjectDescriptor({
   id: "tree-1737",
@@ -42,21 +42,21 @@ assert.equal(descriptor.groundAnchor[1], 0);
 assert.equal(validateObjectDescriptor(descriptor).valid, true);
 assert.equal(updateObjectLifecycle(descriptor, "active").lifecycle.revision, 1);
 
-const engine = createRealtimeGame({
-  kits: [createCoreObjectKit()]
+const engine = createEngine({
+  kits: [createObjectRegistryKit()]
 });
-const registered = engine.n.coreObject.register(descriptor);
+const registered = engine.n.object.register(descriptor);
 assert.equal(registered.contentHash, descriptor.contentHash);
-assert.equal(engine.n.coreObject.get("tree-1737").objectType, "procedural-tree");
-assert.equal(engine.n.coreObject.list().length, 1);
-assert.equal(engine.n.coreObject.setLifecycle("tree-1737", "active").lifecycle.status, "active");
+assert.equal(engine.n.object.get("tree-1737").objectType, "procedural-tree");
+assert.equal(engine.n.object.list().length, 1);
+assert.equal(engine.n.object.setLifecycle("tree-1737", "active").lifecycle.status, "active");
 
-const snapshot = engine.n.coreObject.getSnapshot();
-const second = createRealtimeGame({ kits: [createCoreObjectKit()] });
-second.n.coreObject.loadSnapshot(snapshot);
-assert.equal(second.n.coreObject.get("tree-1737").lifecycle.status, "active");
+const snapshot = engine.n.object.getSnapshot();
+const second = createEngine({ kits: [createObjectRegistryKit()] });
+second.n.object.loadSnapshot(snapshot);
+assert.equal(second.n.object.get("tree-1737").lifecycle.status, "active");
 
-engine.n.coreObject.reset();
-assert.equal(engine.n.coreObject.list().length, 0);
+engine.n.object.reset();
+assert.equal(engine.n.object.list().length, 0);
 
 console.log("core-object-kit smoke ok");

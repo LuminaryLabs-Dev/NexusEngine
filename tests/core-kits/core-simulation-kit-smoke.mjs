@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import { createEngine } from "../helpers/public-package-surface.mjs";
 import {
-  createCoreSimulationKit,
+  createSimulationKit,
   createResourceMeter,
   createPressureChannel,
   createProgressTimer,
@@ -9,7 +9,7 @@ import {
   createObjectiveFlow,
   createCheckpointProgress,
   createHazardDescriptor
-} from "../../src/core-kits/core-simulation-kit/index.js";
+} from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 
 const meter = createResourceMeter({ id: "energy", max: 10, initial: 5 });
 meter.restore(3);
@@ -31,7 +31,7 @@ checkpoints.complete("a");
 assert.equal(checkpoints.snapshot().activeCheckpoint.id, "b", "checkpoint progress advances");
 assert.equal(createHazardDescriptor({ kind: "storm" }).kind, "storm", "hazard descriptor stores kind");
 
-const engine = createRealtimeGame({ kits: [createCoreSimulationKit()] });
-assert.equal(typeof engine.n.coreSimulation.getSnapshot, "function", "core simulation installs under engine.n");
+const engine = createEngine({ kits: [createSimulationKit()] });
+assert.equal(typeof engine.n.simulation.getSnapshot, "function", "core simulation installs under engine.n");
 
 console.log("core-simulation-kit piece smoke ok");

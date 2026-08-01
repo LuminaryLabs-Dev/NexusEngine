@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { createCoreCaptureDomain, createRealtimeGame } from "../../src/index.js";
+import { createCaptureKit, createEngine, createPresentationKit } from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({ kits: createCoreCaptureDomain() });
-const capture = engine.n.coreCapture;
-assert.equal(engine.n.ownerOf("n:capture"), "core-capture-domain");
+const engine = createEngine({ kits: [createPresentationKit(), createCaptureKit()] });
+const capture = engine.n.capture;
+assert.equal(engine.n.ownerOf("n:presentation:capture"), "capture-contract-kit");
 assert.equal(typeof capture.request, "function");
 
 const request = {

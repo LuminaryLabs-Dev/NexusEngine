@@ -1,78 +1,66 @@
-# Nexus Engine Domain Addressability
+# NexusEngine Domain Addressability
 
 ## Purpose
 
-Nexus Engine uses an open domain-path layer so humans, agents, editors, registries, and diagnostics can inspect what each Domain Kit owns without locking the engine to a fixed list of paths.
+Domain paths let humans, agents, registries, and diagnostics inspect semantic
+ownership without coupling consumers to private source folders.
 
-## Rule
-
-```txt
-Core validates path shape.
-Domain Kits register paths.
-Editors and agents inspect paths.
-Registries index paths.
-New paths remain open.
-```
-
-A path like `n:physics:rigidbody` is an address. It is not a whitelist entry.
-
-## What Belongs In Core
-
-Core owns only the contracts and read models:
+## Rules
 
 ```txt
-domain path validation
-domain API registration
-runtime event envelopes
-snapshot contracts
-reset contracts
-permission policy checks
-composition graph read model
-diagnostics read model
+Core validates the path contract.
+Core manifests own all built-in semantic paths.
+External Domain Service Kits may register new semantic children.
+Editors and agents inspect paths and public APIs.
+Registries index paths without executing metadata.
 ```
 
-## What Stays Outside Core
+A path is an address, not a filesystem location. Built-in Core paths come only
+from Domain manifests; runtime scanning cannot invent one.
 
-These stay in editors, trusted kit registries, game repos, or adapter repos:
+## Core Path Shape
+
+Examples:
 
 ```txt
-editor UI
-Kits dock
-Inspector dock
-Proof dock
-Three.js renderer kits
-Rapier adapter kits
-kit-registry.json
-build/export kits
-game-specific kits
+n:runtime:realtime
+n:object:placement
+n:simulation:physics
+n:presentation:graphics
 ```
 
-## Domain Kit Shape
+The retired Core-prefixed namespace is invalid. Immediate parents must exist and
+every built-in path has one semantic owner record.
 
-A Domain Kit can declare:
+## External Domain Service Kits
+
+An external package may add an inspectable semantic child through the public
+DSK contract:
 
 ```js
 defineDomainServiceKit({
-  domain: "physics-rigidbody",
-  domainPath: "n:physics:rigidbody",
-  parentDomainPath: "n:physics",
+  id: "rapier-rigidbody-provider-kit",
+  domain: "simulation-physics-rigidbody-provider",
+  domainPath: "n:simulation:physics:rigidbody-provider",
+  parentDomainPath: "n:simulation:physics",
+  apiName: "rigidbodyProvider",
   stability: "experimental",
   version: "0.1.0"
 });
 ```
 
-The Realtime Core registers the path and API so tools can ask:
+The host must still approve and resolve its immutable registry source. A valid
+path does not prove that external code is safe or belongs in Core.
+
+## Inspection
 
 ```js
-engine.n.path("n:physics:rigidbody");
+engine.n.path("n:simulation:physics");
+engine.n.ownerOf("n:simulation:physics");
 engine.n.paths();
-engine.n.api("physicsRigidbody");
+engine.n.api("physics");
 engine.n.apis();
 ```
 
-## Final Rule
-
-```txt
-Nexus Engine stays expandable because the path layer is open.
-A new path is allowed when a Domain Kit owns it, declares it, and can be inspected.
-```
+Core owns path validation, registration, snapshots, and read models. Editors,
+registry UIs, concrete providers, and game behavior remain outside Core.

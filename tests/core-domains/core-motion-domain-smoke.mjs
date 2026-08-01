@@ -1,8 +1,9 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
+import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 import {
-  createCoreMotionDomain
-} from "../../src/core-domains/core-motion-domain/index.js";
+  createMotionDomain
+} from "../../src/core-domains/simulation/subdomains/motion/index.js";
 
 const EPSILON = 1e-5;
 const quaternionLength = (value) => Math.hypot(value.x, value.y, value.z, value.w);
@@ -12,8 +13,8 @@ const distance = (left, right) => Math.hypot(
   left.z - right.z
 );
 
-const engine = createEngine({ kits: createCoreMotionDomain() });
-assert.ok(engine.n.coreMotion);
+const engine = createEngine({ kits: [createSimulationKit(), ...createMotionDomain()] });
+assert.ok(engine.n.motion);
 assert.ok(engine.n.articulatedMotion);
 
 const rig = engine.n.articulatedMotion.registerRig({

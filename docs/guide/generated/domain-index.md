@@ -1,0 +1,61 @@
+# Domain Index
+
+Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+
+- `n:actor`: Own neutral embodied actor identity and shared actor references.
+- `n:actor:creature`: Own neutral creature embodiment definitions and references.
+- `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
+- `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
+- `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
+- `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
+- `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
+- `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.
+- `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
+- `n:host`: Own host capability descriptors and fallback contracts without platform implementation.
+- `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
+- `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
+- `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
+- `n:network`: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.
+- `n:object`: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.
+- `n:object:shape`: Own source and derived geometric shapes, provider jobs, qualification, and fallback.
+- `n:object:fidelity`: Own valid object forms, fidelity packages, readiness, and contextual adaptation.
+- `n:object:vegetation`: Own rooted plant species, instances, lifecycle, and deterministic variation.
+- `n:object:vegetation:tree`: Own deterministic tree structure, canopy, growth, and fidelity descriptors.
+- `n:object:vegetation:foliage`: Own deterministic foliage structure and descriptors.
+- `n:object:vegetation:ecology`: Own deterministic vegetation suitability scoring and species selection.
+- `n:object:placement`: Own deterministic placement transforms, grounding, alignment, fit, and validation receipts.
+- `n:policy`: Own product-neutral permission, guard, sandbox, and runtime safety decisions.
+- `n:presentation`: Own renderer-neutral presentation descriptors and output policy contracts.
+- `n:presentation:output`: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.
+- `n:presentation:graphics`: Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.
+- `n:presentation:camera`: Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.
+- `n:presentation:animation`: Own animation, pose, blend, rig, and timeline descriptors.
+- `n:presentation:audio`: Own audio cue, music, ambience, mix, volume, and spatial audio descriptors.
+- `n:presentation:ui`: Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.
+- `n:presentation:speech`: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.
+- `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
+- `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
+- `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
+- `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
+- `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.
+- `n:runtime:transaction`: Own portable repeat-safe operation and transaction receipts.
+- `n:runtime:persistence`: Own save/load targets, save slots, recovery records, and adapter contracts.
+- `n:runtime:sequence`: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.
+- `n:runtime:startup`: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.
+- `n:simulation`: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.
+- `n:simulation:physics`: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.
+- `n:simulation:physics:articulated`: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.
+- `n:simulation:motion`: Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.
+- `n:simulation:motion:articulated`: Own target poses, joint limits, articulation motion plans, and drive requests.
+- `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
+- `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.
+- `n:world:scene`: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.
+- `n:world:weather`: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.
+- `n:world:foundation`: Own deterministic foundation contributions, composition, sampling, and cell resolution.
+- `n:world:feature`: Own semantic world feature definitions, registries, lifecycle, queries, and composition.
+- `n:world:feature:landform`: Own semantic elevation and landform feature descriptors.
+- `n:world:feature:hydrology`: Own semantic watershed, water path, water body, and wetland feature descriptors.
+- `n:world:feature:ecology`: Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors.
+- `n:world:feature:settlement`: Own semantic settlement, route, structure, and infrastructure feature descriptors.
+- `n:world:feature:atmosphere`: Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.

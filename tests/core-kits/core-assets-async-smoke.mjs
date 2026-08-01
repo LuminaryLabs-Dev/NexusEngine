@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createCoreAssetsKit } from "../../src/core-kits/core-assets-kit/index.js";
+import { createAssetRegistryKit } from "../../src/core-domains/asset/kits/asset-kit/index.js";
 
-const engine = createEngine({ kits: [createCoreAssetsKit()] });
-const assets = engine.n.coreAssets;
+const engine = createEngine({ kits: [createAssetRegistryKit()] });
+const assets = engine.n.asset;
 let loads = 0;
 assets.registerProvider({
   id: "fixture",

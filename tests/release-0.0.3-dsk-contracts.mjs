@@ -5,8 +5,8 @@ import {
   defineDomainServiceKit,
   validateDomainServiceKit,
   isDomainServiceKit,
-  createCoreDataKit
-} from "../src/index.js";
+  createDataKit
+} from "./helpers/public-package-surface.mjs";
 
 assert.equal(createDomainServiceToken("release-domain"), "n:release-domain");
 assert.equal(createDomainServiceToken("release-domain", "state"), "n:release-domain:state");
@@ -85,18 +85,18 @@ const collisionEngine = createEngine();
 collisionEngine.installKit(collisionA);
 assert.throws(() => collisionEngine.installKit(collisionB), /cannot overwrite engine\.n\.releaseCollision/);
 
-const coreEngine = createEngine({ kits: [createCoreDataKit()] });
-assert.equal(typeof coreEngine.n.coreData.getSnapshot, "function");
-assert.equal(typeof coreEngine.n.coreData.reset, "function");
-assert.equal(typeof coreEngine.n.coreData.loadSnapshot, "function");
-const snapshot = coreEngine.n.coreData.getSnapshot();
+const coreEngine = createEngine({ kits: [createDataKit()] });
+assert.equal(typeof coreEngine.n.data.getSnapshot, "function");
+assert.equal(typeof coreEngine.n.data.reset, "function");
+assert.equal(typeof coreEngine.n.data.loadSnapshot, "function");
+const snapshot = coreEngine.n.data.getSnapshot();
 assert.equal(snapshot.version, "0.0.3");
-coreEngine.n.coreData.update({ descriptors: { release: { marker: { id: "marker" } } } });
-assert.ok(coreEngine.n.coreData.getSnapshot().sequence > snapshot.sequence);
-coreEngine.n.coreData.reset();
-assert.equal(coreEngine.n.coreData.getSnapshot().sequence, 0);
-coreEngine.n.coreData.loadSnapshot({ config: { mode: "release" }, descriptors: { proof: { one: true } } });
-assert.equal(coreEngine.n.coreData.getSnapshot().config.mode, "release");
-assert.equal(coreEngine.n.coreData.getSnapshot().descriptors.proof.one, true);
+coreEngine.n.data.update({ descriptors: { release: { marker: { id: "marker" } } } });
+assert.ok(coreEngine.n.data.getSnapshot().sequence > snapshot.sequence);
+coreEngine.n.data.reset();
+assert.equal(coreEngine.n.data.getSnapshot().sequence, 0);
+coreEngine.n.data.loadSnapshot({ config: { mode: "release" }, descriptors: { proof: { one: true } } });
+assert.equal(coreEngine.n.data.getSnapshot().config.mode, "release");
+assert.equal(coreEngine.n.data.getSnapshot().descriptors.proof.one, true);
 
 console.log("release-0.0.3-dsk-contracts ok");

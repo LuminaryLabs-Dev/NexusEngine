@@ -1,0 +1,160 @@
+{
+  "schema": "nexusengine.guide-book-state/1",
+  "version": "0.0.4",
+  "registryHash": "fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8",
+  "contentHash": "sha256:68e375f8ea3cf5f36ae9ab7f673f1a8a8e1ec54155963ad4b18445db6c7dfe7d",
+  "chapters": [
+    {
+      "id": "start-here",
+      "title": "Start Here",
+      "source": "docs/guide/chapters/01-start-here.md",
+      "googleDocTab": "01 Start Here",
+      "generated": false,
+      "contentHash": "sha256:fa6425d0841137940db804604800d4118406b6db92e801a68f63df5fe9f0aa0c"
+    },
+    {
+      "id": "mental-model",
+      "title": "The NexusEngine Mental Model",
+      "source": "docs/guide/chapters/02-mental-model.md",
+      "googleDocTab": "02 Mental Model",
+      "generated": false,
+      "contentHash": "sha256:2c173223d78258a8b118bac72f304c8cd7e26bc1e3cc78870296d9109738c410"
+    },
+    {
+      "id": "first-runtime",
+      "title": "Build A First Runtime",
+      "source": "docs/guide/chapters/03-first-runtime.md",
+      "googleDocTab": "03 First Runtime",
+      "generated": false,
+      "contentHash": "sha256:da60447f50b32c3d8461ef58529b04d3260cbf31a82683874d5029416d0d7650"
+    },
+    {
+      "id": "domains-atoms",
+      "title": "Domains And Atomic Kits",
+      "source": "docs/guide/chapters/04-domains-and-atoms.md",
+      "googleDocTab": "04 Domains And Atoms",
+      "generated": false,
+      "contentHash": "sha256:ab647fa2139e289895b5b13f61993f558b4268adebc670af6651d66351ea0be1"
+    },
+    {
+      "id": "lifecycle",
+      "title": "State, Lifecycle, And Idempotence",
+      "source": "docs/guide/chapters/05-state-lifecycle-idempotence.md",
+      "googleDocTab": "05 Lifecycle",
+      "generated": false,
+      "contentHash": "sha256:6f263ddc3ade6bc19f3b55014604a7fd17e460cdca79636022b7a0a318913b40"
+    },
+    {
+      "id": "composition",
+      "title": "Composition And Recipes",
+      "source": "docs/guide/chapters/06-composition-and-recipes.md",
+      "googleDocTab": "06 Composition",
+      "generated": false,
+      "contentHash": "sha256:d1234106d89d261e3c717d56650b16186dfb3a17f5d78805a9b2a488853a862d"
+    },
+    {
+      "id": "mcp",
+      "title": "MCP Agent Workflow",
+      "source": "docs/guide/chapters/07-mcp-agent-workflow.md",
+      "googleDocTab": "07 MCP",
+      "generated": false,
+      "contentHash": "sha256:5f68df53e078541af3162156dc6a55610dbda16737a00c21b6c2beee746e8d11"
+    },
+    {
+      "id": "registry-security",
+      "title": "Registries And Security",
+      "source": "docs/guide/chapters/08-registry-and-security.md",
+      "googleDocTab": "08 Registries",
+      "generated": false,
+      "contentHash": "sha256:6aec15c169758ad164371359f54c0dc79eb67a988ae13029e9dca7a696078ead"
+    },
+    {
+      "id": "integration-boundaries",
+      "title": "Hosts, Providers, And Adapters",
+      "source": "docs/guide/chapters/09-hosts-providers-adapters.md",
+      "googleDocTab": "09 Integration",
+      "generated": false,
+      "contentHash": "sha256:4c81e379339b20d7713d58e1363f49fbfda37572487047fe8f40b0545e1e3df1"
+    },
+    {
+      "id": "testing",
+      "title": "Testing And Proof",
+      "source": "docs/guide/chapters/10-testing-and-proof.md",
+      "googleDocTab": "10 Testing",
+      "generated": false,
+      "contentHash": "sha256:f76238dc307b1ea06b331b7a2f94b4eb1b254556615a5e5178f60593f4cf3455"
+    },
+    {
+      "id": "migration",
+      "title": "Migrating To 0.0.4",
+      "source": "docs/guide/chapters/11-migration-0.0.4.md",
+      "googleDocTab": "11 Migration",
+      "generated": false,
+      "contentHash": "sha256:ec269fb50b21b777aaf2bc904a204ababe209024638c89c4169cc5d71eb19987"
+    },
+    {
+      "id": "protokit-extraction",
+      "title": "ProtoKit Extraction",
+      "source": "docs/guide/chapters/12-protokit-extraction.md",
+      "googleDocTab": "12 ProtoKit Extraction",
+      "generated": false,
+      "contentHash": "sha256:eca70898cec7e09641f508683a5257aa7876618da8fef9032f63e93a4e841c27"
+    },
+    {
+      "id": "release-operation",
+      "title": "Release And Operating Model",
+      "source": "docs/guide/chapters/13-release-and-operation.md",
+      "googleDocTab": "13 Release",
+      "generated": false,
+      "contentHash": "sha256:d75529cf6c9bc20a1e8f6de84f61b5e258437f46c706fc75fe8cd0454ca3a511"
+    },
+    {
+      "id": "domain-index",
+      "title": "Generated Domain Index",
+      "source": "docs/guide/generated/domain-index.md",
+      "googleDocTab": "A Domain Index",
+      "generated": true,
+      "contentHash": "sha256:4fde204beec7be976414e6caa24b9ed2962843ebb79d80c28b8a6d8a952f46f3"
+    },
+    {
+      "id": "dependency-table",
+      "title": "Generated Dependency Table",
+      "source": "docs/guide/generated/dependency-table.md",
+      "googleDocTab": "B Dependencies",
+      "generated": true,
+      "contentHash": "sha256:33e057c9d296194fd38be14b4690bf5265a4d79ba2d17b2930fe8bf895741b5c"
+    },
+    {
+      "id": "api-reference",
+      "title": "Generated Atomic API Reference",
+      "source": "docs/generated/API-REFERENCE.md",
+      "googleDocTab": "C API Reference",
+      "generated": true,
+      "contentHash": "sha256:85fd5acdd67c1566b6dfc5a57e9b9d00aacc27e7f7f8272e1ae5785152c0c440"
+    },
+    {
+      "id": "ownership-ledger",
+      "title": "Generated Ownership Ledger",
+      "source": "docs/KIT-OWNERSHIP.md",
+      "googleDocTab": "D Ownership",
+      "generated": true,
+      "contentHash": "sha256:68d226cd6940649dba80e77c06742962166f937157b17348a87f6e5dd952054c"
+    },
+    {
+      "id": "root-migration-map",
+      "title": "Generated Root Migration Map",
+      "source": "docs/migrations/0.0.4-root-module-dispositions.md",
+      "googleDocTab": "E Migration Map",
+      "generated": true,
+      "contentHash": "sha256:3f95d0269cb945f3a1d0e166e20d9f0a489cd32041087fa45116645bf6065ca6"
+    },
+    {
+      "id": "extraction-summary",
+      "title": "Generated ProtoKit Extraction Summary",
+      "source": "docs/protokit-extraction/README.md",
+      "googleDocTab": "F Extraction Summary",
+      "generated": true,
+      "contentHash": "sha256:f80d2c35e0fa82fb09b127b046f4516c36ad3c6d759bc2154d76e1897958ab01"
+    }
+  ]
+}

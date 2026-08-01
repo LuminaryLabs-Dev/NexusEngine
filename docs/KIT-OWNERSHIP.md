@@ -1,100 +1,321 @@
-# Kit Ownership
+# Kit Ownership Ledger
 
-**Status:** canonical
-**Updated:** 2026-07-23
+Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-## Rule
+Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
 
-```txt
-NexusEngine:
-  atomic + idempotent + fully reusable Core behavior
+- Source modules: 306
+- Manifest-proven public atoms: 76
+- Manifest-owned internal modules: 205
+- Root contract modules: 25
+- Unreviewed modules: 0
+- Violations: 0
 
-NexusEngine-Kits:
-  reusable + optional, niche, genre, or platform behavior
-
-Experiment/game repository:
-  complete games, presets, authored content, and product behavior
-```
-
-## Decision Gate
-
-| Question | Required for Core |
-| --- | --- |
-| Does the module have one atomic responsibility? | Yes |
-| Can install, reset, and reapply avoid duplicate effects? | Yes |
-| Is it reusable without a product, genre, or platform assumption? | Yes |
-| Is its state deterministic and serializable where applicable? | Yes |
-| Does focused proof cover the public and composed path? | Yes |
-| Is Core ownership intentional and documented? | Yes |
-
-Every answer must be proved. Unknown or unproven behavior leaves Core until it
-passes the gate.
-
-## Destination Rules
-
-| Classification | Destination |
-| --- | --- |
-| Universal Core primitive, invariant, or domain | NexusEngine |
-| Reusable optional, niche, genre, or platform behavior | NexusEngine-Kits or another trusted registry |
-| Complete game, preset, authored content, product tuning | Experiment or game repository |
-| Unknown ownership | Outside Core pending evidence |
-| Minimal scenario proving a generic invariant | `tests/` or `tests/fixtures/` |
-
-## Test Fixture Exception
-
-A niche-looking fixture may remain only when all conditions hold:
-
-- it lives under `tests/` or `tests/fixtures/`
-- it proves a named generic Core invariant
-- it is not exported or registered at runtime
-- production source does not import it
-- it contains minimal synthetic data rather than a hidden game
-
-## Public Interface
-
-NexusEngine has no forwarding exports for migrated behavior. Registry metadata
-is descriptive until a trusted provider resolves executable code.
-
-The current migration removes fishing, Reef Rescue, AR and platform adapters,
-optional gameplay factories, rendering-specific fishing hooks, and complete
-game presets from Core. Fishing is provided by
-`@luminarylabs/nexusengine-kits/fishing-kit`; complete games remain outside both
-packages.
-
-## Machine Ledger
-
-[`KIT-OWNERSHIP.json`](KIT-OWNERSHIP.json) records every production module
-reachable from a package entrypoint and every migrated production owner:
-
-```txt
-path
-public exports
-responsibility
-atomic
-idempotent
-fully reusable
-product or genre specific
-current consumers
-destination
-proof
-```
-
-Regenerate it with:
-
-```bash
-npm run ownership:generate
-```
-
-Review the diff. A generator result is evidence, not permission to bypass the
-decision gate.
-
-## Change Process
-
-1. Classify ownership before implementation.
-2. Prove replacement behavior in its destination.
-3. Remove the old implementation and public exports in one coordinated change.
-4. Update the ledger, migration guide, source-local contracts, and tests.
-5. Prove no public Core entrypoint can reach the migrated module.
-
-The retired ProtoKit workflow is historical only. New optional behavior goes to
-a trusted registry package.
+| Path | Owner | Review | Destination |
+| --- | --- | --- | --- |
+| `src/core-domains/actor/domain.manifest.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/kits/actor-registry-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/actor/subdomains/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/character/kits/character-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/actor/subdomains/creature/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/creature/kits/creature-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/creature/kits/creature-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/actor/subdomains/player/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/player/kits/player-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/subdomains/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/domain.manifest.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/action-proposals.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/adapters.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/agent-state.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/decision-cycle.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/execution-ledger.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/observations.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/asset/kits/asset-kit/descriptors.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/asset/kits/asset-kit/index.js` | `n:asset` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/asset/kits/asset-kit/provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/catalog.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/composition/adapters/mcp/composition-mcp-provider.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/adapters/mcp/generated-guide-resources.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/domain.manifest.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/index.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/kits/composition-registry-kit/composition-tree.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/kits/composition-registry-kit/index.js` | `n:composition` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/composition/kits/composition-registry-kit/registry.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/kits/composition-registry-kit/services.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/services/composition-apply-controller.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/domain.manifest.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/kits/compute-kit/descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/kits/compute-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/compute/kits/compute-kit/provider.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/adapters.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/inference-request.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/inference-result.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/model-descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/subdomains/model/kits/model-kit/model-registry.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/diagnostics/domain.manifest.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/diagnostics/index.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/diagnostics/kits/debug-descriptor-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/diagnostics/kits/debug-draw-kit.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/diagnostics/kits/diagnostics-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/domain-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/domain-manifest.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/host/domain.manifest.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/interaction/domain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/activation.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/affordances.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/prompts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/results.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/targets.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/actions.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/adapters.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/bindings.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/contexts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/input/kits/input-kit/intent.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/manifest-domain-service-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/manifest-input.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/manifest-kit-contract.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/mcp/adapters/node-mcp-sdk-adapter/index.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/contract-utilities.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/prompt-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/provider-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/resource-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/result-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/contracts/tool-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/domain.manifest.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/index.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/kits/mcp-registry-kit/authorization.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/kits/mcp-registry-kit/index.js` | `n:mcp` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/mcp/kits/mcp-registry-kit/registry.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/mcp/state/registry-snapshot.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/domain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/kits/network-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/adapters/object-shape-fidelity-adapter-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/contracts/object-descriptor.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/domain.manifest.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/kits/object-registry-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/state/object-registry-state.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/fidelity/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/fidelity/kits/object-fidelity-kit/descriptors.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/fidelity/kits/object-fidelity-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/contracts/placement-descriptor.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/kits/object-placement-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-math.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-operations.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-validation.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/descriptors.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/metrics.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/profiles.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/provider.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/kits/object-shape-kit/qualification.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/meshoptimizer-provider.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/reference-provider.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/adapters/vegetation-object-bridge-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/contracts.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/subdomains/ecology-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/subdomains/foliage-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/subdomains/vegetation/subdomains/tree-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/policy/domain.manifest.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/policy/index.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/policy/kits/policy-kit/index.js` | `n:policy` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/domain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/kits/presentation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/animation/kits/animation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/animation/kits/rig-transform-kit.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/audio/kits/audio-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/camera-control-kit.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/camera-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/camera-kit/smoothing.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/framing-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/framing-kit/orthographic-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/kits/framing-kit/perspective-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/capture/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/capture/kits/capture-kit/descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/capture/kits/capture-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/capture/kits/capture-kit/provider.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/adapters.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/instance-batches.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/lighting-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/material-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/procedural-material-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/quality-profiles.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/reflection-kit/contract.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/reflection-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/terrain-lod-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/vfx-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/output/kits/output-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/output/kits/output-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/speech/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/ui/kits/ui-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/domain.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/ledger.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/migration.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/package-service.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/schema.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/selectors.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/services.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/data/kits/data-kit/snapshot.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/persistence/kits/persistence-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/realtime/contracts/surfaces.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/startup/core-assets-startup-bridge.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/startup/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/startup/kits/startup-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/domain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/checkpoints.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/hazards.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/objectives.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/pressure.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/resolution.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/resources.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/timers.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/kits/motion-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/kits/physics-kit/provider.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/domain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/kits/angle-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/kits/quaternion-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/kits/spatial-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/kits/transform-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/kits/vector-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/adapters/terrain-provider-adapter/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/domain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-builder-runtime-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-cell-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-effect-provider-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/partitions/quadtree-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/partitions/uniform-grid-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/portable.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/preparation/world-patch-preparation-controller.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/constants.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/descriptors.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/host-contract.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/ledgers.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/scene-registry.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/scene-transition-ledger.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/transitions.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/scene/kits/scene-kit/utils.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/weather/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/weather/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/weather/weather-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/feature-composition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/feature-definition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/feature-lifecycle-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/feature-query-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/feature-registry-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/kits/semantic-feature-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/atmosphere-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/ecology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/feature-family-domain-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/hydrology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/canyon-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/cliff-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/landform-feature-kits.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/mountain-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/plateau-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/landform-feature-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/subdomains/settlement-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-feature-domain/world-feature-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-cell-resolution-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-composition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-definition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-sampling-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/world-foundation-domain/world-foundation-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/surfaces/curved-horizon-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/surfaces/flat-world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/world-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/domain-api.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/domain-path.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/domain-service-kit.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/ecs.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/engine.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/foundation/completion-ledger.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/deterministic-replay.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/idempotency-ledger.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/index.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/progress-timer.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/promotion-guard.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/seeded-random.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/serializable-state.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/sha256.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/foundation/snapshot.js` | `engine-foundation` | root-contract | NexusEngine foundation |
+| `src/index.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/release.js` | `engine-root` | root-contract | NexusEngine minimal root |
+| `src/runtime-kit.js` | `engine-root` | root-contract | NexusEngine minimal root |

@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
-import { createCoreWorldDomain, createEngine } from "../../src/index.js";
+import { createWorldDomain, createSpatialKit, createEngine } from "../helpers/public-package-surface.mjs";
 
-const engine = createEngine({ kits: [createCoreWorldDomain()] });
-const features = engine.n.worldFeatures;
+const engine = createEngine({ kits: [createSpatialKit(), createWorldDomain()] });
+const features = engine.n.worldFeature;
 assert.ok(features);
-assert.equal(engine.worldFeatures, features);
+assert.equal(engine.worldFeatures, undefined, "Domain APIs are addressed only through engine.n");
 assert.equal(features.hasFeatureType("mountain"), true);
 
 const mountain = features.registerFeature({

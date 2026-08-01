@@ -1,20 +1,20 @@
 import assert from "node:assert/strict";
 import {
-  createCoreObjectDomain,
+  createObjectDomain,
   createReferenceObjectShapeProvider,
-  createRealtimeGame
-} from "../../src/index.js";
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 import { createRockGeometry } from "../fixtures/object-shape-fixtures.mjs";
 
 const provider = createReferenceObjectShapeProvider();
-const engine = createRealtimeGame({
-  kits: createCoreObjectDomain({ shapeProvider: provider })
+const engine = createEngine({
+  kits: createObjectDomain({ shapeProvider: provider })
 });
 
-assert.equal(engine.n.ownerOf("n:object:shape"), "core-object-shape-domain");
-assert.equal(engine.objectShape, engine.n.objectShape);
+assert.equal(engine.n.ownerOf("n:object:shape"), "object-shape-kit");
+assert.equal(engine.objectShape, undefined, "retired root Object Shape alias is not installed");
 
-const object = engine.n.coreObject.register({
+const object = engine.n.object.register({
   id: "shape-rock",
   objectType: "procedural-rock",
   bounds: { min: [-1.3, -1, -1.2], max: [1.3, 1, 1.2] },

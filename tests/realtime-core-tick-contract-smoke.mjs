@@ -10,7 +10,7 @@ const renderer = {
 };
 
 const engine = createEngine({
-  coreKits: false,
+  domainKits: false,
   renderer,
   tick: { maxDelta: 1 / 15, rejectReentry: true }
 });

@@ -1,16 +1,16 @@
 import assert from "node:assert/strict";
 import {
   createEngine,
-  createCoreCapabilityDescriptor,
-  createCoreCapabilityKit,
-  createCoreDataKit,
-  createCoreInputKit,
-  createCoreGraphicsKit,
-  createCoreReflectionKit,
-  createCoreInteractionKit
-} from "../src/index.js";
+  createDomainDescriptor,
+  createDomainKit,
+  createDataKit,
+  createInputKit,
+  createGraphicsKit,
+  createReflectionKit,
+  createInteractionKit
+} from "./helpers/public-package-surface.mjs";
 
-const descriptor = createCoreCapabilityDescriptor("core-release-check", {
+const descriptor = createDomainDescriptor("core-release-check", {
   owns: ["release check"],
   doesNotOwn: ["host state"],
   services: ["audit"]
@@ -18,9 +18,9 @@ const descriptor = createCoreCapabilityDescriptor("core-release-check", {
 assert.equal(descriptor.version, "0.0.3");
 assert.equal(descriptor.stability, "stable-candidate");
 assert.ok(descriptor.domain.startsWith("core-"));
-assert.throws(() => createCoreCapabilityDescriptor("release-check"), /core-\*/);
+assert.throws(() => createDomainDescriptor("release-check"), /core-\*/);
 
-const customKit = createCoreCapabilityKit({
+const customKit = createDomainKit({
   domain: "core-release-custom",
   services: ["audit"],
   descriptors: { audit: { release: { version: "0.0.3" } } },
@@ -38,11 +38,11 @@ customEngine.n.coreReleaseCustom.reset();
 assert.equal(customEngine.n.coreReleaseCustom.getSnapshot().sequence, 0);
 
 const coreFactories = [
-  createCoreDataKit,
-  createCoreInputKit,
-  createCoreGraphicsKit,
-  createCoreReflectionKit,
-  createCoreInteractionKit
+  createDataKit,
+  createInputKit,
+  createGraphicsKit,
+  createReflectionKit,
+  createInteractionKit
 ];
 const engine = createEngine({ kits: coreFactories.map((factory) => factory()) });
 for (const kit of engine.kits) {

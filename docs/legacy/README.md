@@ -7,6 +7,8 @@ They are not active instructions and do not override current source, tests,
 
 - `protokits/`: verbatim copies of the retired authoring workflow
 - `0.0.3-planning/`: superseded package and branch planning documents
+- `pre-0.0.4/`: superseded Core Kit, V3, ideal-architecture, sequence, and
+  Core-prefixed Domain notes that do not describe the semantic cutover
 - [July 2026 branch consolidation](branch-consolidation-2026-07-27.md):
   public-safe disposition of preserved registry, documentation, validation,
   and generated evidence material

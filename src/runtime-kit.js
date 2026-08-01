@@ -142,7 +142,7 @@ export function installRuntimeKit(engine, kit, options = {}) {
       throw new TypeError(`Domain service kit ${kit.id} is already installed.`);
     }
     const installedProvides = new Set(engine.kits.flatMap((entry) => entry.provides ?? []));
-    const missing = (kit.requires ?? []).filter((token) => token.startsWith("n:") && !installedProvides.has(token));
+    const missing = (kit.requires ?? []).filter((token) => !installedProvides.has(token));
     if (missing.length) {
       throw new TypeError(`Domain service kit ${kit.id} requires missing token(s): ${missing.join(", ")}.`);
     }

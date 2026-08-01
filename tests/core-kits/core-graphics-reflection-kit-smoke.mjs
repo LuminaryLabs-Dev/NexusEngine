@@ -1,12 +1,13 @@
 import assert from "node:assert/strict";
 import {
-  createCoreGraphicsKit,
-  createCoreReflectionKit,
+  createGraphicsKit,
+  createReflectionKit,
   createGraphicsAdapterBoundary,
   createReflectionDescriptor,
   createReflectionPolicyDescriptor,
-  createRealtimeGame
-} from "../../src/index.js";
+  createPresentationKit,
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
 const environment = createReflectionDescriptor({
   id: "forest-environment",
@@ -22,10 +23,11 @@ const policy = createReflectionPolicyDescriptor({
   qualityBudget: { maximumGpuMilliseconds: 1.5, maximumUpdatesPerFrame: 1 }
 });
 
-const engine = createRealtimeGame({
+const engine = createEngine({
   kits: [
-    createCoreGraphicsKit(),
-    createCoreReflectionKit({
+    createPresentationKit(),
+    createGraphicsKit(),
+    createReflectionKit({
       reflections: [environment],
       policy,
       materialRevision: 4
@@ -33,7 +35,7 @@ const engine = createRealtimeGame({
   ]
 });
 
-const reflection = engine.n.coreReflection;
+const reflection = engine.n.reflection;
 assert.equal(reflection.getReflection("forest-environment").textureId, "forest-probe.ktx2");
 assert.equal(reflection.getActivePolicy().id, "scalable-reflections");
 

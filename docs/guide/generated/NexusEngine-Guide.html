@@ -1,0 +1,4229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NexusEngine Guide 0.0.4</title>
+  <style>
+    @page { size: Letter; margin: 0.65in 0.68in; }
+    :root { --ink: #172027; --muted: #59656d; --line: #ccd4d8; --soft: #f3f6f6; --teal: #176f73; --rust: #9b432c; }
+    * { box-sizing: border-box; }
+    html { background: white; }
+    body { margin: 0; color: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 9.2pt; line-height: 1.38; letter-spacing: 0; }
+    .cover { min-height: 9.6in; padding: 1.05in 0.8in 0.75in; display: flex; flex-direction: column; justify-content: space-between; break-after: page; }
+    .cover-mark { width: 0.68in; height: 0.12in; background: var(--teal); border-left: 0.16in solid var(--rust); }
+    .cover h1 { margin: 0.3in 0 0.08in; font-size: 35pt; line-height: 1.02; color: var(--ink); }
+    .cover .subtitle { max-width: 5.8in; color: var(--muted); font-size: 15pt; line-height: 1.3; }
+    .cover .metadata { border-top: 1px solid var(--line); padding-top: 0.18in; color: var(--muted); font-size: 8.5pt; }
+    .toc { break-after: page; padding-top: 0.1in; }
+    .toc h1 { margin-bottom: 0.18in; }
+    .toc ol { margin: 0; padding: 0; list-style: none; columns: 2; column-gap: 0.38in; }
+    .toc li { break-inside: avoid; border-bottom: 1px solid var(--line); padding: 0.06in 0; }
+    .toc a { color: var(--ink); text-decoration: none; display: grid; grid-template-columns: 0.28in 1fr; gap: 0.08in; }
+    .toc span { color: var(--teal); font-weight: 700; }
+    .chapter { break-before: page; }
+    .chapter-kicker { color: var(--rust); font-size: 7.5pt; font-weight: 700; text-transform: uppercase; margin-bottom: 0.06in; }
+    h1, h2, h3 { break-after: avoid; color: var(--ink); }
+    h1 { font-size: 22pt; line-height: 1.08; margin: 0 0 0.2in; padding-bottom: 0.09in; border-bottom: 3px solid var(--teal); }
+    h2 { font-size: 14pt; line-height: 1.16; margin: 0.2in 0 0.07in; }
+    h3 { font-size: 11pt; margin: 0.16in 0 0.05in; }
+    p { margin: 0 0 0.08in; orphans: 3; widows: 3; }
+    ul, ol { margin: 0.04in 0 0.12in; padding-left: 0.24in; }
+    li { margin: 0.025in 0; }
+    a { color: var(--teal); overflow-wrap: anywhere; }
+    code { font-family: Menlo, Consolas, monospace; font-size: 0.88em; background: var(--soft); padding: 0.01in 0.03in; border-radius: 2px; overflow-wrap: anywhere; }
+    pre { break-inside: avoid; white-space: pre-wrap; overflow-wrap: anywhere; background: #20282d; color: #f7f9f9; border-left: 4px solid var(--rust); padding: 0.12in; margin: 0.08in 0 0.14in; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    table { border-collapse: collapse; width: 100%; table-layout: fixed; margin: 0.08in 0 0.16in; font-size: 7.7pt; }
+    thead { display: table-header-group; }
+    tr { break-inside: avoid; }
+    th, td { border: 1px solid var(--line); padding: 0.045in 0.055in; vertical-align: top; overflow-wrap: anywhere; }
+    th { background: #e8eeee; color: #102c2e; text-align: left; font-weight: 700; }
+    tbody tr:nth-child(even) { background: #f8f9f9; }
+    blockquote { margin: 0.12in 0; padding: 0.09in 0.14in; border-left: 4px solid var(--teal); background: var(--soft); color: #314047; }
+    hr { border: 0; border-top: 1px solid var(--line); margin: 0.22in 0; }
+  </style>
+</head>
+<body>
+  <section class="cover">
+    <div>
+      <div class="cover-mark"></div>
+      <h1>NexusEngine Guide</h1>
+      <div class="subtitle">Core architecture, composition, integration, and migration reference</div>
+    </div>
+    <div class="metadata">
+      <strong>Version 0.0.4</strong><br>
+      Core registry SHA-256: fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8<br>
+      Guide content SHA-256: 68e375f8ea3cf5f36ae9ab7f673f1a8a8e1ec54155963ad4b18445db6c7dfe7d<br><br>
+      Canonical source: modular Markdown declared by docs/guide/book.json
+    </div>
+  </section>
+  <section class="toc">
+    <h1>Contents</h1>
+    <ol>
+      <li><a href="#start-here"><span>01</span>Start Here</a></li>
+      <li><a href="#mental-model"><span>02</span>The NexusEngine Mental Model</a></li>
+      <li><a href="#first-runtime"><span>03</span>Build A First Runtime</a></li>
+      <li><a href="#domains-atoms"><span>04</span>Domains And Atomic Kits</a></li>
+      <li><a href="#lifecycle"><span>05</span>State, Lifecycle, And Idempotence</a></li>
+      <li><a href="#composition"><span>06</span>Composition And Recipes</a></li>
+      <li><a href="#mcp"><span>07</span>MCP Agent Workflow</a></li>
+      <li><a href="#registry-security"><span>08</span>Registries And Security</a></li>
+      <li><a href="#integration-boundaries"><span>09</span>Hosts, Providers, And Adapters</a></li>
+      <li><a href="#testing"><span>10</span>Testing And Proof</a></li>
+      <li><a href="#migration"><span>11</span>Migrating To 0.0.4</a></li>
+      <li><a href="#protokit-extraction"><span>12</span>ProtoKit Extraction</a></li>
+      <li><a href="#release-operation"><span>13</span>Release And Operating Model</a></li>
+      <li><a href="#domain-index"><span>14</span>Generated Domain Index</a></li>
+      <li><a href="#dependency-table"><span>15</span>Generated Dependency Table</a></li>
+      <li><a href="#api-reference"><span>16</span>Generated Atomic API Reference</a></li>
+      <li><a href="#ownership-ledger"><span>17</span>Generated Ownership Ledger</a></li>
+      <li><a href="#root-migration-map"><span>18</span>Generated Root Migration Map</a></li>
+      <li><a href="#extraction-summary"><span>19</span>Generated ProtoKit Extraction Summary</a></li></ol>
+  </section>
+  
+    <article class="chapter" id="start-here">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Start Here</h1>
+<p>NexusEngine is the reusable Core beneath games, simulations, editors, and agents. It supplies deterministic runtime primitives and universal semantic capabilities. It does not supply every useful feature.</p>
+<p>The shortest correct rule is:</p>
+<pre><code class="language-txt">NexusEngine                  universal Core behavior
+NexusEngine-Kits             reusable optional behavior
+Experiments and games        authored product behavior
+Hosts and adapters           platform and vendor implementations
+</code></pre>
+<h2>Who This Guide Is For</h2>
+<ul>
+<li>Application developers who need to assemble a runtime.</li>
+<li>Kit authors who need to choose an owner and dependency contract.</li>
+<li>Host authors who connect browsers, renderers, storage, networks, or SDKs.</li>
+<li>Agents that inspect and plan compositions through MCP.</li>
+<li>Maintainers migrating code to the <code>0.0.4</code> semantic Domain model.</li>
+</ul>
+<h2>Reading Paths</h2>
+<p><strong>Build something:</strong> read First Runtime, Domains And Atomic Kits, then Composition And Recipes.</p>
+<p><strong>Integrate a platform:</strong> read Registries And Security, then Hosts, Providers, And Adapters.</p>
+<p><strong>Use an agent:</strong> read Composition And Recipes, then MCP Agent Workflow.</p>
+<p><strong>Maintain Core:</strong> read State, Lifecycle, And Idempotence, Testing And Proof, and Migrating To 0.0.4.</p>
+<h2>The Non-Negotiable Boundary</h2>
+<p>A Core atom has one responsibility, is product-neutral, installs idempotently, owns explicit state, supports snapshot and reset, isolates nondeterminism, and has direct proof. If any requirement is unknown, the behavior remains outside Core until proved.</p>
+<p>This fail-closed rule keeps Core small enough to understand and flexible enough to compose.</p>
+<h2>Sources Of Truth</h2>
+<ol>
+<li>Domain manifest v2 records and the source they reference.</li>
+<li>Generated catalog, package exports, ownership ledger, and registry hash.</li>
+<li>This modular guide.</li>
+<li>Migration and extraction ledgers.</li>
+</ol>
+<p>Historical plans, generated run packets, and the retired ProtoKit repository are evidence. They do not override the active manifest catalog.</p>
+
+    </article>
+
+    <article class="chapter" id="mental-model">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>The NexusEngine Mental Model</h1>
+<p>NexusEngine separates meaning from implementation. A Domain names a semantic owner. An atomic Kit installs one capability. A provider performs work behind a contract. An adapter translates between boundaries. A recipe selects and configures atoms without becoming a new runtime owner.</p>
+<h2>The Vocabulary</h2>
+<table>
+<thead>
+<tr>
+<th>Term</th>
+<th>Meaning</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Engine</td>
+<td>Runtime container for state, systems, events, resources, and installed Kits</td>
+<td><code>createEngine()</code></td>
+</tr>
+<tr>
+<td>Domain</td>
+<td>Semantic ownership boundary</td>
+<td><code>n:object</code>, <code>n:simulation:motion</code></td>
+</tr>
+<tr>
+<td>Atomic Kit</td>
+<td>One installable, idempotent responsibility</td>
+<td>Object registry or placement</td>
+</tr>
+<tr>
+<td>Provider</td>
+<td>Replaceable implementation of a Domain contract</td>
+<td>Physics backend or speech synthesis</td>
+</tr>
+<tr>
+<td>Adapter</td>
+<td>Translation across two public contracts</td>
+<td>Motion plan to physics drive request</td>
+</tr>
+<tr>
+<td>Recipe</td>
+<td>Data selecting Domains, Kits, and settings</td>
+<td>Object plus Placement composition</td>
+</tr>
+<tr>
+<td>Registry</td>
+<td>Non-executable metadata describing exact sources</td>
+<td>Package, version, commit, integrity</td>
+</tr>
+<tr>
+<td>Host</td>
+<td>Application-owned lifecycle and platform boundary</td>
+<td>Editor, browser application, server</td>
+</tr>
+</tbody></table>
+<h2>State Has One Owner</h2>
+<p>Every durable concept has one state owner. Other Domains refer to that state through descriptors, identifiers, commands, events, or public APIs. They do not keep shadow copies that can drift.</p>
+<p>For example, Object owns object identity and intrinsic geometry meaning. Placement owns where an object is placed. A renderer may project both into a scene, but renderer objects are not Core state.</p>
+<h2>Composition Is Additive</h2>
+<p>Atoms declare <code>requires</code> and <code>provides</code> tokens. Composition resolves those edges into an ordered plan. Local idempotence makes repeated installation safe; the composition receipt makes the complete accepted plan exactly-once across process restarts.</p>
+<h2>Core Does Not Mean Default</h2>
+<p>A capability may be universal and still opt-in. Core means the behavior satisfies the ownership contract. It does not mean every engine instance installs it automatically.</p>
+<h2>Data Is Not A Runtime Owner</h2>
+<p>Authored presets, balance values, levels, quests, materials, and complete game loops remain recipe or product data. Core can define the schema and deterministic evaluator while the product owns the authored values.</p>
+
+    </article>
+
+    <article class="chapter" id="first-runtime">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Build A First Runtime</h1>
+<p>Install the package, import only the semantic surfaces you need, construct the Engine, then advance it with explicit time.</p>
+<h2>Minimal Engine</h2>
+<p>The runnable source for this example is <code>examples/guide/basic-engine.mjs</code>.</p>
+<pre><code class="language-js">import { createEngine } from &quot;nexusengine&quot;;
+
+const engine = createEngine({ kits: [] });
+engine.tick(1 / 60);
+console.log(engine.clock.frame);
+</code></pre>
+<p>The root API is intentionally small. Domain factories and atoms are imported from generated semantic subpaths.</p>
+<h2>Add Object And Placement</h2>
+<p>The runnable source is <code>examples/guide/object-placement.mjs</code>.</p>
+<pre><code class="language-js">import { createEngine } from &quot;nexusengine&quot;;
+import { createObjectRegistryKit } from &quot;nexusengine/domains/object/registry&quot;;
+import { createObjectPlacementKit } from &quot;nexusengine/domains/object/placement&quot;;
+
+const engine = createEngine({
+  kits: [createObjectRegistryKit(), createObjectPlacementKit()]
+});
+</code></pre>
+<p>Placement requires the Object descriptor contract. Composition can resolve that provider automatically; direct construction requires you to install both.</p>
+<h2>Inspect Installed Surfaces</h2>
+<p>Domain Service Kits register semantic paths and named APIs. Use the engine&#39;s addressability APIs instead of reaching into private state.</p>
+<pre><code class="language-js">engine.n.path(&quot;n:object&quot;);
+engine.n.path(&quot;n:object:placement&quot;);
+engine.n.ownerOf(&quot;n:object&quot;);
+engine.n.paths();
+engine.n.apis();
+</code></pre>
+<h2>Keep Time Explicit</h2>
+<p>Pass elapsed time into <code>tick</code>. Do not read wall-clock time inside deterministic Core systems. A host may sample a clock, but it converts that sample into explicit runtime input before Core processes it.</p>
+<h2>Save And Restore</h2>
+<p>Each stateful atom exposes its manifest-declared snapshot and reset behavior. Applications should persist the complete host composition receipt beside application state so the accepted runtime can be reconstructed after restart.</p>
+
+    </article>
+
+    <article class="chapter" id="domains-atoms">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Domains And Atomic Kits</h1>
+<p>The semantic path tells you where a responsibility belongs. The manifest tells tools and humans what that owner may and may not do.</p>
+<h2>Domain Manifest V2</h2>
+<p>Every top-level semantic Domain declares:</p>
+<ul>
+<li>stable identity, path, immediate parent, label, version status</li>
+<li>one responsibility and explicit owned meaning</li>
+<li>forbidden responsibilities</li>
+<li>owned state and schema</li>
+<li>inputs, systems, outputs, and lifecycle</li>
+<li>required and optional dependencies</li>
+<li>public atomic Kits, providers, and adapters</li>
+<li>settings schema and proof references</li>
+</ul>
+<p>Generation fails when a public atom lacks source or proof. Compliance is never inferred from a folder name.</p>
+<h2>Semantic Families</h2>
+<table>
+<thead>
+<tr>
+<th>Family</th>
+<th>Main paths</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Runtime</td>
+<td><code>n:runtime</code>, realtime, data, transaction, persistence, sequence, startup</td>
+</tr>
+<tr>
+<td>Composition</td>
+<td><code>n:composition</code>, <code>n:mcp</code>, <code>n:policy</code></td>
+</tr>
+<tr>
+<td>World</td>
+<td><code>n:spatial</code>, <code>n:object</code>, <code>n:world</code>, scene, weather, asset</td>
+</tr>
+<tr>
+<td>Simulation</td>
+<td><code>n:simulation</code>, physics, motion, <code>n:compute</code>, model</td>
+</tr>
+<tr>
+<td>Actors</td>
+<td><code>n:actor</code>, creature, character, player, <code>n:agent</code></td>
+</tr>
+<tr>
+<td>Interaction</td>
+<td><code>n:interaction</code>, input</td>
+</tr>
+<tr>
+<td>Presentation</td>
+<td>output, graphics, camera, animation, audio, UI, speech, capture, sky</td>
+</tr>
+<tr>
+<td>Infrastructure</td>
+<td><code>n:network</code>, <code>n:diagnostics</code>, contract-only <code>n:host</code></td>
+</tr>
+</tbody></table>
+<p>The generated Domain Index appendix contains every active path.</p>
+<h2>Atomicity Test</h2>
+<p>An atom should have one reason to change. If a module owns inventory, combat, rendering, and progression together, it is a composition or product feature, not an atom.</p>
+<p>Splitting is semantic, not file-count driven. Several source files may implement one indivisible lifecycle. Conversely, one legacy file may contain several owners and must be separated.</p>
+<h2>Dependency Tokens</h2>
+<p>Use capability tokens for behavior dependencies and Domain paths for semantic presence. Requirements must describe what the atom consumes; providers list what they supply. Composition rejects missing providers, cycles, identity collisions, and changed content.</p>
+<h2>Public Imports</h2>
+<p>Only generated package exports are public. Production code does not import private files from sibling Domains. Cross-Domain collaboration goes through a public subpath or an explicit adapter.</p>
+
+    </article>
+
+    <article class="chapter" id="lifecycle">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>State, Lifecycle, And Idempotence</h1>
+<p>Idempotence means repeating an accepted operation does not create a second effect. It is enforced locally by each atom and globally by the composition controller.</p>
+<h2>Install</h2>
+<p>An atomic Kit has a stable identity and manifest fingerprint. Installing matching content again returns the installed API without adding state, systems, or subscriptions. Reusing the same identity with different content is a hard conflict.</p>
+<h2>Commands</h2>
+<p>State-changing commands need a stable idempotency key when they may be retried. The state owner records the accepted key and result. Repeating the same command returns the original result. Reusing the key with changed content fails before mutation.</p>
+<h2>Snapshot</h2>
+<p>A snapshot contains portable semantic state. It excludes renderer objects, functions, sockets, file handles, GPU resources, and vendor SDK instances. Providers snapshot their own implementation state behind their contract when necessary.</p>
+<h2>Reset</h2>
+<p>Reset restores the configured baseline. Calling reset twice returns the same snapshot and must not duplicate resources or lifecycle hooks.</p>
+<h2>Replay</h2>
+<p>Deterministic replay starts from an accepted snapshot and applies the same ordered inputs. Any nondeterministic source is injected by the host and recorded as input. Random behavior uses explicit seeds or provider receipts.</p>
+<h2>Composition-Level Exactly-Once</h2>
+<p>The controller hashes the normalized request, dependency plan, exact Kit source descriptors, configuration, and resolved executable fingerprints. The resulting plan ID is reviewed by a human. After apply, its receipt is persisted. Repeating the same plan returns that receipt without invoking the host again.</p>
+<h2>Transactional Failure</h2>
+<p>Before apply, the host supplies a snapshot. If host mutation or receipt persistence fails, the controller restores both host and controller state. A failed plan has no success receipt.</p>
+
+    </article>
+
+    <article class="chapter" id="composition">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Composition And Recipes</h1>
+<p>Composition turns semantic intent into a deterministic, reviewable installation order.</p>
+<h2>Registry First</h2>
+<p>Core discovery starts from merged registry metadata generated from manifests. It never scans the filesystem at runtime. Imported registries may add identities but may not replace Core records or collide with an existing Domain path.</p>
+<h2>Selection Inputs</h2>
+<p>A request may select:</p>
+<ul>
+<li>individual atomic Kit IDs</li>
+<li>Domain IDs, which select the Domain&#39;s public atoms</li>
+<li>recipe IDs, which select declared Domains and Kits</li>
+<li>a scoped composition tree</li>
+<li>per-Kit configuration and allowed statuses</li>
+</ul>
+<p>The retired <code>bundles</code> request key is rejected. Use recipes for declarative composition.</p>
+<h2>Validate Before Plan</h2>
+<p>Validation checks identity, dependencies, provider availability, status policy, cycles, and ordering without resolving executable code.</p>
+<p>The runnable inspection example is <code>examples/guide/composition-inspection.mjs</code>.</p>
+<pre><code class="language-js">const validation = engine.n.composition.planning.validate({
+  kits: [&quot;object-placement-kit&quot;]
+});
+
+if (!validation.ok) throw new Error(&quot;Composition is invalid&quot;);
+</code></pre>
+<h2>Plan</h2>
+<p>Planning adds required providers and returns a stable dependency order. MCP planning also asks the application host to preflight exact executable sources. Preflight is read-only.</p>
+<h2>Recipe Ownership</h2>
+<p>A recipe is data. It can express a useful combination without creating a new state owner. Reusable optional recipes belong in a trusted Kit registry. Complete game recipes belong with the game.</p>
+<h2>Apply</h2>
+<p>Apply requires the exact reviewed plan ID and explicit authorization. The controller resolves the same metadata, rejects drift, applies through the host, persists a receipt, and returns the original receipt on replay.</p>
+
+    </article>
+
+    <article class="chapter" id="mcp">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>MCP Agent Workflow</h1>
+<p>MCP makes the semantic catalog inspectable by an agent. It does not make the agent the runtime owner and does not authorize mutation by itself.</p>
+<h2>Opt-In Boundary</h2>
+<p>An application installs the MCP registry Domain, registers the Composition provider, supplies a transactional host, and chooses a transport. Without those steps, the package exposes no live MCP server.</p>
+<h2>Read Tools</h2>
+<table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>domains_list</code>, <code>domain_get</code></td>
+<td>Discover semantic ownership</td>
+</tr>
+<tr>
+<td><code>kits_list</code>, <code>kit_explain</code></td>
+<td>Preserve the existing Kit-oriented inspection surface</td>
+</tr>
+<tr>
+<td><code>atoms_list</code>, <code>atom_get</code></td>
+<td>Page through atomic capabilities and dependency evidence</td>
+</tr>
+<tr>
+<td><code>recipes_list</code>, <code>recipe_get</code></td>
+<td>Inspect declarative compositions</td>
+</tr>
+<tr>
+<td><code>registry_sources_list</code></td>
+<td>Review package, version, commit, integrity, environment, permissions, and status</td>
+</tr>
+<tr>
+<td><code>composition_validate</code></td>
+<td>Check a request without resolving code</td>
+</tr>
+<tr>
+<td><code>composition_plan</code></td>
+<td>Resolve exact sources and produce a stable plan ID</td>
+</tr>
+</tbody></table>
+<h2>Mutation Tool</h2>
+<p><code>composition_apply</code> is the only mutation tool in the provider. It requires explicit authorization for the exact plan ID. A transport or application may impose additional policy.</p>
+<h2>Review Sequence</h2>
+<pre><code class="language-txt">inspect relevant Domains and atoms
+-&gt; validate the request
+-&gt; plan exact sources
+-&gt; show commit, integrity, permissions, and capability changes
+-&gt; human approves the exact plan ID
+-&gt; apply once
+-&gt; persist receipt
+-&gt; runtime continues after MCP disconnects
+</code></pre>
+<h2>Prompts</h2>
+<p>The provider exposes exactly two short prompts: <code>inspect-and-plan</code> and <code>review-and-apply</code>. They route the workflow; they do not embed the full guide.</p>
+<h2>Resources</h2>
+<p>Registry records and guide chapters are individual MCP resources. An agent reads only the records and chapters relevant to its current decision. The complete PDF is for humans, not prompt context.</p>
+
+    </article>
+
+    <article class="chapter" id="registry-security">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Registries And Security</h1>
+<p>A registry record is metadata. Reading, searching, merging, or validating it must not execute package code.</p>
+<h2>Exact Source Identity</h2>
+<p>An executable Kit record includes:</p>
+<ul>
+<li>package name and exact version</li>
+<li>canonical package subpath and export name</li>
+<li>immutable 40-character source commit</li>
+<li>SHA-256 integrity</li>
+<li>environments and requested permissions</li>
+<li>requires and provides tokens</li>
+<li>status and settings schema</li>
+</ul>
+<p>Moving branches, tags, and unpinned URLs are not executable identities.</p>
+<h2>Resolution Rules</h2>
+<p>The host verifies that paths stay inside the resolved package root, imports the declared export only, compares integrity, and computes an executable fingerprint. Browser modules require immutable commit URLs. Local and package paths cannot escape their package root.</p>
+<h2>No Runtime Installation</h2>
+<p>Core never runs a package manager during composition. When required code is absent, planning returns a structured installation receipt with the exact package and version. Installation is a separate human-controlled operation; planning is repeated afterward.</p>
+<h2>Collision Rules</h2>
+<ul>
+<li>An imported registry cannot replace a Core identity.</li>
+<li>Two Domains cannot claim the same semantic path.</li>
+<li>One Kit ID cannot refer to changed content.</li>
+<li>A repeated accepted plan returns its original receipt.</li>
+<li>Integrity mismatch, wrong export, path escape, or missing source fails before mutation.</li>
+</ul>
+<h2>Trust Boundary</h2>
+<p>Integrity proves identity, not benevolence. Approved JavaScript still runs with the permissions of its host. Review source ownership, commit, permissions, and environment before approval. Use process or platform isolation when untrusted code must run.</p>
+
+    </article>
+
+    <article class="chapter" id="integration-boundaries">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Hosts, Providers, And Adapters</h1>
+<p>Core owns semantic contracts. Concrete platform work belongs at a leaf boundary.</p>
+<h2>Host</h2>
+<p>The host owns application lifecycle, package availability, executable resolution, runtime construction, persistence, and rollback. Core retains only portable host capability contracts under <code>n:host</code>.</p>
+<p>Browser, Node, native, editor, terminal, repository, filesystem, storage, transport, and vendor SDK implementations are outside Core.</p>
+<h2>Provider</h2>
+<p>A provider implements one Domain contract. Examples include physics solving, model inference, speech synthesis, asset retrieval, or capture rendering. Core can own request and result schemas while the provider owns vendor handles, caches, and external effects.</p>
+<h2>Adapter</h2>
+<p>An adapter translates two public contracts without becoming the state owner of either. Its manifest names both requirements and the capability it provides. Adapters import public semantic subpaths, never private sibling files.</p>
+<h2>Presentation Boundary</h2>
+<p>Presentation Core contains renderer-neutral descriptors and policies. Three.js objects, WebGL resources, browser audio, native widgets, and authored presets belong in renderer, host, Kit, or product repositories.</p>
+<h2>Example Ownership Decisions</h2>
+<ul>
+<li>Generic sky descriptors: <code>n:presentation:sky</code>.</li>
+<li>Authored sunset preset: recipe or product data.</li>
+<li>Speech request lifecycle: <code>n:presentation:speech</code>.</li>
+<li>PocketTTS implementation: external provider Kit.</li>
+<li>Motion trajectory: <code>n:simulation:motion</code>.</li>
+<li>Animation clip descriptor: <code>n:presentation:animation</code>.</li>
+<li>Two-bone pose solving: <code>n:simulation:motion</code>.</li>
+</ul>
+
+    </article>
+
+    <article class="chapter" id="testing">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Testing And Proof</h1>
+<p>Tests prove contracts at the level where failure would matter. A green unit test is not enough when a change affects package exports, composition, consumers, or rendered output.</p>
+<h2>Manifest Proof</h2>
+<p>Validate unique IDs, normalized paths, immediate parents, one owner per public module, source paths, export names, schemas, lifecycle declarations, dependencies, and proof references.</p>
+<h2>Atomic Lifecycle Proof</h2>
+<p>For each stateful atom:</p>
+<ol>
+<li>Install twice and prove no duplicate state or systems.</li>
+<li>Apply the same command twice and compare state and result.</li>
+<li>Reuse an idempotency key with changed content and require failure.</li>
+<li>Snapshot, load, and compare equality.</li>
+<li>Reset twice and compare equality.</li>
+<li>Replay ordered inputs from the same snapshot.</li>
+</ol>
+<h2>Composition Proof</h2>
+<p>Test missing providers, cycles, collisions, status rejection, stable ordering, repeated apply, process restart, receipt persistence, host rollback, and continued runtime operation after MCP disconnect.</p>
+<h2>Combination Coverage</h2>
+<p>Test each atom alone, every declared dependency edge, pairwise cross-Domain combinations, official recipes, high-risk three-way stacks, and installation-order permutations. Do not attempt every mathematical combination.</p>
+<h2>Registry Security Proof</h2>
+<p>Prove that metadata reads cannot execute code. Reject moving refs, integrity mismatch, path escape, wrong export, missing package, duplicate identity, and changed-content replay before mutation.</p>
+<h2>Consumer Proof</h2>
+<p>Install the packed Engine tarball in clean temporary directories. Then prove Kits, Editor, and Simulator against that exact artifact without local symlinks. Browser-facing workflows require Playwright and human-view inspection in addition to DOM assertions.</p>
+<h2>Documentation Proof</h2>
+<p>Regenerate all derived files, run drift checks, execute guide examples, resolve links, render the PDF, verify every page contains content, and visually inspect rendered page images for clipping or overlap.</p>
+
+    </article>
+
+    <article class="chapter" id="migration">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Migrating To 0.0.4</h1>
+<p><code>0.0.4</code> is a hard semantic cutover. Old paths and root symbols are removed in the same change as their replacements. There are no runtime forwarding exports.</p>
+<h2>Import Strategy</h2>
+<p>Keep root imports for bootstrap and runtime contracts. Import Domain factories and atoms from generated semantic subpaths.</p>
+<pre><code class="language-js">import { createEngine } from &quot;nexusengine&quot;;
+import { createMotionKit } from &quot;nexusengine/domains/simulation/motion&quot;;
+import { createPhysicsKit } from &quot;nexusengine/domains/simulation/physics&quot;;
+</code></pre>
+<p>Do not use <code>n:core-*</code>, <code>nexusengine/core-kits/*</code>, or private source paths.</p>
+<h2>Runtime Paths</h2>
+<p>Use semantic paths such as <code>n:object</code>, <code>n:runtime:transaction</code>, and <code>n:presentation:graphics</code>. Immediate parent relationships are validated by manifests.</p>
+<h2>Removed Implementations</h2>
+<p>Concrete hosts, renderers, shaders, platform storage, model mocks, speech engines, authored sky presets, gameplay systems, and complete games moved outside Core or became caller-owned data. The Root Migration Map appendix lists every retired source and its owner.</p>
+<h2>Consumer Migration Order</h2>
+<ol>
+<li>Replace old imports with generated semantic package subpaths.</li>
+<li>Replace old runtime paths with semantic paths.</li>
+<li>Install explicit atoms that were formerly implicit defaults.</li>
+<li>Move platform implementations into the host or an external Kit.</li>
+<li>Replace compatibility aliases with the owning Domain API.</li>
+<li>Run from a packed Engine artifact in a clean directory.</li>
+</ol>
+<h2>Changelog Contract</h2>
+<p>The changelog and migration map explain replacements. They are not compatibility code. A removed symbol stays removed.</p>
+
+    </article>
+
+    <article class="chapter" id="protokit-extraction">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>ProtoKit Extraction</h1>
+<p>ProtoKits is retired as an active development destination. Its history remains evidence for reconstructing useful behavior with Core atoms, external Kits, recipes, and game-owned code.</p>
+<h2>Frozen Source</h2>
+<p>Extraction uses a clean read-only worktree at one immutable remote default-branch commit. The inventory records the remote, commit, file count, and source snapshot SHA-256. A stale or dirty local checkout is never canonical evidence.</p>
+<h2>Unit Of Classification</h2>
+<p>Folder count is not capability count. The extractor records folders, files, exports, factories, manifests, tests, dependencies, state, lifecycle signals, commands, events, providers, adapters, and consumers. Every discovered source surface receives exactly one disposition.</p>
+<h2>Dispositions</h2>
+<table>
+<thead>
+<tr>
+<th>Disposition</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>core-reuse</code></td>
+<td>Existing Core atom already owns the behavior</td>
+</tr>
+<tr>
+<td><code>core-composition</code></td>
+<td>Existing atoms reproduce it through composition</td>
+</tr>
+<tr>
+<td><code>core-new-atom</code></td>
+<td>A missing universal atom passed every promotion gate</td>
+</tr>
+<tr>
+<td><code>external-kit</code></td>
+<td>Reusable but optional, niche, platform, or vendor behavior</td>
+</tr>
+<tr>
+<td><code>recipe-data</code></td>
+<td>Authored data or declarative composition</td>
+</tr>
+<tr>
+<td><code>game-owned</code></td>
+<td>Complete product or gameplay behavior</td>
+</tr>
+<tr>
+<td><code>duplicate</code></td>
+<td>Semantically identical to a named canonical owner</td>
+</tr>
+<tr>
+<td><code>rejected-unproven</code></td>
+<td>Insufficient evidence for a safe owner</td>
+</tr>
+</tbody></table>
+<h2>New Atom Gate</h2>
+<p>A candidate must have one indivisible responsibility, deterministic behavior or isolated nondeterminism, product neutrality, snapshot and reset support, no concrete presentation ownership, and two semantically different consumers. Failure of one condition keeps it outside Core.</p>
+<h2>Reconstruction</h2>
+<p>Useful behavior is preserved as a recipe: source lineage, required Core atoms, external owner, data, policy, and proof status. Preserving behavior does not require preserving the old package shape.</p>
+<h2>Archive Boundary</h2>
+<p>Writers and automations remain disabled. Archiving the remote repository is a separate external mutation that requires explicit approval after extraction coverage is complete.</p>
+
+    </article>
+
+    <article class="chapter" id="release-operation">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Release And Operating Model</h1>
+<p>Release proof is performed against committed, reproducible sources. Local-green evidence is necessary but is not the same as a release.</p>
+<h2>Generated Truth</h2>
+<p>The Core catalog, package exports, ownership ledger, API reference, guide indexes, MCP chapter resources, and guide identify the same registry SHA-256. Generate mode writes them; check mode rejects drift.</p>
+<h2>Required Gates</h2>
+<pre><code class="language-bash">npm ci --ignore-scripts --no-audit --no-fund
+npm run core:check
+npm run ownership:generate
+npm run migrations:check
+npm run protokits:check
+npm run guide:check
+npm run guide:examples
+npm test
+npm run test:release
+npm run boundaries:check
+npm run docs:check
+npm pack --dry-run --json
+</code></pre>
+<p>Consumer repositories must install the exact packed or committed Engine source. Local symlinks and sibling private imports invalidate clean-consumer proof.</p>
+<h2>Human Approval</h2>
+<p>After every local and hosted gate passes, present the repository identity, previous numeric branch, derived next version, exact default-branch SHA, checks, and warnings. Approval applies only to that tuple.</p>
+<p>Immediately before branch creation, refetch the remote and confirm the default branch still points to the approved SHA. Create the immutable numeric branch with a non-force exact-SHA push, then read the remote ref back and compare it byte for byte.</p>
+<h2>Outside This Guide Build</h2>
+<p>This documentation build does not push, publish, archive ProtoKits, mutate Google Drive, create a GitHub Release, publish npm, or create the numeric version branch. Each action has its own approval gate.</p>
+
+    </article>
+
+    <article class="chapter" id="domain-index">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>Domain Index</h1>
+<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<ul>
+<li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
+<li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
+<li><code>n:actor:character</code>: Own active embodied character identity and neutral runtime bindings.</li>
+<li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
+<li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
+<li><code>n:asset</code>: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</li>
+<li><code>n:composition</code>: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</li>
+<li><code>n:compute</code>: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.</li>
+<li><code>n:compute:model</code>: Own model descriptors, registries, inference requests/results, and model provider contracts.</li>
+<li><code>n:diagnostics</code>: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.</li>
+<li><code>n:host</code>: Own host capability descriptors and fallback contracts without platform implementation.</li>
+<li><code>n:interaction</code>: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.</li>
+<li><code>n:interaction:input</code>: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.</li>
+<li><code>n:mcp</code>: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</li>
+<li><code>n:network</code>: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.</li>
+<li><code>n:object</code>: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.</li>
+<li><code>n:object:shape</code>: Own source and derived geometric shapes, provider jobs, qualification, and fallback.</li>
+<li><code>n:object:fidelity</code>: Own valid object forms, fidelity packages, readiness, and contextual adaptation.</li>
+<li><code>n:object:vegetation</code>: Own rooted plant species, instances, lifecycle, and deterministic variation.</li>
+<li><code>n:object:vegetation:tree</code>: Own deterministic tree structure, canopy, growth, and fidelity descriptors.</li>
+<li><code>n:object:vegetation:foliage</code>: Own deterministic foliage structure and descriptors.</li>
+<li><code>n:object:vegetation:ecology</code>: Own deterministic vegetation suitability scoring and species selection.</li>
+<li><code>n:object:placement</code>: Own deterministic placement transforms, grounding, alignment, fit, and validation receipts.</li>
+<li><code>n:policy</code>: Own product-neutral permission, guard, sandbox, and runtime safety decisions.</li>
+<li><code>n:presentation</code>: Own renderer-neutral presentation descriptors and output policy contracts.</li>
+<li><code>n:presentation:output</code>: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.</li>
+<li><code>n:presentation:graphics</code>: Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.</li>
+<li><code>n:presentation:camera</code>: Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.</li>
+<li><code>n:presentation:animation</code>: Own animation, pose, blend, rig, and timeline descriptors.</li>
+<li><code>n:presentation:audio</code>: Own audio cue, music, ambience, mix, volume, and spatial audio descriptors.</li>
+<li><code>n:presentation:ui</code>: Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.</li>
+<li><code>n:presentation:speech</code>: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.</li>
+<li><code>n:presentation:capture</code>: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.</li>
+<li><code>n:presentation:sky</code>: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.</li>
+<li><code>n:runtime</code>: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.</li>
+<li><code>n:runtime:realtime</code>: Own deterministic frame context and realtime phase execution.</li>
+<li><code>n:runtime:data</code>: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.</li>
+<li><code>n:runtime:transaction</code>: Own portable repeat-safe operation and transaction receipts.</li>
+<li><code>n:runtime:persistence</code>: Own save/load targets, save slots, recovery records, and adapter contracts.</li>
+<li><code>n:runtime:sequence</code>: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.</li>
+<li><code>n:runtime:startup</code>: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.</li>
+<li><code>n:simulation</code>: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</li>
+<li><code>n:simulation:physics</code>: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.</li>
+<li><code>n:simulation:physics:articulated</code>: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.</li>
+<li><code>n:simulation:motion</code>: Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.</li>
+<li><code>n:simulation:motion:articulated</code>: Own target poses, joint limits, articulation motion plans, and drive requests.</li>
+<li><code>n:spatial</code>: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.</li>
+<li><code>n:world</code>: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.</li>
+<li><code>n:world:scene</code>: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.</li>
+<li><code>n:world:weather</code>: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.</li>
+<li><code>n:world:foundation</code>: Own deterministic foundation contributions, composition, sampling, and cell resolution.</li>
+<li><code>n:world:feature</code>: Own semantic world feature definitions, registries, lifecycle, queries, and composition.</li>
+<li><code>n:world:feature:landform</code>: Own semantic elevation and landform feature descriptors.</li>
+<li><code>n:world:feature:hydrology</code>: Own semantic watershed, water path, water body, and wetland feature descriptors.</li>
+<li><code>n:world:feature:ecology</code>: Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors.</li>
+<li><code>n:world:feature:settlement</code>: Own semantic settlement, route, structure, and infrastructure feature descriptors.</li>
+<li><code>n:world:feature:atmosphere</code>: Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</li>
+</ul>
+
+    </article>
+
+    <article class="chapter" id="dependency-table">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>Core Dependency Table</h1>
+<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<table>
+<thead>
+<tr>
+<th>Owner</th>
+<th>Requires</th>
+<th>Optional</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n:actor</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:actor:creature</code></td>
+<td><code>n:actor</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:actor:character</code></td>
+<td><code>n:actor</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:actor:player</code></td>
+<td><code>n:actor:character</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:agent</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:asset</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:composition</code></td>
+<td>-</td>
+<td><code>n:mcp</code></td>
+</tr>
+<tr>
+<td><code>n:compute</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:compute:model</code></td>
+<td><code>n:compute</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:diagnostics</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:host</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:input</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:mcp</code></td>
+<td>-</td>
+<td><code>n:composition</code></td>
+</tr>
+<tr>
+<td><code>n:network</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object</code></td>
+<td>-</td>
+<td><code>n:asset</code>, <code>n:simulation:physics</code></td>
+</tr>
+<tr>
+<td><code>n:object:shape</code></td>
+<td><code>object:descriptor-contract</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:fidelity</code></td>
+<td><code>object:descriptor-contract</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation</code></td>
+<td><code>n:object</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:tree</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:foliage</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:ecology</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:object:placement</code></td>
+<td><code>object:descriptor-contract</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:policy</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:output</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:graphics</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:camera</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:animation</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:audio</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:ui</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:speech</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:capture</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:presentation:sky</code></td>
+<td><code>n:presentation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:realtime</code></td>
+<td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:data</code></td>
+<td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:transaction</code></td>
+<td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:persistence</code></td>
+<td><code>n:runtime:data</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:sequence</code></td>
+<td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:runtime:startup</code></td>
+<td><code>n:runtime</code></td>
+<td><code>n:asset</code></td>
+</tr>
+<tr>
+<td><code>n:simulation</code></td>
+<td><code>n:runtime:realtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics:articulated</code></td>
+<td><code>n:simulation:physics</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion:articulated</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:spatial</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world</code></td>
+<td><code>n:spatial</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:scene</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:weather</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:foundation</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature:landform</code></td>
+<td><code>n:world:feature</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature:hydrology</code></td>
+<td><code>n:world:feature</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature:ecology</code></td>
+<td><code>n:world:feature</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature:settlement</code></td>
+<td><code>n:world:feature</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:feature:atmosphere</code></td>
+<td><code>n:world:feature</code></td>
+<td>-</td>
+</tr>
+</tbody></table>
+
+    </article>
+
+    <article class="chapter" id="api-reference">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>Generated Core API Reference</h1>
+<p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
+<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<h2>Domains</h2>
+<table>
+<thead>
+<tr>
+<th>Domain</th>
+<th>Parent</th>
+<th>Responsibility</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>n:actor</code></td>
+<td>-</td>
+<td>Own neutral embodied actor identity and shared actor references.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:actor:creature</code></td>
+<td><code>n:actor</code></td>
+<td>Own neutral creature embodiment definitions and references.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:actor:character</code></td>
+<td><code>n:actor</code></td>
+<td>Own active embodied character identity and neutral runtime bindings.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:actor:player</code></td>
+<td><code>n:actor</code></td>
+<td>Own neutral player identity, possession, control authority, and spawn generations.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:agent</code></td>
+<td>-</td>
+<td>Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:asset</code></td>
+<td>-</td>
+<td>Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:composition</code></td>
+<td>-</td>
+<td>Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:compute</code></td>
+<td>-</td>
+<td>Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:compute:model</code></td>
+<td><code>n:compute</code></td>
+<td>Own model descriptors, registries, inference requests/results, and model provider contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:diagnostics</code></td>
+<td>-</td>
+<td>Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:host</code></td>
+<td>-</td>
+<td>Own host capability descriptors and fallback contracts without platform implementation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction</code></td>
+<td>-</td>
+<td>Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:input</code></td>
+<td><code>n:interaction</code></td>
+<td>Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:mcp</code></td>
+<td>-</td>
+<td>Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:network</code></td>
+<td>-</td>
+<td>Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object</code></td>
+<td>-</td>
+<td>Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:shape</code></td>
+<td><code>n:object</code></td>
+<td>Own source and derived geometric shapes, provider jobs, qualification, and fallback.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:fidelity</code></td>
+<td><code>n:object</code></td>
+<td>Own valid object forms, fidelity packages, readiness, and contextual adaptation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation</code></td>
+<td><code>n:object</code></td>
+<td>Own rooted plant species, instances, lifecycle, and deterministic variation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:tree</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>Own deterministic tree structure, canopy, growth, and fidelity descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:foliage</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>Own deterministic foliage structure and descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:vegetation:ecology</code></td>
+<td><code>n:object:vegetation</code></td>
+<td>Own deterministic vegetation suitability scoring and species selection.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:object:placement</code></td>
+<td><code>n:object</code></td>
+<td>Own deterministic placement transforms, grounding, alignment, fit, and validation receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:policy</code></td>
+<td>-</td>
+<td>Own product-neutral permission, guard, sandbox, and runtime safety decisions.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation</code></td>
+<td>-</td>
+<td>Own renderer-neutral presentation descriptors and output policy contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:output</code></td>
+<td><code>n:presentation</code></td>
+<td>Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:graphics</code></td>
+<td><code>n:presentation</code></td>
+<td>Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:camera</code></td>
+<td><code>n:presentation</code></td>
+<td>Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:animation</code></td>
+<td><code>n:presentation</code></td>
+<td>Own animation, pose, blend, rig, and timeline descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:audio</code></td>
+<td><code>n:presentation</code></td>
+<td>Own audio cue, music, ambience, mix, volume, and spatial audio descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:ui</code></td>
+<td><code>n:presentation</code></td>
+<td>Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:speech</code></td>
+<td><code>n:presentation</code></td>
+<td>Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:capture</code></td>
+<td><code>n:presentation</code></td>
+<td>Own observation requests, view sets, framing, capture jobs, progress, and result contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:presentation:sky</code></td>
+<td><code>n:presentation</code></td>
+<td>Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime</code></td>
+<td>-</td>
+<td>Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:realtime</code></td>
+<td><code>n:runtime</code></td>
+<td>Own deterministic frame context and realtime phase execution.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:data</code></td>
+<td><code>n:runtime</code></td>
+<td>Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:transaction</code></td>
+<td><code>n:runtime</code></td>
+<td>Own portable repeat-safe operation and transaction receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:persistence</code></td>
+<td><code>n:runtime</code></td>
+<td>Own save/load targets, save slots, recovery records, and adapter contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:sequence</code></td>
+<td><code>n:runtime</code></td>
+<td>Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:runtime:startup</code></td>
+<td><code>n:runtime</code></td>
+<td>Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation</code></td>
+<td>-</td>
+<td>Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics</code></td>
+<td><code>n:simulation</code></td>
+<td>Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics:articulated</code></td>
+<td><code>n:simulation:physics</code></td>
+<td>Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion</code></td>
+<td><code>n:simulation</code></td>
+<td>Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion:articulated</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>Own target poses, joint limits, articulation motion plans, and drive requests.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:spatial</code></td>
+<td>-</td>
+<td>Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world</code></td>
+<td>-</td>
+<td>Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:scene</code></td>
+<td><code>n:world</code></td>
+<td>Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:weather</code></td>
+<td><code>n:world</code></td>
+<td>Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:foundation</code></td>
+<td><code>n:world</code></td>
+<td>Own deterministic foundation contributions, composition, sampling, and cell resolution.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature</code></td>
+<td><code>n:world</code></td>
+<td>Own semantic world feature definitions, registries, lifecycle, queries, and composition.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature:landform</code></td>
+<td><code>n:world:feature</code></td>
+<td>Own semantic elevation and landform feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature:hydrology</code></td>
+<td><code>n:world:feature</code></td>
+<td>Own semantic watershed, water path, water body, and wetland feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature:ecology</code></td>
+<td><code>n:world:feature</code></td>
+<td>Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature:settlement</code></td>
+<td><code>n:world:feature</code></td>
+<td>Own semantic settlement, route, structure, and infrastructure feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:feature:atmosphere</code></td>
+<td><code>n:world:feature</code></td>
+<td>Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+</tbody></table>
+<h2>Atomic Kits</h2>
+<table>
+<thead>
+<tr>
+<th>Kit</th>
+<th>Domain</th>
+<th>Public subpath</th>
+<th>Responsibility</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>actor-registry-kit</code></td>
+<td><code>n:actor</code></td>
+<td><code>nexusengine/domains/actor/registry</code></td>
+<td>Own neutral actor identities and embodiment references.</td>
+</tr>
+<tr>
+<td><code>creature-registry-kit</code></td>
+<td><code>n:actor:creature</code></td>
+<td><code>nexusengine/domains/actor/creature</code></td>
+<td>Register and resolve neutral creature embodiment definitions.</td>
+</tr>
+<tr>
+<td><code>character-registry-kit</code></td>
+<td><code>n:actor:character</code></td>
+<td><code>nexusengine/domains/actor/character</code></td>
+<td>Register and resolve active embodied character descriptors.</td>
+</tr>
+<tr>
+<td><code>player-authority-kit</code></td>
+<td><code>n:actor:player</code></td>
+<td><code>nexusengine/domains/actor/player</code></td>
+<td>Track player identity, possession, control authority, and spawn generations.</td>
+</tr>
+<tr>
+<td><code>agent-cycle-kit</code></td>
+<td><code>n:agent</code></td>
+<td><code>nexusengine/domains/agent/cycle</code></td>
+<td>Record observations, action proposals, decision cycles, and execution receipts.</td>
+</tr>
+<tr>
+<td><code>asset-registry-kit</code></td>
+<td><code>n:asset</code></td>
+<td><code>nexusengine/domains/asset/registry</code></td>
+<td>Resolve asset manifests and bundles through content-addressed provider jobs.</td>
+</tr>
+<tr>
+<td><code>composition-registry-kit</code></td>
+<td><code>n:composition</code></td>
+<td><code>nexusengine/domains/composition/registry</code></td>
+<td>Maintain normalized composition metadata and produce deterministic plans and receipts.</td>
+</tr>
+<tr>
+<td><code>compute-graph-kit</code></td>
+<td><code>n:compute</code></td>
+<td><code>nexusengine/domains/compute/graph</code></td>
+<td>Validate compute descriptors and create deterministic dependency-ordered dispatch plans.</td>
+</tr>
+<tr>
+<td><code>model-registry-kit</code></td>
+<td><code>n:compute:model</code></td>
+<td><code>nexusengine/domains/compute/model</code></td>
+<td>Register model descriptors and normalize provider-neutral inference requests and results.</td>
+</tr>
+<tr>
+<td><code>diagnostics-kit</code></td>
+<td><code>n:diagnostics</code></td>
+<td><code>nexusengine/domains/diagnostics/runtime</code></td>
+<td>Collect serializable telemetry, runtime health, determinism, and performance evidence.</td>
+</tr>
+<tr>
+<td><code>debug-descriptor-kit</code></td>
+<td><code>n:diagnostics</code></td>
+<td><code>nexusengine/domains/diagnostics/debug</code></td>
+<td>Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics.</td>
+</tr>
+<tr>
+<td><code>debug-draw-descriptor-kit</code></td>
+<td><code>n:diagnostics</code></td>
+<td><code>nexusengine/domains/diagnostics/debug-draw</code></td>
+<td>Create stateless renderer-neutral debug draw descriptors.</td>
+</tr>
+<tr>
+<td><code>host-capability-kit</code></td>
+<td><code>n:host</code></td>
+<td><code>nexusengine/domains/host/capabilities</code></td>
+<td>Describe available host capabilities and select declarative fallback modes.</td>
+</tr>
+<tr>
+<td><code>interaction-kit</code></td>
+<td><code>n:interaction</code></td>
+<td><code>nexusengine/domains/interaction/runtime</code></td>
+<td>Manage interaction targets, affordances, activation, and results.</td>
+</tr>
+<tr>
+<td><code>input-contract-kit</code></td>
+<td><code>n:interaction:input</code></td>
+<td><code>nexusengine/domains/interaction/input</code></td>
+<td>Normalize semantic input actions, axes, contexts, and bindings.</td>
+</tr>
+<tr>
+<td><code>mcp-registry-kit</code></td>
+<td><code>n:mcp</code></td>
+<td><code>nexusengine/domains/mcp/registry</code></td>
+<td>Register and dispatch schema-valid MCP providers through an explicit authorization boundary.</td>
+</tr>
+<tr>
+<td><code>network-contract-kit</code></td>
+<td><code>n:network</code></td>
+<td><code>nexusengine/domains/network/contracts</code></td>
+<td>Describe network sessions, messages, authority, and synchronization without owning transport.</td>
+</tr>
+<tr>
+<td><code>object-registry-kit</code></td>
+<td><code>n:object</code></td>
+<td><code>nexusengine/domains/object/registry</code></td>
+<td>Own object identity and renderer-neutral lifecycle records.</td>
+</tr>
+<tr>
+<td><code>object-shape-kit</code></td>
+<td><code>n:object:shape</code></td>
+<td><code>nexusengine/domains/object/shape</code></td>
+<td>Derive and qualify renderer-neutral geometric shape candidates.</td>
+</tr>
+<tr>
+<td><code>object-fidelity-kit</code></td>
+<td><code>n:object:fidelity</code></td>
+<td><code>nexusengine/domains/object/fidelity</code></td>
+<td>Package and select valid object fidelity forms.</td>
+</tr>
+<tr>
+<td><code>object-vegetation-kit</code></td>
+<td><code>n:object:vegetation</code></td>
+<td><code>nexusengine/domains/object/vegetation</code></td>
+<td>Own deterministic plant species, instances, and lifecycle state.</td>
+</tr>
+<tr>
+<td><code>object-tree-kit</code></td>
+<td><code>n:object:vegetation:tree</code></td>
+<td><code>nexusengine/domains/object/vegetation/tree</code></td>
+<td>Produce deterministic tree structure, canopy, growth, and fidelity descriptors.</td>
+</tr>
+<tr>
+<td><code>object-foliage-kit</code></td>
+<td><code>n:object:vegetation:foliage</code></td>
+<td><code>nexusengine/domains/object/vegetation/foliage</code></td>
+<td>Produce deterministic foliage structures and descriptors.</td>
+</tr>
+<tr>
+<td><code>object-vegetation-ecology-kit</code></td>
+<td><code>n:object:vegetation:ecology</code></td>
+<td><code>nexusengine/domains/object/vegetation/ecology</code></td>
+<td>Score vegetation suitability and select species deterministically.</td>
+</tr>
+<tr>
+<td><code>object-placement-kit</code></td>
+<td><code>n:object:placement</code></td>
+<td><code>nexusengine/domains/object/placement</code></td>
+<td>Create, validate, and replay deterministic object placement receipts.</td>
+</tr>
+<tr>
+<td><code>object-meshoptimizer-shape-provider-kit</code></td>
+<td><code>n:object:shape</code></td>
+<td><code>nexusengine/domains/object/shape/meshoptimizer-provider</code></td>
+<td>Resolve object shape jobs through an explicitly registered meshoptimizer-compatible provider.</td>
+</tr>
+<tr>
+<td><code>object-shape-fidelity-adapter-kit</code></td>
+<td><code>n:object:fidelity</code></td>
+<td><code>nexusengine/domains/object/adapters/shape-fidelity</code></td>
+<td>Translate qualified shape records into Object Fidelity form requests.</td>
+</tr>
+<tr>
+<td><code>object-vegetation-bridge-kit</code></td>
+<td><code>n:object:vegetation</code></td>
+<td><code>nexusengine/domains/object/adapters/vegetation-object</code></td>
+<td>Project vegetation identities into canonical Object descriptors without owning either state.</td>
+</tr>
+<tr>
+<td><code>policy-kit</code></td>
+<td><code>n:policy</code></td>
+<td><code>nexusengine/domains/policy/guard</code></td>
+<td>Evaluate declarative runtime safety and permission rules.</td>
+</tr>
+<tr>
+<td><code>presentation-registry-kit</code></td>
+<td><code>n:presentation</code></td>
+<td><code>nexusengine/domains/presentation/registry</code></td>
+<td>Register renderer-neutral presentation capabilities and descriptors.</td>
+</tr>
+<tr>
+<td><code>presentation-output-kit</code></td>
+<td><code>n:presentation:output</code></td>
+<td><code>nexusengine/domains/presentation/output</code></td>
+<td>Calculate renderer-neutral surfaces, safe areas, viewports, aspect policy, and render resolution.</td>
+</tr>
+<tr>
+<td><code>graphics-descriptor-kit</code></td>
+<td><code>n:presentation:graphics</code></td>
+<td><code>nexusengine/domains/presentation/graphics</code></td>
+<td>Create renderer-neutral material, lighting, VFX, quality, batch, and terrain LOD descriptors.</td>
+</tr>
+<tr>
+<td><code>render-layer-graph-kit</code></td>
+<td><code>n:presentation:graphics</code></td>
+<td><code>nexusengine/domains/presentation/graphics/render-graph</code></td>
+<td>Validate renderer-neutral render layers, dependencies, and pass ordering.</td>
+</tr>
+<tr>
+<td><code>reflection-descriptor-kit</code></td>
+<td><code>n:presentation:graphics</code></td>
+<td><code>nexusengine/domains/presentation/graphics/reflection</code></td>
+<td>Describe renderer-neutral reflection probes, plans, and update policy.</td>
+</tr>
+<tr>
+<td><code>camera-descriptor-kit</code></td>
+<td><code>n:presentation:camera</code></td>
+<td><code>nexusengine/domains/presentation/camera</code></td>
+<td>Manage camera targets, modes, smoothing, and renderer-neutral camera policy.</td>
+</tr>
+<tr>
+<td><code>camera-framing-kit</code></td>
+<td><code>n:presentation:camera</code></td>
+<td><code>nexusengine/domains/presentation/camera/framing</code></td>
+<td>Calculate perspective and orthographic subject framing for a viewport.</td>
+</tr>
+<tr>
+<td><code>camera-control-math-kit</code></td>
+<td><code>n:presentation:camera</code></td>
+<td><code>nexusengine/domains/presentation/camera/control-math</code></td>
+<td>Calculate camera-relative yaw, orbit limits, and root handoff state.</td>
+</tr>
+<tr>
+<td><code>animation-descriptor-kit</code></td>
+<td><code>n:presentation:animation</code></td>
+<td><code>nexusengine/domains/presentation/animation</code></td>
+<td>Manage animation clips, poses, blends, transitions, and timeline descriptors.</td>
+</tr>
+<tr>
+<td><code>rig-transform-kit</code></td>
+<td><code>n:presentation:animation</code></td>
+<td><code>nexusengine/domains/presentation/animation/rig</code></td>
+<td>Create neutral joint, limb, and rig transform descriptors.</td>
+</tr>
+<tr>
+<td><code>audio-descriptor-kit</code></td>
+<td><code>n:presentation:audio</code></td>
+<td><code>nexusengine/domains/presentation/audio</code></td>
+<td>Manage renderer-neutral audio cues, mix groups, volume policy, and spatial audio descriptors.</td>
+</tr>
+<tr>
+<td><code>ui-descriptor-kit</code></td>
+<td><code>n:presentation:ui</code></td>
+<td><code>nexusengine/domains/presentation/ui</code></td>
+<td>Manage renderer-neutral UI, focus, selection, prompt, notification, and accessibility descriptors.</td>
+</tr>
+<tr>
+<td><code>ui-scale-kit</code></td>
+<td><code>n:presentation:ui</code></td>
+<td><code>nexusengine/domains/presentation/ui/scale</code></td>
+<td>Calculate deterministic reference-resolution and UI scale policy.</td>
+</tr>
+<tr>
+<td><code>speech-contract-kit</code></td>
+<td><code>n:presentation:speech</code></td>
+<td><code>nexusengine/domains/presentation/speech</code></td>
+<td>Manage provider-neutral speech requests, voices, utterance lifecycle, and synthesis results.</td>
+</tr>
+<tr>
+<td><code>capture-contract-kit</code></td>
+<td><code>n:presentation:capture</code></td>
+<td><code>nexusengine/domains/presentation/capture</code></td>
+<td>Manage observation requests, view sets, framing, capture jobs, progress, and result contracts.</td>
+</tr>
+<tr>
+<td><code>sky-descriptor-kit</code></td>
+<td><code>n:presentation:sky</code></td>
+<td><code>nexusengine/domains/presentation/sky</code></td>
+<td>Create generic sky, horizon, atmosphere, cloud, and celestial descriptors.</td>
+</tr>
+<tr>
+<td><code>runtime-lifecycle-kit</code></td>
+<td><code>n:runtime</code></td>
+<td><code>nexusengine/domains/runtime/lifecycle</code></td>
+<td>Own deterministic runtime lifecycle and Kit installation receipts.</td>
+</tr>
+<tr>
+<td><code>realtime-runtime-kit</code></td>
+<td><code>n:runtime:realtime</code></td>
+<td><code>nexusengine/domains/runtime/realtime</code></td>
+<td>Create deterministic realtime frame context and phase execution.</td>
+</tr>
+<tr>
+<td><code>runtime-data-kit</code></td>
+<td><code>n:runtime:data</code></td>
+<td><code>nexusengine/domains/runtime/data</code></td>
+<td>Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes.</td>
+</tr>
+<tr>
+<td><code>transaction-ledger-kit</code></td>
+<td><code>n:runtime:transaction</code></td>
+<td><code>nexusengine/domains/runtime/transaction</code></td>
+<td>Record repeat-safe operation keys and immutable transaction receipts.</td>
+</tr>
+<tr>
+<td><code>persistence-contract-kit</code></td>
+<td><code>n:runtime:persistence</code></td>
+<td><code>nexusengine/domains/runtime/persistence</code></td>
+<td>Describe save/load targets, slots, recovery records, and persistence adapter contracts.</td>
+</tr>
+<tr>
+<td><code>runtime-sequence-kit</code></td>
+<td><code>n:runtime:sequence</code></td>
+<td><code>nexusengine/domains/runtime/sequence</code></td>
+<td>Install deterministic sequence node definitions and execution state.</td>
+</tr>
+<tr>
+<td><code>runtime-startup-kit</code></td>
+<td><code>n:runtime:startup</code></td>
+<td><code>nexusengine/domains/runtime/startup</code></td>
+<td>Coordinate deterministic startup preparation and readiness receipts.</td>
+</tr>
+<tr>
+<td><code>simulation-state-kit</code></td>
+<td><code>n:simulation</code></td>
+<td><code>nexusengine/domains/simulation/runtime</code></td>
+<td>Manage deterministic simulation objectives, resources, hazards, timers, and resolution receipts.</td>
+</tr>
+<tr>
+<td><code>physics-contract-kit</code></td>
+<td><code>n:simulation:physics</code></td>
+<td><code>nexusengine/domains/simulation/physics</code></td>
+<td>Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries.</td>
+</tr>
+<tr>
+<td><code>articulated-physics-kit</code></td>
+<td><code>n:simulation:physics:articulated</code></td>
+<td><code>nexusengine/domains/simulation/physics/articulated</code></td>
+<td>Manage backend-neutral articulated body topology and joint dynamics state.</td>
+</tr>
+<tr>
+<td><code>motion-contract-kit</code></td>
+<td><code>n:simulation:motion</code></td>
+<td><code>nexusengine/domains/simulation/motion</code></td>
+<td>Manage intent-to-motion descriptors, trajectories, velocity state, and movement policies.</td>
+</tr>
+<tr>
+<td><code>two-bone-ik-kit</code></td>
+<td><code>n:simulation:motion</code></td>
+<td><code>nexusengine/domains/simulation/motion/two-bone-ik</code></td>
+<td>Solve deterministic two-bone inverse-kinematics poses.</td>
+</tr>
+<tr>
+<td><code>articulated-motion-kit</code></td>
+<td><code>n:simulation:motion:articulated</code></td>
+<td><code>nexusengine/domains/simulation/motion/articulated</code></td>
+<td>Create target poses, joint limits, articulation plans, and drive requests.</td>
+</tr>
+<tr>
+<td><code>articulated-motion-drive-adapter-kit</code></td>
+<td><code>n:simulation:physics:articulated</code></td>
+<td><code>nexusengine/domains/simulation/adapters/articulated-drive</code></td>
+<td>Translate articulated motion plans into backend-neutral physics drive requests.</td>
+</tr>
+<tr>
+<td><code>spatial-contract-kit</code></td>
+<td><code>n:spatial</code></td>
+<td><code>nexusengine/domains/spatial/contracts</code></td>
+<td>Describe transforms, bounds, zones, spaces, and spatial query requests.</td>
+</tr>
+<tr>
+<td><code>spatial-angle-math-kit</code></td>
+<td><code>n:spatial</code></td>
+<td><code>nexusengine/domains/spatial/angle-math</code></td>
+<td>Normalize, compare, and interpolate angular values.</td>
+</tr>
+<tr>
+<td><code>spatial-vector-math-kit</code></td>
+<td><code>n:spatial</code></td>
+<td><code>nexusengine/domains/spatial/vector-math</code></td>
+<td>Create and operate on renderer-neutral vector values.</td>
+</tr>
+<tr>
+<td><code>spatial-transform-math-kit</code></td>
+<td><code>n:spatial</code></td>
+<td><code>nexusengine/domains/spatial/transform-math</code></td>
+<td>Calculate deterministic transforms, bases, interpolation, and planar projections.</td>
+</tr>
+<tr>
+<td><code>spatial-quaternion-math-kit</code></td>
+<td><code>n:spatial</code></td>
+<td><code>nexusengine/domains/spatial/quaternion-math</code></td>
+<td>Create, compose, normalize, rotate, and interpolate quaternions.</td>
+</tr>
+<tr>
+<td><code>world-state-kit</code></td>
+<td><code>n:world</code></td>
+<td><code>nexusengine/domains/world/runtime</code></td>
+<td>Manage world identity, cells, partitions, surfaces, and deterministic assembly state.</td>
+</tr>
+<tr>
+<td><code>scene-lifecycle-kit</code></td>
+<td><code>n:world:scene</code></td>
+<td><code>nexusengine/domains/world/scene</code></td>
+<td>Manage host-neutral scene identity, lifecycle, transitions, bindings, and snapshots.</td>
+</tr>
+<tr>
+<td><code>weather-state-kit</code></td>
+<td><code>n:world:weather</code></td>
+<td><code>nexusengine/domains/world/weather</code></td>
+<td>Manage deterministic weather conditions, tendencies, regions, and sampling.</td>
+</tr>
+<tr>
+<td><code>layered-weather-kit</code></td>
+<td><code>n:world:weather</code></td>
+<td><code>nexusengine/domains/world/weather/layers</code></td>
+<td>Compose and evolve deterministic altitude-aware weather layers.</td>
+</tr>
+<tr>
+<td><code>world-foundation-kit</code></td>
+<td><code>n:world:foundation</code></td>
+<td><code>nexusengine/domains/world/foundation</code></td>
+<td>Compose deterministic world foundation definitions, contributions, sampling, and cell resolution.</td>
+</tr>
+<tr>
+<td><code>world-feature-kit</code></td>
+<td><code>n:world:feature</code></td>
+<td><code>nexusengine/domains/world/feature</code></td>
+<td>Manage semantic world feature definitions, registry, lifecycle, queries, and composition.</td>
+</tr>
+<tr>
+<td><code>semantic-world-feature-kit</code></td>
+<td><code>n:world:feature</code></td>
+<td><code>nexusengine/domains/world/feature/semantic</code></td>
+<td>Create one semantic world feature Domain Service Kit from a bounded feature specification.</td>
+</tr>
+<tr>
+<td><code>landform-feature-kit</code></td>
+<td><code>n:world:feature:landform</code></td>
+<td><code>nexusengine/domains/world/feature/landform</code></td>
+<td>Create semantic elevation and landform feature descriptors and lifecycle state.</td>
+</tr>
+<tr>
+<td><code>hydrology-feature-kit</code></td>
+<td><code>n:world:feature:hydrology</code></td>
+<td><code>nexusengine/domains/world/feature/hydrology</code></td>
+<td>Create semantic watershed, water path, water body, and wetland feature descriptors.</td>
+</tr>
+<tr>
+<td><code>ecology-feature-kit</code></td>
+<td><code>n:world:feature:ecology</code></td>
+<td><code>nexusengine/domains/world/feature/ecology</code></td>
+<td>Create semantic biome, habitat, vegetation-region, and ecotone feature descriptors.</td>
+</tr>
+<tr>
+<td><code>settlement-feature-kit</code></td>
+<td><code>n:world:feature:settlement</code></td>
+<td><code>nexusengine/domains/world/feature/settlement</code></td>
+<td>Create semantic settlement, route, structure, and infrastructure feature descriptors.</td>
+</tr>
+<tr>
+<td><code>atmosphere-feature-kit</code></td>
+<td><code>n:world:feature:atmosphere</code></td>
+<td><code>nexusengine/domains/world/feature/atmosphere</code></td>
+<td>Create semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</td>
+</tr>
+</tbody></table>
+
+    </article>
+
+    <article class="chapter" id="ownership-ledger">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>Kit Ownership Ledger</h1>
+<p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
+<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<ul>
+<li>Source modules: 306</li>
+<li>Manifest-proven public atoms: 76</li>
+<li>Manifest-owned internal modules: 205</li>
+<li>Root contract modules: 25</li>
+<li>Unreviewed modules: 0</li>
+<li>Violations: 0</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Path</th>
+<th>Owner</th>
+<th>Review</th>
+<th>Destination</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/core-domains/actor/domain.manifest.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/kits/actor-registry-kit/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/character/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/character/kits/character-kit/contracts.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/character/kits/character-kit/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/creature/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/creature/kits/creature-kit/contracts.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/creature/kits/creature-kit/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/player/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/player/kits/player-kit/contracts.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/actor/subdomains/player/kits/player-kit/index.js</code></td>
+<td><code>n:actor</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/domain.manifest.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/action-proposals.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/adapters.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/agent-state.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/decision-cycle.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/execution-ledger.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/observations.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/domain.manifest.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/index.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/kits/asset-kit/cache-provider.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/kits/asset-kit/descriptors.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/kits/asset-kit/index.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/asset/kits/asset-kit/provider.js</code></td>
+<td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/catalog.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/adapters/mcp/composition-mcp-provider.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/adapters/mcp/generated-guide-resources.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/domain.manifest.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/index.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/kits/composition-registry-kit/composition-tree.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/kits/composition-registry-kit/index.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/kits/composition-registry-kit/registry.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/kits/composition-registry-kit/services.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/composition/services/composition-apply-controller.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/domain.manifest.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/index.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/kits/compute-kit/descriptors.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/kits/compute-kit/index.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/kits/compute-kit/provider.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/adapters.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/index.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/inference-request.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/inference-result.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/model-descriptors.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/model-registry.js</code></td>
+<td><code>n:compute</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/diagnostics/domain.manifest.js</code></td>
+<td><code>n:diagnostics</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/diagnostics/index.js</code></td>
+<td><code>n:diagnostics</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/diagnostics/kits/debug-descriptor-kit/index.js</code></td>
+<td><code>n:diagnostics</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/diagnostics/kits/debug-draw-kit.js</code></td>
+<td><code>n:diagnostics</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/diagnostics/kits/diagnostics-kit/index.js</code></td>
+<td><code>n:diagnostics</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/domain-kit.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/domain-manifest.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/host/domain.manifest.js</code></td>
+<td><code>n:host</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/host/index.js</code></td>
+<td><code>n:host</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/host/kits/host-capability-kit/index.js</code></td>
+<td><code>n:host</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/index.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/domain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/activation.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/affordances.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/prompts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/results.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/targets.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/actions.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/adapters.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/bindings.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/contexts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/intent.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/manifest-domain-service-kit.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/manifest-input.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/manifest-kit-contract.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/adapters/node-mcp-sdk-adapter/index.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/contract-utilities.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/prompt-contract.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/provider-contract.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/resource-contract.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/result-contract.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/contracts/tool-contract.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/domain.manifest.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/index.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/kits/mcp-registry-kit/authorization.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/kits/mcp-registry-kit/index.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/kits/mcp-registry-kit/registry.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/mcp/state/registry-snapshot.js</code></td>
+<td><code>n:mcp</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/network/domain.manifest.js</code></td>
+<td><code>n:network</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/network/index.js</code></td>
+<td><code>n:network</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/network/kits/network-kit/index.js</code></td>
+<td><code>n:network</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/adapters/object-shape-fidelity-adapter-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/contracts/object-descriptor.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/domain.manifest.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/kits/object-registry-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/state/object-registry-state.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/fidelity/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/fidelity/kits/object-fidelity-kit/descriptors.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/fidelity/kits/object-fidelity-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/contracts/placement-descriptor.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/kits/object-placement-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-math.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-operations.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/placement/kits/object-placement-kit/placement-validation.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/descriptors.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/metrics.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/profiles.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/provider.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/kits/object-shape-kit/qualification.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/meshoptimizer-provider.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/shape/providers/meshoptimizer-shape-provider-kit/reference-provider.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/adapters/vegetation-object-bridge-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/contracts.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/subdomains/ecology-domain/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/subdomains/foliage-domain/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/object/subdomains/vegetation/subdomains/tree-domain/index.js</code></td>
+<td><code>n:object</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/policy/domain.manifest.js</code></td>
+<td><code>n:policy</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/policy/index.js</code></td>
+<td><code>n:policy</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/policy/kits/policy-kit/index.js</code></td>
+<td><code>n:policy</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/contracts.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/domain.manifest.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/kits/presentation-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/animation/kits/animation-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/animation/kits/rig-transform-kit.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/audio/kits/audio-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/camera-control-kit.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/camera-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/camera-kit/smoothing.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/framing-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/framing-kit/orthographic-fit.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/kits/framing-kit/perspective-fit.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/capture/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/capture/kits/capture-kit/descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/capture/kits/capture-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/capture/kits/capture-kit/provider.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/adapters.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/instance-batches.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/lighting-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/material-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/procedural-material-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/quality-profiles.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/reflection-kit/contract.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/reflection-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/terrain-lod-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/vfx-descriptors.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/output/kits/output-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/output/kits/output-kit/math.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/speech/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/ui/kits/ui-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/math.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/domain.manifest.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/ledger.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/migration.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/package-service.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/schema.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/selectors.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/services.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/data/kits/data-kit/snapshot.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/persistence/kits/persistence-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/realtime/contracts/surfaces.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/startup/core-assets-startup-bridge.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/startup/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/startup/kits/startup-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/domain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/checkpoints.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/hazards.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/objectives.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/pressure.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/resolution.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/resources.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/kits/simulation-kit/timers.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/kits/motion-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/kits/physics-kit/provider.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/domain.manifest.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/index.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/kits/angle-math-kit.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/kits/quaternion-math-kit.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/kits/spatial-kit/index.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/kits/transform-math-kit.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/kits/vector-math-kit.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/adapters/terrain-provider-adapter/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/domain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/kits/world-builder-runtime-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/kits/world-cell-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/kits/world-effect-provider-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/kits/world-partition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/kits/world-surface-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/partitions/quadtree-partition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/partitions/uniform-grid-partition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/portable.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/preparation/world-patch-preparation-controller.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/snapshot.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/constants.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/descriptors.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/host-contract.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/ledgers.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/scene-registry.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/scene-transition-ledger.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/transitions.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/utils.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/weather/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/weather/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/weather/weather-domain.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/feature-composition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/feature-definition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/feature-lifecycle-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/feature-query-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/feature-registry-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/kits/semantic-feature-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/snapshot.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/atmosphere-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/ecology-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/feature-family-domain-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/hydrology-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/canyon-feature-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/cliff-feature-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/landform-feature-kits.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/mountain-feature-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/kits/plateau-feature-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/landform-feature-domain/landform-feature-domain.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/subdomains/settlement-feature-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/validation.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-feature-domain/world-feature-domain.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-cell-resolution-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-composition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-definition-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/kits/foundation-sampling-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/snapshot.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/validation.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/world-foundation-domain/world-foundation-domain.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/surfaces/curved-horizon-surface-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/surfaces/flat-world-surface-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/validation.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/world-domain.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/domain-api.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/domain-path.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/domain-service-kit.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/ecs.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/engine.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/foundation/completion-ledger.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/deterministic-replay.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/idempotency-ledger.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/index.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/progress-timer.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/promotion-guard.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/seeded-random.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/serializable-state.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/sha256.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/foundation/snapshot.js</code></td>
+<td><code>engine-foundation</code></td>
+<td>root-contract</td>
+<td>NexusEngine foundation</td>
+</tr>
+<tr>
+<td><code>src/index.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/release.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+<tr>
+<td><code>src/runtime-kit.js</code></td>
+<td><code>engine-root</code></td>
+<td>root-contract</td>
+<td>NexusEngine minimal root</td>
+</tr>
+</tbody></table>
+
+    </article>
+
+    <article class="chapter" id="root-migration-map">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>NexusEngine 0.0.4 Root Module Dispositions</h1>
+<p>Source commit: <code>a9adca5b3620f996f00860358c4864dd4bdfa6d9</code></p>
+<p>This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuild them from the named Core atoms in the owning package or game.</p>
+<h2>Removed Exports From Retained Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Removed exports</th>
+<th>Disposition</th>
+<th>Replacement</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/index.js</code></td>
+<td><code>createMockModelAdapter</code></td>
+<td>recipe-data</td>
+<td>Inject createModelAdapterBoundary({ infer }) into createModelKit({ adapters }).</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js</code></td>
+<td><code>CORE_SKYBOX_PRESETS</code></td>
+<td>recipe-data</td>
+<td>Pass caller-owned preset data to createSkyDescriptorKit({ presets }) or registerPreset().</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js</code></td>
+<td><code>createTinyTTSAssetManifest</code>, <code>createTinyTTSProvider</code>, <code>registerTinyTTSAssets</code></td>
+<td>external-kit</td>
+<td>Install a model, network, and asset implementation through createSpeechKit().registerProvider().</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js</code></td>
+<td><code>createPocketTTSAssetManifest</code>, <code>createPocketTTSHttpAssetProvider</code>, <code>createPocketTTSProvider</code>, <code>registerPocketTTSAssets</code></td>
+<td>external-kit</td>
+<td>Install PocketTTS through createSpeechKit().registerProvider().</td>
+</tr>
+</tbody></table>
+<h2>Retired Source Modules</h2>
+<table>
+<thead>
+<tr>
+<th>Source</th>
+<th>Disposition</th>
+<th>Owner</th>
+<th>Core requirements</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>bin/nexus-editor.mjs</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor</td>
+<td><code>n:composition</code>, <code>n:host</code>, <code>n:mcp</code></td>
+</tr>
+<tr>
+<td><code>src/action-movement-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:interaction:input</code>, <code>n:simulation:motion</code></td>
+</tr>
+<tr>
+<td><code>src/assistance-target-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:interaction</code>, <code>n:object</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/cargo-manifest-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:object</code>, <code>n:runtime:data</code>, <code>n:runtime:transaction</code></td>
+</tr>
+<tr>
+<td><code>src/character-camera-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor:character</code>, <code>n:presentation:camera</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/common-game-definitions.js</code></td>
+<td>recipe-data</td>
+<td>NexusEngine-Kits recipes</td>
+<td><code>n:actor</code>, <code>n:interaction</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/compute/subdomains/model/kits/model-kit/mock-model-adapter.js</code></td>
+<td>recipe-data</td>
+<td>NexusEngine tests</td>
+<td><code>n:compute:model</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:asset</code>, <code>n:compute:model</code>, <code>n:presentation:speech</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/headless-scene-host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:host</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/native-scene-host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:host</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/rust-native-scene-host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:host</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-html-scene-host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:host</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-scene-host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:host</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/economy-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:runtime:data</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/environmental-affordance-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:interaction</code>, <code>n:object</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/facility-operations-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:runtime:sequence</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/game-kit-composer.js</code></td>
+<td>duplicate</td>
+<td>n:composition</td>
+<td><code>n:composition</code>, <code>n:policy</code></td>
+</tr>
+<tr>
+<td><code>src/hazard-field-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:object</code>, <code>n:simulation</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/host.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor</td>
+<td><code>n:composition</code>, <code>n:host</code>, <code>n:policy</code></td>
+</tr>
+<tr>
+<td><code>src/hosts/browser/browser-indexeddb-asset-cache-adapter.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:asset</code>, <code>n:host</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/hosts/browser/browser-presentation-surface-adapter.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:asset</code>, <code>n:host</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/hosts/browser/browser-startup-presentation-adapter.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor adapters</td>
+<td><code>n:asset</code>, <code>n:host</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/landmark-guidance-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:object</code>, <code>n:spatial</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/lifecycle-progression-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:runtime:sequence</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/nexus-diffusion-domain.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/backend/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/checkpoint/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/dataset/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/model/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/noise/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/preview/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/sampling/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/tensor/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/subdomains/training/index.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/modules/nexus-diffusion/utils/seeded-random.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:compute:model</code>, <code>n:runtime:data</code></td>
+</tr>
+<tr>
+<td><code>src/navmesh-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:spatial</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/occupant-flow-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/pathfinding-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:spatial</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/procedural-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:runtime:data</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/procedural-navigation-extensions.js</code></td>
+<td>duplicate</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:composition</code></td>
+</tr>
+<tr>
+<td><code>src/pursuit-pressure-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:simulation</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/renderers.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:host</code>, <code>n:presentation:output</code></td>
+</tr>
+<tr>
+<td><code>src/renderers/three/three-object-capture-provider.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:host</code>, <code>n:object</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/renderers/three/three-presentation-output-adapter.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:host</code>, <code>n:object</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/renderers/three/three-subject-bounds-adapter.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:host</code>, <code>n:object</code>, <code>n:presentation</code></td>
+</tr>
+<tr>
+<td><code>src/request-fulfillment-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:interaction</code>, <code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/request-queue-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:runtime:transaction</code></td>
+</tr>
+<tr>
+<td><code>src/route-field-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:object</code>, <code>n:spatial</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/scenario-driver-kit.js</code></td>
+<td>game-owned</td>
+<td>Experiments or game repository</td>
+<td><code>n:composition</code>, <code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/scenario-duration-kit.js</code></td>
+<td>game-owned</td>
+<td>Experiments or game repository</td>
+<td><code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/schedule-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+</tr>
+<tr>
+<td><code>src/shaders.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits adapters</td>
+<td><code>n:host</code>, <code>n:presentation:graphics</code></td>
+</tr>
+<tr>
+<td><code>src/spatial-scale-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:object</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/terrain-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:compute</code>, <code>n:world</code>, <code>n:world:scene</code></td>
+</tr>
+<tr>
+<td><code>src/transfer-zone-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:interaction</code>, <code>n:object</code>, <code>n:spatial</code></td>
+</tr>
+<tr>
+<td><code>src/transport-route-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/vehicle-dynamics-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:interaction:input</code>, <code>n:simulation:motion</code>, <code>n:simulation:physics</code></td>
+</tr>
+<tr>
+<td><code>src/water-surface-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:presentation:graphics</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>src/world-physics-kit.js</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Kits</td>
+<td><code>n:simulation:motion</code>, <code>n:simulation:physics</code>, <code>n:world</code></td>
+</tr>
+<tr>
+<td><code>tools/headless-editor/</code></td>
+<td>external-kit</td>
+<td>NexusEngine-Editor</td>
+<td><code>n:composition</code>, <code>n:host</code>, <code>n:mcp</code>, <code>n:policy</code></td>
+</tr>
+</tbody></table>
+
+    </article>
+
+    <article class="chapter" id="extraction-summary">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>Frozen ProtoKit Extraction</h1>
+<p>Canonical source: <code>https://github.com/LuminaryLabs-Agents/NexusEngine-ProtoKits.git</code> at <code>0d102649267737230d618b30fe6f9465b198d234</code></p>
+<p>Coverage: <strong>3698/3698 source items (100%)</strong> across <strong>530 ProtoKit folders</strong>. Source code was parsed as text and never executed.</p>
+<h2>Dispositions</h2>
+<table>
+<thead>
+<tr>
+<th>Disposition</th>
+<th align="right">Source items</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>core-reuse</td>
+<td align="right">119</td>
+</tr>
+<tr>
+<td>core-composition</td>
+<td align="right">115</td>
+</tr>
+<tr>
+<td>core-new-atom</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>external-kit</td>
+<td align="right">3096</td>
+</tr>
+<tr>
+<td>recipe-data</td>
+<td align="right">113</td>
+</tr>
+<tr>
+<td>game-owned</td>
+<td align="right">236</td>
+</tr>
+<tr>
+<td>duplicate</td>
+<td align="right">0</td>
+</tr>
+<tr>
+<td>rejected-unproven</td>
+<td align="right">19</td>
+</tr>
+</tbody></table>
+<h2>Core Gap Set</h2>
+<p>No historical source item passed every Core-new-atom gate. The frozen Core gap set is empty; unproven generic-looking behavior remains external or rejected rather than being promoted by name.</p>
+<h2>Deterministic Batches</h2>
+<table>
+<thead>
+<tr>
+<th>Batch</th>
+<th>First folder</th>
+<th>Last folder</th>
+<th align="right">Folders</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>batch-01</td>
+<td><code>2d-platformer-domain</code></td>
+<td><code>blackwake-kit-registry</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-02</td>
+<td><code>blackwake-preset-kit</code></td>
+<td><code>domain-taxonomy-domain-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-03</td>
+<td><code>downhill-race-kit</code></td>
+<td><code>generic-cargo-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-04</td>
+<td><code>generic-cargo-transfer-kit</code></td>
+<td><code>generic-replay-test-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-05</td>
+<td><code>generic-resource-loop-kit</code></td>
+<td><code>ground-contact-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-06</td>
+<td><code>guard-domain-kit</code></td>
+<td><code>navigation-knowledge-domain-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-07</td>
+<td><code>negotiation-commitment-domain-kit</code></td>
+<td><code>openxr-hand-adapter-dsk</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-08</td>
+<td><code>orchard-biome-kit</code></td>
+<td><code>render-layer-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-09</td>
+<td><code>render-quality-budget-kit</code></td>
+<td><code>stream-backpressure-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-10</td>
+<td><code>stream-channel-kit</code></td>
+<td><code>water-stream-kit</code></td>
+<td align="right">50</td>
+</tr>
+<tr>
+<td>batch-11</td>
+<td><code>water-surface-kit</code></td>
+<td><code>zone-field-kit</code></td>
+<td align="right">30</td>
+</tr>
+</tbody></table>
+<h2>Artifacts</h2>
+<ul>
+<li><code>source.json</code>: immutable source identity and complete snapshot hash.</li>
+<li><code>inventory.json</code>: files, exports, state/lifecycle signals, dependencies, consumers, providers, and adapters by folder.</li>
+<li><code>dispositions.json</code>: canonical export-level ownership and reconstruction ledger.</li>
+<li><code>core-gap-set.json</code>: frozen result of the new-Core-atom gate.</li>
+</ul>
+
+    </article>
+</body>
+</html>

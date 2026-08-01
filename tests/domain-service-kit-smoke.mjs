@@ -8,7 +8,7 @@ import {
   extendDomainServiceKit,
   isDomainServiceKit,
   validateDomainServiceKit
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const ScanState = defineResource("dskSmoke.scanState");
 const ScanCommand = defineEvent("dskSmoke.scanCommand");
@@ -20,6 +20,7 @@ function createScanKit() {
     stability: "experimental",
     version: "0.0.2",
     services: ["command", "snapshot"],
+    provides: ["n:scan-survey", "n:scan-survey:command", "n:scan-survey:snapshot"],
     resources: { ScanState },
     events: { ScanCommand, ScanDone },
     inputs: ["dskSmoke.scanCommand"],
@@ -95,6 +96,7 @@ const dependency = defineDomainServiceKit({
   domain: "dependency",
   stability: "experimental",
   version: "0.0.2",
+  provides: ["n:dependency"],
   createApi() {
     return { ok: true };
   }

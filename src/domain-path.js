@@ -90,6 +90,8 @@ function createDomainPathRecord(entry = {}) {
     path,
     parentPath,
     ownerKitId,
+    ownerKitIds: Object.freeze([ownerKitId]),
+    sharedOwnership: entry.sharedOwnership === true,
     domain: entry.domain,
     status: entry.status ?? entry.stability,
     version: entry.version,
@@ -104,13 +106,26 @@ export function createDomainPathRegistry() {
     const record = createDomainPathRecord(entry);
     const existing = records.get(record.path);
 
-    if (existing && existing.ownerKitId !== record.ownerKitId) {
+    const differentOwner = existing && existing.ownerKitId !== record.ownerKitId && !existing.ownerKitIds?.includes(record.ownerKitId);
+    const canShare = differentOwner
+      && existing.sharedOwnership === true
+      && record.sharedOwnership === true
+      && existing.parentPath === record.parentPath;
+
+    if (differentOwner && !canShare) {
       throw new TypeError(`Domain path ${record.path} is already registered to kit ${existing.ownerKitId}.`);
     }
+
+    const ownerKitIds = Object.freeze([
+      ...new Set([...(existing?.ownerKitIds ?? []), record.ownerKitId])
+    ].sort());
 
     const next = Object.freeze({
       ...(existing ?? {}),
       ...record,
+      ownerKitId: existing?.ownerKitId ?? record.ownerKitId,
+      ownerKitIds,
+      sharedOwnership: existing?.sharedOwnership === true || record.sharedOwnership === true,
       metadata: Object.freeze({
         ...(existing?.metadata ?? {}),
         ...(record.metadata ?? {})
@@ -133,7 +148,11 @@ export function createDomainPathRegistry() {
     return get(path)?.ownerKitId ?? null;
   }
 
-  return Object.freeze({ register, get, list, ownerOf });
+  function ownersOf(path) {
+    return [...(get(path)?.ownerKitIds ?? [])];
+  }
+
+  return Object.freeze({ register, get, list, ownerOf, ownersOf });
 }
 
 export function ensureDomainPathRegistry(engine) {
@@ -156,6 +175,7 @@ export function installDomainPathControls(engine) {
   defineReservedMethod(namespace, "path", (path) => registry.get(path), "domain path lookup");
   defineReservedMethod(namespace, "paths", () => registry.list(), "domain path listing");
   defineReservedMethod(namespace, "ownerOf", (path) => registry.ownerOf(path), "domain path ownership lookup");
+  defineReservedMethod(namespace, "ownersOf", (path) => registry.ownersOf(path), "domain path membership lookup");
   defineHidden(engine, DOMAIN_PATH_CONTROLS_KEY, true);
 
   return registry;
@@ -173,6 +193,7 @@ export function registerDomainPathForKit(engine, kit) {
     path: metadata.domainPath,
     parentPath: metadata.parentDomainPath,
     ownerKitId: kit.id,
+    sharedOwnership: metadata.manifestSchema === "nexusengine.atomic-kit-manifest/2",
     domain: metadata.domain,
     status: metadata.stability,
     version: metadata.version,

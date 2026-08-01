@@ -1,85 +1,68 @@
 import assert from "node:assert/strict";
 import {
-  createCoreAssetsKit,
-  createCoreSpeechDomain,
-  createPocketTTSAssetManifest,
-  createPocketTTSProvider,
-  createRealtimeGame,
-  createTinyTTSProvider
-} from "../../src/index.js";
+  createPresentationKit,
+  createSpeechKit,
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({ kits: [
-  createCoreAssetsKit(),
-  ...createCoreSpeechDomain()
+const engine = createEngine({ kits: [
+  createPresentationKit(),
+  createSpeechKit()
 ] });
 
-const loaded = [];
-engine.n.coreAssets.registerProvider({
-  id: "memory-speech-assets",
-  async load(asset) {
-    loaded.push(asset.id);
-    return { value: { id: asset.id, source: asset.source }, portable: { id: asset.id } };
-  }
-});
-
-const provider = createTinyTTSProvider({
-  assetProviderId: "memory-speech-assets",
-  modelUri: "memory://tinytts.onnx",
-  phonemizerUri: "memory://phonemizer.json",
-  vocabularyUri: "memory://vocabulary.json",
-  async createSession({ model, phonemizer, vocabulary }) {
-    assert.ok(model && phonemizer && vocabulary);
+let initializes = 0;
+let executions = 0;
+const provider = {
+  id: "fixture-speech",
+  version: "1",
+  metadata: { environment: "test" },
+  async initialize() {
+    initializes += 1;
+  },
+  async synthesize(request) {
+    executions += 1;
     return {
-      async synthesize(request) {
-        return { generatedAssetId: `speech-audio:${request.id}`, sampleRate: 44100, channels: 1, samples: [0, 0.25, 0] };
-      },
-      dispose() {}
+      generatedAssetId: `speech-audio:${request.id}`,
+      sampleRate: 44100,
+      channels: 1,
+      samples: [0, 0.25, 0]
     };
-  }
-});
+  },
+  reset() {}
+};
 
-const speech = engine.n.coreSpeech;
+const speech = engine.n.speech;
 assert.ok(speech);
-assert.equal(engine.n.ownerOf("n:speech"), "core-speech-domain");
-speech.registerProvider(provider);
-speech.registerVoice({ id: "guide", provider: "tiny-tts", language: "en" });
+assert.equal(engine.n.ownerOf("n:presentation:speech"), "speech-contract-kit");
+assert.equal(speech.registerProvider(provider), provider.id);
+assert.equal(speech.registerProvider(provider), provider.id);
+speech.registerVoice({ id: "guide", provider: provider.id, language: "en" });
 
-const utterance = await speech.speak({ id: "welcome", text: "Welcome.", voice: "guide" });
+const request = { id: "welcome", text: "Welcome.", voice: "guide" };
+const utterance = await speech.speak(request);
 assert.equal(utterance.status, "ready");
 assert.equal(utterance.generatedAssetId, "speech-audio:welcome");
-assert.equal(loaded.length, 3);
-assert.equal(speech.getProvider("tiny-tts").status, "ready");
-assert.equal(speech.getSnapshot().utterances.welcome.result.samples.length, 3);
-structuredClone(speech.getSnapshot());
+assert.equal(initializes, 1);
+assert.equal(executions, 1);
+assert.deepEqual(await speech.speak(request), utterance);
+assert.equal(initializes, 1);
+assert.equal(executions, 1);
+await assert.rejects(
+  speech.speak({ ...request, text: "Different content." }),
+  /different content/
+);
 
-const manifest = createPocketTTSAssetManifest({ revision: "test-revision" });
-assert.equal(manifest.assets.length, 9);
-assert.equal(manifest.bundle.metadata.externallyHosted, true);
-assert.ok(manifest.assets.every((asset) => asset.source.uri.startsWith("https://huggingface.co/")));
+const acceptedSnapshot = speech.getSnapshot();
+assert.notEqual(speech.getSnapshot(), acceptedSnapshot);
+assert.doesNotThrow(() => structuredClone(acceptedSnapshot));
 
-let remoteRequest = null;
-const pocket = createPocketTTSProvider({
-  endpoint: "https://speech.example.test/v1/audio/speech",
-  fetch: async (url, options) => {
-    remoteRequest = { url, options };
-    return new Response(new Uint8Array([82, 73, 70, 70]), {
-      status: 200,
-      headers: { "content-type": "audio/wav" }
-    });
-  }
-});
-speech.registerProvider(pocket);
-speech.registerVoice({ id: "alba", provider: "pocket-tts", language: "en" });
-const pocketUtterance = await speech.speak({ id: "pocket", text: "Pocket speech.", voice: "alba" });
-assert.equal(pocketUtterance.status, "ready");
-assert.equal(pocketUtterance.generatedAssetId, "speech-audio:pocket-tts:pocket");
-assert.equal(remoteRequest.url, "https://speech.example.test/v1/audio/speech");
-assert.equal(JSON.parse(remoteRequest.options.body).voice, "alba");
-assert.equal(speech.getProvider("pocket-tts").metadata.externalModelStorage, true);
+const firstReset = speech.reset();
+assert.equal(speech.getProvider(provider.id).status, "unavailable");
+const secondReset = speech.reset();
+assert.deepEqual(secondReset, firstReset);
+assert.deepEqual(speech.getSnapshot(), firstReset);
 
-speech.reset();
-assert.equal(Object.keys(speech.getSnapshot().utterances).length, 0);
-assert.equal(speech.getProvider("tiny-tts").status, "unavailable");
-assert.equal(speech.getProvider("pocket-tts").status, "unavailable");
+speech.loadSnapshot(acceptedSnapshot);
+assert.deepEqual(speech.getSnapshot(), acceptedSnapshot);
 
-console.log("core speech TinyTTS and Pocket TTS providers smoke ok");
+console.log("core speech provider-neutral contract smoke ok");

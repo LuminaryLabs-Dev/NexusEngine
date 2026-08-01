@@ -1,18 +1,18 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createCoreMotionKit } from "../../src/core-kits/core-motion-kit/index.js";
+import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
+import { createMotionKit } from "../../src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js";
 
 const engine = createEngine({
-  kits: [createCoreMotionKit({
+  kits: [createSimulationKit(), createMotionKit({
     frameHistoryLimit: 4,
     createApi() {
       return { customMotionHook: () => "preserved" };
     }
   })]
 });
-const motion = engine.n.coreMotion;
-assert.equal(typeof engine.coreMotion?.submitIntent, "function", "Core Motion keeps its root compatibility API");
-assert.equal(engine.coreMotion.submitIntent, motion.submitIntent);
+const motion = engine.n.motion;
+assert.equal(engine.motion, undefined, "Motion is addressed only through engine.n");
 assert.equal(motion.customMotionHook(), "preserved", "custom Core Motion API extensions remain composed");
 
 const mode = motion.registerMovementMode({

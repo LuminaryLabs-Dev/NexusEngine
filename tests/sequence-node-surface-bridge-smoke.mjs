@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import {
   createEngine,
   defineEvent
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const SurfaceAction = defineEvent("SurfaceAction");
 

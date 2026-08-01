@@ -1,10 +1,11 @@
 import assert from "node:assert/strict";
-import * as RootAPI from "../../src/index.js";
+import * as RootAPI from "../helpers/public-package-surface.mjs";
 import {
   WORLD_FEATURE_KIT_METHODS,
-  createCoreWorldDomain,
+  createWorldDomain,
+  createSpatialKit,
   createEngine
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
 const expectedFactoryExports = Object.values({
   landform: ["createMountainFeatureKit", "createRidgeFeatureKit", "createHillFeatureKit", "createPlateauFeatureKit", "createCliffFeatureKit", "createEscarpmentFeatureKit", "createCanyonFeatureKit", "createValleyFeatureKit", "createPassFeatureKit", "createCaveOverhangFeatureKit"],
@@ -26,14 +27,14 @@ const expectedFamilies = Object.freeze({
   atmosphere: ["cloud-layer", "cloud-bank", "fog-bank", "storm-cell", "wind-corridor", "thermal-column", "downdraft-zone", "turbulence-zone", "precipitation", "visibility-zone"]
 });
 
-const engine = createEngine({ kits: [createCoreWorldDomain()] });
-const features = engine.n.worldFeatures;
+const engine = createEngine({ kits: [createSpatialKit(), createWorldDomain()] });
+const features = engine.n.worldFeature;
 const familyApis = {
-  landform: engine.n.landformFeatures,
-  hydrology: engine.n.hydrologyFeatures,
-  ecology: engine.n.ecologyFeatures,
-  settlement: engine.n.settlementFeatures,
-  atmosphere: engine.n.atmosphereFeatures
+  landform: engine.n.landformFeature,
+  hydrology: engine.n.hydrologyFeature,
+  ecology: engine.n.ecologyFeature,
+  settlement: engine.n.settlementFeature,
+  atmosphere: engine.n.atmosphereFeature
 };
 
 assert.equal(features.listFeatureTypes().length, 50);

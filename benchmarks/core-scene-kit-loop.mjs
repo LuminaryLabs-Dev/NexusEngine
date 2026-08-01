@@ -1,7 +1,7 @@
 import { performance } from "node:perf_hooks";
 import assert from "node:assert/strict";
 import { createRealtimeGame } from "../src/index.js";
-import { createCoreSceneKit } from "../src/core-kits/core-scene-kit/index.js";
+import { createSceneKit } from "../src/core-domains/world/subdomains/scene/kits/scene-kit/index.js";
 
 const sceneCount = 60;
 const transitionCount = 300;
@@ -17,19 +17,19 @@ for (let index = 0; index < sceneCount; index += 1) {
 }
 
 const engine = createRealtimeGame({
-  kits: [createCoreSceneKit({ scenes, initialSceneId: "scene-0", transitionHistoryLimit: 128 })]
+  kits: [createSceneKit({ scenes, initialSceneId: "scene-0", transitionHistoryLimit: 128 })]
 });
 
 const start = performance.now();
 for (let index = 0; index < transitionCount; index += 1) {
-  const result = engine.n.coreScene.requestTransition({
+  const result = engine.n.scene.requestTransition({
     transitionId: `transition-${index}`,
     exitId: "next"
   });
   assert.equal(result.accepted, true);
 }
 const durationMs = performance.now() - start;
-const snapshot = engine.n.coreScene.getSnapshot();
+const snapshot = engine.n.scene.getSnapshot();
 assert.equal(snapshot.visitedSceneIds.length, sceneCount);
 
 console.log(JSON.stringify({

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame } from "../../src/index.js";
+import { createEngine } from "../helpers/public-package-surface.mjs";
 import {
-  createCoreInputKit,
+  createInputKit,
   createInputActionMap,
   createInputBindings,
   resolveInputBinding,
@@ -9,7 +9,7 @@ import {
   selectActiveInputContext,
   normalizeInputIntent,
   getActiveInputActions
-} from "../../src/core-kits/core-input-kit/index.js";
+} from "../../src/core-domains/interaction/subdomains/input/kits/input-kit/index.js";
 
 const actions = createInputActionMap(["jump", "confirm"]);
 assert.equal(actions.jump.kind, "button", "action map normalizes actions");
@@ -27,7 +27,7 @@ const intent = normalizeInputIntent({ x: 2, actions: { jump: true } });
 assert.equal(intent.x, 1, "intent axis clamps");
 assert.deepEqual(getActiveInputActions(intent), ["jump"], "active actions are discoverable");
 
-const engine = createRealtimeGame({ kits: [createCoreInputKit({ bindings })] });
-assert.equal(typeof engine.n.coreInput.getSnapshot, "function", "core input installs under engine.n");
+const engine = createEngine({ kits: [createInputKit({ bindings })] });
+assert.equal(typeof engine.n.input.getSnapshot, "function", "core input installs under engine.n");
 
 console.log("core-input-kit piece smoke ok");

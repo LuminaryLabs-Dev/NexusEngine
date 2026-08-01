@@ -1,18 +1,18 @@
 import assert from "node:assert/strict";
 import {
   createEngine,
-  createCoreObjectDomain,
+  createObjectDomain,
   createFoliageCardFamilyDescriptor,
   createFoliageClusterDescriptor,
   createFoliagePlacementRecipe,
   createTreeCanopyComposition
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
 for (const factory of [createFoliageCardFamilyDescriptor, createFoliageClusterDescriptor, createFoliagePlacementRecipe, createTreeCanopyComposition]) {
   assert.equal(typeof factory, "function", `${factory.name} is publicly exported`);
 }
 
-const engine = createEngine({ kits: createCoreObjectDomain({ shape: false, fidelity: false }) });
+const engine = createEngine({ kits: createObjectDomain({ shape: false, fidelity: false }) });
 const vegetation = engine.n.vegetation;
 const ecology = engine.n.vegetationEcology;
 const trees = engine.n.vegetationTree;
@@ -20,9 +20,8 @@ const foliage = engine.n.vegetationFoliage;
 const bridge = engine.n.vegetationObjectBridge;
 
 assert.ok(vegetation && ecology && trees && foliage && bridge);
-assert.equal(engine.n.ownerOf("n:object"), "n-core-object-kit");
-assert.equal(engine.n.path("n:core-object"), null);
-assert.equal(engine.kits[0].provides.includes("n:core-object"), false);
+assert.equal(engine.n.ownerOf("n:object"), "object-registry-kit");
+assert.equal(engine.n.path("n:object").parentPath, undefined);
 assert.equal(engine.n.path("n:object:vegetation").parentPath, "n:object");
 assert.equal(engine.n.path("n:object:vegetation:tree").parentPath, "n:object:vegetation");
 assert.equal(engine.n.path("n:object:vegetation:foliage").parentPath, "n:object:vegetation");
@@ -135,7 +134,7 @@ assert.equal(trees.createCaptureRequest(tree, "far").viewSet.azimuthCount, 8);
 const object = bridge.registerSpeciesObject(species.id);
 assert.equal(object.objectType, "vegetation:tree");
 assert.equal(object.metadata.speciesId, species.id);
-assert.equal(engine.n.coreObject.get(object.id).id, object.id);
+assert.equal(engine.n.object.get(object.id).id, object.id);
 const instanceObject = bridge.toInstanceObjectDescriptor(instanceA);
 assert.equal(instanceObject.id, instanceA.id);
 assert.equal(instanceObject.metadata.vegetationInstanceId, instanceA.id);
@@ -143,7 +142,7 @@ assert.doesNotThrow(() => structuredClone({
   vegetation: vegetation.getSnapshot(),
   tree: trees.getSnapshot(),
   foliage: foliage.getSnapshot(),
-  object: engine.n.coreObject.getSnapshot()
+  object: engine.n.object.getSnapshot()
 }));
 
 console.log("core object vegetation domain smoke passed");

@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createCoreAssetsKit } from "../../src/core-kits/core-assets-kit/index.js";
+import { createAssetRegistryKit } from "../../src/core-domains/asset/kits/asset-kit/index.js";
 
-const engine = createEngine({ kits: [createCoreAssetsKit()] });
+const engine = createEngine({ kits: [createAssetRegistryKit()] });
 let loads = 0;
-engine.n.coreAssets.registerProvider({
+engine.n.asset.registerProvider({
   id: "fixture",
   async load() {
     loads += 1;
@@ -12,10 +12,10 @@ engine.n.coreAssets.registerProvider({
     return { portable: { ok: true } };
   }
 });
-engine.n.coreAssets.registerAsset({ id: "same", type: "json", providerId: "fixture" });
+engine.n.asset.registerAsset({ id: "same", type: "json", providerId: "fixture" });
 const [left, right] = await Promise.all([
-  engine.n.coreAssets.request("same"),
-  engine.n.coreAssets.request("same")
+  engine.n.asset.request("same"),
+  engine.n.asset.request("same")
 ]);
 assert.equal(loads, 1);
 assert.equal(left.id, right.id);

@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { createEngine } from "../src/index.js";
+import { createEngine } from "./helpers/public-package-surface.mjs";
 
 function createRoot() {
   return {

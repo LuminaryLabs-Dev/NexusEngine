@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import * as RootAPI from "../../src/index.js";
-const { createRealtimeGame } = RootAPI;
+import * as RootAPI from "../helpers/public-package-surface.mjs";
+const { createEngine, createPresentationKit } = RootAPI;
 import {
-  createCoreGraphicsKit,
+  createGraphicsKit,
   createGraphicsAdapterBoundary,
   createRenderDescriptor,
   createInstanceDescriptor,
@@ -13,7 +13,7 @@ import {
   createTerrainLodPolicyDescriptor,
   selectTerrainLodLevel,
   validateTerrainLodPolicy
-} from "../../src/core-kits/core-graphics-kit/index.js";
+} from "../../src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js";
 
 assert.equal(createRenderDescriptor({ id: "cube", kind: "mesh" }).kind, "mesh", "render descriptor stores kind");
 assert.equal(createInstanceDescriptor({ count: 3 }).count, 3, "instance descriptor stores count");
@@ -125,10 +125,10 @@ assert.equal(negotiation.status, "degraded");
 assert.equal(negotiation.acceptedTechnique, "environment-probe");
 assert.equal(adapter.createFrameReceipt({ frameId: "frame-1" }).adapterId, "webgl-adapter");
 
-const engine = createRealtimeGame({ kits: [createCoreGraphicsKit()] });
-engine.n.coreGraphics.setDescriptor("objects", "cube", createRenderDescriptor({ id: "cube" }));
-engine.n.coreGraphics.setDescriptor("terrainLodPolicies", terrainLod.id, terrainLod);
-assert.equal(engine.n.coreGraphics.getDescriptors("objects").cube.id, "cube", "core graphics descriptor update works");
-assert.equal(engine.n.coreGraphics.getDescriptors("terrainLodPolicies")[terrainLod.id].sourceResolution, 64);
+const engine = createEngine({ kits: [createPresentationKit(), createGraphicsKit()] });
+engine.n.graphics.setDescriptor("objects", "cube", createRenderDescriptor({ id: "cube" }));
+engine.n.graphics.setDescriptor("terrainLodPolicies", terrainLod.id, terrainLod);
+assert.equal(engine.n.graphics.getDescriptors("objects").cube.id, "cube", "core graphics descriptor update works");
+assert.equal(engine.n.graphics.getDescriptors("terrainLodPolicies")[terrainLod.id].sourceResolution, 64);
 
 console.log("core-graphics-kit piece smoke ok");

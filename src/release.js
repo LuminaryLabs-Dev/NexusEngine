@@ -11,11 +11,12 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "runtime-substrate",
     "runtime-kit-contract",
     "domain-service-kit-contract",
-    "domain-manifest-contract",
-    "core-capability-kit-contract",
-    "core-composition-domain",
-    "core-mcp-domain",
-    "core-object-domain",
+    "domain-manifest-v2-contract",
+    "manifest-generated-semantic-domain-catalog",
+    "composition-and-mcp-contracts",
+    "semantic-core-domains",
+    "frozen-protokit-disposition-ledger",
+    "generated-guide-and-pdf",
     "sequence-runtime",
     "sequence-node-runtime",
     "surface-contracts",
@@ -27,12 +28,9 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "surfaces",
     "runtime-kit",
     "domain-service-kit",
-    "game-kit-composer",
-    "sequences",
-    "sequence-node",
-    "foundation",
-    "core-kits",
-    "core-domains"
+    "composition",
+    "domain-catalog",
+    "semantic-domain-subpaths"
   ]),
-  notes: "0.0.4 is the active domain-owned composition and MCP integration target on main."
+  notes: "0.0.4 is the manifest-owned semantic Core cutover. Concrete adapters and product Kits resolve outside NexusEngine."
 });

@@ -1,8 +1,8 @@
 import assert from "node:assert/strict";
-import { createRealtimeGame, createCoreDebugKit } from "../../src/index.js";
+import { createEngine, createDebugDescriptorKit } from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({ kits: [createCoreDebugKit({ historyLimit: 4, exportLimit: 2 })] });
-const debug = engine.n.coreDebug;
+const engine = createEngine({ kits: [createDebugDescriptorKit({ historyLimit: 4, exportLimit: 2 })] });
+const debug = engine.n.debugDescriptors;
 
 assert.equal(typeof debug.registerRay, "function", "core debug API installs");
 assert.equal(debug.isEnabled(), true, "core debug starts enabled");

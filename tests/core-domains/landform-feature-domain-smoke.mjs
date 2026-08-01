@@ -11,7 +11,7 @@ import {
   createValleyFeatureKit,
   createPassFeatureKit,
   createCaveOverhangFeatureKit
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
 const mountainKit = createMountainFeatureKit();
 const mountain = mountainKit.normalize({

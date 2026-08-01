@@ -1,49 +1,57 @@
 # Kit Metadata Contract
 
-Public runtime and domain-service kits must describe enough identity and
-ownership for humans, agents, installers, and diagnostics to inspect them.
+Public Runtime Kits and Domain Service Kits must expose stable identity,
+ownership, lifecycle, and dependency records for humans, agents, installers,
+and diagnostics.
 
-## Runtime Metadata
+## Core Atom Metadata
 
-```txt
-id
-domain
-domainPath
-apiName
-apiPath
-visibility
-stability
-version
-provides
-requires
-```
-
-Stateful kits also document:
+Every public Core atom is declared by one Domain manifest v2 record:
 
 ```txt
-owned state
-snapshot shape
-reset behavior
-repeated-install behavior
+stable Kit ID and version
+one semantic responsibility
+Domain path, parent, and API name
+requires and provides tokens
+idempotency-key semantics
+duplicate-install behavior
+snapshot schema and reset behavior
+supported environments
+settings schema
+executable source module and export
+public package subpath
+proof references and distinct consumers
 ```
 
-## Registry Metadata
+The generator rejects missing proof and any public source with ambiguous
+ownership. Compliance values are explicit evidence, not inferred booleans.
 
-A trusted registry record additionally identifies:
+## Registry Source Metadata
+
+An executable registry record additionally identifies:
 
 ```txt
-package
-public import
-factory export
-manifest version
-integrity or source reference
-proof command
+registry owner and record status
+package name and exact version
+canonical package subpath
+factory export name
+supported environment
+immutable source commit
+SHA-256 integrity
+requires and provides tokens
+settings schema
+requested permissions
 ```
 
-Registry metadata is descriptive. It does not become executable until a trusted
-provider resolves the declared package and public export.
+Unresolved placeholders are non-installable. Metadata retrieval never imports
+or executes code. A host may execute only after plan validation, immutable
+source resolution, integrity verification, and explicit human approval.
+
+Missing packages are reported in a structured installation receipt. Core never
+installs packages during Composition apply.
 
 ## Ownership
 
-Metadata does not decide whether a capability belongs in Core. Apply
-[`KIT-OWNERSHIP.md`](KIT-OWNERSHIP.md) first.
+Metadata describes a capability; it does not admit one into Core. Apply
+[Kit Ownership](KIT-OWNERSHIP.md) first. Optional or platform-specific behavior
+belongs in an external registry package even when its metadata is complete.

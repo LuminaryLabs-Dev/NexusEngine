@@ -1,6 +1,6 @@
 import {
   createRepositoryDevelopmentEnvironment
-} from "../../src/core-kits/core-headless-editor-kit/development/index.js";
+} from "../../tools/headless-editor/development/index.js";
 
 export async function createEnvironment(options = {}) {
   return createRepositoryDevelopmentEnvironment({

@@ -1,26 +1,26 @@
 import assert from "node:assert/strict";
 import {
-  createCoreCaptureDomain,
-  createCoreObjectFidelityDomain,
-  createCoreObjectKit,
-  createCoreTransactionLedgerKit,
-  createHeadlessEditorHarness,
-  createHeadlessEditorRouter,
-  createRealtimeGame
-} from "../../src/index.js";
+  createCaptureKit,
+  createObjectFidelityKit,
+  createObjectRegistryKit,
+  createPresentationKit,
+  createTransactionLedgerKit,
+  createEngine
+} from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({
+const engine = createEngine({
   kits: [
-    createCoreObjectKit(),
-    createCoreTransactionLedgerKit(),
-    ...createCoreCaptureDomain(),
-    ...createCoreObjectFidelityDomain()
+    createObjectRegistryKit(),
+    createTransactionLedgerKit(),
+    createPresentationKit(),
+    createCaptureKit(),
+    createObjectFidelityKit()
   ]
 });
-const capture = engine.n.coreCapture;
+const capture = engine.n.capture;
 const fidelity = engine.n.objectFidelity;
-assert.equal(engine.n.ownerOf("n:object:fidelity"), "core-object-fidelity-domain");
-assert.equal(engine.objectFidelity, fidelity);
+assert.ok(engine.n.ownersOf("n:object:fidelity").includes("object-fidelity-kit"));
+assert.equal(engine.objectFidelity, undefined, "retired root Object Fidelity alias is not installed");
 
 let captures = 0;
 function provider() {
@@ -79,7 +79,7 @@ const profile = fidelity.registerProfile({
 assert.equal(profile.schema, "nexus-object-fidelity-profile/1");
 
 function registerObject(id, type, revision) {
-  return engine.n.coreObject.register({
+  return engine.n.object.register({
     id,
     objectType: type,
     bounds: { min: [-2, 0, -2], max: [2, 8, 2] },
@@ -139,74 +139,8 @@ assert.equal(fidelity.getActivePackage("oak").objectContentHash, changedTree.con
 
 structuredClone(capture.getSnapshot());
 structuredClone(fidelity.getSnapshot());
+assert.ok(fidelity.getActivePackage("oak"), "tree fixture retains an active package");
+assert.ok(fidelity.getActivePackage("rock"), "non-tree fixture proves generic ownership");
+assert.ok(Object.keys(capture.getSnapshot().results).length > 0, "capture contract retains provider results");
 
-const adapter = {
-  id: "object-fidelity-headless-proof",
-  async read() {
-    return { ok: true, runtime: { capture: capture.getSnapshot(), fidelity: fidelity.getSnapshot() } };
-  },
-  async capture({ phase }) {
-    return { ok: true, phase, captures: [{ id: `${phase}:state`, kind: "snapshot" }] };
-  },
-  async plan() {
-    return {
-      ok: true,
-      commands: [{ action: "object-fidelity.inspect" }],
-      notes: ["Verify generic forms, readiness, adaptation, and atomic replacement."]
-    };
-  },
-  async validate() {
-    const snapshot = fidelity.getSnapshot();
-    const issues = [];
-    try { structuredClone(snapshot); } catch (error) { issues.push({ severity: "error", code: "snapshot", message: error.message }); }
-    if (!snapshot.activePackages.rock) issues.push({ severity: "error", code: "genericity", message: "Rock fixture package missing." });
-    return { ok: issues.length === 0, issues };
-  },
-  async submit() {
-    return { ok: true, submitted: true, runId: "object-fidelity-proof" };
-  },
-  async observe() {
-    return { ok: true, status: "completed" };
-  },
-  async verify() {
-    return {
-      ok: true,
-      checks: [
-        { id: "tree-package", ok: Boolean(fidelity.getActivePackage("oak")) },
-        { id: "rock-package", ok: Boolean(fidelity.getActivePackage("rock")) },
-        { id: "capture-results", ok: Object.keys(capture.getSnapshot().results).length > 0 }
-      ],
-      readAfter: { capture: capture.getSnapshot(), fidelity: fidelity.getSnapshot() }
-    };
-  },
-  async observedDifferences({ readBefore, readAfter }) {
-    return {
-      ok: true,
-      structured: [{ key: "fidelity.sequence", before: readBefore.runtime.fidelity.sequence, after: readAfter.fidelity.sequence }],
-      visual: [],
-      validation: [{ id: "object-fidelity", ok: true }],
-      regressions: [],
-      unverifiedClaims: []
-    };
-  }
-};
-
-const harness = createHeadlessEditorHarness({
-  workspace: "memory",
-  adapter,
-  goal: "Prove Core Object Fidelity and Capture installed composition.",
-  sessionId: "object-fidelity-capture-smoke",
-  now: () => "2026-07-14T12:00:00.000Z"
-});
-const router = createHeadlessEditorRouter({ harness, now: () => "2026-07-14T12:00:00.000Z" });
-assert.equal((await router.dispatch("status")).ok, true);
-assert.equal((await router.dispatch("next")).ok, true);
-assert.equal((await router.dispatch("run read")).ok, true);
-assert.equal((await router.dispatch("inspect read/packet.json")).result.ok, true);
-const run = await router.dispatch("run-until observed-differences");
-assert.equal(run.result.ok, true);
-const differences = await router.dispatch("inspect observed-differences/difference.json");
-assert.equal(JSON.parse(differences.result.text).regressions.length, 0);
-assert.equal((await router.dispatch("report")).result.ok, true);
-
-console.log("core object fidelity domain and Headless Editor smoke ok");
+console.log("core object fidelity and capture contract smoke ok");

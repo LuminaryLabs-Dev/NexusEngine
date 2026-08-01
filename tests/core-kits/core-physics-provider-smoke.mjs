@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createCorePhysicsKit } from "../../src/core-kits/core-physics-kit/index.js";
-import { createCoreSimulationKit } from "../../src/core-kits/core-simulation-kit/index.js";
+import { createPhysicsKit } from "../../src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js";
+import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 
 let initialized = 0;
 let stepped = 0;
@@ -42,33 +42,33 @@ const provider = {
 
 const engine = createEngine({
   kits: [
-    createCorePhysicsKit(),
-    createCoreSimulationKit({ resolution: true })
+    createSimulationKit({ resolution: true }),
+    createPhysicsKit()
   ]
 });
 
-engine.corePhysics.setProvider(provider);
+engine.n.physics.setProvider(provider);
 assert.equal(initialized, 1, "provider initializes once");
-engine.corePhysics.syncBodies([{ id: "player", kind: "kinematic" }]);
-engine.corePhysics.syncColliders([{ id: "tree", kind: "ball", radius: 1 }]);
-engine.corePhysics.submitMotionRequests([{ id: "move", bodyId: "player", position: { x: 1, y: 2, z: 3 } }]);
+engine.n.physics.syncBodies([{ id: "player", kind: "kinematic" }]);
+engine.n.physics.syncColliders([{ id: "tree", kind: "ball", radius: 1 }]);
+engine.n.physics.submitMotionRequests([{ id: "move", bodyId: "player", position: { x: 1, y: 2, z: 3 } }]);
 assert.equal(bodies[0].id, "player");
 assert.equal(colliders[0].id, "tree");
 assert.equal(motions[0].bodyId, "player");
 
-engine.coreSimulation.registerObservationSource({
-  id: "core-physics",
+engine.n.simulation.registerObservationSource({
+  id: "physics",
   order: 100,
   observe({ tick }) {
     return {
       id: `${tick.tickId}:physics`,
       type: "physics.frame",
-      source: "core-physics",
-      value: engine.corePhysics.step(tick)
+      source: "physics",
+      value: engine.n.physics.step(tick)
     };
   }
 });
-engine.coreSimulation.setResolutionPolicy({
+engine.n.simulation.setResolutionPolicy({
   id: "physics-observation-policy",
   version: 1,
   resolve({ observations }) {
@@ -82,18 +82,18 @@ engine.coreSimulation.setResolutionPolicy({
 
 engine.tick(1 / 60);
 assert.equal(stepped, 1, "provider steps once in the authoritative tick");
-const physicsFrame = engine.corePhysics.getFrame();
+const physicsFrame = engine.n.physics.getFrame();
 assert.equal(physicsFrame.stepId, "tick:1", "physics frame uses TickContext identity");
 assert.equal(physicsFrame.contacts[0].actorId, "player");
 assert.equal("backendObject" in physicsFrame, false, "backend objects do not escape normalized output");
 assert.doesNotThrow(() => structuredClone(physicsFrame), "physics frame is serializable");
-assert.equal(engine.coreSimulation.getCommittedFrame().outcome, "contact");
+assert.equal(engine.n.simulation.getCommittedFrame().outcome, "contact");
 
-engine.corePhysics.step({ tickId: "tick:1", frame: 1, delta: 1 / 60, elapsed: 1 / 60 });
+engine.n.physics.step({ tickId: "tick:1", frame: 1, delta: 1 / 60, elapsed: 1 / 60 });
 assert.equal(stepped, 1, "same physics step identity is idempotent");
-engine.corePhysics.reset();
+engine.n.physics.reset();
 assert.equal(reset, 1, "provider reset is delegated");
-engine.corePhysics.dispose();
+engine.n.physics.dispose();
 assert.equal(disposed, 1, "provider dispose is delegated");
 
 console.log("core physics provider smoke ok");

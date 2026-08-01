@@ -3,19 +3,18 @@ import {
   createScheduler
 } from "./ecs.js";
 import { installRuntimeKit } from "./runtime-kit.js";
-import { createHeadlessRenderer } from "./renderers.js";
-import { createShaderRegistry, createMaterialRegistry } from "./shaders.js";
-import { createSequenceNodeRuntime } from "./sequence-node.js";
-import { createSequenceRuntime } from "./sequences.js";
+import { createSequenceNodeRuntime } from "./core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js";
+import { createSequenceRuntime } from "./core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js";
 import {
   createEventSurface,
   createLifecycleSurface,
   createQuerySurface,
   createResourceSurface
-} from "./surfaces.js";
-import { createRealtimeCoreKit } from "./core-kits/realtime-core-kit/index.js";
-import { createSequenceCoreKit } from "./core-kits/sequence-core-kit/index.js";
-import { createTickContextScheduler } from "./tick-context-scheduler.js";
+} from "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js";
+import { createRealtimeKit } from "./core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js";
+import { createSequenceKit } from "./core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js";
+import { createRuntimeLifecycleKit } from "./core-domains/runtime/kits/runtime-lifecycle-kit/index.js";
+import { createTickContextScheduler } from "./core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js";
 
 function assertSurface(surface) {
   if (!surface || typeof surface.subscribe !== "function" || typeof surface.publish !== "function") {
@@ -37,12 +36,13 @@ function clone(value) {
   return value === undefined ? undefined : structuredClone(value);
 }
 
-function defaultCoreKits(options) {
-  if (options.coreKits === false) return [];
-  if (Array.isArray(options.coreKits)) return options.coreKits;
+function defaultDomainKits(options) {
+  if (options.domainKits === false) return [];
+  if (Array.isArray(options.domainKits)) return options.domainKits;
   return [
-    createRealtimeCoreKit(options.realtimeCore ?? options.realtime ?? {}),
-    createSequenceCoreKit(options.sequenceCore ?? options.sequence ?? {})
+    createRuntimeLifecycleKit(options.runtime ?? {}),
+    createRealtimeKit(options.realtime ?? {}),
+    createSequenceKit(options.sequence ?? {})
   ];
 }
 
@@ -121,9 +121,9 @@ export function createEngine(options = {}) {
   const world = options.world ?? createWorld();
   const scheduler = createTickContextScheduler(options.scheduler ?? createScheduler());
   const clock = options.clock ?? { delta: 1 / 60, elapsed: 0, frame: 0 };
-  const renderer = options.renderer ?? createHeadlessRenderer();
-  const shaderRegistry = options.shaderRegistry ?? createShaderRegistry();
-  const materialRegistry = options.materialRegistry ?? createMaterialRegistry();
+  const renderer = options.renderer ?? null;
+  const shaderRegistry = options.shaderRegistry ?? null;
+  const materialRegistry = options.materialRegistry ?? null;
   const registry = { event: [], resource: [], query: [], lifecycle: [] };
   const tickOptions = options.tick && typeof options.tick === "object" ? options.tick : {};
   const maxDelta = Math.max(0, number(tickOptions.maxDelta, 1 / 15));
@@ -302,7 +302,7 @@ export function createEngine(options = {}) {
         });
       }
 
-      const simulationApi = engine.coreSimulation ?? engine.n?.coreSimulation;
+      const simulationApi = engine.n?.simulation;
       const committedSimulation = simulationApi?.getCommittedFrame?.() ?? null;
       tickState.lastCommit = Object.freeze({
         tickId: tickContext.tickId,
@@ -382,8 +382,7 @@ export function createEngine(options = {}) {
     isTicking() {
       return tickState.running;
     },
-    tick,
-    step: tick
+    tick
   };
 
   for (const surface of options.surfaces ?? []) registerSurface(surface);
@@ -391,7 +390,7 @@ export function createEngine(options = {}) {
   engine.sequenceRuntime.bind(engine);
   engine.sequenceNodeRuntime.bind(engine);
 
-  for (const kit of defaultCoreKits(options)) engine.installKit(kit, options);
+  for (const kit of defaultDomainKits(options)) engine.installKit(kit, options);
 
   if (options.sequenceNodes) engine.sequenceNodeRuntime.mount(options.sequenceNodes);
   if (options.bindSequenceNodeSurfaces) {
@@ -408,5 +407,3 @@ export function createEngine(options = {}) {
 
   return engine;
 }
-
-export const createRealtimeEngine = createEngine;

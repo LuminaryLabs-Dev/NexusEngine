@@ -4,7 +4,7 @@ import {
   defineDomainServiceKit,
   isDomainPath,
   normalizeDomainPath
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const physicsWorld = defineDomainServiceKit({
   id: "physics-world-domain-kit",
@@ -14,6 +14,7 @@ const physicsWorld = defineDomainServiceKit({
   apiName: "physicsWorld",
   stability: "experimental",
   version: "0.1.0",
+  provides: ["n:physics:world"],
   createApi() {
     return {
       getState() {
@@ -34,6 +35,7 @@ const rigidbody = defineDomainServiceKit({
   stability: "experimental",
   version: "0.1.0",
   requires: ["n:physics:world"],
+  provides: ["n:physics:rigidbody", "n:physics:rigidbody:query"],
   services: ["query"],
   createApi() {
     return {
@@ -50,9 +52,8 @@ assert.equal(rigidbody.metadata.domainPath, "n:physics:rigidbody");
 assert.equal(rigidbody.metadata.parentDomainPath, "n:physics");
 assert.equal(rigidbody.metadata.apiPath, "n:physics:rigidbody:api");
 assert.ok(rigidbody.provides.includes("n:physics:rigidbody"));
-assert.ok(rigidbody.provides.includes("n:physics-rigidbody"));
 assert.ok(rigidbody.provides.includes("n:physics:rigidbody:query"));
-assert.ok(rigidbody.provides.includes("n:physics-rigidbody:query"));
+assert.equal(rigidbody.provides.includes("n:physics-rigidbody"), false, "Core does not synthesize legacy aliases");
 
 assert.throws(() => createEngine({ kits: [rigidbody] }), /requires missing token\(s\): n:physics:world/);
 
@@ -60,8 +61,8 @@ const engine = createEngine({ kits: [physicsWorld, rigidbody] });
 assert.equal(engine.n.ownerOf("n:physics:rigidbody"), "physics-rigidbody-domain-kit");
 assert.equal(engine.n.path("n:physics:rigidbody").parentPath, "n:physics");
 const pathNames = engine.n.paths().map((entry) => entry.path);
-assert.ok(pathNames.includes("n:realtime"));
-assert.ok(pathNames.includes("n:sequence"));
+assert.ok(pathNames.includes("n:runtime:realtime"));
+assert.ok(pathNames.includes("n:runtime:sequence"));
 assert.ok(pathNames.includes("n:physics:rigidbody"));
 assert.ok(pathNames.includes("n:physics:world"));
 assert.equal(engine.n.api("physicsRigidbody").domainPath, "n:physics:rigidbody");

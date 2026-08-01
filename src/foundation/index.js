@@ -6,3 +6,4 @@ export * from "./idempotency-ledger.js";
 export * from "./progress-timer.js";
 export * from "./deterministic-replay.js";
 export * from "./promotion-guard.js";
+export * from "./sha256.js";

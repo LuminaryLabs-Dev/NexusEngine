@@ -3,13 +3,13 @@ import {
   createEngine,
   createWorld,
   createScheduler,
-  createRealtimeGame,
+  createEngine,
   createGameKitComposer,
   defineComponent,
   defineResource,
   defineEvent,
   defineRuntimeKit
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 
 const Position = defineComponent("release.position");
 const ReleaseState = defineResource("release.state");
@@ -105,7 +105,7 @@ const composed = createGameKitComposer({ kits: [dependentKit, providerKit] });
 assert.deepEqual(composed.installOrder, ["release-provider-kit", "release-dependent-kit"]);
 assert.throws(() => createGameKitComposer({ kits: [dependentKit] }), /Unable to resolve runtime kit dependencies/);
 
-const game = createRealtimeGame({ kits: [providerKit, dependentKit] });
+const game = createEngine({ kits: [providerKit, dependentKit] });
 assert.deepEqual(game.game.installOrder, ["release-provider-kit", "release-dependent-kit"]);
 
 console.log("release-0.0.3-runtime-contracts ok");

@@ -1,9 +1,19 @@
 import { spawnSync } from "node:child_process";
 
 const tests = [
+  ["scripts/generate-core-catalog.mjs", "--check"],
+  "scripts/check-manifest-execution-parity.mjs",
   "scripts/check-core-boundaries.mjs",
   "scripts/check-active-docs.mjs",
-  "tests/procedural-navigation-smoke.mjs",
+  ["scripts/generate-kit-ownership-ledger.mjs", "--check"],
+  ["scripts/generate-root-module-dispositions.mjs", "--check"],
+  ["scripts/generate-protokit-extraction.mjs", "--check"],
+  ["scripts/generate-public-test-surface.mjs", "--check"],
+  ["scripts/generate-dsk-manifest.mjs", "--check"],
+  ["scripts/generate-guide.mjs", "--check"],
+  "examples/guide/basic-engine.mjs",
+  "examples/guide/object-placement.mjs",
+  "examples/guide/composition-inspection.mjs",
   "tests/public-api-freeze.mjs",
   "tests/public-entrypoint-relative-targets-smoke.mjs",
   "tests/domain-service-kit-smoke.mjs",
@@ -18,7 +28,6 @@ const tests = [
   "tests/core-domains/world-feature-foundation-integration.mjs",
   "tests/core-domains/world-terrain-compatibility.mjs",
   "tests/core-domains/core-weather-domain-smoke.mjs",
-  "tests/host-smoke.mjs",
   "tests/sequence-node-library-smoke.mjs",
   "tests/sequence-node-runtime-smoke.mjs",
   "tests/sequence-node-frame-driver-smoke.mjs",
@@ -53,13 +62,13 @@ const tests = [
   "tests/core-domains/core-object-fidelity-domain-smoke.mjs",
   "tests/core-domains/core-object-vegetation-domain-smoke.mjs",
   "tests/core-domains/core-object-vegetation-natural-growth-smoke.mjs",
-  "src/core-domains/core-object-domain/tests/object-domain-smoke.mjs",
-  "src/core-domains/core-object-domain/subdomains/placement/tests/placement-smoke.mjs",
-  "src/core-domains/core-object-domain/subdomains/placement/tests/placement-roundtrip.mjs",
-  "src/core-domains/core-mcp-domain/tests/mcp-registry-smoke.mjs",
-  "src/core-domains/core-mcp-domain/tests/mcp-contract-negative.mjs",
-  "src/core-domains/core-mcp-domain/tests/node-stdio-smoke.mjs",
-  "src/core-domains/core-composition-domain/tests/composition-mcp-smoke.mjs",
+  "src/core-domains/object/tests/object-domain-smoke.mjs",
+  "src/core-domains/object/subdomains/placement/tests/placement-smoke.mjs",
+  "src/core-domains/object/subdomains/placement/tests/placement-roundtrip.mjs",
+  "src/core-domains/mcp/tests/mcp-registry-smoke.mjs",
+  "src/core-domains/mcp/tests/mcp-contract-negative.mjs",
+  "src/core-domains/mcp/tests/node-stdio-smoke.mjs",
+  "src/core-domains/composition/tests/composition-mcp-smoke.mjs",
   "tests/core-domains/core-creature-character-player-smoke.mjs",
   "tests/core-domains/core-speech-domain-smoke.mjs",
   "tests/core-kits/core-interaction-kit-smoke.mjs",
@@ -72,18 +81,13 @@ const tests = [
   "tests/core-kits/core-assets-cache-smoke.mjs",
   "tests/core-kits/core-assets-deduplication-smoke.mjs",
   "tests/core-kits/core-assets-startup-bridge-smoke.mjs",
-  "tests/renderers/three-object-capture-provider-smoke.mjs",
   "tests/core-kits/core-presentation-domain-smoke.mjs",
-  "tests/core-kits/core-headless-editor-kit-smoke.mjs",
-  "tests/core-kits/core-headless-editor-runtime-smoke.mjs",
-  "tests/core-kits/core-headless-editor-guided-development-smoke.mjs",
-  "tests/core-kits/core-headless-editor-repository-environment-smoke.mjs",
-  "tests/core-kits/core-custom-replacement-smoke.mjs",
-  "tests/modules/nexus-diffusion-domain-smoke.mjs"
+  "tests/core-kits/core-custom-replacement-smoke.mjs"
 ];
 
 for (const test of tests) {
-  const result = spawnSync(process.execPath, [test], {
+  const [script, ...args] = Array.isArray(test) ? test : [test];
+  const result = spawnSync(process.execPath, [script, ...args], {
     stdio: "inherit",
     cwd: process.cwd()
   });

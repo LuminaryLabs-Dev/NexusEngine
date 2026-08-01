@@ -1,31 +1,33 @@
 import assert from "node:assert/strict";
 import {
-  createCoreCameraKit,
-  createCoreDataKit,
-  createCoreGraphicsKit,
-  createCoreSimulationKit,
-  createCoreTransactionLedgerKit,
+  createCameraKit,
+  createDataKit,
+  createGraphicsKit,
+  createPresentationKit,
+  createSimulationKit,
+  createTransactionLedgerKit,
   createDataSchema,
-  createRealtimeGame,
+  createEngine,
   createWorldPatchPreparationController
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
-const engine = createRealtimeGame({
+const engine = createEngine({
   kits: [
-    createCoreDataKit({ random: { seed: "course-42", streams: ["layout", "valid-depot"] } }),
-    createCoreSimulationKit({
+    createDataKit({ random: { seed: "course-42", streams: ["layout", "valid-depot"] } }),
+    createSimulationKit({
       resourceMeters: [
         { id: "fuel", initial: 100, min: 0, max: 100 },
         { id: "remaining-time", initial: 300, min: 0, max: 300, ratePerSecond: -1 }
       ]
     }),
-    createCoreCameraKit(),
-    createCoreGraphicsKit(),
-    createCoreTransactionLedgerKit()
+    createPresentationKit(),
+    createCameraKit(),
+    createGraphicsKit(),
+    createTransactionLedgerKit()
   ]
 });
 
-const random = engine.n.coreData.random;
+const random = engine.n.data.random;
 const firstLayout = random.nextUint32("layout");
 const randomSnapshot = random.getSnapshot();
 const nextLayout = random.nextUint32("layout");
@@ -53,25 +55,25 @@ const packageSchema = createDataSchema({
     }
   }
 });
-engine.n.coreData.packages.registerSchema(packageSchema);
+engine.n.data.packages.registerSchema(packageSchema);
 const payload = {
   schema: "long-haul.course-package/1",
   packageId: "course-42",
   seed: "42",
   delivery: { candidateDepotIds: ["a", "b", "c", "d", "e"], validDepotId: "c" }
 };
-const envelope = engine.n.coreData.packages.createEnvelope({ packageId: payload.packageId, schemaId: packageSchema.id, payload });
-assert.equal(engine.n.coreData.packages.verifyEnvelope(envelope).valid, true, "package envelope verifies");
-assert.throws(() => engine.n.coreData.packages.verifyEnvelope({ ...envelope, payload: { ...payload, seed: "changed" } }), /digest mismatch/, "package corruption is rejected");
-assert.throws(() => engine.n.coreData.packages.createEnvelope({ packageId: "bad", schemaId: packageSchema.id, payload: { ...payload, delivery: { candidateDepotIds: ["a"], validDepotId: "a" } } }), /at least 5/, "nested package rules validate");
+const envelope = engine.n.data.packages.createEnvelope({ packageId: payload.packageId, schemaId: packageSchema.id, payload });
+assert.equal(engine.n.data.packages.verifyEnvelope(envelope).valid, true, "package envelope verifies");
+assert.throws(() => engine.n.data.packages.verifyEnvelope({ ...envelope, payload: { ...payload, seed: "changed" } }), /digest mismatch/, "package corruption is rejected");
+assert.throws(() => engine.n.data.packages.createEnvelope({ packageId: "bad", schemaId: packageSchema.id, payload: { ...payload, delivery: { candidateDepotIds: ["a"], validDepotId: "a" } } }), /at least 5/, "nested package rules validate");
 
-const meters = engine.n.coreSimulation.resources;
+const meters = engine.n.simulation.resources;
 meters.spend("fuel", 12, "truck-motion");
 assert.equal(meters.get("fuel").value, 88, "Core Simulation owns bounded meters");
 meters.tick(1);
 assert.equal(meters.get("remaining-time").value, 299, "meter rates advance deterministically");
 
-const smoothing = engine.n.coreCamera.smoothing;
+const smoothing = engine.n.camera.smoothing;
 smoothing.createController({ id: "player", position: [0, 4, 10], lookPoint: [0, 0, 0], fov: 60, positionSharpness: 3, teleportThreshold: 80 });
 smoothing.setTarget("player", { position: [10, 6, 12], lookPoint: [5, 1, 0], fov: 55, mode: "chase" });
 smoothing.update("player", 1 / 60);
@@ -84,7 +86,7 @@ smoothing.loadSnapshot(smoothingSnapshot);
 assert.equal(smoothing.getSnapshot().controllers[0].config.positionSharpness, 3, "camera tuning survives snapshot restore");
 assert.equal(smoothing.getSnapshot().controllers[0].config.teleportThreshold, 80, "camera teleport policy survives snapshot restore");
 
-const batches = engine.n.coreGraphics.instanceBatches;
+const batches = engine.n.graphics.instanceBatches;
 batches.createBatch({ id: "trees", assetId: "pine", materialId: "pine-material", capacity: 4, updateMode: "incremental" });
 batches.replaceCell("trees", "0:0", [
   { id: "tree-a", position: [0, 0, 0] },
@@ -116,7 +118,7 @@ preparation.release("0:0");
 assert.deepEqual(preparation.takeReleased(), ["0:0"], "patch preparation reports provider releases");
 assert.equal(structuredClone(preparation.getSnapshot()).schema, "nexusengine.core-world.patch-preparation/1", "patch preparation snapshots clone");
 
-const ledger = engine.n.coreTransactionLedger;
+const ledger = engine.n.transaction;
 let applications = 0;
 const first = ledger.applyOnce("course-42", "depot:a:check", () => ++applications);
 const duplicate = ledger.applyOnce("course-42", "depot:a:check", () => ++applications);

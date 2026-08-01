@@ -1,14 +1,12 @@
 import assert from "node:assert/strict";
 import {
-  createCoreComputeDomain,
-  createCoreHeadlessEditorKit,
-  createCoreObjectDomain,
+  createComputeDomain,
+  createObjectDomain,
   createEngine,
-  createHeadlessEditorHarness,
   createNaturalTreeGrowthPlan,
   createTreeGrowthComputeDescriptors,
   validateTreeGrowthPlan
-} from "../../src/index.js";
+} from "../helpers/public-package-surface.mjs";
 
 for (const factory of [createNaturalTreeGrowthPlan, validateTreeGrowthPlan, createTreeGrowthComputeDescriptors]) {
   assert.equal(typeof factory, "function", `${factory.name} is publicly exported`);
@@ -31,14 +29,13 @@ const shapes = [
 
 const engine = createEngine({
   kits: [
-    ...createCoreObjectDomain({ shape: false, fidelity: false }),
-    ...createCoreComputeDomain(),
-    createCoreHeadlessEditorKit()
+    ...createObjectDomain({ shape: false, fidelity: false }),
+    ...createComputeDomain()
   ]
 });
 const treeApi = engine.n.vegetationTree;
 const foliageApi = engine.n.vegetationFoliage;
-const compute = engine.n.coreCompute;
+const compute = engine.n.compute;
 const records = [];
 
 compute.setProvider({
@@ -165,65 +162,11 @@ for (const [index, shape] of shapes.entries()) {
   records.push({ shape, tree, foliage, near, medium, validation, computeResult });
 }
 
-const harness = createHeadlessEditorHarness({
-  workspace: "memory",
-  goal: "Generate, review, and validate every production vegetation growth form",
-  sessionId: "natural-vegetation-growth",
-  now: () => "2026-07-18T12:00:00.000Z",
-  adapter: {
-    id: "natural-vegetation-headless-adapter",
-    async read() {
-      return {
-        ok: true,
-        scene: { id: "natural-vegetation-fixtures", objectCount: records.length },
-        hierarchy: { roots: records.map((record) => record.tree.id) },
-        assets: records.flatMap((record) => record.foliage.cardFamilies.map((family) => family.atlas.assetId)),
-        runtime: { computeProvider: compute.getState().provider.id }
-      };
-    },
-    async capture({ phase }) {
-      return {
-        ok: true,
-        phase,
-        captures: records.map((record) => ({ id: `${phase}:${record.shape}`, metrics: record.near.metrics })),
-        files: {
-          [`capture-${phase}/vegetation-metrics.json`]: JSON.stringify(records.map((record) => ({ shape: record.shape, metrics: record.near.metrics })), null, 2)
-        }
-      };
-    },
-    async plan() {
-      return {
-        ok: true,
-        commands: records.map((record) => ({ action: "vegetation.grow", treeId: record.tree.id, algorithm: record.near.algorithm.kind }))
-      };
-    },
-    async validate() {
-      const issues = records.flatMap((record) => record.validation.errors.map((message) => ({ treeId: record.tree.id, message })));
-      return { ok: issues.length === 0, issues };
-    },
-    async submit({ plan }) {
-      return { ok: true, submitted: true, runId: "natural-growth-run", commandCount: plan.commands.length };
-    },
-    async observe() {
-      return { ok: true, status: "completed", runId: "natural-growth-run", logs: records.map((record) => `${record.shape}:${record.near.metrics.clusterCount}`) };
-    },
-    async verify() {
-      return {
-        ok: true,
-        checks: records.map((record) => ({
-          id: record.shape,
-          ok: record.validation.valid && record.near.metrics.crownCoverage >= 0.28 && record.near.metrics.estimatedCardCount >= 8
-        })),
-        readAfter: { scene: { id: "natural-vegetation-fixtures", validated: records.length } }
-      };
-    }
-  }
-});
+assert.equal(records.length, shapes.length);
+assert.ok(records.every((record) => record.validation.valid));
+assert.ok(records.every((record) => record.near.metrics.crownCoverage >= 0.28));
+assert.ok(records.every((record) => record.near.metrics.estimatedCardCount >= 8));
+assert.equal(compute.getState().provider.id, "natural-tree-reference-compute");
+assert.doesNotThrow(() => structuredClone(records.map((record) => record.near)));
 
-const headlessResult = await harness.run();
-assert.equal(headlessResult.ok, true);
-assert.equal((await harness.workspace.readJson("plan/commands.json")).length, shapes.length);
-assert.equal((await harness.workspace.readJson("verify/verification.json")).checks.every((check) => check.ok), true);
-assert.equal(await harness.workspace.exists("capture-after/vegetation-metrics.json"), true);
-
-console.log("core object vegetation natural growth, compute, and headless heuristic smoke passed");
+console.log("core object vegetation natural growth and compute contract smoke passed");

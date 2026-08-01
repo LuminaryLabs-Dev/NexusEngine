@@ -1,25 +1,29 @@
 import assert from "node:assert/strict";
 import {
   createEngine
-} from "../src/index.js";
+} from "./helpers/public-package-surface.mjs";
 import {
-  createRealtimeCoreKit,
-  createSequenceCoreKit
-} from "../src/core-kits/index.js";
+  createRuntimeLifecycleKit,
+  createRealtimeKit,
+  createSequenceKit
+} from "../src/core-domains/runtime/index.js";
 
-const realtimeKit = createRealtimeCoreKit();
-const sequenceKit = createSequenceCoreKit();
-assert.equal(realtimeKit.metadata.domainPath, "n:realtime");
-assert.equal(sequenceKit.metadata.domainPath, "n:sequence");
-assert.ok(sequenceKit.requires.includes("n:realtime"));
+const runtimeKit = createRuntimeLifecycleKit();
+const realtimeKit = createRealtimeKit();
+const sequenceKit = createSequenceKit();
+assert.equal(runtimeKit.metadata.domainPath, "n:runtime");
+assert.equal(realtimeKit.metadata.domainPath, "n:runtime:realtime");
+assert.equal(sequenceKit.metadata.domainPath, "n:runtime:sequence");
+assert.ok(sequenceKit.requires.includes("n:runtime"));
 
 const engine = createEngine();
-assert.equal(engine.n.ownerOf("n:realtime"), "realtime-core-kit");
-assert.equal(engine.n.ownerOf("n:sequence"), "sequence-core-kit");
-assert.equal(engine.n.path("n:realtime").domain, "realtime");
-assert.equal(engine.n.path("n:sequence").domain, "sequence");
-assert.equal(engine.n.api("realtime").domainPath, "n:realtime");
-assert.equal(engine.n.api("sequence").domainPath, "n:sequence");
+assert.equal(engine.n.ownerOf("n:runtime"), "runtime-lifecycle-kit");
+assert.equal(engine.n.ownerOf("n:runtime:realtime"), "realtime-runtime-kit");
+assert.equal(engine.n.ownerOf("n:runtime:sequence"), "runtime-sequence-kit");
+assert.equal(engine.n.path("n:runtime:realtime").domain, "realtime");
+assert.equal(engine.n.path("n:runtime:sequence").domain, "sequence");
+assert.equal(engine.n.api("realtime").domainPath, "n:runtime:realtime");
+assert.equal(engine.n.api("sequence").domainPath, "n:runtime:sequence");
 assert.equal(typeof engine.n.realtime.tick, "function");
 assert.equal(typeof engine.n.realtime.getWorld, "function");
 assert.equal(typeof engine.n.sequence.dispatch, "function");
@@ -31,15 +35,19 @@ assert.equal(engine.n.realtime.getClock().frame, beforeFrame + 1);
 assert.equal(engine.n.realtime.getWorld(), engine.world);
 assert.deepEqual(engine.n.realtime.getPhases(), ["input", "simulate", "resolve", "cleanup"]);
 
-assert.equal(createEngine({ coreKits: false }).n, undefined);
+assert.equal(createEngine({ domainKits: false }).n, undefined);
 
-const customEngine = createEngine({
-  coreKits: [
-    createRealtimeCoreKit({ id: "custom-realtime-core-kit" }),
-    createSequenceCoreKit({ id: "custom-sequence-core-kit" })
+const explicitEngine = createEngine({
+  domainKits: [
+    createRuntimeLifecycleKit(),
+    createRealtimeKit(),
+    createSequenceKit()
   ]
 });
-assert.equal(customEngine.n.ownerOf("n:realtime"), "custom-realtime-core-kit");
-assert.equal(customEngine.n.ownerOf("n:sequence"), "custom-sequence-core-kit");
+assert.equal(explicitEngine.n.ownerOf("n:runtime"), "runtime-lifecycle-kit");
+assert.throws(
+  () => createRealtimeKit({ id: "custom-realtime-kit" }),
+  /must match its Core manifest/
+);
 
 console.log("core-domain-kits-smoke ok");
