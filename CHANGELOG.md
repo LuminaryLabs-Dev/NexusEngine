@@ -1,5 +1,13 @@
 # Changelog
 
+## Unreleased
+
+- Added public contribution, security, operations, and visual-identity guides.
+- Added an agent-readable repository profile and reusable repository image
+  pack under `docs/assets/brand/`.
+- Clarified package status, publication evidence, and the current license-file
+  limitation without changing runtime behavior.
+
 ## 0.0.4
 
 ### Added
