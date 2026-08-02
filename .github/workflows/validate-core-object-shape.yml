@@ -3,17 +3,6 @@ name: Validate Core Object Shape
 on:
   push:
     branches: [main]
-    paths:
-      - "src/core-kits/core-object-shape-kit/**"
-      - "src/core-domains/core-object-shape-domain/**"
-      - "src/core-domains/core-object-domain/**"
-      - "src/core-domains/core-capture-domain/**"
-      - "src/core-kits/core-capture-kit/**"
-      - "src/core-kits/core-object-fidelity-kit/**"
-      - "tests/core-domains/core-object-shape-domain-smoke.mjs"
-      - "tests/core-domains/core-capture-shape-visual-smoke.mjs"
-      - "tests/fixtures/object-shape-fixtures.mjs"
-      - ".github/workflows/validate-core-object-shape.yml"
   workflow_dispatch:
 
 permissions:
@@ -35,7 +24,7 @@ jobs:
           cache: npm
 
       - name: Install package metadata
-        run: npm install --ignore-scripts --no-audit --no-fund
+        run: npm ci --ignore-scripts --no-audit --no-fund
 
       - name: Validate input and output meshes
         run: |
@@ -47,6 +36,11 @@ jobs:
           set -euo pipefail
           node tests/core-domains/core-capture-shape-visual-smoke.mjs | tee object-shape-capture.log
 
+      - name: Validate skinned qualification
+        run: |
+          set -euo pipefail
+          node tests/core-domains/core-object-shape-skinned-qualification-smoke.mjs | tee object-shape-skinned-qualification.log
+
       - name: Upload geometry and visual evidence
         if: always()
         uses: actions/upload-artifact@v4
@@ -56,5 +50,6 @@ jobs:
           path: |
             object-shape-geometry.log
             object-shape-capture.log
+            object-shape-skinned-qualification.log
             /tmp/nexus-object-shape-capture-*/source-vs-reduced.svg
           retention-days: 14

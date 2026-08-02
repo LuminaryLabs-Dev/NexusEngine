@@ -1,0 +1,30 @@
+{
+  "id": "applied-changes:1",
+  "ok": true,
+  "at": "2026-08-02T19:06:12.940Z",
+  "iteration": 1,
+  "source": "codex-agent",
+  "value": {
+    "ok": true,
+    "files": [
+      "src/core-domains/build/",
+      "bin/nexusengine.mjs",
+      "scripts/generate-core-catalog.mjs",
+      "scripts/check-core-boundaries.mjs",
+      "src/core-domains/domain-manifest.js",
+      "src/core-domains/manifest-input.js",
+      "src/core-domains/catalog.js",
+      "src/core-domains/index.js",
+      "package.json",
+      "package-lock.json",
+      "tests/run-all.mjs",
+      "tests/release-0.0.4-run-all.mjs",
+      "docs/generated/",
+      "docs/guide/building/",
+      ".agent/release-policy.json",
+      ".github/workflows/"
+    ],
+    "summary": "Implemented the manifest-driven n:build domain with 46 atomic Kits, generated package surfaces and documentation, project-immutable source and artifact boundaries, real TypeScript AST analysis, IR/classification, exact-source records, approval-gated deterministic multi-target planning, Build MCP tools and CLI, executable Web targets, fail-closed native target plans, release policy, CI cleanup, clean-consumer proof, and integrated browser/release tests.",
+    "commit": null
+  }
+}

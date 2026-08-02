@@ -1,0 +1,26 @@
+{
+  "id": "check:browser-startup",
+  "ok": true,
+  "at": "2026-08-02T19:11:33.274Z",
+  "iteration": 1,
+  "source": "local-cli-proof",
+  "value": {
+    "ok": true,
+    "command": [
+      "node",
+      "src/core-domains/build/tests/web-target-browser.mjs"
+    ],
+    "summary": "Generated Web Live and Web Static artifacts started in Chromium with the expected result and no console or page errors.",
+    "details": {
+      "targets": [
+        "web-live",
+        "web-static"
+      ],
+      "browser": "chromium",
+      "consoleErrors": 0,
+      "pageErrors": 0,
+      "status": "passed"
+    },
+    "artifacts": []
+  }
+}

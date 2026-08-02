@@ -1,0 +1,13 @@
+{
+  "id": "target-loaded",
+  "ok": true,
+  "at": "2026-08-02T18:06:52.825Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "path": ".agent/target.md",
+    "targetHash": "3c43f7cb",
+    "goal": "Implement the NexusEngine `0.0.4` exploratory Build Domain as a manifest-driven,"
+  }
+}

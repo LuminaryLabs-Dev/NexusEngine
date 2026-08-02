@@ -1,0 +1,81 @@
+{
+  "schemaVersion": "bop-it.release-branch-policy/1",
+  "remote": "origin",
+  "defaultBranch": "auto",
+  "versionBranchPattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+  "increment": "patch",
+  "immutableVersionBranches": true,
+  "versionSources": [
+    {
+      "path": "package.json",
+      "format": "json",
+      "pointer": "/version"
+    },
+    {
+      "path": "package-lock.json",
+      "format": "json",
+      "pointer": "/version"
+    },
+    {
+      "path": "package-lock.json",
+      "format": "json",
+      "pointer": "/packages//version"
+    }
+  ],
+  "checks": [
+    {
+      "name": "Install locked dependencies",
+      "argv": ["npm", "ci", "--ignore-scripts", "--no-audit", "--no-fund"],
+      "cwd": "."
+    },
+    {
+      "name": "Install pinned Chromium proof runtime",
+      "argv": ["npx", "--no-install", "playwright", "install", "chromium"],
+      "cwd": "."
+    },
+    {
+      "name": "Generate ownership evidence",
+      "argv": ["npm", "run", "ownership:generate"],
+      "cwd": "."
+    },
+    {
+      "name": "Generate release manifest",
+      "argv": ["npm", "run", "release:manifest"],
+      "cwd": "."
+    },
+    {
+      "name": "Reject generated tracked drift",
+      "argv": ["git", "diff", "--exit-code"],
+      "cwd": "."
+    },
+    {
+      "name": "Run full test suite",
+      "argv": ["npm", "test"],
+      "cwd": "."
+    },
+    {
+      "name": "Run release test suite",
+      "argv": ["npm", "run", "test:release"],
+      "cwd": "."
+    },
+    {
+      "name": "Check ownership boundaries",
+      "argv": ["npm", "run", "boundaries:check"],
+      "cwd": "."
+    },
+    {
+      "name": "Check generated documentation",
+      "argv": ["npm", "run", "docs:check"],
+      "cwd": "."
+    },
+    {
+      "name": "Prove package contents",
+      "argv": ["npm", "pack", "--dry-run", "--json"],
+      "cwd": "."
+    }
+  ],
+  "requiredHostedChecks": [
+    "NexusEngine Tests",
+    "Validate Core Object Shape"
+  ]
+}

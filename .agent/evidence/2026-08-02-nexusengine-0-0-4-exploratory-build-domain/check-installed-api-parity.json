@@ -1,0 +1,20 @@
+{
+  "id": "check:installed-api-parity",
+  "ok": true,
+  "at": "2026-08-02T19:11:33.257Z",
+  "iteration": 1,
+  "source": "local-cli-proof",
+  "value": {
+    "ok": true,
+    "command": [
+      "node",
+      "src/core-domains/build/tests/full-build-loop.mjs"
+    ],
+    "summary": "Direct Build and engine.n.buildExecution APIs produced the same registry-bound plan hash.",
+    "details": {
+      "registryHash": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+      "status": "passed"
+    },
+    "artifacts": []
+  }
+}

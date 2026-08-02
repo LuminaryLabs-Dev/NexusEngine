@@ -1,0 +1,1346 @@
+{
+  "id": "check:public-export-integrity",
+  "ok": true,
+  "at": "2026-08-02T18:04:48.485Z",
+  "iteration": 1,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "fixture.publicExportIntegrity",
+    "summary": "Imported 54 public exports.",
+    "details": {
+      "moduleGraph": {
+        "schema": "nexus-headless-module-graph/1",
+        "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+        "entry": "src/index.js",
+        "moduleCount": 60,
+        "edgeCount": 138,
+        "truncated": false,
+        "modules": [
+          {
+            "path": "src/index.js",
+            "specifiers": [
+              "./release.js",
+              "./ecs.js",
+              "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js",
+              "./engine.js",
+              "./runtime-kit.js",
+              "./domain-service-kit.js",
+              "./domain-path.js",
+              "./domain-api.js",
+              "./core-domains/catalog.js",
+              "./core-domains/composition/index.js"
+            ]
+          },
+          {
+            "path": "src/release.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/ecs.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/realtime/contracts/surfaces.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/engine.js",
+            "specifiers": [
+              "./ecs.js",
+              "./runtime-kit.js",
+              "./core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js",
+              "./core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js",
+              "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js",
+              "./core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js",
+              "./core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+              "./core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
+              "./core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js"
+            ]
+          },
+          {
+            "path": "src/runtime-kit.js",
+            "specifiers": [
+              "./domain-path.js"
+            ]
+          },
+          {
+            "path": "src/domain-service-kit.js",
+            "specifiers": [
+              "./domain-api.js",
+              "./domain-path.js",
+              "./runtime-kit.js"
+            ]
+          },
+          {
+            "path": "src/domain-path.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/domain-api.js",
+            "specifiers": [
+              "./domain-path.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/catalog.js",
+            "specifiers": [
+              "./actor/domain.manifest.js",
+              "./agent/domain.manifest.js",
+              "./asset/domain.manifest.js",
+              "./composition/domain.manifest.js",
+              "./compute/domain.manifest.js",
+              "./diagnostics/domain.manifest.js",
+              "./host/domain.manifest.js",
+              "./interaction/domain.manifest.js",
+              "./mcp/domain.manifest.js",
+              "./network/domain.manifest.js",
+              "./object/domain.manifest.js",
+              "./policy/domain.manifest.js",
+              "./presentation/domain.manifest.js",
+              "./runtime/domain.manifest.js",
+              "./simulation/domain.manifest.js",
+              "./spatial/domain.manifest.js",
+              "./world/domain.manifest.js",
+              "./domain-manifest.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/index.js",
+            "specifiers": [
+              "./kits/composition-registry-kit/index.js",
+              "./domain.manifest.js",
+              "./services/composition-apply-controller.js",
+              "./adapters/mcp/composition-mcp-provider.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js",
+            "specifiers": [
+              "./sequence-node-library.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js",
+            "specifiers": [
+              "../../../../../manifest-domain-service-kit.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifiers": [
+              "../../../../../manifest-domain-service-kit.js",
+              "../../runtime/sequence-node-kit.js",
+              "../../runtime/sequence-node-library.js",
+              "../../runtime/sequence-node-runtime.js",
+              "../../runtime/sequence-runtime.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
+            "specifiers": [
+              "../../../domain-kit.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/actor/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/agent/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/asset/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/domain.manifest.js",
+            "specifiers": [
+              "../../release.js",
+              "../domain-manifest.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/compute/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/diagnostics/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/host/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/interaction/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/domain.manifest.js",
+            "specifiers": [
+              "../../release.js",
+              "../domain-manifest.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/network/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/object/domain.manifest.js",
+            "specifiers": [
+              "../../release.js",
+              "../domain-manifest.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/policy/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/presentation/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/simulation/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/spatial/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/world/domain.manifest.js",
+            "specifiers": [
+              "../domain-manifest.js",
+              "../manifest-input.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/domain-manifest.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/composition/kits/composition-registry-kit/index.js",
+            "specifiers": [
+              "../../../domain-kit.js",
+              "./composition-tree.js",
+              "./registry.js",
+              "./services.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/services/composition-apply-controller.js",
+            "specifiers": [
+              "../kits/composition-registry-kit/registry.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",
+            "specifiers": [
+              "../../../mcp/index.js",
+              "../../services/composition-apply-controller.js",
+              "./generated-guide-resources.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/manifest-domain-service-kit.js",
+            "specifiers": [
+              "../domain-service-kit.js",
+              "./manifest-kit-contract.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js",
+            "specifiers": [
+              "../../../../../runtime-kit.js",
+              "./sequence-node-runtime.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/domain-kit.js",
+            "specifiers": [
+              "../ecs.js",
+              "../domain-service-kit.js",
+              "./manifest-kit-contract.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/manifest-input.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js",
+            "specifiers": [
+              "./registry.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+            "specifiers": [
+              "../../../../domain-path.js",
+              "../../../../foundation/sha256.js",
+              "../../../../release.js",
+              "../../../catalog.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/kits/composition-registry-kit/services.js",
+            "specifiers": [
+              "./registry.js",
+              "./composition-tree.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/index.js",
+            "specifiers": [
+              "./kits/mcp-registry-kit/index.js",
+              "./domain.manifest.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/composition/adapters/mcp/generated-guide-resources.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/manifest-kit-contract.js",
+            "specifiers": [
+              "./catalog.js"
+            ]
+          },
+          {
+            "path": "src/foundation/sha256.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifiers": [
+              "../../../manifest-domain-service-kit.js",
+              "../../state/registry-snapshot.js",
+              "./registry.js",
+              "../../contracts/provider-contract.js",
+              "../../contracts/tool-contract.js",
+              "../../contracts/resource-contract.js",
+              "../../contracts/prompt-contract.js",
+              "../../contracts/result-contract.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/state/registry-snapshot.js",
+            "specifiers": [
+              "../contracts/contract-utilities.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifiers": [
+              "../../contracts/contract-utilities.js",
+              "../../contracts/provider-contract.js",
+              "../../contracts/prompt-contract.js",
+              "../../contracts/resource-contract.js",
+              "../../contracts/result-contract.js",
+              "../../contracts/tool-contract.js",
+              "../../state/registry-snapshot.js",
+              "./authorization.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/provider-contract.js",
+            "specifiers": [
+              "./contract-utilities.js",
+              "./prompt-contract.js",
+              "./resource-contract.js",
+              "./tool-contract.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/tool-contract.js",
+            "specifiers": [
+              "./contract-utilities.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/resource-contract.js",
+            "specifiers": [
+              "./contract-utilities.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/prompt-contract.js",
+            "specifiers": [
+              "./contract-utilities.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/result-contract.js",
+            "specifiers": [
+              "./contract-utilities.js"
+            ]
+          },
+          {
+            "path": "src/core-domains/mcp/contracts/contract-utilities.js",
+            "specifiers": []
+          },
+          {
+            "path": "src/core-domains/mcp/kits/mcp-registry-kit/authorization.js",
+            "specifiers": []
+          }
+        ],
+        "edges": [
+          {
+            "from": "src/index.js",
+            "specifier": "./release.js",
+            "kind": "relative",
+            "to": "src/release.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./ecs.js",
+            "kind": "relative",
+            "to": "src/ecs.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/realtime/contracts/surfaces.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./engine.js",
+            "kind": "relative",
+            "to": "src/engine.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./runtime-kit.js",
+            "kind": "relative",
+            "to": "src/runtime-kit.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/domain-service-kit.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./domain-path.js",
+            "kind": "relative",
+            "to": "src/domain-path.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./domain-api.js",
+            "kind": "relative",
+            "to": "src/domain-api.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./core-domains/catalog.js",
+            "kind": "relative",
+            "to": "src/core-domains/catalog.js"
+          },
+          {
+            "from": "src/index.js",
+            "specifier": "./core-domains/composition/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/index.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./ecs.js",
+            "kind": "relative",
+            "to": "src/ecs.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./runtime-kit.js",
+            "kind": "relative",
+            "to": "src/runtime-kit.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/realtime/contracts/surfaces.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js"
+          },
+          {
+            "from": "src/engine.js",
+            "specifier": "./core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js"
+          },
+          {
+            "from": "src/runtime-kit.js",
+            "specifier": "./domain-path.js",
+            "kind": "relative",
+            "to": "src/domain-path.js"
+          },
+          {
+            "from": "src/domain-service-kit.js",
+            "specifier": "./domain-api.js",
+            "kind": "relative",
+            "to": "src/domain-api.js"
+          },
+          {
+            "from": "src/domain-service-kit.js",
+            "specifier": "./domain-path.js",
+            "kind": "relative",
+            "to": "src/domain-path.js"
+          },
+          {
+            "from": "src/domain-service-kit.js",
+            "specifier": "./runtime-kit.js",
+            "kind": "relative",
+            "to": "src/runtime-kit.js"
+          },
+          {
+            "from": "src/domain-api.js",
+            "specifier": "./domain-path.js",
+            "kind": "relative",
+            "to": "src/domain-path.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./actor/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/actor/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./agent/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/agent/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./asset/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/asset/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./composition/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./compute/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/compute/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./diagnostics/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/diagnostics/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./host/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/host/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./interaction/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/interaction/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./mcp/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./network/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/network/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./object/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/object/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./policy/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/policy/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./presentation/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/presentation/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./runtime/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./simulation/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/simulation/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./spatial/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/spatial/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./world/domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/world/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/catalog.js",
+            "specifier": "./domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/composition/index.js",
+            "specifier": "./kits/composition-registry-kit/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/index.js"
+          },
+          {
+            "from": "src/core-domains/composition/index.js",
+            "specifier": "./domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/composition/index.js",
+            "specifier": "./services/composition-apply-controller.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/services/composition-apply-controller.js"
+          },
+          {
+            "from": "src/core-domains/composition/index.js",
+            "specifier": "./adapters/mcp/composition-mcp-provider.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js",
+            "specifier": "./sequence-node-library.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js",
+            "specifier": "../../../../../manifest-domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-domain-service-kit.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifier": "../../../../../manifest-domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-domain-service-kit.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifier": "../../runtime/sequence-node-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifier": "../../runtime/sequence-node-library.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifier": "../../runtime/sequence-node-runtime.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+            "specifier": "../../runtime/sequence-runtime.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js"
+          },
+          {
+            "from": "src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
+            "specifier": "../../../domain-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-kit.js"
+          },
+          {
+            "from": "src/core-domains/actor/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/actor/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/agent/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/agent/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/asset/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/asset/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/composition/domain.manifest.js",
+            "specifier": "../../release.js",
+            "kind": "relative",
+            "to": "src/release.js"
+          },
+          {
+            "from": "src/core-domains/composition/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/compute/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/compute/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/diagnostics/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/diagnostics/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/host/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/host/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/interaction/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/interaction/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/mcp/domain.manifest.js",
+            "specifier": "../../release.js",
+            "kind": "relative",
+            "to": "src/release.js"
+          },
+          {
+            "from": "src/core-domains/mcp/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/network/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/network/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/object/domain.manifest.js",
+            "specifier": "../../release.js",
+            "kind": "relative",
+            "to": "src/release.js"
+          },
+          {
+            "from": "src/core-domains/object/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/policy/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/policy/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/presentation/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/presentation/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/runtime/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/runtime/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/simulation/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/simulation/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/spatial/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/spatial/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/world/domain.manifest.js",
+            "specifier": "../domain-manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-manifest.js"
+          },
+          {
+            "from": "src/core-domains/world/domain.manifest.js",
+            "specifier": "../manifest-input.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-input.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/index.js",
+            "specifier": "../../../domain-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/domain-kit.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/index.js",
+            "specifier": "./composition-tree.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/index.js",
+            "specifier": "./registry.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/registry.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/index.js",
+            "specifier": "./services.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/services.js"
+          },
+          {
+            "from": "src/core-domains/composition/services/composition-apply-controller.js",
+            "specifier": "../kits/composition-registry-kit/registry.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/registry.js"
+          },
+          {
+            "from": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",
+            "specifier": "../../../mcp/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/index.js"
+          },
+          {
+            "from": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",
+            "specifier": "../../services/composition-apply-controller.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/services/composition-apply-controller.js"
+          },
+          {
+            "from": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",
+            "specifier": "./generated-guide-resources.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/adapters/mcp/generated-guide-resources.js"
+          },
+          {
+            "from": "src/core-domains/manifest-domain-service-kit.js",
+            "specifier": "../domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/domain-service-kit.js"
+          },
+          {
+            "from": "src/core-domains/manifest-domain-service-kit.js",
+            "specifier": "./manifest-kit-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-kit-contract.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js",
+            "specifier": "../../../../../runtime-kit.js",
+            "kind": "relative",
+            "to": "src/runtime-kit.js"
+          },
+          {
+            "from": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-kit.js",
+            "specifier": "./sequence-node-runtime.js",
+            "kind": "relative",
+            "to": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js"
+          },
+          {
+            "from": "src/core-domains/domain-kit.js",
+            "specifier": "../ecs.js",
+            "kind": "relative",
+            "to": "src/ecs.js"
+          },
+          {
+            "from": "src/core-domains/domain-kit.js",
+            "specifier": "../domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/domain-service-kit.js"
+          },
+          {
+            "from": "src/core-domains/domain-kit.js",
+            "specifier": "./manifest-kit-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-kit-contract.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js",
+            "specifier": "./registry.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/registry.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+            "specifier": "../../../../domain-path.js",
+            "kind": "relative",
+            "to": "src/domain-path.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+            "specifier": "../../../../foundation/sha256.js",
+            "kind": "relative",
+            "to": "src/foundation/sha256.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+            "specifier": "../../../../release.js",
+            "kind": "relative",
+            "to": "src/release.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+            "specifier": "../../../catalog.js",
+            "kind": "relative",
+            "to": "src/core-domains/catalog.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/services.js",
+            "specifier": "./registry.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/registry.js"
+          },
+          {
+            "from": "src/core-domains/composition/kits/composition-registry-kit/services.js",
+            "specifier": "./composition-tree.js",
+            "kind": "relative",
+            "to": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js"
+          },
+          {
+            "from": "src/core-domains/mcp/index.js",
+            "specifier": "./kits/mcp-registry-kit/index.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/kits/mcp-registry-kit/index.js"
+          },
+          {
+            "from": "src/core-domains/mcp/index.js",
+            "specifier": "./domain.manifest.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/domain.manifest.js"
+          },
+          {
+            "from": "src/core-domains/manifest-kit-contract.js",
+            "specifier": "./catalog.js",
+            "kind": "relative",
+            "to": "src/core-domains/catalog.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../../manifest-domain-service-kit.js",
+            "kind": "relative",
+            "to": "src/core-domains/manifest-domain-service-kit.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../state/registry-snapshot.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/state/registry-snapshot.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "./registry.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../contracts/provider-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/provider-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../contracts/tool-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/tool-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../contracts/resource-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/resource-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../contracts/prompt-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/prompt-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
+            "specifier": "../../contracts/result-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/result-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/state/registry-snapshot.js",
+            "specifier": "../contracts/contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/provider-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/provider-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/prompt-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/prompt-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/resource-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/resource-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/result-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/result-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../contracts/tool-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/tool-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "../../state/registry-snapshot.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/state/registry-snapshot.js"
+          },
+          {
+            "from": "src/core-domains/mcp/kits/mcp-registry-kit/registry.js",
+            "specifier": "./authorization.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/kits/mcp-registry-kit/authorization.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/provider-contract.js",
+            "specifier": "./contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/provider-contract.js",
+            "specifier": "./prompt-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/prompt-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/provider-contract.js",
+            "specifier": "./resource-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/resource-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/provider-contract.js",
+            "specifier": "./tool-contract.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/tool-contract.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/tool-contract.js",
+            "specifier": "./contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/resource-contract.js",
+            "specifier": "./contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/prompt-contract.js",
+            "specifier": "./contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          },
+          {
+            "from": "src/core-domains/mcp/contracts/result-contract.js",
+            "specifier": "./contract-utilities.js",
+            "kind": "relative",
+            "to": "src/core-domains/mcp/contracts/contract-utilities.js"
+          }
+        ],
+        "missing": [],
+        "external": [],
+        "valid": true
+      },
+      "imported": {
+        "schema": "nexus-headless-public-entry-import/1",
+        "ok": true,
+        "entry": "src/index.js",
+        "durationMs": 2,
+        "exports": [
+          "CORE_DOMAIN_CATALOG",
+          "CORE_DOMAIN_MANIFESTS",
+          "CORE_REGISTRY_SHA256",
+          "DEFAULT_PHASES",
+          "DOMAIN_API_VISIBILITIES",
+          "DOMAIN_PATH_NAMESPACE",
+          "DOMAIN_PATH_PATTERN",
+          "DOMAIN_SERVICE_METADATA_KIND",
+          "DOMAIN_SERVICE_NAMESPACE",
+          "NEXUS_ENGINE_RELEASE",
+          "NEXUS_ENGINE_RELEASE_BRANCH",
+          "NEXUS_ENGINE_STABILITY",
+          "NEXUS_ENGINE_VERSION",
+          "createCollisionSystem",
+          "createCompositionApplyController",
+          "createCompositionDomain",
+          "createCompositionKit",
+          "createCompositionMcpProvider",
+          "createDamageSystem",
+          "createDeathSystem",
+          "createDespawnSystem",
+          "createDomainApiRegistry",
+          "createDomainPathRegistry",
+          "createDomainServiceToken",
+          "createEngine",
+          "createEventSurface",
+          "createInputSystem",
+          "createLifecycleSurface",
+          "createMovementSystem",
+          "createQuerySurface",
+          "createResourceSurface",
+          "createScheduler",
+          "createWorld",
+          "defineComponent",
+          "defineDomainServiceKit",
+          "defineEvent",
+          "defineResource",
+          "defineRuntimeKit",
+          "ensureDomainApiRegistry",
+          "ensureDomainPathRegistry",
+          "extendDomainServiceKit",
+          "installDomainAddressability",
+          "installDomainApiControls",
+          "installDomainPathControls",
+          "installRuntimeKit",
+          "isDomainPath",
+          "isDomainServiceKit",
+          "normalizeDomainApiName",
+          "normalizeDomainApiVisibility",
+          "normalizeDomainPath",
+          "registerDomainApiForKit",
+          "registerDomainPathForKit",
+          "validateDomainServiceKit",
+          "validateRuntimeKit"
+        ],
+        "error": null
+      }
+    },
+    "artifacts": []
+  }
+}

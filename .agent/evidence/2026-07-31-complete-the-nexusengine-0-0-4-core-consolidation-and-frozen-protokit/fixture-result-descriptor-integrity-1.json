@@ -1,0 +1,21 @@
+{
+  "id": "fixture-result:descriptor-integrity:1",
+  "ok": false,
+  "at": "2026-08-02T18:04:48.473Z",
+  "iteration": 1,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-005-descriptor-integrity",
+    "checkId": "descriptor-integrity",
+    "mode": "capability",
+    "action": "fixture.descriptorIntegrity",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "descriptor-integrity has no registered executor.",
+    "requiredCapabilities": [
+      "domain.validateDescriptor",
+      "descriptor.validate"
+    ]
+  }
+}

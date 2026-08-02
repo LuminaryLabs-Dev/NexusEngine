@@ -1,0 +1,55 @@
+{
+  "id": "report",
+  "ok": true,
+  "at": "2026-08-02T19:11:33.426Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "score": {
+      "schema": "nexus-headless-development-evidence-score/1",
+      "confidence": 1,
+      "canClaimComplete": true,
+      "requiredEvidence": [
+        "repository-inspection",
+        "module-graph-before",
+        "check:test-coverage",
+        "kit-graph",
+        "check:kit-composition",
+        "check:installed-api-parity",
+        "check:descriptor-integrity",
+        "check:snapshot-reset-replay",
+        "module-graph-after",
+        "check:public-export-integrity",
+        "check:browser-startup",
+        "check:deterministic-replay",
+        "check:runtime-tick"
+      ],
+      "presentEvidence": [
+        "repository-inspection",
+        "module-graph-before",
+        "check:test-coverage",
+        "kit-graph",
+        "check:kit-composition",
+        "check:installed-api-parity",
+        "check:descriptor-integrity",
+        "check:snapshot-reset-replay",
+        "module-graph-after",
+        "check:public-export-integrity",
+        "check:browser-startup",
+        "check:deterministic-replay",
+        "check:runtime-tick"
+      ],
+      "missingEvidence": [],
+      "failedEvidence": [],
+      "hardGates": [
+        "validation",
+        "verification",
+        "differences",
+        "remaining-risk-report"
+      ],
+      "missingHardGates": []
+    },
+    "path": ".agent/runs/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/report.md"
+  }
+}

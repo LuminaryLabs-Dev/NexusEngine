@@ -15,12 +15,20 @@ concurrency:
 jobs:
   test:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
+          node-version: 24
           cache: npm
       - run: npm ci --ignore-scripts --no-audit --no-fund
+      - run: npx --no-install playwright install --with-deps chromium
+      - run: npm run ownership:generate
+      - run: npm run release:manifest
+      - run: git diff --exit-code
       - run: npm test
-      - run: node bin/nexus-editor.mjs status --json
+      - run: npm run test:release
+      - run: npm run boundaries:check
+      - run: npm run docs:check
+      - run: npm pack --dry-run --json

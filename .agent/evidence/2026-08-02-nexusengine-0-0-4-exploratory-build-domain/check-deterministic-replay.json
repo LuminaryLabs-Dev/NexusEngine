@@ -1,0 +1,21 @@
+{
+  "id": "check:deterministic-replay",
+  "ok": true,
+  "at": "2026-08-02T19:11:33.281Z",
+  "iteration": 1,
+  "source": "local-cli-proof",
+  "value": {
+    "ok": true,
+    "command": [
+      "node",
+      "src/core-domains/build/tests/full-build-loop.mjs"
+    ],
+    "summary": "Reordered and duplicate target inputs normalized to one plan, and repeated apply returned the original receipt as a no-op.",
+    "details": {
+      "stablePlanHash": true,
+      "repeatedApplyNoOp": true,
+      "status": "passed"
+    },
+    "artifacts": []
+  }
+}

@@ -1,0 +1,21 @@
+{
+  "id": "check:snapshot-reset-replay",
+  "ok": true,
+  "at": "2026-08-02T19:11:33.268Z",
+  "iteration": 1,
+  "source": "local-cli-proof",
+  "value": {
+    "ok": true,
+    "command": [
+      "node",
+      "src/core-domains/build/tests/full-build-loop.mjs"
+    ],
+    "summary": "Build snapshot/load restores accepted receipts and repeated reset returns identical state.",
+    "details": {
+      "receiptReplay": true,
+      "resetIdempotent": true,
+      "status": "passed"
+    },
+    "artifacts": []
+  }
+}

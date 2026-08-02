@@ -16,3 +16,19 @@
 - 2026-07-31T20:39:30.714Z | iteration 1 | evidence | validate-plan | plan-validation:1: ok
 - 2026-07-31T20:39:30.717Z | iteration 1 | evidence | validate-plan | validation: ok
 - 2026-07-31T20:39:30.720Z | iteration 1 | route-complete | validate-plan | Validated that the plan has a goal, steps, and inferred checks.
+- 2026-08-02T18:04:18.613Z | iteration 1 | evidence | apply | applied-changes:1: ok
+- 2026-08-02T18:04:18.616Z | iteration 1 | route-complete | apply | Core consolidation implementation is committed and the worktree is clean at a68544434424438491be1398e3f3d5aced5bc5ee.
+- 2026-08-02T18:04:24.219Z | iteration 1 | evidence | reload | module-graph-after:1: ok
+- 2026-08-02T18:04:24.266Z | iteration 1 | evidence | reload | public-entry-import:1: ok
+- 2026-08-02T18:04:24.272Z | iteration 1 | route-complete | reload | Reloaded and revalidated the public relative module graph.
+- 2026-08-02T18:04:48.441Z | iteration 1 | evidence | run-fixtures | fixture-run:1: ok
+- 2026-08-02T18:04:48.450Z | iteration 1 | evidence | run-fixtures | check:repository-integrity: ok
+- 2026-08-02T18:04:48.457Z | iteration 1 | evidence | run-fixtures | check:test-coverage: ok
+- 2026-08-02T18:04:48.462Z | iteration 1 | evidence | run-fixtures | fixture-result:kit-composition:1: failed
+- 2026-08-02T18:04:48.468Z | iteration 1 | evidence | run-fixtures | fixture-result:installed-api-parity:1: failed
+- 2026-08-02T18:04:48.474Z | iteration 1 | evidence | run-fixtures | fixture-result:descriptor-integrity:1: failed
+- 2026-08-02T18:04:48.479Z | iteration 1 | evidence | run-fixtures | fixture-result:snapshot-reset-replay:1: failed
+- 2026-08-02T18:04:48.487Z | iteration 1 | evidence | run-fixtures | check:public-export-integrity: ok
+- 2026-08-02T18:04:48.493Z | iteration 1 | evidence | run-fixtures | fixture-result:browser-startup:1: failed
+- 2026-08-02T18:04:48.499Z | iteration 1 | evidence | run-fixtures | fixture-result:deterministic-replay:1: failed
+- 2026-08-02T18:04:48.504Z | iteration 1 | evidence | run-fixtures | fixture-result:runtime-tick:1: failed
