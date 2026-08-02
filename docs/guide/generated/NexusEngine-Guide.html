@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf<br>
-      Guide content SHA-256: 16339a7aacb9dfbda7bc6b5dc4dd462f78ca864b2f802d7865605f4b529dc1b5<br><br>
+      Core registry SHA-256: 1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6<br>
+      Guide content SHA-256: 86856ab5f2e0b192cda3bb69411afcd350d1507966b35a27a4d87c19c33424d4<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -712,7 +712,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
+<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -794,7 +794,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
+<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
 <table>
 <thead>
 <tr>
@@ -1176,7 +1176,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
+<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -1949,6 +1949,12 @@ npm pack --dry-run --json
 <td>Require target-specific executable artifact validation.</td>
 </tr>
 <tr>
+<td><code>web-module-linker-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/web-module-linker</code></td>
+<td>Materialize a verified, content-addressed browser module closure from immutable project sources.</td>
+</tr>
+<tr>
 <td><code>composition-registry-kit</code></td>
 <td><code>n:composition</code></td>
 <td><code>nexusengine/domains/composition/registry</code></td>
@@ -2376,11 +2382,11 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
+<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
 <ul>
-<li>Source modules: 576</li>
-<li>Manifest-proven public atoms: 122</li>
-<li>Manifest-owned internal modules: 429</li>
+<li>Source modules: 581</li>
+<li>Manifest-proven public atoms: 123</li>
+<li>Manifest-owned internal modules: 433</li>
 <li>Root contract modules: 25</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
@@ -3092,6 +3098,36 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js</code></td>
 <td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

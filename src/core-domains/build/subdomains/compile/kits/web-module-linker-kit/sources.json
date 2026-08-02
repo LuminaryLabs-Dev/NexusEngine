@@ -1,0 +1,21 @@
+[
+  {
+    "schema": "nexusengine.build-source-record/1",
+    "id": "npm:esbuild-wasm@0.28.1",
+    "sourceKind": "npm",
+    "canonicalLocator": "https://registry.npmjs.org/esbuild-wasm/-/esbuild-wasm-0.28.1.tgz",
+    "exactVersion": "0.28.1",
+    "integrity": "sha512-p/GD4E8oYRjg3kjdKrnMb0s4PzXgJF42e0MF4H0+ACyK/kIlFRp3e0fzOleIG+wBBm6MM3XQrbpe7soEA+vJIA==",
+    "license": "MIT",
+    "requiredEnvironment": [
+      "node-build",
+      "web-live",
+      "web-static"
+    ],
+    "transitiveDependencies": [],
+    "provider": "npm-registry",
+    "substitution": null,
+    "resolutionStatus": "resolved",
+    "package": "esbuild-wasm"
+  }
+]

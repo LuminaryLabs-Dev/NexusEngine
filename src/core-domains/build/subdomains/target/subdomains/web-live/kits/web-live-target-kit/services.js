@@ -1,16 +1,12 @@
 import { writeFile } from "node:fs/promises";
 import path from "node:path";
 
+import { stableValue } from "../../../../../../contracts.js";
 import { defineBuildTargetProvider } from "../../../../kits/target-registry-kit/services.js";
-import {
-  findWebEntry,
-  materializeProjectFiles,
-  webPlan,
-  writeStableJson
-} from "../../../../web-target-helpers.js";
+import { webPlan } from "../../../../web-target-helpers.js";
 
-function liveServiceWorker() {
-  return `const CACHE = "nexusengine-live-v1";
+function liveServiceWorker(closureHash) {
+  return `const CACHE = ${JSON.stringify(`nexusengine-live-${closureHash.slice("sha256:".length, 12)}`)};
 self.addEventListener("install", (event) => event.waitUntil((async () => {
   const manifest = await (await fetch("./nexusengine-live-source.json", { cache: "no-store" })).json();
   const cache = await caches.open(CACHE);
@@ -42,35 +38,48 @@ await import(${JSON.stringify(`./${entry}`)});
 `;
 }
 
-export function createWebLiveTargetProvider() {
+export function createWebLiveTargetProvider(config = {}) {
+  const linker = config.linker;
   return defineBuildTargetProvider({
     id: "web-live",
     label: "Web Live",
     environments: ["browser", "node-build"],
     capabilities: ["content-hash-cache", "service-worker", "verified-esm"],
     plan(context) {
-      return webPlan(context, "web-live");
+      return webPlan(context, "web-live", linker);
     },
     async execute(context) {
       if (context.targetPlan.status !== "ready") {
         return { ok: false, status: "blocked", errors: context.targetPlan.errors };
       }
-      await materializeProjectFiles(context.projectSource, context.stage);
-      const sourceFiles = context.projectSource.files.map(({ path: filePath, integrity, size }) => ({ path: filePath, integrity, size }));
-      await writeStableJson(path.join(context.stage, "nexusengine-live-source.json"), {
+      const closure = await linker.link({
+        ...context,
+        entry: context.targetPlan.entry,
+        sourceRecords: context.sourceRecords
+      }, { mode: "live", loader: "nexusengine-live-loader.mjs" });
+      await writeFile(path.join(context.stage, "nexusengine-live-loader.mjs"), liveLoader(closure.entryModule));
+      await writeFile(path.join(context.stage, "nexusengine-live-sw.mjs"), liveServiceWorker(closure.closureHash));
+      const sourceFiles = (await linker.collectFiles(context.stage)).filter((file) => ![
+        "nexusengine-live-source.json",
+        "nexusengine-live-sw.mjs"
+      ].includes(file.path));
+      await writeFile(path.join(context.stage, "nexusengine-live-source.json"), `${JSON.stringify(stableValue({
         schema: "nexusengine.web-live-source/1",
         planId: context.plan.id,
-        entry: context.targetPlan.entry,
+        entry: closure.entryModule,
+        closureHash: closure.closureHash,
         cache: "content-hash",
         files: sourceFiles
-      });
-      await writeFile(path.join(context.stage, "nexusengine-live-sw.mjs"), liveServiceWorker());
-      await writeFile(path.join(context.stage, "nexusengine-live-loader.mjs"), liveLoader(context.targetPlan.entry));
-      const launcher = context.projectSource.files.some((file) => file.path === "index.html")
-        ? "nexusengine-live.html"
-        : "index.html";
-      await writeFile(path.join(context.stage, launcher), `<!doctype html>\n<html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NexusEngine Live</title></head><body><script type="module" src="./nexusengine-live-loader.mjs"></script></body></html>\n`);
-      return { ok: true, status: "built", entry: launcher };
+      }), null, 2)}\n`);
+      return {
+        ok: true,
+        status: "built",
+        proof: "closure-proven",
+        entry: "index.html",
+        closureHash: closure.closureHash,
+        sourceRecords: closure.sourceRecords,
+        toolchain: closure.toolchain
+      };
     }
   });
 }

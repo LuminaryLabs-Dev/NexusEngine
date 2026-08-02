@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`<br>
-Guide content SHA-256: `16339a7aacb9dfbda7bc6b5dc4dd462f78ca864b2f802d7865605f4b529dc1b5`
+Core registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`<br>
+Guide content SHA-256: `86856ab5f2e0b192cda3bb69411afcd350d1507966b35a27a4d87c19c33424d4`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -731,7 +731,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -813,7 +813,7 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 
 # Core Dependency Table
 
-Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -899,7 +899,7 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 
 ## Domains
 
@@ -1035,6 +1035,7 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 | `project-immutability-kit` | `n:build:proof` | `nexusengine/domains/build/proof/project-immutability` | Compare before and after project fingerprints byte-for-byte. |
 | `cross-runtime-parity-kit` | `n:build:proof` | `nexusengine/domains/build/proof/cross-runtime-parity` | Compare canonical replay outputs across target runtimes. |
 | `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
+| `web-module-linker-kit` | `n:build:compile` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
 | `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors and create deterministic dependency-ordered dispatch plans. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
@@ -1114,11 +1115,11 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 
-- Source modules: 576
-- Manifest-proven public atoms: 122
-- Manifest-owned internal modules: 429
+- Source modules: 581
+- Manifest-proven public atoms: 123
+- Manifest-owned internal modules: 433
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -1242,6 +1243,11 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/ir/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |

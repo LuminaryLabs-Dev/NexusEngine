@@ -4,8 +4,36 @@ import {
   BUILD_RECEIPT_SCHEMA,
   BUILD_STATE_SCHEMA,
   clone,
-  errorRecord
+  contentIntegrity,
+  errorRecord,
+  stableJson
 } from "../../../../contracts.js";
+
+function sourceRecord(value) {
+  if (!value?.id) return null;
+  const { cached: _cached, ...record } = value;
+  return Object.freeze(record);
+}
+
+function sourceClosure(projectRecords, targetReceipts) {
+  const records = new Map();
+  for (const candidate of [
+    ...projectRecords,
+    ...targetReceipts.flatMap((receipt) => [
+      ...(receipt.sourceRecords ?? []),
+      receipt.toolchain
+    ])
+  ]) {
+    const record = sourceRecord(candidate);
+    if (!record) continue;
+    const existing = records.get(record.id);
+    if (existing && stableJson(existing) !== stableJson(record)) {
+      throw new Error(`Build source identity collision in receipt: ${record.id}.`);
+    }
+    records.set(record.id, record);
+  }
+  return Object.freeze([...records.values()].sort((left, right) => left.id.localeCompare(right.id)));
+}
 
 function publicInspection(inspection) {
   return Object.freeze({
@@ -227,9 +255,16 @@ export function createBuildExecutionService(services, config = {}) {
           target: target.id,
           status: "succeeded",
           cached: false,
+          executionMode: result.executionMode ?? target.executionSelection.mode,
+          proof: result.proof ?? null,
+          sourceRecords: Object.freeze(clone(result.sourceRecords ?? prepared.inspection.sourceRecords)),
+          toolchain: sourceRecord(result.toolchain),
+          toolchainCached: result.toolchain?.cached === true,
           artifact: manifest,
+          artifactHash: manifest.contentHash,
           destination,
-          validation
+          validation,
+          packageValidation: result.packageValidation ?? validation
         });
         await services.artifactCache.write(stage, targetReceipt);
         targetReceipts.push(targetReceipt);
@@ -252,6 +287,7 @@ export function createBuildExecutionService(services, config = {}) {
       throw new Error(`Build mutated the source project: ${immutability.changes.map((change) => change.path).join(", ")}.`);
     }
     const succeeded = targetReceipts.every((receipt) => receipt.status === "succeeded");
+    const sources = sourceClosure(prepared.publicPlan.sourceRecords, targetReceipts);
     const receipt = Object.freeze({
       schema: BUILD_RECEIPT_SCHEMA,
       planId: prepared.publicPlan.id,
@@ -259,6 +295,14 @@ export function createBuildExecutionService(services, config = {}) {
       noOp: false,
       project: prepared.request.project,
       projectFingerprint: before.contentHash,
+      registryHash: prepared.publicPlan.registryHash,
+      sourceRecords: prepared.publicPlan.sourceRecords,
+      sourceClosure: sources,
+      sourceClosureHash: contentIntegrity(stableJson(sources)),
+      artifactHashes: Object.freeze(Object.fromEntries(targetReceipts
+        .filter((target) => target.artifactHash)
+        .map((target) => [target.target, target.artifactHash])
+        .sort(([left], [right]) => left.localeCompare(right)))),
       targets: Object.freeze(targetReceipts),
       immutability,
       sequence: Number(existing?.sequence ?? 0) + 1

@@ -44,6 +44,7 @@ import kit42 from "./subdomains/artifact/kits/artifact-output-kit/kit.manifest.j
 import kit43 from "./subdomains/proof/kits/project-immutability-kit/kit.manifest.js";
 import kit44 from "./subdomains/proof/kits/cross-runtime-parity-kit/kit.manifest.js";
 import kit45 from "./subdomains/proof/kits/target-validation-kit/kit.manifest.js";
+import kit46 from "./subdomains/compile/kits/web-module-linker-kit/kit.manifest.js";
 
 export const BUILD_ATOMIC_KIT_MANIFESTS = Object.freeze([
   kit0,
@@ -91,5 +92,6 @@ export const BUILD_ATOMIC_KIT_MANIFESTS = Object.freeze([
   kit42,
   kit43,
   kit44,
-  kit45
+  kit45,
+  kit46
 ]);

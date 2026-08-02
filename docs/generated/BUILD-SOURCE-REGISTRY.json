@@ -1,5 +1,5 @@
 {
-  "contentHash": "e55bde68c88ae1c293422e7689399cf840eeb7ac4ebcd5cc2242391766196d07",
+  "contentHash": "7ae27211e58b36a41909d75074ee15282ccd92582af487d54bd9975b7e14ea6f",
   "records": [
     {
       "canonicalLocator": "https://github.com/LuminaryLabs-Agents/NexusEngine-Rust.git",
@@ -69,9 +69,28 @@
       "sourceKind": "npm",
       "substitution": null,
       "transitiveDependencies": []
+    },
+    {
+      "canonicalLocator": "https://registry.npmjs.org/esbuild-wasm/-/esbuild-wasm-0.28.1.tgz",
+      "exactVersion": "0.28.1",
+      "id": "npm:esbuild-wasm@0.28.1",
+      "integrity": "sha512-p/GD4E8oYRjg3kjdKrnMb0s4PzXgJF42e0MF4H0+ACyK/kIlFRp3e0fzOleIG+wBBm6MM3XQrbpe7soEA+vJIA==",
+      "license": "MIT",
+      "package": "esbuild-wasm",
+      "provider": "npm-registry",
+      "requiredEnvironment": [
+        "node-build",
+        "web-live",
+        "web-static"
+      ],
+      "resolutionStatus": "resolved",
+      "schema": "nexusengine.build-source-record/1",
+      "sourceKind": "npm",
+      "substitution": null,
+      "transitiveDependencies": []
     }
   ],
-  "registryHash": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "registryHash": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
   "schema": "nexusengine.build-source-registry/1",
   "sourceFiles": [
     "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/sources.json",
@@ -89,6 +108,7 @@
     "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/sources.json",
     "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/sources.json",
     "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/sources.json",
+    "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/sources.json",
     "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/sources.json",
     "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/sources.json",
     "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/sources.json",

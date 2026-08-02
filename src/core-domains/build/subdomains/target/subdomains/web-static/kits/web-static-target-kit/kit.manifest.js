@@ -5,7 +5,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   responsibility: "Emit a self-contained static Web directory.",
   domainPath: "n:build:target:web-static",
   apiName: "webStaticTarget",
-  requires: ["n:build:target"],
+  requires: ["n:build:target", "build:web-module-linker"],
   provides: ["n:build:target:web-static", "build:web-static-target"],
   module: "./src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js",
   exportName: "createWebStaticTargetKit",

@@ -1,0 +1,10 @@
+{
+  "name": "nexusengine-build-external-fixture",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "module": "src/index.js",
+  "dependencies": {
+    "is-number": "7.0.0"
+  }
+}

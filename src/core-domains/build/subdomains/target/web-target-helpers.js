@@ -1,15 +1,4 @@
-import { mkdir, writeFile } from "node:fs/promises";
-import path from "node:path";
-
-import { posixPath, stableValue } from "../../contracts.js";
-
-export async function materializeProjectFiles(projectSource, stage) {
-  for (const file of projectSource.files) {
-    const destination = path.join(stage, file.path);
-    await mkdir(path.dirname(destination), { recursive: true });
-    await writeFile(destination, file.bytes);
-  }
-}
+import { posixPath } from "../../contracts.js";
 
 export function findWebEntry(projectSource) {
   const packageFile = projectSource.files.find((file) => file.path === "package.json");
@@ -30,28 +19,19 @@ export function findWebEntry(projectSource) {
   return candidates.find((candidate) => paths.has(candidate)) ?? null;
 }
 
-export async function writeStableJson(pathname, value) {
-  await mkdir(path.dirname(pathname), { recursive: true });
-  await writeFile(pathname, `${JSON.stringify(stableValue(value), null, 2)}\n`);
-}
-
-export function webPlan(context, kind) {
-  const externalPackages = context.moduleGraph.externalPackages;
+export function webPlan(context, kind, linker) {
+  if (!linker) throw new TypeError(`${kind} target requires the Web module linker Kit.`);
   const errors = [];
   if (!context.irValidation.ok) errors.push(...context.irValidation.errors);
-  if (externalPackages.length) {
-    errors.push({
-      code: "web-external-bundle-unavailable",
-      packages: externalPackages,
-      message: `${kind} requires a complete immutable browser module closure.`
-    });
-  }
+  const closure = linker.plan(context);
+  errors.push(...closure.errors);
   if (!findWebEntry(context.projectSource)) errors.push({ code: "web-entry-missing" });
   return Object.freeze({
     status: errors.length ? "blocked" : "ready",
     executionMode: "javascript",
     entry: findWebEntry(context.projectSource),
-    externalPackages,
+    externalPackages: context.moduleGraph.externalPackages,
+    sourceClosure: closure,
     errors: Object.freeze(errors)
   });
 }

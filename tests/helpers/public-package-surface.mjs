@@ -28,6 +28,7 @@ export * from "../../src/core-domains/build/subdomains/compile/kits/javascript-f
 export * from "../../src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js";
 export * from "../../src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js";
 export * from "../../src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js";
+export * from "../../src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js";
 export * from "../../src/core-domains/build/subdomains/ir/index.js";
 export * from "../../src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js";
 export * from "../../src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js";

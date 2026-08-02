@@ -17,6 +17,7 @@ import { createJavascriptFallbackService } from "./subdomains/compile/kits/javas
 import { createNativeRuntimeLinkService } from "./subdomains/compile/kits/native-runtime-link-kit/services.js";
 import { createRuntimeAbiService } from "./subdomains/compile/kits/runtime-abi-kit/services.js";
 import { createRustLoweringService } from "./subdomains/compile/kits/rust-lowering-kit/services.js";
+import { createWebModuleLinkerService } from "./subdomains/compile/kits/web-module-linker-kit/services.js";
 import { createExecutionIrService } from "./subdomains/ir/kits/execution-ir-kit/services.js";
 import { createIrValidationService } from "./subdomains/ir/kits/ir-validation-kit/services.js";
 import { createKitIrService } from "./subdomains/ir/kits/kit-ir-kit/services.js";
@@ -57,10 +58,16 @@ export function createBuildDomain(config = {}) {
   const sourceCache = createSourceCacheService({ root: path.join(stateRoot, "sources") });
   const toolchainSource = createToolchainSourceService();
   const targetSet = createTargetSetService();
+  const processExecution = createProcessExecutionService({ allowedRoot: stateRoot });
+  const webModuleLinker = createWebModuleLinkerService({
+    root: stateRoot,
+    processExecution,
+    fetchSource: config.webFetchSource
+  });
   const targetRegistry = createTargetRegistryService({
     providers: [
-      createWebLiveTargetProvider(config.targets?.webLive),
-      createWebStaticTargetProvider(config.targets?.webStatic),
+      createWebLiveTargetProvider({ ...config.targets?.webLive, linker: webModuleLinker }),
+      createWebStaticTargetProvider({ ...config.targets?.webStatic, linker: webModuleLinker }),
       createAndroidXrTargetProvider({
         ...config.targets?.androidXr,
         sourceRecords: toolchainSource.list()
@@ -95,6 +102,7 @@ export function createBuildDomain(config = {}) {
     buildReceipt: createBuildReceiptService({ root: path.join(stateRoot, "receipts") }),
     rustLowering: createRustLoweringService({ semanticProofs: config.nativeSemanticProofs }),
     javascriptFallback: createJavascriptFallbackService({ available: config.quickJsAvailable === true }),
+    webModuleLinker,
     runtimeAbi: createRuntimeAbiService(),
     nativeRuntimeLink: createNativeRuntimeLinkService(),
     toolchainSource,
@@ -104,7 +112,7 @@ export function createBuildDomain(config = {}) {
       fetchSource: config.fetchSource
     }),
     isolatedStage: createIsolatedStageService({ root: path.join(stateRoot, "builds") }),
-    processExecution: createProcessExecutionService({ allowedRoot: stateRoot }),
+    processExecution,
     targetRegistry,
     artifactCache: createArtifactCacheService(),
     artifactManifest: createArtifactManifestService(),

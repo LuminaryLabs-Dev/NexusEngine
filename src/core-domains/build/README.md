@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:build`
 - Status: `stable-candidate`
-- Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+- Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 - Public entry: `nexusengine/domains/build`
 
 ## Responsibility
@@ -97,6 +97,7 @@ Own isolated build-time source analysis, compilation, toolchains, targets, artif
 | `project-immutability-kit` | `nexusengine/domains/build/proof/project-immutability` | Compare before and after project fingerprints byte-for-byte. |
 | `cross-runtime-parity-kit` | `nexusengine/domains/build/proof/cross-runtime-parity` | Compare canonical replay outputs across target runtimes. |
 | `target-validation-kit` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
+| `web-module-linker-kit` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
 
 ## Lifecycle
 

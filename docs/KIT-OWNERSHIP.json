@@ -1,10 +1,10 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 429,
-    "manifestProvenPublicAtoms": 122,
+    "manifestOwnedInternalModules": 433,
+    "manifestProvenPublicAtoms": 123,
     "rootContractModules": 25,
-    "sourceModules": 576,
+    "sourceModules": 581,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -2839,6 +2839,128 @@
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
       "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createInitialState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "BUILD_TIME_ONLY",
+        "DOMAIN_PATH",
+        "KIT_ID"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/build/compile/web-module-linker"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:build",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/build/compile/web-module-linker"
+      ],
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "web-module-linker-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "web-module-linker-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/build/tests/domain-tree.mjs",
+          "src/core-domains/build/tests/web-target-browser.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createWebModuleLinkerKit",
+        "kitManifest"
+      ],
+      "responsibility": "Materialize a verified, content-addressed browser module closure from immutable project sources.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "kitManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "ESBUILD_WASM_SOURCE",
+        "createWebModuleLinkerService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
@@ -6447,9 +6569,7 @@
       "proof": null,
       "publicExports": [
         "findWebEntry",
-        "materializeProjectFiles",
-        "webPlan",
-        "writeStableJson"
+        "webPlan"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -14787,7 +14907,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "registrySha256": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

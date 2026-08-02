@@ -34,6 +34,7 @@
     "./domains/build/compile/native-runtime-link": "./src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js",
     "./domains/build/compile/runtime-abi": "./src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js",
     "./domains/build/compile/rust-lowering": "./src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
+    "./domains/build/compile/web-module-linker": "./src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
     "./domains/build/ir": "./src/core-domains/build/subdomains/ir/index.js",
     "./domains/build/ir/execution-ir": "./src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js",
     "./domains/build/ir/ir-validation": "./src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js",
@@ -168,6 +169,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "registryHash": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
   "schema": "nexusengine.package-exports/1"
 }

@@ -5,7 +5,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   responsibility: "Emit verified live ESM source, loader, service worker, and cache policy.",
   domainPath: "n:build:target:web-live",
   apiName: "webLiveTarget",
-  requires: ["n:build:target"],
+  requires: ["n:build:target", "build:web-module-linker"],
   provides: ["n:build:target:web-live", "build:web-live-target"],
   module: "./src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js",
   exportName: "createWebLiveTargetKit",

@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
+Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
 
-- Source modules: 576
-- Manifest-proven public atoms: 122
-- Manifest-owned internal modules: 429
+- Source modules: 581
+- Manifest-proven public atoms: 123
+- Manifest-owned internal modules: 433
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -130,6 +130,11 @@ Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68d
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/compile/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/ir/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |

@@ -10116,6 +10116,7 @@
         "n:build:target:web-live"
       ],
       "requires": [
+        "build:web-module-linker",
         "n:build:target"
       ],
       "reset": {
@@ -10186,6 +10187,7 @@
         "n:build:target:web-static"
       ],
       "requires": [
+        "build:web-module-linker",
         "n:build:target"
       ],
       "reset": {
@@ -11050,6 +11052,76 @@
         "exportName": "createTargetValidationKit",
         "module": "./src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js",
         "publicSubpath": "./domains/build/proof/target-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "webModuleLinker",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:build:compile",
+      "environments": [
+        "node"
+      ],
+      "id": "web-module-linker-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:build",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "web-module-linker-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "web-module-linker-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/build/tests/domain-tree.mjs",
+          "src/core-domains/build/tests/web-target-browser.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "build:web-module-linker"
+      ],
+      "requires": [
+        "build:process-execution",
+        "n:build:compile"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Materialize a verified, content-addressed browser module closure from immutable project sources.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createWebModuleLinkerKit",
+        "module": "./src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
+        "publicSubpath": "./domains/build/compile/web-module-linker"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -16090,6 +16162,7 @@
     "./domains/build/compile/native-runtime-link": "./src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js",
     "./domains/build/compile/runtime-abi": "./src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js",
     "./domains/build/compile/rust-lowering": "./src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
+    "./domains/build/compile/web-module-linker": "./src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
     "./domains/build/ir": "./src/core-domains/build/subdomains/ir/index.js",
     "./domains/build/ir/execution-ir": "./src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js",
     "./domains/build/ir/ir-validation": "./src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js",
@@ -16217,7 +16290,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "registryHash": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -16346,11 +16419,11 @@
     },
     {
       "path": "src/core-domains/build/index.js",
-      "sha256": "2b4fc9399cd6b5e13da939efdf521add437381b0b6d49f1d8e334d209868605d"
+      "sha256": "f0486ba146bfff31363e163298b92eb73b82bac3dd25ebcaad10093b66e7cf43"
     },
     {
       "path": "src/core-domains/build/kit-manifests.js",
-      "sha256": "bdc71f1bec2241d967fc45b4216447d8938591142c7306402475c4c122acad22"
+      "sha256": "175b4aea5ab2f6cce447eafb060a2c9bd362cec1164d4d8eb867b1cc9d118cba"
     },
     {
       "path": "src/core-domains/build/manifest-input.js",
@@ -16650,7 +16723,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/compile/index.js",
-      "sha256": "288cf63b70f804bf48d2f510e9c523898358ada6881d5fd7e94c5f2fb9f3dc76"
+      "sha256": "318f05bb9f1831bcdbe4fc2c27f188823958bedd6998bef67cd84f1fca587cde"
     },
     {
       "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/contracts.js",
@@ -16747,6 +16820,30 @@
     {
       "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js",
       "sha256": "c55935a02d280477866b069531d4038276f5529f59e5b0fe7d1e582627cd6a9c"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js",
+      "sha256": "c5e55b573574d1081ca454b61adb47f65405bda89b958cbc99aed2e4cd4f404f"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
+      "sha256": "1261cef2db0ce3c06da0a155a7fc0015e8353ce0be92fe027ccdbedbe333f16e"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+      "sha256": "81f5819b6954084f4e11effc7ad9823bdd1a5965ef541610250c9335b99bf116"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js",
+      "sha256": "032ff6698fbe52e8d1fd96b05c5301441144de92e30d63b99f6fc030f3550401"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/sources.json",
+      "sha256": "e14290622a74f21871643299ab1b0cc16b7850ad27afd27d41373e51d42aacc7"
+    },
+    {
+      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js",
+      "sha256": "e56bddd16a506de6b53aa2b7d4b6eebbf6ad1cb70fb062334aa32c5606f805c9"
     },
     {
       "path": "src/core-domains/build/subdomains/compile/subdomain.manifest.js",
@@ -16898,7 +16995,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/services.js",
-      "sha256": "f178190d15cf8a4116fb0fb147f278242c5ef4a3356eb1b8b51b49a341884ae9"
+      "sha256": "9f4ef30ed27fa5aa8afb4db555604a94cff8c82776f2c72a9fd74a261402339a"
     },
     {
       "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/sources.json",
@@ -17106,7 +17203,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/services.js",
-      "sha256": "c636b742c1f53cc6abf48f5aca0202af9ff2f4b0fec285790dc9e2522b2c5ffb"
+      "sha256": "1d91b7be53fcb7aacdc3630fbf3655dcc53dbbb4193226938ff7e152a6b1fe50"
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/sources.json",
@@ -17406,15 +17503,15 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js",
-      "sha256": "58d3ccda4c65ad150d20357648347cab96d00fc6d03f7dc49804c1449271e88c"
+      "sha256": "c11181d87e70e26232f067515f65250758f7ce0afc453961486bed79b5493af1"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/kit.manifest.js",
-      "sha256": "00127fe03143bf3660d773c940ec3b19a006bea4fbfd52e3bc12f5c4edad3ce8"
+      "sha256": "a413b07e714cae3e6e509a2ecba679f19cbea7acf9d62e8a822f1d7aea6b1324"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js",
-      "sha256": "29c06c307781b6f85da8d0b1be2ff4411b3b7a897b410d691c20c1973b49164e"
+      "sha256": "8e9692b4399d65ec346a5df904b08149e126245be2fd0a07496ea42d0730dd60"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/sources.json",
@@ -17438,15 +17535,15 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js",
-      "sha256": "5ebd992aaa9157d55998db9aa3b9b70cad9910612f59da40935ddde3dd0184e3"
+      "sha256": "391dadfe8de09af718df2ff3b63ba7d29bc59eb3ded3f5b6d7ce7e9aae07c796"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/kit.manifest.js",
-      "sha256": "9a4187532eb9a67c69b9053eea7429fe39c109239f9fb99372f2a5de9f903715"
+      "sha256": "4ef8f319bfa7e6257c74e58deec1bd4ba89da3bb1a553c70b32b156e9729a75e"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js",
-      "sha256": "e27764c5ced07974554d82f0707e943e4e4875368274c6a6de1ffe253d422597"
+      "sha256": "76d0101639e7075f43ccadf812756ed1d02e37007fc02ffec654a51703502c89"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/sources.json",
@@ -17462,7 +17559,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/web-target-helpers.js",
-      "sha256": "251ebd06f252653d12e95b06a733d0809353b74664587eb29018b8f4694f0b3f"
+      "sha256": "ce40a8421daf89ba7285a8e376f818c1ef92e0d12e881539cbaa1a640073c20e"
     },
     {
       "path": "src/core-domains/build/subdomains/toolchain/index.js",
@@ -17506,7 +17603,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/services.js",
-      "sha256": "4b1cdb893e709a73b33a8d24ed750cbdeddcae1ce32dba8cef501bdc229eb8cc"
+      "sha256": "97d90b970582d4903415b0be67b06b8b6336960c05eddf5efa802f52176ea17a"
     },
     {
       "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/sources.json",
@@ -17602,7 +17699,19 @@
     },
     {
       "path": "src/core-domains/build/tests/domain-tree.mjs",
-      "sha256": "f8822720df152e101bd4fe6de5a02e22ecad0242eae42dd7c7d832e812afd941"
+      "sha256": "b19a8a8ad9ee0c09430ae2922a69d38b98bf7336a599246670ce7b6fd8ed8ecb"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/external-project/package-lock.json",
+      "sha256": "57cd86d40d525fa29e0034582c289fd8b3e8e72662b763c543de9512363d6508"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/external-project/package.json",
+      "sha256": "7677d6d72d5c1c048e872446b05b3f678ca66fb99dd28362d457bf08122fe08a"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/external-project/src/index.js",
+      "sha256": "0e897c7f291510a7babd3084533a663fdbcb763dcc26cdc13bf8bbc7ade8f984"
     },
     {
       "path": "src/core-domains/build/tests/fixtures/minimal-project/package.json",
@@ -17638,7 +17747,7 @@
     },
     {
       "path": "src/core-domains/build/tests/web-target-browser.mjs",
-      "sha256": "513823d176982653b8f6779a806f75c4416ec5584f2b9380b0500a5bf8bd625c"
+      "sha256": "6bd163b7a45ad0a975c2434c0092c59455a4fda75dec5303a79fdde9ab56c803"
     },
     {
       "path": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",

@@ -1,10 +1,13 @@
-import { readFile } from "node:fs/promises";
+import { lstat, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
 import {
   BUILD_SOURCE_RECORD_SCHEMA,
+  contentIntegrity,
+  posixPath,
   requirePlainObject,
   requireText,
+  stableJson,
   sortedUnique
 } from "../../../../contracts.js";
 
@@ -36,7 +39,8 @@ export function normalizeBuildSourceRecord(input = {}) {
     provider: input.provider == null ? null : requireText(input.provider, "Build source provider"),
     substitution: input.substitution == null ? null : requireText(input.substitution, "Build source substitution"),
     resolutionStatus: String(input.resolutionStatus ?? "resolved"),
-    package: input.package == null ? null : requireText(input.package, "Build source package")
+    package: input.package == null ? null : requireText(input.package, "Build source package"),
+    packagePath: input.packagePath == null ? null : requireText(input.packagePath, "Build source package path")
   };
   if (record.resolutionStatus === "resolved" && (!record.integrity || !record.license)) {
     throw new TypeError(`Resolved Build source ${record.id} requires integrity and license.`);
@@ -54,12 +58,37 @@ function packagePath(packageName) {
   return `node_modules/${packageName}`;
 }
 
-async function packageLicense(projectRoot, packageName) {
+async function packageMetadata(projectRoot, packageName) {
   try {
-    const packageJson = JSON.parse(await readFile(path.join(projectRoot, "node_modules", packageName, "package.json"), "utf8"));
-    return typeof packageJson.license === "string" ? packageJson.license : null;
+    return JSON.parse(await readFile(path.join(projectRoot, "node_modules", packageName, "package.json"), "utf8"));
   } catch {
     return null;
+  }
+}
+
+async function packageTreeIntegrity(projectRoot, packageName) {
+  const root = path.join(projectRoot, "node_modules", packageName);
+  const files = [];
+  async function walk(directory) {
+    const entries = await readdir(directory, { withFileTypes: true });
+    entries.sort((left, right) => left.name.localeCompare(right.name));
+    for (const entry of entries) {
+      const pathname = path.join(directory, entry.name);
+      const info = await lstat(pathname);
+      if (info.isSymbolicLink()) throw new Error(`Installed package contains a symbolic link: ${packageName}.`);
+      if (info.isDirectory()) await walk(pathname);
+      else if (info.isFile()) files.push({
+        path: posixPath(path.relative(root, pathname)),
+        integrity: contentIntegrity(await readFile(pathname))
+      });
+    }
+  }
+  try {
+    await walk(root);
+    return contentIntegrity(stableJson(files));
+  } catch (error) {
+    if (error?.code === "ENOENT") return null;
+    throw error;
   }
 }
 
@@ -88,7 +117,7 @@ export function createDependencySourceService() {
       if (seen.has(packageName)) continue;
       seen.add(packageName);
       const entry = lockPackages[packagePath(packageName)];
-      if (!entry?.version || !entry?.integrity || !entry?.resolved) {
+      if (!entry?.version || !entry?.resolved) {
         throw new Error(`Locked npm source is incomplete for ${packageName}.`);
       }
       if (/\/(?:latest|next)(?:\/|$)/i.test(entry.resolved)) {
@@ -99,11 +128,36 @@ export function createDependencySourceService() {
         ...(entry.optionalDependencies ?? {})
       }).sort();
       queue.push(...dependencies);
-      const license = await packageLicense(projectSource.root, packageName);
+      const installed = await packageMetadata(projectSource.root, packageName);
+      const license = typeof entry.license === "string"
+        ? entry.license
+        : typeof installed?.license === "string" ? installed.license : null;
+      const git = /^(git\+https:\/\/[^#]+)#([0-9a-f]{40})$/i.exec(entry.resolved);
+      if (git) {
+        const integrity = await packageTreeIntegrity(projectSource.root, packageName);
+        records.push(normalizeBuildSourceRecord({
+          id: `git:${packageName}@${git[2].toLowerCase()}`,
+          sourceKind: "git",
+          package: packageName,
+          packagePath: packagePath(packageName),
+          canonicalLocator: git[1].replace(/^git\+/, ""),
+          exactVersion: git[2].toLowerCase(),
+          integrity,
+          license,
+          transitiveDependencies: dependencies.map((dependency) => `npm:${dependency}`),
+          requiredEnvironment: ["node"],
+          resolutionStatus: integrity && license ? "resolved" : integrity ? "license-unavailable" : "integrity-unavailable"
+        }));
+        continue;
+      }
+      if (!/^https:\/\//.test(entry.resolved) || !entry.integrity) {
+        throw new Error(`Locked npm source is not an exact registry artifact for ${packageName}.`);
+      }
       records.push(normalizeBuildSourceRecord({
         id: `npm:${packageName}@${entry.version}`,
         sourceKind: "npm",
         package: packageName,
+        packagePath: packagePath(packageName),
         canonicalLocator: entry.resolved,
         exactVersion: entry.version,
         integrity: entry.integrity,

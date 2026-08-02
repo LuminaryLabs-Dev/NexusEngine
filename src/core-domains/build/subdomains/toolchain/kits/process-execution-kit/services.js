@@ -9,6 +9,7 @@ export function createProcessExecutionService(config = {}) {
   const allowedRoot = path.resolve(config.allowedRoot ?? buildHome);
 
   return Object.freeze({
+    allowedRoot,
     run(command, args = [], options = {}) {
       const executable = requireText(command, "Process command");
       if (!Array.isArray(args) || args.some((argument) => typeof argument !== "string")) {

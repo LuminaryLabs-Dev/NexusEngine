@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createServer } from "node:http";
-import { readFile, stat } from "node:fs/promises";
+import { readFile, readdir, stat } from "node:fs/promises";
 import { mkdtemp } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
@@ -9,10 +9,11 @@ import { chromium } from "playwright";
 
 import { createBuildDomain } from "../index.js";
 
-const fixture = path.resolve("src/core-domains/build/tests/fixtures/minimal-project");
+const fixture = path.resolve("src/core-domains/build/tests/fixtures/external-project");
 const stateRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-build-browser-state-"));
 const outputRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-build-browser-output-"));
 const build = createBuildDomain({ stateRoot });
+const before = await build.inspect(fixture);
 const plan = await build.plan({
   project: fixture,
   profile: "native-preferred",
@@ -20,6 +21,31 @@ const plan = await build.plan({
 });
 const receipt = await build.apply(plan.id, plan.id, { out: outputRoot });
 assert.equal(receipt.status, "succeeded");
+assert.equal(receipt.registryHash, plan.registryHash);
+assert.equal(receipt.sourceRecords.length, 1);
+assert.equal(receipt.sourceRecords[0].id, "npm:is-number@7.0.0");
+const repeated = await build.apply(plan.id, plan.id, { out: outputRoot });
+assert.equal(repeated.noOp, true);
+assert.deepEqual(repeated.targets, receipt.targets);
+const after = await build.inspect(fixture);
+assert.equal(after.projectFingerprint.contentHash, before.projectFingerprint.contentHash);
+
+const targetReceipts = new Map(receipt.targets.map((entry) => [entry.target, entry]));
+assert.equal(
+  targetReceipts.get("web-live")?.artifact?.metadata?.closureHash,
+  targetReceipts.get("web-static")?.artifact?.metadata?.closureHash,
+  "web-live and web-static share one verified dependency closure"
+);
+
+async function listFiles(root, directory = root, output = []) {
+  const entries = await readdir(directory, { withFileTypes: true });
+  for (const entry of entries) {
+    const pathname = path.join(directory, entry.name);
+    if (entry.isDirectory()) await listFiles(root, pathname, output);
+    else output.push(path.relative(root, pathname).replaceAll(path.sep, "/"));
+  }
+  return output.sort();
+}
 
 function contentType(filePath) {
   if (filePath.endsWith(".html")) return "text/html; charset=utf-8";
@@ -63,8 +89,16 @@ async function serve(root) {
 const browser = await chromium.launch({ headless: true });
 try {
   for (const target of ["web-live", "web-static"]) {
-    const targetReceipt = receipt.targets.find((entry) => entry.target === target);
+    const targetReceipt = targetReceipts.get(target);
     assert.equal(targetReceipt?.status, "succeeded");
+    const files = await listFiles(targetReceipt.destination);
+    assert.equal(files.some((file) => file.startsWith("node_modules/")), false);
+    const index = await readFile(path.join(targetReceipt.destination, "index.html"), "utf8");
+    assert.equal(/https?:\/\//.test(index), false);
+    assert.equal(/type=["']importmap/.test(index), false);
+    const emittedSources = files.filter((file) => /\.(?:js|mjs)$/.test(file));
+    const emittedText = (await Promise.all(emittedSources.map((file) => readFile(path.join(targetReceipt.destination, file), "utf8")))).join("\n");
+    assert.equal(/from\s+["']is-number["']/.test(emittedText), false);
     const server = await serve(targetReceipt.destination);
     const context = await browser.newContext();
     const page = await context.newPage();
@@ -87,4 +121,4 @@ try {
   await browser.close();
 }
 
-console.log("Build Web targets: generated web-live and web-static artifacts start cleanly in Chromium");
+console.log("Build Web targets: one verified npm dependency closure starts cleanly in web-live and web-static");

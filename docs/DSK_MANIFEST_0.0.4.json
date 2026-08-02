@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
-  "compositionRegistryHash": "sha256:aa61eb49e7136d7f552e566e1b3e4a3fae5d803f6475d7f4d0740ca34c813e6a",
+  "registryHash": "sha256:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
+  "compositionRegistryHash": "sha256:2571b6efe15ff495b6065d770343cb9f0cde85be87fd972bf88f1b15a2ad9b45",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
-      "integrity": "sha256:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+      "sourceCommit": "builtin:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
+      "integrity": "sha256:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
       "status": "available",
       "environments": [
         "browser",
@@ -11196,6 +11196,7 @@
       "apiName": "webLiveTarget",
       "apiVisibility": "public",
       "requires": [
+        "build:web-module-linker",
         "n:build:target"
       ],
       "provides": [
@@ -11260,6 +11261,80 @@
       }
     },
     {
+      "id": "web-module-linker-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Materialize a verified, content-addressed browser module closure from immutable project sources.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "webModuleLinker",
+      "apiVisibility": "public",
+      "requires": [
+        "build:process-execution",
+        "n:build:compile"
+      ],
+      "provides": [
+        "build:web-module-linker"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/web-module-linker",
+        "exportName": "createWebModuleLinkerKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/web-target-browser.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "web-module-linker-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "web-module-linker-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "web-static-target-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -11270,6 +11345,7 @@
       "apiName": "webStaticTarget",
       "apiVisibility": "public",
       "requires": [
+        "build:web-module-linker",
         "n:build:target"
       ],
       "provides": [
