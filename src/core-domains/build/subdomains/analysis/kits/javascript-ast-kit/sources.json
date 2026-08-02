@@ -1,0 +1,17 @@
+[
+  {
+    "schema": "nexusengine.build-source-record/1",
+    "id": "npm:@typescript/typescript6@6.0.2",
+    "sourceKind": "npm",
+    "package": "@typescript/typescript6",
+    "canonicalLocator": "https://registry.npmjs.org/@typescript/typescript6/-/typescript6-6.0.2.tgz",
+    "exactVersion": "6.0.2",
+    "integrity": "sha512-mbCddXd+jm7hfx7w2YU64/Av4/NqqeG3GoRZgxPcgoTxYjhrcfJRw9ULch71SS4G+Q3bOXFhRvPqjguN0Hyp5w==",
+    "license": "Apache-2.0",
+    "requiredEnvironment": ["node"],
+    "transitiveDependencies": [],
+    "provider": "npm",
+    "substitution": null,
+    "resolutionStatus": "resolved"
+  }
+]

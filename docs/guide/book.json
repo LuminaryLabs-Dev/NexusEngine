@@ -14,6 +14,7 @@
     { "id": "mcp", "title": "MCP Agent Workflow", "source": "docs/guide/chapters/07-mcp-agent-workflow.md", "googleDocTab": "07 MCP" },
     { "id": "registry-security", "title": "Registries And Security", "source": "docs/guide/chapters/08-registry-and-security.md", "googleDocTab": "08 Registries" },
     { "id": "integration-boundaries", "title": "Hosts, Providers, And Adapters", "source": "docs/guide/chapters/09-hosts-providers-adapters.md", "googleDocTab": "09 Integration" },
+    { "id": "build-domain", "title": "Build Projects And Targets", "source": "docs/guide/building/README.md", "googleDocTab": "10 Build Domain" },
     { "id": "testing", "title": "Testing And Proof", "source": "docs/guide/chapters/10-testing-and-proof.md", "googleDocTab": "10 Testing" },
     { "id": "migration", "title": "Migrating To 0.0.4", "source": "docs/guide/chapters/11-migration-0.0.4.md", "googleDocTab": "11 Migration" },
     { "id": "protokit-extraction", "title": "ProtoKit Extraction", "source": "docs/guide/chapters/12-protokit-extraction.md", "googleDocTab": "12 ProtoKit Extraction" },

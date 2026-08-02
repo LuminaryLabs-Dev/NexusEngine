@@ -228,6 +228,26 @@ function normalizeProviderOrAdapter(value, label, allowedPaths) {
   }));
 }
 
+function normalizePublicEntries(value, label, allowedPaths) {
+  if (!Array.isArray(value)) throw new TypeError(`${label} must be an array.`);
+  const subpaths = new Set();
+  return Object.freeze(value.map((entry, index) => {
+    if (!entry || typeof entry !== "object" || Array.isArray(entry)) {
+      throw new TypeError(`${label}[${index}] must be an object.`);
+    }
+    const ownerPath = domainPath(entry.domainPath, `${label}[${index}].domainPath`);
+    if (!allowedPaths.has(ownerPath)) throw new TypeError(`${label}[${index}] references undeclared domain ${ownerPath}.`);
+    const subpath = text(entry.subpath, `${label}[${index}].subpath`);
+    if (subpaths.has(subpath)) throw new TypeError(`${label} contains duplicate subpath ${subpath}.`);
+    subpaths.add(subpath);
+    return Object.freeze({
+      domainPath: ownerPath,
+      subpath,
+      module: text(entry.module, `${label}[${index}].module`)
+    });
+  }));
+}
+
 function normalizeAtomicKit(input, allowedPaths) {
   if (!input || typeof input !== "object" || Array.isArray(input)) {
     throw new TypeError("Core atomic Kit must be an object.");
@@ -320,6 +340,7 @@ export function defineCoreDomainManifest(input = {}) {
     settingsSchema: root.settingsSchema,
     proof: root.proof,
     publicEntry: Object.freeze(clone(has(input, "publicEntry", "Core domain"))),
+    publicEntries: normalizePublicEntries(input.publicEntries ?? [], "Core domain.publicEntries", allowedPaths),
     subdomains: Object.freeze(subdomains),
     publicKits: Object.freeze(publicKits),
     kits: Object.freeze(publicKits),
@@ -370,6 +391,12 @@ export function flattenCoreDomainManifests(manifests = []) {
     const domainModule = text(entry.module, `Core domain ${manifest.id} publicEntry.module`);
     if (publicModules.has(domainSubpath)) throw new TypeError(`Core public subpath collision: ${domainSubpath}.`);
     publicModules.set(domainSubpath, domainModule);
+    for (const publicEntry of manifest.publicEntries ?? []) {
+      const subpath = text(publicEntry.subpath, `Core domain ${manifest.id} publicEntries.subpath`);
+      const module = text(publicEntry.module, `Core domain ${manifest.id} publicEntries.module`);
+      if (publicModules.has(subpath)) throw new TypeError(`Core public subpath collision: ${subpath}.`);
+      publicModules.set(subpath, module);
+    }
     for (const kit of manifest.publicKits) {
       if (kitIds.has(kit.id)) throw new TypeError(`Core atomic Kit collision: ${kit.id}.`);
       if (publicModules.has(kit.source.publicSubpath)) throw new TypeError(`Core public subpath collision: ${kit.source.publicSubpath}.`);

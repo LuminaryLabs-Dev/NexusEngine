@@ -1,0 +1,17 @@
+[
+  {
+    "schema": "nexusengine.build-source-record/1",
+    "id": "git:openxr-sdk-source@1.1.58",
+    "sourceKind": "git",
+    "package": null,
+    "canonicalLocator": "https://github.com/KhronosGroup/OpenXR-SDK-Source.git",
+    "exactVersion": "45df0ea7769e586de4a627ccded70ec9e3b4d4ac",
+    "integrity": null,
+    "license": "Apache-2.0",
+    "requiredEnvironment": ["android-xr", "pcvr"],
+    "transitiveDependencies": [],
+    "provider": "git",
+    "substitution": null,
+    "resolutionStatus": "unresolved"
+  }
+]

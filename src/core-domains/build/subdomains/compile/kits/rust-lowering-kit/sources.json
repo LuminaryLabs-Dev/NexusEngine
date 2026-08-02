@@ -1,0 +1,17 @@
+[
+  {
+    "schema": "nexusengine.build-source-record/1",
+    "id": "git:nexusengine-rust@7c5d9fd",
+    "sourceKind": "git",
+    "package": null,
+    "canonicalLocator": "https://github.com/LuminaryLabs-Agents/NexusEngine-Rust.git",
+    "exactVersion": "7c5d9fd11baf41c11020ea4f7fda2b4a3d050eda",
+    "integrity": "sha256:d3b89d1b1f1e2a7248d00c45658d29c1c5d402637fa759a40ad1c1b237bf005e",
+    "license": "MIT",
+    "requiredEnvironment": ["build-lineage"],
+    "transitiveDependencies": [],
+    "provider": "git-archive-sha256",
+    "substitution": "Selected deterministic IR and generated-Rust concepts only; legacy shells, product hosts, and scaffold claims are excluded.",
+    "resolutionStatus": "resolved"
+  }
+]

@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8<br>
-      Guide content SHA-256: 68e375f8ea3cf5f36ae9ab7f673f1a8a8e1ec54155963ad4b18445db6c7dfe7d<br><br>
+      Core registry SHA-256: 18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf<br>
+      Guide content SHA-256: 16339a7aacb9dfbda7bc6b5dc4dd462f78ca864b2f802d7865605f4b529dc1b5<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -70,16 +70,17 @@
       <li><a href="#mcp"><span>07</span>MCP Agent Workflow</a></li>
       <li><a href="#registry-security"><span>08</span>Registries And Security</a></li>
       <li><a href="#integration-boundaries"><span>09</span>Hosts, Providers, And Adapters</a></li>
-      <li><a href="#testing"><span>10</span>Testing And Proof</a></li>
-      <li><a href="#migration"><span>11</span>Migrating To 0.0.4</a></li>
-      <li><a href="#protokit-extraction"><span>12</span>ProtoKit Extraction</a></li>
-      <li><a href="#release-operation"><span>13</span>Release And Operating Model</a></li>
-      <li><a href="#domain-index"><span>14</span>Generated Domain Index</a></li>
-      <li><a href="#dependency-table"><span>15</span>Generated Dependency Table</a></li>
-      <li><a href="#api-reference"><span>16</span>Generated Atomic API Reference</a></li>
-      <li><a href="#ownership-ledger"><span>17</span>Generated Ownership Ledger</a></li>
-      <li><a href="#root-migration-map"><span>18</span>Generated Root Migration Map</a></li>
-      <li><a href="#extraction-summary"><span>19</span>Generated ProtoKit Extraction Summary</a></li></ol>
+      <li><a href="#build-domain"><span>10</span>Build Projects And Targets</a></li>
+      <li><a href="#testing"><span>11</span>Testing And Proof</a></li>
+      <li><a href="#migration"><span>12</span>Migrating To 0.0.4</a></li>
+      <li><a href="#protokit-extraction"><span>13</span>ProtoKit Extraction</a></li>
+      <li><a href="#release-operation"><span>14</span>Release And Operating Model</a></li>
+      <li><a href="#domain-index"><span>15</span>Generated Domain Index</a></li>
+      <li><a href="#dependency-table"><span>16</span>Generated Dependency Table</a></li>
+      <li><a href="#api-reference"><span>17</span>Generated Atomic API Reference</a></li>
+      <li><a href="#ownership-ledger"><span>18</span>Generated Ownership Ledger</a></li>
+      <li><a href="#root-migration-map"><span>19</span>Generated Root Migration Map</a></li>
+      <li><a href="#extraction-summary"><span>20</span>Generated ProtoKit Extraction Summary</a></li></ol>
   </section>
   
     <article class="chapter" id="start-here">
@@ -469,6 +470,100 @@ if (!validation.ok) throw new Error(&quot;Composition is invalid&quot;);
 
     </article>
 
+    <article class="chapter" id="build-domain">
+      <div class="chapter-kicker">Guide chapter</div>
+      <h1>Build Projects And Targets</h1>
+<p><code>n:build</code> is NexusEngine&#39;s isolated build-time Domain. It is physically shipped
+with the Engine so projects do not own compiler, toolchain, platform host,
+packaging, artifact, or receipt logic. It is not installed by <code>createEngine()</code>
+and cannot be imported by runtime Domains.</p>
+<h2>Boundary</h2>
+<pre><code class="language-txt">project (read only)              ~/.nexusengine (Build owned)
+├── src                          ├── sources/&lt;sha256&gt;
+├── content                      ├── toolchains/&lt;identity&gt;
+├── assets                       ├── builds/&lt;plan-hash&gt;/&lt;target&gt;
+├── tests                        ├── artifacts/&lt;project&gt;/&lt;plan-hash&gt;
+└── package.json                 └── receipts/&lt;plan-hash&gt;.json
+</code></pre>
+<p>Build fingerprints every project file before planning and immediately before
+execution. It fingerprints the project again after every aggregate run. Any
+changed, added, or removed source path fails project immutability proof.</p>
+<h2>Commands</h2>
+<pre><code class="language-bash">nexusengine inspect ./project
+
+nexusengine plan ./project \
+  --profile native-preferred \
+  --target web-live \
+  --target web-static \
+  --target android-xr \
+  --target pcvr
+
+nexusengine build ./project \
+  --profile native-preferred \
+  --out /absolute/artifact/root \
+  --approve-plan sha256:&lt;exact-plan-hash&gt; \
+  --target web-static
+</code></pre>
+<p>At least one repeated <code>--target</code> is required. Order and duplicates normalize to
+one sorted target set, so they do not change the plan hash. An interactive
+terminal may confirm the displayed exact plan. Noninteractive execution always
+requires <code>--approve-plan</code>.</p>
+<h2>Pipeline</h2>
+<pre><code class="language-txt">read-only project inventory
+-&gt; SHA-256 source fingerprint
+-&gt; TypeScript compiler AST and typed diagnostics
+-&gt; AST-derived module, effect, and dependency analysis
+-&gt; Kit IR
+-&gt; deterministic Execution IR
+-&gt; whole-Kit portability classification
+-&gt; target capability and fallback selection
+-&gt; exact plan approval
+-&gt; isolated target stages
+-&gt; artifact integrity and project immutability proof
+-&gt; persistent receipt
+</code></pre>
+<p>The four whole-Kit execution modes are <code>native</code>, <code>native-adapter</code>,
+<code>javascript</code>, and <code>unsupported</code>. JavaScript is not silently translated into
+native behavior. A module must explicitly declare portable-native intent and
+pass semantic parity before native lowering can be accepted.</p>
+<h2>Targets</h2>
+<ul>
+<li><code>web-live</code> copies the local immutable module closure and generates a service
+worker that verifies every SHA-256 before populating a content cache.</li>
+<li><code>web-static</code> emits a self-contained local directory and rejects unresolved
+external browser packages.</li>
+<li><code>android-xr</code> shares OpenXR runtime, action, view, and submission contracts,
+then adds Android ARM64 SDK/NDK, lifecycle, Gradle, APK, and device gates.</li>
+<li><code>pcvr</code> shares the same OpenXR contracts, then adds Windows x64 host,
+executable packaging, runtime, and headset gates.</li>
+</ul>
+<p>Native planning is not native proof. Android XR and PCVR remain <code>blocked</code> until
+the exact upstream sources have resolved SHA-256 records, semantic parity is
+proven, the required compiler and package validators run, and the selected
+runtime and hardware tests pass.</p>
+<h2>Source Security</h2>
+<p>Build accepts npm registry integrity, crates.io checksums, exact Git commits,
+versioned vendor installers, and immutable HTTPS ESM URLs. Metadata discovery
+does not execute source. Moving references, absent licenses, integrity
+mismatches, path escapes, incomplete dependency closure, and duplicate source
+identities fail before target execution.</p>
+<p>The base npm install performs no Build downloads. Network provisioning is a
+separate approved operation and caches verified bytes by content hash.</p>
+<h2>MCP</h2>
+<p>The opt-in Build provider exposes:</p>
+<pre><code class="language-txt">build_targets_list
+build_inspect
+build_plan
+build_apply
+build_receipt_get
+</code></pre>
+<p><code>build_apply</code> requires MCP authorization and the exact reviewed plan hash.
+Repeated successful apply returns the existing receipt without rebuilding.
+During a partial failure, successful target stages remain cached while blocked
+or failed targets remain visible in the aggregate failed receipt.</p>
+
+    </article>
+
     <article class="chapter" id="testing">
       <div class="chapter-kicker">Guide chapter</div>
       <h1>Testing And Proof</h1>
@@ -617,7 +712,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -625,6 +720,22 @@ npm pack --dry-run --json
 <li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
 <li><code>n:asset</code>: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</li>
+<li><code>n:build</code>: Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.</li>
+<li><code>n:build:source</code>: Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.</li>
+<li><code>n:build:analysis</code>: Own real syntax, type, effect, and dependency analysis for build inputs.</li>
+<li><code>n:build:ir</code>: Own serializable Kit IR, Execution IR, validation, and source lineage maps.</li>
+<li><code>n:build:classification</code>: Own whole-Kit portability, capability resolution, and fallback selection.</li>
+<li><code>n:build:orchestration</code>: Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts.</li>
+<li><code>n:build:compile</code>: Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans.</li>
+<li><code>n:build:toolchain</code>: Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution.</li>
+<li><code>n:build:target</code>: Own target registration and target-specific build providers.</li>
+<li><code>n:build:artifact</code>: Own content-addressed artifact caches, manifests, integrity, and external output.</li>
+<li><code>n:build:proof</code>: Own project immutability, runtime parity, and target validation evidence.</li>
+<li><code>n:build:target:web-live</code>: Own verified live ESM loading and content-hash browser caching.</li>
+<li><code>n:build:target:web-static</code>: Own self-contained static Web artifact materialization.</li>
+<li><code>n:build:target:openxr</code>: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.</li>
+<li><code>n:build:target:android-xr</code>: Own Android ARM64 OpenXR host, package, and validation planning.</li>
+<li><code>n:build:target:pcvr</code>: Own Windows x64 OpenXR host, package, and validation planning.</li>
 <li><code>n:composition</code>: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</li>
 <li><code>n:compute</code>: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.</li>
 <li><code>n:compute:model</code>: Own model descriptors, registries, inference requests/results, and model provider contracts.</li>
@@ -683,7 +794,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
 <table>
 <thead>
 <tr>
@@ -720,6 +831,86 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:asset</code></td>
 <td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:source</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:analysis</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:ir</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:classification</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:orchestration</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:compile</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:toolchain</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:artifact</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:proof</code></td>
+<td><code>n:build</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target:web-live</code></td>
+<td><code>n:build:target</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target:web-static</code></td>
+<td><code>n:build:target</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target:openxr</code></td>
+<td><code>n:build:target</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target:android-xr</code></td>
+<td><code>n:build:target</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:build:target:pcvr</code></td>
+<td><code>n:build:target</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -985,7 +1176,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -1030,6 +1221,102 @@ npm pack --dry-run --json
 <td><code>n:asset</code></td>
 <td>-</td>
 <td>Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build</code></td>
+<td>-</td>
+<td>Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:source</code></td>
+<td><code>n:build</code></td>
+<td>Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:analysis</code></td>
+<td><code>n:build</code></td>
+<td>Own real syntax, type, effect, and dependency analysis for build inputs.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:ir</code></td>
+<td><code>n:build</code></td>
+<td>Own serializable Kit IR, Execution IR, validation, and source lineage maps.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:classification</code></td>
+<td><code>n:build</code></td>
+<td>Own whole-Kit portability, capability resolution, and fallback selection.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:orchestration</code></td>
+<td><code>n:build</code></td>
+<td>Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:compile</code></td>
+<td><code>n:build</code></td>
+<td>Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:toolchain</code></td>
+<td><code>n:build</code></td>
+<td>Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target</code></td>
+<td><code>n:build</code></td>
+<td>Own target registration and target-specific build providers.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:artifact</code></td>
+<td><code>n:build</code></td>
+<td>Own content-addressed artifact caches, manifests, integrity, and external output.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:proof</code></td>
+<td><code>n:build</code></td>
+<td>Own project immutability, runtime parity, and target validation evidence.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target:web-live</code></td>
+<td><code>n:build:target</code></td>
+<td>Own verified live ESM loading and content-hash browser caching.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target:web-static</code></td>
+<td><code>n:build:target</code></td>
+<td>Own self-contained static Web artifact materialization.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target:openxr</code></td>
+<td><code>n:build:target</code></td>
+<td>Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target:android-xr</code></td>
+<td><code>n:build:target</code></td>
+<td>Own Android ARM64 OpenXR host, package, and validation planning.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:build:target:pcvr</code></td>
+<td><code>n:build:target</code></td>
+<td>Own Windows x64 OpenXR host, package, and validation planning.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -1384,6 +1671,282 @@ npm pack --dry-run --json
 <td><code>n:asset</code></td>
 <td><code>nexusengine/domains/asset/registry</code></td>
 <td>Resolve asset manifests and bundles through content-addressed provider jobs.</td>
+</tr>
+<tr>
+<td><code>project-source-kit</code></td>
+<td><code>n:build:source</code></td>
+<td><code>nexusengine/domains/build/source/project-source</code></td>
+<td>Read a deterministic project inventory without following links or mutating source.</td>
+</tr>
+<tr>
+<td><code>source-fingerprint-kit</code></td>
+<td><code>n:build:source</code></td>
+<td><code>nexusengine/domains/build/source/source-fingerprint</code></td>
+<td>Create the canonical SHA-256 project fingerprint.</td>
+</tr>
+<tr>
+<td><code>dependency-source-kit</code></td>
+<td><code>n:build:source</code></td>
+<td><code>nexusengine/domains/build/source/dependency-source</code></td>
+<td>Resolve exact dependency source identities and recursive lockfile closure.</td>
+</tr>
+<tr>
+<td><code>source-cache-kit</code></td>
+<td><code>n:build:source</code></td>
+<td><code>nexusengine/domains/build/source/source-cache</code></td>
+<td>Store and verify immutable source bytes by SHA-256.</td>
+</tr>
+<tr>
+<td><code>module-graph-kit</code></td>
+<td><code>n:build:source</code></td>
+<td><code>nexusengine/domains/build/source/module-graph</code></td>
+<td>Build a deterministic AST-derived module graph.</td>
+</tr>
+<tr>
+<td><code>javascript-ast-kit</code></td>
+<td><code>n:build:analysis</code></td>
+<td><code>nexusengine/domains/build/analysis/javascript-ast</code></td>
+<td>Parse JavaScript and TypeScript with a real compiler AST.</td>
+</tr>
+<tr>
+<td><code>type-analysis-kit</code></td>
+<td><code>n:build:analysis</code></td>
+<td><code>nexusengine/domains/build/analysis/type-analysis</code></td>
+<td>Run typed compiler diagnostics without emitting or mutating source.</td>
+</tr>
+<tr>
+<td><code>effect-analysis-kit</code></td>
+<td><code>n:build:analysis</code></td>
+<td><code>nexusengine/domains/build/analysis/effect-analysis</code></td>
+<td>Classify ambient capabilities and unsupported dynamic effects from AST nodes.</td>
+</tr>
+<tr>
+<td><code>dependency-analysis-kit</code></td>
+<td><code>n:build:analysis</code></td>
+<td><code>nexusengine/domains/build/analysis/dependency-analysis</code></td>
+<td>Prove relative and external dependency closure.</td>
+</tr>
+<tr>
+<td><code>kit-ir-kit</code></td>
+<td><code>n:build:ir</code></td>
+<td><code>nexusengine/domains/build/ir/kit-ir</code></td>
+<td>Create serializable high-level Kit IR with source lineage.</td>
+</tr>
+<tr>
+<td><code>execution-ir-kit</code></td>
+<td><code>n:build:ir</code></td>
+<td><code>nexusengine/domains/build/ir/execution-ir</code></td>
+<td>Create deterministic dependency-ordered Execution IR.</td>
+</tr>
+<tr>
+<td><code>ir-validation-kit</code></td>
+<td><code>n:build:ir</code></td>
+<td><code>nexusengine/domains/build/ir/ir-validation</code></td>
+<td>Reject invalid, cyclic, unsupported, or incomplete IR.</td>
+</tr>
+<tr>
+<td><code>source-map-kit</code></td>
+<td><code>n:build:ir</code></td>
+<td><code>nexusengine/domains/build/ir/source-map</code></td>
+<td>Map generated execution operations to source AST identities.</td>
+</tr>
+<tr>
+<td><code>portability-classifier-kit</code></td>
+<td><code>n:build:classification</code></td>
+<td><code>nexusengine/domains/build/classification/portability-classifier</code></td>
+<td>Classify each whole module and composition as native, native-adapter, JavaScript, or unsupported.</td>
+</tr>
+<tr>
+<td><code>capability-resolution-kit</code></td>
+<td><code>n:build:classification</code></td>
+<td><code>nexusengine/domains/build/classification/capability-resolution</code></td>
+<td>Resolve target capabilities and exact reviewed substitutions.</td>
+</tr>
+<tr>
+<td><code>fallback-selection-kit</code></td>
+<td><code>n:build:classification</code></td>
+<td><code>nexusengine/domains/build/classification/fallback-selection</code></td>
+<td>Select fail-closed whole-Kit fallback per target and profile.</td>
+</tr>
+<tr>
+<td><code>build-request-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/build-request</code></td>
+<td>Normalize one project, profile, options, and target set.</td>
+</tr>
+<tr>
+<td><code>target-set-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/target-set</code></td>
+<td>Normalize repeated target flags into one sorted unique set.</td>
+</tr>
+<tr>
+<td><code>build-plan-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/build-plan</code></td>
+<td>Create the immutable deterministic multi-target plan hash.</td>
+</tr>
+<tr>
+<td><code>build-approval-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/build-approval</code></td>
+<td>Require approval for the exact unchanged plan hash.</td>
+</tr>
+<tr>
+<td><code>build-execution-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/build-execution</code></td>
+<td>Execute shared stages once and isolated target stages with project immutability proof.</td>
+</tr>
+<tr>
+<td><code>build-receipt-kit</code></td>
+<td><code>n:build:orchestration</code></td>
+<td><code>nexusengine/domains/build/orchestration/build-receipt</code></td>
+<td>Persist aggregate and per-target exactly-once Build receipts.</td>
+</tr>
+<tr>
+<td><code>rust-lowering-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/rust-lowering</code></td>
+<td>Lower supported Execution IR into deterministic Rust source.</td>
+</tr>
+<tr>
+<td><code>javascript-fallback-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/javascript-fallback</code></td>
+<td>Describe capability-restricted whole-Kit QuickJS-NG fallback.</td>
+</tr>
+<tr>
+<td><code>runtime-abi-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/runtime-abi</code></td>
+<td>Define the stable native runtime handle and batch-operation ABI.</td>
+</tr>
+<tr>
+<td><code>native-runtime-link-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/native-runtime-link</code></td>
+<td>Create exact generated-runtime and native-library link plans.</td>
+</tr>
+<tr>
+<td><code>toolchain-source-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/toolchain-source</code></td>
+<td>Own immutable official toolchain and native dependency source records.</td>
+</tr>
+<tr>
+<td><code>toolchain-discovery-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/toolchain-discovery</code></td>
+<td>Discover installed toolchains without shell evaluation.</td>
+</tr>
+<tr>
+<td><code>toolchain-provision-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/toolchain-provision</code></td>
+<td>Provision approved exact official sources on demand after integrity and license checks.</td>
+</tr>
+<tr>
+<td><code>isolated-stage-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/isolated-stage</code></td>
+<td>Create content-addressed build stages outside projects.</td>
+</tr>
+<tr>
+<td><code>process-execution-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/process-execution</code></td>
+<td>Run argument-array commands inside an allowed Build stage.</td>
+</tr>
+<tr>
+<td><code>target-registry-kit</code></td>
+<td><code>n:build:target</code></td>
+<td><code>nexusengine/domains/build/target/target-registry</code></td>
+<td>Register explicit target providers and reject collisions.</td>
+</tr>
+<tr>
+<td><code>web-live-target-kit</code></td>
+<td><code>n:build:target:web-live</code></td>
+<td><code>nexusengine/domains/build/target/web-live/web-live-target</code></td>
+<td>Emit verified live ESM source, loader, service worker, and cache policy.</td>
+</tr>
+<tr>
+<td><code>web-static-target-kit</code></td>
+<td><code>n:build:target:web-static</code></td>
+<td><code>nexusengine/domains/build/target/web-static/web-static-target</code></td>
+<td>Emit a self-contained static Web directory.</td>
+</tr>
+<tr>
+<td><code>openxr-runtime-kit</code></td>
+<td><code>n:build:target:openxr</code></td>
+<td><code>nexusengine/domains/build/target/openxr/openxr-runtime</code></td>
+<td>Own OpenXR loader, session, spaces, frame timing, and lifecycle contracts.</td>
+</tr>
+<tr>
+<td><code>openxr-input-kit</code></td>
+<td><code>n:build:target:openxr</code></td>
+<td><code>nexusengine/domains/build/target/openxr/openxr-input</code></td>
+<td>Own OpenXR action sets, bindings, haptics, and input snapshots.</td>
+</tr>
+<tr>
+<td><code>openxr-render-kit</code></td>
+<td><code>n:build:target:openxr</code></td>
+<td><code>nexusengine/domains/build/target/openxr/openxr-render</code></td>
+<td>Own OpenXR views, swapchains, blend modes, and per-eye submission descriptors.</td>
+</tr>
+<tr>
+<td><code>android-xr-target-kit</code></td>
+<td><code>n:build:target:android-xr</code></td>
+<td><code>nexusengine/domains/build/target/android-xr/android-xr-target</code></td>
+<td>Own Android ARM64 lifecycle, SDK/NDK, Gradle, APK, and OpenXR binding stages.</td>
+</tr>
+<tr>
+<td><code>pcvr-target-kit</code></td>
+<td><code>n:build:target:pcvr</code></td>
+<td><code>nexusengine/domains/build/target/pcvr/pcvr-target</code></td>
+<td>Own Windows x64 host, OpenXR loader, executable package, and runtime validation stages.</td>
+</tr>
+<tr>
+<td><code>artifact-cache-kit</code></td>
+<td><code>n:build:artifact</code></td>
+<td><code>nexusengine/domains/build/artifact/artifact-cache</code></td>
+<td>Reuse successful immutable target artifacts by plan identity.</td>
+</tr>
+<tr>
+<td><code>artifact-manifest-kit</code></td>
+<td><code>n:build:artifact</code></td>
+<td><code>nexusengine/domains/build/artifact/artifact-manifest</code></td>
+<td>Create canonical per-target artifact manifests.</td>
+</tr>
+<tr>
+<td><code>artifact-integrity-kit</code></td>
+<td><code>n:build:artifact</code></td>
+<td><code>nexusengine/domains/build/artifact/artifact-integrity</code></td>
+<td>Verify every artifact file against SHA-256.</td>
+</tr>
+<tr>
+<td><code>artifact-output-kit</code></td>
+<td><code>n:build:artifact</code></td>
+<td><code>nexusengine/domains/build/artifact/artifact-output</code></td>
+<td>Publish immutable artifacts only outside source projects.</td>
+</tr>
+<tr>
+<td><code>project-immutability-kit</code></td>
+<td><code>n:build:proof</code></td>
+<td><code>nexusengine/domains/build/proof/project-immutability</code></td>
+<td>Compare before and after project fingerprints byte-for-byte.</td>
+</tr>
+<tr>
+<td><code>cross-runtime-parity-kit</code></td>
+<td><code>n:build:proof</code></td>
+<td><code>nexusengine/domains/build/proof/cross-runtime-parity</code></td>
+<td>Compare canonical replay outputs across target runtimes.</td>
+</tr>
+<tr>
+<td><code>target-validation-kit</code></td>
+<td><code>n:build:proof</code></td>
+<td><code>nexusengine/domains/build/proof/target-validation</code></td>
+<td>Require target-specific executable artifact validation.</td>
 </tr>
 <tr>
 <td><code>composition-registry-kit</code></td>
@@ -1813,11 +2376,11 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8</code></p>
+<p>Registry SHA-256: <code>18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf</code></p>
 <ul>
-<li>Source modules: 306</li>
-<li>Manifest-proven public atoms: 76</li>
-<li>Manifest-owned internal modules: 205</li>
+<li>Source modules: 576</li>
+<li>Manifest-proven public atoms: 122</li>
+<li>Manifest-owned internal modules: 429</li>
 <li>Root contract modules: 25</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
@@ -1990,6 +2553,1626 @@ npm pack --dry-run --json
 <tr>
 <td><code>src/core-domains/asset/kits/asset-kit/provider.js</code></td>
 <td><code>n:asset</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/adapters/mcp/build-mcp-provider.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/atomic-kit.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/domain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/kit-manifests.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/manifest-input.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomain-manifests.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/analysis/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/artifact/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/classification/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/compile/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/execution-ir-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/execution-ir-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/execution-ir-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/execution-ir-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/ir-validation-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/ir-validation-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/ir-validation-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/ir-validation-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/kit-ir-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/kit-ir-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/kit-ir-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/kit-ir-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/kit-ir-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/source-map-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/source-map-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/source-map-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/source-map-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/kits/source-map-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/ir/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-request-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-request-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-request-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-request-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/build-request-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/target-set-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/target-set-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/target-set-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/target-set-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/kits/target-set-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/orchestration/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/project-immutability-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/project-immutability-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/project-immutability-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/project-immutability-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/project-immutability-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/target-validation-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/target-validation-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/target-validation-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/kits/target-validation-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/proof/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/dependency-source-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/dependency-source-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/dependency-source-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/dependency-source-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/dependency-source-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/module-graph-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/module-graph-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/module-graph-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/module-graph-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/module-graph-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/project-source-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/project-source-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/project-source-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/project-source-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/project-source-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-cache-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-cache-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-cache-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-cache-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-cache-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/source/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/kits/target-registry-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/kits/target-registry-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/kits/target-registry-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/kits/target-registry-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/kits/target-registry-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/native-target-helpers.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/android-xr/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/openxr/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/pcvr/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-live/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/subdomains/web-static/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/target/web-target-helpers.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/subdomains/toolchain/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>

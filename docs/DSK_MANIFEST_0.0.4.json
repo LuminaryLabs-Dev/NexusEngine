@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8",
-  "compositionRegistryHash": "sha256:0cfbdae9cff46483a1c4c0bc1ff6aa4cbc6905d7afe29f912204e8fe599ffe62",
+  "registryHash": "sha256:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "compositionRegistryHash": "sha256:aa61eb49e7136d7f552e566e1b3e4a3fae5d803f6475d7f4d0740ca34c813e6a",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8",
-      "integrity": "sha256:fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8",
+      "sourceCommit": "builtin:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+      "integrity": "sha256:18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
       "status": "available",
       "environments": [
         "browser",
@@ -191,6 +191,66 @@
       }
     },
     {
+      "id": "analysis-build-domain",
+      "domainPath": "n:build:analysis",
+      "parentDomainPath": "n:build",
+      "label": "Analysis",
+      "status": "stable-candidate",
+      "responsibility": "Own real syntax, type, effect, and dependency analysis for build inputs.",
+      "ownedMeaning": [
+        "Own real syntax, type, effect, and dependency analysis for build inputs."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:analysis"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "artifact-build-domain",
+      "domainPath": "n:build:artifact",
+      "parentDomainPath": "n:build",
+      "label": "Artifact",
+      "status": "stable-candidate",
+      "responsibility": "Own content-addressed artifact caches, manifests, integrity, and external output.",
+      "ownedMeaning": [
+        "Own content-addressed artifact caches, manifests, integrity, and external output."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:artifact"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "asset-domain",
       "domainPath": "n:asset",
       "parentDomainPath": null,
@@ -213,6 +273,100 @@
       "requires": [],
       "provides": [
         "n:asset"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "build-domain",
+      "domainPath": "n:build",
+      "parentDomainPath": null,
+      "label": "Build",
+      "status": "stable-candidate",
+      "responsibility": "Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.",
+      "ownedMeaning": [
+        "artifact receipts",
+        "build plans and approvals",
+        "build source identities",
+        "compiler IR",
+        "target hosts and packaging",
+        "toolchain stages"
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime state",
+        "authored product behavior",
+        "package postinstall downloads",
+        "project source mutation"
+      ],
+      "requires": [],
+      "provides": [
+        "n:build"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "classification-build-domain",
+      "domainPath": "n:build:classification",
+      "parentDomainPath": "n:build",
+      "label": "Classification",
+      "status": "stable-candidate",
+      "responsibility": "Own whole-Kit portability, capability resolution, and fallback selection.",
+      "ownedMeaning": [
+        "Own whole-Kit portability, capability resolution, and fallback selection."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:classification"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "compile-build-domain",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "label": "Compile",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans.",
+      "ownedMeaning": [
+        "Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:compile"
       ],
       "settingsSchema": {
         "type": "object",
@@ -442,6 +596,36 @@
       "requires": [],
       "provides": [
         "n:interaction:input"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "ir-build-domain",
+      "domainPath": "n:build:ir",
+      "parentDomainPath": "n:build",
+      "label": "IR",
+      "status": "stable-candidate",
+      "responsibility": "Own serializable Kit IR, Execution IR, validation, and source lineage maps.",
+      "ownedMeaning": [
+        "Own serializable Kit IR, Execution IR, validation, and source lineage maps."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:ir"
       ],
       "settingsSchema": {
         "type": "object",
@@ -776,6 +960,36 @@
       ],
       "provides": [
         "n:object:vegetation:tree"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "orchestration-build-domain",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "label": "Orchestration",
+      "status": "stable-candidate",
+      "responsibility": "Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts.",
+      "ownedMeaning": [
+        "Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:orchestration"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1142,6 +1356,36 @@
       ],
       "provides": [
         "n:presentation:ui"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "proof-build-domain",
+      "domainPath": "n:build:proof",
+      "parentDomainPath": "n:build",
+      "label": "Proof",
+      "status": "stable-candidate",
+      "responsibility": "Own project immutability, runtime parity, and target validation evidence.",
+      "ownedMeaning": [
+        "Own project immutability, runtime parity, and target validation evidence."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:proof"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1555,6 +1799,36 @@
       }
     },
     {
+      "id": "source-build-domain",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "label": "Source",
+      "status": "stable-candidate",
+      "responsibility": "Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.",
+      "ownedMeaning": [
+        "Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:source"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "spatial-domain",
       "domainPath": "n:spatial",
       "parentDomainPath": null,
@@ -1578,6 +1852,216 @@
       "requires": [],
       "provides": [
         "n:spatial"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-android-xr-build-domain",
+      "domainPath": "n:build:target:android-xr",
+      "parentDomainPath": "n:build:target",
+      "label": "Android XR Target",
+      "status": "stable-candidate",
+      "responsibility": "Own Android ARM64 OpenXR host, package, and validation planning.",
+      "ownedMeaning": [
+        "Own Android ARM64 OpenXR host, package, and validation planning."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:android-xr"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-build-domain",
+      "domainPath": "n:build:target",
+      "parentDomainPath": "n:build",
+      "label": "Target",
+      "status": "stable-candidate",
+      "responsibility": "Own target registration and target-specific build providers.",
+      "ownedMeaning": [
+        "Own target registration and target-specific build providers."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:target"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-openxr-build-domain",
+      "domainPath": "n:build:target:openxr",
+      "parentDomainPath": "n:build:target",
+      "label": "OpenXR Target",
+      "status": "stable-candidate",
+      "responsibility": "Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.",
+      "ownedMeaning": [
+        "Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:openxr"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-pcvr-build-domain",
+      "domainPath": "n:build:target:pcvr",
+      "parentDomainPath": "n:build:target",
+      "label": "PCVR Target",
+      "status": "stable-candidate",
+      "responsibility": "Own Windows x64 OpenXR host, package, and validation planning.",
+      "ownedMeaning": [
+        "Own Windows x64 OpenXR host, package, and validation planning."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:pcvr"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-web-live-build-domain",
+      "domainPath": "n:build:target:web-live",
+      "parentDomainPath": "n:build:target",
+      "label": "Web Live Target",
+      "status": "stable-candidate",
+      "responsibility": "Own verified live ESM loading and content-hash browser caching.",
+      "ownedMeaning": [
+        "Own verified live ESM loading and content-hash browser caching."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:web-live"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-web-static-build-domain",
+      "domainPath": "n:build:target:web-static",
+      "parentDomainPath": "n:build:target",
+      "label": "Web Static Target",
+      "status": "stable-candidate",
+      "responsibility": "Own self-contained static Web artifact materialization.",
+      "ownedMeaning": [
+        "Own self-contained static Web artifact materialization."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:web-static"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "toolchain-build-domain",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "label": "Toolchain",
+      "status": "stable-candidate",
+      "responsibility": "Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution.",
+      "ownedMeaning": [
+        "Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution."
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "n:build:toolchain"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2069,6 +2553,84 @@
       }
     },
     {
+      "id": "android-xr-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own Android ARM64 lifecycle, SDK/NDK, Gradle, APK, and OpenXR binding stages.",
+      "domainPath": "n:build:target:android-xr",
+      "parentDomainPath": "n:build:target",
+      "apiName": "androidXrTarget",
+      "apiVisibility": "public",
+      "requires": [
+        "build:openxr-input",
+        "build:openxr-render",
+        "n:build:compile",
+        "n:build:target:openxr",
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:android-xr-target",
+        "n:build:target:android-xr"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/android-xr/android-xr-target",
+        "exportName": "createAndroidXrTargetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "android-xr-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "android-xr-target-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "animation-descriptor-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -2372,6 +2934,299 @@
       }
     },
     {
+      "id": "artifact-cache-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Reuse successful immutable target artifacts by plan identity.",
+      "domainPath": "n:build:artifact",
+      "parentDomainPath": "n:build",
+      "apiName": "artifactCache",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:artifact"
+      ],
+      "provides": [
+        "build:artifact-cache"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/artifact/artifact-cache",
+        "exportName": "createArtifactCacheKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "artifact-cache-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "artifact-cache-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "artifact-integrity-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Verify every artifact file against SHA-256.",
+      "domainPath": "n:build:artifact",
+      "parentDomainPath": "n:build",
+      "apiName": "artifactIntegrity",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:artifact"
+      ],
+      "provides": [
+        "build:artifact-integrity"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/artifact/artifact-integrity",
+        "exportName": "createArtifactIntegrityKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "artifact-integrity-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "artifact-integrity-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "artifact-manifest-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create canonical per-target artifact manifests.",
+      "domainPath": "n:build:artifact",
+      "parentDomainPath": "n:build",
+      "apiName": "artifactManifest",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "build:artifact-manifest",
+        "n:build:artifact"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/artifact/artifact-manifest",
+        "exportName": "createArtifactManifestKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "artifact-manifest-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "artifact-manifest-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "artifact-output-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Publish immutable artifacts only outside source projects.",
+      "domainPath": "n:build:artifact",
+      "parentDomainPath": "n:build",
+      "apiName": "artifactOutput",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:artifact"
+      ],
+      "provides": [
+        "build:artifact-output"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/artifact/artifact-output",
+        "exportName": "createArtifactOutputKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "artifact-output-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "artifact-output-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "asset-registry-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -2602,6 +3457,407 @@
       }
     },
     {
+      "id": "build-approval-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Require approval for the exact unchanged plan hash.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "buildApproval",
+      "apiVisibility": "public",
+      "requires": [
+        "build:build-plan"
+      ],
+      "provides": [
+        "build:build-approval"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/build-approval",
+        "exportName": "createBuildApprovalKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "build-approval-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "build-approval-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "build-execution-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Execute shared stages once and isolated target stages with project immutability proof.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "buildExecution",
+      "apiVisibility": "public",
+      "requires": [
+        "build:android-xr-target",
+        "build:artifact-cache",
+        "build:artifact-integrity",
+        "build:artifact-manifest",
+        "build:artifact-output",
+        "build:build-approval",
+        "build:build-plan",
+        "build:build-receipt",
+        "build:build-request",
+        "build:capability-resolution",
+        "build:dependency-analysis",
+        "build:dependency-source",
+        "build:effect-analysis",
+        "build:execution-ir",
+        "build:fallback-selection",
+        "build:ir-validation",
+        "build:isolated-stage",
+        "build:javascript-ast",
+        "build:kit-ir",
+        "build:module-graph",
+        "build:pcvr-target",
+        "build:portability-classifier",
+        "build:project-immutability",
+        "build:project-source",
+        "build:rust-lowering",
+        "build:source-fingerprint",
+        "build:source-map",
+        "build:target-validation",
+        "build:toolchain-discovery",
+        "build:toolchain-source",
+        "build:type-analysis",
+        "build:web-live-target",
+        "build:web-static-target"
+      ],
+      "provides": [
+        "build:build-execution"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/build-execution",
+        "exportName": "createBuildExecutionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "build-execution-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "build-execution-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "build-plan-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create the immutable deterministic multi-target plan hash.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "buildPlan",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:classification",
+        "n:build:compile",
+        "n:build:orchestration",
+        "n:build:target",
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:build-plan"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/build-plan",
+        "exportName": "createBuildPlanKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "build-plan-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "build-plan-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "build-receipt-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Persist aggregate and per-target exactly-once Build receipts.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "buildReceipt",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:orchestration"
+      ],
+      "provides": [
+        "build:build-receipt"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/build-receipt",
+        "exportName": "createBuildReceiptKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "build-receipt-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "build-receipt-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "build-request-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Normalize one project, profile, options, and target set.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "buildRequest",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:orchestration"
+      ],
+      "provides": [
+        "build:build-request"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/build-request",
+        "exportName": "createBuildRequestKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "build-request-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "build-request-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "camera-control-math-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -2814,6 +4070,79 @@
             },
             {
               "id": "camera-framing-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "capability-resolution-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Resolve target capabilities and exact reviewed substitutions.",
+      "domainPath": "n:build:classification",
+      "parentDomainPath": "n:build",
+      "apiName": "capabilityResolution",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:classification"
+      ],
+      "provides": [
+        "build:capability-resolution"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/classification/capability-resolution",
+        "exportName": "createCapabilityResolutionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "capability-resolution-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "capability-resolution-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -3208,6 +4537,79 @@
       }
     },
     {
+      "id": "cross-runtime-parity-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Compare canonical replay outputs across target runtimes.",
+      "domainPath": "n:build:proof",
+      "parentDomainPath": "n:build",
+      "apiName": "crossRuntimeParity",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:proof"
+      ],
+      "provides": [
+        "build:cross-runtime-parity"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/proof/cross-runtime-parity",
+        "exportName": "createCrossRuntimeParityKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "cross-runtime-parity-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "cross-runtime-parity-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "debug-descriptor-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -3344,6 +4746,152 @@
             },
             {
               "id": "debug-draw-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dependency-analysis-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Prove relative and external dependency closure.",
+      "domainPath": "n:build:analysis",
+      "parentDomainPath": "n:build",
+      "apiName": "dependencyAnalysis",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:analysis"
+      ],
+      "provides": [
+        "build:dependency-analysis"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/analysis/dependency-analysis",
+        "exportName": "createDependencyAnalysisKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "dependency-analysis-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "dependency-analysis-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "dependency-source-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Resolve exact dependency source identities and recursive lockfile closure.",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "apiName": "dependencySource",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:dependency-source"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/source/dependency-source",
+        "exportName": "createDependencySourceKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "dependency-source-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "dependency-source-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -3495,6 +5043,225 @@
             },
             {
               "id": "ecology-feature-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "effect-analysis-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Classify ambient capabilities and unsupported dynamic effects from AST nodes.",
+      "domainPath": "n:build:analysis",
+      "parentDomainPath": "n:build",
+      "apiName": "effectAnalysis",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:analysis"
+      ],
+      "provides": [
+        "build:effect-analysis"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/analysis/effect-analysis",
+        "exportName": "createEffectAnalysisKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "effect-analysis-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "effect-analysis-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "execution-ir-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create deterministic dependency-ordered Execution IR.",
+      "domainPath": "n:build:ir",
+      "parentDomainPath": "n:build",
+      "apiName": "executionIr",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:ir"
+      ],
+      "provides": [
+        "build:execution-ir"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/ir/execution-ir",
+        "exportName": "createExecutionIrKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "execution-ir-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "execution-ir-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "fallback-selection-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Select fail-closed whole-Kit fallback per target and profile.",
+      "domainPath": "n:build:classification",
+      "parentDomainPath": "n:build",
+      "apiName": "fallbackSelection",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:classification"
+      ],
+      "provides": [
+        "build:fallback-selection"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/classification/fallback-selection",
+        "exportName": "createFallbackSelectionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "fallback-selection-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "fallback-selection-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -3882,6 +5649,373 @@
       }
     },
     {
+      "id": "ir-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Reject invalid, cyclic, unsupported, or incomplete IR.",
+      "domainPath": "n:build:ir",
+      "parentDomainPath": "n:build",
+      "apiName": "irValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:ir"
+      ],
+      "provides": [
+        "build:ir-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/ir/ir-validation",
+        "exportName": "createIrValidationKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "ir-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "ir-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "isolated-stage-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create content-addressed build stages outside projects.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "isolatedStage",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:isolated-stage"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/isolated-stage",
+        "exportName": "createIsolatedStageKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "isolated-stage-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "isolated-stage-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "javascript-ast-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Parse JavaScript and TypeScript with a real compiler AST.",
+      "domainPath": "n:build:analysis",
+      "parentDomainPath": "n:build",
+      "apiName": "javascriptAst",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:javascript-ast",
+        "n:build:analysis"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/analysis/javascript-ast",
+        "exportName": "createJavascriptAstKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "javascript-ast-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "javascript-ast-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "javascript-fallback-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Describe capability-restricted whole-Kit QuickJS-NG fallback.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "javascriptFallback",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:compile"
+      ],
+      "provides": [
+        "build:javascript-fallback"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/javascript-fallback",
+        "exportName": "createJavascriptFallbackKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "javascript-fallback-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "javascript-fallback-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "kit-ir-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create serializable high-level Kit IR with source lineage.",
+      "domainPath": "n:build:ir",
+      "parentDomainPath": "n:build",
+      "apiName": "kitIr",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:analysis"
+      ],
+      "provides": [
+        "build:kit-ir",
+        "n:build:ir"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/ir/kit-ir",
+        "exportName": "createKitIrKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "kit-ir-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "kit-ir-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "landform-feature-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -4184,6 +6318,79 @@
       }
     },
     {
+      "id": "module-graph-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Build a deterministic AST-derived module graph.",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "apiName": "moduleGraph",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:module-graph"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/source/module-graph",
+        "exportName": "createModuleGraphKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "module-graph-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "module-graph-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "motion-contract-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -4253,6 +6460,79 @@
             },
             {
               "id": "motion-contract-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "native-runtime-link-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create exact generated-runtime and native-library link plans.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "nativeRuntimeLink",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:compile"
+      ],
+      "provides": [
+        "build:native-runtime-link"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/native-runtime-link",
+        "exportName": "createNativeRuntimeLinkKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "native-runtime-link-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "native-runtime-link-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -5172,6 +7452,304 @@
       }
     },
     {
+      "id": "openxr-input-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own OpenXR action sets, bindings, haptics, and input snapshots.",
+      "domainPath": "n:build:target:openxr",
+      "parentDomainPath": "n:build:target",
+      "apiName": "openxrInput",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:target:openxr"
+      ],
+      "provides": [
+        "build:openxr-input"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/openxr/openxr-input",
+        "exportName": "createOpenXrInputKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "openxr-input-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "openxr-input-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "openxr-render-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own OpenXR views, swapchains, blend modes, and per-eye submission descriptors.",
+      "domainPath": "n:build:target:openxr",
+      "parentDomainPath": "n:build:target",
+      "apiName": "openxrRender",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:target:openxr"
+      ],
+      "provides": [
+        "build:openxr-render"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/openxr/openxr-render",
+        "exportName": "createOpenXrRenderKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "openxr-render-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "openxr-render-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "openxr-runtime-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own OpenXR loader, session, spaces, frame timing, and lifecycle contracts.",
+      "domainPath": "n:build:target:openxr",
+      "parentDomainPath": "n:build:target",
+      "apiName": "openxrRuntime",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "build:openxr-runtime",
+        "n:build:target:openxr"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/openxr/openxr-runtime",
+        "exportName": "createOpenXrRuntimeKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "openxr-runtime-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "openxr-runtime-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pcvr-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own Windows x64 host, OpenXR loader, executable package, and runtime validation stages.",
+      "domainPath": "n:build:target:pcvr",
+      "parentDomainPath": "n:build:target",
+      "apiName": "pcvrTarget",
+      "apiVisibility": "public",
+      "requires": [
+        "build:openxr-input",
+        "build:openxr-render",
+        "n:build:compile",
+        "n:build:target:openxr",
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:pcvr-target",
+        "n:build:target:pcvr"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/pcvr/pcvr-target",
+        "exportName": "createPcvrTargetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "pcvr-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "pcvr-target-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "persistence-contract-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -5479,6 +8057,80 @@
       }
     },
     {
+      "id": "portability-classifier-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Classify each whole module and composition as native, native-adapter, JavaScript, or unsupported.",
+      "domainPath": "n:build:classification",
+      "parentDomainPath": "n:build",
+      "apiName": "portabilityClassifier",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:ir"
+      ],
+      "provides": [
+        "build:portability-classifier",
+        "n:build:classification"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/classification/portability-classifier",
+        "exportName": "createPortabilityClassifierKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "portability-classifier-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "portability-classifier-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "presentation-output-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -5620,6 +8272,226 @@
             },
             {
               "id": "presentation-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "process-execution-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Run argument-array commands inside an allowed Build stage.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "processExecution",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:process-execution"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/process-execution",
+        "exportName": "createProcessExecutionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "process-execution-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "process-execution-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "project-immutability-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Compare before and after project fingerprints byte-for-byte.",
+      "domainPath": "n:build:proof",
+      "parentDomainPath": "n:build",
+      "apiName": "projectImmutability",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:project-immutability",
+        "n:build:proof"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/proof/project-immutability",
+        "exportName": "createProjectImmutabilityKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "project-immutability-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "project-immutability-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "project-source-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Read a deterministic project inventory without following links or mutating source.",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "apiName": "projectSource",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "build:project-source",
+        "n:build",
+        "n:build:source"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/source/project-source",
+        "exportName": "createProjectSourceKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "project-source-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "project-source-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -5929,6 +8801,80 @@
       }
     },
     {
+      "id": "runtime-abi-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Define the stable native runtime handle and batch-operation ABI.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "runtimeAbi",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:ir"
+      ],
+      "provides": [
+        "build:runtime-abi",
+        "n:build:compile"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/runtime-abi",
+        "exportName": "createRuntimeAbiKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "runtime-abi-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "runtime-abi-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "runtime-data-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -6229,6 +9175,79 @@
             },
             {
               "id": "runtime-startup-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "rust-lowering-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Lower supported Execution IR into deterministic Rust source.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "rustLowering",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:compile"
+      ],
+      "provides": [
+        "build:rust-lowering"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/rust-lowering",
+        "exportName": "createRustLoweringKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "rust-lowering-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "rust-lowering-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -6610,6 +9629,225 @@
             },
             {
               "id": "sky-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "source-cache-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Store and verify immutable source bytes by SHA-256.",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "apiName": "sourceCache",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:source-cache"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/source/source-cache",
+        "exportName": "createSourceCacheKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "source-cache-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "source-cache-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "source-fingerprint-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Create the canonical SHA-256 project fingerprint.",
+      "domainPath": "n:build:source",
+      "parentDomainPath": "n:build",
+      "apiName": "sourceFingerprint",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:source"
+      ],
+      "provides": [
+        "build:source-fingerprint"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/source/source-fingerprint",
+        "exportName": "createSourceFingerprintKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "source-fingerprint-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "source-fingerprint-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "source-map-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Map generated execution operations to source AST identities.",
+      "domainPath": "n:build:ir",
+      "parentDomainPath": "n:build",
+      "apiName": "sourceMap",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:ir"
+      ],
+      "provides": [
+        "build:source-map"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/ir/source-map",
+        "exportName": "createSourceMapKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "source-map-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "source-map-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -7060,6 +10298,448 @@
       }
     },
     {
+      "id": "target-registry-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Register explicit target providers and reject collisions.",
+      "domainPath": "n:build:target",
+      "parentDomainPath": "n:build",
+      "apiName": "targetRegistry",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "build:target-registry",
+        "n:build:target"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/target-registry",
+        "exportName": "createTargetRegistryKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "target-registry-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "target-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "target-set-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Normalize repeated target flags into one sorted unique set.",
+      "domainPath": "n:build:orchestration",
+      "parentDomainPath": "n:build",
+      "apiName": "targetSet",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "build:target-set",
+        "n:build:orchestration"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/orchestration/target-set",
+        "exportName": "createTargetSetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "target-set-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "target-set-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "target-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Require target-specific executable artifact validation.",
+      "domainPath": "n:build:proof",
+      "parentDomainPath": "n:build",
+      "apiName": "targetValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:proof"
+      ],
+      "provides": [
+        "build:target-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/proof/target-validation",
+        "exportName": "createTargetValidationKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "target-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "target-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toolchain-discovery-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Discover installed toolchains without shell evaluation.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "toolchainDiscovery",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:toolchain-discovery"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/toolchain-discovery",
+        "exportName": "createToolchainDiscoveryKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "toolchain-discovery-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "toolchain-discovery-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toolchain-provision-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Provision approved exact official sources on demand after integrity and license checks.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "toolchainProvision",
+      "apiVisibility": "public",
+      "requires": [
+        "build:source-cache",
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:toolchain-provision"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/toolchain-provision",
+        "exportName": "createToolchainProvisionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "toolchain-provision-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "toolchain-provision-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toolchain-source-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own immutable official toolchain and native dependency source records.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "toolchainSource",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build"
+      ],
+      "provides": [
+        "build:toolchain-source",
+        "n:build:toolchain"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/toolchain-source",
+        "exportName": "createToolchainSourceKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "toolchain-source-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "toolchain-source-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "transaction-ledger-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -7199,6 +10879,79 @@
             },
             {
               "id": "two-bone-ik-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "type-analysis-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Run typed compiler diagnostics without emitting or mutating source.",
+      "domainPath": "n:build:analysis",
+      "parentDomainPath": "n:build",
+      "apiName": "typeAnalysis",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:analysis"
+      ],
+      "provides": [
+        "build:type-analysis"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/analysis/type-analysis",
+        "exportName": "createTypeAnalysisKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "type-analysis-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "type-analysis-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -7424,6 +11177,154 @@
             },
             {
               "id": "weather-state-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "web-live-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Emit verified live ESM source, loader, service worker, and cache policy.",
+      "domainPath": "n:build:target:web-live",
+      "parentDomainPath": "n:build:target",
+      "apiName": "webLiveTarget",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "build:web-live-target",
+        "n:build:target:web-live"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/web-live/web-live-target",
+        "exportName": "createWebLiveTargetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "web-live-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "web-live-target-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "web-static-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Emit a self-contained static Web directory.",
+      "domainPath": "n:build:target:web-static",
+      "parentDomainPath": "n:build:target",
+      "apiName": "webStaticTarget",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "build:web-static-target",
+        "n:build:target:web-static"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/web-static/web-static-target",
+        "exportName": "createWebStaticTargetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/domain-tree.mjs",
+            "src/core-domains/build/tests/full-build-loop.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "web-static-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "web-static-target-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true

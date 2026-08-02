@@ -3,6 +3,7 @@ export * from "./catalog.js";
 export * from "./actor/index.js";
 export * from "./agent/index.js";
 export * from "./asset/index.js";
+export * from "./build/index.js";
 export * from "./composition/index.js";
 export * from "./compute/index.js";
 export * from "./diagnostics/index.js";

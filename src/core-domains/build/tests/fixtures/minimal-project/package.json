@@ -1,0 +1,6 @@
+{
+  "name": "nexusengine-build-fixture",
+  "version": "1.0.0",
+  "type": "module",
+  "module": "src/index.js"
+}

@@ -18,6 +18,15 @@
   reconstruction records.
 - Canonical modular guide source and generated Markdown, HTML, MCP chapter
   resources, and validated PDF.
+- Isolated `n:build` Domain with 15 semantic subdomains, 46 atomic Kits,
+  generated package subpaths, catalogs, source records, and AI traversal data.
+- `nexusengine` CLI and approval-gated Build MCP tools for project inspection,
+  deterministic multi-target planning, execution, and persistent receipts.
+- Read-only Web Live and Web Static targets with content integrity, isolated
+  stages, browser startup proof, partial-failure caching, and project
+  immutability checks.
+- Shared OpenXR, Android XR, and Windows PCVR contracts that fail closed until
+  their exact sources, toolchains, hosts, runtimes, and hardware are proved.
 
 ### Changed
 
@@ -29,6 +38,11 @@
   are external leaf adapters.
 - Debug behavior is owned by Diagnostics; inverse kinematics is owned by
   Simulation Motion; Object owns Shape, Fidelity, Vegetation, and Placement.
+- `n:build` is the sole concrete-platform exception inside the package. It is
+  build-time only, is absent from the package root and runtime graph, and owns
+  no project-generated state.
+- Hosted release workflows are read-only checks; obsolete workflows that
+  generated commits directly on the default branch are removed.
 
 ### Removed
 
@@ -40,4 +54,4 @@
 - Optional gameplay, complete-game behavior, and the active ProtoKit workflow.
 
 See the [0.0.4 migration guide](docs/migrations/0.0.4-domain-cutover.md) and
-[root-module dispositions](docs/migrations/0.0.4-root-module-dispositions.md).
+[Build Domain migration](docs/migrations/0.0.4-build-domain.md).

@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -10,6 +10,22 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
 | `n:asset` | - | - |
+| `n:build` | - | - |
+| `n:build:source` | `n:build` | - |
+| `n:build:analysis` | `n:build` | - |
+| `n:build:ir` | `n:build` | - |
+| `n:build:classification` | `n:build` | - |
+| `n:build:orchestration` | `n:build` | - |
+| `n:build:compile` | `n:build` | - |
+| `n:build:toolchain` | `n:build` | - |
+| `n:build:target` | `n:build` | - |
+| `n:build:artifact` | `n:build` | - |
+| `n:build:proof` | `n:build` | - |
+| `n:build:target:web-live` | `n:build:target` | - |
+| `n:build:target:web-static` | `n:build:target` | - |
+| `n:build:target:openxr` | `n:build:target` | - |
+| `n:build:target:android-xr` | `n:build:target` | - |
+| `n:build:target:pcvr` | `n:build:target` | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
 | `n:compute:model` | `n:compute` | - |

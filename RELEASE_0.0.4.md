@@ -26,10 +26,27 @@ gameplay, and forwarding aliases are removed. Consumers use the
 [migration guide](docs/migrations/0.0.4-domain-cutover.md), not compatibility
 code.
 
+## Build Proof
+
+`n:build` is packaged with NexusEngine but is not part of `createEngine()` or
+the application runtime graph. Its Web Live and Web Static targets pass fresh
+artifact startup in Chromium and preserve the source project byte for byte.
+Repeated apply returns the original receipt, while a mixed Web/native request
+preserves successful Web output and remains failed until every native target
+passes.
+
+Android XR and PCVR currently produce deterministic, reviewable, fail-closed
+plans. A plan is not a native artifact. Release remains blocked until the
+selected source revisions, generated Rust semantics, native host builders,
+package validators, OpenXR runtimes, and one real headset in each target lane
+pass. The Open Above showcase and clean consumer SHA propagation are also
+release requirements.
+
 ## Required Proof
 
 ```bash
 npm ci --ignore-scripts --no-audit --no-fund
+npx --no-install playwright install chromium
 npm run core:check
 npm run core:contracts
 npm run protokits:check

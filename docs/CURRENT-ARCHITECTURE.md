@@ -1,12 +1,12 @@
 # Current NexusEngine Architecture
 
 **Status:** canonical current architecture
-**Updated:** 2026-07-31
+**Updated:** 2026-08-02
 
 ## Package Boundary
 
 NexusEngine is a deterministic runtime substrate plus manifest-owned semantic
-Core Domains.
+Core Domains and one isolated build-time Domain.
 
 ```txt
 NexusEngine
@@ -17,12 +17,36 @@ NexusEngine
 ├── deterministic composition planning and validation
 ├── opt-in MCP contracts and registry
 ├── snapshot, reset, replay, and exactly-once receipts
-└── host, provider, adapter, and presentation contracts
+├── host, provider, adapter, and presentation runtime contracts
+└── build-time source, compiler, toolchain, target, artifact, and proof Kits
 ```
 
 It does not own concrete hosts, renderers, SDKs, storage drivers, transports,
 model implementations, authored presets, optional gameplay, complete games, or
-repository tooling.
+repository tooling in the application runtime graph. Concrete build-time
+implementations are permitted only under `n:build`.
+
+## Build-Time Domain
+
+`n:build` is the sole platform-specific physical-package exception. Runtime
+Domains cannot import it, and `createEngine()` never installs it. Build reads a
+project, creates deterministic analysis and target plans, requires approval for
+an exact plan hash, and writes only to an external stage/cache root or explicit
+output directory.
+
+```txt
+read-only project
+-> source fingerprint and typed module graph
+-> Kit IR and Execution IR
+-> portability classification
+-> one shared plan
+-> isolated target fan-out
+-> per-target artifacts and receipts
+```
+
+Build source and toolchain records use exact immutable identities and verified
+integrity. Planning does not execute downloaded metadata, and native target
+success requires real toolchain and target validation evidence.
 
 ## Bootstrap
 
@@ -95,10 +119,11 @@ restores the host snapshot.
 
 ## Hosts, Providers, And Adapters
 
-Core may define a capability contract or renderer-neutral descriptor. Concrete
-Node/browser/native hosts, Three.js/WebGL renderers, SDKs, storage drivers,
-network transports, and model providers are leaf implementations owned by
-NexusEngine-Editor, NexusEngine-Kits, or another approved package.
+Runtime Core may define a capability contract or renderer-neutral descriptor.
+Concrete runtime Node/browser/native hosts, Three.js/WebGL renderers, SDKs,
+storage drivers, network transports, and model providers are leaf
+implementations owned by NexusEngine-Editor, NexusEngine-Kits, or another
+approved package. Concrete build hosts and packagers belong only to `n:build`.
 
 ## Tests
 

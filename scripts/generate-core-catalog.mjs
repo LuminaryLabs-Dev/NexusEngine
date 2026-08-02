@@ -13,6 +13,7 @@ const root = process.cwd();
 const check = process.argv.includes("--check");
 const sourceRoot = path.join(root, "src");
 const domainRoot = path.join(root, "src", "core-domains");
+const buildRoot = path.join(domainRoot, "build");
 
 const fixedPackageExports = Object.freeze({
   ".": "./src/index.js",
@@ -80,6 +81,9 @@ function validateManifest(manifest, sourcePath) {
   }
   validateProof(manifest.proof, `${manifest.domainPath}`);
   assertRepoFile(manifest.publicEntry.module, `${manifest.domainPath} public entry`);
+  for (const publicEntry of manifest.publicEntries ?? []) {
+    assertRepoFile(publicEntry.module, `${publicEntry.domainPath} public entry`);
+  }
   for (const subdomain of manifest.subdomains) validateProof(subdomain.proof, subdomain.identity.domainPath);
   for (const kit of manifest.publicKits) {
     validateProof(kit.proof, kit.id);
@@ -153,6 +157,81 @@ function renderDependencies(catalog, registryHash) {
   return `${lines.join("\n")}\n`;
 }
 
+function loadBuildSourceRegistry() {
+  if (!fs.existsSync(buildRoot)) return { records: [], sourceFiles: [] };
+  const sourcePaths = walk(buildRoot, (file) => path.basename(file) === "sources.json").sort();
+  const records = new Map();
+  for (const sourcePath of sourcePaths) {
+    const entries = JSON.parse(fs.readFileSync(sourcePath, "utf8"));
+    if (!Array.isArray(entries)) throw new Error(`${posix(sourcePath)} must contain an array.`);
+    for (const entry of entries) {
+      if (entry?.schema !== "nexusengine.build-source-record/1" || !entry.id) {
+        throw new Error(`${posix(sourcePath)} contains an invalid Build source record.`);
+      }
+      const prior = records.get(entry.id);
+      if (prior && stableJson(prior) !== stableJson(entry)) {
+        throw new Error(`Build source record collision: ${entry.id}.`);
+      }
+      records.set(entry.id, entry);
+    }
+  }
+  return {
+    records: [...records.values()].sort((left, right) => left.id.localeCompare(right.id)),
+    sourceFiles: sourcePaths.map(posix)
+  };
+}
+
+function renderBuildApi(catalog, registryHash) {
+  const kits = catalog.kits.filter((kit) => kit.domainPath === "n:build" || kit.domainPath.startsWith("n:build:"));
+  const lines = [
+    "# Generated Build API",
+    "",
+    "This file is generated from Build Domain and atomic Kit manifests.",
+    "",
+    `Registry SHA-256: \`${registryHash}\``,
+    "",
+    "## Domain Service",
+    "",
+    "```txt",
+    "listTargets()",
+    "inspect(project)",
+    "plan(request)",
+    "apply(planId, approval)",
+    "getReceipt(planId)",
+    "snapshot()",
+    "reset()",
+    "```",
+    "",
+    "## Atomic Kits",
+    "",
+    "| Kit | Domain | Import | Responsibility |",
+    "| --- | --- | --- | --- |",
+    ...kits.map((kit) => `| \`${kit.id}\` | \`${kit.domainPath}\` | \`nexusengine${kit.source.publicSubpath.slice(1)}\` | ${kit.responsibility} |`),
+    ""
+  ];
+  return lines.join("\n");
+}
+
+function renderBuildTargets(catalog, registryHash) {
+  const targets = catalog.kits.filter((kit) =>
+    kit.id.endsWith("-target-kit")
+    && /^n:build:target:(?!openxr$)[a-z0-9-]+$/.test(kit.domainPath)
+  );
+  const lines = [
+    "# Generated Build Targets",
+    "",
+    "Planning is not execution proof. Native targets remain blocked until every listed environment, source, toolchain, runtime, and hardware validator passes.",
+    "",
+    `Registry SHA-256: \`${registryHash}\``,
+    "",
+    "| Target | Domain | Status | Environments |",
+    "| --- | --- | --- | --- |",
+    ...targets.map((kit) => `| \`${kit.id.replace(/-target-kit$/, "")}\` | \`${kit.domainPath}\` | ${kit.status} | ${kit.environments.map((environment) => `\`${environment}\``).join(", ")} |`),
+    ""
+  ];
+  return lines.join("\n");
+}
+
 function renderSourceDomainReadme(manifest, registryHash) {
   const lines = [
     `# ${manifest.label} Domain`,
@@ -219,7 +298,7 @@ const manifestPaths = records.map(({ manifestPath }) => manifestPath);
 const manifests = records.map(({ manifest }) => manifest);
 
 const catalog = flattenCoreDomainManifests(manifests);
-const sourceFiles = walk(sourceRoot, (file) => /\.js$/i.test(file))
+const sourceFiles = walk(sourceRoot, (file) => /(?:\.(?:c|cc|cpp|cjs|cts|gradle|h|hpp|js|json|kts|lock|mjs|mts|rs|toml|ts|xml)|Cargo\.lock)$/i.test(file))
   .map((file) => posix(file))
   .filter((file) => ![
     "src/core-domains/catalog.js",
@@ -238,6 +317,28 @@ const registryPayload = stable({
   sourceFiles
 });
 const registryHash = sha256(JSON.stringify(registryPayload));
+const buildSources = loadBuildSourceRegistry();
+const buildDomains = catalog.domains.filter((domain) => domain.domainPath === "n:build" || domain.domainPath.startsWith("n:build:"));
+const buildKits = catalog.kits.filter((kit) => kit.domainPath === "n:build" || kit.domainPath.startsWith("n:build:"));
+const buildPackageExports = Object.fromEntries(
+  Object.entries(catalog.packageExports).filter(([subpath]) => subpath === "./domains/build" || subpath.startsWith("./domains/build/"))
+);
+const buildSourceFiles = sourceFiles.filter((file) => file.path.startsWith("src/core-domains/build/"));
+const buildRegistryPayload = stable({
+  schema: "nexusengine.build-catalog/1",
+  registryHash,
+  domains: buildDomains,
+  kits: buildKits,
+  packageExports: buildPackageExports,
+  sourceFiles: buildSourceFiles
+});
+const buildSourceRegistry = stable({
+  schema: "nexusengine.build-source-registry/1",
+  registryHash,
+  contentHash: sha256(stableJson(buildSources.records)),
+  records: buildSources.records,
+  sourceFiles: buildSources.sourceFiles
+});
 const packageExports = Object.fromEntries([
   ...Object.entries(fixedPackageExports),
   ...Object.entries(catalog.packageExports)
@@ -257,6 +358,13 @@ const outputs = new Map([
   [path.join(root, "docs", "guide", "generated", "dependency-table.md"), renderDependencies(catalog, registryHash)],
   [path.join(root, "docs", "generated", "CORE-REGISTRY-SHA256"), `${registryHash}\n`]
 ]);
+
+if (buildDomains.length) {
+  outputs.set(path.join(root, "docs", "generated", "BUILD-CATALOG.json"), stableJson(buildRegistryPayload));
+  outputs.set(path.join(root, "docs", "generated", "BUILD-API.md"), renderBuildApi(catalog, registryHash));
+  outputs.set(path.join(root, "docs", "generated", "BUILD-TARGETS.md"), renderBuildTargets(catalog, registryHash));
+  outputs.set(path.join(root, "docs", "generated", "BUILD-SOURCE-REGISTRY.json"), stableJson(buildSourceRegistry));
+}
 
 for (const { manifestPath, manifest } of records) {
   outputs.set(

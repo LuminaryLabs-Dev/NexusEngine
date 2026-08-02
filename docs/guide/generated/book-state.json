@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8",
-  "contentHash": "sha256:68e375f8ea3cf5f36ae9ab7f673f1a8a8e1ec54155963ad4b18445db6c7dfe7d",
+  "registryHash": "18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf",
+  "contentHash": "sha256:16339a7aacb9dfbda7bc6b5dc4dd462f78ca864b2f802d7865605f4b529dc1b5",
   "chapters": [
     {
       "id": "start-here",
@@ -77,6 +77,14 @@
       "contentHash": "sha256:4c81e379339b20d7713d58e1363f49fbfda37572487047fe8f40b0545e1e3df1"
     },
     {
+      "id": "build-domain",
+      "title": "Build Projects And Targets",
+      "source": "docs/guide/building/README.md",
+      "googleDocTab": "10 Build Domain",
+      "generated": false,
+      "contentHash": "sha256:1643f9f0114c7270d9c1a7b99f8e14fa54b6bc1f496469d9de190c2643f045bb"
+    },
+    {
       "id": "testing",
       "title": "Testing And Proof",
       "source": "docs/guide/chapters/10-testing-and-proof.md",
@@ -114,7 +122,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:4fde204beec7be976414e6caa24b9ed2962843ebb79d80c28b8a6d8a952f46f3"
+      "contentHash": "sha256:dbce6c4ba546324aac3e5cda360d06fdeb2050ccfe0287571e15f13a4c8c751f"
     },
     {
       "id": "dependency-table",
@@ -122,7 +130,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:33e057c9d296194fd38be14b4690bf5265a4d79ba2d17b2930fe8bf895741b5c"
+      "contentHash": "sha256:b4bc0bbe73881fa483d9487e9cd1f594ee46a0d609da06476cbd5ba4b6276d4d"
     },
     {
       "id": "api-reference",
@@ -130,7 +138,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:85fd5acdd67c1566b6dfc5a57e9b9d00aacc27e7f7f8272e1ae5785152c0c440"
+      "contentHash": "sha256:b789e005705851fe3d3293d756b1b5a5401da6070b0e72543b30da8c8aa6524f"
     },
     {
       "id": "ownership-ledger",
@@ -138,7 +146,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:68d226cd6940649dba80e77c06742962166f937157b17348a87f6e5dd952054c"
+      "contentHash": "sha256:b4394fcffaa70938b468f8c0a814a93285f19554e9f00b68427f3be8d24b52d5"
     },
     {
       "id": "root-migration-map",

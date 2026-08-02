@@ -2,9 +2,9 @@
 
 Core architecture, composition, integration, and migration reference
 
-Version: `0.0.4`  
-Core registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`  
-Guide content SHA-256: `68e375f8ea3cf5f36ae9ab7f673f1a8a8e1ec54155963ad4b18445db6c7dfe7d`
+Version: `0.0.4`<br>
+Core registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`<br>
+Guide content SHA-256: `16339a7aacb9dfbda7bc6b5dc4dd462f78ca864b2f802d7865605f4b529dc1b5`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -19,16 +19,17 @@ This combined file is generated from `docs/guide/book.json` and modular Markdown
 7. [MCP Agent Workflow](#mcp)
 8. [Registries And Security](#registry-security)
 9. [Hosts, Providers, And Adapters](#integration-boundaries)
-10. [Testing And Proof](#testing)
-11. [Migrating To 0.0.4](#migration)
-12. [ProtoKit Extraction](#protokit-extraction)
-13. [Release And Operating Model](#release-operation)
-14. [Generated Domain Index](#domain-index)
-15. [Generated Dependency Table](#dependency-table)
-16. [Generated Atomic API Reference](#api-reference)
-17. [Generated Ownership Ledger](#ownership-ledger)
-18. [Generated Root Migration Map](#root-migration-map)
-19. [Generated ProtoKit Extraction Summary](#extraction-summary)
+10. [Build Projects And Targets](#build-domain)
+11. [Testing And Proof](#testing)
+12. [Migrating To 0.0.4](#migration)
+13. [ProtoKit Extraction](#protokit-extraction)
+14. [Release And Operating Model](#release-operation)
+15. [Generated Domain Index](#domain-index)
+16. [Generated Dependency Table](#dependency-table)
+17. [Generated Atomic API Reference](#api-reference)
+18. [Generated Ownership Ledger](#ownership-ledger)
+19. [Generated Root Migration Map](#root-migration-map)
+20. [Generated ProtoKit Extraction Summary](#extraction-summary)
 
 ---
 
@@ -444,6 +445,122 @@ Presentation Core contains renderer-neutral descriptors and policies. Three.js o
 
 ---
 
+<a id="build-domain"></a>
+
+# Build Projects And Targets
+
+`n:build` is NexusEngine's isolated build-time Domain. It is physically shipped
+with the Engine so projects do not own compiler, toolchain, platform host,
+packaging, artifact, or receipt logic. It is not installed by `createEngine()`
+and cannot be imported by runtime Domains.
+
+## Boundary
+
+```txt
+project (read only)              ~/.nexusengine (Build owned)
+├── src                          ├── sources/<sha256>
+├── content                      ├── toolchains/<identity>
+├── assets                       ├── builds/<plan-hash>/<target>
+├── tests                        ├── artifacts/<project>/<plan-hash>
+└── package.json                 └── receipts/<plan-hash>.json
+```
+
+Build fingerprints every project file before planning and immediately before
+execution. It fingerprints the project again after every aggregate run. Any
+changed, added, or removed source path fails project immutability proof.
+
+## Commands
+
+```bash
+nexusengine inspect ./project
+
+nexusengine plan ./project \
+  --profile native-preferred \
+  --target web-live \
+  --target web-static \
+  --target android-xr \
+  --target pcvr
+
+nexusengine build ./project \
+  --profile native-preferred \
+  --out /absolute/artifact/root \
+  --approve-plan sha256:<exact-plan-hash> \
+  --target web-static
+```
+
+At least one repeated `--target` is required. Order and duplicates normalize to
+one sorted target set, so they do not change the plan hash. An interactive
+terminal may confirm the displayed exact plan. Noninteractive execution always
+requires `--approve-plan`.
+
+## Pipeline
+
+```txt
+read-only project inventory
+-> SHA-256 source fingerprint
+-> TypeScript compiler AST and typed diagnostics
+-> AST-derived module, effect, and dependency analysis
+-> Kit IR
+-> deterministic Execution IR
+-> whole-Kit portability classification
+-> target capability and fallback selection
+-> exact plan approval
+-> isolated target stages
+-> artifact integrity and project immutability proof
+-> persistent receipt
+```
+
+The four whole-Kit execution modes are `native`, `native-adapter`,
+`javascript`, and `unsupported`. JavaScript is not silently translated into
+native behavior. A module must explicitly declare portable-native intent and
+pass semantic parity before native lowering can be accepted.
+
+## Targets
+
+- `web-live` copies the local immutable module closure and generates a service
+  worker that verifies every SHA-256 before populating a content cache.
+- `web-static` emits a self-contained local directory and rejects unresolved
+  external browser packages.
+- `android-xr` shares OpenXR runtime, action, view, and submission contracts,
+  then adds Android ARM64 SDK/NDK, lifecycle, Gradle, APK, and device gates.
+- `pcvr` shares the same OpenXR contracts, then adds Windows x64 host,
+  executable packaging, runtime, and headset gates.
+
+Native planning is not native proof. Android XR and PCVR remain `blocked` until
+the exact upstream sources have resolved SHA-256 records, semantic parity is
+proven, the required compiler and package validators run, and the selected
+runtime and hardware tests pass.
+
+## Source Security
+
+Build accepts npm registry integrity, crates.io checksums, exact Git commits,
+versioned vendor installers, and immutable HTTPS ESM URLs. Metadata discovery
+does not execute source. Moving references, absent licenses, integrity
+mismatches, path escapes, incomplete dependency closure, and duplicate source
+identities fail before target execution.
+
+The base npm install performs no Build downloads. Network provisioning is a
+separate approved operation and caches verified bytes by content hash.
+
+## MCP
+
+The opt-in Build provider exposes:
+
+```txt
+build_targets_list
+build_inspect
+build_plan
+build_apply
+build_receipt_get
+```
+
+`build_apply` requires MCP authorization and the exact reviewed plan hash.
+Repeated successful apply returns the existing receipt without rebuilding.
+During a partial failure, successful target stages remain cached while blocked
+or failed targets remain visible in the aggregate failed receipt.
+
+---
+
 <a id="testing"></a>
 
 # Testing And Proof
@@ -614,7 +731,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -622,6 +739,22 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
+- `n:build`: Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.
+- `n:build:source`: Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.
+- `n:build:analysis`: Own real syntax, type, effect, and dependency analysis for build inputs.
+- `n:build:ir`: Own serializable Kit IR, Execution IR, validation, and source lineage maps.
+- `n:build:classification`: Own whole-Kit portability, capability resolution, and fallback selection.
+- `n:build:orchestration`: Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts.
+- `n:build:compile`: Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans.
+- `n:build:toolchain`: Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution.
+- `n:build:target`: Own target registration and target-specific build providers.
+- `n:build:artifact`: Own content-addressed artifact caches, manifests, integrity, and external output.
+- `n:build:proof`: Own project immutability, runtime parity, and target validation evidence.
+- `n:build:target:web-live`: Own verified live ESM loading and content-hash browser caching.
+- `n:build:target:web-static`: Own self-contained static Web artifact materialization.
+- `n:build:target:openxr`: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.
+- `n:build:target:android-xr`: Own Android ARM64 OpenXR host, package, and validation planning.
+- `n:build:target:pcvr`: Own Windows x64 OpenXR host, package, and validation planning.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
 - `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.
@@ -680,7 +813,7 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 
 # Core Dependency Table
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -690,6 +823,22 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
 | `n:asset` | - | - |
+| `n:build` | - | - |
+| `n:build:source` | `n:build` | - |
+| `n:build:analysis` | `n:build` | - |
+| `n:build:ir` | `n:build` | - |
+| `n:build:classification` | `n:build` | - |
+| `n:build:orchestration` | `n:build` | - |
+| `n:build:compile` | `n:build` | - |
+| `n:build:toolchain` | `n:build` | - |
+| `n:build:target` | `n:build` | - |
+| `n:build:artifact` | `n:build` | - |
+| `n:build:proof` | `n:build` | - |
+| `n:build:target:web-live` | `n:build:target` | - |
+| `n:build:target:web-static` | `n:build:target` | - |
+| `n:build:target:openxr` | `n:build:target` | - |
+| `n:build:target:android-xr` | `n:build:target` | - |
+| `n:build:target:pcvr` | `n:build:target` | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
 | `n:compute:model` | `n:compute` | - |
@@ -750,7 +899,7 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
 ## Domains
 
@@ -762,6 +911,22 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
+| `n:build` | - | Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition. | stable-candidate |
+| `n:build:source` | `n:build` | Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs. | stable-candidate |
+| `n:build:analysis` | `n:build` | Own real syntax, type, effect, and dependency analysis for build inputs. | stable-candidate |
+| `n:build:ir` | `n:build` | Own serializable Kit IR, Execution IR, validation, and source lineage maps. | stable-candidate |
+| `n:build:classification` | `n:build` | Own whole-Kit portability, capability resolution, and fallback selection. | stable-candidate |
+| `n:build:orchestration` | `n:build` | Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts. | stable-candidate |
+| `n:build:compile` | `n:build` | Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans. | stable-candidate |
+| `n:build:toolchain` | `n:build` | Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution. | stable-candidate |
+| `n:build:target` | `n:build` | Own target registration and target-specific build providers. | stable-candidate |
+| `n:build:artifact` | `n:build` | Own content-addressed artifact caches, manifests, integrity, and external output. | stable-candidate |
+| `n:build:proof` | `n:build` | Own project immutability, runtime parity, and target validation evidence. | stable-candidate |
+| `n:build:target:web-live` | `n:build:target` | Own verified live ESM loading and content-hash browser caching. | stable-candidate |
+| `n:build:target:web-static` | `n:build:target` | Own self-contained static Web artifact materialization. | stable-candidate |
+| `n:build:target:openxr` | `n:build:target` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. | stable-candidate |
+| `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host, package, and validation planning. | stable-candidate |
+| `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host, package, and validation planning. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
 | `n:compute` | - | Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts. | stable-candidate |
 | `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and model provider contracts. | stable-candidate |
@@ -824,6 +989,52 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
+| `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
+| `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |
+| `dependency-source-kit` | `n:build:source` | `nexusengine/domains/build/source/dependency-source` | Resolve exact dependency source identities and recursive lockfile closure. |
+| `source-cache-kit` | `n:build:source` | `nexusengine/domains/build/source/source-cache` | Store and verify immutable source bytes by SHA-256. |
+| `module-graph-kit` | `n:build:source` | `nexusengine/domains/build/source/module-graph` | Build a deterministic AST-derived module graph. |
+| `javascript-ast-kit` | `n:build:analysis` | `nexusengine/domains/build/analysis/javascript-ast` | Parse JavaScript and TypeScript with a real compiler AST. |
+| `type-analysis-kit` | `n:build:analysis` | `nexusengine/domains/build/analysis/type-analysis` | Run typed compiler diagnostics without emitting or mutating source. |
+| `effect-analysis-kit` | `n:build:analysis` | `nexusengine/domains/build/analysis/effect-analysis` | Classify ambient capabilities and unsupported dynamic effects from AST nodes. |
+| `dependency-analysis-kit` | `n:build:analysis` | `nexusengine/domains/build/analysis/dependency-analysis` | Prove relative and external dependency closure. |
+| `kit-ir-kit` | `n:build:ir` | `nexusengine/domains/build/ir/kit-ir` | Create serializable high-level Kit IR with source lineage. |
+| `execution-ir-kit` | `n:build:ir` | `nexusengine/domains/build/ir/execution-ir` | Create deterministic dependency-ordered Execution IR. |
+| `ir-validation-kit` | `n:build:ir` | `nexusengine/domains/build/ir/ir-validation` | Reject invalid, cyclic, unsupported, or incomplete IR. |
+| `source-map-kit` | `n:build:ir` | `nexusengine/domains/build/ir/source-map` | Map generated execution operations to source AST identities. |
+| `portability-classifier-kit` | `n:build:classification` | `nexusengine/domains/build/classification/portability-classifier` | Classify each whole module and composition as native, native-adapter, JavaScript, or unsupported. |
+| `capability-resolution-kit` | `n:build:classification` | `nexusengine/domains/build/classification/capability-resolution` | Resolve target capabilities and exact reviewed substitutions. |
+| `fallback-selection-kit` | `n:build:classification` | `nexusengine/domains/build/classification/fallback-selection` | Select fail-closed whole-Kit fallback per target and profile. |
+| `build-request-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-request` | Normalize one project, profile, options, and target set. |
+| `target-set-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/target-set` | Normalize repeated target flags into one sorted unique set. |
+| `build-plan-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-plan` | Create the immutable deterministic multi-target plan hash. |
+| `build-approval-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-approval` | Require approval for the exact unchanged plan hash. |
+| `build-execution-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-execution` | Execute shared stages once and isolated target stages with project immutability proof. |
+| `build-receipt-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-receipt` | Persist aggregate and per-target exactly-once Build receipts. |
+| `rust-lowering-kit` | `n:build:compile` | `nexusengine/domains/build/compile/rust-lowering` | Lower supported Execution IR into deterministic Rust source. |
+| `javascript-fallback-kit` | `n:build:compile` | `nexusengine/domains/build/compile/javascript-fallback` | Describe capability-restricted whole-Kit QuickJS-NG fallback. |
+| `runtime-abi-kit` | `n:build:compile` | `nexusengine/domains/build/compile/runtime-abi` | Define the stable native runtime handle and batch-operation ABI. |
+| `native-runtime-link-kit` | `n:build:compile` | `nexusengine/domains/build/compile/native-runtime-link` | Create exact generated-runtime and native-library link plans. |
+| `toolchain-source-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-source` | Own immutable official toolchain and native dependency source records. |
+| `toolchain-discovery-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-discovery` | Discover installed toolchains without shell evaluation. |
+| `toolchain-provision-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-provision` | Provision approved exact official sources on demand after integrity and license checks. |
+| `isolated-stage-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/isolated-stage` | Create content-addressed build stages outside projects. |
+| `process-execution-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/process-execution` | Run argument-array commands inside an allowed Build stage. |
+| `target-registry-kit` | `n:build:target` | `nexusengine/domains/build/target/target-registry` | Register explicit target providers and reject collisions. |
+| `web-live-target-kit` | `n:build:target:web-live` | `nexusengine/domains/build/target/web-live/web-live-target` | Emit verified live ESM source, loader, service worker, and cache policy. |
+| `web-static-target-kit` | `n:build:target:web-static` | `nexusengine/domains/build/target/web-static/web-static-target` | Emit a self-contained static Web directory. |
+| `openxr-runtime-kit` | `n:build:target:openxr` | `nexusengine/domains/build/target/openxr/openxr-runtime` | Own OpenXR loader, session, spaces, frame timing, and lifecycle contracts. |
+| `openxr-input-kit` | `n:build:target:openxr` | `nexusengine/domains/build/target/openxr/openxr-input` | Own OpenXR action sets, bindings, haptics, and input snapshots. |
+| `openxr-render-kit` | `n:build:target:openxr` | `nexusengine/domains/build/target/openxr/openxr-render` | Own OpenXR views, swapchains, blend modes, and per-eye submission descriptors. |
+| `android-xr-target-kit` | `n:build:target:android-xr` | `nexusengine/domains/build/target/android-xr/android-xr-target` | Own Android ARM64 lifecycle, SDK/NDK, Gradle, APK, and OpenXR binding stages. |
+| `pcvr-target-kit` | `n:build:target:pcvr` | `nexusengine/domains/build/target/pcvr/pcvr-target` | Own Windows x64 host, OpenXR loader, executable package, and runtime validation stages. |
+| `artifact-cache-kit` | `n:build:artifact` | `nexusengine/domains/build/artifact/artifact-cache` | Reuse successful immutable target artifacts by plan identity. |
+| `artifact-manifest-kit` | `n:build:artifact` | `nexusengine/domains/build/artifact/artifact-manifest` | Create canonical per-target artifact manifests. |
+| `artifact-integrity-kit` | `n:build:artifact` | `nexusengine/domains/build/artifact/artifact-integrity` | Verify every artifact file against SHA-256. |
+| `artifact-output-kit` | `n:build:artifact` | `nexusengine/domains/build/artifact/artifact-output` | Publish immutable artifacts only outside source projects. |
+| `project-immutability-kit` | `n:build:proof` | `nexusengine/domains/build/proof/project-immutability` | Compare before and after project fingerprints byte-for-byte. |
+| `cross-runtime-parity-kit` | `n:build:proof` | `nexusengine/domains/build/proof/cross-runtime-parity` | Compare canonical replay outputs across target runtimes. |
+| `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
 | `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors and create deterministic dependency-ordered dispatch plans. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
@@ -903,11 +1114,11 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
-- Source modules: 306
-- Manifest-proven public atoms: 76
-- Manifest-owned internal modules: 205
+- Source modules: 576
+- Manifest-proven public atoms: 122
+- Manifest-owned internal modules: 429
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -941,6 +1152,276 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 | `src/core-domains/asset/kits/asset-kit/descriptors.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/index.js` | `n:asset` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/adapters/mcp/build-mcp-provider.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/atomic-kit.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/domain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/kit-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/manifest-input.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomain-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/analysis/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/artifact/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/classification/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/compile/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/execution-ir-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/ir-validation-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/ir-validation-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/ir-validation-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/ir-validation-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/kit-ir-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/kit-ir-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/kit-ir-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/kit-ir-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/kit-ir-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/source-map-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/source-map-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/source-map-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/source-map-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/kits/source-map-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/ir/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-request-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-request-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-request-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-request-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/build-request-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/target-set-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/target-set-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/target-set-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/target-set-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/kits/target-set-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/orchestration/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/project-immutability-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/project-immutability-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/project-immutability-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/project-immutability-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/project-immutability-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/target-validation-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/target-validation-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/target-validation-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/kits/target-validation-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/proof/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/dependency-source-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/dependency-source-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/dependency-source-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/dependency-source-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/dependency-source-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/module-graph-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/module-graph-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/module-graph-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/module-graph-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/module-graph-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/project-source-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/project-source-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/project-source-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/project-source-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/project-source-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-cache-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-cache-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-cache-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-cache-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-cache-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/source/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/kits/target-registry-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/kits/target-registry-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/kits/target-registry-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/kits/target-registry-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/kits/target-registry-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/native-target-helpers.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/android-xr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/openxr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/pcvr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-live/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/subdomains/web-static/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/target/web-target-helpers.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomains/toolchain/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/catalog.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/composition-mcp-provider.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/generated-guide-resources.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |

@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -8,6 +8,22 @@ Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
+- `n:build`: Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.
+- `n:build:source`: Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.
+- `n:build:analysis`: Own real syntax, type, effect, and dependency analysis for build inputs.
+- `n:build:ir`: Own serializable Kit IR, Execution IR, validation, and source lineage maps.
+- `n:build:classification`: Own whole-Kit portability, capability resolution, and fallback selection.
+- `n:build:orchestration`: Own normalized requests, target sets, deterministic plans, approvals, execution, and receipts.
+- `n:build:compile`: Own deterministic Rust lowering, JavaScript fallback descriptors, runtime ABI, and native link plans.
+- `n:build:toolchain`: Own immutable toolchain sources, discovery, approved provisioning, isolated stages, and process execution.
+- `n:build:target`: Own target registration and target-specific build providers.
+- `n:build:artifact`: Own content-addressed artifact caches, manifests, integrity, and external output.
+- `n:build:proof`: Own project immutability, runtime parity, and target validation evidence.
+- `n:build:target:web-live`: Own verified live ESM loading and content-hash browser caching.
+- `n:build:target:web-static`: Own self-contained static Web artifact materialization.
+- `n:build:target:openxr`: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.
+- `n:build:target:android-xr`: Own Android ARM64 OpenXR host, package, and validation planning.
+- `n:build:target:pcvr`: Own Windows x64 OpenXR host, package, and validation planning.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
 - `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.

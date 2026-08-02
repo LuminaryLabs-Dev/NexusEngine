@@ -1,16 +1,17 @@
 # NexusEngine
 
-NexusEngine is the reusable Core runtime for deterministic games and
-simulations. Core contains only atomic, idempotent, product-neutral behavior.
+NexusEngine is the reusable Core runtime and isolated build system for
+deterministic games and simulations. Runtime Core contains only atomic,
+idempotent, product-neutral behavior.
 
 ## Ownership
 
 ```txt
 NexusEngine
-  universal contracts and atomic Core behavior
+  universal contracts, atomic Core behavior, and build-time n:build tooling
 
 @luminarylabs/nexusengine-kits
-  reusable optional, niche, genre, provider, and platform behavior
+  reusable optional, niche, genre, provider, and runtime-platform behavior
 
 Experiments and game repositories
   complete games, recipes, presets, authored content, and product behavior
@@ -57,6 +58,22 @@ engine.n.object.register({
 Optional behavior is installed from an approved external registry package.
 Complete games consume Core and optional Kits; neither package exports games.
 
+## Build
+
+`n:build` is an isolated build-time Domain. It may own concrete target and
+toolchain implementations, but it is never installed into an application
+runtime graph. Projects remain read-only; staging, caches, receipts, and
+default artifacts live under `~/.nexusengine`.
+
+```bash
+nexusengine plan ./my-project --target web-live --target web-static
+nexusengine build ./my-project --target web-static --approve-plan <plan-hash>
+```
+
+Repeated `--target` flags form one sorted target set. Native targets retrieve
+exact verified upstream dependencies only when selected and fail closed when a
+required toolchain, license, runtime, or hardware proof is unavailable.
+
 ## Semantic Core
 
 Every Core implementation belongs to one manifest under:
@@ -101,7 +118,7 @@ snapshot/restore behavior, and require explicit approval for
 `0.0.4` removes old root symbols, `n:core-*` identifiers, Core Kit subpaths,
 concrete hosts/renderers/providers, and game behavior. No forwarding exports
 remain. Use the [0.0.4 migration guide](docs/migrations/0.0.4-domain-cutover.md)
-and [root-module disposition ledger](docs/migrations/0.0.4-root-module-dispositions.md).
+and [Build Domain migration](docs/migrations/0.0.4-build-domain.md).
 
 ## Validation
 

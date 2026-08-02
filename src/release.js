@@ -14,6 +14,9 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "domain-manifest-v2-contract",
     "manifest-generated-semantic-domain-catalog",
     "composition-and-mcp-contracts",
+    "exploratory-build-domain",
+    "build-cli-and-mcp-contracts",
+    "web-live-and-web-static-targets",
     "semantic-core-domains",
     "frozen-protokit-disposition-ledger",
     "generated-guide-and-pdf",
@@ -29,8 +32,9 @@ export const NEXUS_ENGINE_RELEASE = Object.freeze({
     "runtime-kit",
     "domain-service-kit",
     "composition",
+    "build",
     "domain-catalog",
     "semantic-domain-subpaths"
   ]),
-  notes: "0.0.4 is the manifest-owned semantic Core cutover. Concrete adapters and product Kits resolve outside NexusEngine."
+  notes: "0.0.4 is the manifest-owned semantic Core cutover with an isolated build-time Domain. Runtime adapters and product Kits resolve outside NexusEngine; native Build success remains proof gated."
 });

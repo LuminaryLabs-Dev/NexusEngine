@@ -4,15 +4,16 @@
 
 NexusEngine is the atomic, idempotent, fully reusable Core runtime for
 deterministic games and simulations. It owns universal contracts and behavior,
-not a broad catalog of useful features.
+plus the isolated `n:build` build-time domain described below; it is not a
+broad catalog of useful game features.
 
 ## Ownership
 
 - `NexusEngine`: ECS, deterministic ticks, Runtime Kit and Domain Service Kit
-  contracts, semantic Core Domains, composition, snapshot/reset/replay, and
-  validation.
-- `NexusEngine-Kits`: optional reusable behavior, concrete providers, adapters,
-  and policies that are niche, genre-specific, or platform-specific.
+  contracts, semantic Core Domains, composition, snapshot/reset/replay,
+  validation, and the isolated Build Domain.
+- `NexusEngine-Kits`: optional reusable behavior, concrete runtime providers,
+  adapters, and policies that are niche, genre-specific, or platform-specific.
 - Experiment and game repositories: complete games, authored recipes, presets,
   content, product UI, and tuning.
 - `NexusEngine-Editor`: repository tooling, terminal access, guided-development
@@ -24,6 +25,25 @@ Ownership is fail-closed. A production capability enters Core only after its
 atomicity, idempotence, neutrality, lifecycle, dependencies, and proof are
 explicit in one Domain manifest. Migration uses a hard cutover with changelog
 and import maps, never runtime forwarding exports.
+
+## Build-Time Exception
+
+- `n:build` is the sole platform-specific implementation exception physically
+  owned by NexusEngine. It may contain compilers, target hosts, packaging code,
+  and toolchain orchestration because none of it enters the application runtime
+  graph.
+- Runtime domains cannot import Build. Build may inspect and compile runtime
+  contracts through public manifests and package surfaces.
+- Build projects are read-only. Default staging, caches, source retrieval,
+  toolchains, artifacts, and receipts live under `~/.nexusengine`.
+- Dependencies are retrieved on demand from exact canonical upstream records,
+  verified before use, and never downloaded by package postinstall hooks.
+- Repeated target flags normalize into one deterministic target set. Shared
+  stages run once, target stages are isolated, and every target has its own
+  receipt.
+- Native success is never inferred from a plan. The `0.0.4` release gate requires
+  real selected toolchains and validated Android XR and Windows PCVR packages;
+  runtime and headset execution remain explicit post-release hardware proof.
 
 ## Runtime Shape
 
@@ -40,6 +60,9 @@ and import maps, never runtime forwarding exports.
   source review, transactional apply controller, and persistent receipts.
 - `src/core-domains/mcp/`: opt-in provider registry and transport-neutral MCP
   contracts.
+- `src/core-domains/build/`: build-only source analysis, IR, compilation,
+  target, toolchain, artifact, receipt, and proof Kits. It is excluded from the
+  runtime composition graph.
 
 The catalog, package exports, ownership ledger, API reference, guide indexes,
 MCP records, and release manifest are generated from Domain manifests. No

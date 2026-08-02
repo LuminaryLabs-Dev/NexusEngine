@@ -72,11 +72,12 @@ export function atomicKit({ id, responsibility, domainPath, apiName, requires = 
   };
 }
 
-export function manifestShell({ root, subdomains = [], publicEntry, publicKits = [], providers = [], adapters = [] }) {
+export function manifestShell({ root, subdomains = [], publicEntry, publicEntries = [], publicKits = [], providers = [], adapters = [] }) {
   return {
     ...root,
     subdomains,
     publicEntry,
+    publicEntries,
     publicKits,
     providers,
     adapters

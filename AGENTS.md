@@ -82,10 +82,14 @@ This repository owns:
 - renderer-agnostic descriptors
 - validation paths for promoted behavior
 - transport-neutral host, policy, MCP, and composition contracts
+- the isolated `n:build` build-time domain, including concrete compilers,
+  toolchains, target hosts, packaging, artifacts, and build proof
 
-Reusable optional, niche, genre, or platform behavior belongs in
-NexusEngine-Kits or another trusted registry. Complete games and presets belong
-in experiment or game repositories. The retired ProtoKit workflow is not an
+Reusable optional, niche, genre, and runtime-platform behavior belongs in
+NexusEngine-Kits or another trusted registry. `n:build` is the sole physical
+platform-specific exception: it never enters an application runtime graph, and
+runtime Domains cannot import it. Complete games and presets belong in
+experiment or game repositories. The retired ProtoKit workflow is not an
 implementation destination.
 
 ## Agent Work Loop
@@ -350,6 +354,11 @@ Do not promote a capability into NexusEngine core unless it is:
 Unknown or unproven ownership fails closed: keep the capability outside Core.
 Consult `docs/KIT-OWNERSHIP.md` before implementation.
 
+The platform-neutral requirement applies to application runtime behavior.
+Build-time behavior may be platform-specific only inside `n:build`, where it
+must remain atomic, project-immutable, source-verifiable, approval-gated, and
+absent from runtime composition.
+
 ## Kit Anatomy
 
 Every Core Domain uses the manifest-owned structure:
@@ -365,6 +374,10 @@ src/core-domains/<semantic-domain>/
 ├─ providers/
 └─ adapters/
 ```
+
+Build subdomains additionally use one `subdomain.manifest.js` and one
+`kit.manifest.js` per atomic Kit. The root Build entry composes those Kits and
+does not own hidden compiler, target, or artifact behavior.
 
 The manifest is the ownership and public-surface contract. Do not add legacy
 Kit metadata or an unmanifested public Kit factory.

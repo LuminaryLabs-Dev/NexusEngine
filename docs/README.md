@@ -18,12 +18,16 @@ The modular source for the guide is `guide/book.json` plus
 - [Kit Metadata Contract](KIT-METADATA-CONTRACT.md)
 - [Generated Core API Reference](generated/API-REFERENCE.md)
 - [Generated Domain Catalog](generated/CORE-CATALOG.json)
+- [Build Domain](guide/building/README.md)
+- [Generated Build API](generated/BUILD-API.md)
+- [Generated Build Targets](generated/BUILD-TARGETS.md)
 - [Experiment Workflow](how-to-experiment.md)
 - [Visual Target Review](visual-target-review.md)
 
 ## Migration
 
 - [0.0.4 Semantic Domain Cutover](migrations/0.0.4-domain-cutover.md)
+- [0.0.4 Build Domain Cutover](migrations/0.0.4-build-domain.md)
 - [0.0.4 Root Module Dispositions](migrations/0.0.4-root-module-dispositions.md)
 - [Frozen ProtoKit Extraction](protokit-extraction/README.md)
 - [Retired ProtoKit Workflow](how-to-protokit.md)

@@ -1,0 +1,22 @@
+export function createOpenXrRenderService() {
+  return Object.freeze({
+    createFrameSubmission(input = {}) {
+      const views = [...(input.views ?? [])].map((view, index) => Object.freeze({
+        index,
+        pose: view.pose,
+        fov: view.fov,
+        swapchainImage: Number(view.swapchainImage)
+      }));
+      if (views.length !== 2) throw new TypeError("OpenXR primary stereo submission requires exactly two views.");
+      return Object.freeze({
+        schema: "nexusengine.openxr-frame-submission/1",
+        frame: Number(input.frame),
+        displayTime: Number(input.displayTime),
+        blendMode: String(input.blendMode ?? "opaque"),
+        views: Object.freeze(views)
+      });
+    }
+  });
+}
+
+export default createOpenXrRenderService;

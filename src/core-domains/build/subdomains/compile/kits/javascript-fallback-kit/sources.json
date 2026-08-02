@@ -1,0 +1,17 @@
+[
+  {
+    "schema": "nexusengine.build-source-record/1",
+    "id": "git:quickjs-ng@v0.15.0",
+    "sourceKind": "git",
+    "package": null,
+    "canonicalLocator": "https://github.com/quickjs-ng/quickjs.git",
+    "exactVersion": "433941b99fb3c5e7f98b7ebd78727972bcf467ee",
+    "integrity": null,
+    "license": "MIT",
+    "requiredEnvironment": ["native-build"],
+    "transitiveDependencies": [],
+    "provider": "git",
+    "substitution": null,
+    "resolutionStatus": "unresolved"
+  }
+]

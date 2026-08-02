@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:compute`
 - Status: `stable-candidate`
-- Registry SHA-256: `fb253d7c33d1b271857591e21f6eaca1f32e470385d6080a131813261c767cc8`
+- Registry SHA-256: `18749734a475fa78f67d697877dc263f107bef89afe3515b533001863d68debf`
 - Public entry: `nexusengine/domains/compute`
 
 ## Responsibility
