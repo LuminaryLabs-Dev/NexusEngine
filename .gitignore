@@ -21,7 +21,7 @@ Thumbs.db
 # build/test artifacts
 coverage/
 dist/
-build/
+/build/
 
 # temporary files
 .tmp/

@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { spawn } from "node:child_process";
 import { access, readdir, readFile, stat } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -25,14 +26,47 @@ async function filesUnder(directory) {
   return output;
 }
 
-const productionFiles = (await filesUnder(sourceRoot))
+async function ignoredFiles(filePaths) {
+  return new Promise((resolve, reject) => {
+    const child = spawn("git", ["check-ignore", "--no-index", "--stdin", "-z"], {
+      cwd: root,
+      stdio: ["pipe", "pipe", "pipe"]
+    });
+    const stdout = [];
+    const stderr = [];
+    child.stdout.on("data", (chunk) => stdout.push(chunk));
+    child.stderr.on("data", (chunk) => stderr.push(chunk));
+    child.on("error", reject);
+    child.on("close", (code) => {
+      if (code !== 0 && code !== 1) {
+        reject(new Error(Buffer.concat(stderr).toString("utf8")));
+        return;
+      }
+      resolve(Buffer.concat(stdout).toString("utf8").split("\0").filter(Boolean));
+    });
+    child.stdin.end(`${filePaths.join("\0")}\0`);
+  });
+}
+
+const sourceFiles = await filesUnder(sourceRoot);
+const productionFiles = sourceFiles
   .filter((filePath) => /\.(?:m?js)$/i.test(filePath));
-const activeSourceFiles = (await filesUnder(sourceRoot))
+const activeSourceFiles = sourceFiles
   .filter((filePath) => /\.(?:m?js|json|md)$/i.test(filePath));
 const forbiddenTestImports = [];
 const privateSiblingImports = [];
 const concretePlatformOwnership = [];
 const legacyIdentifiers = [];
+const runtimeBuildImports = [];
+const ignoredProductionFiles = await ignoredFiles(
+  sourceFiles.map((filePath) => path.relative(root, filePath))
+);
+
+assert.deepEqual(
+  ignoredProductionFiles,
+  [],
+  `Production source is ignored by Git:\n${ignoredProductionFiles.join("\n")}`
+);
 
 assert.equal(
   await exists(path.join(sourceRoot, "core-kits")),
@@ -66,10 +100,23 @@ for (const filePath of productionFiles) {
       "subdomains"
     ].includes(part));
     const sourceIsTest = sourceParts.includes("tests");
+    const relativeSourcePath = path.relative(sourceRoot, filePath);
+    const isBuildMetadataImport =
+      relativeSourcePath === path.join("core-domains", "catalog.js")
+      && match[1] === "./build/domain.manifest.js";
     if (sourceDomain && targetDomain && sourceDomain !== targetDomain && targetIsPrivate && !sourceIsTest) {
       privateSiblingImports.push(
         `${path.relative(root, filePath)} -> ${match[1]}`
       );
+    }
+    if (
+      targetDomain === "build"
+      && sourceDomain !== "build"
+      && relativeSourcePath !== path.join("core-domains", "index.js")
+      && !isBuildMetadataImport
+      && !sourceIsTest
+    ) {
+      runtimeBuildImports.push(`${path.relative(root, filePath)} -> ${match[1]}`);
     }
   }
 
@@ -83,7 +130,10 @@ for (const filePath of productionFiles) {
     /\bgetContext\(["'](?:webgl2?|webgpu|2d)["']\)/
   ];
   if (executablePlatformPatterns.some((pattern) => pattern.test(source))) {
-    concretePlatformOwnership.push(path.relative(root, filePath));
+    const relativePath = path.relative(root, filePath);
+    if (!relativePath.startsWith(path.join("src", "core-domains", "build", path.sep))) {
+      concretePlatformOwnership.push(relativePath);
+    }
   }
 }
 
@@ -109,7 +159,13 @@ assert.deepEqual(
 assert.deepEqual(
   concretePlatformOwnership,
   [],
-  `Core production modules own concrete renderer or platform behavior:\n${concretePlatformOwnership.join("\n")}`
+  `Runtime Core production modules own concrete renderer or platform behavior:\n${concretePlatformOwnership.join("\n")}`
+);
+
+assert.deepEqual(
+  runtimeBuildImports,
+  [],
+  `Runtime Core production modules import the build-time-only n:build domain:\n${runtimeBuildImports.join("\n")}`
 );
 
 assert.deepEqual(
@@ -222,12 +278,15 @@ const generatedExports = JSON.parse(
 ).exports;
 const packageExports = JSON.parse(
   await readFile(path.join(root, "package.json"), "utf8")
-).exports;
+);
 assert.deepEqual(
-  packageExports,
+  packageExports.exports,
   generatedExports,
   "package.json exports drifted from the manifest-generated package export map."
 );
+assert.equal(packageExports.scripts?.postinstall, undefined, "NexusEngine cannot download Build dependencies from postinstall.");
+const rootEntrySource = await readFile(path.join(sourceRoot, "index.js"), "utf8");
+assert.equal(/core-domains\/build|createBuildDomain/.test(rootEntrySource), false, "Build must not be exposed through the NexusEngine runtime root API.");
 
 const ownership = JSON.parse(
   await readFile(path.join(root, "docs", "KIT-OWNERSHIP.json"), "utf8")
@@ -237,5 +296,5 @@ assert.equal(ownership.counts?.violations, 0, "Core ownership has violations.");
 assert.deepEqual(ownership.violations ?? [], [], "Core ownership ledger contains violations.");
 
 console.log(
-  `Core boundaries ok: ${productionFiles.length} production modules, no transitional tree, private sibling imports, platform implementations, ownership drift, retired names, migrated files, or stale examples.`
+  `Core boundaries ok: ${productionFiles.length} production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.`
 );
