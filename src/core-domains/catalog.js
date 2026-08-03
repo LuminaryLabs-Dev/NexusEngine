@@ -18,7 +18,7 @@ import manifest16 from "./spatial/domain.manifest.js";
 import manifest17 from "./world/domain.manifest.js";
 import { flattenCoreDomainManifests } from "./domain-manifest.js";
 
-export const CORE_REGISTRY_SHA256 = "c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b";
+export const CORE_REGISTRY_SHA256 = "f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef";
 
 export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest0,

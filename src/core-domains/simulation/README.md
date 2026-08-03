@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:simulation`
 - Status: `stable-candidate`
-- Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+- Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 - Public entry: `nexusengine/domains/simulation`
 
 ## Responsibility
@@ -40,6 +40,13 @@ Own deterministic simulation objectives, resources, hazards, pressure, checkpoin
 | `n:simulation:physics:world-contact` | Own portable world-contact resolution and correction records. |
 | `n:simulation:recovery` | Own portable subject recovery records and deterministic recovery state. |
 | `n:simulation:recovery:soft-respawn` | Own exact-once portable subject recovery records. |
+| `n:simulation:economy` | Own portable economic account and cargo state primitives. |
+| `n:simulation:economy:accounts` | Own finite account balances and economy transaction records. |
+| `n:simulation:economy:cargo` | Own portable cargo inventory, carrying, condition, deposits, and quota state. |
+| `n:simulation:operations` | Own portable facility, occupant, and transport operation primitives. |
+| `n:simulation:operations:facility` | Own deterministic facility capacity, condition, status, cycles, and operation receipts. |
+| `n:simulation:operations:occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
+| `n:simulation:operations:transport-route` | Own deterministic transport stops, carriers, capacity, travel, and arrival receipts. |
 
 ## Atomic Kits
 
@@ -56,6 +63,11 @@ Own deterministic simulation objectives, resources, hazards, pressure, checkpoin
 | `vehicle-dynamics-kit` | `nexusengine/domains/simulation/motion/vehicle` | Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy. |
 | `world-contact-kit` | `nexusengine/domains/simulation/physics/world-contact` | Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend. |
 | `soft-respawn-kit` | `nexusengine/domains/simulation/recovery/soft-respawn` | Produce exact-once coherent subject recovery records at configured portable points. |
+| `economy-account-kit` | `nexusengine/domains/simulation/economy/accounts` | Own finite account balances and exact-once portable economy transaction records. |
+| `cargo-manifest-kit` | `nexusengine/domains/simulation/economy/cargo` | Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state. |
+| `facility-operations-kit` | `nexusengine/domains/simulation/operations/facility` | Own deterministic facility capacity, condition, status, cycle, and portable output receipts. |
+| `occupant-flow-kit` | `nexusengine/domains/simulation/operations/occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
+| `transport-route-kit` | `nexusengine/domains/simulation/operations/transport-route` | Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts. |
 
 ## Lifecycle
 

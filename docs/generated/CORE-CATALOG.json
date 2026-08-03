@@ -5840,6 +5840,101 @@
       ]
     },
     {
+      "domainPath": "n:runtime:sequence:schedule",
+      "forbiddenResponsibilities": [
+        "authored story",
+        "facility output",
+        "wall-clock access"
+      ],
+      "id": "runtime-sequence-schedule-domain",
+      "inputs": [
+        {
+          "description": "Runtime Schedule required capability.",
+          "deterministic": true,
+          "id": "n:runtime:sequence",
+          "schema": null
+        }
+      ],
+      "label": "Runtime Schedule",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Runtime Schedule API without duplicate state or systems.",
+        "install": "Create one Runtime Schedule state owner and public API.",
+        "replay": "Reapply equivalent Runtime Schedule inputs deterministically.",
+        "reset": "Restore the configured Runtime Schedule baseline.",
+        "snapshot": "Serialize Runtime Schedule state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Runtime Schedule provided capability.",
+          "deterministic": true,
+          "id": "n:runtime:sequence:schedule",
+          "schema": null
+        },
+        {
+          "description": "Runtime Schedule provided capability.",
+          "deterministic": true,
+          "id": "sequence:schedule",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "cycle state",
+        "occurrence records",
+        "schedule elapsed time"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Runtime Schedule state and registry records.",
+          "id": "runtime-sequence-schedule-domain-state",
+          "owner": "runtime-sequence-schedule-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:runtime:sequence",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Runtime Schedule contract fixture.",
+            "deterministic": true,
+            "id": "runtime-sequence-schedule-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Runtime Schedule composition fixture.",
+            "deterministic": true,
+            "id": "runtime-sequence-schedule-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:runtime:sequence"
+      ],
+      "responsibility": "Own deterministic elapsed-time schedules and occurrence records.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Runtime Schedule behavior.",
+          "deterministic": true,
+          "id": "n:runtime:sequence:schedule:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:simulation",
       "forbiddenResponsibilities": [
         "game balance presets",
@@ -6841,6 +6936,673 @@
           "description": "Install, validate, snapshot, reset, and replay Soft Respawn behavior.",
           "deterministic": true,
           "id": "n:simulation:recovery:soft-respawn:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:economy",
+      "forbiddenResponsibilities": [
+        "facility policy",
+        "game balance",
+        "payment processing"
+      ],
+      "id": "simulation-economy-domain",
+      "inputs": [
+        {
+          "description": "Simulation Economy required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Simulation Economy",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Simulation Economy API without duplicate state or systems.",
+        "install": "Create one Simulation Economy state owner and public API.",
+        "replay": "Reapply equivalent Simulation Economy inputs deterministically.",
+        "reset": "Restore the configured Simulation Economy baseline.",
+        "snapshot": "Serialize Simulation Economy state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Simulation Economy provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:economy",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "account and cargo ownership boundaries",
+        "economy capability contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Simulation Economy state and registry records.",
+          "id": "simulation-economy-domain-state",
+          "owner": "simulation-economy-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Simulation Economy contract fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Simulation Economy composition fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own portable economic account and cargo state primitives.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Simulation Economy behavior.",
+          "deterministic": true,
+          "id": "n:simulation:economy:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:economy:accounts",
+      "forbiddenResponsibilities": [
+        "facility output",
+        "payment processing",
+        "request rewards"
+      ],
+      "id": "simulation-economy-accounts-domain",
+      "inputs": [
+        {
+          "description": "Economy Accounts required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        },
+        {
+          "description": "Economy Accounts required capability.",
+          "deterministic": true,
+          "id": "transaction:idempotency",
+          "schema": null
+        }
+      ],
+      "label": "Economy Accounts",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Economy Accounts API without duplicate state or systems.",
+        "install": "Create one Economy Accounts state owner and public API.",
+        "replay": "Reapply equivalent Economy Accounts inputs deterministically.",
+        "reset": "Restore the configured Economy Accounts baseline.",
+        "snapshot": "Serialize Economy Accounts state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Economy Accounts provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:economy:accounts",
+          "schema": null
+        },
+        {
+          "description": "Economy Accounts provided capability.",
+          "deterministic": true,
+          "id": "economy:accounts",
+          "schema": null
+        },
+        {
+          "description": "Economy Accounts provided capability.",
+          "deterministic": true,
+          "id": "economy:transaction",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "account balances",
+        "affordability queries",
+        "economy transaction records"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Economy Accounts state and registry records.",
+          "id": "simulation-economy-accounts-domain-state",
+          "owner": "simulation-economy-accounts-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:economy",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Economy Accounts contract fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-accounts-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Economy Accounts composition fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-accounts-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation",
+        "transaction:idempotency"
+      ],
+      "responsibility": "Own finite account balances and economy transaction records.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Economy Accounts behavior.",
+          "deterministic": true,
+          "id": "n:simulation:economy:accounts:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:economy:cargo",
+      "forbiddenResponsibilities": [
+        "economy account mutation",
+        "transfer policy",
+        "vehicle movement"
+      ],
+      "id": "simulation-economy-cargo-domain",
+      "inputs": [
+        {
+          "description": "Cargo required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Cargo",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Cargo API without duplicate state or systems.",
+        "install": "Create one Cargo state owner and public API.",
+        "replay": "Reapply equivalent Cargo inputs deterministically.",
+        "reset": "Restore the configured Cargo baseline.",
+        "snapshot": "Serialize Cargo state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Cargo provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:economy:cargo",
+          "schema": null
+        },
+        {
+          "description": "Cargo provided capability.",
+          "deterministic": true,
+          "id": "economy:cargo-manifest",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "cargo condition",
+        "cargo items",
+        "carrying capacity",
+        "deposit records"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Cargo state and registry records.",
+          "id": "simulation-economy-cargo-domain-state",
+          "owner": "simulation-economy-cargo-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:economy",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Cargo contract fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-cargo-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Cargo composition fixture.",
+            "deterministic": true,
+            "id": "simulation-economy-cargo-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own portable cargo inventory, carrying, condition, deposits, and quota state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Cargo behavior.",
+          "deterministic": true,
+          "id": "n:simulation:economy:cargo:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:operations",
+      "forbiddenResponsibilities": [
+        "economy effects",
+        "game management rules",
+        "request effects"
+      ],
+      "id": "simulation-operations-domain",
+      "inputs": [
+        {
+          "description": "Simulation Operations required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Simulation Operations",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Simulation Operations API without duplicate state or systems.",
+        "install": "Create one Simulation Operations state owner and public API.",
+        "replay": "Reapply equivalent Simulation Operations inputs deterministically.",
+        "reset": "Restore the configured Simulation Operations baseline.",
+        "snapshot": "Serialize Simulation Operations state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Simulation Operations provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:operations",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "facility, occupant, and transport ownership boundaries",
+        "operations capability contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Simulation Operations state and registry records.",
+          "id": "simulation-operations-domain-state",
+          "owner": "simulation-operations-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Simulation Operations contract fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Simulation Operations composition fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own portable facility, occupant, and transport operation primitives.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Simulation Operations behavior.",
+          "deterministic": true,
+          "id": "n:simulation:operations:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:operations:facility",
+      "forbiddenResponsibilities": [
+        "authored facility rules",
+        "economy mutation",
+        "lifecycle progression"
+      ],
+      "id": "simulation-operations-facility-domain",
+      "inputs": [
+        {
+          "description": "Facility Operations required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Facility Operations",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Facility Operations API without duplicate state or systems.",
+        "install": "Create one Facility Operations state owner and public API.",
+        "replay": "Reapply equivalent Facility Operations inputs deterministically.",
+        "reset": "Restore the configured Facility Operations baseline.",
+        "snapshot": "Serialize Facility Operations state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Facility Operations provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:operations:facility",
+          "schema": null
+        },
+        {
+          "description": "Facility Operations provided capability.",
+          "deterministic": true,
+          "id": "operations:facility",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "facility cycle state",
+        "facility output receipts",
+        "facility state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Facility Operations state and registry records.",
+          "id": "simulation-operations-facility-domain-state",
+          "owner": "simulation-operations-facility-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:operations",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Facility Operations contract fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-facility-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Facility Operations composition fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-facility-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own deterministic facility capacity, condition, status, cycles, and operation receipts.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Facility Operations behavior.",
+          "deterministic": true,
+          "id": "n:simulation:operations:facility:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:operations:occupant-flow",
+      "forbiddenResponsibilities": [
+        "economy rewards",
+        "navigation",
+        "request creation"
+      ],
+      "id": "simulation-operations-occupant-flow-domain",
+      "inputs": [
+        {
+          "description": "Occupant Flow required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Occupant Flow",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Occupant Flow API without duplicate state or systems.",
+        "install": "Create one Occupant Flow state owner and public API.",
+        "replay": "Reapply equivalent Occupant Flow inputs deterministically.",
+        "reset": "Restore the configured Occupant Flow baseline.",
+        "snapshot": "Serialize Occupant Flow state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Occupant Flow provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:operations:occupant-flow",
+          "schema": null
+        },
+        {
+          "description": "Occupant Flow provided capability.",
+          "deterministic": true,
+          "id": "operations:occupant-flow",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "occupant state",
+        "patience state",
+        "service outcomes",
+        "spawn rules"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Occupant Flow state and registry records.",
+          "id": "simulation-operations-occupant-flow-domain-state",
+          "owner": "simulation-operations-occupant-flow-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:operations",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Occupant Flow contract fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-occupant-flow-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Occupant Flow composition fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-occupant-flow-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own deterministic occupant spawning, patience, service, and abandonment state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Occupant Flow behavior.",
+          "deterministic": true,
+          "id": "n:simulation:operations:occupant-flow:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:operations:transport-route",
+      "forbiddenResponsibilities": [
+        "navigation pathfinding",
+        "request fulfillment",
+        "vehicle physics"
+      ],
+      "id": "simulation-operations-transport-route-domain",
+      "inputs": [
+        {
+          "description": "Transport Route required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Transport Route",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Transport Route API without duplicate state or systems.",
+        "install": "Create one Transport Route state owner and public API.",
+        "replay": "Reapply equivalent Transport Route inputs deterministically.",
+        "reset": "Restore the configured Transport Route baseline.",
+        "snapshot": "Serialize Transport Route state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Transport Route provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:operations:transport-route",
+          "schema": null
+        },
+        {
+          "description": "Transport Route provided capability.",
+          "deterministic": true,
+          "id": "operations:transport-route",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "arrival receipts",
+        "carrier state",
+        "transport stops",
+        "travel progress"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Transport Route state and registry records.",
+          "id": "simulation-operations-transport-route-domain-state",
+          "owner": "simulation-operations-transport-route-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:operations",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Transport Route contract fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-transport-route-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Transport Route composition fixture.",
+            "deterministic": true,
+            "id": "simulation-operations-transport-route-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Transport Route behavior.",
+          "deterministic": true,
+          "id": "n:simulation:operations:transport-route:lifecycle",
           "schema": null
         }
       ]
@@ -15980,6 +16742,77 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "schedule",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:runtime:sequence:schedule",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "schedule-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:runtime:sequence",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "schedule-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "schedule-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:runtime:sequence:schedule",
+        "sequence:schedule"
+      ],
+      "requires": [
+        "n:runtime:sequence"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createScheduleKit",
+        "module": "./src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js",
+        "publicSubpath": "./domains/runtime/sequence/schedule"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "simulation",
       "atomic": true,
       "composes": [],
@@ -16764,6 +17597,363 @@
         "exportName": "createSoftRespawnKit",
         "module": "./src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js",
         "publicSubpath": "./domains/simulation/recovery/soft-respawn"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "economy",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:economy:accounts",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "economy-account-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:economy",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "economy-account-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "economy-account-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "economy:accounts",
+        "economy:transaction",
+        "n:simulation:economy:accounts"
+      ],
+      "requires": [
+        "n:simulation",
+        "transaction:idempotency"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own finite account balances and exact-once portable economy transaction records.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createEconomyAccountKit",
+        "module": "./src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
+        "publicSubpath": "./domains/simulation/economy/accounts"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "cargoManifest",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:economy:cargo",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "cargo-manifest-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:economy",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "cargo-manifest-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "cargo-manifest-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "economy:cargo-manifest",
+        "n:simulation:economy:cargo"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCargoManifestKit",
+        "module": "./src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
+        "publicSubpath": "./domains/simulation/economy/cargo"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "facilityOperations",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:operations:facility",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "facility-operations-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:operations",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "facility-operations-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "facility-operations-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:operations:facility",
+        "operations:facility"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own deterministic facility capacity, condition, status, cycle, and portable output receipts.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createFacilityOperationsKit",
+        "module": "./src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js",
+        "publicSubpath": "./domains/simulation/operations/facility"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "occupantFlow",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:operations:occupant-flow",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "occupant-flow-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:operations",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "occupant-flow-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "occupant-flow-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:operations:occupant-flow",
+        "operations:occupant-flow"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own deterministic occupant spawning, patience, service, and abandonment state.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createOccupantFlowKit",
+        "module": "./src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js",
+        "publicSubpath": "./domains/simulation/operations/occupant-flow"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "transportRoutes",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:operations:transport-route",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "transport-route-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:operations",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "transport-route-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "transport-route-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:operations:transport-route",
+        "operations:transport-route"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createTransportRouteKit",
+        "module": "./src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js",
+        "publicSubpath": "./domains/simulation/operations/transport-route"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -18682,15 +19872,21 @@
     "./domains/runtime/persistence": "./src/core-domains/runtime/subdomains/persistence/kits/persistence-kit/index.js",
     "./domains/runtime/realtime": "./src/core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js",
     "./domains/runtime/sequence": "./src/core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js",
+    "./domains/runtime/sequence/schedule": "./src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js",
     "./domains/runtime/startup": "./src/core-domains/runtime/subdomains/startup/kits/startup-kit/index.js",
     "./domains/runtime/transaction": "./src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js",
     "./domains/simulation": "./src/core-domains/simulation/index.js",
     "./domains/simulation/adapters/articulated-drive": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
+    "./domains/simulation/economy/accounts": "./src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
+    "./domains/simulation/economy/cargo": "./src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
     "./domains/simulation/motion": "./src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js",
     "./domains/simulation/motion/articulated": "./src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js",
     "./domains/simulation/motion/locomotion": "./src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js",
     "./domains/simulation/motion/two-bone-ik": "./src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js",
     "./domains/simulation/motion/vehicle": "./src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js",
+    "./domains/simulation/operations/facility": "./src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js",
+    "./domains/simulation/operations/occupant-flow": "./src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js",
+    "./domains/simulation/operations/transport-route": "./src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js",
     "./domains/simulation/physics": "./src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js",
     "./domains/simulation/physics/articulated": "./src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js",
     "./domains/simulation/physics/world-contact": "./src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js",
@@ -18725,7 +19921,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b",
+  "registryHash": "f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -20858,11 +22054,11 @@
     },
     {
       "path": "src/core-domains/runtime/domain.manifest.js",
-      "sha256": "896e73c9a532e5e0cf63c3faad5da6c661f6583bf8f88bbf26c00c6449006314"
+      "sha256": "fc7e93d10769777e2d07064a0fb00d21459a11a946cf267dbcf2c955f24f3006"
     },
     {
       "path": "src/core-domains/runtime/index.js",
-      "sha256": "efbdd5df7bb2134ab3a2f657afa0681d100858ff8da8edf9de275415405e578d"
+      "sha256": "84791c83e77d93314e5e1d2ad5a9a41e1ec23c2c6393cbb6504e1536ee94958d"
     },
     {
       "path": "src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
@@ -20937,6 +22133,34 @@
       "sha256": "555ac9168d0fef7eddeb785ccdbdeca21de2f352dc097fa19d7bbdf18cfe5dc8"
     },
     {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/index.js",
+      "sha256": "d5d03212368488cfa7fb68dc966594d06d4b23d646d938c7a80ab4a8d61c39a4"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/contracts.js",
+      "sha256": "8b84bfe391fb6bf2717ea322356d6da775cfe40c971cb8250c6b22fc6e978a9a"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js",
+      "sha256": "5e384630ebfd5c50583450e50d654c2ed807467c3c852bb00da2619e4487cd77"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js",
+      "sha256": "4a47e71d91e078029f0a34edf9c2c3f422083c1c1582e9dc9df4c1694059a109"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/services.js",
+      "sha256": "60ea0a5096351b47832d89797449e9842ed386ebce7cd1fbc8e3316790269373"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/state.js",
+      "sha256": "74022636979afde4b4a65d04e229e4f7d9fbd161891ebf8c0c4445b8d387748d"
+    },
+    {
+      "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js",
+      "sha256": "050d8e23cae9967d5b5b105c2b7a06fa1315f80a64019fb7972de3b06582b163"
+    },
+    {
       "path": "src/core-domains/runtime/subdomains/startup/core-assets-startup-bridge.js",
       "sha256": "b65279b65efa731307add470dad8513eea10cebf25ef822e464a9f14f2b8b3ff"
     },
@@ -20958,7 +22182,7 @@
     },
     {
       "path": "src/core-domains/simulation/index.js",
-      "sha256": "48e2ea06b1bfc487bf4c7fe2d750425987ed187fe969f32e0b2feaa05806a359"
+      "sha256": "8acf13843d703c4b6d101bb215bd946608571efe3703cd6f2b1b8a2bf831712b"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/checkpoints.js",
@@ -20998,7 +22222,71 @@
     },
     {
       "path": "src/core-domains/simulation/restored-behavior-manifests.js",
-      "sha256": "bb8170e8bad778c67f23eb35a936cfd787623048b9a3209a5202f341736c8ad4"
+      "sha256": "be2f4b65b3c2b1cae6a3d15965a9ae3c79f269fd5ff70e00ddf339cd58f2f2eb"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/index.js",
+      "sha256": "07faf7da79aac219d6de730d840ea7945384af8d0d9df0f4923833987b0c6ab0"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomain.manifest.js",
+      "sha256": "7bed2ba1f13d7e35090112b958a7365cfbea92b4807f37c9ffafa8706ee197d1"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/index.js",
+      "sha256": "63caf404a9a4f1e09e3f74f73a5fb2263a6224c2eeda0f5fe9d36fe1a4ab607a"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/contracts.js",
+      "sha256": "63a0767cfcab834ee8db586cadee3a5b303e2990f04820ccec3e0757a67097a6"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
+      "sha256": "2f3ce5bbf7258ab281df4d82077f5101b2f085404b3eaa6d3130f62549b5d19f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js",
+      "sha256": "966d33f957a9c4d8e256a36febafdbf3c505ff6b17d2e00643d7a708bed1c72e"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/services.js",
+      "sha256": "132a4c875b51e87d04078908ebb74df8decab7889f8f77e124fe247af4a4e35a"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/state.js",
+      "sha256": "ff761fcedba33d619a242d943090064c4a9b0c5573b73be72eda0d53fc4a8798"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js",
+      "sha256": "4c363cc087718959d4fc0078b7b5430b79a5f488e65f6f7a661820b51039665b"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/index.js",
+      "sha256": "bb7ba34bae3db26848dfa4a70a3a5e04249247c2063357bf4c83cbe3a0e8ac88"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/contracts.js",
+      "sha256": "051e9cedeffb7c33887dae03286435574bb14c2db2a3c7252607fda1fbad5d69"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
+      "sha256": "b9a032f5a01d380b4ad2b17433d4d5813fc38b457488fa04ef3431044ccb3b69"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js",
+      "sha256": "bd0c44f5a4d33f54ef0beca477ff2b891e8cbd81cda4cdde3b281fe01de6c50b"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/services.js",
+      "sha256": "0159dbfea26523cd4509c792aa0dcb62a5d05246b542ee8352a7db0fefdbe631"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/state.js",
+      "sha256": "ea237f7d63a6fac8f9ab319e7df6cf580c731b8438015318c3d5bd9c55a07452"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js",
+      "sha256": "f92d05a5d7b9500dd63b0178577bf6c9c525abd05318d91a44d754d99d7b758f"
     },
     {
       "path": "src/core-domains/simulation/subdomains/motion/index.js",
@@ -21079,6 +22367,98 @@
     {
       "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
       "sha256": "515672f130101ae334f00085673b64c6dd2707c917e24fa4ab758eeada45b28b"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/index.js",
+      "sha256": "d16f658292d063fa67a6a9ce07c30ee40d1f795c59b6d39855dd477591bb7a98"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomain.manifest.js",
+      "sha256": "ecb7b14595bc18c1fe4af9799d106105df0cf199bac99dbf1cac9dc44aae6c80"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/index.js",
+      "sha256": "7e2f49a2e0dec3a22914352bfca0a927a0b8c4f604970e35460896886c84a124"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/contracts.js",
+      "sha256": "98464eaa1efc14624233841550b46cd91688f212daf7554072e7f530b814acd5"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js",
+      "sha256": "9003d4c3786e9e44c69be2bf8a30778d4c9b58809a0a1ce2922e6511ed2a9515"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js",
+      "sha256": "8bb333fb2292b8dc19273af4bae72d8eeb284880512fbb7c82d9d951b24005b8"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/services.js",
+      "sha256": "2d68c19d848becd07500da00e3c1467a2be6dba15de7c16d0a7bb5d80a11d699"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/state.js",
+      "sha256": "2c4d054aa554e065aa20e1926fcb9dd213fed35735b4c69c0f1c144c6dc49df0"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js",
+      "sha256": "8a3e93729ad7725285437144b68e0b5a06b1898f8c19ae758b426450d5700c78"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/index.js",
+      "sha256": "4eb4d43452f80f3f7674ea8aca2b59f489bc4ea7d3caf672085ba82d93a70b7c"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/contracts.js",
+      "sha256": "be14e1cfd80d6b73f53e225813f71b1d2b9b71e2c4d9c0262d2188b0b54fcd4b"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js",
+      "sha256": "d4fa22c6c77cf411249ee3390954551ce155feb5045729d1c971e8156957a92d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js",
+      "sha256": "d11836ebe7408666eefff563314460f15518a2d93aa5d7a03ccaf1b017e14560"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/services.js",
+      "sha256": "74418ef38e35a56ef0d18103f4b1727e2a5560d1ab72a85a0736fe6ae83c9651"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/state.js",
+      "sha256": "5a0f22090a125a8bf2fd5a21086564431bd4c2856ea6618bee6a588ba4fe1ffd"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js",
+      "sha256": "0fa087238c0f02d137eeea7d87f2612e7c4bdcf95bba1fdb967e8b0c4fb2ed7e"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/index.js",
+      "sha256": "3c17906919be1e68593e19c2c06d8b5737f8ef07e44970423f24936bd15646d9"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/contracts.js",
+      "sha256": "e63ba262ce1249919834416e6428fb16cffe133f8c7345330695d9cc7598e4fb"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js",
+      "sha256": "2d356ac58b4401cfa19c9948a22cb5b8766d9e788dc15b913a42ecabff9a452d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js",
+      "sha256": "24f60ac8d1dfbc01cde74602c78fdb968145c689e25788e981e38b83e32451df"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/services.js",
+      "sha256": "1fe4a04076e4792831def0bd1c66c130b29f2f621d17c7e08395cf7c03044951"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/state.js",
+      "sha256": "1f880995c51a7c454311218c8ab51f5e3eb03e3d2e272d8a56b75fdf656b665b"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js",
+      "sha256": "2278426f6ea13e6fb98d1182a8603b3acbaa3ce0624e864dbef58991d538fe3d"
     },
     {
       "path": "src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
@@ -21167,6 +22547,10 @@
     {
       "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
       "sha256": "8f142c52cb909601d2f7bf7a990e4141cf45bacfd8c5eeb015ee6572b92c8c09"
+    },
+    {
+      "path": "src/core-domains/simulation/tests/restored-economy-operations.mjs",
+      "sha256": "4a4efb908d93a5b9a8faa0157d4d7cc61b6209672b49f27380ff5ca204faea1b"
     },
     {
       "path": "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",

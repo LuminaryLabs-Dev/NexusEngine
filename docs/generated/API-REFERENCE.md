@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 
 ## Domains
 
@@ -66,6 +66,7 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `n:runtime:persistence` | `n:runtime` | Own save/load targets, save slots, recovery records, and adapter contracts. | stable-candidate |
 | `n:runtime:sequence` | `n:runtime` | Own deterministic sequence nodes, ordered execution, and frame-driven sequence state. | stable-candidate |
 | `n:runtime:startup` | `n:runtime` | Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts. | stable-candidate |
+| `n:runtime:sequence:schedule` | `n:runtime:sequence` | Own deterministic elapsed-time schedules and occurrence records. | stable-candidate |
 | `n:simulation` | - | Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts. | stable-candidate |
 | `n:simulation:physics` | `n:simulation` | Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts. | stable-candidate |
 | `n:simulation:physics:articulated` | `n:simulation:physics` | Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state. | stable-candidate |
@@ -76,6 +77,13 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `n:simulation:physics:world-contact` | `n:simulation:physics` | Own portable world-contact resolution and correction records. | stable-candidate |
 | `n:simulation:recovery` | `n:simulation` | Own portable subject recovery records and deterministic recovery state. | stable-candidate |
 | `n:simulation:recovery:soft-respawn` | `n:simulation:recovery` | Own exact-once portable subject recovery records. | stable-candidate |
+| `n:simulation:economy` | `n:simulation` | Own portable economic account and cargo state primitives. | stable-candidate |
+| `n:simulation:economy:accounts` | `n:simulation:economy` | Own finite account balances and economy transaction records. | stable-candidate |
+| `n:simulation:economy:cargo` | `n:simulation:economy` | Own portable cargo inventory, carrying, condition, deposits, and quota state. | stable-candidate |
+| `n:simulation:operations` | `n:simulation` | Own portable facility, occupant, and transport operation primitives. | stable-candidate |
+| `n:simulation:operations:facility` | `n:simulation:operations` | Own deterministic facility capacity, condition, status, cycles, and operation receipts. | stable-candidate |
+| `n:simulation:operations:occupant-flow` | `n:simulation:operations` | Own deterministic occupant spawning, patience, service, and abandonment state. | stable-candidate |
+| `n:simulation:operations:transport-route` | `n:simulation:operations` | Own deterministic transport stops, carriers, capacity, travel, and arrival receipts. | stable-candidate |
 | `n:spatial` | - | Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math. | stable-candidate |
 | `n:spatial:scale` | `n:spatial` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. | stable-candidate |
 | `n:world` | - | Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts. | stable-candidate |
@@ -201,6 +209,7 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `persistence-contract-kit` | `n:runtime:persistence` | `nexusengine/domains/runtime/persistence` | Describe save/load targets, slots, recovery records, and persistence adapter contracts. |
 | `runtime-sequence-kit` | `n:runtime:sequence` | `nexusengine/domains/runtime/sequence` | Install deterministic sequence node definitions and execution state. |
 | `runtime-startup-kit` | `n:runtime:startup` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
+| `schedule-kit` | `n:runtime:sequence:schedule` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
 | `simulation-state-kit` | `n:simulation` | `nexusengine/domains/simulation/runtime` | Manage deterministic simulation objectives, resources, hazards, timers, and resolution receipts. |
 | `physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
 | `articulated-physics-kit` | `n:simulation:physics:articulated` | `nexusengine/domains/simulation/physics/articulated` | Manage backend-neutral articulated body topology and joint dynamics state. |
@@ -212,6 +221,11 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `vehicle-dynamics-kit` | `n:simulation:motion:vehicle` | `nexusengine/domains/simulation/motion/vehicle` | Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy. |
 | `world-contact-kit` | `n:simulation:physics:world-contact` | `nexusengine/domains/simulation/physics/world-contact` | Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend. |
 | `soft-respawn-kit` | `n:simulation:recovery:soft-respawn` | `nexusengine/domains/simulation/recovery/soft-respawn` | Produce exact-once coherent subject recovery records at configured portable points. |
+| `economy-account-kit` | `n:simulation:economy:accounts` | `nexusengine/domains/simulation/economy/accounts` | Own finite account balances and exact-once portable economy transaction records. |
+| `cargo-manifest-kit` | `n:simulation:economy:cargo` | `nexusengine/domains/simulation/economy/cargo` | Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state. |
+| `facility-operations-kit` | `n:simulation:operations:facility` | `nexusengine/domains/simulation/operations/facility` | Own deterministic facility capacity, condition, status, cycle, and portable output receipts. |
+| `occupant-flow-kit` | `n:simulation:operations:occupant-flow` | `nexusengine/domains/simulation/operations/occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
+| `transport-route-kit` | `n:simulation:operations:transport-route` | `nexusengine/domains/simulation/operations/transport-route` | Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts. |
 | `spatial-contract-kit` | `n:spatial` | `nexusengine/domains/spatial/contracts` | Describe transforms, bounds, zones, spaces, and spatial query requests. |
 | `spatial-angle-math-kit` | `n:spatial` | `nexusengine/domains/spatial/angle-math` | Normalize, compare, and interpolate angular values. |
 | `spatial-vector-math-kit` | `n:spatial` | `nexusengine/domains/spatial/vector-math` | Create and operate on renderer-neutral vector values. |

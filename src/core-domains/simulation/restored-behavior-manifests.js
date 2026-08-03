@@ -3,10 +3,22 @@ import vehicle from "./subdomains/motion/subdomains/vehicle/subdomain.manifest.j
 import worldContact from "./subdomains/physics/subdomains/world-contact/subdomain.manifest.js";
 import recovery from "./subdomains/recovery/subdomain.manifest.js";
 import softRespawn from "./subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js";
+import economy from "./subdomains/economy/subdomain.manifest.js";
+import economyAccounts from "./subdomains/economy/subdomains/accounts/subdomain.manifest.js";
+import economyCargo from "./subdomains/economy/subdomains/cargo/subdomain.manifest.js";
+import operations from "./subdomains/operations/subdomain.manifest.js";
+import facility from "./subdomains/operations/subdomains/facility/subdomain.manifest.js";
+import occupantFlow from "./subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js";
+import transportRoute from "./subdomains/operations/subdomains/transport-route/subdomain.manifest.js";
 import actionLocomotionKit from "./subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js";
 import vehicleDynamicsKit from "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js";
 import worldContactKit from "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js";
 import softRespawnKit from "./subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js";
+import economyAccountKit from "./subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js";
+import cargoManifestKit from "./subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js";
+import facilityOperationsKit from "./subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js";
+import occupantFlowKit from "./subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js";
+import transportRouteKit from "./subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js";
 
-export const RESTORED_SIMULATION_SUBDOMAINS = Object.freeze([locomotion, vehicle, worldContact, recovery, softRespawn]);
-export const RESTORED_SIMULATION_KITS = Object.freeze([actionLocomotionKit, vehicleDynamicsKit, worldContactKit, softRespawnKit]);
+export const RESTORED_SIMULATION_SUBDOMAINS = Object.freeze([locomotion, vehicle, worldContact, recovery, softRespawn, economy, economyAccounts, economyCargo, operations, facility, occupantFlow, transportRoute]);
+export const RESTORED_SIMULATION_KITS = Object.freeze([actionLocomotionKit, vehicleDynamicsKit, worldContactKit, softRespawnKit, economyAccountKit, cargoManifestKit, facilityOperationsKit, occupantFlowKit, transportRouteKit]);

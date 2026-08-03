@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -62,6 +62,7 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `n:runtime:persistence` | `n:runtime:data` | - |
 | `n:runtime:sequence` | `n:runtime` | - |
 | `n:runtime:startup` | `n:runtime` | `n:asset` |
+| `n:runtime:sequence:schedule` | `n:runtime:sequence` | - |
 | `n:simulation` | `n:runtime:realtime` | - |
 | `n:simulation:physics` | `n:simulation` | - |
 | `n:simulation:physics:articulated` | `n:simulation:physics` | - |
@@ -72,6 +73,13 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 | `n:simulation:physics:world-contact` | `n:simulation:physics` | - |
 | `n:simulation:recovery` | `n:simulation` | - |
 | `n:simulation:recovery:soft-respawn` | `n:simulation` | - |
+| `n:simulation:economy` | `n:simulation` | - |
+| `n:simulation:economy:accounts` | `n:simulation`, `transaction:idempotency` | - |
+| `n:simulation:economy:cargo` | `n:simulation` | - |
+| `n:simulation:operations` | `n:simulation` | - |
+| `n:simulation:operations:facility` | `n:simulation` | - |
+| `n:simulation:operations:occupant-flow` | `n:simulation` | - |
+| `n:simulation:operations:transport-route` | `n:simulation` | - |
 | `n:spatial` | - | - |
 | `n:spatial:scale` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |

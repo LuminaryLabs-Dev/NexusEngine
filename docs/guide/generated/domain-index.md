@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -60,6 +60,7 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 - `n:runtime:persistence`: Own save/load targets, save slots, recovery records, and adapter contracts.
 - `n:runtime:sequence`: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.
 - `n:runtime:startup`: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.
+- `n:runtime:sequence:schedule`: Own deterministic elapsed-time schedules and occurrence records.
 - `n:simulation`: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.
 - `n:simulation:physics`: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.
 - `n:simulation:physics:articulated`: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.
@@ -70,6 +71,13 @@ Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ec
 - `n:simulation:physics:world-contact`: Own portable world-contact resolution and correction records.
 - `n:simulation:recovery`: Own portable subject recovery records and deterministic recovery state.
 - `n:simulation:recovery:soft-respawn`: Own exact-once portable subject recovery records.
+- `n:simulation:economy`: Own portable economic account and cargo state primitives.
+- `n:simulation:economy:accounts`: Own finite account balances and economy transaction records.
+- `n:simulation:economy:cargo`: Own portable cargo inventory, carrying, condition, deposits, and quota state.
+- `n:simulation:operations`: Own portable facility, occupant, and transport operation primitives.
+- `n:simulation:operations:facility`: Own deterministic facility capacity, condition, status, cycles, and operation receipts.
+- `n:simulation:operations:occupant-flow`: Own deterministic occupant spawning, patience, service, and abandonment state.
+- `n:simulation:operations:transport-route`: Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
 - `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.

@@ -9,3 +9,8 @@ export { createActionLocomotionKit } from "./subdomains/motion/subdomains/locomo
 export { createVehicleDynamicsKit } from "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js";
 export { createWorldContactKit } from "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js";
 export { createSoftRespawnKit } from "./subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js";
+export { createEconomyAccountKit } from "./subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js";
+export { createCargoManifestKit } from "./subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js";
+export { createFacilityOperationsKit } from "./subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js";
+export { createOccupantFlowKit } from "./subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js";
+export { createTransportRouteKit } from "./subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js";

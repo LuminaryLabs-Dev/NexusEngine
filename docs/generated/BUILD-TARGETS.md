@@ -2,7 +2,7 @@
 
 Planning is not execution proof. Native targets remain blocked until every listed environment, source, toolchain, runtime, and hardware validator passes.
 
-Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 
 | Target | Domain | Status | Environments |
 | --- | --- | --- | --- |

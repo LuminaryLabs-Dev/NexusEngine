@@ -5,6 +5,7 @@ export { createDataKit } from "./subdomains/data/kits/data-kit/index.js";
 export { createTransactionLedgerKit } from "./subdomains/transaction/kits/transaction-ledger-kit/index.js";
 export { createPersistenceKit } from "./subdomains/persistence/kits/persistence-kit/index.js";
 export { createSequenceKit } from "./subdomains/sequence/kits/sequence-kit/index.js";
+export { createScheduleKit } from "./subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js";
 export { createStartupKit } from "./subdomains/startup/kits/startup-kit/index.js";
 
 import { createRuntimeLifecycleKit } from "./kits/runtime-lifecycle-kit/index.js";

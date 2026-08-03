@@ -92,7 +92,7 @@
       "transitiveDependencies": []
     }
   ],
-  "registryHash": "c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b",
+  "registryHash": "f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef",
   "schema": "nexusengine.build-source-registry/1",
   "sourceFiles": [
     "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/sources.json",

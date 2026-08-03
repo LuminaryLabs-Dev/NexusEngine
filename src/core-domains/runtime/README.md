@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:runtime`
 - Status: `stable-candidate`
-- Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
+- Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
 - Public entry: `nexusengine/domains/runtime`
 
 ## Responsibility
@@ -35,6 +35,7 @@ Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime
 | `n:runtime:persistence` | Own save/load targets, save slots, recovery records, and adapter contracts. |
 | `n:runtime:sequence` | Own deterministic sequence nodes, ordered execution, and frame-driven sequence state. |
 | `n:runtime:startup` | Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts. |
+| `n:runtime:sequence:schedule` | Own deterministic elapsed-time schedules and occurrence records. |
 
 ## Atomic Kits
 
@@ -47,6 +48,7 @@ Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime
 | `persistence-contract-kit` | `nexusengine/domains/runtime/persistence` | Describe save/load targets, slots, recovery records, and persistence adapter contracts. |
 | `runtime-sequence-kit` | `nexusengine/domains/runtime/sequence` | Install deterministic sequence node definitions and execution state. |
 | `runtime-startup-kit` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
+| `schedule-kit` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
 
 ## Lifecycle
 
