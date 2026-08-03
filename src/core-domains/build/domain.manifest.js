@@ -8,7 +8,10 @@ import {
 
 const proof = [
   "src/core-domains/build/tests/domain-tree.mjs",
-  "src/core-domains/build/tests/full-build-loop.mjs"
+  "src/core-domains/build/tests/full-build-loop.mjs",
+  "src/core-domains/build/tests/native-lowering.mjs",
+  "src/core-domains/build/tests/quickjs-sandbox.mjs",
+  "src/core-domains/build/tests/openxr-package-source.mjs"
 ];
 
 export const buildDomainManifest = defineCoreDomainManifest(manifestShell({

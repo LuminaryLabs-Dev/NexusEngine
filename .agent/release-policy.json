@@ -34,8 +34,28 @@
       "cwd": "."
     },
     {
+      "name": "Check generated Core catalog",
+      "argv": ["npm", "run", "core:check"],
+      "cwd": "."
+    },
+    {
+      "name": "Check manifest execution contracts",
+      "argv": ["npm", "run", "core:contracts"],
+      "cwd": "."
+    },
+    {
       "name": "Generate ownership evidence",
       "argv": ["npm", "run", "ownership:generate"],
+      "cwd": "."
+    },
+    {
+      "name": "Check frozen ProtoKit extraction",
+      "argv": ["npm", "run", "protokits:check"],
+      "cwd": "."
+    },
+    {
+      "name": "Check migration map",
+      "argv": ["npm", "run", "migrations:check"],
       "cwd": "."
     },
     {
@@ -76,6 +96,8 @@
   ],
   "requiredHostedChecks": [
     "NexusEngine Tests",
-    "Validate Core Object Shape"
+    "Validate Core Object Shape",
+    "Build Android XR Package",
+    "Build PCVR Package"
   ]
 }

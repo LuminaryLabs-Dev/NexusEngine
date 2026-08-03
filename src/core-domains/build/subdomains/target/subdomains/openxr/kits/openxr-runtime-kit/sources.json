@@ -4,14 +4,14 @@
     "id": "git:openxr-sdk-source@1.1.58",
     "sourceKind": "git",
     "package": null,
-    "canonicalLocator": "https://github.com/KhronosGroup/OpenXR-SDK-Source.git",
+    "canonicalLocator": "https://github.com/KhronosGroup/OpenXR-SDK-Source/archive/45df0ea7769e586de4a627ccded70ec9e3b4d4ac.tar.gz",
     "exactVersion": "45df0ea7769e586de4a627ccded70ec9e3b4d4ac",
-    "integrity": null,
+    "integrity": "sha256:1b884ad7bd70f330727bb5d0ad36db7bc1e10d60050dfb17d1f3a4f46891046e",
     "license": "Apache-2.0",
     "requiredEnvironment": ["android-xr", "pcvr"],
     "transitiveDependencies": [],
-    "provider": "git",
+    "provider": "github-archive",
     "substitution": null,
-    "resolutionStatus": "unresolved"
+    "resolutionStatus": "resolved"
   }
 ]

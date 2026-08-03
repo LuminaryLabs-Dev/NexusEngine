@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 ## Domains
 
@@ -28,8 +28,8 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 | `n:build:target:web-live` | `n:build:target` | Own verified live ESM loading and content-hash browser caching. | stable-candidate |
 | `n:build:target:web-static` | `n:build:target` | Own self-contained static Web artifact materialization. | stable-candidate |
 | `n:build:target:openxr` | `n:build:target` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. | stable-candidate |
-| `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host, package, and validation planning. | stable-candidate |
-| `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host, package, and validation planning. | stable-candidate |
+| `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
+| `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
 | `n:compute` | - | Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts. | stable-candidate |
 | `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and model provider contracts. | stable-candidate |
@@ -115,7 +115,7 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 | `build-execution-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-execution` | Execute shared stages once and isolated target stages with project immutability proof. |
 | `build-receipt-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-receipt` | Persist aggregate and per-target exactly-once Build receipts. |
 | `rust-lowering-kit` | `n:build:compile` | `nexusengine/domains/build/compile/rust-lowering` | Lower supported Execution IR into deterministic Rust source. |
-| `javascript-fallback-kit` | `n:build:compile` | `nexusengine/domains/build/compile/javascript-fallback` | Describe capability-restricted whole-Kit QuickJS-NG fallback. |
+| `javascript-fallback-kit` | `n:build:compile` | `nexusengine/domains/build/compile/javascript-fallback` | Execute capability-restricted whole-Kit QuickJS-NG fallback. |
 | `runtime-abi-kit` | `n:build:compile` | `nexusengine/domains/build/compile/runtime-abi` | Define the stable native runtime handle and batch-operation ABI. |
 | `native-runtime-link-kit` | `n:build:compile` | `nexusengine/domains/build/compile/native-runtime-link` | Create exact generated-runtime and native-library link plans. |
 | `toolchain-source-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-source` | Own immutable official toolchain and native dependency source records. |

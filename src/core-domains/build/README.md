@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:build`
 - Status: `stable-candidate`
-- Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+- Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 - Public entry: `nexusengine/domains/build`
 
 ## Responsibility
@@ -44,8 +44,8 @@ Own isolated build-time source analysis, compilation, toolchains, targets, artif
 | `n:build:target:web-live` | Own verified live ESM loading and content-hash browser caching. |
 | `n:build:target:web-static` | Own self-contained static Web artifact materialization. |
 | `n:build:target:openxr` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. |
-| `n:build:target:android-xr` | Own Android ARM64 OpenXR host, package, and validation planning. |
-| `n:build:target:pcvr` | Own Windows x64 OpenXR host, package, and validation planning. |
+| `n:build:target:android-xr` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. |
+| `n:build:target:pcvr` | Own Windows x64 OpenXR host generation, executable packaging, and validation. |
 
 ## Atomic Kits
 
@@ -74,7 +74,7 @@ Own isolated build-time source analysis, compilation, toolchains, targets, artif
 | `build-execution-kit` | `nexusengine/domains/build/orchestration/build-execution` | Execute shared stages once and isolated target stages with project immutability proof. |
 | `build-receipt-kit` | `nexusengine/domains/build/orchestration/build-receipt` | Persist aggregate and per-target exactly-once Build receipts. |
 | `rust-lowering-kit` | `nexusengine/domains/build/compile/rust-lowering` | Lower supported Execution IR into deterministic Rust source. |
-| `javascript-fallback-kit` | `nexusengine/domains/build/compile/javascript-fallback` | Describe capability-restricted whole-Kit QuickJS-NG fallback. |
+| `javascript-fallback-kit` | `nexusengine/domains/build/compile/javascript-fallback` | Execute capability-restricted whole-Kit QuickJS-NG fallback. |
 | `runtime-abi-kit` | `nexusengine/domains/build/compile/runtime-abi` | Define the stable native runtime handle and batch-operation ABI. |
 | `native-runtime-link-kit` | `nexusengine/domains/build/compile/native-runtime-link` | Create exact generated-runtime and native-library link plans. |
 | `toolchain-source-kit` | `nexusengine/domains/build/toolchain/toolchain-source` | Own immutable official toolchain and native dependency source records. |

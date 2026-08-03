@@ -4,14 +4,14 @@
     "id": "git:quickjs-ng@v0.15.0",
     "sourceKind": "git",
     "package": null,
-    "canonicalLocator": "https://github.com/quickjs-ng/quickjs.git",
+    "canonicalLocator": "https://github.com/quickjs-ng/quickjs/archive/433941b99fb3c5e7f98b7ebd78727972bcf467ee.tar.gz",
     "exactVersion": "433941b99fb3c5e7f98b7ebd78727972bcf467ee",
-    "integrity": null,
+    "integrity": "sha256:ecfb5211b82c1f3bf30e07f20f906f13f857e3f795cb220933009c82e5574db2",
     "license": "MIT",
-    "requiredEnvironment": ["native-build"],
+    "requiredEnvironment": ["android-xr", "native-build", "pcvr"],
     "transitiveDependencies": [],
-    "provider": "git",
+    "provider": "github-archive",
     "substitution": null,
-    "resolutionStatus": "unresolved"
+    "resolutionStatus": "resolved"
   }
 ]

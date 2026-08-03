@@ -33,8 +33,13 @@
 - Read-only Web Live and Web Static targets with content integrity, isolated
   stages, browser startup proof, partial-failure caching, and project
   immutability checks.
-- Shared OpenXR, Android XR, and Windows PCVR contracts that fail closed until
-  their exact sources, toolchains, hosts, runtimes, and hardware are proved.
+- Deterministic Rust lowering for the supported numeric Kit IR subset and an
+  actual capability-restricted QuickJS-NG whole-Kit sandbox.
+- Shared OpenXR loader, session, input, haptic, frame, view, swapchain, and
+  stereo-submission source generated against an exact Khronos source revision.
+- Android XR APK and Windows PCVR executable package builders with external
+  native stages, structural validators, immutable source receipts, and required
+  hosted package-proof jobs. Hardware execution remains separate.
 
 ### Changed
 

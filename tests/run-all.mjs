@@ -74,6 +74,7 @@ const tests = [
   "src/core-domains/build/tests/project-immutability.mjs",
   "src/core-domains/build/tests/multi-target.mjs",
   "src/core-domains/build/tests/full-build-loop.mjs",
+  "src/core-domains/build/tests/native-lowering.mjs",
   "src/core-domains/build/tests/cli-contract.mjs",
   "src/core-domains/build/tests/mcp-build.mjs",
   "src/core-domains/build/tests/web-target-browser.mjs",

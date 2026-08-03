@@ -37,6 +37,9 @@ import { createProjectSourceService } from "./subdomains/source/kits/project-sou
 import { createSourceCacheService } from "./subdomains/source/kits/source-cache-kit/services.js";
 import { createSourceFingerprintService } from "./subdomains/source/kits/source-fingerprint-kit/services.js";
 import { createAndroidXrTargetProvider } from "./subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/services.js";
+import { createOpenXrInputService } from "./subdomains/target/subdomains/openxr/kits/openxr-input-kit/services.js";
+import { createOpenXrRenderService } from "./subdomains/target/subdomains/openxr/kits/openxr-render-kit/services.js";
+import { createOpenXrRuntimeService } from "./subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/services.js";
 import { createPcvrTargetProvider } from "./subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/services.js";
 import { createWebLiveTargetProvider } from "./subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js";
 import { createWebStaticTargetProvider } from "./subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js";
@@ -59,6 +62,22 @@ export function createBuildDomain(config = {}) {
   const toolchainSource = createToolchainSourceService();
   const targetSet = createTargetSetService();
   const processExecution = createProcessExecutionService({ allowedRoot: stateRoot });
+  const toolchainProvision = createToolchainProvisionService({
+    cache: sourceCache,
+    fetchSource: config.fetchSource,
+    processExecution
+  });
+  const openxrSource = toolchainSource.get("git:openxr-sdk-source@1.1.58");
+  const openxrRuntime = createOpenXrRuntimeService({ sourceRecord: openxrSource, processExecution });
+  const openxrInput = createOpenXrInputService();
+  const openxrRender = createOpenXrRenderService();
+  const rustLowering = createRustLoweringService();
+  const javascriptFallback = createJavascriptFallbackService({
+    available: config.quickJsAvailable !== false,
+    sourceRecord: toolchainSource.get("git:quickjs-ng@v0.15.0"),
+    toolchainProvision
+  });
+  const runtimeAbi = createRuntimeAbiService();
   const webModuleLinker = createWebModuleLinkerService({
     root: stateRoot,
     processExecution,
@@ -70,11 +89,29 @@ export function createBuildDomain(config = {}) {
       createWebStaticTargetProvider({ ...config.targets?.webStatic, linker: webModuleLinker }),
       createAndroidXrTargetProvider({
         ...config.targets?.androidXr,
-        sourceRecords: toolchainSource.list()
+        sourceRecords: toolchainSource.list(),
+        stateRoot,
+        processExecution,
+        toolchainSource,
+        toolchainProvision,
+        rustLowering,
+        javascriptFallback,
+        openxrRuntime,
+        openxrInput,
+        openxrRender
       }),
       createPcvrTargetProvider({
         ...config.targets?.pcvr,
-        sourceRecords: toolchainSource.list()
+        sourceRecords: toolchainSource.list(),
+        stateRoot,
+        processExecution,
+        toolchainSource,
+        toolchainProvision,
+        rustLowering,
+        javascriptFallback,
+        openxrRuntime,
+        openxrInput,
+        openxrRender
       })
     ]
   });
@@ -95,25 +132,25 @@ export function createBuildDomain(config = {}) {
     sourceMap: createSourceMapService(),
     portabilityClassifier: createPortabilityClassifierService(),
     capabilityResolution: createCapabilityResolutionService(config.capabilities),
-    fallbackSelection: createFallbackSelectionService({ quickJsAvailable: config.quickJsAvailable === true }),
+    fallbackSelection: createFallbackSelectionService({ quickJsAvailable: config.quickJsAvailable !== false }),
     buildRequest: createBuildRequestService({ targetSet }),
     buildPlan: createBuildPlanService(),
     buildApproval: createBuildApprovalService(),
     buildReceipt: createBuildReceiptService({ root: path.join(stateRoot, "receipts") }),
-    rustLowering: createRustLoweringService({ semanticProofs: config.nativeSemanticProofs }),
-    javascriptFallback: createJavascriptFallbackService({ available: config.quickJsAvailable === true }),
+    rustLowering,
+    javascriptFallback,
     webModuleLinker,
-    runtimeAbi: createRuntimeAbiService(),
+    runtimeAbi,
     nativeRuntimeLink: createNativeRuntimeLinkService(),
     toolchainSource,
     toolchainDiscovery: createToolchainDiscoveryService(config.toolchainDiscovery),
-    toolchainProvision: createToolchainProvisionService({
-      cache: sourceCache,
-      fetchSource: config.fetchSource
-    }),
+    toolchainProvision,
     isolatedStage: createIsolatedStageService({ root: path.join(stateRoot, "builds") }),
     processExecution,
     targetRegistry,
+    openxrRuntime,
+    openxrInput,
+    openxrRender,
     artifactCache: createArtifactCacheService(),
     artifactManifest: createArtifactManifestService(),
     artifactIntegrity: createArtifactIntegrityService(),

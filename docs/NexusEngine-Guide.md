@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`<br>
-Guide content SHA-256: `86856ab5f2e0b192cda3bb69411afcd350d1507966b35a27a4d87c19c33424d4`
+Core registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`<br>
+Guide content SHA-256: `3dd98062adbbbd11dd18e6b16394131885980bac3fc5c250f915d87d3e5059d8`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -522,14 +522,18 @@ pass semantic parity before native lowering can be accepted.
 - `web-static` emits a self-contained local directory and rejects unresolved
   external browser packages.
 - `android-xr` shares OpenXR runtime, action, view, and submission contracts,
-  then adds Android ARM64 SDK/NDK, lifecycle, Gradle, APK, and device gates.
+  then creates an external Android ARM64 Gradle/NDK stage and validates the APK
+  closure without installing it on a device.
 - `pcvr` shares the same OpenXR contracts, then adds Windows x64 host,
-  executable packaging, runtime, and headset gates.
+  generated-runtime linking, PE packaging, and no-runtime validation.
 
-Native planning is not native proof. Android XR and PCVR remain `blocked` until
-the exact upstream sources have resolved SHA-256 records, semantic parity is
-proven, the required compiler and package validators run, and the selected
-runtime and hardware tests pass.
+Native planning is not native proof. Supported numeric Kit IR lowers into
+deterministic Rust; other whole Kits may use the QuickJS-NG sandbox only when
+their requested capabilities are supported. OpenXR and QuickJS-NG source comes
+from exact commits with verified archive SHA-256 values. A native target is
+`package-proven` only after its target compiler and package validator succeed.
+The release requires Linux Android XR and Windows PCVR package jobs; runtime and
+headset execution remain separate `hardware: false` evidence for `0.0.4`.
 
 ## Source Security
 
@@ -731,7 +735,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -753,8 +757,8 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 - `n:build:target:web-live`: Own verified live ESM loading and content-hash browser caching.
 - `n:build:target:web-static`: Own self-contained static Web artifact materialization.
 - `n:build:target:openxr`: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.
-- `n:build:target:android-xr`: Own Android ARM64 OpenXR host, package, and validation planning.
-- `n:build:target:pcvr`: Own Windows x64 OpenXR host, package, and validation planning.
+- `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
+- `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
 - `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.
@@ -813,7 +817,7 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 
 # Core Dependency Table
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -899,7 +903,7 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 ## Domains
 
@@ -925,8 +929,8 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 | `n:build:target:web-live` | `n:build:target` | Own verified live ESM loading and content-hash browser caching. | stable-candidate |
 | `n:build:target:web-static` | `n:build:target` | Own self-contained static Web artifact materialization. | stable-candidate |
 | `n:build:target:openxr` | `n:build:target` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. | stable-candidate |
-| `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host, package, and validation planning. | stable-candidate |
-| `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host, package, and validation planning. | stable-candidate |
+| `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
+| `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
 | `n:compute` | - | Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts. | stable-candidate |
 | `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and model provider contracts. | stable-candidate |
@@ -1012,7 +1016,7 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 | `build-execution-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-execution` | Execute shared stages once and isolated target stages with project immutability proof. |
 | `build-receipt-kit` | `n:build:orchestration` | `nexusengine/domains/build/orchestration/build-receipt` | Persist aggregate and per-target exactly-once Build receipts. |
 | `rust-lowering-kit` | `n:build:compile` | `nexusengine/domains/build/compile/rust-lowering` | Lower supported Execution IR into deterministic Rust source. |
-| `javascript-fallback-kit` | `n:build:compile` | `nexusengine/domains/build/compile/javascript-fallback` | Describe capability-restricted whole-Kit QuickJS-NG fallback. |
+| `javascript-fallback-kit` | `n:build:compile` | `nexusengine/domains/build/compile/javascript-fallback` | Execute capability-restricted whole-Kit QuickJS-NG fallback. |
 | `runtime-abi-kit` | `n:build:compile` | `nexusengine/domains/build/compile/runtime-abi` | Define the stable native runtime handle and batch-operation ABI. |
 | `native-runtime-link-kit` | `n:build:compile` | `nexusengine/domains/build/compile/native-runtime-link` | Create exact generated-runtime and native-library link plans. |
 | `toolchain-source-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-source` | Own immutable official toolchain and native dependency source records. |
@@ -1115,7 +1119,7 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 - Source modules: 581
 - Manifest-proven public atoms: 123

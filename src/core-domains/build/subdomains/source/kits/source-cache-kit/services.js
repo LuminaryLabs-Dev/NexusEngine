@@ -24,6 +24,7 @@ export function createSourceCacheService(config = {}) {
 
   return Object.freeze({
     root,
+    path: pathname,
     async has(integrity) {
       try {
         await access(pathname(integrity));

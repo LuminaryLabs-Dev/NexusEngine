@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
-  "compositionRegistryHash": "sha256:2571b6efe15ff495b6065d770343cb9f0cde85be87fd972bf88f1b15a2ad9b45",
+  "registryHash": "sha256:b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
+  "compositionRegistryHash": "sha256:f57d9b6fb33be92fefb50467f8ba40ad2905cd619bfd6f3f72a97772b23247f9",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
-      "integrity": "sha256:1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
+      "sourceCommit": "builtin:b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
+      "integrity": "sha256:b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
       "status": "available",
       "environments": [
         "browser",
@@ -1868,9 +1868,9 @@
       "parentDomainPath": "n:build:target",
       "label": "Android XR Target",
       "status": "stable-candidate",
-      "responsibility": "Own Android ARM64 OpenXR host, package, and validation planning.",
+      "responsibility": "Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.",
       "ownedMeaning": [
-        "Own Android ARM64 OpenXR host, package, and validation planning."
+        "Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation."
       ],
       "forbiddenResponsibilities": [
         "application runtime ownership",
@@ -1958,9 +1958,9 @@
       "parentDomainPath": "n:build:target",
       "label": "PCVR Target",
       "status": "stable-candidate",
-      "responsibility": "Own Windows x64 OpenXR host, package, and validation planning.",
+      "responsibility": "Own Windows x64 OpenXR host generation, executable packaging, and validation.",
       "ownedMeaning": [
-        "Own Windows x64 OpenXR host, package, and validation planning."
+        "Own Windows x64 OpenXR host generation, executable packaging, and validation."
       ],
       "forbiddenResponsibilities": [
         "application runtime ownership",
@@ -2610,8 +2610,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "scripts/prove-native-package.mjs",
+            "src/core-domains/build/tests/openxr-package-source.mjs"
           ],
           "consumers": [
             {
@@ -5873,7 +5873,7 @@
       "version": "0.0.4",
       "status": "stable-candidate",
       "kind": "domain-service-kit",
-      "responsibility": "Describe capability-restricted whole-Kit QuickJS-NG fallback.",
+      "responsibility": "Execute capability-restricted whole-Kit QuickJS-NG fallback.",
       "domainPath": "n:build:compile",
       "parentDomainPath": "n:build",
       "apiName": "javascriptFallback",
@@ -5921,8 +5921,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "src/core-domains/build/tests/full-build-loop.mjs",
+            "src/core-domains/build/tests/quickjs-sandbox.mjs"
           ],
           "consumers": [
             {
@@ -7504,8 +7504,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "scripts/prove-native-package.mjs",
+            "src/core-domains/build/tests/openxr-package-source.mjs"
           ],
           "consumers": [
             {
@@ -7577,8 +7577,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "scripts/prove-native-package.mjs",
+            "src/core-domains/build/tests/openxr-package-source.mjs"
           ],
           "consumers": [
             {
@@ -7651,8 +7651,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "scripts/prove-native-package.mjs",
+            "src/core-domains/build/tests/openxr-package-source.mjs"
           ],
           "consumers": [
             {
@@ -7729,8 +7729,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "scripts/prove-native-package.mjs",
+            "src/core-domains/build/tests/openxr-package-source.mjs"
           ],
           "consumers": [
             {
@@ -9236,8 +9236,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/build/tests/domain-tree.mjs",
-            "src/core-domains/build/tests/full-build-loop.mjs"
+            "src/core-domains/build/tests/full-build-loop.mjs",
+            "src/core-domains/build/tests/native-lowering.mjs"
           ],
           "consumers": [
             {

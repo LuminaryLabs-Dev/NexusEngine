@@ -2416,8 +2416,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "src/core-domains/build/tests/full-build-loop.mjs",
+          "src/core-domains/build/tests/quickjs-sandbox.mjs"
         ],
         "status": "proven"
       },
@@ -2426,7 +2426,7 @@
         "createJavascriptFallbackKit",
         "kitManifest"
       ],
-      "responsibility": "Describe capability-restricted whole-Kit QuickJS-NG fallback.",
+      "responsibility": "Execute capability-restricted whole-Kit QuickJS-NG fallback.",
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
@@ -2780,8 +2780,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "src/core-domains/build/tests/full-build-loop.mjs",
+          "src/core-domains/build/tests/native-lowering.mjs"
         ],
         "status": "proven"
       },
@@ -5584,8 +5584,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "scripts/prove-native-package.mjs",
+          "src/core-domains/build/tests/openxr-package-source.mjs"
         ],
         "status": "proven"
       },
@@ -5745,8 +5745,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "scripts/prove-native-package.mjs",
+          "src/core-domains/build/tests/openxr-package-source.mjs"
         ],
         "status": "proven"
       },
@@ -5866,8 +5866,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "scripts/prove-native-package.mjs",
+          "src/core-domains/build/tests/openxr-package-source.mjs"
         ],
         "status": "proven"
       },
@@ -5987,8 +5987,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "scripts/prove-native-package.mjs",
+          "src/core-domains/build/tests/openxr-package-source.mjs"
         ],
         "status": "proven"
       },
@@ -6148,8 +6148,8 @@
           }
         ],
         "references": [
-          "src/core-domains/build/tests/domain-tree.mjs",
-          "src/core-domains/build/tests/full-build-loop.mjs"
+          "scripts/prove-native-package.mjs",
+          "src/core-domains/build/tests/openxr-package-source.mjs"
         ],
         "status": "proven"
       },
@@ -14907,7 +14907,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
+  "registrySha256": "b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

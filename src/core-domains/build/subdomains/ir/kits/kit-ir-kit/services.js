@@ -19,6 +19,8 @@ export function createKitIrService() {
         statementCount: record.statementCount,
         exports: record.exportedNames,
         explicitBuildMode: record.explicitBuildMode,
+        nativeFunctions: record.nativeFunctions,
+        nativeDiagnostics: record.nativeDiagnostics,
         imports: Object.freeze((graph?.imports ?? []).map(({ position, ...entry }) => entry)),
         effects: effect?.effects ?? Object.freeze([]),
         unsupported: effect?.unsupported ?? Object.freeze([]),

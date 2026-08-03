@@ -10,7 +10,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   module: "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js",
   exportName: "createOpenXrRuntimeKit",
   publicSubpath: "./domains/build/target/openxr/openxr-runtime",
-  proofReferences: ["src/core-domains/build/tests/domain-tree.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
+  proofReferences: ["src/core-domains/build/tests/openxr-package-source.mjs","scripts/prove-native-package.mjs"]
 });
 
 export default kitManifest;

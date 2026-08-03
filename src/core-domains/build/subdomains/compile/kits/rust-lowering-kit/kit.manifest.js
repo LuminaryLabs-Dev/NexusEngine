@@ -10,7 +10,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   module: "./src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
   exportName: "createRustLoweringKit",
   publicSubpath: "./domains/build/compile/rust-lowering",
-  proofReferences: ["src/core-domains/build/tests/domain-tree.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
+  proofReferences: ["src/core-domains/build/tests/native-lowering.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
 });
 
 export default kitManifest;

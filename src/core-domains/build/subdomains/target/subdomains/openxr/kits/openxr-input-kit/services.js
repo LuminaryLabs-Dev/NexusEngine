@@ -1,3 +1,6 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+
 export function createOpenXrInputService() {
   const actionSets = new Map();
 
@@ -20,6 +23,12 @@ export function createOpenXrInputService() {
       }
       actionSets.set(id, record);
       return record;
+    },
+    async writeNative(root) {
+      await mkdir(root, { recursive: true });
+      const name = "nexus_openxr_input.c";
+      await writeFile(path.join(root, name), await readFile(new URL(`./native/${name}`, import.meta.url)));
+      return Object.freeze({ root, files: Object.freeze([name]) });
     },
     snapshot() { return Object.freeze([...actionSets.values()].sort((left, right) => left.id.localeCompare(right.id))); },
     reset() { actionSets.clear(); return this.snapshot(); }

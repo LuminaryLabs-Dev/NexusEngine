@@ -10,7 +10,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   module: "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js",
   exportName: "createOpenXrInputKit",
   publicSubpath: "./domains/build/target/openxr/openxr-input",
-  proofReferences: ["src/core-domains/build/tests/domain-tree.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
+  proofReferences: ["src/core-domains/build/tests/openxr-package-source.mjs","scripts/prove-native-package.mjs"]
 });
 
 export default kitManifest;

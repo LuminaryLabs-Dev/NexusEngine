@@ -1,5 +1,14 @@
+import { mkdir, readFile, writeFile } from "node:fs/promises";
+import path from "node:path";
+
 export function createOpenXrRenderService() {
   return Object.freeze({
+    async writeNative(root) {
+      await mkdir(root, { recursive: true });
+      const name = "nexus_openxr_render.c";
+      await writeFile(path.join(root, name), await readFile(new URL(`./native/${name}`, import.meta.url)));
+      return Object.freeze({ root, files: Object.freeze([name]) });
+    },
     createFrameSubmission(input = {}) {
       const views = [...(input.views ?? [])].map((view, index) => Object.freeze({
         index,

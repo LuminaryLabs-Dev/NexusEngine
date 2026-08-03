@@ -200,6 +200,10 @@
     "test:surface:generate": "node scripts/generate-public-test-surface.mjs",
     "test:surface:check": "node scripts/generate-public-test-surface.mjs --check",
     "test:release": "node tests/release-0.0.4-run-all.mjs",
+    "test:build:quickjs": "node src/core-domains/build/tests/quickjs-sandbox.mjs",
+    "test:build:openxr": "node src/core-domains/build/tests/openxr-package-source.mjs",
+    "test:build:android-xr": "node scripts/prove-native-package.mjs android-xr",
+    "test:build:pcvr": "node scripts/prove-native-package.mjs pcvr",
     "benchmark:scene": "node benchmarks/core-scene-kit-loop.mjs",
     "release:manifest": "node scripts/generate-dsk-manifest.mjs",
     "release:manifest:check": "node scripts/generate-dsk-manifest.mjs --check"

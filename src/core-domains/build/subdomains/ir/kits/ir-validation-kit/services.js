@@ -12,6 +12,9 @@ export function createIrValidationService() {
       if (module.unsupported.length) {
         errors.push({ code: "unsupported-effect", path: module.path, effects: module.unsupported });
       }
+      if (module.explicitBuildMode === "native" && module.nativeDiagnostics.length) {
+        errors.push({ code: "unsupported-native-surface", path: module.path, diagnostics: module.nativeDiagnostics });
+      }
     }
     if (!kitIr.dependencies.ok) {
       errors.push({

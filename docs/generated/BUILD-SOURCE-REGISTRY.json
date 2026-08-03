@@ -1,5 +1,5 @@
 {
-  "contentHash": "7ae27211e58b36a41909d75074ee15282ccd92582af487d54bd9975b7e14ea6f",
+  "contentHash": "2c0cc1da4a650818779e2c64ac0fbe6c53aabeafedf0ef05db2335eafd179b48",
   "records": [
     {
       "canonicalLocator": "https://github.com/LuminaryLabs-Agents/NexusEngine-Rust.git",
@@ -19,35 +19,37 @@
       "transitiveDependencies": []
     },
     {
-      "canonicalLocator": "https://github.com/KhronosGroup/OpenXR-SDK-Source.git",
+      "canonicalLocator": "https://github.com/KhronosGroup/OpenXR-SDK-Source/archive/45df0ea7769e586de4a627ccded70ec9e3b4d4ac.tar.gz",
       "exactVersion": "45df0ea7769e586de4a627ccded70ec9e3b4d4ac",
       "id": "git:openxr-sdk-source@1.1.58",
-      "integrity": null,
+      "integrity": "sha256:1b884ad7bd70f330727bb5d0ad36db7bc1e10d60050dfb17d1f3a4f46891046e",
       "license": "Apache-2.0",
       "package": null,
-      "provider": "git",
+      "provider": "github-archive",
       "requiredEnvironment": [
         "android-xr",
         "pcvr"
       ],
-      "resolutionStatus": "unresolved",
+      "resolutionStatus": "resolved",
       "schema": "nexusengine.build-source-record/1",
       "sourceKind": "git",
       "substitution": null,
       "transitiveDependencies": []
     },
     {
-      "canonicalLocator": "https://github.com/quickjs-ng/quickjs.git",
+      "canonicalLocator": "https://github.com/quickjs-ng/quickjs/archive/433941b99fb3c5e7f98b7ebd78727972bcf467ee.tar.gz",
       "exactVersion": "433941b99fb3c5e7f98b7ebd78727972bcf467ee",
       "id": "git:quickjs-ng@v0.15.0",
-      "integrity": null,
+      "integrity": "sha256:ecfb5211b82c1f3bf30e07f20f906f13f857e3f795cb220933009c82e5574db2",
       "license": "MIT",
       "package": null,
-      "provider": "git",
+      "provider": "github-archive",
       "requiredEnvironment": [
-        "native-build"
+        "android-xr",
+        "native-build",
+        "pcvr"
       ],
-      "resolutionStatus": "unresolved",
+      "resolutionStatus": "resolved",
       "schema": "nexusengine.build-source-record/1",
       "sourceKind": "git",
       "substitution": null,
@@ -90,7 +92,7 @@
       "transitiveDependencies": []
     }
   ],
-  "registryHash": "1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6",
+  "registryHash": "b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
   "schema": "nexusengine.build-source-registry/1",
   "sourceFiles": [
     "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/sources.json",

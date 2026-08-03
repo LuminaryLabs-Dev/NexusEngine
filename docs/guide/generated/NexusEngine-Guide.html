@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6<br>
-      Guide content SHA-256: 86856ab5f2e0b192cda3bb69411afcd350d1507966b35a27a4d87c19c33424d4<br><br>
+      Core registry SHA-256: b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab<br>
+      Guide content SHA-256: 3dd98062adbbbd11dd18e6b16394131885980bac3fc5c250f915d87d3e5059d8<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -533,14 +533,18 @@ worker that verifies every SHA-256 before populating a content cache.</li>
 <li><code>web-static</code> emits a self-contained local directory and rejects unresolved
 external browser packages.</li>
 <li><code>android-xr</code> shares OpenXR runtime, action, view, and submission contracts,
-then adds Android ARM64 SDK/NDK, lifecycle, Gradle, APK, and device gates.</li>
+then creates an external Android ARM64 Gradle/NDK stage and validates the APK
+closure without installing it on a device.</li>
 <li><code>pcvr</code> shares the same OpenXR contracts, then adds Windows x64 host,
-executable packaging, runtime, and headset gates.</li>
+generated-runtime linking, PE packaging, and no-runtime validation.</li>
 </ul>
-<p>Native planning is not native proof. Android XR and PCVR remain <code>blocked</code> until
-the exact upstream sources have resolved SHA-256 records, semantic parity is
-proven, the required compiler and package validators run, and the selected
-runtime and hardware tests pass.</p>
+<p>Native planning is not native proof. Supported numeric Kit IR lowers into
+deterministic Rust; other whole Kits may use the QuickJS-NG sandbox only when
+their requested capabilities are supported. OpenXR and QuickJS-NG source comes
+from exact commits with verified archive SHA-256 values. A native target is
+<code>package-proven</code> only after its target compiler and package validator succeed.
+The release requires Linux Android XR and Windows PCVR package jobs; runtime and
+headset execution remain separate <code>hardware: false</code> evidence for <code>0.0.4</code>.</p>
 <h2>Source Security</h2>
 <p>Build accepts npm registry integrity, crates.io checksums, exact Git commits,
 versioned vendor installers, and immutable HTTPS ESM URLs. Metadata discovery
@@ -712,7 +716,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
+<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -734,8 +738,8 @@ npm pack --dry-run --json
 <li><code>n:build:target:web-live</code>: Own verified live ESM loading and content-hash browser caching.</li>
 <li><code>n:build:target:web-static</code>: Own self-contained static Web artifact materialization.</li>
 <li><code>n:build:target:openxr</code>: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.</li>
-<li><code>n:build:target:android-xr</code>: Own Android ARM64 OpenXR host, package, and validation planning.</li>
-<li><code>n:build:target:pcvr</code>: Own Windows x64 OpenXR host, package, and validation planning.</li>
+<li><code>n:build:target:android-xr</code>: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.</li>
+<li><code>n:build:target:pcvr</code>: Own Windows x64 OpenXR host generation, executable packaging, and validation.</li>
 <li><code>n:composition</code>: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</li>
 <li><code>n:compute</code>: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.</li>
 <li><code>n:compute:model</code>: Own model descriptors, registries, inference requests/results, and model provider contracts.</li>
@@ -794,7 +798,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
+<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
 <table>
 <thead>
 <tr>
@@ -1176,7 +1180,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
+<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -1310,13 +1314,13 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:build:target:android-xr</code></td>
 <td><code>n:build:target</code></td>
-<td>Own Android ARM64 OpenXR host, package, and validation planning.</td>
+<td>Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
 <td><code>n:build:target:pcvr</code></td>
 <td><code>n:build:target</code></td>
-<td>Own Windows x64 OpenXR host, package, and validation planning.</td>
+<td>Own Windows x64 OpenXR host generation, executable packaging, and validation.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -1814,7 +1818,7 @@ npm pack --dry-run --json
 <td><code>javascript-fallback-kit</code></td>
 <td><code>n:build:compile</code></td>
 <td><code>nexusengine/domains/build/compile/javascript-fallback</code></td>
-<td>Describe capability-restricted whole-Kit QuickJS-NG fallback.</td>
+<td>Execute capability-restricted whole-Kit QuickJS-NG fallback.</td>
 </tr>
 <tr>
 <td><code>runtime-abi-kit</code></td>
@@ -2382,7 +2386,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6</code></p>
+<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
 <ul>
 <li>Source modules: 581</li>
 <li>Manifest-proven public atoms: 123</li>

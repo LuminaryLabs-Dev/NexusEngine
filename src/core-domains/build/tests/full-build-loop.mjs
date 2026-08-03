@@ -8,7 +8,6 @@ import { createEngine } from "../../../index.js";
 import buildDomainManifest from "../domain.manifest.js";
 import { createBuildDomain } from "../index.js";
 import { createRustLoweringService } from "../subdomains/compile/kits/rust-lowering-kit/services.js";
-import { createCrossRuntimeParityService } from "../subdomains/proof/kits/cross-runtime-parity-kit/services.js";
 
 const fixture = path.resolve("src/core-domains/build/tests/fixtures/minimal-project");
 const stateRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-build-state-"));
@@ -111,21 +110,32 @@ assert.equal(atomicReceipt.immutability.ok, true);
 
 const nativeExecutionIr = Object.freeze({
   contentHash: "sha256:" + "1".repeat(64),
-  operations: Object.freeze([{ id: "evaluate:native.js", modulePath: "native.js", capabilities: Object.freeze([]) }])
+  operations: Object.freeze([{
+    id: "evaluate:native.js",
+    modulePath: "native.js",
+    capabilities: Object.freeze([]),
+    nativeFunctions: Object.freeze([{
+      name: "add",
+      parameters: Object.freeze(["left", "right"]),
+      expression: Object.freeze({
+        kind: "binary",
+        operator: "+",
+        left: Object.freeze({ kind: "parameter", name: "left" }),
+        right: Object.freeze({ kind: "parameter", name: "right" })
+      })
+    }])
+  }])
 });
 const nativeClassification = Object.freeze({
   modules: Object.freeze([{ modulePath: "native.js", sourceAstHash: "sha256:" + "2".repeat(64), mode: "native" }])
 });
-const unprovedLowering = createRustLoweringService().lower(nativeExecutionIr, nativeClassification);
-assert.equal(unprovedLowering.semanticParity, false, "native markers cannot assert semantic parity");
-const parityProof = createCrossRuntimeParityService().compare(
-  { value: 42 },
-  { value: 42 },
-  { sourceAstHash: nativeClassification.modules[0].sourceAstHash }
+const provedLowering = createRustLoweringService().lower(nativeExecutionIr, nativeClassification);
+assert.equal(provedLowering.semanticParity, true, "typed native function IR enables deterministic Rust lowering");
+assert.equal(provedLowering.semanticProofs[0].status, "compiler-validated");
+const missingFunctionLowering = createRustLoweringService().lower(
+  Object.freeze({ ...nativeExecutionIr, operations: Object.freeze([]) }),
+  nativeClassification
 );
-const provedLowering = createRustLoweringService({
-  semanticProofs: { "native.js": parityProof }
-}).lower(nativeExecutionIr, nativeClassification);
-assert.equal(provedLowering.semanticParity, true, "content-bound cross-runtime parity proof enables native lowering");
+assert.equal(missingFunctionLowering.semanticParity, false, "native markers without executable IR remain unproved");
 
 console.log("Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok");

@@ -37,7 +37,8 @@ export function createExecutionIrService() {
         kind: "evaluate-module",
         modulePath,
         inputs: Object.freeze(module.imports.filter((entry) => !entry.external && entry.resolved).map((entry) => entry.resolved).sort()),
-        capabilities: module.effects
+        capabilities: module.effects,
+        nativeFunctions: module.nativeFunctions
       });
     });
     const payload = {

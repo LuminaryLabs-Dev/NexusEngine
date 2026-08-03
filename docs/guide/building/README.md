@@ -73,14 +73,18 @@ pass semantic parity before native lowering can be accepted.
 - `web-static` emits a self-contained local directory and rejects unresolved
   external browser packages.
 - `android-xr` shares OpenXR runtime, action, view, and submission contracts,
-  then adds Android ARM64 SDK/NDK, lifecycle, Gradle, APK, and device gates.
+  then creates an external Android ARM64 Gradle/NDK stage and validates the APK
+  closure without installing it on a device.
 - `pcvr` shares the same OpenXR contracts, then adds Windows x64 host,
-  executable packaging, runtime, and headset gates.
+  generated-runtime linking, PE packaging, and no-runtime validation.
 
-Native planning is not native proof. Android XR and PCVR remain `blocked` until
-the exact upstream sources have resolved SHA-256 records, semantic parity is
-proven, the required compiler and package validators run, and the selected
-runtime and hardware tests pass.
+Native planning is not native proof. Supported numeric Kit IR lowers into
+deterministic Rust; other whole Kits may use the QuickJS-NG sandbox only when
+their requested capabilities are supported. OpenXR and QuickJS-NG source comes
+from exact commits with verified archive SHA-256 values. A native target is
+`package-proven` only after its target compiler and package validator succeed.
+The release requires Linux Android XR and Windows PCVR package jobs; runtime and
+headset execution remain separate `hardware: false` evidence for `0.0.4`.
 
 ## Source Security
 

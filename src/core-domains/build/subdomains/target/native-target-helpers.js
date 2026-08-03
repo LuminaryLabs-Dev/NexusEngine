@@ -19,13 +19,16 @@ export function nativeTargetPlan(context, config) {
       requirements.push({ code: "immutable-source-unresolved", sourceId: source.id, commit: source.exactVersion });
     }
   }
-  if (!context.rustLowering.semanticParity) {
+  if (["native", "native-adapter"].includes(context.executionSelection.mode) && !context.rustLowering.semanticParity) {
     requirements.push({ code: "native-semantic-parity-unproven", modules: context.rustLowering.unsupportedModules });
+  }
+  if (context.executionSelection.mode === "javascript" && context.javascriptFallback?.available !== true) {
+    requirements.push({ code: "quickjs-ng-runtime-unavailable", source: context.javascriptFallback?.source ?? null });
   }
   if (context.executionSelection.mode === "unsupported") {
     requirements.push({ code: "execution-mode-unsupported", reason: context.executionSelection.reason });
   }
-  if (typeof config.hostBuilder !== "function") {
+  if (typeof config.packageBuilder !== "function") {
     requirements.push({ code: "native-host-builder-unavailable", target: config.id });
   }
   return Object.freeze({
@@ -33,6 +36,7 @@ export function nativeTargetPlan(context, config) {
     executionMode: context.executionSelection.mode,
     host: Object.freeze({ platform: process.platform, arch: process.arch }),
     toolchains: Object.freeze(context.toolchains ?? []),
+    sourceRecords: Object.freeze((context.toolchainSources ?? []).filter((source) => source.requiredEnvironment.includes(config.id))),
     requirements: Object.freeze(requirements)
   });
 }
@@ -45,5 +49,5 @@ export async function executeNativeTarget(context, hostBuilder) {
   if (!result || result.ok !== true) {
     return { ok: false, status: "failed", error: result?.error ?? "Native host builder failed." };
   }
-  return { ok: true, status: "built", receipt: result.receipt ?? {} };
+  return { ...result, ok: true, status: "built", receipt: result.receipt ?? {} };
 }

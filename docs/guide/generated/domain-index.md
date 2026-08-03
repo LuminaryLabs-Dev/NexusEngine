@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d886c6`
+Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -22,8 +22,8 @@ Registry SHA-256: `1efce68a440c6655baa3025381d1b544d34b8833b43e6c7a3b69162417d88
 - `n:build:target:web-live`: Own verified live ESM loading and content-hash browser caching.
 - `n:build:target:web-static`: Own self-contained static Web artifact materialization.
 - `n:build:target:openxr`: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.
-- `n:build:target:android-xr`: Own Android ARM64 OpenXR host, package, and validation planning.
-- `n:build:target:pcvr`: Own Windows x64 OpenXR host, package, and validation planning.
+- `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
+- `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
 - `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.

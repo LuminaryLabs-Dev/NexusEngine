@@ -12,7 +12,9 @@ const build = createBuildDomain({ stateRoot });
 const plan = await build.plan({ project: fixture, targets: ["android-xr", "web-static"] });
 const android = plan.targets.find((target) => target.id === "android-xr");
 assert.equal(android.status, "blocked");
-assert.ok(android.requirements.some((requirement) => requirement.code === "immutable-source-unresolved"));
+assert.equal(android.sourceRecords.every((source) => source.resolutionStatus === "resolved"), true);
+assert.ok(android.requirements.some((requirement) => requirement.code === "environment-variable-missing"));
+assert.equal(android.requirements.some((requirement) => requirement.code === "immutable-source-unresolved"), false);
 
 const first = await build.apply(plan.id, plan.id, { out: outputRoot });
 assert.equal(first.status, "failed");

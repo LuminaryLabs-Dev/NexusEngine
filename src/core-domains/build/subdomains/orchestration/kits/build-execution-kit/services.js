@@ -51,6 +51,7 @@ function publicInspection(inspection) {
     irValidation: inspection.irValidation,
     sourceMap: inspection.sourceMap,
     classification: inspection.classification,
+    javascriptFallback: inspection.javascriptFallback,
     rustLowering: Object.freeze(Object.fromEntries(Object.entries(inspection.rustLowering).filter(([key]) => key !== "source")))
   });
 }
@@ -82,6 +83,7 @@ export function createBuildExecutionService(services, config = {}) {
     const sourceMap = services.sourceMap.create(kitIr, executionIr);
     const classification = services.portabilityClassifier.classify(kitIr);
     const rustLowering = services.rustLowering.lower(executionIr, classification);
+    const javascriptFallback = services.javascriptFallback.describe(classification);
     return Object.freeze({
       projectSourceService: services.projectSource,
       projectSource,
@@ -97,6 +99,7 @@ export function createBuildExecutionService(services, config = {}) {
       irValidation,
       sourceMap,
       classification,
+      javascriptFallback,
       rustLowering
     });
   }

@@ -10,7 +10,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   module: "./src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js",
   exportName: "createPcvrTargetKit",
   publicSubpath: "./domains/build/target/pcvr/pcvr-target",
-  proofReferences: ["src/core-domains/build/tests/domain-tree.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
+  proofReferences: ["scripts/prove-native-package.mjs","src/core-domains/build/tests/openxr-package-source.mjs"]
 });
 
 export default kitManifest;

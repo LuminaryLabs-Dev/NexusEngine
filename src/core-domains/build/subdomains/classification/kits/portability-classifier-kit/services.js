@@ -12,7 +12,10 @@ function classifyModule(module, typeErrors) {
     mode = "unsupported";
     reasons.push("source-or-effect-errors");
   } else if (module.explicitBuildMode === "native") {
-    if (module.effects.length === 0) mode = "native";
+    if (module.nativeDiagnostics.length || module.nativeFunctions.length === 0) {
+      mode = "unsupported";
+      reasons.push("native-lowering-surface-unsupported");
+    } else if (module.effects.length === 0) mode = "native";
     else {
       mode = "native-adapter";
       reasons.push("native-module-requires-capability-adapter");
@@ -28,6 +31,8 @@ function classifyModule(module, typeErrors) {
     sourceAstHash: module.astHash,
     mode,
     effects: module.effects,
+    nativeFunctions: module.nativeFunctions,
+    nativeDiagnostics: module.nativeDiagnostics,
     reasons: Object.freeze(reasons),
     typeErrors: Object.freeze(errors)
   });

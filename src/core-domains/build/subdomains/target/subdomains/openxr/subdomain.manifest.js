@@ -10,7 +10,7 @@ export const subdomainManifest = defineBuildSubdomainManifest({
   forbiddenResponsibilities: ["application runtime ownership", "project source mutation", "authored product behavior"],
   requires: ["n:build:target"],
   provides: ["n:build:target:openxr"],
-  proofReferences: ["src/core-domains/build/tests/domain-tree.mjs","src/core-domains/build/tests/full-build-loop.mjs"]
+  proofReferences: ["src/core-domains/build/tests/openxr-package-source.mjs","scripts/prove-native-package.mjs"]
 });
 
 export default subdomainManifest;
