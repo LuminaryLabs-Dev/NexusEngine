@@ -60,8 +60,10 @@ engine.n.object.register({
 });
 ```
 
-Optional behavior comes from an approved external registry package. Complete
-games consume Core and optional Kits; neither package exports games.
+Universal behavior is installed explicitly from Core semantic subpaths.
+Optional niche, genre, provider, and platform behavior comes from an approved
+external registry package. Complete games consume Core and optional Kits;
+neither package exports games.
 
 ## Build
 
@@ -87,6 +89,20 @@ ownership ledger, API reference, guide indexes, and MCP records derive from
 those manifests. There is no transitional Core Kit source tree or hardcoded
 Core catalog.
 
+## Restored Core Behaviors
+
+`0.0.4` restores the reusable semantics from 26 removed source modules as 27
+manifest-owned atoms. The historical World Physics module is intentionally
+split into World Contact and Soft Respawn. Navigation, terrain, water, spatial
+scale, motion, economy, operations, requests, hazards, progression, and the
+other restored behaviors are available only through generated semantic
+subpaths; none return as root exports.
+
+Nine optional adapter Kits connect otherwise independent atoms, and six
+composition recipes describe useful combinations without creating hidden state
+owners. See the [restored behavior migration](docs/migrations/0.0.4-restored-behaviors.md)
+for exact old exports, corrected defects, new imports, adapters, and proof.
+
 ## Composition And MCP
 
 Core Composition inspects Domains and atoms and produces deterministic plans:
@@ -109,8 +125,10 @@ applied runtime continues when MCP disconnects.
 ## Breaking Cutover
 
 `0.0.4` removes old root symbols, `n:core-*` identifiers, Core Kit subpaths,
-concrete runtime hosts/providers, and game behavior. No forwarding exports
-remain. Use the [Domain migration](docs/migrations/0.0.4-domain-cutover.md) and
+concrete runtime hosts/providers, authored game behavior, and forwarding
+exports. Reusable historical primitives return only as corrected semantic
+atoms. Use the [Domain migration](docs/migrations/0.0.4-domain-cutover.md),
+[restored behavior migration](docs/migrations/0.0.4-restored-behaviors.md), and
 [Build migration](docs/migrations/0.0.4-build-domain.md).
 
 ## Validation

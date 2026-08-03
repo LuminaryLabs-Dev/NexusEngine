@@ -31,6 +31,7 @@ The modular source for the guide is `guide/book.json` plus
 ## Migration
 
 - [0.0.4 Semantic Domain Cutover](migrations/0.0.4-domain-cutover.md)
+- [0.0.4 Restored Behaviors](migrations/0.0.4-restored-behaviors.md)
 - [0.0.4 Build Domain Cutover](migrations/0.0.4-build-domain.md)
 - [0.0.4 Root Module Dispositions](migrations/0.0.4-root-module-dispositions.md)
 - [Frozen ProtoKit Extraction](protokit-extraction/README.md)

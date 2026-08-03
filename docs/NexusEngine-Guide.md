@@ -4,7 +4,7 @@ Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
 Core registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`<br>
-Guide content SHA-256: `cd8b03ea3bf3f1921233a1161cca5bee269e425cd1fa16139bbbc02be532711d`
+Guide content SHA-256: `46f92189554cb47d6ea0c3a01fc3c7a3cf40a7f64008b0e049ee45f7fe331104`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -28,8 +28,9 @@ This combined file is generated from `docs/guide/book.json` and modular Markdown
 16. [Generated Dependency Table](#dependency-table)
 17. [Generated Atomic API Reference](#api-reference)
 18. [Generated Ownership Ledger](#ownership-ledger)
-19. [Generated Root Migration Map](#root-migration-map)
-20. [Generated ProtoKit Extraction Summary](#extraction-summary)
+19. [Generated Restored Behavior Migration](#restored-behavior-migration)
+20. [Generated Root Migration Map](#root-migration-map)
+21. [Generated ProtoKit Extraction Summary](#extraction-summary)
 
 ---
 
@@ -207,14 +208,27 @@ Generation fails when a public atom lacks source or proof. Compliance is never i
 | --- | --- |
 | Runtime | `n:runtime`, realtime, data, transaction, persistence, sequence, startup |
 | Composition | `n:composition`, `n:mcp`, `n:policy` |
-| World | `n:spatial`, `n:object`, `n:world`, scene, weather, asset |
-| Simulation | `n:simulation`, physics, motion, `n:compute`, model |
+| World | `n:spatial`, scale, `n:object`, `n:world`, navigation, generation, terrain, water, scene, weather, asset |
+| Simulation | `n:simulation`, physics, recovery, motion, economy, operations, hazard, pursuit, progression, `n:compute`, model |
 | Actors | `n:actor`, creature, character, player, `n:agent` |
 | Interaction | `n:interaction`, input |
 | Presentation | output, graphics, camera, animation, audio, UI, speech, capture, sky |
 | Infrastructure | `n:network`, `n:diagnostics`, contract-only `n:host` |
 
 The generated Domain Index appendix contains every active path.
+
+## Restored Behavior Shape
+
+Twenty-six historical source modules become 27 atomic behaviors because the
+old World Physics module mixed contact and recovery ownership. Those behaviors
+are now separate World Contact and Soft Respawn atoms. None of the historical
+root aliases return.
+
+The restoration ledger validates each historical source checksum, every old
+export, its corrected semantic owner, and its proof. A behavior with a
+game-adjacent name can remain Core only when its manifest describes a universal
+primitive without authored rules, presets, rendering ownership, or hidden
+cross-Domain effects.
 
 ## Atomicity Test
 
@@ -311,6 +325,18 @@ Planning adds required providers and returns a stable dependency order. MCP plan
 ## Recipe Ownership
 
 A recipe is data. It can express a useful combination without creating a new state owner. Reusable optional recipes belong in a trusted Kit registry. Complete game recipes belong with the game.
+
+Core includes six data-only recipes for proving the restored universal graph:
+
+- `procedural-navigation`
+- `terrain-character-traversal`
+- `management-operations`
+- `vehicle-rescue-logistics`
+- `spatial-guidance`
+- `hazard-pursuit`
+
+These recipes select atoms and adapters; they do not contain authored levels,
+economies, objectives, or tuning. Applications provide that data themselves.
 
 ## Apply
 
@@ -428,6 +454,21 @@ A provider implements one Domain contract. Examples include physics solving, mod
 ## Adapter
 
 An adapter translates two public contracts without becoming the state owner of either. Its manifest names both requirements and the capability it provides. Adapters import public semantic subpaths, never private sibling files.
+
+The restored behavior graph uses nine optional adapters:
+
+- locomotion contact response
+- camera world occlusion
+- vehicle water response
+- lifecycle economy
+- lifecycle facility
+- facility economy
+- occupant request
+- transport request
+- request economy
+
+Each atom remains useful without its adapters. Installing an adapter never
+installs another atom and never turns a read-only query into a hidden mutation.
 
 ## Presentation Boundary
 
@@ -616,6 +657,20 @@ For each stateful atom:
 
 Test missing providers, cycles, collisions, status rejection, stable ordering, repeated apply, process restart, receipt persistence, host rollback, and continued runtime operation after MCP disconnect.
 
+## Restoration Proof
+
+The restoration generator checks 26 historical source checksums against the
+last complete Git snapshot, requires exactly 27 replacement atoms, nine
+adapters, and six recipes, and confirms every proof path exists. Regression
+tests cover each named historical defect, JSON-portable snapshot boundaries,
+exact-once operations, deterministic ties, large-delta advancement, and
+side-effect-free queries.
+
+The root disposition ledger must classify those exact 26 sources as
+`core-restored`. A source returning to `external-kit`, a missing old export, or
+a replacement that is no longer manifest-reachable fails documentation and
+migration checks.
+
 ## Combination Coverage
 
 Test each atom alone, every declared dependency edge, pairwise cross-Domain combinations, official recipes, high-risk three-way stacks, and installation-order permutations. Do not attempt every mathematical combination.
@@ -658,7 +713,20 @@ Use semantic paths such as `n:object`, `n:runtime:transaction`, and `n:presentat
 
 ## Removed Implementations
 
-Concrete hosts, renderers, shaders, platform storage, model mocks, speech engines, authored sky presets, gameplay systems, and complete games moved outside Core or became caller-owned data. The Root Migration Map appendix lists every retired source and its owner.
+Concrete hosts, renderers, shaders, platform storage, model mocks, speech
+engines, authored sky presets, genre rules, and complete games moved outside
+Core or became caller-owned data. Universal behavior from 26 removed modules is
+restored through 27 corrected semantic atoms. The Restored Behavior Migration
+appendix lists every old export, configuration change, snapshot change, event
+change, optional adapter, and proof.
+
+## Physics Name Collision
+
+The historical `createPhysicsKit` from `src/world-physics-kit.js` and the
+current provider-neutral `createPhysicsKit` do not provide the same behavior.
+Migrate the historical behavior to `createWorldContactKit` plus
+`createSoftRespawnKit`. Use the current factory only for Physics contracts and
+providers. There is no alias or legacy snapshot coercion between them.
 
 ## Consumer Migration Order
 
@@ -668,6 +736,10 @@ Concrete hosts, renderers, shaders, platform storage, model mocks, speech engine
 4. Move platform implementations into the host or an external Kit.
 5. Replace compatibility aliases with the owning Domain API.
 6. Run from a packed Engine artifact in a clean directory.
+
+Consumer changes are intentionally separate from the Engine-local restoration
+wave. A migration row marked `outside-restoration-wave` does not mean the Core
+replacement is missing; it means the consumer has not yet been changed.
 
 ## Changelog Contract
 
@@ -2125,13 +2197,1184 @@ Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab810
 
 ---
 
+<a id="restored-behavior-migration"></a>
+
+# NexusEngine 0.0.4 Restored Behaviors
+
+This guide is generated from `0.0.4-restored-behaviors.json`. It is a hard migration: no root forwarding exports and no legacy snapshot coercion.
+
+- Historical modules: **26**
+- Restored behavior atoms: **27**
+- Optional adapters: **9**
+- Composition recipes: **6**
+
+## Commit Lineage
+
+| Code | Commit | Meaning |
+|---|---|---|
+| `I` | `56aed83b618553057b3da4e200a99701287a9ad2` | Initial implementations |
+| `N` | `d05aac6219645ba383f6f4c5c03216dc887f14f6` | Navigation and procedural generation |
+| `K` | `99292c7d1d93ca2d50a3d8a8a6f8601154670498` | Expanded Kit implementations |
+| `T` | `8b57b03904889cdbc71021d3bdb1d4070af5c8d3` | Seamless streamed-terrain normals |
+| `R` | `8b968c201b713c2cb00447e7765f0e2c16dcec8a` | Pre-consolidation Core refactor |
+| `S` | `a9adca5b3620f996f00860358c4864dd4bdfa6d9` | Last complete source snapshot |
+| `X` | `a68544434424438491be1398e3f3d5aced5bc5ee` | Removal commit |
+
+## Migration Index
+
+| Historical source | Status | New atom(s) | Import(s) |
+|---|---|---|---|
+| `src/action-movement-kit.js` | implemented-and-proven | `action-locomotion-kit` | `nexusengine/domains/simulation/motion/locomotion` |
+| `src/assistance-target-kit.js` | implemented-and-proven | `assistance-target-kit` | `nexusengine/domains/interaction/assistance-target` |
+| `src/cargo-manifest-kit.js` | implemented-and-proven | `cargo-manifest-kit` | `nexusengine/domains/simulation/economy/cargo` |
+| `src/character-camera-kit.js` | implemented-and-proven | `third-person-camera-kit` | `nexusengine/domains/presentation/camera/third-person` |
+| `src/economy-kit.js` | implemented-and-proven | `economy-account-kit` | `nexusengine/domains/simulation/economy/accounts` |
+| `src/environmental-affordance-kit.js` | implemented-and-proven | `environmental-affordance-kit` | `nexusengine/domains/interaction/environmental-affordance` |
+| `src/facility-operations-kit.js` | implemented-and-proven | `facility-operations-kit` | `nexusengine/domains/simulation/operations/facility` |
+| `src/hazard-field-kit.js` | implemented-and-proven | `hazard-field-kit` | `nexusengine/domains/simulation/hazard-field` |
+| `src/landmark-guidance-kit.js` | implemented-and-proven | `landmark-guidance-kit` | `nexusengine/domains/world/navigation/landmark-guidance` |
+| `src/lifecycle-progression-kit.js` | implemented-and-proven | `lifecycle-progression-kit` | `nexusengine/domains/simulation/progression/lifecycle` |
+| `src/navmesh-kit.js` | implemented-and-proven | `navmesh-kit` | `nexusengine/domains/world/navigation/navmesh` |
+| `src/occupant-flow-kit.js` | implemented-and-proven | `occupant-flow-kit` | `nexusengine/domains/simulation/operations/occupant-flow` |
+| `src/pathfinding-kit.js` | implemented-and-proven | `pathfinding-kit` | `nexusengine/domains/world/navigation/pathfinding` |
+| `src/procedural-kit.js` | implemented-and-proven | `procedural-generation-kit` | `nexusengine/domains/world/generation` |
+| `src/pursuit-pressure-kit.js` | implemented-and-proven | `pursuit-pressure-kit` | `nexusengine/domains/simulation/pursuit-pressure` |
+| `src/request-fulfillment-kit.js` | implemented-and-proven | `request-fulfillment-kit` | `nexusengine/domains/interaction/request/fulfillment` |
+| `src/request-queue-kit.js` | implemented-and-proven | `request-queue-kit` | `nexusengine/domains/interaction/request/queue` |
+| `src/route-field-kit.js` | implemented-and-proven | `route-field-kit` | `nexusengine/domains/world/navigation/route-field` |
+| `src/schedule-kit.js` | implemented-and-proven | `schedule-kit` | `nexusengine/domains/runtime/sequence/schedule` |
+| `src/spatial-scale-kit.js` | implemented-and-proven | `spatial-scale-kit` | `nexusengine/domains/spatial/scale` |
+| `src/terrain-kit.js` | implemented-and-proven | `terrain-kit` | `nexusengine/domains/world/terrain` |
+| `src/transfer-zone-kit.js` | implemented-and-proven | `transfer-zone-kit` | `nexusengine/domains/interaction/transfer-zone` |
+| `src/transport-route-kit.js` | implemented-and-proven | `transport-route-kit` | `nexusengine/domains/simulation/operations/transport-route` |
+| `src/vehicle-dynamics-kit.js` | implemented-and-proven | `vehicle-dynamics-kit` | `nexusengine/domains/simulation/motion/vehicle` |
+| `src/water-surface-kit.js` | implemented-and-proven | `water-surface-kit` | `nexusengine/domains/world/water-surface` |
+| `src/world-physics-kit.js` | implemented-and-proven | `world-contact-kit`, `soft-respawn-kit` | `nexusengine/domains/simulation/physics/world-contact`<br>`nexusengine/domains/simulation/recovery/soft-respawn` |
+
+## 1. src/action-movement-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `bdf54ee25fb3e8d8cc623a80d16cd3575844e89f2d9210ede0dfc96a2fcf978d` | Lineage: `I` -> `K` -> `S` -> `X`
+
+Historical factories: `createLocomotionKit`, `createCharacterMovementKit`, `createActionMovementKit`.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createLocomotionKit, createCharacterMovementKit, createActionMovementKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createActionLocomotionKit } from "nexusengine/domains/simulation/motion/locomotion";
+
+engine.n.actionLocomotion.step({ operationId: "movement:1", delta: 1 / 60, input })
+```
+
+### Required Changes
+
+- Configuration: Merge action, character, and locomotion options into one Action Locomotion config. Keep input mapping, camera, contact, and recovery policy outside the atom.
+- Snapshot: Map position, velocity, grounded, movement mode, and tuning fields into the new Action Locomotion snapshot. Do not load the old resource object directly.
+- Events: Read transition names from step() receipts; glide events are emitted only on state transitions.
+- Optional adapters: `locomotion-contact-response-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Three factory aliases represented one implementation.
+- Ground snapping could occur before killY recovery evaluation.
+- Glide events could repeat without a transition.
+
+Proof: `src/core-domains/simulation/tests/restored-motion-behaviors.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 2. src/assistance-target-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `15f8e2e4972126bc8b254cf323cfbfdb8ef658b63edb853c776d6af314fdb04e` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createAssistanceTargetKit`.
+Historical helpers: None.
+Historical resources: `AssistanceTargetState`.
+Historical events: `AssistanceTargetStabilized`, `AssistanceTargetAttached`, `AssistanceTargetCompleted`, `AssistanceTargetLost`.
+Historical engine APIs: `engine.assistanceTargets`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createAssistanceTargetKit } from "./src/assistance-target-kit.js";
+```
+
+After:
+
+```js
+import { createAssistanceTargetKit } from "nexusengine/domains/interaction/assistance-target";
+
+engine.n.assistanceTargets.complete({ operationId: "assist:complete:1", targetId })
+```
+
+### Required Changes
+
+- Configuration: Keep target identity, urgency, position, and terminal policy; use the semantic target dataset shape.
+- Snapshot: Map targets and counts into getSnapshot(); legacy resource identities are not accepted.
+- Events: Use exact transition receipts and Domain events instead of importing legacy event constants.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Lost and completed terminal states could conflict.
+- Terminal targets could transition again.
+- Result references and nearest ties were unstable.
+
+Proof: `src/core-domains/interaction/tests/restored-interaction-behaviors.mjs`.
+
+## 3. src/cargo-manifest-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `96bc115eb1e25cc89a8280b6e9c6cf1be08c69666185783a58d348eb813957e3` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createCargoManifestKit`.
+Historical helpers: `queryNearestCargo`.
+Historical resources: `CargoManifestState`.
+Historical events: `CargoPickedUp`, `CargoDeposited`, `CargoQuotaCompleted`, `CargoConditionChanged`, `CargoConditionDepleted`.
+Historical engine APIs: `engine.cargoManifest`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createCargoManifestKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createCargoManifestKit } from "nexusengine/domains/simulation/economy/cargo";
+
+engine.n.cargoManifest.pickUp({ operationId: "cargo:pickup:1", itemId, carrierId })
+```
+
+### Required Changes
+
+- Configuration: Use finite nonnegative item values, quantities, weights, capacity, and quota.
+- Snapshot: Map items, carriers, deposited value, and quota state into the validated portable snapshot.
+- Events: Use pickup/deposit operation receipts; quota completion is an accepted transition event.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Non-finite or negative values and quantities were accepted.
+- Nested item metadata escaped by reference.
+- Pickup and deposit lacked exact-once command identity.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`.
+
+## 4. src/character-camera-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `15ef74380bbb6b1d575b1ca6d7a2c486f7dbfe7944903cdd7e95d1d35e6f2891` | Lineage: `I` -> `K` -> `S` -> `X`
+
+Historical factories: `createCameraKit`, `createCharacterCameraKit`.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createCameraKit, createCharacterCameraKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createThirdPersonCameraKit } from "nexusengine/domains/presentation/camera/third-person";
+
+engine.n.thirdPersonCamera.describe({ operationId: "camera:1", delta: 1 / 60 })
+```
+
+### Required Changes
+
+- Configuration: Provide characterId and install public Character, Motion, and Camera capabilities before this Kit.
+- Snapshot: Map yaw, pitch, sequence, and renderer-neutral descriptor; host camera objects are never snapshot data.
+- Events: describe() returns a receipt containing the camera descriptor; host rendering remains external.
+- Optional adapters: `camera-world-occlusion-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Camera behavior read private movement state.
+- Required bindings failed only during the first update.
+- World occlusion was coupled to camera ownership.
+
+Proof: `src/core-domains/presentation/tests/third-person-camera-restoration.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 5. src/economy-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `c503e016dee6bda434349c2231080c735744ca478c5a199be9f6316fd7c4fc7a` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createEconomyKit`.
+Historical helpers: None.
+Historical resources: `EconomyState`.
+Historical events: `EconomyTransactionRequest`, `EconomyTransactionCompleted`, `EconomyTransactionRejected`.
+Historical engine APIs: `engine.economy`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createEconomyKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createEconomyAccountKit } from "nexusengine/domains/simulation/economy/accounts";
+
+engine.n.economy.transact({ operationId: "economy:1", account: "cash", amount: 10 })
+```
+
+### Required Changes
+
+- Configuration: Rename initial balance data to accounts and install the Runtime Transaction ledger before Economy Accounts.
+- Snapshot: Map accounts and optional ledger records into the validated snapshot; old event queues are discarded.
+- Events: transact() returns exact-once completed or rejected receipts and records them in Runtime Transaction.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Transactions depended on an internal engine.tick(0).
+- ledgerLimit zero was mishandled.
+- Non-finite balances and escaped metadata were possible.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`.
+
+## 6. src/environmental-affordance-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `4f2e25cce64efff5b250cae303e568f1e90b0e8eb821fbf3f9701d3e16745a2c` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createEnvironmentalAffordanceKit`.
+Historical helpers: `queryNearbyAffordances`.
+Historical resources: `EnvironmentalAffordanceState`.
+Historical events: `AffordanceEntered`, `AffordanceActivated`, `AffordanceCompleted`.
+Historical engine APIs: `engine.environmentalAffordances`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createEnvironmentalAffordanceKit } from "./src/environmental-affordance-kit.js";
+```
+
+After:
+
+```js
+import { createEnvironmentalAffordanceKit } from "nexusengine/domains/interaction/environmental-affordance";
+
+engine.n.environmentalAffordances.activate({ operationId: "affordance:1", affordanceId })
+```
+
+### Required Changes
+
+- Configuration: Keep portable affordance position, radius, requirements, and activation policy.
+- Snapshot: Map affordances and counts; query diagnostics are not semantic state.
+- Events: Queries are silent; activate() emits only accepted transitions through receipts.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Queries mutated active state and emitted events.
+- Unknown activation could mutate before rejection.
+- Initial completion counts were wrong.
+
+Proof: `src/core-domains/interaction/tests/restored-interaction-behaviors.mjs`.
+
+## 7. src/facility-operations-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `f2e287cea085c259825c7321c70784c26f9f7a8084e74ed6bdc00bd99e419712` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createFacilityOperationsKit`.
+Historical helpers: None.
+Historical resources: `FacilityOperationsState`.
+Historical events: `FacilityOutputProduced`, `FacilityConditionChanged`.
+Historical engine APIs: `engine.facilityOperations`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createFacilityOperationsKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createFacilityOperationsKit } from "nexusengine/domains/simulation/operations/facility";
+
+engine.n.facilityOperations.advance({ operationId: "facility:step:1", delta: 1 })
+```
+
+### Required Changes
+
+- Configuration: Use finite output/upkeep descriptors and explicit intervals, capacity, condition, and status.
+- Snapshot: Map facility cycle and condition state into portable records.
+- Events: advance() returns portable operation outputs; install Facility Economy only when account effects are desired.
+- Optional adapters: `facility-economy-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Non-finite output values were accepted.
+- Nested configuration escaped by reference.
+- Economy side effects were coupled to facility state.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 8. src/hazard-field-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `555f7b16007f8adb7fc1e58c6143524e9f8ff37f18c0ca7bfa087921d77e0895` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createHazardFieldKit`.
+Historical helpers: `queryHazardCircle`.
+Historical resources: `HazardFieldState`.
+Historical events: `HazardFieldSpawned`, `HazardFieldCollision`.
+Historical engine APIs: `engine.hazardField`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createHazardFieldKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createHazardFieldKit } from "nexusengine/domains/simulation/hazard-field";
+
+engine.n.hazardField.advance({ operationId: "hazard:step:1", delta: 1 / 60 })
+```
+
+### Required Changes
+
+- Configuration: Use finite bounded hazard descriptors and stable IDs.
+- Snapshot: Map hazards, sequences, and elapsed state; collision query results are not stored by querying.
+- Events: Spawn and advance mutations emit accepted events; queryCircle() is read-only.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Generated IDs could collide.
+- Bounds were not fully validated.
+- Collision queries exposed references or mutated query state.
+
+Proof: `src/core-domains/simulation/tests/restored-progression-pressure.mjs`.
+
+## 9. src/landmark-guidance-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `2233a9b147af597c62472152736a133c797b6ca554fdba0c5f8d43760f06894b` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createLandmarkGuidanceKit`.
+Historical helpers: `queryNearestLandmark`.
+Historical resources: `LandmarkGuidanceState`.
+Historical events: `LandmarkDiscovered`, `LandmarkReached`, `LandmarkActivated`.
+Historical engine APIs: `engine.landmarkGuidance`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createLandmarkGuidanceKit } from "./src/landmark-guidance-kit.js";
+```
+
+After:
+
+```js
+import { createLandmarkGuidanceKit } from "nexusengine/domains/world/navigation/landmark-guidance";
+
+engine.n.landmarkGuidance.reach({ operationId: "landmark:reach:1", landmarkId })
+```
+
+### Required Changes
+
+- Configuration: Keep stable landmark IDs, positions, radii, status, and metadata.
+- Snapshot: Map landmarks and counts; discard legacy lastQuery mutation state.
+- Events: Use exact discover/reach/activate receipts; nearest() is a deterministic read-only query.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Inactive or completed landmarks could transition again.
+- Initial counts and nested metadata were unsafe.
+- Nearest ties were unstable and queries mutated state.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 10. src/lifecycle-progression-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `8e42b8135cb5d18351d7bc5589d94cfd84e248bdd9223bd0d4e609d2cfdb6da8` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createLifecycleProgressionKit`.
+Historical helpers: None.
+Historical resources: `LifecycleProgressionState`.
+Historical events: `LifecycleProgressionStart`, `LifecycleProgressionCompleted`.
+Historical engine APIs: `engine.lifecycleProgression`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createLifecycleProgressionKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createLifecycleProgressionKit } from "nexusengine/domains/simulation/progression/lifecycle";
+
+engine.n.lifecycleProgression.start({ operationId: "lifecycle:start:1", itemId })
+```
+
+### Required Changes
+
+- Configuration: Use items with stable IDs, prerequisites, finite duration, optional cost descriptor, and portable effects.
+- Snapshot: Map item status, elapsed time, and completed IDs. Old queued events are not loaded.
+- Events: start()/advance() return effect descriptors; Economy and Facility effects require explicit adapters.
+- Optional adapters: `lifecycle-economy-adapter-kit`, `lifecycle-facility-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Costs or events could occur before prerequisites passed.
+- Payloads leaked references.
+- Economy and Facility mutations were coupled to progression.
+
+Proof: `src/core-domains/simulation/tests/restored-progression-pressure.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 11. src/navmesh-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `6b655c26562901c360c9152a01b22e0adc8d20352e900f8bcab301b9c856de3a` | Lineage: `N` -> `S` -> `X`
+
+Historical factories: `createNavMeshKit`.
+Historical helpers: `createNavMeshFromWalkability`, `create3DNavigationGraph`.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: `engine.navmesh`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createNavMeshKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createNavMeshKit } from "nexusengine/domains/world/navigation/navmesh";
+
+engine.n.navmesh.build({ operationId: "navmesh:build:1", walkability })
+```
+
+### Required Changes
+
+- Configuration: Provide normalized walkability cells with unique stable IDs and finite blocked-cost policy.
+- Snapshot: Map portable nodes, edges, and source hash; Maps, Sets, and Infinity are rejected.
+- Events: build() returns an exact operation receipt; pure graph builders remain exported from the subpath.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Duplicate coordinates or keys silently collapsed IDs.
+- Blocked costs used non-portable Infinity.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 12. src/occupant-flow-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `c07eb5bc1d6e862b4462324cbf707f442da08afd86c9ca87af1e0f2b19077d29` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createOccupantFlowKit`.
+Historical helpers: None.
+Historical resources: `OccupantFlowState`.
+Historical events: `OccupantSpawn`, `OccupantNeedCreated`, `OccupantServed`, `OccupantAbandoned`.
+Historical engine APIs: `engine.occupantFlow`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createOccupantFlowKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createOccupantFlowKit } from "nexusengine/domains/simulation/operations/occupant-flow";
+
+engine.n.occupantFlow.advance({ operationId: "occupants:step:1", delta: 1 })
+```
+
+### Required Changes
+
+- Configuration: Use portable occupants and deterministic spawn rules. Request policy is not part of this config.
+- Snapshot: Map occupants, rules, elapsed time, and next sequence; reset restores the original normalized rules.
+- Events: spawn/serve/advance return receipts; install Occupant Request to create queue records.
+- Optional adapters: `occupant-request-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Reset reused mutated spawn configuration.
+- Generated IDs could collide.
+- Request creation and internal engine.tick(0) coupled other domains.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 13. src/pathfinding-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `54fcc95c2e9a2dd8afdcf44629627de7b712de6f558608a948b7cb00e5d37b7b` | Lineage: `N` -> `S` -> `X`
+
+Historical factories: `createPathfindingKit`.
+Historical helpers: `navigationHeuristics`, `createAStarPathfinder`, `navigationAdapters`, `createNavigationQuery`.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: `engine.navigation`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createPathfindingKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createPathfindingKit } from "nexusengine/domains/world/navigation/pathfinding";
+
+engine.n.pathfinding.findPath({ operationId: "path:1", start, goal })
+```
+
+### Required Changes
+
+- Configuration: Select an explicit public navigation adapter and finite heuristic/cost policy.
+- Snapshot: Map portable request and result records; provider functions are never snapshot data.
+- Events: findPath() returns resolved/failed receipts; pure A* helpers remain available at the subpath.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Negative or non-finite edge costs were accepted.
+- Requests, paths, and results leaked references.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 14. src/procedural-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `26a313962334fe915b21d079d0f93a4c99962cbf19bcc7d90a94ca506d312962` | Lineage: `N` -> `S` -> `X`
+
+Historical factories: `createProceduralKit`.
+Historical helpers: `proceduralAlgorithms`, `createProceduralSnapshot`, `createProceduralQuery`.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: `engine.procedural`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createProceduralKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createProceduralGenerationKit } from "nexusengine/domains/world/generation";
+
+engine.n.proceduralGeneration.generate({ operationId: "generation:1" })
+```
+
+### Required Changes
+
+- Configuration: Provide seed, algorithm IDs, version, and neutral region/connector/point configuration. Authored meanings remain recipe data.
+- Snapshot: Regenerate from the SHA-256 identity or map only portable generated descriptors; live providers are excluded.
+- Events: generate() returns an exact receipt and snapshot identity; pure query helpers remain at the subpath.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Identity did not hash the complete normalized generation contract.
+- Game-shaped meanings and live state leaked through the generic facade.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 15. src/pursuit-pressure-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `3925ee176302ba2936cd2fd767e760b8dcc52bc7f661b4f6ee356876ea669915` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createPursuitPressureKit`.
+Historical helpers: `pursuitBand`.
+Historical resources: `PursuitPressureState`.
+Historical events: `PursuitPressureChanged`, `PursuitPressureCaught`, `PursuitPressureRecovered`.
+Historical engine APIs: `engine.pursuitPressure`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createPursuitPressureKit } from "./src/pursuit-pressure-kit.js";
+```
+
+After:
+
+```js
+import { createPursuitPressureKit } from "nexusengine/domains/simulation/pursuit-pressure";
+
+engine.n.pursuitPressure.setDistance({ operationId: "pursuit:1", distance })
+```
+
+### Required Changes
+
+- Configuration: Use finite distance thresholds and explicit caught/recovery rules.
+- Snapshot: Map distance, band, caught state, and transition history into portable state.
+- Events: setDistance()/adjust() return one receipt per accepted transition.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Initial caught state could disagree with distance.
+- Accepted band transitions were not all recorded.
+- Recovery and caught transitions could be incoherent.
+
+Proof: `src/core-domains/simulation/tests/restored-progression-pressure.mjs`.
+
+## 16. src/request-fulfillment-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `d491b00e3c4e6f3b0762bea676340ba12e1a1ce30ef9beaace0c6dc6f610f0b8` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createRequestFulfillmentKit`.
+Historical helpers: `queryNearestOpenRequest`.
+Historical resources: `RequestFulfillmentState`.
+Historical events: `RequestFulfillmentCreated`, `RequestFulfillmentCompleted`, `RequestFulfillmentExpired`.
+Historical engine APIs: `engine.requestFulfillment`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createRequestFulfillmentKit } from "./src/request-fulfillment-kit.js";
+```
+
+After:
+
+```js
+import { createRequestFulfillmentKit } from "nexusengine/domains/interaction/request/fulfillment";
+
+engine.n.requestFulfillment.complete({ operationId: "request:complete:1", requestId })
+```
+
+### Required Changes
+
+- Configuration: Use stable request IDs, portable positions, finite radii/timeouts, and explicit rewards as data.
+- Snapshot: Map request status and counters; old resource identities are rejected.
+- Events: create/complete/advance mutations return exact receipts; nearest() is read-only.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Generated IDs could collide.
+- Metadata and nearest results leaked references.
+- Completion was not exact-once.
+
+Proof: `src/core-domains/interaction/tests/restored-interaction-behaviors.mjs`.
+
+## 17. src/request-queue-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `4f4471547e57c848054f18a81fdd296472a74171703961c44c90a80e37aa5fc3` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createRequestQueueKit`.
+Historical helpers: None.
+Historical resources: `RequestQueueState`.
+Historical events: `RequestQueueAdd`, `RequestQueueFulfill`, `RequestQueueExpired`, `RequestQueueFulfilled`.
+Historical engine APIs: `engine.requestQueue`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createRequestQueueKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createRequestQueueKit } from "nexusengine/domains/interaction/request/queue";
+
+engine.n.requestQueue.add({ operationId: "request:add:1", request })
+```
+
+### Required Changes
+
+- Configuration: Normalize default reward/penalty once and keep effects descriptive.
+- Snapshot: Map portable queue records, counts, and last outcome; no event queue is loaded.
+- Events: add/fulfill/advance return exact receipts; install Request Economy to apply account effects.
+- Optional adapters: `request-economy-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Commands called engine.tick(0) internally.
+- Default rewards were repeatedly normalized.
+- Reward effects depended on install order.
+
+Proof: `src/core-domains/interaction/tests/restored-interaction-behaviors.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 18. src/route-field-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `fcbbf44196b5f8dc1ab3b705f84ee0fe20d1b80ec6b02533da6c3a47e49a571a` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createRouteFieldKit`.
+Historical helpers: `queryNearestRouteMarker`.
+Historical resources: `RouteFieldState`.
+Historical events: None.
+Historical engine APIs: `engine.routeField`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createRouteFieldKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createRouteFieldKit } from "nexusengine/domains/world/navigation/route-field";
+
+engine.n.routeField.nearest(point, { filter })
+```
+
+### Required Changes
+
+- Configuration: Use stable marker IDs, finite positions, and portable marker metadata.
+- Snapshot: Map marker data only; legacy query diagnostics are discarded.
+- Events: nearest() is a deterministic read-only query; mutations require operation IDs.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Nearest-marker queries mutated lastQuery.
+- Nested marker data leaked references.
+- Equal-distance ordering was unstable.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 19. src/schedule-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `5f5b0c2af888fa1db633627ce04bcf5d742357f9a4e693fc9ac644d8d7058dbc` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createScheduleKit`.
+Historical helpers: None.
+Historical resources: `ScheduleState`.
+Historical events: `ScheduleCycle`.
+Historical engine APIs: `engine.schedule`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createScheduleKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createScheduleKit } from "nexusengine/domains/runtime/sequence/schedule";
+
+engine.n.schedule.advance({ operationId: "schedule:step:1", delta })
+```
+
+### Required Changes
+
+- Configuration: Use finite cycle intervals, firstAt, repeat, active, and time scale fields.
+- Snapshot: Map elapsed time, scale, and nextAt; one-shot completion uses active false and nextAt null instead of Infinity.
+- Events: advance() returns every occurrence crossed by the delta in deterministic order.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Non-finite time scales were accepted.
+- Large deltas lost cycles or residual time.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`.
+
+## 20. src/spatial-scale-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `34dd18654c89f523e211beddc00438ed5e1e7cbca52be81c1c0f19365b8c602c` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createSpatialScaleKit`.
+Historical helpers: `queryNearestScaleAnchor`.
+Historical resources: `SpatialScaleState`.
+Historical events: `SpatialScaleBandChanged`, `SpatialScaleAnchorEntered`.
+Historical engine APIs: `engine.spatialScale`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createSpatialScaleKit } from "./src/spatial-scale-kit.js";
+```
+
+After:
+
+```js
+import { createSpatialScaleKit } from "nexusengine/domains/spatial/scale";
+
+engine.n.spatialScale.update({ operationId: "scale:1", subject: point })
+```
+
+### Required Changes
+
+- Configuration: Use stable anchors with finite position, radius, and band data.
+- Snapshot: Map subject, active band, and active anchor; nearest-query diagnostics are not required.
+- Events: update() evaluates every anchor before emitting one accepted band/enter transition; nearest() is read-only.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- An outside nearest anchor could suppress a valid enter transition from another anchor.
+- Queries stored diagnostics in semantic state.
+
+Proof: `src/core-domains/spatial/tests/spatial-scale-restoration.mjs`.
+
+## 21. src/terrain-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `cf81275942d6e019a31b0a060f162f67eeadc3e424d88f78d87eb4578c4106b5` | Lineage: `I` -> `K` -> `T` -> `R` -> `S` -> `X`
+
+Historical factories: `createTerrainKit`.
+Historical helpers: `terrainLayers`, `createTerrainQuery`.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createTerrainKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createTerrainKit } from "nexusengine/domains/world/terrain";
+
+engine.n.terrain.sample({ operationId: "terrain:sample:1", points })
+```
+
+### Required Changes
+
+- Configuration: Keep only neutral terrain layers, finite bounds, spline data, cell policy, and surface descriptors. Move authored presets and palettes to recipe/game data.
+- Snapshot: Map portable sampled cells and query version; old Map/Set caches and renderer data are rejected.
+- Events: sample/build/release operations return receipts; pure terrain query helpers remain at the subpath.
+- Optional adapters: `camera-world-occlusion-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Hidden cells were retained indefinitely.
+- Spline bounds were incompletely evaluated.
+- Core defaults contained cozy-beach presets, palettes, camera volumes, routes, and product fall data.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`.
+
+## 22. src/transfer-zone-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `b1fc29d1665490f3b68abe9380cedd405273e246a492cd546681e65f3d7de4c7` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createTransferZoneKit`.
+Historical helpers: None.
+Historical resources: `TransferZoneState`.
+Historical events: `TransferZoneCompleted`.
+Historical engine APIs: `engine.transferZones`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createTransferZoneKit } from "./src/transfer-zone-kit.js";
+```
+
+After:
+
+```js
+import { createTransferZoneKit } from "nexusengine/domains/interaction/transfer-zone";
+
+engine.n.transferZones.transfer({ operationId: "transfer:1", zoneId, candidate })
+```
+
+### Required Changes
+
+- Configuration: Use explicit zone shape, acceptedTypes, dwellSeconds, capacity, and portable metadata.
+- Snapshot: Map occupancy, dwell, and completed transfer records into validated state.
+- Events: enter/advance/transfer mutations emit only after every constraint passes.
+- Optional adapters: None.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Accepted types, dwell time, and capacity were described but not enforced before transfer.
+
+Proof: `src/core-domains/interaction/tests/restored-interaction-behaviors.mjs`.
+
+## 23. src/transport-route-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `a49cc513571ffdb9b9bf723507f8f7392108a222fdc52749e1771475468ee51b` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createTransportRouteKit`.
+Historical helpers: None.
+Historical resources: `TransportRouteState`.
+Historical events: `TransportRouteCall`, `TransportRouteArrived`.
+Historical engine APIs: `engine.transportRoutes`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createTransportRouteKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createTransportRouteKit } from "nexusengine/domains/simulation/operations/transport-route";
+
+engine.n.transportRoutes.advance({ operationId: "transport:step:1", delta })
+```
+
+### Required Changes
+
+- Configuration: Use stable stops, finite carrier speed/capacity, and portable call metadata.
+- Snapshot: Map carriers, waiting calls, progress, and arrival receipts.
+- Events: call/advance return exact receipts; install Transport Request to fulfill queue entries.
+- Optional adapters: `transport-request-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Large deltas dropped route legs and residual progress.
+- Caller metadata escaped by reference.
+- Request integration and internal engine.tick(0) were coupled.
+
+Proof: `src/core-domains/simulation/tests/restored-economy-operations.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 24. src/vehicle-dynamics-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `07cd227201a85f0aa6a2ba202332ffac87e69a98e3b6893fb7f1b8cdc19db7e6` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createVehicleDynamicsKit`.
+Historical helpers: None.
+Historical resources: `VehicleDynamicsState`.
+Historical events: `VehicleDynamicsInput`, `VehicleImpact`.
+Historical engine APIs: `engine.vehicleDynamics`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createVehicleDynamicsKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createVehicleDynamicsKit } from "nexusengine/domains/simulation/motion/vehicle";
+
+engine.n.vehicleDynamics.step({ operationId: "vehicle:step:1", delta: 1 / 60, input })
+```
+
+### Required Changes
+
+- Configuration: Use finite dynamics, boost, bounds, and initial motion values. Do not include water policy.
+- Snapshot: Map position, velocity, heading, boost, bounds, and last frame.
+- Events: step() returns a receipt and emits impact only when accepted; water response requires an adapter.
+- Optional adapters: `vehicle-water-response-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- boost.max zero could still create a boosted frame.
+- Dynamics values were incompletely validated.
+- Water response was coupled to vehicle state.
+
+Proof: `src/core-domains/simulation/tests/restored-motion-behaviors.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 25. src/water-surface-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `d278cedbd3d1903148ec5fd3bd1b64b79972364890ece485260822bd266518bf` | Lineage: `K` -> `S` -> `X`
+
+Historical factories: `createWaterSurfaceKit`.
+Historical helpers: `queryWaterSurface`.
+Historical resources: `WaterSurfaceState`.
+Historical events: None.
+Historical engine APIs: `engine.waterSurface`.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createWaterSurfaceKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createWaterSurfaceKit } from "nexusengine/domains/world/water-surface";
+
+engine.n.waterSurface.query(point)
+```
+
+### Required Changes
+
+- Configuration: Use renderer-neutral water zones, depth, drag, current, wave, hazard, and metadata descriptors.
+- Snapshot: Map zones and elapsed wave state; renderer objects and query diagnostics are rejected.
+- Events: query() is read-only; advance() is the only elapsed-state mutation.
+- Optional adapters: `vehicle-water-response-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- Queries mutated lastQuery.
+- Nested zone metadata and query results escaped by reference.
+- Renderer-shaped surface data was mixed with world queries.
+
+Proof: `src/core-domains/world/tests/restored-world-behaviors.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## 26. src/world-physics-kit.js
+
+Status: `implemented-and-proven` | SHA-256 at `S`: `ad6f7324b3e9ae4c2048198ada08458b5a5d25f320599cb0fe04ad89841fe84a` | Lineage: `I` -> `K` -> `S` -> `X`
+
+Historical factories: `createPhysicsKit`, `createWorldPhysicsKit`.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.
+
+### Import Cutover
+
+Before:
+
+```js
+import { createPhysicsKit, createWorldPhysicsKit } from "nexusengine";
+```
+
+After:
+
+```js
+import { createWorldContactKit } from "nexusengine/domains/simulation/physics/world-contact";
+import { createSoftRespawnKit } from "nexusengine/domains/simulation/recovery/soft-respawn";
+
+engine.n.worldContact.resolve({ operationId: "contact:1", body, sample }); engine.n.softRespawn.recover({ operationId: "respawn:1", subjectId, reason })
+```
+
+### Required Changes
+
+- Configuration: Split contact bounds/slope/impact config from recovery points and recovery policy. The current createPhysicsKit is only the provider-neutral Physics contract and is not this legacy behavior.
+- Snapshot: Split old state into World Contact and Soft Respawn snapshots. No old world-physics snapshot is accepted directly.
+- Events: resolve() emits contact/correction/recovery-required data; recover() commits one exact-once coherent recovery receipt.
+- Optional adapters: `locomotion-contact-response-adapter-kit`.
+- Consumer status: `not-started-outside-restoration-wave`.
+
+### Corrected Defects
+
+- One module owned contact, stability, fall policy, and respawn state.
+- Respawn events and contact state could become incoherent.
+- The historical createPhysicsKit name now conflicts semantically with the provider-neutral Physics contract Kit.
+
+Proof: `src/core-domains/simulation/tests/restored-motion-behaviors.mjs`, `src/core-domains/simulation/tests/restored-integration-adapters.mjs`.
+
+## Optional Integration Adapters
+
+Adapters are independently installed. They import no private sibling and never auto-install either side of an integration.
+
+| Adapter | Import | Requires | Provides |
+|---|---|---|---|
+| `locomotion-contact-response-adapter-kit` | `nexusengine/domains/simulation/adapters/locomotion-contact-response` | `motion:locomotion-intent`, `physics:world-contact` | `motion:contact-response` |
+| `camera-world-occlusion-adapter-kit` | `nexusengine/domains/presentation/adapters/camera-world-occlusion` | `camera:third-person-descriptor`, `world:terrain-sampling`, `physics:query` | `camera:world-occlusion-response` |
+| `vehicle-water-response-adapter-kit` | `nexusengine/domains/simulation/adapters/vehicle-water-response` | `motion:vehicle-dynamics`, `world:water-query` | `motion:vehicle-water-response` |
+| `lifecycle-economy-adapter-kit` | `nexusengine/domains/simulation/adapters/lifecycle-economy` | `progression:lifecycle`, `economy:transaction` | `progression:lifecycle-economy-adapter` |
+| `lifecycle-facility-adapter-kit` | `nexusengine/domains/simulation/adapters/lifecycle-facility` | `progression:lifecycle`, `operations:facility` | `progression:lifecycle-facility-adapter` |
+| `facility-economy-adapter-kit` | `nexusengine/domains/simulation/adapters/facility-economy` | `operations:facility`, `economy:transaction` | `operations:facility-economy-adapter` |
+| `occupant-request-adapter-kit` | `nexusengine/domains/interaction/adapters/occupant-request` | `operations:occupant-flow`, `interaction:request-queue` | `interaction:occupant-request-adapter` |
+| `transport-request-adapter-kit` | `nexusengine/domains/interaction/adapters/transport-request` | `operations:transport-route`, `interaction:request-queue` | `interaction:transport-request-adapter` |
+| `request-economy-adapter-kit` | `nexusengine/domains/interaction/adapters/request-economy` | `interaction:request-queue`, `economy:transaction` | `interaction:request-economy-adapter` |
+
+## Generated Recipes
+
+- `procedural-navigation`
+- `terrain-character-traversal`
+- `management-operations`
+- `vehicle-rescue-logistics`
+- `spatial-guidance`
+- `hazard-pursuit`
+
+## Physics Name Warning
+
+The historical `createPhysicsKit` from `src/world-physics-kit.js` and the current provider-neutral `createPhysicsKit` are not equivalent. Replace historical world behavior with `createWorldContactKit` plus `createSoftRespawnKit`; use the current `createPhysicsKit` only for Physics contracts and providers.
+
+---
+
 <a id="root-migration-map"></a>
 
 # NexusEngine 0.0.4 Root Module Dispositions
 
 Source commit: `a9adca5b3620f996f00860358c4864dd4bdfa6d9`
 
-This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuild them from the named Core atoms in the owning package or game.
+This is a hard cutover. Removed modules are not forwarded. Sources marked core-restored now use manifest-owned semantic subpaths; all other rows name their external owner or replacement.
 
 ## Removed Exports From Retained Modules
 
@@ -2147,10 +3390,10 @@ This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuil
 | Source | Disposition | Owner | Core requirements |
 |---|---|---|---|
 | `bin/nexus-editor.mjs` | external-kit | NexusEngine-Editor | `n:composition`, `n:host`, `n:mcp` |
-| `src/action-movement-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:interaction:input`, `n:simulation:motion` |
-| `src/assistance-target-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:interaction`, `n:object`, `n:simulation` |
-| `src/cargo-manifest-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:object`, `n:runtime:data`, `n:runtime:transaction` |
-| `src/character-camera-kit.js` | external-kit | NexusEngine-Kits | `n:actor:character`, `n:presentation:camera`, `n:spatial` |
+| `src/action-movement-kit.js` | core-restored | NexusEngine manifests: n:simulation:motion:locomotion | `action-locomotion-kit` |
+| `src/assistance-target-kit.js` | core-restored | NexusEngine manifests: n:interaction:assistance-target | `assistance-target-kit` |
+| `src/cargo-manifest-kit.js` | core-restored | NexusEngine manifests: n:simulation:economy:cargo | `cargo-manifest-kit` |
+| `src/character-camera-kit.js` | core-restored | NexusEngine manifests: n:presentation:camera:third-person | `third-person-camera-kit` |
 | `src/common-game-definitions.js` | recipe-data | NexusEngine-Kits recipes | `n:actor`, `n:interaction`, `n:simulation` |
 | `src/core-domains/compute/subdomains/model/kits/model-kit/mock-model-adapter.js` | recipe-data | NexusEngine tests | `n:compute:model` |
 | `src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js` | external-kit | NexusEngine-Kits adapters | `n:asset`, `n:compute:model`, `n:presentation:speech` |
@@ -2159,17 +3402,17 @@ This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuil
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/rust-native-scene-host.js` | external-kit | NexusEngine-Editor adapters | `n:host`, `n:world:scene` |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-html-scene-host.js` | external-kit | NexusEngine-Editor adapters | `n:host`, `n:world:scene` |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-scene-host.js` | external-kit | NexusEngine-Editor adapters | `n:host`, `n:world:scene` |
-| `src/economy-kit.js` | external-kit | NexusEngine-Kits | `n:runtime:data`, `n:runtime:transaction`, `n:simulation` |
-| `src/environmental-affordance-kit.js` | external-kit | NexusEngine-Kits | `n:interaction`, `n:object`, `n:spatial` |
-| `src/facility-operations-kit.js` | external-kit | NexusEngine-Kits | `n:runtime:sequence`, `n:runtime:transaction`, `n:simulation` |
+| `src/economy-kit.js` | core-restored | NexusEngine manifests: n:simulation:economy:accounts | `economy-account-kit` |
+| `src/environmental-affordance-kit.js` | core-restored | NexusEngine manifests: n:interaction:environmental-affordance | `environmental-affordance-kit` |
+| `src/facility-operations-kit.js` | core-restored | NexusEngine manifests: n:simulation:operations:facility | `facility-operations-kit` |
 | `src/game-kit-composer.js` | duplicate | n:composition | `n:composition`, `n:policy` |
-| `src/hazard-field-kit.js` | external-kit | NexusEngine-Kits | `n:object`, `n:simulation`, `n:spatial` |
+| `src/hazard-field-kit.js` | core-restored | NexusEngine manifests: n:simulation:hazard-field | `hazard-field-kit` |
 | `src/host.js` | external-kit | NexusEngine-Editor | `n:composition`, `n:host`, `n:policy` |
 | `src/hosts/browser/browser-indexeddb-asset-cache-adapter.js` | external-kit | NexusEngine-Editor adapters | `n:asset`, `n:host`, `n:presentation` |
 | `src/hosts/browser/browser-presentation-surface-adapter.js` | external-kit | NexusEngine-Editor adapters | `n:asset`, `n:host`, `n:presentation` |
 | `src/hosts/browser/browser-startup-presentation-adapter.js` | external-kit | NexusEngine-Editor adapters | `n:asset`, `n:host`, `n:presentation` |
-| `src/landmark-guidance-kit.js` | external-kit | NexusEngine-Kits | `n:object`, `n:spatial`, `n:world` |
-| `src/lifecycle-progression-kit.js` | external-kit | NexusEngine-Kits | `n:runtime:sequence`, `n:runtime:transaction`, `n:simulation` |
+| `src/landmark-guidance-kit.js` | core-restored | NexusEngine manifests: n:world:navigation:landmark-guidance | `landmark-guidance-kit` |
+| `src/lifecycle-progression-kit.js` | core-restored | NexusEngine manifests: n:simulation:progression:lifecycle | `lifecycle-progression-kit` |
 | `src/modules/nexus-diffusion/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/nexus-diffusion-domain.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/subdomains/backend/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
@@ -2182,30 +3425,30 @@ This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuil
 | `src/modules/nexus-diffusion/subdomains/tensor/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/subdomains/training/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/utils/seeded-random.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
-| `src/navmesh-kit.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:spatial`, `n:world` |
-| `src/occupant-flow-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:runtime:sequence`, `n:simulation` |
-| `src/pathfinding-kit.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:spatial`, `n:world` |
-| `src/procedural-kit.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:runtime:data`, `n:world` |
+| `src/navmesh-kit.js` | core-restored | NexusEngine manifests: n:world:navigation:navmesh | `navmesh-kit` |
+| `src/occupant-flow-kit.js` | core-restored | NexusEngine manifests: n:simulation:operations:occupant-flow | `occupant-flow-kit` |
+| `src/pathfinding-kit.js` | core-restored | NexusEngine manifests: n:world:navigation:pathfinding | `pathfinding-kit` |
+| `src/procedural-kit.js` | core-restored | NexusEngine manifests: n:world:generation | `procedural-generation-kit` |
 | `src/procedural-navigation-extensions.js` | duplicate | NexusEngine-Kits | `n:composition` |
-| `src/pursuit-pressure-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:simulation`, `n:spatial` |
+| `src/pursuit-pressure-kit.js` | core-restored | NexusEngine manifests: n:simulation:pursuit-pressure | `pursuit-pressure-kit` |
 | `src/renderers.js` | external-kit | NexusEngine-Kits adapters | `n:host`, `n:presentation:output` |
 | `src/renderers/three/three-object-capture-provider.js` | external-kit | NexusEngine-Kits adapters | `n:host`, `n:object`, `n:presentation` |
 | `src/renderers/three/three-presentation-output-adapter.js` | external-kit | NexusEngine-Kits adapters | `n:host`, `n:object`, `n:presentation` |
 | `src/renderers/three/three-subject-bounds-adapter.js` | external-kit | NexusEngine-Kits adapters | `n:host`, `n:object`, `n:presentation` |
-| `src/request-fulfillment-kit.js` | external-kit | NexusEngine-Kits | `n:interaction`, `n:runtime:sequence`, `n:simulation` |
-| `src/request-queue-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:runtime:sequence`, `n:runtime:transaction` |
-| `src/route-field-kit.js` | external-kit | NexusEngine-Kits | `n:object`, `n:spatial`, `n:world` |
+| `src/request-fulfillment-kit.js` | core-restored | NexusEngine manifests: n:interaction:request:fulfillment | `request-fulfillment-kit` |
+| `src/request-queue-kit.js` | core-restored | NexusEngine manifests: n:interaction:request:queue | `request-queue-kit` |
+| `src/route-field-kit.js` | core-restored | NexusEngine manifests: n:world:navigation:route-field | `route-field-kit` |
 | `src/scenario-driver-kit.js` | game-owned | Experiments or game repository | `n:composition`, `n:runtime:sequence`, `n:simulation` |
 | `src/scenario-duration-kit.js` | game-owned | Experiments or game repository | `n:runtime:sequence`, `n:simulation` |
-| `src/schedule-kit.js` | external-kit | NexusEngine-Kits | `n:runtime:sequence`, `n:simulation` |
+| `src/schedule-kit.js` | core-restored | NexusEngine manifests: n:runtime:sequence:schedule | `schedule-kit` |
 | `src/shaders.js` | external-kit | NexusEngine-Kits adapters | `n:host`, `n:presentation:graphics` |
-| `src/spatial-scale-kit.js` | external-kit | NexusEngine-Kits | `n:object`, `n:spatial` |
-| `src/terrain-kit.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:world`, `n:world:scene` |
-| `src/transfer-zone-kit.js` | external-kit | NexusEngine-Kits | `n:interaction`, `n:object`, `n:spatial` |
-| `src/transport-route-kit.js` | external-kit | NexusEngine-Kits | `n:actor`, `n:runtime:sequence`, `n:world` |
-| `src/vehicle-dynamics-kit.js` | external-kit | NexusEngine-Kits | `n:interaction:input`, `n:simulation:motion`, `n:simulation:physics` |
-| `src/water-surface-kit.js` | external-kit | NexusEngine-Kits | `n:presentation:graphics`, `n:world` |
-| `src/world-physics-kit.js` | external-kit | NexusEngine-Kits | `n:simulation:motion`, `n:simulation:physics`, `n:world` |
+| `src/spatial-scale-kit.js` | core-restored | NexusEngine manifests: n:spatial:scale | `spatial-scale-kit` |
+| `src/terrain-kit.js` | core-restored | NexusEngine manifests: n:world:terrain | `terrain-kit` |
+| `src/transfer-zone-kit.js` | core-restored | NexusEngine manifests: n:interaction:transfer-zone | `transfer-zone-kit` |
+| `src/transport-route-kit.js` | core-restored | NexusEngine manifests: n:simulation:operations:transport-route | `transport-route-kit` |
+| `src/vehicle-dynamics-kit.js` | core-restored | NexusEngine manifests: n:simulation:motion:vehicle | `vehicle-dynamics-kit` |
+| `src/water-surface-kit.js` | core-restored | NexusEngine manifests: n:world:water-surface | `water-surface-kit` |
+| `src/world-physics-kit.js` | core-restored | NexusEngine manifests: n:simulation:physics:world-contact, n:simulation:recovery:soft-respawn | `world-contact-kit`, `soft-respawn-kit` |
 | `tools/headless-editor/` | external-kit | NexusEngine-Editor | `n:composition`, `n:host`, `n:mcp`, `n:policy` |
 
 ---

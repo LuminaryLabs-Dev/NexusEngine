@@ -1,7 +1,7 @@
 # Current NexusEngine Architecture
 
 **Status:** canonical current architecture
-**Updated:** 2026-08-02
+**Updated:** 2026-08-03
 
 ## Package Boundary
 
@@ -17,13 +17,15 @@ NexusEngine
 ├── deterministic composition planning and validation
 ├── opt-in MCP contracts and registry
 ├── snapshot, reset, replay, and exactly-once receipts
+├── explicit universal navigation, world, motion, economy, operations,
+│   interaction, and progression atoms
 ├── host, provider, adapter, and presentation runtime contracts
 └── build-time source, compiler, toolchain, target, artifact, and proof Kits
 ```
 
 It does not own concrete hosts, renderers, SDKs, storage drivers, transports,
-model implementations, authored presets, optional gameplay, complete games, or
-repository tooling in the application runtime graph. Concrete build-time
+model implementations, authored presets, genre-specific rules, complete games,
+or repository tooling in the application runtime graph. Concrete build-time
 implementations are permitted only under `n:build`.
 
 ## Build-Time Domain
@@ -80,6 +82,23 @@ executable source, package subpath, and proof references
 Generation fails when ownership or proof is missing. Manifests exclusively
 generate the Core catalog, package exports, ownership ledger, API reference,
 guide indexes, MCP records, and registry SHA-256.
+
+## Restored Universal Behavior
+
+The `0.0.4` restoration ledger maps 26 historical source modules to 27 atomic
+Core behaviors. World Physics was the overloaded source and is split into World
+Contact and Soft Respawn. All restored atoms are explicit installs under their
+semantic owners; none are bootstrap defaults or root exports.
+
+Nine adapter Kits express optional cross-Domain effects. An adapter consumes
+only public capability tokens and never auto-installs either side. Six recipes
+are registry data, not new state owners. Authored presets, tuning, product
+rules, and complete scenarios remain outside Core.
+
+The canonical mapping is
+[`docs/migrations/0.0.4-restored-behaviors.json`](migrations/0.0.4-restored-behaviors.json).
+Its generated Markdown is included in the Guide and exposed chapter-by-chapter
+through MCP resources.
 
 ## Addressability
 

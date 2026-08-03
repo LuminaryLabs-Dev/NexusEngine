@@ -21,10 +21,26 @@ Agent connects
 ## Hard Cutover
 
 Core implementations now have one manifest-owned semantic location. Old root
-symbols, Core-prefixed identities, old subpaths, concrete adapters, optional
-gameplay, and forwarding aliases are removed. Consumers use the
-[migration guide](docs/migrations/0.0.4-domain-cutover.md), not compatibility
-code.
+symbols, Core-prefixed identities, old subpaths, concrete runtime adapters,
+authored game behavior, and forwarding aliases are removed. Reusable behavior
+from 26 removed source modules is restored as 27 corrected atoms, nine optional
+adapters, and six data recipes. Consumers use the
+[domain migration](docs/migrations/0.0.4-domain-cutover.md) and
+[restored behavior migration](docs/migrations/0.0.4-restored-behaviors.md), not
+compatibility code.
+
+## Behavior Restoration Proof
+
+The restoration source records exact SHA-256 checksums from commit
+`a9adca5b3620f996f00860358c4864dd4bdfa6d9` and requires every historical
+export to have exactly one semantic replacement. The old overloaded World
+Physics factory is not reintroduced: World Contact and Soft Respawn replace its
+behavior, while the current `createPhysicsKit` remains provider-neutral.
+
+The release gate requires all 26 records to remain `implemented-and-proven`,
+all 27 atoms and nine adapters to remain manifest-reachable, and all six recipes
+to remain registry-reachable. No consumer migration or release action is
+implied by completing this Engine-local restoration wave.
 
 ## Build Proof
 

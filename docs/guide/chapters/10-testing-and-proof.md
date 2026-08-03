@@ -21,6 +21,20 @@ For each stateful atom:
 
 Test missing providers, cycles, collisions, status rejection, stable ordering, repeated apply, process restart, receipt persistence, host rollback, and continued runtime operation after MCP disconnect.
 
+## Restoration Proof
+
+The restoration generator checks 26 historical source checksums against the
+last complete Git snapshot, requires exactly 27 replacement atoms, nine
+adapters, and six recipes, and confirms every proof path exists. Regression
+tests cover each named historical defect, JSON-portable snapshot boundaries,
+exact-once operations, deterministic ties, large-delta advancement, and
+side-effect-free queries.
+
+The root disposition ledger must classify those exact 26 sources as
+`core-restored`. A source returning to `external-kit`, a missing old export, or
+a replacement that is no longer manifest-reachable fails documentation and
+migration checks.
+
 ## Combination Coverage
 
 Test each atom alone, every declared dependency edge, pairwise cross-Domain combinations, official recipes, high-risk three-way stacks, and installation-order permutations. Do not attempt every mathematical combination.

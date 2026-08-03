@@ -16,6 +16,21 @@ A provider implements one Domain contract. Examples include physics solving, mod
 
 An adapter translates two public contracts without becoming the state owner of either. Its manifest names both requirements and the capability it provides. Adapters import public semantic subpaths, never private sibling files.
 
+The restored behavior graph uses nine optional adapters:
+
+- locomotion contact response
+- camera world occlusion
+- vehicle water response
+- lifecycle economy
+- lifecycle facility
+- facility economy
+- occupant request
+- transport request
+- request economy
+
+Each atom remains useful without its adapters. Installing an adapter never
+installs another atom and never turns a read-only query into a hidden mutation.
+
 ## Presentation Boundary
 
 Presentation Core contains renderer-neutral descriptors and policies. Three.js objects, WebGL resources, browser audio, native widgets, and authored presets belong in renderer, host, Kit, or product repositories.

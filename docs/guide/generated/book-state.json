@@ -2,7 +2,7 @@
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
   "registryHash": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
-  "contentHash": "sha256:cd8b03ea3bf3f1921233a1161cca5bee269e425cd1fa16139bbbc02be532711d",
+  "contentHash": "sha256:46f92189554cb47d6ea0c3a01fc3c7a3cf40a7f64008b0e049ee45f7fe331104",
   "chapters": [
     {
       "id": "start-here",
@@ -34,7 +34,7 @@
       "source": "docs/guide/chapters/04-domains-and-atoms.md",
       "googleDocTab": "04 Domains And Atoms",
       "generated": false,
-      "contentHash": "sha256:ab647fa2139e289895b5b13f61993f558b4268adebc670af6651d66351ea0be1"
+      "contentHash": "sha256:ec318c048bfe9a68d1a3e4b28d56659dc29e3b6ffecce0e895aa6af9fb9029c9"
     },
     {
       "id": "lifecycle",
@@ -50,7 +50,7 @@
       "source": "docs/guide/chapters/06-composition-and-recipes.md",
       "googleDocTab": "06 Composition",
       "generated": false,
-      "contentHash": "sha256:d1234106d89d261e3c717d56650b16186dfb3a17f5d78805a9b2a488853a862d"
+      "contentHash": "sha256:605f712aa9464e69bad03b0d60902561c5ea12204e8f162914456b497607650e"
     },
     {
       "id": "mcp",
@@ -74,7 +74,7 @@
       "source": "docs/guide/chapters/09-hosts-providers-adapters.md",
       "googleDocTab": "09 Integration",
       "generated": false,
-      "contentHash": "sha256:4c81e379339b20d7713d58e1363f49fbfda37572487047fe8f40b0545e1e3df1"
+      "contentHash": "sha256:8577a64568abbf7fe68fd9b877c8f3596bfdb7f7f110395ff52a958956672e34"
     },
     {
       "id": "build-domain",
@@ -90,7 +90,7 @@
       "source": "docs/guide/chapters/10-testing-and-proof.md",
       "googleDocTab": "10 Testing",
       "generated": false,
-      "contentHash": "sha256:f76238dc307b1ea06b331b7a2f94b4eb1b254556615a5e5178f60593f4cf3455"
+      "contentHash": "sha256:aadbf6af45ff8cbc822833ad8632685b5a67cd532d0795bc6bcf9b4510a31baa"
     },
     {
       "id": "migration",
@@ -98,7 +98,7 @@
       "source": "docs/guide/chapters/11-migration-0.0.4.md",
       "googleDocTab": "11 Migration",
       "generated": false,
-      "contentHash": "sha256:ec269fb50b21b777aaf2bc904a204ababe209024638c89c4169cc5d71eb19987"
+      "contentHash": "sha256:579411227ad3fc07102f97ce02472d445704806a9184e3dd7b73a8850e8c0567"
     },
     {
       "id": "protokit-extraction",
@@ -149,18 +149,26 @@
       "contentHash": "sha256:25a87c37c2f87889d6357da3b74bb8d30dddedbfca9fb9a611890f7d9b96200c"
     },
     {
+      "id": "restored-behavior-migration",
+      "title": "Generated Restored Behavior Migration",
+      "source": "docs/migrations/0.0.4-restored-behaviors.md",
+      "googleDocTab": "E Restored Behaviors",
+      "generated": true,
+      "contentHash": "sha256:8a1ca256c0542165678c00061321c2b21b5b1b52901811bc9ce4000cd024997a"
+    },
+    {
       "id": "root-migration-map",
       "title": "Generated Root Migration Map",
       "source": "docs/migrations/0.0.4-root-module-dispositions.md",
-      "googleDocTab": "E Migration Map",
+      "googleDocTab": "F Migration Map",
       "generated": true,
-      "contentHash": "sha256:3f95d0269cb945f3a1d0e166e20d9f0a489cd32041087fa45116645bf6065ca6"
+      "contentHash": "sha256:7c3ced70b256429217e02e3131c4eeac088e948bc6df395ac5a45b8b65489224"
     },
     {
       "id": "extraction-summary",
       "title": "Generated ProtoKit Extraction Summary",
       "source": "docs/protokit-extraction/README.md",
-      "googleDocTab": "F Extraction Summary",
+      "googleDocTab": "G Extraction Summary",
       "generated": true,
       "contentHash": "sha256:f80d2c35e0fa82fb09b127b046f4516c36ad3c6d759bc2154d76e1897958ab01"
     }

@@ -114,6 +114,44 @@ assert.doesNotMatch(
   "Kit inventory still contains an active ProtoKit target"
 );
 
+const restoration = JSON.parse(await readFile(
+  path.join(root, "docs", "migrations", "0.0.4-restored-behaviors.json"),
+  "utf8"
+));
+const dispositions = JSON.parse(await readFile(
+  path.join(root, "docs", "migrations", "0.0.4-root-module-dispositions.json"),
+  "utf8"
+));
+assert.equal(restoration.schema, "nexusengine.restored-behaviors/1");
+assert.deepEqual(restoration.counts, {
+  historicalModules: 26,
+  behaviorAtoms: 27,
+  optionalAdapters: 9,
+  recipes: 6
+});
+assert.equal(restoration.records.length, 26);
+assert.ok(restoration.records.every((record) => (
+  record.disposition === "core-restored"
+  && record.status === "implemented-and-proven"
+)), "Every restored source must remain implemented-and-proven Core.");
+
+const restoredDispositions = dispositions.records.filter(
+  (record) => record.disposition === "core-restored"
+);
+assert.equal(restoredDispositions.length, 26);
+assert.deepEqual(
+  restoredDispositions.map((record) => record.sourcePath).sort(),
+  restoration.records.map((record) => record.sourcePath).sort(),
+  "Restoration and root disposition ledgers disagree."
+);
+
+const docsRouter = await readFile(path.join(root, "docs", "README.md"), "utf8");
+assert.match(
+  docsRouter,
+  /migrations\/0\.0\.4-restored-behaviors\.md/,
+  "Documentation router is missing the restored behavior migration."
+);
+
 console.log(
-  `Active docs ok: ${uniqueDocs.length} files, ${reclassified} kit suggestions reclassified.`
+  `Active docs ok: ${uniqueDocs.length} files, ${reclassified} kit suggestions reclassified, 26 restored sources reconciled.`
 );

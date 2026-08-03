@@ -54,7 +54,7 @@
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
       Core registry SHA-256: c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2<br>
-      Guide content SHA-256: cd8b03ea3bf3f1921233a1161cca5bee269e425cd1fa16139bbbc02be532711d<br><br>
+      Guide content SHA-256: 46f92189554cb47d6ea0c3a01fc3c7a3cf40a7f64008b0e049ee45f7fe331104<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -79,8 +79,9 @@
       <li><a href="#dependency-table"><span>16</span>Generated Dependency Table</a></li>
       <li><a href="#api-reference"><span>17</span>Generated Atomic API Reference</a></li>
       <li><a href="#ownership-ledger"><span>18</span>Generated Ownership Ledger</a></li>
-      <li><a href="#root-migration-map"><span>19</span>Generated Root Migration Map</a></li>
-      <li><a href="#extraction-summary"><span>20</span>Generated ProtoKit Extraction Summary</a></li></ol>
+      <li><a href="#restored-behavior-migration"><span>19</span>Generated Restored Behavior Migration</a></li>
+      <li><a href="#root-migration-map"><span>20</span>Generated Root Migration Map</a></li>
+      <li><a href="#extraction-summary"><span>21</span>Generated ProtoKit Extraction Summary</a></li></ol>
   </section>
   
     <article class="chapter" id="start-here">
@@ -260,11 +261,11 @@ engine.n.apis();
 </tr>
 <tr>
 <td>World</td>
-<td><code>n:spatial</code>, <code>n:object</code>, <code>n:world</code>, scene, weather, asset</td>
+<td><code>n:spatial</code>, scale, <code>n:object</code>, <code>n:world</code>, navigation, generation, terrain, water, scene, weather, asset</td>
 </tr>
 <tr>
 <td>Simulation</td>
-<td><code>n:simulation</code>, physics, motion, <code>n:compute</code>, model</td>
+<td><code>n:simulation</code>, physics, recovery, motion, economy, operations, hazard, pursuit, progression, <code>n:compute</code>, model</td>
 </tr>
 <tr>
 <td>Actors</td>
@@ -284,6 +285,16 @@ engine.n.apis();
 </tr>
 </tbody></table>
 <p>The generated Domain Index appendix contains every active path.</p>
+<h2>Restored Behavior Shape</h2>
+<p>Twenty-six historical source modules become 27 atomic behaviors because the
+old World Physics module mixed contact and recovery ownership. Those behaviors
+are now separate World Contact and Soft Respawn atoms. None of the historical
+root aliases return.</p>
+<p>The restoration ledger validates each historical source checksum, every old
+export, its corrected semantic owner, and its proof. A behavior with a
+game-adjacent name can remain Core only when its manifest describes a universal
+primitive without authored rules, presets, rendering ownership, or hidden
+cross-Domain effects.</p>
 <h2>Atomicity Test</h2>
 <p>An atom should have one reason to change. If a module owns inventory, combat, rendering, and progression together, it is a composition or product feature, not an atom.</p>
 <p>Splitting is semantic, not file-count driven. Several source files may implement one indivisible lifecycle. Conversely, one legacy file may contain several owners and must be separated.</p>
@@ -344,6 +355,17 @@ if (!validation.ok) throw new Error(&quot;Composition is invalid&quot;);
 <p>Planning adds required providers and returns a stable dependency order. MCP planning also asks the application host to preflight exact executable sources. Preflight is read-only.</p>
 <h2>Recipe Ownership</h2>
 <p>A recipe is data. It can express a useful combination without creating a new state owner. Reusable optional recipes belong in a trusted Kit registry. Complete game recipes belong with the game.</p>
+<p>Core includes six data-only recipes for proving the restored universal graph:</p>
+<ul>
+<li><code>procedural-navigation</code></li>
+<li><code>terrain-character-traversal</code></li>
+<li><code>management-operations</code></li>
+<li><code>vehicle-rescue-logistics</code></li>
+<li><code>spatial-guidance</code></li>
+<li><code>hazard-pursuit</code></li>
+</ul>
+<p>These recipes select atoms and adapters; they do not contain authored levels,
+economies, objectives, or tuning. Applications provide that data themselves.</p>
 <h2>Apply</h2>
 <p>Apply requires the exact reviewed plan ID and explicit authorization. The controller resolves the same metadata, rejects drift, applies through the host, persists a receipt, and returns the original receipt on replay.</p>
 
@@ -455,6 +477,20 @@ if (!validation.ok) throw new Error(&quot;Composition is invalid&quot;);
 <p>A provider implements one Domain contract. Examples include physics solving, model inference, speech synthesis, asset retrieval, or capture rendering. Core can own request and result schemas while the provider owns vendor handles, caches, and external effects.</p>
 <h2>Adapter</h2>
 <p>An adapter translates two public contracts without becoming the state owner of either. Its manifest names both requirements and the capability it provides. Adapters import public semantic subpaths, never private sibling files.</p>
+<p>The restored behavior graph uses nine optional adapters:</p>
+<ul>
+<li>locomotion contact response</li>
+<li>camera world occlusion</li>
+<li>vehicle water response</li>
+<li>lifecycle economy</li>
+<li>lifecycle facility</li>
+<li>facility economy</li>
+<li>occupant request</li>
+<li>transport request</li>
+<li>request economy</li>
+</ul>
+<p>Each atom remains useful without its adapters. Installing an adapter never
+installs another atom and never turns a read-only query into a hidden mutation.</p>
 <h2>Presentation Boundary</h2>
 <p>Presentation Core contains renderer-neutral descriptors and policies. Three.js objects, WebGL resources, browser audio, native widgets, and authored presets belong in renderer, host, Kit, or product repositories.</p>
 <h2>Example Ownership Decisions</h2>
@@ -608,6 +644,17 @@ or failed targets remain visible in the aggregate failed receipt.</p>
 </ol>
 <h2>Composition Proof</h2>
 <p>Test missing providers, cycles, collisions, status rejection, stable ordering, repeated apply, process restart, receipt persistence, host rollback, and continued runtime operation after MCP disconnect.</p>
+<h2>Restoration Proof</h2>
+<p>The restoration generator checks 26 historical source checksums against the
+last complete Git snapshot, requires exactly 27 replacement atoms, nine
+adapters, and six recipes, and confirms every proof path exists. Regression
+tests cover each named historical defect, JSON-portable snapshot boundaries,
+exact-once operations, deterministic ties, large-delta advancement, and
+side-effect-free queries.</p>
+<p>The root disposition ledger must classify those exact 26 sources as
+<code>core-restored</code>. A source returning to <code>external-kit</code>, a missing old export, or
+a replacement that is no longer manifest-reachable fails documentation and
+migration checks.</p>
 <h2>Combination Coverage</h2>
 <p>Test each atom alone, every declared dependency edge, pairwise cross-Domain combinations, official recipes, high-risk three-way stacks, and installation-order permutations. Do not attempt every mathematical combination.</p>
 <h2>Registry Security Proof</h2>
@@ -633,7 +680,18 @@ import { createPhysicsKit } from &quot;nexusengine/domains/simulation/physics&qu
 <h2>Runtime Paths</h2>
 <p>Use semantic paths such as <code>n:object</code>, <code>n:runtime:transaction</code>, and <code>n:presentation:graphics</code>. Immediate parent relationships are validated by manifests.</p>
 <h2>Removed Implementations</h2>
-<p>Concrete hosts, renderers, shaders, platform storage, model mocks, speech engines, authored sky presets, gameplay systems, and complete games moved outside Core or became caller-owned data. The Root Migration Map appendix lists every retired source and its owner.</p>
+<p>Concrete hosts, renderers, shaders, platform storage, model mocks, speech
+engines, authored sky presets, genre rules, and complete games moved outside
+Core or became caller-owned data. Universal behavior from 26 removed modules is
+restored through 27 corrected semantic atoms. The Restored Behavior Migration
+appendix lists every old export, configuration change, snapshot change, event
+change, optional adapter, and proof.</p>
+<h2>Physics Name Collision</h2>
+<p>The historical <code>createPhysicsKit</code> from <code>src/world-physics-kit.js</code> and the
+current provider-neutral <code>createPhysicsKit</code> do not provide the same behavior.
+Migrate the historical behavior to <code>createWorldContactKit</code> plus
+<code>createSoftRespawnKit</code>. Use the current factory only for Physics contracts and
+providers. There is no alias or legacy snapshot coercion between them.</p>
 <h2>Consumer Migration Order</h2>
 <ol>
 <li>Replace old imports with generated semantic package subpaths.</li>
@@ -643,6 +701,9 @@ import { createPhysicsKit } from &quot;nexusengine/domains/simulation/physics&qu
 <li>Replace compatibility aliases with the owning Domain API.</li>
 <li>Run from a packed Engine artifact in a clean directory.</li>
 </ol>
+<p>Consumer changes are intentionally separate from the Engine-local restoration
+wave. A migration row marked <code>outside-restoration-wave</code> does not mean the Core
+replacement is missing; it means the consumer has not yet been changed.</p>
 <h2>Changelog Contract</h2>
 <p>The changelog and migration map explain replacements. They are not compatibility code. A removed symbol stays removed.</p>
 
@@ -8028,11 +8089,1113 @@ npm pack --dry-run --json
 
     </article>
 
+    <article class="chapter" id="restored-behavior-migration">
+      <div class="chapter-kicker">Generated reference</div>
+      <h1>NexusEngine 0.0.4 Restored Behaviors</h1>
+<p>This guide is generated from <code>0.0.4-restored-behaviors.json</code>. It is a hard migration: no root forwarding exports and no legacy snapshot coercion.</p>
+<ul>
+<li>Historical modules: <strong>26</strong></li>
+<li>Restored behavior atoms: <strong>27</strong></li>
+<li>Optional adapters: <strong>9</strong></li>
+<li>Composition recipes: <strong>6</strong></li>
+</ul>
+<h2>Commit Lineage</h2>
+<table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Commit</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>I</code></td>
+<td><code>56aed83b618553057b3da4e200a99701287a9ad2</code></td>
+<td>Initial implementations</td>
+</tr>
+<tr>
+<td><code>N</code></td>
+<td><code>d05aac6219645ba383f6f4c5c03216dc887f14f6</code></td>
+<td>Navigation and procedural generation</td>
+</tr>
+<tr>
+<td><code>K</code></td>
+<td><code>99292c7d1d93ca2d50a3d8a8a6f8601154670498</code></td>
+<td>Expanded Kit implementations</td>
+</tr>
+<tr>
+<td><code>T</code></td>
+<td><code>8b57b03904889cdbc71021d3bdb1d4070af5c8d3</code></td>
+<td>Seamless streamed-terrain normals</td>
+</tr>
+<tr>
+<td><code>R</code></td>
+<td><code>8b968c201b713c2cb00447e7765f0e2c16dcec8a</code></td>
+<td>Pre-consolidation Core refactor</td>
+</tr>
+<tr>
+<td><code>S</code></td>
+<td><code>a9adca5b3620f996f00860358c4864dd4bdfa6d9</code></td>
+<td>Last complete source snapshot</td>
+</tr>
+<tr>
+<td><code>X</code></td>
+<td><code>a68544434424438491be1398e3f3d5aced5bc5ee</code></td>
+<td>Removal commit</td>
+</tr>
+</tbody></table>
+<h2>Migration Index</h2>
+<table>
+<thead>
+<tr>
+<th>Historical source</th>
+<th>Status</th>
+<th>New atom(s)</th>
+<th>Import(s)</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>src/action-movement-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>action-locomotion-kit</code></td>
+<td><code>nexusengine/domains/simulation/motion/locomotion</code></td>
+</tr>
+<tr>
+<td><code>src/assistance-target-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>assistance-target-kit</code></td>
+<td><code>nexusengine/domains/interaction/assistance-target</code></td>
+</tr>
+<tr>
+<td><code>src/cargo-manifest-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>cargo-manifest-kit</code></td>
+<td><code>nexusengine/domains/simulation/economy/cargo</code></td>
+</tr>
+<tr>
+<td><code>src/character-camera-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>third-person-camera-kit</code></td>
+<td><code>nexusengine/domains/presentation/camera/third-person</code></td>
+</tr>
+<tr>
+<td><code>src/economy-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>economy-account-kit</code></td>
+<td><code>nexusengine/domains/simulation/economy/accounts</code></td>
+</tr>
+<tr>
+<td><code>src/environmental-affordance-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>environmental-affordance-kit</code></td>
+<td><code>nexusengine/domains/interaction/environmental-affordance</code></td>
+</tr>
+<tr>
+<td><code>src/facility-operations-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>facility-operations-kit</code></td>
+<td><code>nexusengine/domains/simulation/operations/facility</code></td>
+</tr>
+<tr>
+<td><code>src/hazard-field-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>hazard-field-kit</code></td>
+<td><code>nexusengine/domains/simulation/hazard-field</code></td>
+</tr>
+<tr>
+<td><code>src/landmark-guidance-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>landmark-guidance-kit</code></td>
+<td><code>nexusengine/domains/world/navigation/landmark-guidance</code></td>
+</tr>
+<tr>
+<td><code>src/lifecycle-progression-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>lifecycle-progression-kit</code></td>
+<td><code>nexusengine/domains/simulation/progression/lifecycle</code></td>
+</tr>
+<tr>
+<td><code>src/navmesh-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>navmesh-kit</code></td>
+<td><code>nexusengine/domains/world/navigation/navmesh</code></td>
+</tr>
+<tr>
+<td><code>src/occupant-flow-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>occupant-flow-kit</code></td>
+<td><code>nexusengine/domains/simulation/operations/occupant-flow</code></td>
+</tr>
+<tr>
+<td><code>src/pathfinding-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>pathfinding-kit</code></td>
+<td><code>nexusengine/domains/world/navigation/pathfinding</code></td>
+</tr>
+<tr>
+<td><code>src/procedural-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>procedural-generation-kit</code></td>
+<td><code>nexusengine/domains/world/generation</code></td>
+</tr>
+<tr>
+<td><code>src/pursuit-pressure-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>pursuit-pressure-kit</code></td>
+<td><code>nexusengine/domains/simulation/pursuit-pressure</code></td>
+</tr>
+<tr>
+<td><code>src/request-fulfillment-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>request-fulfillment-kit</code></td>
+<td><code>nexusengine/domains/interaction/request/fulfillment</code></td>
+</tr>
+<tr>
+<td><code>src/request-queue-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>request-queue-kit</code></td>
+<td><code>nexusengine/domains/interaction/request/queue</code></td>
+</tr>
+<tr>
+<td><code>src/route-field-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>route-field-kit</code></td>
+<td><code>nexusengine/domains/world/navigation/route-field</code></td>
+</tr>
+<tr>
+<td><code>src/schedule-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>schedule-kit</code></td>
+<td><code>nexusengine/domains/runtime/sequence/schedule</code></td>
+</tr>
+<tr>
+<td><code>src/spatial-scale-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>spatial-scale-kit</code></td>
+<td><code>nexusengine/domains/spatial/scale</code></td>
+</tr>
+<tr>
+<td><code>src/terrain-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>terrain-kit</code></td>
+<td><code>nexusengine/domains/world/terrain</code></td>
+</tr>
+<tr>
+<td><code>src/transfer-zone-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>transfer-zone-kit</code></td>
+<td><code>nexusengine/domains/interaction/transfer-zone</code></td>
+</tr>
+<tr>
+<td><code>src/transport-route-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>transport-route-kit</code></td>
+<td><code>nexusengine/domains/simulation/operations/transport-route</code></td>
+</tr>
+<tr>
+<td><code>src/vehicle-dynamics-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>vehicle-dynamics-kit</code></td>
+<td><code>nexusengine/domains/simulation/motion/vehicle</code></td>
+</tr>
+<tr>
+<td><code>src/water-surface-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>water-surface-kit</code></td>
+<td><code>nexusengine/domains/world/water-surface</code></td>
+</tr>
+<tr>
+<td><code>src/world-physics-kit.js</code></td>
+<td>implemented-and-proven</td>
+<td><code>world-contact-kit</code>, <code>soft-respawn-kit</code></td>
+<td><code>nexusengine/domains/simulation/physics/world-contact</code><br><code>nexusengine/domains/simulation/recovery/soft-respawn</code></td>
+</tr>
+</tbody></table>
+<h2>1. src/action-movement-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>bdf54ee25fb3e8d8cc623a80d16cd3575844e89f2d9210ede0dfc96a2fcf978d</code> | Lineage: <code>I</code> -&gt; <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createLocomotionKit</code>, <code>createCharacterMovementKit</code>, <code>createActionMovementKit</code>.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createLocomotionKit, createCharacterMovementKit, createActionMovementKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createActionLocomotionKit } from &quot;nexusengine/domains/simulation/motion/locomotion&quot;;
+
+engine.n.actionLocomotion.step({ operationId: &quot;movement:1&quot;, delta: 1 / 60, input })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Merge action, character, and locomotion options into one Action Locomotion config. Keep input mapping, camera, contact, and recovery policy outside the atom.</li>
+<li>Snapshot: Map position, velocity, grounded, movement mode, and tuning fields into the new Action Locomotion snapshot. Do not load the old resource object directly.</li>
+<li>Events: Read transition names from step() receipts; glide events are emitted only on state transitions.</li>
+<li>Optional adapters: <code>locomotion-contact-response-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Three factory aliases represented one implementation.</li>
+<li>Ground snapping could occur before killY recovery evaluation.</li>
+<li>Glide events could repeat without a transition.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-motion-behaviors.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>2. src/assistance-target-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>15f8e2e4972126bc8b254cf323cfbfdb8ef658b63edb853c776d6af314fdb04e</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createAssistanceTargetKit</code>.
+Historical helpers: None.
+Historical resources: <code>AssistanceTargetState</code>.
+Historical events: <code>AssistanceTargetStabilized</code>, <code>AssistanceTargetAttached</code>, <code>AssistanceTargetCompleted</code>, <code>AssistanceTargetLost</code>.
+Historical engine APIs: <code>engine.assistanceTargets</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createAssistanceTargetKit } from &quot;./src/assistance-target-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createAssistanceTargetKit } from &quot;nexusengine/domains/interaction/assistance-target&quot;;
+
+engine.n.assistanceTargets.complete({ operationId: &quot;assist:complete:1&quot;, targetId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Keep target identity, urgency, position, and terminal policy; use the semantic target dataset shape.</li>
+<li>Snapshot: Map targets and counts into getSnapshot(); legacy resource identities are not accepted.</li>
+<li>Events: Use exact transition receipts and Domain events instead of importing legacy event constants.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Lost and completed terminal states could conflict.</li>
+<li>Terminal targets could transition again.</li>
+<li>Result references and nearest ties were unstable.</li>
+</ul>
+<p>Proof: <code>src/core-domains/interaction/tests/restored-interaction-behaviors.mjs</code>.</p>
+<h2>3. src/cargo-manifest-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>96bc115eb1e25cc89a8280b6e9c6cf1be08c69666185783a58d348eb813957e3</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createCargoManifestKit</code>.
+Historical helpers: <code>queryNearestCargo</code>.
+Historical resources: <code>CargoManifestState</code>.
+Historical events: <code>CargoPickedUp</code>, <code>CargoDeposited</code>, <code>CargoQuotaCompleted</code>, <code>CargoConditionChanged</code>, <code>CargoConditionDepleted</code>.
+Historical engine APIs: <code>engine.cargoManifest</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createCargoManifestKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createCargoManifestKit } from &quot;nexusengine/domains/simulation/economy/cargo&quot;;
+
+engine.n.cargoManifest.pickUp({ operationId: &quot;cargo:pickup:1&quot;, itemId, carrierId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite nonnegative item values, quantities, weights, capacity, and quota.</li>
+<li>Snapshot: Map items, carriers, deposited value, and quota state into the validated portable snapshot.</li>
+<li>Events: Use pickup/deposit operation receipts; quota completion is an accepted transition event.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Non-finite or negative values and quantities were accepted.</li>
+<li>Nested item metadata escaped by reference.</li>
+<li>Pickup and deposit lacked exact-once command identity.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>.</p>
+<h2>4. src/character-camera-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>15ef74380bbb6b1d575b1ca6d7a2c486f7dbfe7944903cdd7e95d1d35e6f2891</code> | Lineage: <code>I</code> -&gt; <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createCameraKit</code>, <code>createCharacterCameraKit</code>.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createCameraKit, createCharacterCameraKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createThirdPersonCameraKit } from &quot;nexusengine/domains/presentation/camera/third-person&quot;;
+
+engine.n.thirdPersonCamera.describe({ operationId: &quot;camera:1&quot;, delta: 1 / 60 })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Provide characterId and install public Character, Motion, and Camera capabilities before this Kit.</li>
+<li>Snapshot: Map yaw, pitch, sequence, and renderer-neutral descriptor; host camera objects are never snapshot data.</li>
+<li>Events: describe() returns a receipt containing the camera descriptor; host rendering remains external.</li>
+<li>Optional adapters: <code>camera-world-occlusion-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Camera behavior read private movement state.</li>
+<li>Required bindings failed only during the first update.</li>
+<li>World occlusion was coupled to camera ownership.</li>
+</ul>
+<p>Proof: <code>src/core-domains/presentation/tests/third-person-camera-restoration.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>5. src/economy-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>c503e016dee6bda434349c2231080c735744ca478c5a199be9f6316fd7c4fc7a</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createEconomyKit</code>.
+Historical helpers: None.
+Historical resources: <code>EconomyState</code>.
+Historical events: <code>EconomyTransactionRequest</code>, <code>EconomyTransactionCompleted</code>, <code>EconomyTransactionRejected</code>.
+Historical engine APIs: <code>engine.economy</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createEconomyKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createEconomyAccountKit } from &quot;nexusengine/domains/simulation/economy/accounts&quot;;
+
+engine.n.economy.transact({ operationId: &quot;economy:1&quot;, account: &quot;cash&quot;, amount: 10 })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Rename initial balance data to accounts and install the Runtime Transaction ledger before Economy Accounts.</li>
+<li>Snapshot: Map accounts and optional ledger records into the validated snapshot; old event queues are discarded.</li>
+<li>Events: transact() returns exact-once completed or rejected receipts and records them in Runtime Transaction.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Transactions depended on an internal engine.tick(0).</li>
+<li>ledgerLimit zero was mishandled.</li>
+<li>Non-finite balances and escaped metadata were possible.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>.</p>
+<h2>6. src/environmental-affordance-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>4f2e25cce64efff5b250cae303e568f1e90b0e8eb821fbf3f9701d3e16745a2c</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createEnvironmentalAffordanceKit</code>.
+Historical helpers: <code>queryNearbyAffordances</code>.
+Historical resources: <code>EnvironmentalAffordanceState</code>.
+Historical events: <code>AffordanceEntered</code>, <code>AffordanceActivated</code>, <code>AffordanceCompleted</code>.
+Historical engine APIs: <code>engine.environmentalAffordances</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createEnvironmentalAffordanceKit } from &quot;./src/environmental-affordance-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createEnvironmentalAffordanceKit } from &quot;nexusengine/domains/interaction/environmental-affordance&quot;;
+
+engine.n.environmentalAffordances.activate({ operationId: &quot;affordance:1&quot;, affordanceId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Keep portable affordance position, radius, requirements, and activation policy.</li>
+<li>Snapshot: Map affordances and counts; query diagnostics are not semantic state.</li>
+<li>Events: Queries are silent; activate() emits only accepted transitions through receipts.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Queries mutated active state and emitted events.</li>
+<li>Unknown activation could mutate before rejection.</li>
+<li>Initial completion counts were wrong.</li>
+</ul>
+<p>Proof: <code>src/core-domains/interaction/tests/restored-interaction-behaviors.mjs</code>.</p>
+<h2>7. src/facility-operations-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>f2e287cea085c259825c7321c70784c26f9f7a8084e74ed6bdc00bd99e419712</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createFacilityOperationsKit</code>.
+Historical helpers: None.
+Historical resources: <code>FacilityOperationsState</code>.
+Historical events: <code>FacilityOutputProduced</code>, <code>FacilityConditionChanged</code>.
+Historical engine APIs: <code>engine.facilityOperations</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createFacilityOperationsKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createFacilityOperationsKit } from &quot;nexusengine/domains/simulation/operations/facility&quot;;
+
+engine.n.facilityOperations.advance({ operationId: &quot;facility:step:1&quot;, delta: 1 })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite output/upkeep descriptors and explicit intervals, capacity, condition, and status.</li>
+<li>Snapshot: Map facility cycle and condition state into portable records.</li>
+<li>Events: advance() returns portable operation outputs; install Facility Economy only when account effects are desired.</li>
+<li>Optional adapters: <code>facility-economy-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Non-finite output values were accepted.</li>
+<li>Nested configuration escaped by reference.</li>
+<li>Economy side effects were coupled to facility state.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>8. src/hazard-field-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>555f7b16007f8adb7fc1e58c6143524e9f8ff37f18c0ca7bfa087921d77e0895</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createHazardFieldKit</code>.
+Historical helpers: <code>queryHazardCircle</code>.
+Historical resources: <code>HazardFieldState</code>.
+Historical events: <code>HazardFieldSpawned</code>, <code>HazardFieldCollision</code>.
+Historical engine APIs: <code>engine.hazardField</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createHazardFieldKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createHazardFieldKit } from &quot;nexusengine/domains/simulation/hazard-field&quot;;
+
+engine.n.hazardField.advance({ operationId: &quot;hazard:step:1&quot;, delta: 1 / 60 })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite bounded hazard descriptors and stable IDs.</li>
+<li>Snapshot: Map hazards, sequences, and elapsed state; collision query results are not stored by querying.</li>
+<li>Events: Spawn and advance mutations emit accepted events; queryCircle() is read-only.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Generated IDs could collide.</li>
+<li>Bounds were not fully validated.</li>
+<li>Collision queries exposed references or mutated query state.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-progression-pressure.mjs</code>.</p>
+<h2>9. src/landmark-guidance-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>2233a9b147af597c62472152736a133c797b6ca554fdba0c5f8d43760f06894b</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createLandmarkGuidanceKit</code>.
+Historical helpers: <code>queryNearestLandmark</code>.
+Historical resources: <code>LandmarkGuidanceState</code>.
+Historical events: <code>LandmarkDiscovered</code>, <code>LandmarkReached</code>, <code>LandmarkActivated</code>.
+Historical engine APIs: <code>engine.landmarkGuidance</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createLandmarkGuidanceKit } from &quot;./src/landmark-guidance-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createLandmarkGuidanceKit } from &quot;nexusengine/domains/world/navigation/landmark-guidance&quot;;
+
+engine.n.landmarkGuidance.reach({ operationId: &quot;landmark:reach:1&quot;, landmarkId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Keep stable landmark IDs, positions, radii, status, and metadata.</li>
+<li>Snapshot: Map landmarks and counts; discard legacy lastQuery mutation state.</li>
+<li>Events: Use exact discover/reach/activate receipts; nearest() is a deterministic read-only query.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Inactive or completed landmarks could transition again.</li>
+<li>Initial counts and nested metadata were unsafe.</li>
+<li>Nearest ties were unstable and queries mutated state.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>10. src/lifecycle-progression-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>8e42b8135cb5d18351d7bc5589d94cfd84e248bdd9223bd0d4e609d2cfdb6da8</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createLifecycleProgressionKit</code>.
+Historical helpers: None.
+Historical resources: <code>LifecycleProgressionState</code>.
+Historical events: <code>LifecycleProgressionStart</code>, <code>LifecycleProgressionCompleted</code>.
+Historical engine APIs: <code>engine.lifecycleProgression</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createLifecycleProgressionKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createLifecycleProgressionKit } from &quot;nexusengine/domains/simulation/progression/lifecycle&quot;;
+
+engine.n.lifecycleProgression.start({ operationId: &quot;lifecycle:start:1&quot;, itemId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use items with stable IDs, prerequisites, finite duration, optional cost descriptor, and portable effects.</li>
+<li>Snapshot: Map item status, elapsed time, and completed IDs. Old queued events are not loaded.</li>
+<li>Events: start()/advance() return effect descriptors; Economy and Facility effects require explicit adapters.</li>
+<li>Optional adapters: <code>lifecycle-economy-adapter-kit</code>, <code>lifecycle-facility-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Costs or events could occur before prerequisites passed.</li>
+<li>Payloads leaked references.</li>
+<li>Economy and Facility mutations were coupled to progression.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-progression-pressure.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>11. src/navmesh-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>6b655c26562901c360c9152a01b22e0adc8d20352e900f8bcab301b9c856de3a</code> | Lineage: <code>N</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createNavMeshKit</code>.
+Historical helpers: <code>createNavMeshFromWalkability</code>, <code>create3DNavigationGraph</code>.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: <code>engine.navmesh</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createNavMeshKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createNavMeshKit } from &quot;nexusengine/domains/world/navigation/navmesh&quot;;
+
+engine.n.navmesh.build({ operationId: &quot;navmesh:build:1&quot;, walkability })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Provide normalized walkability cells with unique stable IDs and finite blocked-cost policy.</li>
+<li>Snapshot: Map portable nodes, edges, and source hash; Maps, Sets, and Infinity are rejected.</li>
+<li>Events: build() returns an exact operation receipt; pure graph builders remain exported from the subpath.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Duplicate coordinates or keys silently collapsed IDs.</li>
+<li>Blocked costs used non-portable Infinity.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>12. src/occupant-flow-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>c07eb5bc1d6e862b4462324cbf707f442da08afd86c9ca87af1e0f2b19077d29</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createOccupantFlowKit</code>.
+Historical helpers: None.
+Historical resources: <code>OccupantFlowState</code>.
+Historical events: <code>OccupantSpawn</code>, <code>OccupantNeedCreated</code>, <code>OccupantServed</code>, <code>OccupantAbandoned</code>.
+Historical engine APIs: <code>engine.occupantFlow</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createOccupantFlowKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createOccupantFlowKit } from &quot;nexusengine/domains/simulation/operations/occupant-flow&quot;;
+
+engine.n.occupantFlow.advance({ operationId: &quot;occupants:step:1&quot;, delta: 1 })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use portable occupants and deterministic spawn rules. Request policy is not part of this config.</li>
+<li>Snapshot: Map occupants, rules, elapsed time, and next sequence; reset restores the original normalized rules.</li>
+<li>Events: spawn/serve/advance return receipts; install Occupant Request to create queue records.</li>
+<li>Optional adapters: <code>occupant-request-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Reset reused mutated spawn configuration.</li>
+<li>Generated IDs could collide.</li>
+<li>Request creation and internal engine.tick(0) coupled other domains.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>13. src/pathfinding-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>54fcc95c2e9a2dd8afdcf44629627de7b712de6f558608a948b7cb00e5d37b7b</code> | Lineage: <code>N</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createPathfindingKit</code>.
+Historical helpers: <code>navigationHeuristics</code>, <code>createAStarPathfinder</code>, <code>navigationAdapters</code>, <code>createNavigationQuery</code>.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: <code>engine.navigation</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createPathfindingKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createPathfindingKit } from &quot;nexusengine/domains/world/navigation/pathfinding&quot;;
+
+engine.n.pathfinding.findPath({ operationId: &quot;path:1&quot;, start, goal })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Select an explicit public navigation adapter and finite heuristic/cost policy.</li>
+<li>Snapshot: Map portable request and result records; provider functions are never snapshot data.</li>
+<li>Events: findPath() returns resolved/failed receipts; pure A* helpers remain available at the subpath.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Negative or non-finite edge costs were accepted.</li>
+<li>Requests, paths, and results leaked references.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>14. src/procedural-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>26a313962334fe915b21d079d0f93a4c99962cbf19bcc7d90a94ca506d312962</code> | Lineage: <code>N</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createProceduralKit</code>.
+Historical helpers: <code>proceduralAlgorithms</code>, <code>createProceduralSnapshot</code>, <code>createProceduralQuery</code>.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: <code>engine.procedural</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createProceduralKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createProceduralGenerationKit } from &quot;nexusengine/domains/world/generation&quot;;
+
+engine.n.proceduralGeneration.generate({ operationId: &quot;generation:1&quot; })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Provide seed, algorithm IDs, version, and neutral region/connector/point configuration. Authored meanings remain recipe data.</li>
+<li>Snapshot: Regenerate from the SHA-256 identity or map only portable generated descriptors; live providers are excluded.</li>
+<li>Events: generate() returns an exact receipt and snapshot identity; pure query helpers remain at the subpath.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Identity did not hash the complete normalized generation contract.</li>
+<li>Game-shaped meanings and live state leaked through the generic facade.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>15. src/pursuit-pressure-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>3925ee176302ba2936cd2fd767e760b8dcc52bc7f661b4f6ee356876ea669915</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createPursuitPressureKit</code>.
+Historical helpers: <code>pursuitBand</code>.
+Historical resources: <code>PursuitPressureState</code>.
+Historical events: <code>PursuitPressureChanged</code>, <code>PursuitPressureCaught</code>, <code>PursuitPressureRecovered</code>.
+Historical engine APIs: <code>engine.pursuitPressure</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createPursuitPressureKit } from &quot;./src/pursuit-pressure-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createPursuitPressureKit } from &quot;nexusengine/domains/simulation/pursuit-pressure&quot;;
+
+engine.n.pursuitPressure.setDistance({ operationId: &quot;pursuit:1&quot;, distance })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite distance thresholds and explicit caught/recovery rules.</li>
+<li>Snapshot: Map distance, band, caught state, and transition history into portable state.</li>
+<li>Events: setDistance()/adjust() return one receipt per accepted transition.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Initial caught state could disagree with distance.</li>
+<li>Accepted band transitions were not all recorded.</li>
+<li>Recovery and caught transitions could be incoherent.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-progression-pressure.mjs</code>.</p>
+<h2>16. src/request-fulfillment-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>d491b00e3c4e6f3b0762bea676340ba12e1a1ce30ef9beaace0c6dc6f610f0b8</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createRequestFulfillmentKit</code>.
+Historical helpers: <code>queryNearestOpenRequest</code>.
+Historical resources: <code>RequestFulfillmentState</code>.
+Historical events: <code>RequestFulfillmentCreated</code>, <code>RequestFulfillmentCompleted</code>, <code>RequestFulfillmentExpired</code>.
+Historical engine APIs: <code>engine.requestFulfillment</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createRequestFulfillmentKit } from &quot;./src/request-fulfillment-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createRequestFulfillmentKit } from &quot;nexusengine/domains/interaction/request/fulfillment&quot;;
+
+engine.n.requestFulfillment.complete({ operationId: &quot;request:complete:1&quot;, requestId })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use stable request IDs, portable positions, finite radii/timeouts, and explicit rewards as data.</li>
+<li>Snapshot: Map request status and counters; old resource identities are rejected.</li>
+<li>Events: create/complete/advance mutations return exact receipts; nearest() is read-only.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Generated IDs could collide.</li>
+<li>Metadata and nearest results leaked references.</li>
+<li>Completion was not exact-once.</li>
+</ul>
+<p>Proof: <code>src/core-domains/interaction/tests/restored-interaction-behaviors.mjs</code>.</p>
+<h2>17. src/request-queue-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>4f4471547e57c848054f18a81fdd296472a74171703961c44c90a80e37aa5fc3</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createRequestQueueKit</code>.
+Historical helpers: None.
+Historical resources: <code>RequestQueueState</code>.
+Historical events: <code>RequestQueueAdd</code>, <code>RequestQueueFulfill</code>, <code>RequestQueueExpired</code>, <code>RequestQueueFulfilled</code>.
+Historical engine APIs: <code>engine.requestQueue</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createRequestQueueKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createRequestQueueKit } from &quot;nexusengine/domains/interaction/request/queue&quot;;
+
+engine.n.requestQueue.add({ operationId: &quot;request:add:1&quot;, request })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Normalize default reward/penalty once and keep effects descriptive.</li>
+<li>Snapshot: Map portable queue records, counts, and last outcome; no event queue is loaded.</li>
+<li>Events: add/fulfill/advance return exact receipts; install Request Economy to apply account effects.</li>
+<li>Optional adapters: <code>request-economy-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Commands called engine.tick(0) internally.</li>
+<li>Default rewards were repeatedly normalized.</li>
+<li>Reward effects depended on install order.</li>
+</ul>
+<p>Proof: <code>src/core-domains/interaction/tests/restored-interaction-behaviors.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>18. src/route-field-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>fcbbf44196b5f8dc1ab3b705f84ee0fe20d1b80ec6b02533da6c3a47e49a571a</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createRouteFieldKit</code>.
+Historical helpers: <code>queryNearestRouteMarker</code>.
+Historical resources: <code>RouteFieldState</code>.
+Historical events: None.
+Historical engine APIs: <code>engine.routeField</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createRouteFieldKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createRouteFieldKit } from &quot;nexusengine/domains/world/navigation/route-field&quot;;
+
+engine.n.routeField.nearest(point, { filter })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use stable marker IDs, finite positions, and portable marker metadata.</li>
+<li>Snapshot: Map marker data only; legacy query diagnostics are discarded.</li>
+<li>Events: nearest() is a deterministic read-only query; mutations require operation IDs.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Nearest-marker queries mutated lastQuery.</li>
+<li>Nested marker data leaked references.</li>
+<li>Equal-distance ordering was unstable.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>19. src/schedule-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>5f5b0c2af888fa1db633627ce04bcf5d742357f9a4e693fc9ac644d8d7058dbc</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createScheduleKit</code>.
+Historical helpers: None.
+Historical resources: <code>ScheduleState</code>.
+Historical events: <code>ScheduleCycle</code>.
+Historical engine APIs: <code>engine.schedule</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createScheduleKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createScheduleKit } from &quot;nexusengine/domains/runtime/sequence/schedule&quot;;
+
+engine.n.schedule.advance({ operationId: &quot;schedule:step:1&quot;, delta })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite cycle intervals, firstAt, repeat, active, and time scale fields.</li>
+<li>Snapshot: Map elapsed time, scale, and nextAt; one-shot completion uses active false and nextAt null instead of Infinity.</li>
+<li>Events: advance() returns every occurrence crossed by the delta in deterministic order.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Non-finite time scales were accepted.</li>
+<li>Large deltas lost cycles or residual time.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>.</p>
+<h2>20. src/spatial-scale-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>34dd18654c89f523e211beddc00438ed5e1e7cbca52be81c1c0f19365b8c602c</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createSpatialScaleKit</code>.
+Historical helpers: <code>queryNearestScaleAnchor</code>.
+Historical resources: <code>SpatialScaleState</code>.
+Historical events: <code>SpatialScaleBandChanged</code>, <code>SpatialScaleAnchorEntered</code>.
+Historical engine APIs: <code>engine.spatialScale</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createSpatialScaleKit } from &quot;./src/spatial-scale-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createSpatialScaleKit } from &quot;nexusengine/domains/spatial/scale&quot;;
+
+engine.n.spatialScale.update({ operationId: &quot;scale:1&quot;, subject: point })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use stable anchors with finite position, radius, and band data.</li>
+<li>Snapshot: Map subject, active band, and active anchor; nearest-query diagnostics are not required.</li>
+<li>Events: update() evaluates every anchor before emitting one accepted band/enter transition; nearest() is read-only.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>An outside nearest anchor could suppress a valid enter transition from another anchor.</li>
+<li>Queries stored diagnostics in semantic state.</li>
+</ul>
+<p>Proof: <code>src/core-domains/spatial/tests/spatial-scale-restoration.mjs</code>.</p>
+<h2>21. src/terrain-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>cf81275942d6e019a31b0a060f162f67eeadc3e424d88f78d87eb4578c4106b5</code> | Lineage: <code>I</code> -&gt; <code>K</code> -&gt; <code>T</code> -&gt; <code>R</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createTerrainKit</code>.
+Historical helpers: <code>terrainLayers</code>, <code>createTerrainQuery</code>.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createTerrainKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createTerrainKit } from &quot;nexusengine/domains/world/terrain&quot;;
+
+engine.n.terrain.sample({ operationId: &quot;terrain:sample:1&quot;, points })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Keep only neutral terrain layers, finite bounds, spline data, cell policy, and surface descriptors. Move authored presets and palettes to recipe/game data.</li>
+<li>Snapshot: Map portable sampled cells and query version; old Map/Set caches and renderer data are rejected.</li>
+<li>Events: sample/build/release operations return receipts; pure terrain query helpers remain at the subpath.</li>
+<li>Optional adapters: <code>camera-world-occlusion-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Hidden cells were retained indefinitely.</li>
+<li>Spline bounds were incompletely evaluated.</li>
+<li>Core defaults contained cozy-beach presets, palettes, camera volumes, routes, and product fall data.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>.</p>
+<h2>22. src/transfer-zone-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>b1fc29d1665490f3b68abe9380cedd405273e246a492cd546681e65f3d7de4c7</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createTransferZoneKit</code>.
+Historical helpers: None.
+Historical resources: <code>TransferZoneState</code>.
+Historical events: <code>TransferZoneCompleted</code>.
+Historical engine APIs: <code>engine.transferZones</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createTransferZoneKit } from &quot;./src/transfer-zone-kit.js&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createTransferZoneKit } from &quot;nexusengine/domains/interaction/transfer-zone&quot;;
+
+engine.n.transferZones.transfer({ operationId: &quot;transfer:1&quot;, zoneId, candidate })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use explicit zone shape, acceptedTypes, dwellSeconds, capacity, and portable metadata.</li>
+<li>Snapshot: Map occupancy, dwell, and completed transfer records into validated state.</li>
+<li>Events: enter/advance/transfer mutations emit only after every constraint passes.</li>
+<li>Optional adapters: None.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Accepted types, dwell time, and capacity were described but not enforced before transfer.</li>
+</ul>
+<p>Proof: <code>src/core-domains/interaction/tests/restored-interaction-behaviors.mjs</code>.</p>
+<h2>23. src/transport-route-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>a49cc513571ffdb9b9bf723507f8f7392108a222fdc52749e1771475468ee51b</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createTransportRouteKit</code>.
+Historical helpers: None.
+Historical resources: <code>TransportRouteState</code>.
+Historical events: <code>TransportRouteCall</code>, <code>TransportRouteArrived</code>.
+Historical engine APIs: <code>engine.transportRoutes</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createTransportRouteKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createTransportRouteKit } from &quot;nexusengine/domains/simulation/operations/transport-route&quot;;
+
+engine.n.transportRoutes.advance({ operationId: &quot;transport:step:1&quot;, delta })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use stable stops, finite carrier speed/capacity, and portable call metadata.</li>
+<li>Snapshot: Map carriers, waiting calls, progress, and arrival receipts.</li>
+<li>Events: call/advance return exact receipts; install Transport Request to fulfill queue entries.</li>
+<li>Optional adapters: <code>transport-request-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Large deltas dropped route legs and residual progress.</li>
+<li>Caller metadata escaped by reference.</li>
+<li>Request integration and internal engine.tick(0) were coupled.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-economy-operations.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>24. src/vehicle-dynamics-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>07cd227201a85f0aa6a2ba202332ffac87e69a98e3b6893fb7f1b8cdc19db7e6</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createVehicleDynamicsKit</code>.
+Historical helpers: None.
+Historical resources: <code>VehicleDynamicsState</code>.
+Historical events: <code>VehicleDynamicsInput</code>, <code>VehicleImpact</code>.
+Historical engine APIs: <code>engine.vehicleDynamics</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createVehicleDynamicsKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createVehicleDynamicsKit } from &quot;nexusengine/domains/simulation/motion/vehicle&quot;;
+
+engine.n.vehicleDynamics.step({ operationId: &quot;vehicle:step:1&quot;, delta: 1 / 60, input })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use finite dynamics, boost, bounds, and initial motion values. Do not include water policy.</li>
+<li>Snapshot: Map position, velocity, heading, boost, bounds, and last frame.</li>
+<li>Events: step() returns a receipt and emits impact only when accepted; water response requires an adapter.</li>
+<li>Optional adapters: <code>vehicle-water-response-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>boost.max zero could still create a boosted frame.</li>
+<li>Dynamics values were incompletely validated.</li>
+<li>Water response was coupled to vehicle state.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-motion-behaviors.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>25. src/water-surface-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>d278cedbd3d1903148ec5fd3bd1b64b79972364890ece485260822bd266518bf</code> | Lineage: <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createWaterSurfaceKit</code>.
+Historical helpers: <code>queryWaterSurface</code>.
+Historical resources: <code>WaterSurfaceState</code>.
+Historical events: None.
+Historical engine APIs: <code>engine.waterSurface</code>.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createWaterSurfaceKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createWaterSurfaceKit } from &quot;nexusengine/domains/world/water-surface&quot;;
+
+engine.n.waterSurface.query(point)
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Use renderer-neutral water zones, depth, drag, current, wave, hazard, and metadata descriptors.</li>
+<li>Snapshot: Map zones and elapsed wave state; renderer objects and query diagnostics are rejected.</li>
+<li>Events: query() is read-only; advance() is the only elapsed-state mutation.</li>
+<li>Optional adapters: <code>vehicle-water-response-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>Queries mutated lastQuery.</li>
+<li>Nested zone metadata and query results escaped by reference.</li>
+<li>Renderer-shaped surface data was mixed with world queries.</li>
+</ul>
+<p>Proof: <code>src/core-domains/world/tests/restored-world-behaviors.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>26. src/world-physics-kit.js</h2>
+<p>Status: <code>implemented-and-proven</code> | SHA-256 at <code>S</code>: <code>ad6f7324b3e9ae4c2048198ada08458b5a5d25f320599cb0fe04ad89841fe84a</code> | Lineage: <code>I</code> -&gt; <code>K</code> -&gt; <code>S</code> -&gt; <code>X</code></p>
+<p>Historical factories: <code>createPhysicsKit</code>, <code>createWorldPhysicsKit</code>.
+Historical helpers: None.
+Historical resources: None.
+Historical events: None.
+Historical engine APIs: None.</p>
+<h3>Import Cutover</h3>
+<p>Before:</p>
+<pre><code class="language-js">import { createPhysicsKit, createWorldPhysicsKit } from &quot;nexusengine&quot;;
+</code></pre>
+<p>After:</p>
+<pre><code class="language-js">import { createWorldContactKit } from &quot;nexusengine/domains/simulation/physics/world-contact&quot;;
+import { createSoftRespawnKit } from &quot;nexusengine/domains/simulation/recovery/soft-respawn&quot;;
+
+engine.n.worldContact.resolve({ operationId: &quot;contact:1&quot;, body, sample }); engine.n.softRespawn.recover({ operationId: &quot;respawn:1&quot;, subjectId, reason })
+</code></pre>
+<h3>Required Changes</h3>
+<ul>
+<li>Configuration: Split contact bounds/slope/impact config from recovery points and recovery policy. The current createPhysicsKit is only the provider-neutral Physics contract and is not this legacy behavior.</li>
+<li>Snapshot: Split old state into World Contact and Soft Respawn snapshots. No old world-physics snapshot is accepted directly.</li>
+<li>Events: resolve() emits contact/correction/recovery-required data; recover() commits one exact-once coherent recovery receipt.</li>
+<li>Optional adapters: <code>locomotion-contact-response-adapter-kit</code>.</li>
+<li>Consumer status: <code>not-started-outside-restoration-wave</code>.</li>
+</ul>
+<h3>Corrected Defects</h3>
+<ul>
+<li>One module owned contact, stability, fall policy, and respawn state.</li>
+<li>Respawn events and contact state could become incoherent.</li>
+<li>The historical createPhysicsKit name now conflicts semantically with the provider-neutral Physics contract Kit.</li>
+</ul>
+<p>Proof: <code>src/core-domains/simulation/tests/restored-motion-behaviors.mjs</code>, <code>src/core-domains/simulation/tests/restored-integration-adapters.mjs</code>.</p>
+<h2>Optional Integration Adapters</h2>
+<p>Adapters are independently installed. They import no private sibling and never auto-install either side of an integration.</p>
+<table>
+<thead>
+<tr>
+<th>Adapter</th>
+<th>Import</th>
+<th>Requires</th>
+<th>Provides</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>locomotion-contact-response-adapter-kit</code></td>
+<td><code>nexusengine/domains/simulation/adapters/locomotion-contact-response</code></td>
+<td><code>motion:locomotion-intent</code>, <code>physics:world-contact</code></td>
+<td><code>motion:contact-response</code></td>
+</tr>
+<tr>
+<td><code>camera-world-occlusion-adapter-kit</code></td>
+<td><code>nexusengine/domains/presentation/adapters/camera-world-occlusion</code></td>
+<td><code>camera:third-person-descriptor</code>, <code>world:terrain-sampling</code>, <code>physics:query</code></td>
+<td><code>camera:world-occlusion-response</code></td>
+</tr>
+<tr>
+<td><code>vehicle-water-response-adapter-kit</code></td>
+<td><code>nexusengine/domains/simulation/adapters/vehicle-water-response</code></td>
+<td><code>motion:vehicle-dynamics</code>, <code>world:water-query</code></td>
+<td><code>motion:vehicle-water-response</code></td>
+</tr>
+<tr>
+<td><code>lifecycle-economy-adapter-kit</code></td>
+<td><code>nexusengine/domains/simulation/adapters/lifecycle-economy</code></td>
+<td><code>progression:lifecycle</code>, <code>economy:transaction</code></td>
+<td><code>progression:lifecycle-economy-adapter</code></td>
+</tr>
+<tr>
+<td><code>lifecycle-facility-adapter-kit</code></td>
+<td><code>nexusengine/domains/simulation/adapters/lifecycle-facility</code></td>
+<td><code>progression:lifecycle</code>, <code>operations:facility</code></td>
+<td><code>progression:lifecycle-facility-adapter</code></td>
+</tr>
+<tr>
+<td><code>facility-economy-adapter-kit</code></td>
+<td><code>nexusengine/domains/simulation/adapters/facility-economy</code></td>
+<td><code>operations:facility</code>, <code>economy:transaction</code></td>
+<td><code>operations:facility-economy-adapter</code></td>
+</tr>
+<tr>
+<td><code>occupant-request-adapter-kit</code></td>
+<td><code>nexusengine/domains/interaction/adapters/occupant-request</code></td>
+<td><code>operations:occupant-flow</code>, <code>interaction:request-queue</code></td>
+<td><code>interaction:occupant-request-adapter</code></td>
+</tr>
+<tr>
+<td><code>transport-request-adapter-kit</code></td>
+<td><code>nexusengine/domains/interaction/adapters/transport-request</code></td>
+<td><code>operations:transport-route</code>, <code>interaction:request-queue</code></td>
+<td><code>interaction:transport-request-adapter</code></td>
+</tr>
+<tr>
+<td><code>request-economy-adapter-kit</code></td>
+<td><code>nexusengine/domains/interaction/adapters/request-economy</code></td>
+<td><code>interaction:request-queue</code>, <code>economy:transaction</code></td>
+<td><code>interaction:request-economy-adapter</code></td>
+</tr>
+</tbody></table>
+<h2>Generated Recipes</h2>
+<ul>
+<li><code>procedural-navigation</code></li>
+<li><code>terrain-character-traversal</code></li>
+<li><code>management-operations</code></li>
+<li><code>vehicle-rescue-logistics</code></li>
+<li><code>spatial-guidance</code></li>
+<li><code>hazard-pursuit</code></li>
+</ul>
+<h2>Physics Name Warning</h2>
+<p>The historical <code>createPhysicsKit</code> from <code>src/world-physics-kit.js</code> and the current provider-neutral <code>createPhysicsKit</code> are not equivalent. Replace historical world behavior with <code>createWorldContactKit</code> plus <code>createSoftRespawnKit</code>; use the current <code>createPhysicsKit</code> only for Physics contracts and providers.</p>
+
+    </article>
+
     <article class="chapter" id="root-migration-map">
       <div class="chapter-kicker">Generated reference</div>
       <h1>NexusEngine 0.0.4 Root Module Dispositions</h1>
 <p>Source commit: <code>a9adca5b3620f996f00860358c4864dd4bdfa6d9</code></p>
-<p>This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuild them from the named Core atoms in the owning package or game.</p>
+<p>This is a hard cutover. Removed modules are not forwarded. Sources marked core-restored now use manifest-owned semantic subpaths; all other rows name their external owner or replacement.</p>
 <h2>Removed Exports From Retained Modules</h2>
 <table>
 <thead>
@@ -8086,27 +9249,27 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/action-movement-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:interaction:input</code>, <code>n:simulation:motion</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:motion:locomotion</td>
+<td><code>action-locomotion-kit</code></td>
 </tr>
 <tr>
 <td><code>src/assistance-target-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:interaction</code>, <code>n:object</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:interaction:assistance-target</td>
+<td><code>assistance-target-kit</code></td>
 </tr>
 <tr>
 <td><code>src/cargo-manifest-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:object</code>, <code>n:runtime:data</code>, <code>n:runtime:transaction</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:economy:cargo</td>
+<td><code>cargo-manifest-kit</code></td>
 </tr>
 <tr>
 <td><code>src/character-camera-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor:character</code>, <code>n:presentation:camera</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:presentation:camera:third-person</td>
+<td><code>third-person-camera-kit</code></td>
 </tr>
 <tr>
 <td><code>src/common-game-definitions.js</code></td>
@@ -8158,21 +9321,21 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/economy-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:runtime:data</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:economy:accounts</td>
+<td><code>economy-account-kit</code></td>
 </tr>
 <tr>
 <td><code>src/environmental-affordance-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:interaction</code>, <code>n:object</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:interaction:environmental-affordance</td>
+<td><code>environmental-affordance-kit</code></td>
 </tr>
 <tr>
 <td><code>src/facility-operations-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:runtime:sequence</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:operations:facility</td>
+<td><code>facility-operations-kit</code></td>
 </tr>
 <tr>
 <td><code>src/game-kit-composer.js</code></td>
@@ -8182,9 +9345,9 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/hazard-field-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:object</code>, <code>n:simulation</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:hazard-field</td>
+<td><code>hazard-field-kit</code></td>
 </tr>
 <tr>
 <td><code>src/host.js</code></td>
@@ -8212,15 +9375,15 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/landmark-guidance-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:object</code>, <code>n:spatial</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:navigation:landmark-guidance</td>
+<td><code>landmark-guidance-kit</code></td>
 </tr>
 <tr>
 <td><code>src/lifecycle-progression-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:runtime:sequence</code>, <code>n:runtime:transaction</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:progression:lifecycle</td>
+<td><code>lifecycle-progression-kit</code></td>
 </tr>
 <tr>
 <td><code>src/modules/nexus-diffusion/index.js</code></td>
@@ -8296,27 +9459,27 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/navmesh-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:compute</code>, <code>n:spatial</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:navigation:navmesh</td>
+<td><code>navmesh-kit</code></td>
 </tr>
 <tr>
 <td><code>src/occupant-flow-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:operations:occupant-flow</td>
+<td><code>occupant-flow-kit</code></td>
 </tr>
 <tr>
 <td><code>src/pathfinding-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:compute</code>, <code>n:spatial</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:navigation:pathfinding</td>
+<td><code>pathfinding-kit</code></td>
 </tr>
 <tr>
 <td><code>src/procedural-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:compute</code>, <code>n:runtime:data</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:generation</td>
+<td><code>procedural-generation-kit</code></td>
 </tr>
 <tr>
 <td><code>src/procedural-navigation-extensions.js</code></td>
@@ -8326,9 +9489,9 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/pursuit-pressure-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:simulation</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:pursuit-pressure</td>
+<td><code>pursuit-pressure-kit</code></td>
 </tr>
 <tr>
 <td><code>src/renderers.js</code></td>
@@ -8356,21 +9519,21 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/request-fulfillment-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:interaction</code>, <code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:interaction:request:fulfillment</td>
+<td><code>request-fulfillment-kit</code></td>
 </tr>
 <tr>
 <td><code>src/request-queue-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:runtime:transaction</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:interaction:request:queue</td>
+<td><code>request-queue-kit</code></td>
 </tr>
 <tr>
 <td><code>src/route-field-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:object</code>, <code>n:spatial</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:navigation:route-field</td>
+<td><code>route-field-kit</code></td>
 </tr>
 <tr>
 <td><code>src/scenario-driver-kit.js</code></td>
@@ -8386,9 +9549,9 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/schedule-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:runtime:sequence</code>, <code>n:simulation</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:runtime:sequence:schedule</td>
+<td><code>schedule-kit</code></td>
 </tr>
 <tr>
 <td><code>src/shaders.js</code></td>
@@ -8398,45 +9561,45 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/spatial-scale-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:object</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:spatial:scale</td>
+<td><code>spatial-scale-kit</code></td>
 </tr>
 <tr>
 <td><code>src/terrain-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:compute</code>, <code>n:world</code>, <code>n:world:scene</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:terrain</td>
+<td><code>terrain-kit</code></td>
 </tr>
 <tr>
 <td><code>src/transfer-zone-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:interaction</code>, <code>n:object</code>, <code>n:spatial</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:interaction:transfer-zone</td>
+<td><code>transfer-zone-kit</code></td>
 </tr>
 <tr>
 <td><code>src/transport-route-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:actor</code>, <code>n:runtime:sequence</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:operations:transport-route</td>
+<td><code>transport-route-kit</code></td>
 </tr>
 <tr>
 <td><code>src/vehicle-dynamics-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:interaction:input</code>, <code>n:simulation:motion</code>, <code>n:simulation:physics</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:motion:vehicle</td>
+<td><code>vehicle-dynamics-kit</code></td>
 </tr>
 <tr>
 <td><code>src/water-surface-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:presentation:graphics</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:world:water-surface</td>
+<td><code>water-surface-kit</code></td>
 </tr>
 <tr>
 <td><code>src/world-physics-kit.js</code></td>
-<td>external-kit</td>
-<td>NexusEngine-Kits</td>
-<td><code>n:simulation:motion</code>, <code>n:simulation:physics</code>, <code>n:world</code></td>
+<td>core-restored</td>
+<td>NexusEngine manifests: n:simulation:physics:world-contact, n:simulation:recovery:soft-respawn</td>
+<td><code>world-contact-kit</code>, <code>soft-respawn-kit</code></td>
 </tr>
 <tr>
 <td><code>tools/headless-editor/</code></td>

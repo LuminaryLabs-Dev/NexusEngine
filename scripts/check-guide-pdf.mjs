@@ -40,6 +40,7 @@ for (const heading of [
   "Start Here",
   "MCP Agent Workflow",
   "ProtoKit Extraction",
+  "Generated Restored Behavior Migration",
   "Generated Atomic API Reference",
   "Generated Ownership Ledger"
 ]) {

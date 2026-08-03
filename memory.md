@@ -70,6 +70,21 @@ The catalog, package exports, ownership ledger, API reference, guide indexes,
 MCP records, and release manifest are generated from Domain manifests. No
 hardcoded Core Kit catalog or transitional source tree remains.
 
+## Restored Behavior Decision
+
+- The reusable semantics from 26 historical source modules are Core again as
+  27 manifest-owned atoms. The historical World Physics module is split into
+  World Contact and Soft Respawn.
+- Nine optional adapter Kits own cross-Domain effects. Behavior atoms do not
+  import private siblings or auto-install dependencies.
+- Six Core recipes are composition data only. Authored presets, game rules,
+  content, and tuning remain outside Core.
+- Historical root exports and snapshots are not compatibility surfaces. The
+  machine-readable restoration ledger owns old-to-new import, state, event, and
+  configuration transformations.
+- The current provider-neutral `createPhysicsKit` is not the historical World
+  Physics behavior.
+
 ## Composition Contract
 
 Composition metadata never executes code. A host resolves exact approved

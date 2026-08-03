@@ -20,7 +20,20 @@ Use semantic paths such as `n:object`, `n:runtime:transaction`, and `n:presentat
 
 ## Removed Implementations
 
-Concrete hosts, renderers, shaders, platform storage, model mocks, speech engines, authored sky presets, gameplay systems, and complete games moved outside Core or became caller-owned data. The Root Migration Map appendix lists every retired source and its owner.
+Concrete hosts, renderers, shaders, platform storage, model mocks, speech
+engines, authored sky presets, genre rules, and complete games moved outside
+Core or became caller-owned data. Universal behavior from 26 removed modules is
+restored through 27 corrected semantic atoms. The Restored Behavior Migration
+appendix lists every old export, configuration change, snapshot change, event
+change, optional adapter, and proof.
+
+## Physics Name Collision
+
+The historical `createPhysicsKit` from `src/world-physics-kit.js` and the
+current provider-neutral `createPhysicsKit` do not provide the same behavior.
+Migrate the historical behavior to `createWorldContactKit` plus
+`createSoftRespawnKit`. Use the current factory only for Physics contracts and
+providers. There is no alias or legacy snapshot coercion between them.
 
 ## Consumer Migration Order
 
@@ -30,6 +43,10 @@ Concrete hosts, renderers, shaders, platform storage, model mocks, speech engine
 4. Move platform implementations into the host or an external Kit.
 5. Replace compatibility aliases with the owning Domain API.
 6. Run from a packed Engine artifact in a clean directory.
+
+Consumer changes are intentionally separate from the Engine-local restoration
+wave. A migration row marked `outside-restoration-wave` does not mean the Core
+replacement is missing; it means the consumer has not yet been changed.
 
 ## Changelog Contract
 

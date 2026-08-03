@@ -82,6 +82,8 @@ This repository owns:
 - renderer-agnostic descriptors
 - validation paths for promoted behavior
 - transport-neutral host, policy, MCP, and composition contracts
+- manifest-owned universal navigation, world, motion, economy, operations,
+  interaction, and progression atoms
 - the isolated `n:build` build-time domain, including concrete compilers,
   toolchains, target hosts, packaging, artifacts, and build proof
 
@@ -91,6 +93,14 @@ platform-specific exception: it never enters an application runtime graph, and
 runtime Domains cannot import it. Complete games and presets belong in
 experiment or game repositories. The retired ProtoKit workflow is not an
 implementation destination.
+
+The `0.0.4` restoration ledger is an active ownership contract. Its 26
+historical modules map to 27 corrected atoms, nine optional integration
+adapters, and six data recipes. Do not reintroduce old root exports, historical
+aliases, implicit adapter effects, or legacy snapshot coercion. Do not classify
+those exact universal restorations as external Kits unless a new ownership
+decision updates source, manifests, migration evidence, tests, and docs in the
+same change.
 
 ## Agent Work Loop
 

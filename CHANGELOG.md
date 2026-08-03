@@ -45,6 +45,13 @@
   the whole-project immutability fingerprint.
 - Web artifact diagnostics containing the exact plan, registry, dependency
   closure, Engine source, and linker identities.
+- Twenty-seven manifest-owned behavior atoms reconstructed from 26 removed
+  source modules across World, Spatial, Simulation, Interaction, Runtime, and
+  Presentation.
+- Nine independently installable cross-Domain adapter Kits and six declarative
+  recipes for the restored behavior graph.
+- A machine-readable restoration ledger with exact source checksums, historical
+  exports, corrected defects, semantic replacements, and proof references.
 
 ### Changed
 
@@ -61,6 +68,12 @@
   no project-generated state.
 - Hosted release workflows are read-only checks; obsolete workflows that
   generated commits directly on the default branch are removed.
+- Duplicate Kit installation now compares a generated SHA-256 fingerprint, and
+  Transaction replay now compares the complete request hash before returning
+  an original exactly-once receipt.
+- The historical overloaded World Physics behavior is split into World Contact
+  and Soft Respawn. The current provider-neutral `createPhysicsKit` remains a
+  separate Physics contract.
 
 ### Removed
 
@@ -69,7 +82,10 @@
   compatibility forwarding exports.
 - Concrete Headless Editor, browser/native host, renderer, speech provider,
   model mock, and authored sky preset implementations from Core.
-- Optional gameplay, complete-game behavior, and the active ProtoKit workflow.
+- Genre-specific gameplay, authored presets, complete-game behavior, and the
+  active ProtoKit workflow. Their universal primitives may exist as explicit
+  semantic atoms, but no game-shaped defaults or compatibility aliases return.
 
 See the [0.0.4 migration guide](docs/migrations/0.0.4-domain-cutover.md) and
-[Build Domain migration](docs/migrations/0.0.4-build-domain.md).
+[restored behavior migration](docs/migrations/0.0.4-restored-behaviors.md), plus
+the [Build Domain migration](docs/migrations/0.0.4-build-domain.md).

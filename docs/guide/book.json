@@ -23,7 +23,8 @@
     { "id": "dependency-table", "title": "Generated Dependency Table", "source": "docs/guide/generated/dependency-table.md", "googleDocTab": "B Dependencies", "generated": true },
     { "id": "api-reference", "title": "Generated Atomic API Reference", "source": "docs/generated/API-REFERENCE.md", "googleDocTab": "C API Reference", "generated": true },
     { "id": "ownership-ledger", "title": "Generated Ownership Ledger", "source": "docs/KIT-OWNERSHIP.md", "googleDocTab": "D Ownership", "generated": true },
-    { "id": "root-migration-map", "title": "Generated Root Migration Map", "source": "docs/migrations/0.0.4-root-module-dispositions.md", "googleDocTab": "E Migration Map", "generated": true },
-    { "id": "extraction-summary", "title": "Generated ProtoKit Extraction Summary", "source": "docs/protokit-extraction/README.md", "googleDocTab": "F Extraction Summary", "generated": true }
+    { "id": "restored-behavior-migration", "title": "Generated Restored Behavior Migration", "source": "docs/migrations/0.0.4-restored-behaviors.md", "googleDocTab": "E Restored Behaviors", "generated": true },
+    { "id": "root-migration-map", "title": "Generated Root Migration Map", "source": "docs/migrations/0.0.4-root-module-dispositions.md", "googleDocTab": "F Migration Map", "generated": true },
+    { "id": "extraction-summary", "title": "Generated ProtoKit Extraction Summary", "source": "docs/protokit-extraction/README.md", "googleDocTab": "G Extraction Summary", "generated": true }
   ]
 }

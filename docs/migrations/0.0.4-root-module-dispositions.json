@@ -9,7 +9,8 @@
     "core-reuse": 0,
     "core-composition": 0,
     "core-new-atom": 0,
-    "external-kit": 55,
+    "core-restored": 26,
+    "external-kit": 29,
     "recipe-data": 2,
     "game-owned": 2,
     "duplicate": 2,
@@ -81,17 +82,41 @@
     },
     {
       "sourcePath": "src/action-movement-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:motion:locomotion",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:interaction:input",
-        "n:simulation:motion"
+        "action-locomotion-kit"
       ],
-      "reconstructionRecipe": "Compose actor state, normalized input, and Motion atoms with a product movement policy.",
-      "semanticBehavior": "Character and action movement policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.actionLocomotion.step({ operationId: \"movement:1\", delta: 1 / 60, input })",
+      "semanticBehavior": "Restored by action-locomotion-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "bdf54ee25fb3e8d8cc623a80d16cd3575844e89f2d9210ede0dfc96a2fcf978d",
+        "lineage": [
+          "I",
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "action-locomotion-kit",
+            "domainPath": "n:simulation:motion:locomotion",
+            "packageSubpath": "nexusengine/domains/simulation/motion/locomotion",
+            "factory": "createActionLocomotionKit",
+            "engineApi": "engine.n.actionLocomotion",
+            "sourceModule": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "locomotion-contact-response-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createActionMovementKit",
@@ -101,18 +126,37 @@
     },
     {
       "sourcePath": "src/assistance-target-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:interaction:assistance-target",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:interaction",
-        "n:object",
-        "n:simulation"
+        "assistance-target-kit"
       ],
-      "reconstructionRecipe": "Compose actor, interaction, object registry, and simulation state with assistance-target rules.",
-      "semanticBehavior": "Assist, attach, stabilize, and complete target behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.assistanceTargets.complete({ operationId: \"assist:complete:1\", targetId })",
+      "semanticBehavior": "Restored by assistance-target-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "15f8e2e4972126bc8b254cf323cfbfdb8ef658b63edb853c776d6af314fdb04e",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "assistance-target-kit",
+            "domainPath": "n:interaction:assistance-target",
+            "packageSubpath": "nexusengine/domains/interaction/assistance-target",
+            "factory": "createAssistanceTargetKit",
+            "engineApi": "engine.n.assistanceTargets",
+            "sourceModule": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "AssistanceTargetAttached",
@@ -125,18 +169,37 @@
     },
     {
       "sourcePath": "src/cargo-manifest-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:economy:cargo",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:object",
-        "n:runtime:data",
-        "n:runtime:transaction"
+        "cargo-manifest-kit"
       ],
-      "reconstructionRecipe": "Store cargo descriptors in Data and commit pickup/deposit changes through Transaction.",
-      "semanticBehavior": "Cargo pickup, condition, deposit, and quota policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.cargoManifest.pickUp({ operationId: \"cargo:pickup:1\", itemId, carrierId })",
+      "semanticBehavior": "Restored by cargo-manifest-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "96bc115eb1e25cc89a8280b6e9c6cf1be08c69666185783a58d348eb813957e3",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "cargo-manifest-kit",
+            "domainPath": "n:simulation:economy:cargo",
+            "packageSubpath": "nexusengine/domains/simulation/economy/cargo",
+            "factory": "createCargoManifestKit",
+            "engineApi": "engine.n.cargoManifest",
+            "sourceModule": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "CargoConditionChanged",
@@ -151,17 +214,41 @@
     },
     {
       "sourcePath": "src/character-camera-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:presentation:camera:third-person",
       "requiredCoreAtoms": [
-        "n:actor:character",
-        "n:presentation:camera",
-        "n:spatial"
+        "third-person-camera-kit"
       ],
-      "reconstructionRecipe": "Combine character pose, Spatial math, and Camera descriptors with an external host adapter.",
-      "semanticBehavior": "Authored third-person camera behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.thirdPersonCamera.describe({ operationId: \"camera:1\", delta: 1 / 60 })",
+      "semanticBehavior": "Restored by third-person-camera-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "15ef74380bbb6b1d575b1ca6d7a2c486f7dbfe7944903cdd7e95d1d35e6f2891",
+        "lineage": [
+          "I",
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "third-person-camera-kit",
+            "domainPath": "n:presentation:camera:third-person",
+            "packageSubpath": "nexusengine/domains/presentation/camera/third-person",
+            "factory": "createThirdPersonCameraKit",
+            "engineApi": "engine.n.thirdPersonCamera",
+            "sourceModule": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "camera-world-occlusion-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createCameraKit",
@@ -320,17 +407,37 @@
     },
     {
       "sourcePath": "src/economy-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:economy:accounts",
       "requiredCoreAtoms": [
-        "n:runtime:data",
-        "n:runtime:transaction",
-        "n:simulation"
+        "economy-account-kit"
       ],
-      "reconstructionRecipe": "Represent balances in Data and apply policy-specific transfers through Transaction receipts.",
-      "semanticBehavior": "Balances, costs, rewards, and economy transaction policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.economy.transact({ operationId: \"economy:1\", account: \"cash\", amount: 10 })",
+      "semanticBehavior": "Restored by economy-account-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "c503e016dee6bda434349c2231080c735744ca478c5a199be9f6316fd7c4fc7a",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "economy-account-kit",
+            "domainPath": "n:simulation:economy:accounts",
+            "packageSubpath": "nexusengine/domains/simulation/economy/accounts",
+            "factory": "createEconomyAccountKit",
+            "engineApi": "engine.n.economy",
+            "sourceModule": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "EconomyState",
@@ -342,17 +449,37 @@
     },
     {
       "sourcePath": "src/environmental-affordance-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:interaction:environmental-affordance",
       "requiredCoreAtoms": [
-        "n:interaction",
-        "n:object",
-        "n:spatial"
+        "environmental-affordance-kit"
       ],
-      "reconstructionRecipe": "Attach affordance descriptors to objects and resolve product interaction policy outside Core.",
-      "semanticBehavior": "Environmental affordance activation and completion.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.environmentalAffordances.activate({ operationId: \"affordance:1\", affordanceId })",
+      "semanticBehavior": "Restored by environmental-affordance-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "4f2e25cce64efff5b250cae303e568f1e90b0e8eb821fbf3f9701d3e16745a2c",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "environmental-affordance-kit",
+            "domainPath": "n:interaction:environmental-affordance",
+            "packageSubpath": "nexusengine/domains/interaction/environmental-affordance",
+            "factory": "createEnvironmentalAffordanceKit",
+            "engineApi": "engine.n.environmentalAffordances",
+            "sourceModule": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "AffordanceActivated",
@@ -365,17 +492,40 @@
     },
     {
       "sourcePath": "src/facility-operations-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:operations:facility",
       "requiredCoreAtoms": [
-        "n:runtime:sequence",
-        "n:runtime:transaction",
-        "n:simulation"
+        "facility-operations-kit"
       ],
-      "reconstructionRecipe": "Compose Sequence, Transaction, and Simulation atoms with facility recipes.",
-      "semanticBehavior": "Facility production and condition policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.facilityOperations.advance({ operationId: \"facility:step:1\", delta: 1 })",
+      "semanticBehavior": "Restored by facility-operations-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "f2e287cea085c259825c7321c70784c26f9f7a8084e74ed6bdc00bd99e419712",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "facility-operations-kit",
+            "domainPath": "n:simulation:operations:facility",
+            "packageSubpath": "nexusengine/domains/simulation/operations/facility",
+            "factory": "createFacilityOperationsKit",
+            "engineApi": "engine.n.facilityOperations",
+            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "facility-economy-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "FacilityConditionChanged",
@@ -404,17 +554,37 @@
     },
     {
       "sourcePath": "src/hazard-field-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:hazard-field",
       "requiredCoreAtoms": [
-        "n:object",
-        "n:simulation",
-        "n:spatial"
+        "hazard-field-kit"
       ],
-      "reconstructionRecipe": "Combine object descriptors, Spatial queries, and Simulation state with hazard rules.",
-      "semanticBehavior": "Spawned hazard fields and collision policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.hazardField.advance({ operationId: \"hazard:step:1\", delta: 1 / 60 })",
+      "semanticBehavior": "Restored by hazard-field-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "555f7b16007f8adb7fc1e58c6143524e9f8ff37f18c0ca7bfa087921d77e0895",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "hazard-field-kit",
+            "domainPath": "n:simulation:hazard-field",
+            "packageSubpath": "nexusengine/domains/simulation/hazard-field",
+            "factory": "createHazardFieldKit",
+            "engineApi": "engine.n.hazardField",
+            "sourceModule": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "HazardFieldCollision",
@@ -500,17 +670,37 @@
     },
     {
       "sourcePath": "src/landmark-guidance-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:navigation:landmark-guidance",
       "requiredCoreAtoms": [
-        "n:object",
-        "n:spatial",
-        "n:world"
+        "landmark-guidance-kit"
       ],
-      "reconstructionRecipe": "Store landmark descriptors in Object/World and apply guidance policy in an optional Kit.",
-      "semanticBehavior": "Landmark discovery, activation, and guidance.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.landmarkGuidance.reach({ operationId: \"landmark:reach:1\", landmarkId })",
+      "semanticBehavior": "Restored by landmark-guidance-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "2233a9b147af597c62472152736a133c797b6ca554fdba0c5f8d43760f06894b",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "landmark-guidance-kit",
+            "domainPath": "n:world:navigation:landmark-guidance",
+            "packageSubpath": "nexusengine/domains/world/navigation/landmark-guidance",
+            "factory": "createLandmarkGuidanceKit",
+            "engineApi": "engine.n.landmarkGuidance",
+            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "LandmarkActivated",
@@ -523,17 +713,41 @@
     },
     {
       "sourcePath": "src/lifecycle-progression-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:progression:lifecycle",
       "requiredCoreAtoms": [
-        "n:runtime:sequence",
-        "n:runtime:transaction",
-        "n:simulation"
+        "lifecycle-progression-kit"
       ],
-      "reconstructionRecipe": "Represent steps as Sequence data and commit progression through deterministic Simulation/Transaction receipts.",
-      "semanticBehavior": "Product progression stages and rewards.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.lifecycleProgression.start({ operationId: \"lifecycle:start:1\", itemId })",
+      "semanticBehavior": "Restored by lifecycle-progression-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "8e42b8135cb5d18351d7bc5589d94cfd84e248bdd9223bd0d4e609d2cfdb6da8",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "lifecycle-progression-kit",
+            "domainPath": "n:simulation:progression:lifecycle",
+            "packageSubpath": "nexusengine/domains/simulation/progression/lifecycle",
+            "factory": "createLifecycleProgressionKit",
+            "engineApi": "engine.n.lifecycleProgression",
+            "sourceModule": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "lifecycle-economy-adapter-kit",
+          "lifecycle-facility-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "LifecycleProgressionCompleted",
@@ -797,17 +1011,37 @@
     },
     {
       "sourcePath": "src/navmesh-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:navigation:navmesh",
       "requiredCoreAtoms": [
-        "n:compute",
-        "n:spatial",
-        "n:world"
+        "navmesh-kit"
       ],
-      "reconstructionRecipe": "Build navigation mesh data through an optional Compute provider over Spatial and World descriptors.",
-      "semanticBehavior": "Navigation mesh generation and graph policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.navmesh.build({ operationId: \"navmesh:build:1\", walkability })",
+      "semanticBehavior": "Restored by navmesh-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "6b655c26562901c360c9152a01b22e0adc8d20352e900f8bcab301b9c856de3a",
+        "lineage": [
+          "N",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "navmesh-kit",
+            "domainPath": "n:world:navigation:navmesh",
+            "packageSubpath": "nexusengine/domains/world/navigation/navmesh",
+            "factory": "createNavMeshKit",
+            "engineApi": "engine.n.navmesh",
+            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "create3DNavigationGraph",
@@ -817,17 +1051,40 @@
     },
     {
       "sourcePath": "src/occupant-flow-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:operations:occupant-flow",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:runtime:sequence",
-        "n:simulation"
+        "occupant-flow-kit"
       ],
-      "reconstructionRecipe": "Compose Actor registry, Sequence, and Simulation state with occupant-flow policy.",
-      "semanticBehavior": "Spawn, need, service, and abandonment behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.occupantFlow.advance({ operationId: \"occupants:step:1\", delta: 1 })",
+      "semanticBehavior": "Restored by occupant-flow-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "c07eb5bc1d6e862b4462324cbf707f442da08afd86c9ca87af1e0f2b19077d29",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "occupant-flow-kit",
+            "domainPath": "n:simulation:operations:occupant-flow",
+            "packageSubpath": "nexusengine/domains/simulation/operations/occupant-flow",
+            "factory": "createOccupantFlowKit",
+            "engineApi": "engine.n.occupantFlow",
+            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "occupant-request-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "OccupantAbandoned",
@@ -840,17 +1097,37 @@
     },
     {
       "sourcePath": "src/pathfinding-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:navigation:pathfinding",
       "requiredCoreAtoms": [
-        "n:compute",
-        "n:spatial",
-        "n:world"
+        "pathfinding-kit"
       ],
-      "reconstructionRecipe": "Resolve path queries through an optional provider selected by a Kit; Core retains only neutral graph/compute contracts.",
-      "semanticBehavior": "A-star and navigation query implementation.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.pathfinding.findPath({ operationId: \"path:1\", start, goal })",
+      "semanticBehavior": "Restored by pathfinding-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "54fcc95c2e9a2dd8afdcf44629627de7b712de6f558608a948b7cb00e5d37b7b",
+        "lineage": [
+          "N",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "pathfinding-kit",
+            "domainPath": "n:world:navigation:pathfinding",
+            "packageSubpath": "nexusengine/domains/world/navigation/pathfinding",
+            "factory": "createPathfindingKit",
+            "engineApi": "engine.n.pathfinding",
+            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createAStarPathfinder",
@@ -862,17 +1139,37 @@
     },
     {
       "sourcePath": "src/procedural-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:generation",
       "requiredCoreAtoms": [
-        "n:compute",
-        "n:runtime:data",
-        "n:world"
+        "procedural-generation-kit"
       ],
-      "reconstructionRecipe": "Use deterministic Compute providers and recipe data; keep authored generation policy in optional Kits.",
-      "semanticBehavior": "Procedural generation algorithms and product query facade.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.proceduralGeneration.generate({ operationId: \"generation:1\" })",
+      "semanticBehavior": "Restored by procedural-generation-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "26a313962334fe915b21d079d0f93a4c99962cbf19bcc7d90a94ca506d312962",
+        "lineage": [
+          "N",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "procedural-generation-kit",
+            "domainPath": "n:world:generation",
+            "packageSubpath": "nexusengine/domains/world/generation",
+            "factory": "createProceduralGenerationKit",
+            "engineApi": "engine.n.proceduralGeneration",
+            "sourceModule": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createProceduralKit",
@@ -899,17 +1196,37 @@
     },
     {
       "sourcePath": "src/pursuit-pressure-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:pursuit-pressure",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:simulation",
-        "n:spatial"
+        "pursuit-pressure-kit"
       ],
-      "reconstructionRecipe": "Combine actor distance observations with Simulation pressure channels and product pursuit thresholds.",
-      "semanticBehavior": "Pursuit pressure and caught/recovery policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.pursuitPressure.setDistance({ operationId: \"pursuit:1\", distance })",
+      "semanticBehavior": "Restored by pursuit-pressure-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "3925ee176302ba2936cd2fd767e760b8dcc52bc7f661b4f6ee356876ea669915",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "pursuit-pressure-kit",
+            "domainPath": "n:simulation:pursuit-pressure",
+            "packageSubpath": "nexusengine/domains/simulation/pursuit-pressure",
+            "factory": "createPursuitPressureKit",
+            "engineApi": "engine.n.pursuitPressure",
+            "sourceModule": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "PursuitPressureCaught",
@@ -995,17 +1312,37 @@
     },
     {
       "sourcePath": "src/request-fulfillment-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:interaction:request:fulfillment",
       "requiredCoreAtoms": [
-        "n:interaction",
-        "n:runtime:sequence",
-        "n:simulation"
+        "request-fulfillment-kit"
       ],
-      "reconstructionRecipe": "Model requests as recipe data and resolve them with Sequence and Simulation atoms.",
-      "semanticBehavior": "Request creation, expiration, proximity, and fulfillment policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.requestFulfillment.complete({ operationId: \"request:complete:1\", requestId })",
+      "semanticBehavior": "Restored by request-fulfillment-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "d491b00e3c4e6f3b0762bea676340ba12e1a1ce30ef9beaace0c6dc6f610f0b8",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "request-fulfillment-kit",
+            "domainPath": "n:interaction:request:fulfillment",
+            "packageSubpath": "nexusengine/domains/interaction/request/fulfillment",
+            "factory": "createRequestFulfillmentKit",
+            "engineApi": "engine.n.requestFulfillment",
+            "sourceModule": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "RequestFulfillmentCompleted",
@@ -1018,17 +1355,40 @@
     },
     {
       "sourcePath": "src/request-queue-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:interaction:request:queue",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:runtime:sequence",
-        "n:runtime:transaction"
+        "request-queue-kit"
       ],
-      "reconstructionRecipe": "Store queue descriptors in Data and coordinate product-specific fulfillment through Sequence/Transaction.",
-      "semanticBehavior": "Queued service requests and cross-feature event bindings.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.requestQueue.add({ operationId: \"request:add:1\", request })",
+      "semanticBehavior": "Restored by request-queue-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "4f4471547e57c848054f18a81fdd296472a74171703961c44c90a80e37aa5fc3",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "request-queue-kit",
+            "domainPath": "n:interaction:request:queue",
+            "packageSubpath": "nexusengine/domains/interaction/request/queue",
+            "factory": "createRequestQueueKit",
+            "engineApi": "engine.n.requestQueue",
+            "sourceModule": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "request-economy-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "RequestQueueAdd",
@@ -1041,17 +1401,37 @@
     },
     {
       "sourcePath": "src/route-field-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:navigation:route-field",
       "requiredCoreAtoms": [
-        "n:object",
-        "n:spatial",
-        "n:world"
+        "route-field-kit"
       ],
-      "reconstructionRecipe": "Represent route markers as World/Object data and expose optional spatial route queries.",
-      "semanticBehavior": "Route marker field and nearest-marker queries.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.routeField.nearest(point, { filter })",
+      "semanticBehavior": "Restored by route-field-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "fcbbf44196b5f8dc1ab3b705f84ee0fe20d1b80ec6b02533da6c3a47e49a571a",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "route-field-kit",
+            "domainPath": "n:world:navigation:route-field",
+            "packageSubpath": "nexusengine/domains/world/navigation/route-field",
+            "factory": "createRouteFieldKit",
+            "engineApi": "engine.n.routeField",
+            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "RouteFieldState",
@@ -1100,16 +1480,37 @@
     },
     {
       "sourcePath": "src/schedule-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:runtime:sequence:schedule",
       "requiredCoreAtoms": [
-        "n:runtime:sequence",
-        "n:simulation"
+        "schedule-kit"
       ],
-      "reconstructionRecipe": "Build schedule policy over generic sequence and simulation clocks.",
-      "semanticBehavior": "Cyclic product schedule behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.schedule.advance({ operationId: \"schedule:step:1\", delta })",
+      "semanticBehavior": "Restored by schedule-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "5f5b0c2af888fa1db633627ce04bcf5d742357f9a4e693fc9ac644d8d7058dbc",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "schedule-kit",
+            "domainPath": "n:runtime:sequence:schedule",
+            "packageSubpath": "nexusengine/domains/runtime/sequence/schedule",
+            "factory": "createScheduleKit",
+            "engineApi": "engine.n.schedule",
+            "sourceModule": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "ScheduleCycle",
@@ -1137,16 +1538,37 @@
     },
     {
       "sourcePath": "src/spatial-scale-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:spatial:scale",
       "requiredCoreAtoms": [
-        "n:object",
-        "n:spatial"
+        "spatial-scale-kit"
       ],
-      "reconstructionRecipe": "Represent scale anchors as Object data and evaluate authored scale bands in an optional Kit.",
-      "semanticBehavior": "Authored spatial scale bands and anchor behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.spatialScale.update({ operationId: \"scale:1\", subject: point })",
+      "semanticBehavior": "Restored by spatial-scale-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "34dd18654c89f523e211beddc00438ed5e1e7cbca52be81c1c0f19365b8c602c",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "spatial-scale-kit",
+            "domainPath": "n:spatial:scale",
+            "packageSubpath": "nexusengine/domains/spatial/scale",
+            "factory": "createSpatialScaleKit",
+            "engineApi": "engine.n.spatialScale",
+            "sourceModule": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/spatial/tests/spatial-scale-restoration.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "SpatialScaleAnchorEntered",
@@ -1158,17 +1580,42 @@
     },
     {
       "sourcePath": "src/terrain-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:terrain",
       "requiredCoreAtoms": [
-        "n:compute",
-        "n:world",
-        "n:world:scene"
+        "terrain-kit"
       ],
-      "reconstructionRecipe": "Resolve terrain generation through a trusted Compute/World provider and keep authored layer policy external.",
-      "semanticBehavior": "Terrain algorithms, layers, and query facade.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.terrain.sample({ operationId: \"terrain:sample:1\", points })",
+      "semanticBehavior": "Restored by terrain-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "cf81275942d6e019a31b0a060f162f67eeadc3e424d88f78d87eb4578c4106b5",
+        "lineage": [
+          "I",
+          "K",
+          "T",
+          "R",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "terrain-kit",
+            "domainPath": "n:world:terrain",
+            "packageSubpath": "nexusengine/domains/world/terrain",
+            "factory": "createTerrainKit",
+            "engineApi": "engine.n.terrain",
+            "sourceModule": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "camera-world-occlusion-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createTerrainKit",
@@ -1178,17 +1625,37 @@
     },
     {
       "sourcePath": "src/transfer-zone-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:interaction:transfer-zone",
       "requiredCoreAtoms": [
-        "n:interaction",
-        "n:object",
-        "n:spatial"
+        "transfer-zone-kit"
       ],
-      "reconstructionRecipe": "Attach transfer-zone descriptors to objects and resolve transfer policy in an optional Kit.",
-      "semanticBehavior": "Zone membership and transfer completion policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.transferZones.transfer({ operationId: \"transfer:1\", zoneId, candidate })",
+      "semanticBehavior": "Restored by transfer-zone-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "b1fc29d1665490f3b68abe9380cedd405273e246a492cd546681e65f3d7de4c7",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "transfer-zone-kit",
+            "domainPath": "n:interaction:transfer-zone",
+            "packageSubpath": "nexusengine/domains/interaction/transfer-zone",
+            "factory": "createTransferZoneKit",
+            "engineApi": "engine.n.transferZones",
+            "sourceModule": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [],
+        "proofReferences": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "TransferZoneCompleted",
@@ -1198,17 +1665,40 @@
     },
     {
       "sourcePath": "src/transport-route-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:operations:transport-route",
       "requiredCoreAtoms": [
-        "n:actor",
-        "n:runtime:sequence",
-        "n:world"
+        "transport-route-kit"
       ],
-      "reconstructionRecipe": "Compose actor registry, World route data, and Sequence timing with transport policy.",
-      "semanticBehavior": "Transport call, travel, and arrival behavior.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.transportRoutes.advance({ operationId: \"transport:step:1\", delta })",
+      "semanticBehavior": "Restored by transport-route-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "a49cc513571ffdb9b9bf723507f8f7392108a222fdc52749e1771475468ee51b",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "transport-route-kit",
+            "domainPath": "n:simulation:operations:transport-route",
+            "packageSubpath": "nexusengine/domains/simulation/operations/transport-route",
+            "factory": "createTransportRouteKit",
+            "engineApi": "engine.n.transportRoutes",
+            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "transport-request-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "TransportRouteArrived",
@@ -1219,17 +1709,40 @@
     },
     {
       "sourcePath": "src/vehicle-dynamics-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:motion:vehicle",
       "requiredCoreAtoms": [
-        "n:interaction:input",
-        "n:simulation:motion",
-        "n:simulation:physics"
+        "vehicle-dynamics-kit"
       ],
-      "reconstructionRecipe": "Use Motion and Physics providers with normalized input; retain vehicle tuning externally.",
-      "semanticBehavior": "Authored vehicle dynamics and impact policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.vehicleDynamics.step({ operationId: \"vehicle:step:1\", delta: 1 / 60, input })",
+      "semanticBehavior": "Restored by vehicle-dynamics-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "07cd227201a85f0aa6a2ba202332ffac87e69a98e3b6893fb7f1b8cdc19db7e6",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "vehicle-dynamics-kit",
+            "domainPath": "n:simulation:motion:vehicle",
+            "packageSubpath": "nexusengine/domains/simulation/motion/vehicle",
+            "factory": "createVehicleDynamicsKit",
+            "engineApi": "engine.n.vehicleDynamics",
+            "sourceModule": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "vehicle-water-response-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "VehicleDynamicsInput",
@@ -1240,16 +1753,40 @@
     },
     {
       "sourcePath": "src/water-surface-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:world:water-surface",
       "requiredCoreAtoms": [
-        "n:presentation:graphics",
-        "n:world"
+        "water-surface-kit"
       ],
-      "reconstructionRecipe": "Keep neutral water surface descriptors in World/Presentation and authored evaluation policy external.",
-      "semanticBehavior": "Authored water surface state and queries.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.waterSurface.query(point)",
+      "semanticBehavior": "Restored by water-surface-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "d278cedbd3d1903148ec5fd3bd1b64b79972364890ece485260822bd266518bf",
+        "lineage": [
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "water-surface-kit",
+            "domainPath": "n:world:water-surface",
+            "packageSubpath": "nexusengine/domains/world/water-surface",
+            "factory": "createWaterSurfaceKit",
+            "engineApi": "engine.n.waterSurface",
+            "sourceModule": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "vehicle-water-response-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "WaterSurfaceState",
@@ -1259,17 +1796,50 @@
     },
     {
       "sourcePath": "src/world-physics-kit.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
+      "disposition": "core-restored",
+      "targetOwner": "NexusEngine manifests: n:simulation:physics:world-contact, n:simulation:recovery:soft-respawn",
       "requiredCoreAtoms": [
-        "n:simulation:motion",
-        "n:simulation:physics",
-        "n:world"
+        "world-contact-kit",
+        "soft-respawn-kit"
       ],
-      "reconstructionRecipe": "Resolve a Physics provider through composition and keep world-specific collision/tuning policy external.",
-      "semanticBehavior": "Legacy world physics implementation and policy.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
+      "reconstructionRecipe": "engine.n.worldContact.resolve({ operationId: \"contact:1\", body, sample }); engine.n.softRespawn.recover({ operationId: \"respawn:1\", subjectId, reason })",
+      "semanticBehavior": "Restored by world-contact-kit, soft-respawn-kit.",
+      "stateAndLifecycle": "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      "proofStatus": "implemented-and-proven",
+      "restoration": {
+        "sourceSha256": "ad6f7324b3e9ae4c2048198ada08458b5a5d25f320599cb0fe04ad89841fe84a",
+        "lineage": [
+          "I",
+          "K",
+          "S",
+          "X"
+        ],
+        "newAtoms": [
+          {
+            "kitId": "world-contact-kit",
+            "domainPath": "n:simulation:physics:world-contact",
+            "packageSubpath": "nexusengine/domains/simulation/physics/world-contact",
+            "factory": "createWorldContactKit",
+            "engineApi": "engine.n.worldContact",
+            "sourceModule": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js"
+          },
+          {
+            "kitId": "soft-respawn-kit",
+            "domainPath": "n:simulation:recovery:soft-respawn",
+            "packageSubpath": "nexusengine/domains/simulation/recovery/soft-respawn",
+            "factory": "createSoftRespawnKit",
+            "engineApi": "engine.n.softRespawn",
+            "sourceModule": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js"
+          }
+        ],
+        "requiredAdapters": [
+          "locomotion-contact-response-adapter-kit"
+        ],
+        "proofReferences": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ]
+      },
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "createPhysicsKit",

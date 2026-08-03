@@ -23,14 +23,27 @@ Generation fails when a public atom lacks source or proof. Compliance is never i
 | --- | --- |
 | Runtime | `n:runtime`, realtime, data, transaction, persistence, sequence, startup |
 | Composition | `n:composition`, `n:mcp`, `n:policy` |
-| World | `n:spatial`, `n:object`, `n:world`, scene, weather, asset |
-| Simulation | `n:simulation`, physics, motion, `n:compute`, model |
+| World | `n:spatial`, scale, `n:object`, `n:world`, navigation, generation, terrain, water, scene, weather, asset |
+| Simulation | `n:simulation`, physics, recovery, motion, economy, operations, hazard, pursuit, progression, `n:compute`, model |
 | Actors | `n:actor`, creature, character, player, `n:agent` |
 | Interaction | `n:interaction`, input |
 | Presentation | output, graphics, camera, animation, audio, UI, speech, capture, sky |
 | Infrastructure | `n:network`, `n:diagnostics`, contract-only `n:host` |
 
 The generated Domain Index appendix contains every active path.
+
+## Restored Behavior Shape
+
+Twenty-six historical source modules become 27 atomic behaviors because the
+old World Physics module mixed contact and recovery ownership. Those behaviors
+are now separate World Contact and Soft Respawn atoms. None of the historical
+root aliases return.
+
+The restoration ledger validates each historical source checksum, every old
+export, its corrected semantic owner, and its proof. A behavior with a
+game-adjacent name can remain Core only when its manifest describes a universal
+primitive without authored rules, presets, rendering ownership, or hidden
+cross-Domain effects.
 
 ## Atomicity Test
 

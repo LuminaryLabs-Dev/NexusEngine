@@ -6,12 +6,14 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const jsonPath = path.join(root, "docs", "migrations", "0.0.4-root-module-dispositions.json");
 const markdownPath = path.join(root, "docs", "migrations", "0.0.4-root-module-dispositions.md");
+const restorationLedgerPath = path.join(root, "docs", "migrations", "0.0.4-restored-behaviors.json");
 const ownershipPath = path.join(root, "docs", "KIT-OWNERSHIP.json");
 const sourceCommit = "a9adca5b3620f996f00860358c4864dd4bdfa6d9";
 const allowedDispositions = new Set([
   "core-reuse",
   "core-composition",
   "core-new-atom",
+  "core-restored",
   "external-kit",
   "recipe-data",
   "game-owned",
@@ -120,6 +122,8 @@ function applies(recordPath, sourcePath) {
 
 const ownership = await optionalJson(ownershipPath, { records: [] });
 const previous = await optionalJson(jsonPath, { records: [] });
+const restoration = await optionalJson(restorationLedgerPath, { records: [] });
+const restorationBySource = new Map(restoration.records.map((record) => [record.sourcePath, record]));
 const exportIndex = new Map([
   ...previous.records.map((record) => [record.sourcePath, record.publicExports ?? []]),
   ...ownership.records.map((record) => [record.path, record.publicExports ?? []])
@@ -137,11 +141,31 @@ for (const spec of records) {
   if (sourcePaths.length === 0 || !spec.sourcePath.endsWith("/")) sourcePaths.push(spec.sourcePath);
 
   for (const sourcePath of [...new Set(sourcePaths)].sort()) {
-    expanded.push({
+    const restored = restorationBySource.get(sourcePath);
+    const effective = restored ? {
       ...spec,
+      disposition: "core-restored",
+      targetOwner: `NexusEngine manifests: ${restored.newAtoms.map((atom) => atom.domainPath).join(", ")}`,
+      requiredCoreAtoms: restored.newAtoms.map((atom) => atom.kitId),
+      reconstructionRecipe: restored.newApiExample,
+      semanticBehavior: `Restored by ${restored.newAtoms.map((atom) => atom.kitId).join(", ")}.`,
+      stateAndLifecycle: "Manifest-owned JSON-portable state with validated snapshot/load/reset and exact-once operation receipts.",
+      proofStatus: restored.status,
+      restoration: {
+        sourceSha256: restored.sourceSha256,
+        lineage: restored.lineage,
+        newAtoms: restored.newAtoms,
+        requiredAdapters: restored.requiredAdapters,
+        proofReferences: restored.proofReferences
+      }
+    } : spec;
+    expanded.push({
+      ...effective,
       sourcePath,
       sourceCommit,
-      publicExports: [...(exportIndex.get(sourcePath) ?? [])].sort()
+      publicExports: [...(restored
+        ? [restored.old.factories, restored.old.helpers, restored.old.resources, restored.old.events].flat()
+        : (exportIndex.get(sourcePath) ?? []))].sort()
     });
   }
 }
@@ -152,6 +176,7 @@ for (const record of expanded) {
   assert.ok(allowedDispositions.has(record.disposition), `Invalid disposition for ${record.sourcePath}`);
   assert.ok(record.targetOwner && record.reconstructionRecipe && record.semanticBehavior, `Incomplete disposition for ${record.sourcePath}`);
 }
+assert.equal(expanded.filter((record) => record.disposition === "core-restored").length, restoration.counts?.historicalModules ?? 0, "Every restored behavior source must be core-restored exactly once.");
 
 const document = {
   schema: "nexusengine.root-module-dispositions/1",
@@ -167,7 +192,7 @@ const markdown = [
   "",
   `Source commit: \`${sourceCommit}\``,
   "",
-  "This is a hard cutover. Removed modules are not forwarded by NexusEngine. Rebuild them from the named Core atoms in the owning package or game.",
+  "This is a hard cutover. Removed modules are not forwarded. Sources marked core-restored now use manifest-owned semantic subpaths; all other rows name their external owner or replacement.",
   "",
   "## Removed Exports From Retained Modules",
   "",

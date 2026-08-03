@@ -6,6 +6,7 @@ const tests = [
   "scripts/check-core-boundaries.mjs",
   "scripts/check-active-docs.mjs",
   ["scripts/generate-kit-ownership-ledger.mjs", "--check"],
+  ["scripts/generate-restored-behavior-migrations.mjs", "--check"],
   ["scripts/generate-root-module-dispositions.mjs", "--check"],
   ["scripts/generate-protokit-extraction.mjs", "--check"],
   ["scripts/generate-public-test-surface.mjs", "--check"],
