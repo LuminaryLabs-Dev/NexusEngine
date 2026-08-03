@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2`
+Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -52,6 +52,7 @@ Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba
 - `n:presentation:speech`: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.
 - `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
 - `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
+- `n:presentation:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.
@@ -64,6 +65,11 @@ Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba
 - `n:simulation:physics:articulated`: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.
 - `n:simulation:motion`: Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.
 - `n:simulation:motion:articulated`: Own target poses, joint limits, articulation motion plans, and drive requests.
+- `n:simulation:motion:locomotion`: Own deterministic action-to-motion intent and locomotion frame calculation.
+- `n:simulation:motion:vehicle`: Own deterministic vehicle movement, boost, bounds, and impact frames.
+- `n:simulation:physics:world-contact`: Own portable world-contact resolution and correction records.
+- `n:simulation:recovery`: Own portable subject recovery records and deterministic recovery state.
+- `n:simulation:recovery:soft-respawn`: Own exact-once portable subject recovery records.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
 - `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.

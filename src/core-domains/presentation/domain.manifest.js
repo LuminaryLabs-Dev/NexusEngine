@@ -1,5 +1,7 @@
 import { defineCoreDomainManifest } from "../domain-manifest.js";
 import { atomicKit, domainNode, manifestShell } from "../manifest-input.js";
+import thirdPersonCamera from "./subdomains/camera/subdomains/third-person/subdomain.manifest.js";
+import thirdPersonCameraKit from "./subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js";
 
 const presentationProof = ["tests/core-kits/core-presentation-domain-smoke.mjs"];
 const graphicsProof = ["tests/core-domains/core-graphics-domain-smoke.mjs", "tests/core-kits/core-graphics-kit-smoke.mjs"];
@@ -34,7 +36,8 @@ export const presentationDomainManifest = defineCoreDomainManifest(manifestShell
     sub("presentation-ui-domain", "ui", "Presentation UI", "Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.", ["UI descriptors", "focus state", "selection state", "accessibility descriptors", "UI scale policy"], ["DOM implementation", "native widget implementation", "authored layouts"], ["n:presentation:ui", "ui:descriptor", "ui:scale"], generalProof),
     sub("presentation-speech-domain", "speech", "Presentation Speech", "Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.", ["speech requests", "voice descriptors", "utterance lifecycle", "synthesis results"], ["model runtime", "network fetch", "audio playback", "subtitle UI"], ["n:presentation:speech", "speech:request", "speech:result", "speech:provider-contract"], speechProof),
     sub("presentation-capture-domain", "capture", "Presentation Capture", "Own observation requests, view sets, framing, capture jobs, progress, and result contracts.", ["capture requests", "view sets", "capture jobs", "capture results"], ["renderer capture implementation", "filesystem output", "authored shot lists"], ["n:presentation:capture", "capture:request", "capture:result", "capture:provider-contract"], captureProof),
-    sub("presentation-sky-domain", "sky", "Presentation Sky", "Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.", ["sky descriptors", "atmosphere descriptors", "cloud descriptors", "celestial descriptors"], ["authored sky presets", "shader implementation", "weather simulation"], ["n:presentation:sky", "sky:descriptor", "sky:atmosphere"], skyProof)
+    sub("presentation-sky-domain", "sky", "Presentation Sky", "Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.", ["sky descriptors", "atmosphere descriptors", "cloud descriptors", "celestial descriptors"], ["authored sky presets", "shader implementation", "weather simulation"], ["n:presentation:sky", "sky:descriptor", "sky:atmosphere"], skyProof),
+    thirdPersonCamera
   ],
   publicEntry: { subpath: "./domains/presentation", module: "./src/core-domains/presentation/index.js" },
   publicKits: [
@@ -53,7 +56,8 @@ export const presentationDomainManifest = defineCoreDomainManifest(manifestShell
     atomicKit({ id: "ui-scale-kit", responsibility: "Calculate deterministic reference-resolution and UI scale policy.", domainPath: "n:presentation:ui", apiName: "uiScale", requires: ["n:presentation:output"], provides: ["ui:scale"], module: "./src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/index.js", exportName: "createUIScaleKit", publicSubpath: "./domains/presentation/ui/scale", proofReferences: presentationProof }),
     atomicKit({ id: "speech-contract-kit", responsibility: "Manage provider-neutral speech requests, voices, utterance lifecycle, and synthesis results.", domainPath: "n:presentation:speech", apiName: "speech", requires: ["n:presentation"], provides: ["n:presentation:speech", "speech:request", "speech:result", "speech:provider-contract"], module: "./src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js", exportName: "createSpeechKit", publicSubpath: "./domains/presentation/speech", proofReferences: speechProof }),
     atomicKit({ id: "capture-contract-kit", responsibility: "Manage observation requests, view sets, framing, capture jobs, progress, and result contracts.", domainPath: "n:presentation:capture", apiName: "capture", requires: ["n:presentation"], provides: ["n:presentation:capture", "capture:request", "capture:result", "capture:provider-contract"], module: "./src/core-domains/presentation/subdomains/capture/kits/capture-kit/index.js", exportName: "createCaptureKit", publicSubpath: "./domains/presentation/capture", proofReferences: captureProof }),
-    atomicKit({ id: "sky-descriptor-kit", responsibility: "Create generic sky, horizon, atmosphere, cloud, and celestial descriptors.", domainPath: "n:presentation:sky", apiName: "sky", requires: ["n:presentation"], provides: ["n:presentation:sky", "sky:descriptor", "sky:atmosphere"], module: "./src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js", exportName: "createSkyDescriptorKit", publicSubpath: "./domains/presentation/sky", proofReferences: skyProof })
+    atomicKit({ id: "sky-descriptor-kit", responsibility: "Create generic sky, horizon, atmosphere, cloud, and celestial descriptors.", domainPath: "n:presentation:sky", apiName: "sky", requires: ["n:presentation"], provides: ["n:presentation:sky", "sky:descriptor", "sky:atmosphere"], module: "./src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js", exportName: "createSkyDescriptorKit", publicSubpath: "./domains/presentation/sky", proofReferences: skyProof }),
+    thirdPersonCameraKit
   ]
 }));
 

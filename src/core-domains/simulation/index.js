@@ -5,3 +5,7 @@ export { createArticulatedDynamicsDomain } from "./subdomains/physics/subdomains
 export { createMotionKit } from "./subdomains/motion/kits/motion-kit/index.js";
 export { createArticulatedMotionDomain } from "./subdomains/motion/subdomains/articulated-motion-domain/index.js";
 export { createArticulatedMotionDriveAdapter } from "./subdomains/physics/adapters/articulated-motion-drive-adapter/index.js";
+export { createActionLocomotionKit } from "./subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js";
+export { createVehicleDynamicsKit } from "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js";
+export { createWorldContactKit } from "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js";
+export { createSoftRespawnKit } from "./subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js";

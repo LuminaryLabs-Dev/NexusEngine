@@ -30,6 +30,8 @@ const tests = [
   "tests/core-domains/world-terrain-compatibility.mjs",
   "src/core-domains/world/tests/restored-world-behaviors.mjs",
   "src/core-domains/spatial/tests/spatial-scale-restoration.mjs",
+  "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+  "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
   "tests/core-domains/core-weather-domain-smoke.mjs",
   "tests/sequence-node-library-smoke.mjs",
   "tests/sequence-node-runtime-smoke.mjs",

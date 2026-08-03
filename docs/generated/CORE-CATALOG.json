@@ -4986,6 +4986,116 @@
       ]
     },
     {
+      "domainPath": "n:presentation:camera:third-person",
+      "forbiddenResponsibilities": [
+        "character motion",
+        "raw input",
+        "renderer camera objects",
+        "world occlusion queries"
+      ],
+      "id": "presentation-camera-third-person-domain",
+      "inputs": [
+        {
+          "description": "Third-Person Camera required capability.",
+          "deterministic": true,
+          "id": "n:presentation:camera",
+          "schema": null
+        },
+        {
+          "description": "Third-Person Camera required capability.",
+          "deterministic": true,
+          "id": "character:resolution",
+          "schema": null
+        },
+        {
+          "description": "Third-Person Camera required capability.",
+          "deterministic": true,
+          "id": "motion:velocity",
+          "schema": null
+        }
+      ],
+      "label": "Third-Person Camera",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Third-Person Camera API without duplicate state or systems.",
+        "install": "Create one Third-Person Camera state owner and public API.",
+        "replay": "Reapply equivalent Third-Person Camera inputs deterministically.",
+        "reset": "Restore the configured Third-Person Camera baseline.",
+        "snapshot": "Serialize Third-Person Camera state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Third-Person Camera provided capability.",
+          "deterministic": true,
+          "id": "n:presentation:camera:third-person",
+          "schema": null
+        },
+        {
+          "description": "Third-Person Camera provided capability.",
+          "deterministic": true,
+          "id": "camera:third-person-descriptor",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "camera smoothing state",
+        "follow orbit state",
+        "third-person camera descriptor"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Third-Person Camera state and registry records.",
+          "id": "presentation-camera-third-person-domain-state",
+          "owner": "presentation-camera-third-person-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:presentation:camera",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Third-Person Camera contract fixture.",
+            "deterministic": true,
+            "id": "presentation-camera-third-person-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Third-Person Camera composition fixture.",
+            "deterministic": true,
+            "id": "presentation-camera-third-person-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "character:resolution",
+        "motion:velocity",
+        "n:presentation:camera"
+      ],
+      "responsibility": "Own renderer-neutral third-person camera follow descriptors.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Third-Person Camera behavior.",
+          "deterministic": true,
+          "id": "n:presentation:camera:third-person:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:runtime",
       "forbiddenResponsibilities": [
         "authored content",
@@ -6252,6 +6362,485 @@
           "description": "Install, validate, snapshot, reset, and replay Simulation Articulated Motion behavior.",
           "deterministic": true,
           "id": "n:simulation:motion:articulated:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:motion:locomotion",
+      "forbiddenResponsibilities": [
+        "camera control",
+        "input binding",
+        "physics contact resolution",
+        "soft respawn"
+      ],
+      "id": "simulation-motion-locomotion-domain",
+      "inputs": [
+        {
+          "description": "Action Locomotion required capability.",
+          "deterministic": true,
+          "id": "n:simulation:motion",
+          "schema": null
+        }
+      ],
+      "label": "Action Locomotion",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Action Locomotion API without duplicate state or systems.",
+        "install": "Create one Action Locomotion state owner and public API.",
+        "replay": "Reapply equivalent Action Locomotion inputs deterministically.",
+        "reset": "Restore the configured Action Locomotion baseline.",
+        "snapshot": "Serialize Action Locomotion state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Action Locomotion provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:motion:locomotion",
+          "schema": null
+        },
+        {
+          "description": "Action Locomotion provided capability.",
+          "deterministic": true,
+          "id": "motion:locomotion-intent",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "locomotion frame",
+        "locomotion intent",
+        "movement transition state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Action Locomotion state and registry records.",
+          "id": "simulation-motion-locomotion-domain-state",
+          "owner": "simulation-motion-locomotion-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:motion",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Action Locomotion contract fixture.",
+            "deterministic": true,
+            "id": "simulation-motion-locomotion-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Action Locomotion composition fixture.",
+            "deterministic": true,
+            "id": "simulation-motion-locomotion-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "responsibility": "Own deterministic action-to-motion intent and locomotion frame calculation.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Action Locomotion behavior.",
+          "deterministic": true,
+          "id": "n:simulation:motion:locomotion:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:motion:vehicle",
+      "forbiddenResponsibilities": [
+        "input binding",
+        "renderer transforms",
+        "surface queries",
+        "water simulation"
+      ],
+      "id": "simulation-motion-vehicle-domain",
+      "inputs": [
+        {
+          "description": "Vehicle Motion required capability.",
+          "deterministic": true,
+          "id": "n:simulation:motion",
+          "schema": null
+        }
+      ],
+      "label": "Vehicle Motion",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Vehicle Motion API without duplicate state or systems.",
+        "install": "Create one Vehicle Motion state owner and public API.",
+        "replay": "Reapply equivalent Vehicle Motion inputs deterministically.",
+        "reset": "Restore the configured Vehicle Motion baseline.",
+        "snapshot": "Serialize Vehicle Motion state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Vehicle Motion provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:motion:vehicle",
+          "schema": null
+        },
+        {
+          "description": "Vehicle Motion provided capability.",
+          "deterministic": true,
+          "id": "motion:vehicle-dynamics",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "vehicle boost state",
+        "vehicle bounds response",
+        "vehicle motion frame"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Vehicle Motion state and registry records.",
+          "id": "simulation-motion-vehicle-domain-state",
+          "owner": "simulation-motion-vehicle-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:motion",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Vehicle Motion contract fixture.",
+            "deterministic": true,
+            "id": "simulation-motion-vehicle-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Vehicle Motion composition fixture.",
+            "deterministic": true,
+            "id": "simulation-motion-vehicle-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "responsibility": "Own deterministic vehicle movement, boost, bounds, and impact frames.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Vehicle Motion behavior.",
+          "deterministic": true,
+          "id": "n:simulation:motion:vehicle:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:physics:world-contact",
+      "forbiddenResponsibilities": [
+        "locomotion intent",
+        "physics backend",
+        "soft respawn",
+        "terrain rendering"
+      ],
+      "id": "simulation-physics-world-contact-domain",
+      "inputs": [
+        {
+          "description": "World Contact required capability.",
+          "deterministic": true,
+          "id": "n:simulation:physics",
+          "schema": null
+        }
+      ],
+      "label": "World Contact",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed World Contact API without duplicate state or systems.",
+        "install": "Create one World Contact state owner and public API.",
+        "replay": "Reapply equivalent World Contact inputs deterministically.",
+        "reset": "Restore the configured World Contact baseline.",
+        "snapshot": "Serialize World Contact state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "World Contact provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:physics:world-contact",
+          "schema": null
+        },
+        {
+          "description": "World Contact provided capability.",
+          "deterministic": true,
+          "id": "physics:world-contact",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "contact correction",
+        "impact record",
+        "slope response",
+        "world contact"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable World Contact state and registry records.",
+          "id": "simulation-physics-world-contact-domain-state",
+          "owner": "simulation-physics-world-contact-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:physics",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct World Contact contract fixture.",
+            "deterministic": true,
+            "id": "simulation-physics-world-contact-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed World Contact composition fixture.",
+            "deterministic": true,
+            "id": "simulation-physics-world-contact-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation:physics"
+      ],
+      "responsibility": "Own portable world-contact resolution and correction records.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay World Contact behavior.",
+          "deterministic": true,
+          "id": "n:simulation:physics:world-contact:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:recovery",
+      "forbiddenResponsibilities": [
+        "game checkpoint policy",
+        "teleport rendering",
+        "world contact"
+      ],
+      "id": "simulation-recovery-domain",
+      "inputs": [
+        {
+          "description": "Simulation Recovery required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Simulation Recovery",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Simulation Recovery API without duplicate state or systems.",
+        "install": "Create one Simulation Recovery state owner and public API.",
+        "replay": "Reapply equivalent Simulation Recovery inputs deterministically.",
+        "reset": "Restore the configured Simulation Recovery baseline.",
+        "snapshot": "Serialize Simulation Recovery state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Simulation Recovery provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:recovery",
+          "schema": null
+        },
+        {
+          "description": "Simulation Recovery provided capability.",
+          "deterministic": true,
+          "id": "simulation:recovery",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "recovered subject state",
+        "recovery points",
+        "recovery receipts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Simulation Recovery state and registry records.",
+          "id": "simulation-recovery-domain-state",
+          "owner": "simulation-recovery-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Simulation Recovery contract fixture.",
+            "deterministic": true,
+            "id": "simulation-recovery-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Simulation Recovery composition fixture.",
+            "deterministic": true,
+            "id": "simulation-recovery-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own portable subject recovery records and deterministic recovery state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Simulation Recovery behavior.",
+          "deterministic": true,
+          "id": "n:simulation:recovery:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:recovery:soft-respawn",
+      "forbiddenResponsibilities": [
+        "game checkpoint policy",
+        "teleport rendering",
+        "world contact"
+      ],
+      "id": "simulation-recovery-soft-respawn-domain",
+      "inputs": [
+        {
+          "description": "Soft Respawn required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Soft Respawn",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Soft Respawn API without duplicate state or systems.",
+        "install": "Create one Soft Respawn state owner and public API.",
+        "replay": "Reapply equivalent Soft Respawn inputs deterministically.",
+        "reset": "Restore the configured Soft Respawn baseline.",
+        "snapshot": "Serialize Soft Respawn state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Soft Respawn provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:recovery:soft-respawn",
+          "schema": null
+        },
+        {
+          "description": "Soft Respawn provided capability.",
+          "deterministic": true,
+          "id": "simulation:soft-respawn",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "recovered subject state",
+        "soft respawn points",
+        "soft respawn receipts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Soft Respawn state and registry records.",
+          "id": "simulation-recovery-soft-respawn-domain-state",
+          "owner": "simulation-recovery-soft-respawn-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:recovery",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Soft Respawn contract fixture.",
+            "deterministic": true,
+            "id": "simulation-recovery-soft-respawn-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Soft Respawn composition fixture.",
+            "deterministic": true,
+            "id": "simulation-recovery-soft-respawn-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own exact-once portable subject recovery records.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Soft Respawn behavior.",
+          "deterministic": true,
+          "id": "n:simulation:recovery:soft-respawn:lifecycle",
           "schema": null
         }
       ]
@@ -14806,6 +15395,79 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "thirdPersonCamera",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:presentation:camera:third-person",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "third-person-camera-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:presentation:camera",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "third-person-camera-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "third-person-camera-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "camera:third-person-descriptor",
+        "n:presentation:camera:third-person"
+      ],
+      "requires": [
+        "character:resolution",
+        "motion:velocity",
+        "n:presentation:camera"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createThirdPersonCameraKit",
+        "module": "./src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js",
+        "publicSubpath": "./domains/presentation/camera/third-person"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "runtime",
       "atomic": true,
       "composes": [],
@@ -15818,6 +16480,290 @@
         "exportName": "createArticulatedMotionDriveAdapter",
         "module": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
         "publicSubpath": "./domains/simulation/adapters/articulated-drive"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "actionLocomotion",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:motion:locomotion",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "action-locomotion-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:motion",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "action-locomotion-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "action-locomotion-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "motion:locomotion-intent",
+        "n:simulation:motion:locomotion"
+      ],
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Convert action commands into deterministic renderer-neutral Motion intents and locomotion frames.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createActionLocomotionKit",
+        "module": "./src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js",
+        "publicSubpath": "./domains/simulation/motion/locomotion"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "vehicleDynamics",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:motion:vehicle",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "vehicle-dynamics-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:motion",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "vehicle-dynamics-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "vehicle-dynamics-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "motion:vehicle-dynamics",
+        "n:simulation:motion:vehicle"
+      ],
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createVehicleDynamicsKit",
+        "module": "./src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js",
+        "publicSubpath": "./domains/simulation/motion/vehicle"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "worldContact",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:physics:world-contact",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "world-contact-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:physics",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "world-contact-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "world-contact-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:physics:world-contact",
+        "physics:world-contact"
+      ],
+      "requires": [
+        "n:simulation:physics"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createWorldContactKit",
+        "module": "./src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js",
+        "publicSubpath": "./domains/simulation/physics/world-contact"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "softRespawn",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:recovery:soft-respawn",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "soft-respawn-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:recovery",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "soft-respawn-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "soft-respawn-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:recovery:soft-respawn",
+        "simulation:soft-respawn"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Produce exact-once coherent subject recovery records at configured portable points.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createSoftRespawnKit",
+        "module": "./src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js",
+        "publicSubpath": "./domains/simulation/recovery/soft-respawn"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -17719,6 +18665,7 @@
     "./domains/presentation/camera": "./src/core-domains/presentation/subdomains/camera/kits/camera-kit/index.js",
     "./domains/presentation/camera/control-math": "./src/core-domains/presentation/subdomains/camera/kits/camera-control-kit.js",
     "./domains/presentation/camera/framing": "./src/core-domains/presentation/subdomains/camera/kits/framing-kit/index.js",
+    "./domains/presentation/camera/third-person": "./src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js",
     "./domains/presentation/capture": "./src/core-domains/presentation/subdomains/capture/kits/capture-kit/index.js",
     "./domains/presentation/graphics": "./src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js",
     "./domains/presentation/graphics/reflection": "./src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/reflection-kit/index.js",
@@ -17741,9 +18688,13 @@
     "./domains/simulation/adapters/articulated-drive": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
     "./domains/simulation/motion": "./src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js",
     "./domains/simulation/motion/articulated": "./src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js",
+    "./domains/simulation/motion/locomotion": "./src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js",
     "./domains/simulation/motion/two-bone-ik": "./src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js",
+    "./domains/simulation/motion/vehicle": "./src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js",
     "./domains/simulation/physics": "./src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js",
     "./domains/simulation/physics/articulated": "./src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js",
+    "./domains/simulation/physics/world-contact": "./src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js",
+    "./domains/simulation/recovery/soft-respawn": "./src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js",
     "./domains/simulation/runtime": "./src/core-domains/simulation/kits/simulation-kit/index.js",
     "./domains/spatial": "./src/core-domains/spatial/index.js",
     "./domains/spatial/angle-math": "./src/core-domains/spatial/kits/angle-math-kit.js",
@@ -17774,7 +18725,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2",
+  "registryHash": "c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -19711,11 +20662,11 @@
     },
     {
       "path": "src/core-domains/presentation/domain.manifest.js",
-      "sha256": "05be7fe404dc302a6faec84aeff644e183798398ecdc4055b1b487b2ccf0d88f"
+      "sha256": "971ee85eb88a4322c08267ff18f30ffc2f32f66ed7bb621468315f318109c197"
     },
     {
       "path": "src/core-domains/presentation/index.js",
-      "sha256": "cd1d88bc7df9d36fadf3021c00279ff19159b728ebf41992e7e935a0d45dc3d8"
+      "sha256": "989bf450e77e1ec110a5dbd071a127e9aeabebe1113d50c778c68ada6773a06b"
     },
     {
       "path": "src/core-domains/presentation/kits/presentation-kit/index.js",
@@ -19756,6 +20707,34 @@
     {
       "path": "src/core-domains/presentation/subdomains/camera/kits/framing-kit/perspective-fit.js",
       "sha256": "3efea91a9580b921a31d027efdda1da185609209cb14ea66b0bb833b95c698f4"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/index.js",
+      "sha256": "cb4c2d9c80ef6519536fb78cb2cc8e9acb13ea65d68e02bd7e14a0e0cab862ba"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/contracts.js",
+      "sha256": "808a2409b9e0e5773f2dabc1f9748ae809cf9cf0fd4fa315d09a743b4504129e"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js",
+      "sha256": "f01f7d0884ecf7c8af430380ae623275f83293b8eac0a14ac53f0ad70a06f03c"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js",
+      "sha256": "7db0689a0cedc182c113e73a1e74a3128ab1825ef7a5b6cfb6213f1b0f522d6f"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/services.js",
+      "sha256": "2cadf38e10d3c8226c93bfedd19e5936b800ccc1d45d3b05f88f19ee3e282740"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/state.js",
+      "sha256": "7e7f512acca490fb55f9b5892b46738063b5bf1ce9e3d508d2870eb64907d945"
+    },
+    {
+      "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js",
+      "sha256": "4a380fea9a05191ab655bc523bc3a0aeee799f8e1fe930eed6a9e1ebb6edeb89"
     },
     {
       "path": "src/core-domains/presentation/subdomains/capture/index.js",
@@ -19874,6 +20853,10 @@
       "sha256": "7d03727b6e2f208ec724a6c42ef6f15691ba5ac93eae82055c4721923366321d"
     },
     {
+      "path": "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+      "sha256": "99b6eb613d92ca097f180cbd65e56c3aa2134276c5dd5e0ff153810aa861df8e"
+    },
+    {
       "path": "src/core-domains/runtime/domain.manifest.js",
       "sha256": "896e73c9a532e5e0cf63c3faad5da6c661f6583bf8f88bbf26c00c6449006314"
     },
@@ -19971,11 +20954,11 @@
     },
     {
       "path": "src/core-domains/simulation/domain.manifest.js",
-      "sha256": "b415078859300ece3cb80dc178ca2b1c107c4561591f9162098cb07141ebb180"
+      "sha256": "44fc79541662e0ef2d9bbd30844c2f22766abf0802051d296630c1d2e35b752a"
     },
     {
       "path": "src/core-domains/simulation/index.js",
-      "sha256": "770d6baf4b9a18e9cb2c3ad2bdec8b61600ced021d83ccfd569bcd788a4a3dd3"
+      "sha256": "48e2ea06b1bfc487bf4c7fe2d750425987ed187fe969f32e0b2feaa05806a359"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/checkpoints.js",
@@ -20014,6 +20997,10 @@
       "sha256": "6429a27b242df8d33b4780888b342faf205ec7c21705256e209dac1801e872d4"
     },
     {
+      "path": "src/core-domains/simulation/restored-behavior-manifests.js",
+      "sha256": "bb8170e8bad778c67f23eb35a936cfd787623048b9a3209a5202f341736c8ad4"
+    },
+    {
       "path": "src/core-domains/simulation/subdomains/motion/index.js",
       "sha256": "b6882cd5746b9e06241f41e3620209ffa4787bc38e143649d5e1979e12cdc599"
     },
@@ -20038,6 +21025,62 @@
       "sha256": "b33cfdb872fdcab4ecd1ec9fd400a7445e14bb1ec488f50deaff33324f10e679"
     },
     {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/index.js",
+      "sha256": "1aad2e446be86549a63db321e1ab5a4c78e4f92c6213d378c3712d4e850f44f2"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/contracts.js",
+      "sha256": "651bf188a76791e84cc95725ed2339bb1970b747c933006cf0d6ac736d44bc5d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js",
+      "sha256": "f425a5afc5cd4b395819d26e0c4bd1c2ab9c6b446a745a87fc8ffa71a3f4400d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js",
+      "sha256": "c8c5eafbc114f45973fff3a17b6409807ad10565077593146adbbeead7bc4ee0"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/services.js",
+      "sha256": "8bfb836e6e8c796660bc81ce87b91b8732b6e4db5c9b6d794a12c32537406195"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/state.js",
+      "sha256": "cbfdf04c6a59657ea8ca823b06a4e1c5101dbf43f33ed4d2dc790c902a751c3c"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js",
+      "sha256": "5e6cfb3a68927a301fda87603ada1364a52c4de172fddbc9fcebafb82b44d09f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/index.js",
+      "sha256": "9a83bff3141f95d37bf7c18c4ec799c30403711c932d95715db572bb457b6161"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/contracts.js",
+      "sha256": "3269eb4aac4d4b1a266bf2d3cf3b1b434c4a49dc66f8603df0e4dae9d2b94bdd"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js",
+      "sha256": "770cf24598e8b7a0ba21fa377c49a0b5bbb03f495aff7f302bf1edd67dd7794e"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js",
+      "sha256": "c2edf9f3cda92f055b022103f75e0ce8cf01aeef80589a82ceabe1fa4889c84f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/services.js",
+      "sha256": "8e8c49c52f03a87d36aa68a9b590997e87aa4255502fea4bbd5a13253fe8dc30"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/state.js",
+      "sha256": "d874ee6526d71192d0d918a918b4b5066a6753753ff394a74010480b1ce751d4"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
+      "sha256": "515672f130101ae334f00085673b64c6dd2707c917e24fa4ab758eeada45b28b"
+    },
+    {
       "path": "src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
       "sha256": "3c9f1493ee50a05337c280326e2ea832e07db8abfb7f7b577de44ee251baa22d"
     },
@@ -20060,6 +21103,74 @@
     {
       "path": "src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js",
       "sha256": "ea198abc9e4c0f06699195d556f798a0327fb822f6e22fb020db7756eea0c2db"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/index.js",
+      "sha256": "4fd1fcf930e8d741cd8704024a5eea9121ed6037575659cdacb9a0f6d757f6ad"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/contracts.js",
+      "sha256": "b5f95a43ef5d9040aa7d021f1a3fc0b48388d5f7c69854017d8e1178cc983052"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js",
+      "sha256": "fc14aeac440aa4707d5c7201180915c26fedbea99fc882a532d5d078ade02f06"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js",
+      "sha256": "69ccee6e83b5be5d9a6ceefc920c91729094b248893058a311a2adc3f58df6a8"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/services.js",
+      "sha256": "b830a6c8dff8febb91c0e8235d9850d0b9ade2b53d4ad3a6e29141ce11dd82c9"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/state.js",
+      "sha256": "be95858fe56592d249ceb089d8c6b045850289a23decdfe3766857b261a711de"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js",
+      "sha256": "eaf8752c08461103cb61a934af01b10c5375fade0a83d591184eaada09ecaa5e"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/index.js",
+      "sha256": "44d142122e39a1ae19dba4b1bdcb864ae24d0ed58c9b757ecbf05d2571f24075"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js",
+      "sha256": "504891ca338cbef38cfcb91af7a8553af17738dfbdc9a2a621a97e054e0b3581"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/index.js",
+      "sha256": "d68811589a9a6dc31ae1478bd0111c78802d548b2cf7d314b65a88736d1e5a12"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/contracts.js",
+      "sha256": "d1668d39622fe5348a02309f816921050eb702d7ef1cb8044dad75defe5bc38f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js",
+      "sha256": "ee267bd990ee7de68bbabfaf6a544983593d0715bc32061d716df67c0b8e1b78"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js",
+      "sha256": "9ae9478c2d62de27a32ad6e15f93541fb0cb4ac46dede0922d1bfb22d2adb452"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/services.js",
+      "sha256": "31e05bb9bd292465631b33ca118ed36dfce79cfaf42e8491053fa878cc0e7886"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/state.js",
+      "sha256": "917274003e8056a397d6930c184d11b4ec2e18617641677294c7ad6ce97b3593"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
+      "sha256": "8f142c52cb909601d2f7bf7a990e4141cf45bacfd8c5eeb015ee6572b92c8c09"
+    },
+    {
+      "path": "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+      "sha256": "2a3f4a24939b7a19acaf9520bfc4291cdb19859bc0706c9f385be0914f1f4932"
     },
     {
       "path": "src/core-domains/spatial/domain.manifest.js",

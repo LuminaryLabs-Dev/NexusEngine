@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:presentation`
 - Status: `stable-candidate`
-- Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2`
+- Registry SHA-256: `c8a8d2391cc647772b76ca4293cf2b89f7ba3976b122bdd545c6e9143a7ecb3b`
 - Public entry: `nexusengine/domains/presentation`
 
 ## Responsibility
@@ -37,6 +37,7 @@ Own renderer-neutral presentation descriptors and output policy contracts.
 | `n:presentation:speech` | Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts. |
 | `n:presentation:capture` | Own observation requests, view sets, framing, capture jobs, progress, and result contracts. |
 | `n:presentation:sky` | Own generic sky, atmosphere, cloud, horizon, and celestial descriptors. |
+| `n:presentation:camera:third-person` | Own renderer-neutral third-person camera follow descriptors. |
 
 ## Atomic Kits
 
@@ -58,6 +59,7 @@ Own renderer-neutral presentation descriptors and output policy contracts.
 | `speech-contract-kit` | `nexusengine/domains/presentation/speech` | Manage provider-neutral speech requests, voices, utterance lifecycle, and synthesis results. |
 | `capture-contract-kit` | `nexusengine/domains/presentation/capture` | Manage observation requests, view sets, framing, capture jobs, progress, and result contracts. |
 | `sky-descriptor-kit` | `nexusengine/domains/presentation/sky` | Create generic sky, horizon, atmosphere, cloud, and celestial descriptors. |
+| `third-person-camera-kit` | `nexusengine/domains/presentation/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
 
 ## Lifecycle
 
