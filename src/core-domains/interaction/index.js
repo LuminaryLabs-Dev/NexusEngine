@@ -6,3 +6,6 @@ export { createEnvironmentalAffordanceKit } from "./subdomains/environmental-aff
 export { createRequestQueueKit } from "./subdomains/request/subdomains/queue/kits/request-queue-kit/index.js";
 export { createRequestFulfillmentKit } from "./subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js";
 export { createTransferZoneKit } from "./subdomains/transfer-zone/kits/transfer-zone-kit/index.js";
+export { createOccupantRequestAdapterKit } from "./adapters/occupant-request-adapter-kit/index.js";
+export { createTransportRequestAdapterKit } from "./adapters/transport-request-adapter-kit/index.js";
+export { createRequestEconomyAdapterKit } from "./adapters/request-economy-adapter-kit/index.js";

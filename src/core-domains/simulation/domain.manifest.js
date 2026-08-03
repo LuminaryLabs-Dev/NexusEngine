@@ -1,6 +1,6 @@
 import { defineCoreDomainManifest } from "../domain-manifest.js";
 import { atomicKit, domainNode, manifestShell } from "../manifest-input.js";
-import { RESTORED_SIMULATION_KITS, RESTORED_SIMULATION_SUBDOMAINS } from "./restored-behavior-manifests.js";
+import { RESTORED_SIMULATION_ADAPTER_KITS, RESTORED_SIMULATION_KITS, RESTORED_SIMULATION_SUBDOMAINS } from "./restored-behavior-manifests.js";
 
 const simulationProof = ["tests/core-kits/core-simulation-kit-smoke.mjs", "tests/core-kits/core-simulation-resolution-smoke.mjs"];
 const physicsProof = ["tests/core-domains/core-physics-domain-smoke.mjs", "tests/core-kits/core-physics-provider-smoke.mjs"];
@@ -24,9 +24,13 @@ export const simulationDomainManifest = defineCoreDomainManifest(manifestShell({
     atomicKit({ id: "two-bone-ik-kit", responsibility: "Solve deterministic two-bone inverse-kinematics poses.", domainPath: "n:simulation:motion", apiName: "twoBoneIk", provides: ["motion:inverse-kinematics"], module: "./src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js", exportName: "createTwoBoneIKKit", publicSubpath: "./domains/simulation/motion/two-bone-ik", proofReferences: ["tests/core-kits/core-utility-articulation-smoke.mjs"] }),
     atomicKit({ id: "articulated-motion-kit", responsibility: "Create target poses, joint limits, articulation plans, and drive requests.", domainPath: "n:simulation:motion:articulated", apiName: "articulatedMotion", requires: ["n:simulation:motion"], provides: ["n:simulation:motion:articulated", "motion:articulated-plan"], module: "./src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js", exportName: "createArticulatedMotionDomain", publicSubpath: "./domains/simulation/motion/articulated", proofReferences: motionProof }),
     atomicKit({ id: "articulated-motion-drive-adapter-kit", kind: "adapter-kit", responsibility: "Translate articulated motion plans into backend-neutral physics drive requests.", domainPath: "n:simulation:physics:articulated", apiName: "articulatedMotionDrive", requires: ["motion:articulated-plan", "physics:articulated-dynamics"], provides: ["simulation:articulated-drive-adapter"], module: "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js", exportName: "createArticulatedMotionDriveAdapter", publicSubpath: "./domains/simulation/adapters/articulated-drive", proofReferences: physicsProof }),
-    ...RESTORED_SIMULATION_KITS
+    ...RESTORED_SIMULATION_KITS,
+    ...RESTORED_SIMULATION_ADAPTER_KITS
   ],
-  adapters: [{ id: "articulated-motion-drive-adapter", domainPath: "n:simulation:physics:articulated", responsibility: "Translate Motion articulation plans into Physics drive requests.", source: { module: "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js" }, environments: ["browser", "node", "worker"], proofReferences: physicsProof }]
+  adapters: [
+    { id: "articulated-motion-drive-adapter", domainPath: "n:simulation:physics:articulated", responsibility: "Translate Motion articulation plans into Physics drive requests.", source: { module: "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js" }, environments: ["browser", "node", "worker"], proofReferences: physicsProof },
+    ...RESTORED_SIMULATION_ADAPTER_KITS.map((kit) => ({ id: kit.id, domainPath: kit.domainPath, responsibility: kit.responsibility, source: { module: kit.source.module }, environments: kit.environments, proofReferences: kit.proof.references }))
+  ]
 }));
 
 export default simulationDomainManifest;

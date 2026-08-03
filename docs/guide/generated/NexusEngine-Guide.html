@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359<br>
-      Guide content SHA-256: 1bc26d79de9c114877c415a78e6cf0bcb8023f4d3bc4bb66349d4d6b1b79896f<br><br>
+      Core registry SHA-256: c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2<br>
+      Guide content SHA-256: cd8b03ea3bf3f1921233a1161cca5bee269e425cd1fa16139bbbc02be532711d<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -738,7 +738,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
+<p>Registry SHA-256: <code>c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -769,6 +769,12 @@ npm pack --dry-run --json
 <li><code>n:host</code>: Own host capability descriptors and fallback contracts without platform implementation.</li>
 <li><code>n:interaction</code>: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.</li>
 <li><code>n:interaction:input</code>: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.</li>
+<li><code>n:interaction:assistance-target</code>: Own assistance target urgency, attachment, completion, loss, and deterministic selection.</li>
+<li><code>n:interaction:environmental-affordance</code>: Own portable affordance proximity and activation state.</li>
+<li><code>n:interaction:request</code>: Own portable request queue and fulfillment boundaries.</li>
+<li><code>n:interaction:request:queue</code>: Own queued request patience, fulfillment, expiry, and effect descriptors.</li>
+<li><code>n:interaction:request:fulfillment</code>: Own spatial request destination, deadline, completion, expiry, and reward state.</li>
+<li><code>n:interaction:transfer-zone</code>: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.</li>
 <li><code>n:mcp</code>: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</li>
 <li><code>n:network</code>: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.</li>
 <li><code>n:object</code>: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.</li>
@@ -790,6 +796,7 @@ npm pack --dry-run --json
 <li><code>n:presentation:speech</code>: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.</li>
 <li><code>n:presentation:capture</code>: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.</li>
 <li><code>n:presentation:sky</code>: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.</li>
+<li><code>n:presentation:camera:third-person</code>: Own renderer-neutral third-person camera follow descriptors.</li>
 <li><code>n:runtime</code>: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.</li>
 <li><code>n:runtime:realtime</code>: Own deterministic frame context and realtime phase execution.</li>
 <li><code>n:runtime:data</code>: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.</li>
@@ -797,12 +804,30 @@ npm pack --dry-run --json
 <li><code>n:runtime:persistence</code>: Own save/load targets, save slots, recovery records, and adapter contracts.</li>
 <li><code>n:runtime:sequence</code>: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.</li>
 <li><code>n:runtime:startup</code>: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.</li>
+<li><code>n:runtime:sequence:schedule</code>: Own deterministic elapsed-time schedules and occurrence records.</li>
 <li><code>n:simulation</code>: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</li>
 <li><code>n:simulation:physics</code>: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.</li>
 <li><code>n:simulation:physics:articulated</code>: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.</li>
 <li><code>n:simulation:motion</code>: Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.</li>
 <li><code>n:simulation:motion:articulated</code>: Own target poses, joint limits, articulation motion plans, and drive requests.</li>
+<li><code>n:simulation:motion:locomotion</code>: Own deterministic action-to-motion intent and locomotion frame calculation.</li>
+<li><code>n:simulation:motion:vehicle</code>: Own deterministic vehicle movement, boost, bounds, and impact frames.</li>
+<li><code>n:simulation:physics:world-contact</code>: Own portable world-contact resolution and correction records.</li>
+<li><code>n:simulation:recovery</code>: Own portable subject recovery records and deterministic recovery state.</li>
+<li><code>n:simulation:recovery:soft-respawn</code>: Own exact-once portable subject recovery records.</li>
+<li><code>n:simulation:economy</code>: Own portable economic account and cargo state primitives.</li>
+<li><code>n:simulation:economy:accounts</code>: Own finite account balances and economy transaction records.</li>
+<li><code>n:simulation:economy:cargo</code>: Own portable cargo inventory, carrying, condition, deposits, and quota state.</li>
+<li><code>n:simulation:operations</code>: Own portable facility, occupant, and transport operation primitives.</li>
+<li><code>n:simulation:operations:facility</code>: Own deterministic facility capacity, condition, status, cycles, and operation receipts.</li>
+<li><code>n:simulation:operations:occupant-flow</code>: Own deterministic occupant spawning, patience, service, and abandonment state.</li>
+<li><code>n:simulation:operations:transport-route</code>: Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.</li>
+<li><code>n:simulation:hazard-field</code>: Own deterministic bounded hazard state, spawning, motion, and collision queries.</li>
+<li><code>n:simulation:pursuit-pressure</code>: Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.</li>
+<li><code>n:simulation:progression</code>: Own portable progression capability and lifecycle ownership boundaries.</li>
+<li><code>n:simulation:progression:lifecycle</code>: Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.</li>
 <li><code>n:spatial</code>: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.</li>
+<li><code>n:spatial:scale</code>: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.</li>
 <li><code>n:world</code>: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.</li>
 <li><code>n:world:scene</code>: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.</li>
 <li><code>n:world:weather</code>: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.</li>
@@ -813,6 +838,14 @@ npm pack --dry-run --json
 <li><code>n:world:feature:ecology</code>: Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors.</li>
 <li><code>n:world:feature:settlement</code>: Own semantic settlement, route, structure, and infrastructure feature descriptors.</li>
 <li><code>n:world:feature:atmosphere</code>: Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</li>
+<li><code>n:world:navigation</code>: Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance.</li>
+<li><code>n:world:navigation:navmesh</code>: Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability.</li>
+<li><code>n:world:navigation:pathfinding</code>: Own deterministic path requests, A* resolution, results, and graph adapters.</li>
+<li><code>n:world:navigation:route-field</code>: Own generic route marker and corridor descriptors plus deterministic proximity queries.</li>
+<li><code>n:world:navigation:landmark-guidance</code>: Own reusable landmark discovery, reach, completion, priority, and proximity state.</li>
+<li><code>n:world:generation</code>: Own deterministic generic region, connector, point, graph, and walkability generation.</li>
+<li><code>n:world:terrain</code>: Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence.</li>
+<li><code>n:world:water-surface</code>: Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries.</li>
 </ul>
 
     </article>
@@ -820,7 +853,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
+<p>Registry SHA-256: <code>c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2</code></p>
 <table>
 <thead>
 <tr>
@@ -975,6 +1008,36 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:interaction:assistance-target</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:environmental-affordance</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:request</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:request:fulfillment</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:interaction:transfer-zone</code></td>
+<td><code>n:interaction</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:mcp</code></td>
 <td>-</td>
 <td><code>n:composition</code></td>
@@ -1080,6 +1143,11 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:presentation:camera:third-person</code></td>
+<td><code>character:resolution</code>, <code>motion:velocity</code>, <code>n:presentation:camera</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:runtime</code></td>
 <td>-</td>
 <td>-</td>
@@ -1115,6 +1183,11 @@ npm pack --dry-run --json
 <td><code>n:asset</code></td>
 </tr>
 <tr>
+<td><code>n:runtime:sequence:schedule</code></td>
+<td><code>n:runtime:sequence</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:simulation</code></td>
 <td><code>n:runtime:realtime</code></td>
 <td>-</td>
@@ -1140,8 +1213,93 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:simulation:motion:locomotion</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion:vehicle</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics:world-contact</code></td>
+<td><code>n:simulation:physics</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:recovery</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:recovery:soft-respawn</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy:accounts</code></td>
+<td><code>n:simulation</code>, <code>transaction:idempotency</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy:cargo</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:facility</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:occupant-flow</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:transport-route</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:hazard-field</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:pursuit-pressure</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:progression</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:simulation:progression:lifecycle</code></td>
+<td><code>n:simulation</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:spatial</code></td>
 <td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:spatial:scale</code></td>
+<td><code>n:spatial</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -1194,6 +1352,46 @@ npm pack --dry-run --json
 <td><code>n:world:feature</code></td>
 <td>-</td>
 </tr>
+<tr>
+<td><code>n:world:navigation</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:navmesh</code></td>
+<td><code>navigation:walkability-source</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:pathfinding</code></td>
+<td><code>navigation:navmesh</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:route-field</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:landmark-guidance</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:generation</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:terrain</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:world:water-surface</code></td>
+<td><code>n:world</code></td>
+<td>-</td>
+</tr>
 </tbody></table>
 
     </article>
@@ -1202,7 +1400,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
+<p>Registry SHA-256: <code>c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -1388,6 +1586,42 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:interaction:assistance-target</code></td>
+<td><code>n:interaction</code></td>
+<td>Own assistance target urgency, attachment, completion, loss, and deterministic selection.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:environmental-affordance</code></td>
+<td><code>n:interaction</code></td>
+<td>Own portable affordance proximity and activation state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:request</code></td>
+<td><code>n:interaction</code></td>
+<td>Own portable request queue and fulfillment boundaries.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>n:interaction:request</code></td>
+<td>Own queued request patience, fulfillment, expiry, and effect descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:request:fulfillment</code></td>
+<td><code>n:interaction:request</code></td>
+<td>Own spatial request destination, deadline, completion, expiry, and reward state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:interaction:transfer-zone</code></td>
+<td><code>n:interaction</code></td>
+<td>Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:mcp</code></td>
 <td>-</td>
 <td>Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</td>
@@ -1514,6 +1748,12 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:presentation:camera:third-person</code></td>
+<td><code>n:presentation:camera</code></td>
+<td>Own renderer-neutral third-person camera follow descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:runtime</code></td>
 <td>-</td>
 <td>Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.</td>
@@ -1556,6 +1796,12 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:runtime:sequence:schedule</code></td>
+<td><code>n:runtime:sequence</code></td>
+<td>Own deterministic elapsed-time schedules and occurrence records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:simulation</code></td>
 <td>-</td>
 <td>Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</td>
@@ -1586,9 +1832,111 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:simulation:motion:locomotion</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>Own deterministic action-to-motion intent and locomotion frame calculation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:motion:vehicle</code></td>
+<td><code>n:simulation:motion</code></td>
+<td>Own deterministic vehicle movement, boost, bounds, and impact frames.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:physics:world-contact</code></td>
+<td><code>n:simulation:physics</code></td>
+<td>Own portable world-contact resolution and correction records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:recovery</code></td>
+<td><code>n:simulation</code></td>
+<td>Own portable subject recovery records and deterministic recovery state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:recovery:soft-respawn</code></td>
+<td><code>n:simulation:recovery</code></td>
+<td>Own exact-once portable subject recovery records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy</code></td>
+<td><code>n:simulation</code></td>
+<td>Own portable economic account and cargo state primitives.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy:accounts</code></td>
+<td><code>n:simulation:economy</code></td>
+<td>Own finite account balances and economy transaction records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:economy:cargo</code></td>
+<td><code>n:simulation:economy</code></td>
+<td>Own portable cargo inventory, carrying, condition, deposits, and quota state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations</code></td>
+<td><code>n:simulation</code></td>
+<td>Own portable facility, occupant, and transport operation primitives.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:facility</code></td>
+<td><code>n:simulation:operations</code></td>
+<td>Own deterministic facility capacity, condition, status, cycles, and operation receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:occupant-flow</code></td>
+<td><code>n:simulation:operations</code></td>
+<td>Own deterministic occupant spawning, patience, service, and abandonment state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:operations:transport-route</code></td>
+<td><code>n:simulation:operations</code></td>
+<td>Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:hazard-field</code></td>
+<td><code>n:simulation</code></td>
+<td>Own deterministic bounded hazard state, spawning, motion, and collision queries.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:pursuit-pressure</code></td>
+<td><code>n:simulation</code></td>
+<td>Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:progression</code></td>
+<td><code>n:simulation</code></td>
+<td>Own portable progression capability and lifecycle ownership boundaries.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:simulation:progression:lifecycle</code></td>
+<td><code>n:simulation:progression</code></td>
+<td>Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:spatial</code></td>
 <td>-</td>
 <td>Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:spatial:scale</code></td>
+<td><code>n:spatial</code></td>
+<td>Own subject scale, scale anchors, proximity bands, and deterministic scale queries.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -1649,6 +1997,54 @@ npm pack --dry-run --json
 <td><code>n:world:feature:atmosphere</code></td>
 <td><code>n:world:feature</code></td>
 <td>Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:navigation</code></td>
+<td><code>n:world</code></td>
+<td>Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:navmesh</code></td>
+<td><code>n:world:navigation</code></td>
+<td>Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:pathfinding</code></td>
+<td><code>n:world:navigation</code></td>
+<td>Own deterministic path requests, A* resolution, results, and graph adapters.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:route-field</code></td>
+<td><code>n:world:navigation</code></td>
+<td>Own generic route marker and corridor descriptors plus deterministic proximity queries.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:navigation:landmark-guidance</code></td>
+<td><code>n:world:navigation</code></td>
+<td>Own reusable landmark discovery, reach, completion, priority, and proximity state.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:generation</code></td>
+<td><code>n:world</code></td>
+<td>Own deterministic generic region, connector, point, graph, and walkability generation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:terrain</code></td>
+<td><code>n:world</code></td>
+<td>Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:world:water-surface</code></td>
+<td><code>n:world</code></td>
+<td>Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries.</td>
 <td>stable-candidate</td>
 </tr>
 </tbody></table>
@@ -2035,6 +2431,54 @@ npm pack --dry-run --json
 <td>Normalize semantic input actions, axes, contexts, and bindings.</td>
 </tr>
 <tr>
+<td><code>assistance-target-kit</code></td>
+<td><code>n:interaction:assistance-target</code></td>
+<td><code>nexusengine/domains/interaction/assistance-target</code></td>
+<td>Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection.</td>
+</tr>
+<tr>
+<td><code>environmental-affordance-kit</code></td>
+<td><code>n:interaction:environmental-affordance</code></td>
+<td><code>nexusengine/domains/interaction/environmental-affordance</code></td>
+<td>Own read-only affordance proximity queries and exact-once activation progress.</td>
+</tr>
+<tr>
+<td><code>request-queue-kit</code></td>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>nexusengine/domains/interaction/request/queue</code></td>
+<td>Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors.</td>
+</tr>
+<tr>
+<td><code>request-fulfillment-kit</code></td>
+<td><code>n:interaction:request:fulfillment</code></td>
+<td><code>nexusengine/domains/interaction/request/fulfillment</code></td>
+<td>Own spatial request destinations, deadlines, completion, expiry, and reward totals.</td>
+</tr>
+<tr>
+<td><code>transfer-zone-kit</code></td>
+<td><code>n:interaction:transfer-zone</code></td>
+<td><code>nexusengine/domains/interaction/transfer-zone</code></td>
+<td>Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions.</td>
+</tr>
+<tr>
+<td><code>occupant-request-adapter-kit</code></td>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>nexusengine/domains/interaction/adapters/occupant-request</code></td>
+<td>Translate Occupant Flow need records into exact-once Request Queue entries.</td>
+</tr>
+<tr>
+<td><code>transport-request-adapter-kit</code></td>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>nexusengine/domains/interaction/adapters/transport-request</code></td>
+<td>Translate Transport Route arrivals into exact-once Request Queue fulfillment commands.</td>
+</tr>
+<tr>
+<td><code>request-economy-adapter-kit</code></td>
+<td><code>n:interaction:request:queue</code></td>
+<td><code>nexusengine/domains/interaction/adapters/request-economy</code></td>
+<td>Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions.</td>
+</tr>
+<tr>
 <td><code>mcp-registry-kit</code></td>
 <td><code>n:mcp</code></td>
 <td><code>nexusengine/domains/mcp/registry</code></td>
@@ -2215,6 +2659,18 @@ npm pack --dry-run --json
 <td>Create generic sky, horizon, atmosphere, cloud, and celestial descriptors.</td>
 </tr>
 <tr>
+<td><code>third-person-camera-kit</code></td>
+<td><code>n:presentation:camera:third-person</code></td>
+<td><code>nexusengine/domains/presentation/camera/third-person</code></td>
+<td>Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.</td>
+</tr>
+<tr>
+<td><code>camera-world-occlusion-adapter-kit</code></td>
+<td><code>n:presentation:camera:third-person</code></td>
+<td><code>nexusengine/domains/presentation/adapters/camera-world-occlusion</code></td>
+<td>Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.</td>
+</tr>
+<tr>
 <td><code>runtime-lifecycle-kit</code></td>
 <td><code>n:runtime</code></td>
 <td><code>nexusengine/domains/runtime/lifecycle</code></td>
@@ -2255,6 +2711,12 @@ npm pack --dry-run --json
 <td><code>n:runtime:startup</code></td>
 <td><code>nexusengine/domains/runtime/startup</code></td>
 <td>Coordinate deterministic startup preparation and readiness receipts.</td>
+</tr>
+<tr>
+<td><code>schedule-kit</code></td>
+<td><code>n:runtime:sequence:schedule</code></td>
+<td><code>nexusengine/domains/runtime/sequence/schedule</code></td>
+<td>Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time.</td>
 </tr>
 <tr>
 <td><code>simulation-state-kit</code></td>
@@ -2299,6 +2761,108 @@ npm pack --dry-run --json
 <td>Translate articulated motion plans into backend-neutral physics drive requests.</td>
 </tr>
 <tr>
+<td><code>action-locomotion-kit</code></td>
+<td><code>n:simulation:motion:locomotion</code></td>
+<td><code>nexusengine/domains/simulation/motion/locomotion</code></td>
+<td>Convert action commands into deterministic renderer-neutral Motion intents and locomotion frames.</td>
+</tr>
+<tr>
+<td><code>vehicle-dynamics-kit</code></td>
+<td><code>n:simulation:motion:vehicle</code></td>
+<td><code>nexusengine/domains/simulation/motion/vehicle</code></td>
+<td>Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy.</td>
+</tr>
+<tr>
+<td><code>world-contact-kit</code></td>
+<td><code>n:simulation:physics:world-contact</code></td>
+<td><code>nexusengine/domains/simulation/physics/world-contact</code></td>
+<td>Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend.</td>
+</tr>
+<tr>
+<td><code>soft-respawn-kit</code></td>
+<td><code>n:simulation:recovery:soft-respawn</code></td>
+<td><code>nexusengine/domains/simulation/recovery/soft-respawn</code></td>
+<td>Produce exact-once coherent subject recovery records at configured portable points.</td>
+</tr>
+<tr>
+<td><code>economy-account-kit</code></td>
+<td><code>n:simulation:economy:accounts</code></td>
+<td><code>nexusengine/domains/simulation/economy/accounts</code></td>
+<td>Own finite account balances and exact-once portable economy transaction records.</td>
+</tr>
+<tr>
+<td><code>cargo-manifest-kit</code></td>
+<td><code>n:simulation:economy:cargo</code></td>
+<td><code>nexusengine/domains/simulation/economy/cargo</code></td>
+<td>Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state.</td>
+</tr>
+<tr>
+<td><code>facility-operations-kit</code></td>
+<td><code>n:simulation:operations:facility</code></td>
+<td><code>nexusengine/domains/simulation/operations/facility</code></td>
+<td>Own deterministic facility capacity, condition, status, cycle, and portable output receipts.</td>
+</tr>
+<tr>
+<td><code>occupant-flow-kit</code></td>
+<td><code>n:simulation:operations:occupant-flow</code></td>
+<td><code>nexusengine/domains/simulation/operations/occupant-flow</code></td>
+<td>Own deterministic occupant spawning, patience, service, and abandonment state.</td>
+</tr>
+<tr>
+<td><code>transport-route-kit</code></td>
+<td><code>n:simulation:operations:transport-route</code></td>
+<td><code>nexusengine/domains/simulation/operations/transport-route</code></td>
+<td>Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts.</td>
+</tr>
+<tr>
+<td><code>hazard-field-kit</code></td>
+<td><code>n:simulation:hazard-field</code></td>
+<td><code>nexusengine/domains/simulation/hazard-field</code></td>
+<td>Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries.</td>
+</tr>
+<tr>
+<td><code>pursuit-pressure-kit</code></td>
+<td><code>n:simulation:pursuit-pressure</code></td>
+<td><code>nexusengine/domains/simulation/pursuit-pressure</code></td>
+<td>Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.</td>
+</tr>
+<tr>
+<td><code>lifecycle-progression-kit</code></td>
+<td><code>n:simulation:progression:lifecycle</code></td>
+<td><code>nexusengine/domains/simulation/progression/lifecycle</code></td>
+<td>Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors.</td>
+</tr>
+<tr>
+<td><code>locomotion-contact-response-adapter-kit</code></td>
+<td><code>n:simulation:motion:locomotion</code></td>
+<td><code>nexusengine/domains/simulation/adapters/locomotion-contact-response</code></td>
+<td>Translate Locomotion frames and World Contact results into corrected Motion frames without owning either state.</td>
+</tr>
+<tr>
+<td><code>vehicle-water-response-adapter-kit</code></td>
+<td><code>n:simulation:motion:vehicle</code></td>
+<td><code>nexusengine/domains/simulation/adapters/vehicle-water-response</code></td>
+<td>Translate Vehicle state and Water Surface queries into portable drag, current, and buoyancy responses.</td>
+</tr>
+<tr>
+<td><code>lifecycle-economy-adapter-kit</code></td>
+<td><code>n:simulation:progression:lifecycle</code></td>
+<td><code>nexusengine/domains/simulation/adapters/lifecycle-economy</code></td>
+<td>Translate accepted Lifecycle costs and Economy effects into exact-once Economy transactions.</td>
+</tr>
+<tr>
+<td><code>lifecycle-facility-adapter-kit</code></td>
+<td><code>n:simulation:progression:lifecycle</code></td>
+<td><code>nexusengine/domains/simulation/adapters/lifecycle-facility</code></td>
+<td>Translate accepted Lifecycle facility effects into exact-once Facility Operations commands.</td>
+</tr>
+<tr>
+<td><code>facility-economy-adapter-kit</code></td>
+<td><code>n:simulation:operations:facility</code></td>
+<td><code>nexusengine/domains/simulation/adapters/facility-economy</code></td>
+<td>Translate Facility output and upkeep receipts into exact-once Economy transactions.</td>
+</tr>
+<tr>
 <td><code>spatial-contract-kit</code></td>
 <td><code>n:spatial</code></td>
 <td><code>nexusengine/domains/spatial/contracts</code></td>
@@ -2327,6 +2891,12 @@ npm pack --dry-run --json
 <td><code>n:spatial</code></td>
 <td><code>nexusengine/domains/spatial/quaternion-math</code></td>
 <td>Create, compose, normalize, rotate, and interpolate quaternions.</td>
+</tr>
+<tr>
+<td><code>spatial-scale-kit</code></td>
+<td><code>n:spatial:scale</code></td>
+<td><code>nexusengine/domains/spatial/scale</code></td>
+<td>Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions.</td>
 </tr>
 <tr>
 <td><code>world-state-kit</code></td>
@@ -2400,6 +2970,48 @@ npm pack --dry-run --json
 <td><code>nexusengine/domains/world/feature/atmosphere</code></td>
 <td>Create semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.</td>
 </tr>
+<tr>
+<td><code>navmesh-kit</code></td>
+<td><code>n:world:navigation:navmesh</code></td>
+<td><code>nexusengine/domains/world/navigation/navmesh</code></td>
+<td>Build deterministic 2D navigation meshes and portable 3D waypoint graphs from walkability.</td>
+</tr>
+<tr>
+<td><code>pathfinding-kit</code></td>
+<td><code>n:world:navigation:pathfinding</code></td>
+<td><code>nexusengine/domains/world/navigation/pathfinding</code></td>
+<td>Resolve deterministic A* path requests over portable grid and navigation graph adapters.</td>
+</tr>
+<tr>
+<td><code>route-field-kit</code></td>
+<td><code>n:world:navigation:route-field</code></td>
+<td><code>nexusengine/domains/world/navigation/route-field</code></td>
+<td>Manage reusable route marker and corridor descriptors plus pure proximity queries.</td>
+</tr>
+<tr>
+<td><code>landmark-guidance-kit</code></td>
+<td><code>n:world:navigation:landmark-guidance</code></td>
+<td><code>nexusengine/domains/world/navigation/landmark-guidance</code></td>
+<td>Manage deterministic landmark discovery, reach, completion, priority, and proximity state.</td>
+</tr>
+<tr>
+<td><code>procedural-generation-kit</code></td>
+<td><code>n:world:generation</code></td>
+<td><code>nexusengine/domains/world/generation</code></td>
+<td>Generate deterministic generic regions, connectors, points, graphs, and walkability from complete normalized configuration.</td>
+</tr>
+<tr>
+<td><code>terrain-kit</code></td>
+<td><code>n:world:terrain</code></td>
+<td><code>nexusengine/domains/world/terrain</code></td>
+<td>Evaluate deterministic terrain layers and manage portable sampled terrain cells without rendering ownership.</td>
+</tr>
+<tr>
+<td><code>water-surface-kit</code></td>
+<td><code>n:world:water-surface</code></td>
+<td><code>nexusengine/domains/world/water-surface</code></td>
+<td>Manage renderer-neutral water zones, currents, drag, wave phase, hazards, and pure queries.</td>
+</tr>
 </tbody></table>
 
     </article>
@@ -2408,11 +3020,11 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
+<p>Registry SHA-256: <code>c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2</code></p>
 <ul>
-<li>Source modules: 581</li>
-<li>Manifest-proven public atoms: 123</li>
-<li>Manifest-owned internal modules: 433</li>
+<li>Source modules: 831</li>
+<li>Manifest-proven public atoms: 159</li>
+<li>Manifest-owned internal modules: 647</li>
 <li>Root contract modules: 25</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
@@ -4293,6 +4905,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/composition/recipes/restored-behavior-recipes.js</code></td>
+<td><code>n:composition</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/composition/services/composition-apply-controller.js</code></td>
 <td><code>n:composition</code></td>
 <td>manifest-owned-internal</td>
@@ -4431,6 +5049,96 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/occupant-request-adapter-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/occupant-request-adapter-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/request-economy-adapter-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/request-economy-adapter-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/request-economy-adapter-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/transport-request-adapter-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/transport-request-adapter-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/adapters/transport-request-adapter-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/interaction/domain.manifest.js</code></td>
 <td><code>n:interaction</code></td>
 <td>manifest-owned-internal</td>
@@ -4479,6 +5187,96 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/interaction/restored-behavior-manifests.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/actions.js</code></td>
 <td><code>n:interaction</code></td>
 <td>manifest-owned-internal</td>
@@ -4510,6 +5308,144 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/interaction/subdomains/input/kits/input-kit/intent.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/contracts.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/services.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/state.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js</code></td>
 <td><code>n:interaction</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -4839,6 +5775,36 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/presentation/contracts.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-owned-internal</td>
@@ -4912,6 +5878,48 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/presentation/subdomains/camera/kits/framing-kit/perspective-fit.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/contracts.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/services.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/state.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -5199,6 +6207,48 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/contracts.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/services.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/state.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/runtime/subdomains/startup/core-assets-startup-bridge.js</code></td>
 <td><code>n:runtime</code></td>
 <td>manifest-owned-internal</td>
@@ -5220,6 +6270,156 @@ npm pack --dry-run --json
 <td><code>src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js</code></td>
 <td><code>n:runtime</code></td>
 <td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/facility-economy-adapter-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/facility-economy-adapter-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/facility-economy-adapter-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -5289,6 +6489,150 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/simulation/restored-behavior-manifests.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/simulation/subdomains/motion/index.js</code></td>
 <td><code>n:simulation</code></td>
 <td>manifest-owned-internal</td>
@@ -5325,6 +6669,228 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js</code></td>
 <td><code>n:simulation</code></td>
 <td>manifest-proven-public-atom</td>
@@ -5358,6 +6924,198 @@ npm pack --dry-run --json
 <td><code>src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js</code></td>
 <td><code>n:simulation</code></td>
 <td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/contracts.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/services.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/state.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js</code></td>
+<td><code>n:simulation</code></td>
+<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -5400,6 +7158,48 @@ npm pack --dry-run --json
 <td><code>src/core-domains/spatial/kits/vector-math-kit.js</code></td>
 <td><code>n:spatial</code></td>
 <td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/index.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/contracts.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/services.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/state.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/spatial/subdomains/scale/subdomain.manifest.js</code></td>
+<td><code>n:spatial</code></td>
+<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -5475,6 +7275,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/world/restored-behavior-manifests.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/world/snapshot.js</code></td>
 <td><code>n:world</code></td>
 <td>manifest-owned-internal</td>
@@ -5482,6 +7288,228 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/world/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/generation/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js</code></td>
 <td><code>n:world</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -5542,6 +7570,90 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/world/subdomains/scene/kits/scene-kit/utils.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/kits/terrain-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/kits/terrain-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/kits/terrain-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/terrain/subdomain.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/contracts.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/services.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/state.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/world/subdomains/water-surface/subdomain.manifest.js</code></td>
 <td><code>n:world</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

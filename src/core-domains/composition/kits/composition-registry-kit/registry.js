@@ -2,6 +2,7 @@ import { normalizeDomainPath } from "../../../../domain-path.js";
 import { sha256Integrity } from "../../../../foundation/sha256.js";
 import { NEXUS_ENGINE_VERSION } from "../../../../release.js";
 import { CORE_DOMAIN_CATALOG, CORE_REGISTRY_SHA256 } from "../../../catalog.js";
+import { CORE_COMPOSITION_RECIPES } from "../../recipes/restored-behavior-recipes.js";
 
 export const COMPOSITION_REGISTRY_SCHEMA = "nexusengine.composition-registry/3";
 
@@ -284,7 +285,7 @@ function createEngineCatalogBody() {
       proof: kit.proof
     }
   }));
-  const content = { domains, kits, recipes: [] };
+  const content = { domains, kits, recipes: clone(CORE_COMPOSITION_RECIPES) };
   const integrity = `sha256:${CORE_REGISTRY_SHA256}`;
   return {
     schema: COMPOSITION_REGISTRY_SCHEMA,

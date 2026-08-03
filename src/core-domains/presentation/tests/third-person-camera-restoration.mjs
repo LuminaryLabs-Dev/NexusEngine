@@ -33,6 +33,6 @@ assert.deepEqual(engine.n.thirdPersonCamera.getSnapshot(), state);
 
 const invalid = createCameraEngine(false);
 assert.throws(() => invalid.installKit(createThirdPersonCameraKit({ characterId: "hero" })), /motionActorId binding/);
-assert.throws(() => createThirdPersonCameraKit({}), /characterId is required/);
+assert.throws(() => createCameraEngine().installKit(createThirdPersonCameraKit()), /cannot resolve character character/);
 
 console.log("third-person camera restoration: ok");

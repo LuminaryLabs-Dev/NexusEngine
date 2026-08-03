@@ -142,7 +142,15 @@ controlEngine.n.composition.registry.registerRecipe({
   domains: []
 });
 const recipes = (await controlEngine.n.mcp.callTool("recipes_list", { limit: 10 })).structuredContent;
-assert.deepEqual(recipes.recipes.map(({ id }) => id), ["object-placement-recipe"]);
+assert.deepEqual(recipes.recipes.map(({ id }) => id), [
+  "hazard-pursuit",
+  "management-operations",
+  "object-placement-recipe",
+  "procedural-navigation",
+  "spatial-guidance",
+  "terrain-character-traversal",
+  "vehicle-rescue-logistics"
+]);
 assert.equal(
   (await controlEngine.n.mcp.callTool("recipe_get", { id: "object-placement-recipe" }))
     .structuredContent.recipe.kits[0],

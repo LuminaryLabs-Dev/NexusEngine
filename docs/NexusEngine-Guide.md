@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`<br>
-Guide content SHA-256: `1bc26d79de9c114877c415a78e6cf0bcb8023f4d3bc4bb66349d4d6b1b79896f`
+Core registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`<br>
+Guide content SHA-256: `cd8b03ea3bf3f1921233a1161cca5bee269e425cd1fa16139bbbc02be532711d`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -761,7 +761,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -792,6 +792,12 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 - `n:host`: Own host capability descriptors and fallback contracts without platform implementation.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
+- `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
+- `n:interaction:environmental-affordance`: Own portable affordance proximity and activation state.
+- `n:interaction:request`: Own portable request queue and fulfillment boundaries.
+- `n:interaction:request:queue`: Own queued request patience, fulfillment, expiry, and effect descriptors.
+- `n:interaction:request:fulfillment`: Own spatial request destination, deadline, completion, expiry, and reward state.
+- `n:interaction:transfer-zone`: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.
 - `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
 - `n:network`: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.
 - `n:object`: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.
@@ -813,6 +819,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 - `n:presentation:speech`: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.
 - `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
 - `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
+- `n:presentation:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.
@@ -820,12 +827,30 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 - `n:runtime:persistence`: Own save/load targets, save slots, recovery records, and adapter contracts.
 - `n:runtime:sequence`: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.
 - `n:runtime:startup`: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.
+- `n:runtime:sequence:schedule`: Own deterministic elapsed-time schedules and occurrence records.
 - `n:simulation`: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.
 - `n:simulation:physics`: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.
 - `n:simulation:physics:articulated`: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.
 - `n:simulation:motion`: Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving.
 - `n:simulation:motion:articulated`: Own target poses, joint limits, articulation motion plans, and drive requests.
+- `n:simulation:motion:locomotion`: Own deterministic action-to-motion intent and locomotion frame calculation.
+- `n:simulation:motion:vehicle`: Own deterministic vehicle movement, boost, bounds, and impact frames.
+- `n:simulation:physics:world-contact`: Own portable world-contact resolution and correction records.
+- `n:simulation:recovery`: Own portable subject recovery records and deterministic recovery state.
+- `n:simulation:recovery:soft-respawn`: Own exact-once portable subject recovery records.
+- `n:simulation:economy`: Own portable economic account and cargo state primitives.
+- `n:simulation:economy:accounts`: Own finite account balances and economy transaction records.
+- `n:simulation:economy:cargo`: Own portable cargo inventory, carrying, condition, deposits, and quota state.
+- `n:simulation:operations`: Own portable facility, occupant, and transport operation primitives.
+- `n:simulation:operations:facility`: Own deterministic facility capacity, condition, status, cycles, and operation receipts.
+- `n:simulation:operations:occupant-flow`: Own deterministic occupant spawning, patience, service, and abandonment state.
+- `n:simulation:operations:transport-route`: Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.
+- `n:simulation:hazard-field`: Own deterministic bounded hazard state, spawning, motion, and collision queries.
+- `n:simulation:pursuit-pressure`: Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.
+- `n:simulation:progression`: Own portable progression capability and lifecycle ownership boundaries.
+- `n:simulation:progression:lifecycle`: Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
+- `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.
 - `n:world:scene`: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.
 - `n:world:weather`: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.
@@ -836,6 +861,14 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 - `n:world:feature:ecology`: Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors.
 - `n:world:feature:settlement`: Own semantic settlement, route, structure, and infrastructure feature descriptors.
 - `n:world:feature:atmosphere`: Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors.
+- `n:world:navigation`: Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance.
+- `n:world:navigation:navmesh`: Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability.
+- `n:world:navigation:pathfinding`: Own deterministic path requests, A* resolution, results, and graph adapters.
+- `n:world:navigation:route-field`: Own generic route marker and corridor descriptors plus deterministic proximity queries.
+- `n:world:navigation:landmark-guidance`: Own reusable landmark discovery, reach, completion, priority, and proximity state.
+- `n:world:generation`: Own deterministic generic region, connector, point, graph, and walkability generation.
+- `n:world:terrain`: Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence.
+- `n:world:water-surface`: Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries.
 
 ---
 
@@ -843,7 +876,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 
 # Core Dependency Table
 
-Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -876,6 +909,12 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:host` | - | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
+| `n:interaction:assistance-target` | `n:interaction` | - |
+| `n:interaction:environmental-affordance` | `n:interaction` | - |
+| `n:interaction:request` | `n:interaction` | - |
+| `n:interaction:request:queue` | `n:interaction` | - |
+| `n:interaction:request:fulfillment` | `n:interaction` | - |
+| `n:interaction:transfer-zone` | `n:interaction` | - |
 | `n:mcp` | - | `n:composition` |
 | `n:network` | - | - |
 | `n:object` | - | `n:asset`, `n:simulation:physics` |
@@ -897,6 +936,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:presentation:speech` | `n:presentation` | - |
 | `n:presentation:capture` | `n:presentation` | - |
 | `n:presentation:sky` | `n:presentation` | - |
+| `n:presentation:camera:third-person` | `character:resolution`, `motion:velocity`, `n:presentation:camera` | - |
 | `n:runtime` | - | - |
 | `n:runtime:realtime` | `n:runtime` | - |
 | `n:runtime:data` | `n:runtime` | - |
@@ -904,12 +944,30 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:runtime:persistence` | `n:runtime:data` | - |
 | `n:runtime:sequence` | `n:runtime` | - |
 | `n:runtime:startup` | `n:runtime` | `n:asset` |
+| `n:runtime:sequence:schedule` | `n:runtime:sequence` | - |
 | `n:simulation` | `n:runtime:realtime` | - |
 | `n:simulation:physics` | `n:simulation` | - |
 | `n:simulation:physics:articulated` | `n:simulation:physics` | - |
 | `n:simulation:motion` | `n:simulation` | - |
 | `n:simulation:motion:articulated` | `n:simulation:motion` | - |
+| `n:simulation:motion:locomotion` | `n:simulation:motion` | - |
+| `n:simulation:motion:vehicle` | `n:simulation:motion` | - |
+| `n:simulation:physics:world-contact` | `n:simulation:physics` | - |
+| `n:simulation:recovery` | `n:simulation` | - |
+| `n:simulation:recovery:soft-respawn` | `n:simulation` | - |
+| `n:simulation:economy` | `n:simulation` | - |
+| `n:simulation:economy:accounts` | `n:simulation`, `transaction:idempotency` | - |
+| `n:simulation:economy:cargo` | `n:simulation` | - |
+| `n:simulation:operations` | `n:simulation` | - |
+| `n:simulation:operations:facility` | `n:simulation` | - |
+| `n:simulation:operations:occupant-flow` | `n:simulation` | - |
+| `n:simulation:operations:transport-route` | `n:simulation` | - |
+| `n:simulation:hazard-field` | `n:simulation` | - |
+| `n:simulation:pursuit-pressure` | `n:simulation` | - |
+| `n:simulation:progression` | `n:simulation` | - |
+| `n:simulation:progression:lifecycle` | `n:simulation` | - |
 | `n:spatial` | - | - |
+| `n:spatial:scale` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |
 | `n:world:scene` | `n:world` | - |
 | `n:world:weather` | `n:world` | - |
@@ -920,6 +978,14 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:world:feature:ecology` | `n:world:feature` | - |
 | `n:world:feature:settlement` | `n:world:feature` | - |
 | `n:world:feature:atmosphere` | `n:world:feature` | - |
+| `n:world:navigation` | `n:world` | - |
+| `n:world:navigation:navmesh` | `navigation:walkability-source` | - |
+| `n:world:navigation:pathfinding` | `navigation:navmesh` | - |
+| `n:world:navigation:route-field` | `n:world` | - |
+| `n:world:navigation:landmark-guidance` | `n:world` | - |
+| `n:world:generation` | `n:world` | - |
+| `n:world:terrain` | `n:world` | - |
+| `n:world:water-surface` | `n:world` | - |
 
 ---
 
@@ -929,7 +995,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`
 
 ## Domains
 
@@ -964,6 +1030,12 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:host` | - | Own host capability descriptors and fallback contracts without platform implementation. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
+| `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
+| `n:interaction:environmental-affordance` | `n:interaction` | Own portable affordance proximity and activation state. | stable-candidate |
+| `n:interaction:request` | `n:interaction` | Own portable request queue and fulfillment boundaries. | stable-candidate |
+| `n:interaction:request:queue` | `n:interaction:request` | Own queued request patience, fulfillment, expiry, and effect descriptors. | stable-candidate |
+| `n:interaction:request:fulfillment` | `n:interaction:request` | Own spatial request destination, deadline, completion, expiry, and reward state. | stable-candidate |
+| `n:interaction:transfer-zone` | `n:interaction` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. | stable-candidate |
 | `n:mcp` | - | Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch. | stable-candidate |
 | `n:network` | - | Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts. | stable-candidate |
 | `n:object` | - | Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement. | stable-candidate |
@@ -985,6 +1057,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:presentation:speech` | `n:presentation` | Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts. | stable-candidate |
 | `n:presentation:capture` | `n:presentation` | Own observation requests, view sets, framing, capture jobs, progress, and result contracts. | stable-candidate |
 | `n:presentation:sky` | `n:presentation` | Own generic sky, atmosphere, cloud, horizon, and celestial descriptors. | stable-candidate |
+| `n:presentation:camera:third-person` | `n:presentation:camera` | Own renderer-neutral third-person camera follow descriptors. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -992,12 +1065,30 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:runtime:persistence` | `n:runtime` | Own save/load targets, save slots, recovery records, and adapter contracts. | stable-candidate |
 | `n:runtime:sequence` | `n:runtime` | Own deterministic sequence nodes, ordered execution, and frame-driven sequence state. | stable-candidate |
 | `n:runtime:startup` | `n:runtime` | Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts. | stable-candidate |
+| `n:runtime:sequence:schedule` | `n:runtime:sequence` | Own deterministic elapsed-time schedules and occurrence records. | stable-candidate |
 | `n:simulation` | - | Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts. | stable-candidate |
 | `n:simulation:physics` | `n:simulation` | Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts. | stable-candidate |
 | `n:simulation:physics:articulated` | `n:simulation:physics` | Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state. | stable-candidate |
 | `n:simulation:motion` | `n:simulation` | Own intent-to-motion descriptors, movement modes, trajectories, velocity state, movement policies, and deterministic pose solving. | stable-candidate |
 | `n:simulation:motion:articulated` | `n:simulation:motion` | Own target poses, joint limits, articulation motion plans, and drive requests. | stable-candidate |
+| `n:simulation:motion:locomotion` | `n:simulation:motion` | Own deterministic action-to-motion intent and locomotion frame calculation. | stable-candidate |
+| `n:simulation:motion:vehicle` | `n:simulation:motion` | Own deterministic vehicle movement, boost, bounds, and impact frames. | stable-candidate |
+| `n:simulation:physics:world-contact` | `n:simulation:physics` | Own portable world-contact resolution and correction records. | stable-candidate |
+| `n:simulation:recovery` | `n:simulation` | Own portable subject recovery records and deterministic recovery state. | stable-candidate |
+| `n:simulation:recovery:soft-respawn` | `n:simulation:recovery` | Own exact-once portable subject recovery records. | stable-candidate |
+| `n:simulation:economy` | `n:simulation` | Own portable economic account and cargo state primitives. | stable-candidate |
+| `n:simulation:economy:accounts` | `n:simulation:economy` | Own finite account balances and economy transaction records. | stable-candidate |
+| `n:simulation:economy:cargo` | `n:simulation:economy` | Own portable cargo inventory, carrying, condition, deposits, and quota state. | stable-candidate |
+| `n:simulation:operations` | `n:simulation` | Own portable facility, occupant, and transport operation primitives. | stable-candidate |
+| `n:simulation:operations:facility` | `n:simulation:operations` | Own deterministic facility capacity, condition, status, cycles, and operation receipts. | stable-candidate |
+| `n:simulation:operations:occupant-flow` | `n:simulation:operations` | Own deterministic occupant spawning, patience, service, and abandonment state. | stable-candidate |
+| `n:simulation:operations:transport-route` | `n:simulation:operations` | Own deterministic transport stops, carriers, capacity, travel, and arrival receipts. | stable-candidate |
+| `n:simulation:hazard-field` | `n:simulation` | Own deterministic bounded hazard state, spawning, motion, and collision queries. | stable-candidate |
+| `n:simulation:pursuit-pressure` | `n:simulation` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. | stable-candidate |
+| `n:simulation:progression` | `n:simulation` | Own portable progression capability and lifecycle ownership boundaries. | stable-candidate |
+| `n:simulation:progression:lifecycle` | `n:simulation:progression` | Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors. | stable-candidate |
 | `n:spatial` | - | Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math. | stable-candidate |
+| `n:spatial:scale` | `n:spatial` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. | stable-candidate |
 | `n:world` | - | Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts. | stable-candidate |
 | `n:world:scene` | `n:world` | Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots. | stable-candidate |
 | `n:world:weather` | `n:world` | Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution. | stable-candidate |
@@ -1008,6 +1099,14 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:world:feature:ecology` | `n:world:feature` | Own semantic biome, habitat, vegetation-region, and ecotone feature descriptors. | stable-candidate |
 | `n:world:feature:settlement` | `n:world:feature` | Own semantic settlement, route, structure, and infrastructure feature descriptors. | stable-candidate |
 | `n:world:feature:atmosphere` | `n:world:feature` | Own semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors. | stable-candidate |
+| `n:world:navigation` | `n:world` | Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance. | stable-candidate |
+| `n:world:navigation:navmesh` | `n:world:navigation` | Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability. | stable-candidate |
+| `n:world:navigation:pathfinding` | `n:world:navigation` | Own deterministic path requests, A* resolution, results, and graph adapters. | stable-candidate |
+| `n:world:navigation:route-field` | `n:world:navigation` | Own generic route marker and corridor descriptors plus deterministic proximity queries. | stable-candidate |
+| `n:world:navigation:landmark-guidance` | `n:world:navigation` | Own reusable landmark discovery, reach, completion, priority, and proximity state. | stable-candidate |
+| `n:world:generation` | `n:world` | Own deterministic generic region, connector, point, graph, and walkability generation. | stable-candidate |
+| `n:world:terrain` | `n:world` | Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence. | stable-candidate |
+| `n:world:water-surface` | `n:world` | Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries. | stable-candidate |
 
 ## Atomic Kits
 
@@ -1075,6 +1174,14 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `host-capability-kit` | `n:host` | `nexusengine/domains/host/capabilities` | Describe available host capabilities and select declarative fallback modes. |
 | `interaction-kit` | `n:interaction` | `nexusengine/domains/interaction/runtime` | Manage interaction targets, affordances, activation, and results. |
 | `input-contract-kit` | `n:interaction:input` | `nexusengine/domains/interaction/input` | Normalize semantic input actions, axes, contexts, and bindings. |
+| `assistance-target-kit` | `n:interaction:assistance-target` | `nexusengine/domains/interaction/assistance-target` | Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection. |
+| `environmental-affordance-kit` | `n:interaction:environmental-affordance` | `nexusengine/domains/interaction/environmental-affordance` | Own read-only affordance proximity queries and exact-once activation progress. |
+| `request-queue-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/request/queue` | Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors. |
+| `request-fulfillment-kit` | `n:interaction:request:fulfillment` | `nexusengine/domains/interaction/request/fulfillment` | Own spatial request destinations, deadlines, completion, expiry, and reward totals. |
+| `transfer-zone-kit` | `n:interaction:transfer-zone` | `nexusengine/domains/interaction/transfer-zone` | Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions. |
+| `occupant-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/occupant-request` | Translate Occupant Flow need records into exact-once Request Queue entries. |
+| `transport-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/transport-request` | Translate Transport Route arrivals into exact-once Request Queue fulfillment commands. |
+| `request-economy-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/request-economy` | Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions. |
 | `mcp-registry-kit` | `n:mcp` | `nexusengine/domains/mcp/registry` | Register and dispatch schema-valid MCP providers through an explicit authorization boundary. |
 | `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe network sessions, messages, authority, and synchronization without owning transport. |
 | `object-registry-kit` | `n:object` | `nexusengine/domains/object/registry` | Own object identity and renderer-neutral lifecycle records. |
@@ -1105,6 +1212,8 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `speech-contract-kit` | `n:presentation:speech` | `nexusengine/domains/presentation/speech` | Manage provider-neutral speech requests, voices, utterance lifecycle, and synthesis results. |
 | `capture-contract-kit` | `n:presentation:capture` | `nexusengine/domains/presentation/capture` | Manage observation requests, view sets, framing, capture jobs, progress, and result contracts. |
 | `sky-descriptor-kit` | `n:presentation:sky` | `nexusengine/domains/presentation/sky` | Create generic sky, horizon, atmosphere, cloud, and celestial descriptors. |
+| `third-person-camera-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
+| `camera-world-occlusion-adapter-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/adapters/camera-world-occlusion` | Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |
@@ -1112,6 +1221,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `persistence-contract-kit` | `n:runtime:persistence` | `nexusengine/domains/runtime/persistence` | Describe save/load targets, slots, recovery records, and persistence adapter contracts. |
 | `runtime-sequence-kit` | `n:runtime:sequence` | `nexusengine/domains/runtime/sequence` | Install deterministic sequence node definitions and execution state. |
 | `runtime-startup-kit` | `n:runtime:startup` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
+| `schedule-kit` | `n:runtime:sequence:schedule` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
 | `simulation-state-kit` | `n:simulation` | `nexusengine/domains/simulation/runtime` | Manage deterministic simulation objectives, resources, hazards, timers, and resolution receipts. |
 | `physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
 | `articulated-physics-kit` | `n:simulation:physics:articulated` | `nexusengine/domains/simulation/physics/articulated` | Manage backend-neutral articulated body topology and joint dynamics state. |
@@ -1119,11 +1229,29 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `two-bone-ik-kit` | `n:simulation:motion` | `nexusengine/domains/simulation/motion/two-bone-ik` | Solve deterministic two-bone inverse-kinematics poses. |
 | `articulated-motion-kit` | `n:simulation:motion:articulated` | `nexusengine/domains/simulation/motion/articulated` | Create target poses, joint limits, articulation plans, and drive requests. |
 | `articulated-motion-drive-adapter-kit` | `n:simulation:physics:articulated` | `nexusengine/domains/simulation/adapters/articulated-drive` | Translate articulated motion plans into backend-neutral physics drive requests. |
+| `action-locomotion-kit` | `n:simulation:motion:locomotion` | `nexusengine/domains/simulation/motion/locomotion` | Convert action commands into deterministic renderer-neutral Motion intents and locomotion frames. |
+| `vehicle-dynamics-kit` | `n:simulation:motion:vehicle` | `nexusengine/domains/simulation/motion/vehicle` | Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy. |
+| `world-contact-kit` | `n:simulation:physics:world-contact` | `nexusengine/domains/simulation/physics/world-contact` | Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend. |
+| `soft-respawn-kit` | `n:simulation:recovery:soft-respawn` | `nexusengine/domains/simulation/recovery/soft-respawn` | Produce exact-once coherent subject recovery records at configured portable points. |
+| `economy-account-kit` | `n:simulation:economy:accounts` | `nexusengine/domains/simulation/economy/accounts` | Own finite account balances and exact-once portable economy transaction records. |
+| `cargo-manifest-kit` | `n:simulation:economy:cargo` | `nexusengine/domains/simulation/economy/cargo` | Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state. |
+| `facility-operations-kit` | `n:simulation:operations:facility` | `nexusengine/domains/simulation/operations/facility` | Own deterministic facility capacity, condition, status, cycle, and portable output receipts. |
+| `occupant-flow-kit` | `n:simulation:operations:occupant-flow` | `nexusengine/domains/simulation/operations/occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
+| `transport-route-kit` | `n:simulation:operations:transport-route` | `nexusengine/domains/simulation/operations/transport-route` | Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts. |
+| `hazard-field-kit` | `n:simulation:hazard-field` | `nexusengine/domains/simulation/hazard-field` | Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries. |
+| `pursuit-pressure-kit` | `n:simulation:pursuit-pressure` | `nexusengine/domains/simulation/pursuit-pressure` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. |
+| `lifecycle-progression-kit` | `n:simulation:progression:lifecycle` | `nexusengine/domains/simulation/progression/lifecycle` | Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors. |
+| `locomotion-contact-response-adapter-kit` | `n:simulation:motion:locomotion` | `nexusengine/domains/simulation/adapters/locomotion-contact-response` | Translate Locomotion frames and World Contact results into corrected Motion frames without owning either state. |
+| `vehicle-water-response-adapter-kit` | `n:simulation:motion:vehicle` | `nexusengine/domains/simulation/adapters/vehicle-water-response` | Translate Vehicle state and Water Surface queries into portable drag, current, and buoyancy responses. |
+| `lifecycle-economy-adapter-kit` | `n:simulation:progression:lifecycle` | `nexusengine/domains/simulation/adapters/lifecycle-economy` | Translate accepted Lifecycle costs and Economy effects into exact-once Economy transactions. |
+| `lifecycle-facility-adapter-kit` | `n:simulation:progression:lifecycle` | `nexusengine/domains/simulation/adapters/lifecycle-facility` | Translate accepted Lifecycle facility effects into exact-once Facility Operations commands. |
+| `facility-economy-adapter-kit` | `n:simulation:operations:facility` | `nexusengine/domains/simulation/adapters/facility-economy` | Translate Facility output and upkeep receipts into exact-once Economy transactions. |
 | `spatial-contract-kit` | `n:spatial` | `nexusengine/domains/spatial/contracts` | Describe transforms, bounds, zones, spaces, and spatial query requests. |
 | `spatial-angle-math-kit` | `n:spatial` | `nexusengine/domains/spatial/angle-math` | Normalize, compare, and interpolate angular values. |
 | `spatial-vector-math-kit` | `n:spatial` | `nexusengine/domains/spatial/vector-math` | Create and operate on renderer-neutral vector values. |
 | `spatial-transform-math-kit` | `n:spatial` | `nexusengine/domains/spatial/transform-math` | Calculate deterministic transforms, bases, interpolation, and planar projections. |
 | `spatial-quaternion-math-kit` | `n:spatial` | `nexusengine/domains/spatial/quaternion-math` | Create, compose, normalize, rotate, and interpolate quaternions. |
+| `spatial-scale-kit` | `n:spatial:scale` | `nexusengine/domains/spatial/scale` | Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions. |
 | `world-state-kit` | `n:world` | `nexusengine/domains/world/runtime` | Manage world identity, cells, partitions, surfaces, and deterministic assembly state. |
 | `scene-lifecycle-kit` | `n:world:scene` | `nexusengine/domains/world/scene` | Manage host-neutral scene identity, lifecycle, transitions, bindings, and snapshots. |
 | `weather-state-kit` | `n:world:weather` | `nexusengine/domains/world/weather` | Manage deterministic weather conditions, tendencies, regions, and sampling. |
@@ -1136,6 +1264,13 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `ecology-feature-kit` | `n:world:feature:ecology` | `nexusengine/domains/world/feature/ecology` | Create semantic biome, habitat, vegetation-region, and ecotone feature descriptors. |
 | `settlement-feature-kit` | `n:world:feature:settlement` | `nexusengine/domains/world/feature/settlement` | Create semantic settlement, route, structure, and infrastructure feature descriptors. |
 | `atmosphere-feature-kit` | `n:world:feature:atmosphere` | `nexusengine/domains/world/feature/atmosphere` | Create semantic cloud, fog, wind, thermal, precipitation, and visibility feature descriptors. |
+| `navmesh-kit` | `n:world:navigation:navmesh` | `nexusengine/domains/world/navigation/navmesh` | Build deterministic 2D navigation meshes and portable 3D waypoint graphs from walkability. |
+| `pathfinding-kit` | `n:world:navigation:pathfinding` | `nexusengine/domains/world/navigation/pathfinding` | Resolve deterministic A* path requests over portable grid and navigation graph adapters. |
+| `route-field-kit` | `n:world:navigation:route-field` | `nexusengine/domains/world/navigation/route-field` | Manage reusable route marker and corridor descriptors plus pure proximity queries. |
+| `landmark-guidance-kit` | `n:world:navigation:landmark-guidance` | `nexusengine/domains/world/navigation/landmark-guidance` | Manage deterministic landmark discovery, reach, completion, priority, and proximity state. |
+| `procedural-generation-kit` | `n:world:generation` | `nexusengine/domains/world/generation` | Generate deterministic generic regions, connectors, points, graphs, and walkability from complete normalized configuration. |
+| `terrain-kit` | `n:world:terrain` | `nexusengine/domains/world/terrain` | Evaluate deterministic terrain layers and manage portable sampled terrain cells without rendering ownership. |
+| `water-surface-kit` | `n:world:water-surface` | `nexusengine/domains/world/water-surface` | Manage renderer-neutral water zones, currents, drag, wave phase, hazards, and pure queries. |
 
 ---
 
@@ -1145,11 +1280,11 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`
 
-- Source modules: 581
-- Manifest-proven public atoms: 123
-- Manifest-owned internal modules: 433
+- Source modules: 831
+- Manifest-proven public atoms: 159
+- Manifest-owned internal modules: 647
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -1467,6 +1602,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/composition/kits/composition-registry-kit/index.js` | `n:composition` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/composition/kits/composition-registry-kit/registry.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/kits/composition-registry-kit/services.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/composition/recipes/restored-behavior-recipes.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/services/composition-apply-controller.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/domain.manifest.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
@@ -1490,6 +1626,21 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/occupant-request-adapter-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/occupant-request-adapter-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/request-economy-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/request-economy-adapter-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/request-economy-adapter-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/transport-request-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/transport-request-adapter-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/adapters/transport-request-adapter-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/domain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/activation.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
@@ -1498,12 +1649,50 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/interaction/kits/interaction-kit/prompts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/results.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/targets.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/restored-behavior-manifests.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/actions.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/adapters.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/bindings.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/contexts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/subdomains/input/kits/input-kit/intent.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/manifest-domain-service-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/manifest-input.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/manifest-kit-contract.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
@@ -1558,6 +1747,11 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/policy/domain.manifest.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/index.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/kits/policy-kit/index.js` | `n:policy` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/domain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
@@ -1571,6 +1765,13 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/presentation/subdomains/camera/kits/framing-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/camera/kits/framing-kit/orthographic-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/camera/kits/framing-kit/perspective-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/services.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/state.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/capture/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/capture/kits/capture-kit/descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/capture/kits/capture-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
@@ -1618,10 +1819,42 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/contracts.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/services.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/state.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/startup/core-assets-startup-bridge.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/startup/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/startup/kits/startup-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/facility-economy-adapter-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/facility-economy-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/facility-economy-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/domain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/kits/simulation-kit/checkpoints.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
@@ -1633,18 +1866,111 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/simulation/kits/simulation-kit/resources.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/kits/simulation-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/kits/simulation-kit/timers.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/restored-behavior-manifests.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/kits/motion-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/kits/physics-kit/provider.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/domain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/kits/angle-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
@@ -1652,6 +1978,13 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/spatial/kits/spatial-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/transform-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/vector-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/contracts.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/services.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/state.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/subdomains/scale/subdomain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/adapters/terrain-provider-adapter/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/domain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -1664,8 +1997,46 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/world/partitions/uniform-grid-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/portable.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/preparation/world-patch-preparation-controller.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/restored-behavior-manifests.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/generation/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/constants.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/descriptors.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/host-contract.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -1676,6 +2047,20 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/transitions.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/scene/kits/scene-kit/utils.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/kits/terrain-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/kits/terrain-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/kits/terrain-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/terrain/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/subdomains/water-surface/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/weather/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/weather/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |

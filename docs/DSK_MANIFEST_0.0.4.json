@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359",
-  "compositionRegistryHash": "sha256:cef838486699e07c124c653d11a15f6928aa958b802789699c0e613c09b16b71",
+  "registryHash": "sha256:c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
+  "compositionRegistryHash": "sha256:ae59c70c661f62312002594451ab1cdf68b4bde6c2e16e100027d52e7fff22ee",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359",
-      "integrity": "sha256:8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359",
+      "sourceCommit": "builtin:c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
+      "integrity": "sha256:c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
       "status": "available",
       "environments": [
         "browser",
@@ -542,6 +542,39 @@
       }
     },
     {
+      "id": "interaction-assistance-target-domain",
+      "domainPath": "n:interaction:assistance-target",
+      "parentDomainPath": "n:interaction",
+      "label": "Assistance Target",
+      "status": "stable-candidate",
+      "responsibility": "Own assistance target urgency, attachment, completion, loss, and deterministic selection.",
+      "ownedMeaning": [
+        "assistance target state",
+        "attachment",
+        "terminal outcomes",
+        "urgency"
+      ],
+      "forbiddenResponsibilities": [
+        "economy rewards",
+        "game rescue rules",
+        "vehicle movement"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:assistance-target"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "interaction-domain",
       "domainPath": "n:interaction",
       "parentDomainPath": null,
@@ -563,6 +596,38 @@
       "requires": [],
       "provides": [
         "n:interaction"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "interaction-environmental-affordance-domain",
+      "domainPath": "n:interaction:environmental-affordance",
+      "parentDomainPath": "n:interaction",
+      "label": "Environmental Affordance",
+      "status": "stable-candidate",
+      "responsibility": "Own portable affordance proximity and activation state.",
+      "ownedMeaning": [
+        "activation progress",
+        "affordance descriptors",
+        "completion state"
+      ],
+      "forbiddenResponsibilities": [
+        "game objective effects",
+        "presentation prompts",
+        "world mutation"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:environmental-affordance"
       ],
       "settingsSchema": {
         "type": "object",
@@ -596,6 +661,138 @@
       "requires": [],
       "provides": [
         "n:interaction:input"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "interaction-request-domain",
+      "domainPath": "n:interaction:request",
+      "parentDomainPath": "n:interaction",
+      "label": "Interaction Request",
+      "status": "stable-candidate",
+      "responsibility": "Own portable request queue and fulfillment boundaries.",
+      "ownedMeaning": [
+        "queue and fulfillment ownership boundaries",
+        "request capability contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "economy effects",
+        "occupant effects",
+        "transport effects"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:request"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "interaction-request-fulfillment-domain",
+      "domainPath": "n:interaction:request:fulfillment",
+      "parentDomainPath": "n:interaction:request",
+      "label": "Request Fulfillment",
+      "status": "stable-candidate",
+      "responsibility": "Own spatial request destination, deadline, completion, expiry, and reward state.",
+      "ownedMeaning": [
+        "completion records",
+        "deadlines",
+        "reward totals",
+        "spatial requests"
+      ],
+      "forbiddenResponsibilities": [
+        "economy mutation",
+        "request queue policy",
+        "transport mutation"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:request:fulfillment"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "interaction-request-queue-domain",
+      "domainPath": "n:interaction:request:queue",
+      "parentDomainPath": "n:interaction:request",
+      "label": "Request Queue",
+      "status": "stable-candidate",
+      "responsibility": "Own queued request patience, fulfillment, expiry, and effect descriptors.",
+      "ownedMeaning": [
+        "effect descriptors",
+        "patience state",
+        "queued requests",
+        "request outcomes"
+      ],
+      "forbiddenResponsibilities": [
+        "economy mutation",
+        "engine ticks",
+        "occupant mutation",
+        "transport mutation"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:request:queue"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "interaction-transfer-zone-domain",
+      "domainPath": "n:interaction:transfer-zone",
+      "parentDomainPath": "n:interaction",
+      "label": "Transfer Zone",
+      "status": "stable-candidate",
+      "responsibility": "Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.",
+      "ownedMeaning": [
+        "acceptance policy",
+        "capacity",
+        "completion records",
+        "dwell state",
+        "transfer zones"
+      ],
+      "forbiddenResponsibilities": [
+        "cargo mutation",
+        "game extraction rules",
+        "renderer volumes"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "n:interaction:transfer-zone"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1134,6 +1331,41 @@
       }
     },
     {
+      "id": "presentation-camera-third-person-domain",
+      "domainPath": "n:presentation:camera:third-person",
+      "parentDomainPath": "n:presentation:camera",
+      "label": "Third-Person Camera",
+      "status": "stable-candidate",
+      "responsibility": "Own renderer-neutral third-person camera follow descriptors.",
+      "ownedMeaning": [
+        "camera smoothing state",
+        "follow orbit state",
+        "third-person camera descriptor"
+      ],
+      "forbiddenResponsibilities": [
+        "character motion",
+        "raw input",
+        "renderer camera objects",
+        "world occlusion queries"
+      ],
+      "requires": [
+        "character:resolution",
+        "motion:velocity",
+        "n:presentation:camera"
+      ],
+      "provides": [
+        "n:presentation:camera:third-person"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "presentation-capture-domain",
       "domainPath": "n:presentation:capture",
       "parentDomainPath": "n:presentation",
@@ -1562,6 +1794,38 @@
       }
     },
     {
+      "id": "runtime-sequence-schedule-domain",
+      "domainPath": "n:runtime:sequence:schedule",
+      "parentDomainPath": "n:runtime:sequence",
+      "label": "Runtime Schedule",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic elapsed-time schedules and occurrence records.",
+      "ownedMeaning": [
+        "cycle state",
+        "occurrence records",
+        "schedule elapsed time"
+      ],
+      "forbiddenResponsibilities": [
+        "authored story",
+        "facility output",
+        "wall-clock access"
+      ],
+      "requires": [
+        "n:runtime:sequence"
+      ],
+      "provides": [
+        "n:runtime:sequence:schedule"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "runtime-startup-domain",
       "domainPath": "n:runtime:startup",
       "parentDomainPath": "n:runtime",
@@ -1664,6 +1928,136 @@
       }
     },
     {
+      "id": "simulation-economy-accounts-domain",
+      "domainPath": "n:simulation:economy:accounts",
+      "parentDomainPath": "n:simulation:economy",
+      "label": "Economy Accounts",
+      "status": "stable-candidate",
+      "responsibility": "Own finite account balances and economy transaction records.",
+      "ownedMeaning": [
+        "account balances",
+        "affordability queries",
+        "economy transaction records"
+      ],
+      "forbiddenResponsibilities": [
+        "facility output",
+        "payment processing",
+        "request rewards"
+      ],
+      "requires": [
+        "n:simulation",
+        "transaction:idempotency"
+      ],
+      "provides": [
+        "n:simulation:economy:accounts"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-economy-cargo-domain",
+      "domainPath": "n:simulation:economy:cargo",
+      "parentDomainPath": "n:simulation:economy",
+      "label": "Cargo",
+      "status": "stable-candidate",
+      "responsibility": "Own portable cargo inventory, carrying, condition, deposits, and quota state.",
+      "ownedMeaning": [
+        "cargo condition",
+        "cargo items",
+        "carrying capacity",
+        "deposit records"
+      ],
+      "forbiddenResponsibilities": [
+        "economy account mutation",
+        "transfer policy",
+        "vehicle movement"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:economy:cargo"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-economy-domain",
+      "domainPath": "n:simulation:economy",
+      "parentDomainPath": "n:simulation",
+      "label": "Simulation Economy",
+      "status": "stable-candidate",
+      "responsibility": "Own portable economic account and cargo state primitives.",
+      "ownedMeaning": [
+        "account and cargo ownership boundaries",
+        "economy capability contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "facility policy",
+        "game balance",
+        "payment processing"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:economy"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-hazard-field-domain",
+      "domainPath": "n:simulation:hazard-field",
+      "parentDomainPath": "n:simulation",
+      "label": "Hazard Field",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic bounded hazard state, spawning, motion, and collision queries.",
+      "ownedMeaning": [
+        "bounded hazard motion",
+        "collision queries",
+        "hazard records",
+        "spawn cadence"
+      ],
+      "forbiddenResponsibilities": [
+        "game damage outcomes",
+        "physics backend",
+        "renderer effects"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:hazard-field"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "simulation-motion-articulated-domain",
       "domainPath": "n:simulation:motion:articulated",
       "parentDomainPath": "n:simulation:motion",
@@ -1721,6 +2115,201 @@
       ],
       "provides": [
         "n:simulation:motion"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-motion-locomotion-domain",
+      "domainPath": "n:simulation:motion:locomotion",
+      "parentDomainPath": "n:simulation:motion",
+      "label": "Action Locomotion",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic action-to-motion intent and locomotion frame calculation.",
+      "ownedMeaning": [
+        "locomotion frame",
+        "locomotion intent",
+        "movement transition state"
+      ],
+      "forbiddenResponsibilities": [
+        "camera control",
+        "input binding",
+        "physics contact resolution",
+        "soft respawn"
+      ],
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "provides": [
+        "n:simulation:motion:locomotion"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-motion-vehicle-domain",
+      "domainPath": "n:simulation:motion:vehicle",
+      "parentDomainPath": "n:simulation:motion",
+      "label": "Vehicle Motion",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic vehicle movement, boost, bounds, and impact frames.",
+      "ownedMeaning": [
+        "vehicle boost state",
+        "vehicle bounds response",
+        "vehicle motion frame"
+      ],
+      "forbiddenResponsibilities": [
+        "input binding",
+        "renderer transforms",
+        "surface queries",
+        "water simulation"
+      ],
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "provides": [
+        "n:simulation:motion:vehicle"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-operations-domain",
+      "domainPath": "n:simulation:operations",
+      "parentDomainPath": "n:simulation",
+      "label": "Simulation Operations",
+      "status": "stable-candidate",
+      "responsibility": "Own portable facility, occupant, and transport operation primitives.",
+      "ownedMeaning": [
+        "facility, occupant, and transport ownership boundaries",
+        "operations capability contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "economy effects",
+        "game management rules",
+        "request effects"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-operations-facility-domain",
+      "domainPath": "n:simulation:operations:facility",
+      "parentDomainPath": "n:simulation:operations",
+      "label": "Facility Operations",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic facility capacity, condition, status, cycles, and operation receipts.",
+      "ownedMeaning": [
+        "facility cycle state",
+        "facility output receipts",
+        "facility state"
+      ],
+      "forbiddenResponsibilities": [
+        "authored facility rules",
+        "economy mutation",
+        "lifecycle progression"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:facility"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-operations-occupant-flow-domain",
+      "domainPath": "n:simulation:operations:occupant-flow",
+      "parentDomainPath": "n:simulation:operations",
+      "label": "Occupant Flow",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic occupant spawning, patience, service, and abandonment state.",
+      "ownedMeaning": [
+        "occupant state",
+        "patience state",
+        "service outcomes",
+        "spawn rules"
+      ],
+      "forbiddenResponsibilities": [
+        "economy rewards",
+        "navigation",
+        "request creation"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:occupant-flow"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-operations-transport-route-domain",
+      "domainPath": "n:simulation:operations:transport-route",
+      "parentDomainPath": "n:simulation:operations",
+      "label": "Transport Route",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.",
+      "ownedMeaning": [
+        "arrival receipts",
+        "carrier state",
+        "transport stops",
+        "travel progress"
+      ],
+      "forbiddenResponsibilities": [
+        "navigation pathfinding",
+        "request fulfillment",
+        "vehicle physics"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:transport-route"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1799,6 +2388,201 @@
       }
     },
     {
+      "id": "simulation-physics-world-contact-domain",
+      "domainPath": "n:simulation:physics:world-contact",
+      "parentDomainPath": "n:simulation:physics",
+      "label": "World Contact",
+      "status": "stable-candidate",
+      "responsibility": "Own portable world-contact resolution and correction records.",
+      "ownedMeaning": [
+        "contact correction",
+        "impact record",
+        "slope response",
+        "world contact"
+      ],
+      "forbiddenResponsibilities": [
+        "locomotion intent",
+        "physics backend",
+        "soft respawn",
+        "terrain rendering"
+      ],
+      "requires": [
+        "n:simulation:physics"
+      ],
+      "provides": [
+        "n:simulation:physics:world-contact"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-progression-domain",
+      "domainPath": "n:simulation:progression",
+      "parentDomainPath": "n:simulation",
+      "label": "Simulation Progression",
+      "status": "stable-candidate",
+      "responsibility": "Own portable progression capability and lifecycle ownership boundaries.",
+      "ownedMeaning": [
+        "lifecycle ownership boundary",
+        "progression capability contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "authored progression content",
+        "economy effects",
+        "facility effects"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:progression"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-progression-lifecycle-domain",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "parentDomainPath": "n:simulation:progression",
+      "label": "Lifecycle Progression",
+      "status": "stable-candidate",
+      "responsibility": "Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.",
+      "ownedMeaning": [
+        "effect descriptors",
+        "lifecycle items",
+        "prerequisite state",
+        "timed progression"
+      ],
+      "forbiddenResponsibilities": [
+        "authored progression tree",
+        "economy mutation",
+        "facility mutation"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:progression:lifecycle"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-pursuit-pressure-domain",
+      "domainPath": "n:simulation:pursuit-pressure",
+      "parentDomainPath": "n:simulation",
+      "label": "Pursuit Pressure",
+      "status": "stable-candidate",
+      "responsibility": "Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.",
+      "ownedMeaning": [
+        "caught state",
+        "pressure bands",
+        "pursuit distance",
+        "transition history"
+      ],
+      "forbiddenResponsibilities": [
+        "game fail state",
+        "presentation alerts",
+        "pursuer movement"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:pursuit-pressure"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-recovery-domain",
+      "domainPath": "n:simulation:recovery",
+      "parentDomainPath": "n:simulation",
+      "label": "Simulation Recovery",
+      "status": "stable-candidate",
+      "responsibility": "Own portable subject recovery records and deterministic recovery state.",
+      "ownedMeaning": [
+        "recovered subject state",
+        "recovery points",
+        "recovery receipts"
+      ],
+      "forbiddenResponsibilities": [
+        "game checkpoint policy",
+        "teleport rendering",
+        "world contact"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:recovery"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "simulation-recovery-soft-respawn-domain",
+      "domainPath": "n:simulation:recovery:soft-respawn",
+      "parentDomainPath": "n:simulation:recovery",
+      "label": "Soft Respawn",
+      "status": "stable-candidate",
+      "responsibility": "Own exact-once portable subject recovery records.",
+      "ownedMeaning": [
+        "recovered subject state",
+        "soft respawn points",
+        "soft respawn receipts"
+      ],
+      "forbiddenResponsibilities": [
+        "game checkpoint policy",
+        "teleport rendering",
+        "world contact"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:recovery:soft-respawn"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "source-build-domain",
       "domainPath": "n:build:source",
       "parentDomainPath": "n:build",
@@ -1852,6 +2636,38 @@
       "requires": [],
       "provides": [
         "n:spatial"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "spatial-scale-domain",
+      "domainPath": "n:spatial:scale",
+      "parentDomainPath": "n:spatial",
+      "label": "Spatial Scale",
+      "status": "stable-candidate",
+      "responsibility": "Own subject scale, scale anchors, proximity bands, and deterministic scale queries.",
+      "ownedMeaning": [
+        "scale anchors",
+        "scale bands",
+        "subject scale"
+      ],
+      "forbiddenResponsibilities": [
+        "authored world progression",
+        "camera policy",
+        "render scaling"
+      ],
+      "requires": [
+        "n:spatial"
+      ],
+      "provides": [
+        "n:spatial:scale"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2334,6 +3150,202 @@
       }
     },
     {
+      "id": "world-generation-domain",
+      "domainPath": "n:world:generation",
+      "parentDomainPath": "n:world",
+      "label": "World Generation",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic generic region, connector, point, graph, and walkability generation.",
+      "ownedMeaning": [
+        "generated connectors",
+        "generated regions",
+        "generation configuration",
+        "walkability output"
+      ],
+      "forbiddenResponsibilities": [
+        "authored levels",
+        "game objectives",
+        "render descriptors"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:generation"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-navigation-domain",
+      "domainPath": "n:world:navigation",
+      "parentDomainPath": "n:world",
+      "label": "World Navigation",
+      "status": "stable-candidate",
+      "responsibility": "Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance.",
+      "ownedMeaning": [
+        "landmark guidance",
+        "navigation graph contracts",
+        "path queries",
+        "route fields"
+      ],
+      "forbiddenResponsibilities": [
+        "agent locomotion",
+        "authored routes",
+        "navigation rendering",
+        "physics resolution"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:navigation"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-navigation-landmark-guidance-domain",
+      "domainPath": "n:world:navigation:landmark-guidance",
+      "parentDomainPath": "n:world:navigation",
+      "label": "Navigation Landmark Guidance",
+      "status": "stable-candidate",
+      "responsibility": "Own reusable landmark discovery, reach, completion, priority, and proximity state.",
+      "ownedMeaning": [
+        "landmark identity",
+        "landmark proximity",
+        "landmark transitions"
+      ],
+      "forbiddenResponsibilities": [
+        "UI prompts",
+        "agent movement",
+        "authored objectives"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:navigation:landmark-guidance"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-navigation-navmesh-domain",
+      "domainPath": "n:world:navigation:navmesh",
+      "parentDomainPath": "n:world:navigation",
+      "label": "Navigation NavMesh",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability.",
+      "ownedMeaning": [
+        "navigation cells",
+        "portals",
+        "waypoint graphs"
+      ],
+      "forbiddenResponsibilities": [
+        "agent motion",
+        "authored maps",
+        "path search"
+      ],
+      "requires": [
+        "navigation:walkability-source"
+      ],
+      "provides": [
+        "n:world:navigation:navmesh"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-navigation-pathfinding-domain",
+      "domainPath": "n:world:navigation:pathfinding",
+      "parentDomainPath": "n:world:navigation",
+      "label": "Navigation Pathfinding",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic path requests, A* resolution, results, and graph adapters.",
+      "ownedMeaning": [
+        "A* search",
+        "graph adapters",
+        "path requests",
+        "path results"
+      ],
+      "forbiddenResponsibilities": [
+        "agent locomotion",
+        "authored objectives",
+        "graph generation"
+      ],
+      "requires": [
+        "navigation:navmesh"
+      ],
+      "provides": [
+        "n:world:navigation:pathfinding"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-navigation-route-field-domain",
+      "domainPath": "n:world:navigation:route-field",
+      "parentDomainPath": "n:world:navigation",
+      "label": "Navigation Route Field",
+      "status": "stable-candidate",
+      "responsibility": "Own generic route marker and corridor descriptors plus deterministic proximity queries.",
+      "ownedMeaning": [
+        "route corridors",
+        "route markers",
+        "route proximity queries"
+      ],
+      "forbiddenResponsibilities": [
+        "agent movement",
+        "authored routes",
+        "path search"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:navigation:route-field"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "world-scene-domain",
       "domainPath": "n:world:scene",
       "parentDomainPath": "n:world",
@@ -2357,6 +3369,73 @@
       ],
       "provides": [
         "n:world:scene"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-terrain-domain",
+      "domainPath": "n:world:terrain",
+      "parentDomainPath": "n:world",
+      "label": "World Terrain",
+      "status": "stable-candidate",
+      "responsibility": "Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence.",
+      "ownedMeaning": [
+        "terrain cells",
+        "terrain layers",
+        "terrain samples",
+        "terrain streaming state"
+      ],
+      "forbiddenResponsibilities": [
+        "authored presets",
+        "camera volumes",
+        "game routes",
+        "terrain rendering"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:terrain"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "world-water-surface-domain",
+      "domainPath": "n:world:water-surface",
+      "parentDomainPath": "n:world",
+      "label": "World Water Surface",
+      "status": "stable-candidate",
+      "responsibility": "Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries.",
+      "ownedMeaning": [
+        "water current descriptors",
+        "water query state",
+        "water zones",
+        "wave phase"
+      ],
+      "forbiddenResponsibilities": [
+        "authored water presets",
+        "fluid solver",
+        "water rendering"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:water-surface"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2402,6 +3481,81 @@
     }
   ],
   "kits": [
+    {
+      "id": "action-locomotion-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Convert action commands into deterministic renderer-neutral Motion intents and locomotion frames.",
+      "domainPath": "n:simulation:motion:locomotion",
+      "parentDomainPath": "n:simulation:motion",
+      "apiName": "actionLocomotion",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "provides": [
+        "motion:locomotion-intent",
+        "n:simulation:motion:locomotion"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/motion/locomotion",
+        "exportName": "createActionLocomotionKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "action-locomotion-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "action-locomotion-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
     {
       "id": "actor-registry-kit",
       "version": "0.0.4",
@@ -3305,6 +4459,81 @@
       }
     },
     {
+      "id": "assistance-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection.",
+      "domainPath": "n:interaction:assistance-target",
+      "parentDomainPath": "n:interaction",
+      "apiName": "assistanceTargets",
+      "apiVisibility": "public",
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "interaction:assistance-target",
+        "n:interaction:assistance-target"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/assistance-target",
+        "exportName": "createAssistanceTargetKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "assistance-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "assistance-target-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "atmosphere-feature-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -4079,6 +5308,82 @@
       }
     },
     {
+      "id": "camera-world-occlusion-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.",
+      "domainPath": "n:presentation:camera:third-person",
+      "parentDomainPath": "n:presentation:camera",
+      "apiName": "cameraWorldOcclusion",
+      "apiVisibility": "public",
+      "requires": [
+        "camera:third-person-descriptor",
+        "physics:query",
+        "world:terrain-sampling"
+      ],
+      "provides": [
+        "camera:world-occlusion-response"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/presentation/adapters/camera-world-occlusion",
+        "exportName": "createCameraWorldOcclusionAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "camera-world-occlusion-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "camera-world-occlusion-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "capability-resolution-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -4221,6 +5526,81 @@
             },
             {
               "id": "capture-contract-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "cargo-manifest-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own portable cargo inventory, capacity, condition, pickup, deposit, and quota state.",
+      "domainPath": "n:simulation:economy:cargo",
+      "parentDomainPath": "n:simulation:economy",
+      "apiName": "cargoManifest",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "economy:cargo-manifest",
+        "n:simulation:economy:cargo"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/economy/cargo",
+        "exportName": "createCargoManifestKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "cargo-manifest-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "cargo-manifest-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -5052,6 +6432,83 @@
       }
     },
     {
+      "id": "economy-account-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own finite account balances and exact-once portable economy transaction records.",
+      "domainPath": "n:simulation:economy:accounts",
+      "parentDomainPath": "n:simulation:economy",
+      "apiName": "economy",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation",
+        "transaction:idempotency"
+      ],
+      "provides": [
+        "economy:accounts",
+        "economy:transaction",
+        "n:simulation:economy:accounts"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/economy/accounts",
+        "exportName": "createEconomyAccountKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "economy-account-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "economy-account-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "effect-analysis-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -5125,6 +6582,81 @@
       }
     },
     {
+      "id": "environmental-affordance-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own read-only affordance proximity queries and exact-once activation progress.",
+      "domainPath": "n:interaction:environmental-affordance",
+      "parentDomainPath": "n:interaction",
+      "apiName": "environmentalAffordances",
+      "apiVisibility": "public",
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "interaction:environmental-affordance",
+        "n:interaction:environmental-affordance"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/environmental-affordance",
+        "exportName": "createEnvironmentalAffordanceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "environmental-affordance-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "environmental-affordance-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "execution-ir-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -5189,6 +6721,156 @@
             },
             {
               "id": "execution-ir-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "facility-economy-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate Facility output and upkeep receipts into exact-once Economy transactions.",
+      "domainPath": "n:simulation:operations:facility",
+      "parentDomainPath": "n:simulation:operations",
+      "apiName": "facilityEconomy",
+      "apiVisibility": "public",
+      "requires": [
+        "economy:transaction",
+        "operations:facility"
+      ],
+      "provides": [
+        "operations:facility-economy-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/adapters/facility-economy",
+        "exportName": "createFacilityEconomyAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "facility-economy-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "facility-economy-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "facility-operations-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own deterministic facility capacity, condition, status, cycle, and portable output receipts.",
+      "domainPath": "n:simulation:operations:facility",
+      "parentDomainPath": "n:simulation:operations",
+      "apiName": "facilityOperations",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:facility",
+        "operations:facility"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/operations/facility",
+        "exportName": "createFacilityOperationsKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "facility-operations-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "facility-operations-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -5339,6 +7021,81 @@
             },
             {
               "id": "graphics-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "hazard-field-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries.",
+      "domainPath": "n:simulation:hazard-field",
+      "parentDomainPath": "n:simulation",
+      "apiName": "hazardField",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:hazard-field",
+        "simulation:hazard-field"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/hazard-field",
+        "exportName": "createHazardFieldKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "hazard-field-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "hazard-field-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -6091,6 +7848,81 @@
       }
     },
     {
+      "id": "landmark-guidance-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Manage deterministic landmark discovery, reach, completion, priority, and proximity state.",
+      "domainPath": "n:world:navigation:landmark-guidance",
+      "parentDomainPath": "n:world:navigation",
+      "apiName": "landmarkGuidance",
+      "apiVisibility": "public",
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:navigation:landmark-guidance",
+        "navigation:landmark-guidance"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/navigation/landmark-guidance",
+        "exportName": "createLandmarkGuidanceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "landmark-guidance-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "landmark-guidance-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "layered-weather-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -6156,6 +7988,306 @@
             },
             {
               "id": "layered-weather-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lifecycle-economy-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate accepted Lifecycle costs and Economy effects into exact-once Economy transactions.",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "parentDomainPath": "n:simulation:progression",
+      "apiName": "lifecycleEconomy",
+      "apiVisibility": "public",
+      "requires": [
+        "economy:transaction",
+        "progression:lifecycle"
+      ],
+      "provides": [
+        "progression:lifecycle-economy-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/adapters/lifecycle-economy",
+        "exportName": "createLifecycleEconomyAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "lifecycle-economy-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "lifecycle-economy-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lifecycle-facility-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate accepted Lifecycle facility effects into exact-once Facility Operations commands.",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "parentDomainPath": "n:simulation:progression",
+      "apiName": "lifecycleFacility",
+      "apiVisibility": "public",
+      "requires": [
+        "operations:facility",
+        "progression:lifecycle"
+      ],
+      "provides": [
+        "progression:lifecycle-facility-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/adapters/lifecycle-facility",
+        "exportName": "createLifecycleFacilityAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "lifecycle-facility-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "lifecycle-facility-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "lifecycle-progression-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors.",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "parentDomainPath": "n:simulation:progression",
+      "apiName": "lifecycleProgression",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:progression:lifecycle",
+        "progression:lifecycle"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/progression/lifecycle",
+        "exportName": "createLifecycleProgressionKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "lifecycle-progression-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "lifecycle-progression-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "locomotion-contact-response-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate Locomotion frames and World Contact results into corrected Motion frames without owning either state.",
+      "domainPath": "n:simulation:motion:locomotion",
+      "parentDomainPath": "n:simulation:motion",
+      "apiName": "locomotionContactResponse",
+      "apiVisibility": "public",
+      "requires": [
+        "motion:locomotion-intent",
+        "physics:world-contact"
+      ],
+      "provides": [
+        "motion:contact-response"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/adapters/locomotion-contact-response",
+        "exportName": "createLocomotionContactResponseAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "locomotion-contact-response-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "locomotion-contact-response-adapter-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -6533,6 +8665,82 @@
             },
             {
               "id": "native-runtime-link-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "navmesh-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Build deterministic 2D navigation meshes and portable 3D waypoint graphs from walkability.",
+      "domainPath": "n:world:navigation:navmesh",
+      "parentDomainPath": "n:world:navigation",
+      "apiName": "navmesh",
+      "apiVisibility": "public",
+      "requires": [
+        "navigation:walkability-source"
+      ],
+      "provides": [
+        "n:world:navigation:navmesh",
+        "navigation:graph",
+        "navigation:navmesh"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/navigation/navmesh",
+        "exportName": "createNavMeshKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "navmesh-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "navmesh-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -7452,6 +9660,156 @@
       }
     },
     {
+      "id": "occupant-flow-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own deterministic occupant spawning, patience, service, and abandonment state.",
+      "domainPath": "n:simulation:operations:occupant-flow",
+      "parentDomainPath": "n:simulation:operations",
+      "apiName": "occupantFlow",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:occupant-flow",
+        "operations:occupant-flow"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/operations/occupant-flow",
+        "exportName": "createOccupantFlowKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "occupant-flow-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "occupant-flow-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "occupant-request-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate Occupant Flow need records into exact-once Request Queue entries.",
+      "domainPath": "n:interaction:request:queue",
+      "parentDomainPath": "n:interaction:request",
+      "apiName": "occupantRequest",
+      "apiVisibility": "public",
+      "requires": [
+        "interaction:request-queue",
+        "operations:occupant-flow"
+      ],
+      "provides": [
+        "interaction:occupant-request-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/adapters/occupant-request",
+        "exportName": "createOccupantRequestAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "occupant-request-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "occupant-request-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "openxr-input-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -7663,6 +10021,82 @@
             },
             {
               "id": "openxr-runtime-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pathfinding-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Resolve deterministic A* path requests over portable grid and navigation graph adapters.",
+      "domainPath": "n:world:navigation:pathfinding",
+      "parentDomainPath": "n:world:navigation",
+      "apiName": "pathfinding",
+      "apiVisibility": "public",
+      "requires": [
+        "navigation:navmesh"
+      ],
+      "provides": [
+        "n:world:navigation:pathfinding",
+        "navigation:astar",
+        "navigation:pathfinding"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/navigation/pathfinding",
+        "exportName": "createPathfindingKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "pathfinding-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "pathfinding-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8281,6 +10715,82 @@
       }
     },
     {
+      "id": "procedural-generation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Generate deterministic generic regions, connectors, points, graphs, and walkability from complete normalized configuration.",
+      "domainPath": "n:world:generation",
+      "parentDomainPath": "n:world",
+      "apiName": "proceduralGeneration",
+      "apiVisibility": "public",
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:generation",
+        "navigation:walkability-source",
+        "world:procedural-generation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/generation",
+        "exportName": "createProceduralGenerationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "procedural-generation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "procedural-generation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "process-execution-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -8492,6 +11002,81 @@
             },
             {
               "id": "project-source-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "pursuit-pressure-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.",
+      "domainPath": "n:simulation:pursuit-pressure",
+      "parentDomainPath": "n:simulation",
+      "apiName": "pursuitPressure",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:pursuit-pressure",
+        "simulation:pursuit-pressure"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/pursuit-pressure",
+        "exportName": "createPursuitPressureKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "pursuit-pressure-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "pursuit-pressure-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8729,6 +11314,231 @@
       }
     },
     {
+      "id": "request-economy-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions.",
+      "domainPath": "n:interaction:request:queue",
+      "parentDomainPath": "n:interaction:request",
+      "apiName": "requestEconomy",
+      "apiVisibility": "public",
+      "requires": [
+        "economy:transaction",
+        "interaction:request-queue"
+      ],
+      "provides": [
+        "interaction:request-economy-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/adapters/request-economy",
+        "exportName": "createRequestEconomyAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "request-economy-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "request-economy-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "request-fulfillment-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own spatial request destinations, deadlines, completion, expiry, and reward totals.",
+      "domainPath": "n:interaction:request:fulfillment",
+      "parentDomainPath": "n:interaction:request",
+      "apiName": "requestFulfillment",
+      "apiVisibility": "public",
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "interaction:request-fulfillment",
+        "n:interaction:request:fulfillment"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/request/fulfillment",
+        "exportName": "createRequestFulfillmentKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "request-fulfillment-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "request-fulfillment-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "request-queue-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors.",
+      "domainPath": "n:interaction:request:queue",
+      "parentDomainPath": "n:interaction:request",
+      "apiName": "requestQueue",
+      "apiVisibility": "public",
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "interaction:request-queue",
+        "n:interaction:request:queue"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/request/queue",
+        "exportName": "createRequestQueueKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "request-queue-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "request-queue-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "rig-transform-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -8792,6 +11602,81 @@
             },
             {
               "id": "rig-transform-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "route-field-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Manage reusable route marker and corridor descriptors plus pure proximity queries.",
+      "domainPath": "n:world:navigation:route-field",
+      "parentDomainPath": "n:world:navigation",
+      "apiName": "routeField",
+      "apiVisibility": "public",
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:navigation:route-field",
+        "navigation:route-field"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/navigation/route-field",
+        "exportName": "createRouteFieldKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "route-field-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "route-field-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -9334,6 +12219,81 @@
       }
     },
     {
+      "id": "schedule-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time.",
+      "domainPath": "n:runtime:sequence:schedule",
+      "parentDomainPath": "n:runtime:sequence",
+      "apiName": "schedule",
+      "apiVisibility": "public",
+      "requires": [
+        "n:runtime:sequence"
+      ],
+      "provides": [
+        "n:runtime:sequence:schedule",
+        "sequence:schedule"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/runtime/sequence/schedule",
+        "exportName": "createScheduleKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "schedule-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "schedule-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "semantic-world-feature-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -9629,6 +12589,81 @@
             },
             {
               "id": "sky-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "soft-respawn-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Produce exact-once coherent subject recovery records at configured portable points.",
+      "domainPath": "n:simulation:recovery:soft-respawn",
+      "parentDomainPath": "n:simulation:recovery",
+      "apiName": "softRespawn",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:recovery:soft-respawn",
+        "simulation:soft-respawn"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/recovery/soft-respawn",
+        "exportName": "createSoftRespawnKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "soft-respawn-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "soft-respawn-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -10068,6 +13103,82 @@
             },
             {
               "id": "spatial-quaternion-math-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spatial-scale-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions.",
+      "domainPath": "n:spatial:scale",
+      "parentDomainPath": "n:spatial",
+      "apiName": "spatialScale",
+      "apiVisibility": "public",
+      "requires": [
+        "n:spatial"
+      ],
+      "provides": [
+        "n:spatial:scale",
+        "spatial:scale-anchor",
+        "spatial:scale-band"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/spatial/scale",
+        "exportName": "createSpatialScaleKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/spatial/tests/spatial-scale-restoration.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "spatial-scale-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "spatial-scale-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -10519,6 +13630,159 @@
       }
     },
     {
+      "id": "terrain-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Evaluate deterministic terrain layers and manage portable sampled terrain cells without rendering ownership.",
+      "domainPath": "n:world:terrain",
+      "parentDomainPath": "n:world",
+      "apiName": "terrain",
+      "apiVisibility": "public",
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:terrain",
+        "world:terrain-provider",
+        "world:terrain-sampling"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/terrain",
+        "exportName": "createTerrainKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "terrain-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "terrain-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "third-person-camera-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.",
+      "domainPath": "n:presentation:camera:third-person",
+      "parentDomainPath": "n:presentation:camera",
+      "apiName": "thirdPersonCamera",
+      "apiVisibility": "public",
+      "requires": [
+        "character:resolution",
+        "motion:velocity",
+        "n:presentation:camera"
+      ],
+      "provides": [
+        "camera:third-person-descriptor",
+        "n:presentation:camera:third-person"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/presentation/camera/third-person",
+        "exportName": "createThirdPersonCameraKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "third-person-camera-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "third-person-camera-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "toolchain-discovery-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -10816,6 +14080,231 @@
       }
     },
     {
+      "id": "transfer-zone-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions.",
+      "domainPath": "n:interaction:transfer-zone",
+      "parentDomainPath": "n:interaction",
+      "apiName": "transferZones",
+      "apiVisibility": "public",
+      "requires": [
+        "n:interaction"
+      ],
+      "provides": [
+        "interaction:transfer-zone",
+        "n:interaction:transfer-zone"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/transfer-zone",
+        "exportName": "createTransferZoneKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "transfer-zone-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "transfer-zone-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "transport-request-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate Transport Route arrivals into exact-once Request Queue fulfillment commands.",
+      "domainPath": "n:interaction:request:queue",
+      "parentDomainPath": "n:interaction:request",
+      "apiName": "transportRequest",
+      "apiVisibility": "public",
+      "requires": [
+        "interaction:request-queue",
+        "operations:transport-route"
+      ],
+      "provides": [
+        "interaction:transport-request-adapter"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/interaction/adapters/transport-request",
+        "exportName": "createTransportRequestAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "transport-request-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "transport-request-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "transport-route-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts.",
+      "domainPath": "n:simulation:operations:transport-route",
+      "parentDomainPath": "n:simulation:operations",
+      "apiName": "transportRoutes",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation"
+      ],
+      "provides": [
+        "n:simulation:operations:transport-route",
+        "operations:transport-route"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/operations/transport-route",
+        "exportName": "createTransportRouteKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "transport-route-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "transport-route-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "two-bone-ik-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -11101,6 +14590,232 @@
             },
             {
               "id": "ui-scale-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "vehicle-dynamics-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Advance deterministic vehicle motion, boost, bounds, and impact state without owning surface policy.",
+      "domainPath": "n:simulation:motion:vehicle",
+      "parentDomainPath": "n:simulation:motion",
+      "apiName": "vehicleDynamics",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation:motion"
+      ],
+      "provides": [
+        "motion:vehicle-dynamics",
+        "n:simulation:motion:vehicle"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/motion/vehicle",
+        "exportName": "createVehicleDynamicsKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "vehicle-dynamics-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "vehicle-dynamics-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "vehicle-water-response-adapter-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "adapter-kit",
+      "responsibility": "Translate Vehicle state and Water Surface queries into portable drag, current, and buoyancy responses.",
+      "domainPath": "n:simulation:motion:vehicle",
+      "parentDomainPath": "n:simulation:motion",
+      "apiName": "vehicleWaterResponse",
+      "apiVisibility": "public",
+      "requires": [
+        "motion:vehicle-dynamics",
+        "world:water-query"
+      ],
+      "provides": [
+        "motion:vehicle-water-response"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/adapters/vehicle-water-response",
+        "exportName": "createVehicleWaterResponseAdapterKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "vehicle-water-response-adapter-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "vehicle-water-response-adapter-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "water-surface-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Manage renderer-neutral water zones, currents, drag, wave phase, hazards, and pure queries.",
+      "domainPath": "n:world:water-surface",
+      "parentDomainPath": "n:world",
+      "apiName": "waterSurface",
+      "apiVisibility": "public",
+      "requires": [
+        "n:world"
+      ],
+      "provides": [
+        "n:world:water-surface",
+        "world:water-query",
+        "world:water-surface"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/world/water-surface",
+        "exportName": "createWaterSurfaceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/world/tests/restored-world-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "water-surface-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "water-surface-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -11410,6 +15125,81 @@
       }
     },
     {
+      "id": "world-contact-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Resolve portable world contact, slope, impact, stability, and correction records without implementing a physics backend.",
+      "domainPath": "n:simulation:physics:world-contact",
+      "parentDomainPath": "n:simulation:physics",
+      "apiName": "worldContact",
+      "apiVisibility": "public",
+      "requires": [
+        "n:simulation:physics"
+      ],
+      "provides": [
+        "n:simulation:physics:world-contact",
+        "physics:world-contact"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/simulation/physics/world-contact",
+        "exportName": "createWorldContactKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/simulation/tests/restored-motion-behaviors.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "world-contact-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "world-contact-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "world-feature-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -11643,5 +15433,131 @@
       }
     }
   ],
-  "recipes": []
+  "recipes": [
+    {
+      "id": "hazard-pursuit",
+      "label": "Hazard Pursuit",
+      "domains": [],
+      "kits": [
+        "assistance-target-kit",
+        "hazard-field-kit",
+        "pursuit-pressure-kit",
+        "soft-respawn-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Compose neutral hazard collision, pursuit pressure, recovery, and assistance primitives."
+      }
+    },
+    {
+      "id": "management-operations",
+      "label": "Management Operations",
+      "domains": [],
+      "kits": [
+        "cargo-manifest-kit",
+        "economy-account-kit",
+        "facility-economy-adapter-kit",
+        "facility-operations-kit",
+        "lifecycle-economy-adapter-kit",
+        "lifecycle-facility-adapter-kit",
+        "lifecycle-progression-kit",
+        "occupant-flow-kit",
+        "occupant-request-adapter-kit",
+        "request-economy-adapter-kit",
+        "request-fulfillment-kit",
+        "request-queue-kit",
+        "schedule-kit",
+        "transport-request-adapter-kit",
+        "transport-route-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Compose optional exact-once economic, facility, occupant, transport, request, schedule, and lifecycle operations."
+      }
+    },
+    {
+      "id": "procedural-navigation",
+      "label": "Procedural Navigation",
+      "domains": [],
+      "kits": [
+        "landmark-guidance-kit",
+        "navmesh-kit",
+        "pathfinding-kit",
+        "procedural-generation-kit",
+        "route-field-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Generate neutral walkability, build a NavMesh, solve paths, and expose route and landmark guidance."
+      }
+    },
+    {
+      "id": "spatial-guidance",
+      "label": "Spatial Guidance",
+      "domains": [],
+      "kits": [
+        "assistance-target-kit",
+        "landmark-guidance-kit",
+        "route-field-kit",
+        "spatial-scale-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Compose scale bands, route markers, landmarks, and assistance selection without authored objectives."
+      }
+    },
+    {
+      "id": "terrain-character-traversal",
+      "label": "Terrain Character Traversal",
+      "domains": [],
+      "kits": [
+        "action-locomotion-kit",
+        "camera-world-occlusion-adapter-kit",
+        "locomotion-contact-response-adapter-kit",
+        "soft-respawn-kit",
+        "terrain-kit",
+        "third-person-camera-kit",
+        "world-contact-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Compose renderer-neutral terrain sampling, character locomotion, contact correction, recovery, and camera constraints."
+      }
+    },
+    {
+      "id": "vehicle-rescue-logistics",
+      "label": "Vehicle Rescue Logistics",
+      "domains": [],
+      "kits": [
+        "assistance-target-kit",
+        "cargo-manifest-kit",
+        "economy-account-kit",
+        "request-economy-adapter-kit",
+        "request-fulfillment-kit",
+        "request-queue-kit",
+        "transfer-zone-kit",
+        "transport-request-adapter-kit",
+        "transport-route-kit",
+        "vehicle-dynamics-kit",
+        "vehicle-water-response-adapter-kit",
+        "water-surface-kit"
+      ],
+      "settings": {},
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true,
+        "purpose": "Compose neutral vehicle, water, cargo, assistance, transfer, transport, request, and reward primitives."
+      }
+    }
+  ]
 }

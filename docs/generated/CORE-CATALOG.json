@@ -15315,6 +15315,219 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "occupantRequest",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:request:queue",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "occupant-request-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:interaction:request",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "occupant-request-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "occupant-request-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:occupant-request-adapter"
+      ],
+      "requires": [
+        "interaction:request-queue",
+        "operations:occupant-flow"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate Occupant Flow need records into exact-once Request Queue entries.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createOccupantRequestAdapterKit",
+        "module": "./src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js",
+        "publicSubpath": "./domains/interaction/adapters/occupant-request"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "transportRequest",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:request:queue",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "transport-request-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:interaction:request",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "transport-request-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "transport-request-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:transport-request-adapter"
+      ],
+      "requires": [
+        "interaction:request-queue",
+        "operations:transport-route"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate Transport Route arrivals into exact-once Request Queue fulfillment commands.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createTransportRequestAdapterKit",
+        "module": "./src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js",
+        "publicSubpath": "./domains/interaction/adapters/transport-request"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "requestEconomy",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:request:queue",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "request-economy-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:interaction:request",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "request-economy-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "request-economy-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:request-economy-adapter"
+      ],
+      "requires": [
+        "economy:transaction",
+        "interaction:request-queue"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createRequestEconomyAdapterKit",
+        "module": "./src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js",
+        "publicSubpath": "./domains/interaction/adapters/request-economy"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "mcp",
       "atomic": true,
       "composes": [],
@@ -17530,6 +17743,78 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "cameraWorldOcclusion",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:presentation:camera:third-person",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "camera-world-occlusion-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:presentation:camera",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-world-occlusion-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-world-occlusion-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "camera:world-occlusion-response"
+      ],
+      "requires": [
+        "camera:third-person-descriptor",
+        "physics:query",
+        "world:terrain-sampling"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCameraWorldOcclusionAdapterKit",
+        "module": "./src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js",
+        "publicSubpath": "./domains/presentation/adapters/camera-world-occlusion"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "runtime",
       "atomic": true,
       "composes": [],
@@ -19472,6 +19757,361 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "locomotionContactResponse",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:motion:locomotion",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "locomotion-contact-response-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:simulation:motion",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "locomotion-contact-response-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "locomotion-contact-response-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "motion:contact-response"
+      ],
+      "requires": [
+        "motion:locomotion-intent",
+        "physics:world-contact"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate Locomotion frames and World Contact results into corrected Motion frames without owning either state.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createLocomotionContactResponseAdapterKit",
+        "module": "./src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js",
+        "publicSubpath": "./domains/simulation/adapters/locomotion-contact-response"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "vehicleWaterResponse",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:motion:vehicle",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "vehicle-water-response-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:simulation:motion",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "vehicle-water-response-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "vehicle-water-response-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "motion:vehicle-water-response"
+      ],
+      "requires": [
+        "motion:vehicle-dynamics",
+        "world:water-query"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate Vehicle state and Water Surface queries into portable drag, current, and buoyancy responses.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createVehicleWaterResponseAdapterKit",
+        "module": "./src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js",
+        "publicSubpath": "./domains/simulation/adapters/vehicle-water-response"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "lifecycleEconomy",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "lifecycle-economy-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:simulation:progression",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "lifecycle-economy-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "lifecycle-economy-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "progression:lifecycle-economy-adapter"
+      ],
+      "requires": [
+        "economy:transaction",
+        "progression:lifecycle"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate accepted Lifecycle costs and Economy effects into exact-once Economy transactions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createLifecycleEconomyAdapterKit",
+        "module": "./src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js",
+        "publicSubpath": "./domains/simulation/adapters/lifecycle-economy"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "lifecycleFacility",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "lifecycle-facility-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:simulation:progression",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "lifecycle-facility-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "lifecycle-facility-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "progression:lifecycle-facility-adapter"
+      ],
+      "requires": [
+        "operations:facility",
+        "progression:lifecycle"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate accepted Lifecycle facility effects into exact-once Facility Operations commands.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createLifecycleFacilityAdapterKit",
+        "module": "./src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js",
+        "publicSubpath": "./domains/simulation/adapters/lifecycle-facility"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "facilityEconomy",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:operations:facility",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "facility-economy-adapter-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "adapter-kit",
+      "parentDomainPath": "n:simulation:operations",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "facility-economy-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "facility-economy-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "operations:facility-economy-adapter"
+      ],
+      "requires": [
+        "economy:transaction",
+        "operations:facility"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Translate Facility output and upkeep receipts into exact-once Economy transactions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createFacilityEconomyAdapterKit",
+        "module": "./src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js",
+        "publicSubpath": "./domains/simulation/adapters/facility-economy"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "spatial",
       "atomic": true,
       "composes": [],
@@ -21341,6 +21981,9 @@
     "./domains/host": "./src/core-domains/host/index.js",
     "./domains/host/capabilities": "./src/core-domains/host/kits/host-capability-kit/index.js",
     "./domains/interaction": "./src/core-domains/interaction/index.js",
+    "./domains/interaction/adapters/occupant-request": "./src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js",
+    "./domains/interaction/adapters/request-economy": "./src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js",
+    "./domains/interaction/adapters/transport-request": "./src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js",
     "./domains/interaction/assistance-target": "./src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js",
     "./domains/interaction/environmental-affordance": "./src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js",
     "./domains/interaction/input": "./src/core-domains/interaction/subdomains/input/kits/input-kit/index.js",
@@ -21367,6 +22010,7 @@
     "./domains/policy": "./src/core-domains/policy/index.js",
     "./domains/policy/guard": "./src/core-domains/policy/kits/policy-kit/index.js",
     "./domains/presentation": "./src/core-domains/presentation/index.js",
+    "./domains/presentation/adapters/camera-world-occlusion": "./src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js",
     "./domains/presentation/animation": "./src/core-domains/presentation/subdomains/animation/kits/animation-kit/index.js",
     "./domains/presentation/animation/rig": "./src/core-domains/presentation/subdomains/animation/kits/rig-transform-kit.js",
     "./domains/presentation/audio": "./src/core-domains/presentation/subdomains/audio/kits/audio-kit/index.js",
@@ -21395,6 +22039,11 @@
     "./domains/runtime/transaction": "./src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js",
     "./domains/simulation": "./src/core-domains/simulation/index.js",
     "./domains/simulation/adapters/articulated-drive": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
+    "./domains/simulation/adapters/facility-economy": "./src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js",
+    "./domains/simulation/adapters/lifecycle-economy": "./src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js",
+    "./domains/simulation/adapters/lifecycle-facility": "./src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js",
+    "./domains/simulation/adapters/locomotion-contact-response": "./src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js",
+    "./domains/simulation/adapters/vehicle-water-response": "./src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js",
     "./domains/simulation/economy/accounts": "./src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
     "./domains/simulation/economy/cargo": "./src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
     "./domains/simulation/hazard-field": "./src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js",
@@ -21442,7 +22091,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807",
+  "registryHash": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -22963,7 +23612,7 @@
     },
     {
       "path": "src/core-domains/composition/index.js",
-      "sha256": "cbf744447bf507e75fe1f511655e237a505b7330341f18a2bada287c1d4f35ce"
+      "sha256": "58ceea01f20bb1f4cd876b02e5fd33afad0c5ddb0c1350a4342f7cee7d018e67"
     },
     {
       "path": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js",
@@ -22975,11 +23624,15 @@
     },
     {
       "path": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
-      "sha256": "44dd65828d559ed6df4ba5e5bcae6b7929be05dcfb0873745857f5bf70551ea1"
+      "sha256": "c7ad7244278e125a15fb3fb059e4f65a0670019d428e5e6fd6c03bafb7e8039d"
     },
     {
       "path": "src/core-domains/composition/kits/composition-registry-kit/services.js",
       "sha256": "f640fe64c321396be27189e5147d7ec52fd7956d71a433ae354cdfc2df93bfae"
+    },
+    {
+      "path": "src/core-domains/composition/recipes/restored-behavior-recipes.js",
+      "sha256": "223628f312c65f16d922456b22dbf5415e88e6acc97e735de153111fad67a87a"
     },
     {
       "path": "src/core-domains/composition/services/composition-apply-controller.js",
@@ -22987,7 +23640,7 @@
     },
     {
       "path": "src/core-domains/composition/tests/composition-mcp-smoke.mjs",
-      "sha256": "b5e20bd14055402a29a4d7d9b2348ef3a6d01f308889edc0c3749bc2a0635cfa"
+      "sha256": "039b30e04115b556f082885534e00d1d1ae723fa800a62f1d31d7727fd197001"
     },
     {
       "path": "src/core-domains/compute/domain.manifest.js",
@@ -23078,12 +23731,72 @@
       "sha256": "b398c9757ab247bee9abd22d859bee98dd3737363294f46dd0b3ca0ba2c83af9"
     },
     {
+      "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js",
+      "sha256": "65f90861995e94953f52418d0c8055d2d7f965fa980bde88be58c51a5035d019"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js",
+      "sha256": "1a579b10b4dbb5b81739b925f6dc9ca44393e4b0e460ca1eca6c1c8cd82ee920"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js",
+      "sha256": "6bbce850d81d266798492e4bb0a2512f050972d20da05e1a1b97b86ce86d5a94"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/services.js",
+      "sha256": "43f04b66eb5f2ea5131445dc24884ed64a377b8c4de478b6b9c75057690e8962"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/state.js",
+      "sha256": "2e50b8d45fb4b8f0d78d60b725958dd0082f956302970a428f5ff18adc6b4f3c"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/contracts.js",
+      "sha256": "dbeddae39a63271affe494b28c9169642a83c9295b37407ae947ae78a8ba8f5a"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js",
+      "sha256": "f80b9dbad8ddf5eb82197ef1eb1deda5e8eba3924bd07807eda950145175d274"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js",
+      "sha256": "bafb1b344f30fd7d28cc8b2bd9c6edbc9156803033f9b2577d028e2f96819543"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/services.js",
+      "sha256": "4020f9584ddf54c3e95f29b9a5cb5806c478312caf972287771b38efc1c77421"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/state.js",
+      "sha256": "9a846602f53e669805b69a32ef051b04278b60514207431a5d54a0e5a3769b99"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/contracts.js",
+      "sha256": "6522746f80d6a081b63c0c7d8b274d4a2f4b1026b0c35ef0384e1c7f06ddf562"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js",
+      "sha256": "518ab9206b115286cfef6f7a0c565f6dae6f1929cdf75d9803c1c16f1842542c"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js",
+      "sha256": "b7103e5509809effd8e783ea56d61007008d505b554ca308c51bd60641c7b970"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/services.js",
+      "sha256": "58602aa74cd24a3aab17df8e671c41b119e330901c585be5652032d16eff1f53"
+    },
+    {
+      "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/state.js",
+      "sha256": "de0cd75a043437425dc1db2447c96aebf5cfbda142f70ff78577d018c280c5fc"
+    },
+    {
       "path": "src/core-domains/interaction/domain.manifest.js",
-      "sha256": "c6703d03c0c206bef3fae66142701757d2847aca689884853ead996c81ada845"
+      "sha256": "13ab8f16a2b0d6b5ac01c008b1bf9445d6b20e862790bac2d9eac07105b0b586"
     },
     {
       "path": "src/core-domains/interaction/index.js",
-      "sha256": "0f1a5f1b1c2f238c8329a1a07bfa83f07102f2de68eebbb14efb1c44257904b1"
+      "sha256": "2637fc0142f4fd2fdbb08f52f7415572b19db1e830962bfd9ab1034a458f6634"
     },
     {
       "path": "src/core-domains/interaction/kits/interaction-kit/activation.js",
@@ -23111,7 +23824,7 @@
     },
     {
       "path": "src/core-domains/interaction/restored-behavior-manifests.js",
-      "sha256": "8ad8eacc2c9515d3df46e8adcf46a4afe7584c49196fb7e0eab704f63c2b8c11"
+      "sha256": "f965c08257bd603579f22332b32176e9fc285d2b7863665bb5233032ab259b4a"
     },
     {
       "path": "src/core-domains/interaction/subdomains/assistance-target/index.js",
@@ -23530,16 +24243,36 @@
       "sha256": "743cea6d2411bd0c4239ca9dc011a147413e11cd4a0987488250be2c5313cc57"
     },
     {
+      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js",
+      "sha256": "62677862aba985728c17053ce71db8af3abd4902e9fb33854d4c1572cdb9ad3d"
+    },
+    {
+      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js",
+      "sha256": "e71bd2cd4a68d897470e0374ffec413148585142ceffa896a751ce1635cdd532"
+    },
+    {
+      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
+      "sha256": "4424571e477e8a908b9ea7d9d0eb4b0f849bf692dd4d2c4dcf593a0c62015f9d"
+    },
+    {
+      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js",
+      "sha256": "017865f55f949fba6da51411360303e8279db17b2e3a9342823c4e7f7d1e1ffd"
+    },
+    {
+      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js",
+      "sha256": "e9093f66452b599153ace4b07202bee451d669efc9eecabd6766f63c1743546a"
+    },
+    {
       "path": "src/core-domains/presentation/contracts.js",
       "sha256": "98f60d96cb678a3d0c0faa95c353be6b3f03f1f2d5423b8f77ba0d229416b4ed"
     },
     {
       "path": "src/core-domains/presentation/domain.manifest.js",
-      "sha256": "971ee85eb88a4322c08267ff18f30ffc2f32f66ed7bb621468315f318109c197"
+      "sha256": "1e47a07d034171148054d0d5d258ed7e956e4bfd76db247a4d1a39d2686e19c1"
     },
     {
       "path": "src/core-domains/presentation/index.js",
-      "sha256": "989bf450e77e1ec110a5dbd071a127e9aeabebe1113d50c778c68ada6773a06b"
+      "sha256": "db6174a1f2ec6a30a1ee51640da22fa220cd0b78caabad98d9f5f30e4d74a26c"
     },
     {
       "path": "src/core-domains/presentation/kits/presentation-kit/index.js",
@@ -23587,7 +24320,7 @@
     },
     {
       "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/contracts.js",
-      "sha256": "808a2409b9e0e5773f2dabc1f9748ae809cf9cf0fd4fa315d09a743b4504129e"
+      "sha256": "d5581bf67c703342526cb48e5531dfca5a924a122a0aef724069d4ebf0765443"
     },
     {
       "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js",
@@ -23727,7 +24460,7 @@
     },
     {
       "path": "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
-      "sha256": "99b6eb613d92ca097f180cbd65e56c3aa2134276c5dd5e0ff153810aa861df8e"
+      "sha256": "7a90723d7b6305aaabfb3d77b4cbd5e3154d5c146da71a660f16163af0ce52bb"
     },
     {
       "path": "src/core-domains/runtime/domain.manifest.js",
@@ -23854,12 +24587,112 @@
       "sha256": "e92b76c51c7b07a774d75e95bfe0ff42d7c7f6d8a24f9d548128c26db1323e90"
     },
     {
+      "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/contracts.js",
+      "sha256": "33d50d9b0086bad80abae55363d274fc50126f6bc4aa2e72f92622714f4541f5"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js",
+      "sha256": "170fa301bd77519b5e55494de139a37323f22be1b24e7a6d944914aede47acb4"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js",
+      "sha256": "faca5b4a29aa5cabbf65613e477c55f65f3db2f9682468118b7b2876dfc9a790"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/services.js",
+      "sha256": "d263de324190766950adf4ef163770735f03d30c85f6b795360fc4347d1b4410"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/state.js",
+      "sha256": "6c1b2fe876f2d23253c1039b90e2801144454bea0d515a01448c039bf06cbf27"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/contracts.js",
+      "sha256": "3c02f93effb306976715fa3d08d14cbb8615ba3ef409cb666d38386b08ea27db"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js",
+      "sha256": "a23d3936856a0a271878d5cb0b8a77b677fab7cbb18817bf5fde8db7d4116a83"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js",
+      "sha256": "9a172867811286251f456ba51efb3c0e46a09528d3e51f2c20c854afb280a85b"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/services.js",
+      "sha256": "62aa6c08333d1a90981a917bdb500b3c131a0f659c87c8f7024c67e50f0a11f9"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/state.js",
+      "sha256": "afd14cf02e1f78ed7e4b2d70324a6ecb9ef030016b6ca588455f68459c3d0405"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/contracts.js",
+      "sha256": "1bcbb093bc688ad0930597e480a8b8c59bd5701831911770634b67ee9e83d261"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js",
+      "sha256": "274a6a92d393f4131c40bd143daedad5f370901ff3b128e3ef067c4c49e022ca"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js",
+      "sha256": "da78065a443bc39645e963cd17cf3df655c8e1a76d56a6bd197ae0d985f40a40"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/services.js",
+      "sha256": "3f8a5545075272ca123cb72eeffc348570bfee0ba22d8677d465e970c222a8ef"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/state.js",
+      "sha256": "b70b629db750170d688d11973af979877e6b75ddba8bc0487b6e4823d508b826"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/contracts.js",
+      "sha256": "c2657d07554eab3e8523f6ddf704cf7beb59fdb5457c9a7f0aebd41b95875f93"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js",
+      "sha256": "5030aa40aafcc13718c157f565ed150d0bb851ce5027ea4d57a217dcc1fcca47"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js",
+      "sha256": "433eafefac63ae93519a62edebbf76e38dfe203a3b3816e6f4a85ee0c45a4c63"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/services.js",
+      "sha256": "7be132a6a6e2b164612530f431cdb06dfc14a0d8139581951b6fcfae467059e4"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/state.js",
+      "sha256": "979d8c9fa0338198c617ee448c2af510ac005c60912d21594d79a959b7e58810"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/contracts.js",
+      "sha256": "6a88d0ccc60514ef7aebe8adb0980055a678ea9eac43fcc55e25436ee082749d"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js",
+      "sha256": "3fbaee646b33d13c72088043a92ae7d541536f188f7011e7454e4a217c22ce5a"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js",
+      "sha256": "89df91387ac95657dc86a3fae950263384cd56cd7200dcbe52a236a9ee70430e"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/services.js",
+      "sha256": "0c9cd9b5211c7ae244f5c028e98b6bedf511957e970243982cd5944a5db433fd"
+    },
+    {
+      "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/state.js",
+      "sha256": "6a338cbdb6e78b9118f5a3604a2180dff92b1402985c3f41ff7c53fe0d5894ae"
+    },
+    {
       "path": "src/core-domains/simulation/domain.manifest.js",
-      "sha256": "44fc79541662e0ef2d9bbd30844c2f22766abf0802051d296630c1d2e35b752a"
+      "sha256": "3c411138dc72126eefdfbe63312db711ad8d396051f981c037dcdf8e0c6bba1f"
     },
     {
       "path": "src/core-domains/simulation/index.js",
-      "sha256": "6140e7e7c661299d34f5c861a62797944a2ddc6e1da5f21751ee0effa4085f9f"
+      "sha256": "3ffe8dd217ccbce71d2b48c09cfe5d86886cdb0eceb4e13d5ece9cee2d2c7493"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/checkpoints.js",
@@ -23899,7 +24732,7 @@
     },
     {
       "path": "src/core-domains/simulation/restored-behavior-manifests.js",
-      "sha256": "fc278edd057a57fba9b4be62718d8d2ab7d43f3a2ae5da930012990a01ebec66"
+      "sha256": "c250639fe8917a2974d8a0b0c7e532e1fa0a6c7eb29b5787d0d306b5ff8ee2d3"
     },
     {
       "path": "src/core-domains/simulation/subdomains/economy/index.js",
@@ -24320,6 +25153,10 @@
     {
       "path": "src/core-domains/simulation/tests/restored-economy-operations.mjs",
       "sha256": "4a4efb908d93a5b9a8faa0157d4d7cc61b6209672b49f27380ff5ca204faea1b"
+    },
+    {
+      "path": "src/core-domains/simulation/tests/restored-integration-adapters.mjs",
+      "sha256": "126fe7ca8b69e5f367f3cdea59f4bb9a56015f69e1800571c81678f8e5836275"
     },
     {
       "path": "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",

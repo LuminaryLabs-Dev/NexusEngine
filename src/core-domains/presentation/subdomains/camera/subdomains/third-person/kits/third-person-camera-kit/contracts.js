@@ -22,8 +22,8 @@ function vector(value = {}, label = "vector", fallback = {}) {
 }
 
 export function normalizeThirdPersonCameraConfig(config = {}) {
-  const characterId = String(config.characterId ?? "").trim();
-  if (!characterId) throw new TypeError("Third-Person Camera characterId is required.");
+  const characterId = String(config.characterId ?? "character").trim();
+  if (!characterId) throw new TypeError("Third-Person Camera characterId cannot be empty.");
   return {
     characterId,
     distance: positive(config.distance, "distance", 9),

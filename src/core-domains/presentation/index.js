@@ -10,6 +10,7 @@ export { createPresentationOutputKit } from "./subdomains/output/kits/output-kit
 export { createUIScaleKit } from "./subdomains/ui/kits/ui-scale-kit/index.js";
 export { createCameraFramingKit } from "./subdomains/camera/kits/framing-kit/index.js";
 export { createThirdPersonCameraKit } from "./subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js";
+export { createCameraWorldOcclusionAdapterKit } from "./adapters/camera-world-occlusion-adapter-kit/index.js";
 
 export function createPresentationDomain(config = {}) {
   return [

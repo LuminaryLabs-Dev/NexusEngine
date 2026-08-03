@@ -9,6 +9,10 @@ import environmentalAffordanceKit from "./subdomains/environmental-affordance/ki
 import requestQueueKit from "./subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js";
 import requestFulfillmentKit from "./subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js";
 import transferZoneKit from "./subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js";
+import occupantRequestAdapterKit from "./adapters/occupant-request-adapter-kit/kit.manifest.js";
+import transportRequestAdapterKit from "./adapters/transport-request-adapter-kit/kit.manifest.js";
+import requestEconomyAdapterKit from "./adapters/request-economy-adapter-kit/kit.manifest.js";
 
 export const RESTORED_INTERACTION_SUBDOMAINS = Object.freeze([assistanceTarget, environmentalAffordance, request, requestQueue, requestFulfillment, transferZone]);
 export const RESTORED_INTERACTION_KITS = Object.freeze([assistanceTargetKit, environmentalAffordanceKit, requestQueueKit, requestFulfillmentKit, transferZoneKit]);
+export const RESTORED_INTERACTION_ADAPTER_KITS = Object.freeze([occupantRequestAdapterKit, transportRequestAdapterKit, requestEconomyAdapterKit]);

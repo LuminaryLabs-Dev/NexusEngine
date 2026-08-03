@@ -27,7 +27,13 @@ const pending = factories
   .filter(({ record }) => !installedIds.has(record.id))
   .map(({ record, factory }) => ({
     record,
-    kit: factory(record.id === "world-state-kit" ? { childDomains: false } : {})
+    kit: factory(
+      record.id === "world-state-kit"
+        ? { childDomains: false }
+        : record.id === "third-person-camera-kit"
+          ? { characterId: "barrel-character" }
+          : {}
+    )
   }))
   .sort((left, right) => left.record.id.localeCompare(right.record.id));
 
@@ -37,6 +43,10 @@ while (pending.length) {
   );
   assert.notEqual(index, -1, `No dependency-complete install order for: ${pending.map(({ record }) => record.id).join(", ")}`);
   const [{ kit, record }] = pending.splice(index, 1);
+  if (record.id === "third-person-camera-kit") {
+    engine.n.creature.register({ id: "barrel-creature", body: { provider: "fixture", descriptorId: "body" }, rig: { provider: "fixture", descriptorId: "rig" } });
+    engine.n.character.create({ id: "barrel-character", creatureId: "barrel-creature", bindings: { motionActorId: "barrel-motion" } });
+  }
   engine.installKit(kit);
   installedIds.add(record.id);
   for (const token of kit.provides ?? []) provided.add(token);

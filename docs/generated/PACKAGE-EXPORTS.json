@@ -90,6 +90,9 @@
     "./domains/host": "./src/core-domains/host/index.js",
     "./domains/host/capabilities": "./src/core-domains/host/kits/host-capability-kit/index.js",
     "./domains/interaction": "./src/core-domains/interaction/index.js",
+    "./domains/interaction/adapters/occupant-request": "./src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js",
+    "./domains/interaction/adapters/request-economy": "./src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js",
+    "./domains/interaction/adapters/transport-request": "./src/core-domains/interaction/adapters/transport-request-adapter-kit/index.js",
     "./domains/interaction/assistance-target": "./src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js",
     "./domains/interaction/environmental-affordance": "./src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js",
     "./domains/interaction/input": "./src/core-domains/interaction/subdomains/input/kits/input-kit/index.js",
@@ -117,6 +120,7 @@
     "./domains/policy": "./src/core-domains/policy/index.js",
     "./domains/policy/guard": "./src/core-domains/policy/kits/policy-kit/index.js",
     "./domains/presentation": "./src/core-domains/presentation/index.js",
+    "./domains/presentation/adapters/camera-world-occlusion": "./src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js",
     "./domains/presentation/animation": "./src/core-domains/presentation/subdomains/animation/kits/animation-kit/index.js",
     "./domains/presentation/animation/rig": "./src/core-domains/presentation/subdomains/animation/kits/rig-transform-kit.js",
     "./domains/presentation/audio": "./src/core-domains/presentation/subdomains/audio/kits/audio-kit/index.js",
@@ -145,6 +149,11 @@
     "./domains/runtime/transaction": "./src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js",
     "./domains/simulation": "./src/core-domains/simulation/index.js",
     "./domains/simulation/adapters/articulated-drive": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
+    "./domains/simulation/adapters/facility-economy": "./src/core-domains/simulation/adapters/facility-economy-adapter-kit/index.js",
+    "./domains/simulation/adapters/lifecycle-economy": "./src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/index.js",
+    "./domains/simulation/adapters/lifecycle-facility": "./src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/index.js",
+    "./domains/simulation/adapters/locomotion-contact-response": "./src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/index.js",
+    "./domains/simulation/adapters/vehicle-water-response": "./src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/index.js",
     "./domains/simulation/economy/accounts": "./src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
     "./domains/simulation/economy/cargo": "./src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
     "./domains/simulation/hazard-field": "./src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js",
@@ -197,6 +206,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807",
+  "registryHash": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
   "schema": "nexusengine.package-exports/1"
 }

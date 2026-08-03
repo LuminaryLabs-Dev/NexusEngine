@@ -34,6 +34,7 @@ const tests = [
   "src/core-domains/simulation/tests/restored-economy-operations.mjs",
   "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",
   "src/core-domains/simulation/tests/restored-progression-pressure.mjs",
+  "src/core-domains/simulation/tests/restored-integration-adapters.mjs",
   "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
   "tests/core-domains/core-weather-domain-smoke.mjs",
   "tests/sequence-node-library-smoke.mjs",
