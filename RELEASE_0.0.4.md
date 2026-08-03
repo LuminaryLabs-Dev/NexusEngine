@@ -42,6 +42,10 @@ all 27 atoms and nine adapters to remain manifest-reachable, and all six recipes
 to remain registry-reachable. No consumer migration or release action is
 implied by completing this Engine-local restoration wave.
 
+The pinned post-restoration audit found no additional immediately promotable
+Core atom. `instanced-render-batch-kit` is the strongest future candidate but
+remains blocked on a second consumer, multi-renderer proof, and overlap review.
+
 ## Build Proof
 
 `n:build` is packaged with NexusEngine but is not part of `createEngine()` or

@@ -152,6 +152,23 @@ assert.match(
   "Documentation router is missing the restored behavior migration."
 );
 
+const candidateAudit = JSON.parse(await readFile(
+  path.join(root, "docs", "audits", "0.0.4-post-restoration-core-candidate-audit.json"),
+  "utf8"
+));
+assert.equal(candidateAudit.schema, "nexusengine.post-restoration-core-candidate-audit/1");
+assert.equal(candidateAudit.readOnly, true);
+assert.equal(candidateAudit.decision.immediateNewCoreAtoms.length, 0);
+assert.equal(candidateAudit.kitsCandidateReviews.length, 9);
+assert.equal(candidateAudit.frozenNearGateReviews.length, 8);
+assert.equal(candidateAudit.kitsPlaceholderReconciliation.length, 11);
+assert.equal(candidateAudit.protoKits.provenNewCoreAtomCount, 0);
+assert.match(
+  docsRouter,
+  /audits\/0\.0\.4-post-restoration-core-candidate-audit\.md/,
+  "Documentation router is missing the post-restoration candidate audit."
+);
+
 console.log(
   `Active docs ok: ${uniqueDocs.length} files, ${reclassified} kit suggestions reclassified, 26 restored sources reconciled.`
 );

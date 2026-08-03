@@ -84,6 +84,10 @@ hardcoded Core Kit catalog or transitional source tree remains.
   configuration transformations.
 - The current provider-neutral `createPhysicsKit` is not the historical World
   Physics behavior.
+- The 2026-08-03 read-only follow-up audit found no additional proven Core atom
+  in NexusEngine-Kits or the frozen ProtoKit inventory. Renderer-neutral
+  instanced batching is the strongest future candidate but remains gated by a
+  second consumer, multi-renderer proof, and existing Graphics parity.
 
 ## Composition Contract
 

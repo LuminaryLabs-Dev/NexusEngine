@@ -1,0 +1,130 @@
+{
+  "schema": "nexusengine.post-restoration-core-candidate-audit/1",
+  "auditedAt": "2026-08-03",
+  "readOnly": true,
+  "engine": {
+    "implementationCommit": "b361771977d1eb8c5b3c3147ce4fb051486c8477",
+    "registrySha256": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
+    "restoredHistoricalModules": 26,
+    "restoredBehaviorAtoms": 27,
+    "restoredAdapters": 9,
+    "restoredRecipes": 6
+  },
+  "kits": {
+    "repository": "https://github.com/LuminaryLabs-Dev/NexusEngine-Kits.git",
+    "remoteMainCommit": "60953fa8df34ff601317b2d959bf0d05988836f5",
+    "catalogSha256": "6d538528803c9fc21dd15a1770137677b4dc762feddf3c376e104b7679cdbad8",
+    "registrySha256": "46c952df1f2143c869ecc9d179d6447047085cfd646d9bf63175f8759c38bd15",
+    "manifestCount": 149,
+    "statusCounts": {
+      "official": 26,
+      "candidate": 9,
+      "scaffolded": 9,
+      "migration-placeholder": 103,
+      "deprecated": 2
+    }
+  },
+  "protoKits": {
+    "repository": "https://github.com/LuminaryLabs-Agents/NexusEngine-ProtoKits.git",
+    "remoteMainCommit": "0d102649267737230d618b30fe6f9465b198d234",
+    "frozenCommit": "0d102649267737230d618b30fe6f9465b198d234",
+    "folderCount": 530,
+    "sourceItemCount": 3698,
+    "reviewedCandidateCount": 224,
+    "structurallyPlausibleCount": 153,
+    "missingResetOrSnapshotCount": 145,
+    "missingSecondConsumerCount": 153,
+    "provenNewCoreAtomCount": 0
+  },
+  "decision": {
+    "immediateNewCoreAtoms": [],
+    "summary": "No additional source item satisfies every Core promotion gate. Keep the frozen Core gap set at zero.",
+    "strongestFutureCandidate": "instanced-render-batch-kit"
+  },
+  "kitsCandidateReviews": [
+    {
+      "id": "camera-smooth-follow-kit",
+      "decision": "semantic-merge-review",
+      "owner": "n:presentation:camera",
+      "reason": "Core Camera already owns renderer-neutral smoothing and Third-Person Camera owns a concrete descriptor lifecycle. Prove a nonduplicate responsibility and a second renderer integration before proposing another atom."
+    },
+    {
+      "id": "completion-ledger-kit",
+      "decision": "core-reuse-or-duplicate",
+      "owner": "NexusEngine Foundation and Runtime Transaction",
+      "reason": "Completion and exact-once ledgers already exist in Core. Perform API and invariant parity, then migrate or deprecate rather than add another state owner."
+    },
+    {
+      "id": "instanced-render-batch-kit",
+      "decision": "future-core-candidate",
+      "owner": "n:presentation:graphics",
+      "reason": "The behavior is renderer-neutral, deterministic, stateful, and atomic. Promotion still requires a second retained-world consumer, multi-renderer proof, and parity with existing Graphics batch descriptors."
+    },
+    {
+      "id": "procedural-creature-body-kit",
+      "decision": "remain-external",
+      "owner": "NexusEngine-Kits",
+      "reason": "The implementation remains body-plan-specific and lacks multiple product and renderer proofs. Universal descriptor fragments may later merge into Object or Actor after semantic extraction."
+    },
+    {
+      "id": "procedural-object-body-kit",
+      "decision": "semantic-merge-review",
+      "owner": "n:object:shape",
+      "reason": "Compare against Object Shape jobs and qualified descriptors. Promote only a missing invariant, not a parallel procedural Object hierarchy."
+    },
+    {
+      "id": "procedural-object-capture-profile-kit",
+      "decision": "recipe-or-merge-review",
+      "owner": "n:presentation:capture",
+      "reason": "Capture profiles are likely portable policy data over the existing Capture contract. Prove owned lifecycle state before treating them as an atom."
+    },
+    {
+      "id": "procedural-object-lod-kit",
+      "decision": "semantic-merge-review",
+      "owner": "n:object:fidelity",
+      "reason": "Object Fidelity already owns form packaging and selection. Add missing LOD invariants there after multi-consumer proof rather than create a second fidelity owner."
+    },
+    {
+      "id": "procedural-object-material-kit",
+      "decision": "recipe-or-merge-review",
+      "owner": "n:presentation:graphics",
+      "reason": "Renderer-neutral material descriptors already exist in Graphics. Keep authored material recipes external and merge only missing universal descriptor contracts."
+    },
+    {
+      "id": "seeded-world-patch-controller-kit",
+      "decision": "semantic-merge-review",
+      "owner": "n:world",
+      "reason": "Core World already owns cells, partitions, assembly, and patch preparation. Run bidirectional parity against those owners before retaining any missing scheduling invariant."
+    }
+  ],
+  "frozenNearGateReviews": [
+    { "id": "agriculture-domain-kit", "decision": "remain-external", "reason": "Domain composition and authored policy, not one universal atom." },
+    { "id": "capability-graph-domain-kit", "decision": "core-reuse", "reason": "Already represented by Core Composition discovery and dependency planning." },
+    { "id": "composition-planning-domain-kit", "decision": "core-reuse", "reason": "Already represented by Core Composition validation and planning." },
+    { "id": "generic-anchor-descriptor-kit", "decision": "core-reuse", "reason": "Map descriptor invariants to existing Spatial and Object contracts." },
+    { "id": "generic-kit-utils", "decision": "reject-catchall", "reason": "A generic utility factory has no semantic state owner and is not a Core Domain." },
+    { "id": "generic-route-cargo-extraction-kit", "decision": "recipe-data", "reason": "Compose Pathfinding, Transport Route, Cargo, and Transfer Zone instead of adding an extraction atom." },
+    { "id": "protokit-core", "decision": "retired-compatibility", "reason": "ProtoKit compatibility is retired and cannot become current Core." },
+    { "id": "stereoscopic-render-domain-kit", "decision": "remain-external", "reason": "Concrete stereo rendering and runtime integration remain provider or Build target responsibilities." }
+  ],
+  "kitsPlaceholderReconciliation": [
+    { "id": "cargo-kit", "replacement": ["cargo-manifest-kit"] },
+    { "id": "cargo-transfer-kit", "replacement": ["cargo-manifest-kit", "transfer-zone-kit"] },
+    { "id": "currency-kit", "replacement": ["economy-account-kit"] },
+    { "id": "generic-affordance-descriptor-kit", "replacement": ["environmental-affordance-kit"] },
+    { "id": "generic-defense-economy-wallet-dsk", "replacement": ["economy-account-kit"] },
+    { "id": "generic-pressure-loop-kit", "replacement": ["pursuit-pressure-kit"] },
+    { "id": "generic-route-cargo-extraction-kit", "replacement": ["procedural-navigation", "vehicle-rescue-logistics"] },
+    { "id": "npc-schedule-domain-kit", "replacement": ["schedule-kit"] },
+    { "id": "recovery-site-kit", "replacement": ["soft-respawn-kit"] },
+    { "id": "route-clearance-domain-kit", "replacement": ["pathfinding-kit", "hazard-field-kit"] },
+    { "id": "terrain-ground-contact-domain-kit", "replacement": ["terrain-kit", "world-contact-kit", "locomotion-contact-response-adapter-kit"] }
+  ],
+  "externalRepositoryFollowUps": [
+    "Pin NexusEngine-Kits development proof to the final committed Engine SHA.",
+    "Replace retired Core-prefixed migration imports with generated semantic subpaths.",
+    "Retire ProtoKits incubation language.",
+    "Replace catalog write-back workflows with read-only generate-and-diff checks.",
+    "Reconcile the eleven overlapping placeholders without adding compatibility forwarding exports."
+  ]
+}

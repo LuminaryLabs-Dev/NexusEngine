@@ -34,6 +34,7 @@ The modular source for the guide is `guide/book.json` plus
 - [0.0.4 Restored Behaviors](migrations/0.0.4-restored-behaviors.md)
 - [0.0.4 Build Domain Cutover](migrations/0.0.4-build-domain.md)
 - [0.0.4 Root Module Dispositions](migrations/0.0.4-root-module-dispositions.md)
+- [0.0.4 Post-Restoration Core Candidate Audit](audits/0.0.4-post-restoration-core-candidate-audit.md)
 - [Frozen ProtoKit Extraction](protokit-extraction/README.md)
 - [Retired ProtoKit Workflow](how-to-protokit.md)
 - [Historical Documentation](legacy/README.md)

@@ -52,6 +52,9 @@
   recipes for the restored behavior graph.
 - A machine-readable restoration ledger with exact source checksums, historical
   exports, corrected defects, semantic replacements, and proof references.
+- A pinned read-only post-restoration audit of the current Kits registry and
+  frozen ProtoKit inventory; no additional Core atom passed every promotion
+  gate.
 
 ### Changed
 
