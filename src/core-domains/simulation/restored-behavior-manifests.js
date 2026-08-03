@@ -10,6 +10,10 @@ import operations from "./subdomains/operations/subdomain.manifest.js";
 import facility from "./subdomains/operations/subdomains/facility/subdomain.manifest.js";
 import occupantFlow from "./subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js";
 import transportRoute from "./subdomains/operations/subdomains/transport-route/subdomain.manifest.js";
+import hazardField from "./subdomains/hazard-field/subdomain.manifest.js";
+import pursuitPressure from "./subdomains/pursuit-pressure/subdomain.manifest.js";
+import progression from "./subdomains/progression/subdomain.manifest.js";
+import lifecycleProgression from "./subdomains/progression/subdomains/lifecycle/subdomain.manifest.js";
 import actionLocomotionKit from "./subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js";
 import vehicleDynamicsKit from "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js";
 import worldContactKit from "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js";
@@ -19,6 +23,9 @@ import cargoManifestKit from "./subdomains/economy/subdomains/cargo/kits/cargo-m
 import facilityOperationsKit from "./subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js";
 import occupantFlowKit from "./subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js";
 import transportRouteKit from "./subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js";
+import hazardFieldKit from "./subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js";
+import pursuitPressureKit from "./subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js";
+import lifecycleProgressionKit from "./subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js";
 
-export const RESTORED_SIMULATION_SUBDOMAINS = Object.freeze([locomotion, vehicle, worldContact, recovery, softRespawn, economy, economyAccounts, economyCargo, operations, facility, occupantFlow, transportRoute]);
-export const RESTORED_SIMULATION_KITS = Object.freeze([actionLocomotionKit, vehicleDynamicsKit, worldContactKit, softRespawnKit, economyAccountKit, cargoManifestKit, facilityOperationsKit, occupantFlowKit, transportRouteKit]);
+export const RESTORED_SIMULATION_SUBDOMAINS = Object.freeze([locomotion, vehicle, worldContact, recovery, softRespawn, economy, economyAccounts, economyCargo, operations, facility, occupantFlow, transportRoute, hazardField, pursuitPressure, progression, lifecycleProgression]);
+export const RESTORED_SIMULATION_KITS = Object.freeze([actionLocomotionKit, vehicleDynamicsKit, worldContactKit, softRespawnKit, economyAccountKit, cargoManifestKit, facilityOperationsKit, occupantFlowKit, transportRouteKit, hazardFieldKit, pursuitPressureKit, lifecycleProgressionKit]);

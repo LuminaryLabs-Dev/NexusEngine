@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
+Registry SHA-256: `267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -31,6 +31,12 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 - `n:host`: Own host capability descriptors and fallback contracts without platform implementation.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
+- `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
+- `n:interaction:environmental-affordance`: Own portable affordance proximity and activation state.
+- `n:interaction:request`: Own portable request queue and fulfillment boundaries.
+- `n:interaction:request:queue`: Own queued request patience, fulfillment, expiry, and effect descriptors.
+- `n:interaction:request:fulfillment`: Own spatial request destination, deadline, completion, expiry, and reward state.
+- `n:interaction:transfer-zone`: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.
 - `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
 - `n:network`: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.
 - `n:object`: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.
@@ -78,6 +84,10 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 - `n:simulation:operations:facility`: Own deterministic facility capacity, condition, status, cycles, and operation receipts.
 - `n:simulation:operations:occupant-flow`: Own deterministic occupant spawning, patience, service, and abandonment state.
 - `n:simulation:operations:transport-route`: Own deterministic transport stops, carriers, capacity, travel, and arrival receipts.
+- `n:simulation:hazard-field`: Own deterministic bounded hazard state, spawning, motion, and collision queries.
+- `n:simulation:pursuit-pressure`: Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.
+- `n:simulation:progression`: Own portable progression capability and lifecycle ownership boundaries.
+- `n:simulation:progression:lifecycle`: Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
 - `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.

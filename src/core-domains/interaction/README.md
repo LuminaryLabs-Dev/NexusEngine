@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:interaction`
 - Status: `stable-candidate`
-- Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
+- Registry SHA-256: `267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807`
 - Public entry: `nexusengine/domains/interaction`
 
 ## Responsibility
@@ -30,6 +30,12 @@ Own targets, affordances, activation progress, semantic requirements, prompts, a
 | Path | Responsibility |
 | --- | --- |
 | `n:interaction:input` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. |
+| `n:interaction:assistance-target` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. |
+| `n:interaction:environmental-affordance` | Own portable affordance proximity and activation state. |
+| `n:interaction:request` | Own portable request queue and fulfillment boundaries. |
+| `n:interaction:request:queue` | Own queued request patience, fulfillment, expiry, and effect descriptors. |
+| `n:interaction:request:fulfillment` | Own spatial request destination, deadline, completion, expiry, and reward state. |
+| `n:interaction:transfer-zone` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. |
 
 ## Atomic Kits
 
@@ -37,6 +43,11 @@ Own targets, affordances, activation progress, semantic requirements, prompts, a
 | --- | --- | --- |
 | `interaction-kit` | `nexusengine/domains/interaction/runtime` | Manage interaction targets, affordances, activation, and results. |
 | `input-contract-kit` | `nexusengine/domains/interaction/input` | Normalize semantic input actions, axes, contexts, and bindings. |
+| `assistance-target-kit` | `nexusengine/domains/interaction/assistance-target` | Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection. |
+| `environmental-affordance-kit` | `nexusengine/domains/interaction/environmental-affordance` | Own read-only affordance proximity queries and exact-once activation progress. |
+| `request-queue-kit` | `nexusengine/domains/interaction/request/queue` | Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors. |
+| `request-fulfillment-kit` | `nexusengine/domains/interaction/request/fulfillment` | Own spatial request destinations, deadlines, completion, expiry, and reward totals. |
+| `transfer-zone-kit` | `nexusengine/domains/interaction/transfer-zone` | Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions. |
 
 ## Lifecycle
 

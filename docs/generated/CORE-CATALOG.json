@@ -2785,6 +2785,575 @@
       ]
     },
     {
+      "domainPath": "n:interaction:assistance-target",
+      "forbiddenResponsibilities": [
+        "economy rewards",
+        "game rescue rules",
+        "vehicle movement"
+      ],
+      "id": "interaction-assistance-target-domain",
+      "inputs": [
+        {
+          "description": "Assistance Target required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Assistance Target",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Assistance Target API without duplicate state or systems.",
+        "install": "Create one Assistance Target state owner and public API.",
+        "replay": "Reapply equivalent Assistance Target inputs deterministically.",
+        "reset": "Restore the configured Assistance Target baseline.",
+        "snapshot": "Serialize Assistance Target state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Assistance Target provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:assistance-target",
+          "schema": null
+        },
+        {
+          "description": "Assistance Target provided capability.",
+          "deterministic": true,
+          "id": "interaction:assistance-target",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "assistance target state",
+        "attachment",
+        "terminal outcomes",
+        "urgency"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Assistance Target state and registry records.",
+          "id": "interaction-assistance-target-domain-state",
+          "owner": "interaction-assistance-target-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Assistance Target contract fixture.",
+            "deterministic": true,
+            "id": "interaction-assistance-target-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Assistance Target composition fixture.",
+            "deterministic": true,
+            "id": "interaction-assistance-target-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own assistance target urgency, attachment, completion, loss, and deterministic selection.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Assistance Target behavior.",
+          "deterministic": true,
+          "id": "n:interaction:assistance-target:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:interaction:environmental-affordance",
+      "forbiddenResponsibilities": [
+        "game objective effects",
+        "presentation prompts",
+        "world mutation"
+      ],
+      "id": "interaction-environmental-affordance-domain",
+      "inputs": [
+        {
+          "description": "Environmental Affordance required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Environmental Affordance",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Environmental Affordance API without duplicate state or systems.",
+        "install": "Create one Environmental Affordance state owner and public API.",
+        "replay": "Reapply equivalent Environmental Affordance inputs deterministically.",
+        "reset": "Restore the configured Environmental Affordance baseline.",
+        "snapshot": "Serialize Environmental Affordance state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Environmental Affordance provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:environmental-affordance",
+          "schema": null
+        },
+        {
+          "description": "Environmental Affordance provided capability.",
+          "deterministic": true,
+          "id": "interaction:environmental-affordance",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "activation progress",
+        "affordance descriptors",
+        "completion state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Environmental Affordance state and registry records.",
+          "id": "interaction-environmental-affordance-domain-state",
+          "owner": "interaction-environmental-affordance-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Environmental Affordance contract fixture.",
+            "deterministic": true,
+            "id": "interaction-environmental-affordance-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Environmental Affordance composition fixture.",
+            "deterministic": true,
+            "id": "interaction-environmental-affordance-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own portable affordance proximity and activation state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Environmental Affordance behavior.",
+          "deterministic": true,
+          "id": "n:interaction:environmental-affordance:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:interaction:request",
+      "forbiddenResponsibilities": [
+        "economy effects",
+        "occupant effects",
+        "transport effects"
+      ],
+      "id": "interaction-request-domain",
+      "inputs": [
+        {
+          "description": "Interaction Request required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Interaction Request",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Interaction Request API without duplicate state or systems.",
+        "install": "Create one Interaction Request state owner and public API.",
+        "replay": "Reapply equivalent Interaction Request inputs deterministically.",
+        "reset": "Restore the configured Interaction Request baseline.",
+        "snapshot": "Serialize Interaction Request state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Interaction Request provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:request",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "queue and fulfillment ownership boundaries",
+        "request capability contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Interaction Request state and registry records.",
+          "id": "interaction-request-domain-state",
+          "owner": "interaction-request-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Interaction Request contract fixture.",
+            "deterministic": true,
+            "id": "interaction-request-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Interaction Request composition fixture.",
+            "deterministic": true,
+            "id": "interaction-request-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own portable request queue and fulfillment boundaries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Interaction Request behavior.",
+          "deterministic": true,
+          "id": "n:interaction:request:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:interaction:request:queue",
+      "forbiddenResponsibilities": [
+        "economy mutation",
+        "engine ticks",
+        "occupant mutation",
+        "transport mutation"
+      ],
+      "id": "interaction-request-queue-domain",
+      "inputs": [
+        {
+          "description": "Request Queue required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Request Queue",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Request Queue API without duplicate state or systems.",
+        "install": "Create one Request Queue state owner and public API.",
+        "replay": "Reapply equivalent Request Queue inputs deterministically.",
+        "reset": "Restore the configured Request Queue baseline.",
+        "snapshot": "Serialize Request Queue state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Request Queue provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:request:queue",
+          "schema": null
+        },
+        {
+          "description": "Request Queue provided capability.",
+          "deterministic": true,
+          "id": "interaction:request-queue",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "effect descriptors",
+        "patience state",
+        "queued requests",
+        "request outcomes"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Request Queue state and registry records.",
+          "id": "interaction-request-queue-domain-state",
+          "owner": "interaction-request-queue-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction:request",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Request Queue contract fixture.",
+            "deterministic": true,
+            "id": "interaction-request-queue-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Request Queue composition fixture.",
+            "deterministic": true,
+            "id": "interaction-request-queue-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own queued request patience, fulfillment, expiry, and effect descriptors.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Request Queue behavior.",
+          "deterministic": true,
+          "id": "n:interaction:request:queue:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:interaction:request:fulfillment",
+      "forbiddenResponsibilities": [
+        "economy mutation",
+        "request queue policy",
+        "transport mutation"
+      ],
+      "id": "interaction-request-fulfillment-domain",
+      "inputs": [
+        {
+          "description": "Request Fulfillment required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Request Fulfillment",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Request Fulfillment API without duplicate state or systems.",
+        "install": "Create one Request Fulfillment state owner and public API.",
+        "replay": "Reapply equivalent Request Fulfillment inputs deterministically.",
+        "reset": "Restore the configured Request Fulfillment baseline.",
+        "snapshot": "Serialize Request Fulfillment state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Request Fulfillment provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:request:fulfillment",
+          "schema": null
+        },
+        {
+          "description": "Request Fulfillment provided capability.",
+          "deterministic": true,
+          "id": "interaction:request-fulfillment",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "completion records",
+        "deadlines",
+        "reward totals",
+        "spatial requests"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Request Fulfillment state and registry records.",
+          "id": "interaction-request-fulfillment-domain-state",
+          "owner": "interaction-request-fulfillment-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction:request",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Request Fulfillment contract fixture.",
+            "deterministic": true,
+            "id": "interaction-request-fulfillment-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Request Fulfillment composition fixture.",
+            "deterministic": true,
+            "id": "interaction-request-fulfillment-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own spatial request destination, deadline, completion, expiry, and reward state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Request Fulfillment behavior.",
+          "deterministic": true,
+          "id": "n:interaction:request:fulfillment:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:interaction:transfer-zone",
+      "forbiddenResponsibilities": [
+        "cargo mutation",
+        "game extraction rules",
+        "renderer volumes"
+      ],
+      "id": "interaction-transfer-zone-domain",
+      "inputs": [
+        {
+          "description": "Transfer Zone required capability.",
+          "deterministic": true,
+          "id": "n:interaction",
+          "schema": null
+        }
+      ],
+      "label": "Transfer Zone",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Transfer Zone API without duplicate state or systems.",
+        "install": "Create one Transfer Zone state owner and public API.",
+        "replay": "Reapply equivalent Transfer Zone inputs deterministically.",
+        "reset": "Restore the configured Transfer Zone baseline.",
+        "snapshot": "Serialize Transfer Zone state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Transfer Zone provided capability.",
+          "deterministic": true,
+          "id": "n:interaction:transfer-zone",
+          "schema": null
+        },
+        {
+          "description": "Transfer Zone provided capability.",
+          "deterministic": true,
+          "id": "interaction:transfer-zone",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "acceptance policy",
+        "capacity",
+        "completion records",
+        "dwell state",
+        "transfer zones"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Transfer Zone state and registry records.",
+          "id": "interaction-transfer-zone-domain-state",
+          "owner": "interaction-transfer-zone-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:interaction",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Transfer Zone contract fixture.",
+            "deterministic": true,
+            "id": "interaction-transfer-zone-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Transfer Zone composition fixture.",
+            "deterministic": true,
+            "id": "interaction-transfer-zone-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:interaction"
+      ],
+      "responsibility": "Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Transfer Zone behavior.",
+          "deterministic": true,
+          "id": "n:interaction:transfer-zone:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:mcp",
       "forbiddenResponsibilities": [
         "agent planning",
@@ -7603,6 +8172,382 @@
           "description": "Install, validate, snapshot, reset, and replay Transport Route behavior.",
           "deterministic": true,
           "id": "n:simulation:operations:transport-route:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:hazard-field",
+      "forbiddenResponsibilities": [
+        "game damage outcomes",
+        "physics backend",
+        "renderer effects"
+      ],
+      "id": "simulation-hazard-field-domain",
+      "inputs": [
+        {
+          "description": "Hazard Field required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Hazard Field",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Hazard Field API without duplicate state or systems.",
+        "install": "Create one Hazard Field state owner and public API.",
+        "replay": "Reapply equivalent Hazard Field inputs deterministically.",
+        "reset": "Restore the configured Hazard Field baseline.",
+        "snapshot": "Serialize Hazard Field state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Hazard Field provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:hazard-field",
+          "schema": null
+        },
+        {
+          "description": "Hazard Field provided capability.",
+          "deterministic": true,
+          "id": "simulation:hazard-field",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "bounded hazard motion",
+        "collision queries",
+        "hazard records",
+        "spawn cadence"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Hazard Field state and registry records.",
+          "id": "simulation-hazard-field-domain-state",
+          "owner": "simulation-hazard-field-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Hazard Field contract fixture.",
+            "deterministic": true,
+            "id": "simulation-hazard-field-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Hazard Field composition fixture.",
+            "deterministic": true,
+            "id": "simulation-hazard-field-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own deterministic bounded hazard state, spawning, motion, and collision queries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Hazard Field behavior.",
+          "deterministic": true,
+          "id": "n:simulation:hazard-field:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:pursuit-pressure",
+      "forbiddenResponsibilities": [
+        "game fail state",
+        "presentation alerts",
+        "pursuer movement"
+      ],
+      "id": "simulation-pursuit-pressure-domain",
+      "inputs": [
+        {
+          "description": "Pursuit Pressure required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Pursuit Pressure",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Pursuit Pressure API without duplicate state or systems.",
+        "install": "Create one Pursuit Pressure state owner and public API.",
+        "replay": "Reapply equivalent Pursuit Pressure inputs deterministically.",
+        "reset": "Restore the configured Pursuit Pressure baseline.",
+        "snapshot": "Serialize Pursuit Pressure state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Pursuit Pressure provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:pursuit-pressure",
+          "schema": null
+        },
+        {
+          "description": "Pursuit Pressure provided capability.",
+          "deterministic": true,
+          "id": "simulation:pursuit-pressure",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "caught state",
+        "pressure bands",
+        "pursuit distance",
+        "transition history"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Pursuit Pressure state and registry records.",
+          "id": "simulation-pursuit-pressure-domain-state",
+          "owner": "simulation-pursuit-pressure-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Pursuit Pressure contract fixture.",
+            "deterministic": true,
+            "id": "simulation-pursuit-pressure-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Pursuit Pressure composition fixture.",
+            "deterministic": true,
+            "id": "simulation-pursuit-pressure-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Pursuit Pressure behavior.",
+          "deterministic": true,
+          "id": "n:simulation:pursuit-pressure:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:progression",
+      "forbiddenResponsibilities": [
+        "authored progression content",
+        "economy effects",
+        "facility effects"
+      ],
+      "id": "simulation-progression-domain",
+      "inputs": [
+        {
+          "description": "Simulation Progression required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Simulation Progression",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Simulation Progression API without duplicate state or systems.",
+        "install": "Create one Simulation Progression state owner and public API.",
+        "replay": "Reapply equivalent Simulation Progression inputs deterministically.",
+        "reset": "Restore the configured Simulation Progression baseline.",
+        "snapshot": "Serialize Simulation Progression state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Simulation Progression provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:progression",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "lifecycle ownership boundary",
+        "progression capability contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Simulation Progression state and registry records.",
+          "id": "simulation-progression-domain-state",
+          "owner": "simulation-progression-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Simulation Progression contract fixture.",
+            "deterministic": true,
+            "id": "simulation-progression-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Simulation Progression composition fixture.",
+            "deterministic": true,
+            "id": "simulation-progression-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own portable progression capability and lifecycle ownership boundaries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Simulation Progression behavior.",
+          "deterministic": true,
+          "id": "n:simulation:progression:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:simulation:progression:lifecycle",
+      "forbiddenResponsibilities": [
+        "authored progression tree",
+        "economy mutation",
+        "facility mutation"
+      ],
+      "id": "simulation-progression-lifecycle-domain",
+      "inputs": [
+        {
+          "description": "Lifecycle Progression required capability.",
+          "deterministic": true,
+          "id": "n:simulation",
+          "schema": null
+        }
+      ],
+      "label": "Lifecycle Progression",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Lifecycle Progression API without duplicate state or systems.",
+        "install": "Create one Lifecycle Progression state owner and public API.",
+        "replay": "Reapply equivalent Lifecycle Progression inputs deterministically.",
+        "reset": "Restore the configured Lifecycle Progression baseline.",
+        "snapshot": "Serialize Lifecycle Progression state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Lifecycle Progression provided capability.",
+          "deterministic": true,
+          "id": "n:simulation:progression:lifecycle",
+          "schema": null
+        },
+        {
+          "description": "Lifecycle Progression provided capability.",
+          "deterministic": true,
+          "id": "progression:lifecycle",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "effect descriptors",
+        "lifecycle items",
+        "prerequisite state",
+        "timed progression"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Lifecycle Progression state and registry records.",
+          "id": "simulation-progression-lifecycle-domain-state",
+          "owner": "simulation-progression-lifecycle-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:simulation:progression",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Lifecycle Progression contract fixture.",
+            "deterministic": true,
+            "id": "simulation-progression-lifecycle-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Lifecycle Progression composition fixture.",
+            "deterministic": true,
+            "id": "simulation-progression-lifecycle-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:simulation"
+      ],
+      "responsibility": "Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Lifecycle Progression behavior.",
+          "deterministic": true,
+          "id": "n:simulation:progression:lifecycle:lifecycle",
           "schema": null
         }
       ]
@@ -14015,6 +14960,361 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "assistanceTargets",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:assistance-target",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "assistance-target-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:interaction",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "assistance-target-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "assistance-target-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:assistance-target",
+        "n:interaction:assistance-target"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAssistanceTargetKit",
+        "module": "./src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js",
+        "publicSubpath": "./domains/interaction/assistance-target"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "environmentalAffordances",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:environmental-affordance",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "environmental-affordance-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:interaction",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "environmental-affordance-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "environmental-affordance-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:environmental-affordance",
+        "n:interaction:environmental-affordance"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own read-only affordance proximity queries and exact-once activation progress.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createEnvironmentalAffordanceKit",
+        "module": "./src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js",
+        "publicSubpath": "./domains/interaction/environmental-affordance"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "requestQueue",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:request:queue",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "request-queue-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:interaction:request",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "request-queue-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "request-queue-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:request-queue",
+        "n:interaction:request:queue"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createRequestQueueKit",
+        "module": "./src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js",
+        "publicSubpath": "./domains/interaction/request/queue"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "requestFulfillment",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:request:fulfillment",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "request-fulfillment-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:interaction:request",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "request-fulfillment-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "request-fulfillment-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:request-fulfillment",
+        "n:interaction:request:fulfillment"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own spatial request destinations, deadlines, completion, expiry, and reward totals.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createRequestFulfillmentKit",
+        "module": "./src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js",
+        "publicSubpath": "./domains/interaction/request/fulfillment"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "transferZones",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:interaction:transfer-zone",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "transfer-zone-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:interaction",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "transfer-zone-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "transfer-zone-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "interaction:transfer-zone",
+        "n:interaction:transfer-zone"
+      ],
+      "requires": [
+        "n:interaction"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createTransferZoneKit",
+        "module": "./src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js",
+        "publicSubpath": "./domains/interaction/transfer-zone"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "mcp",
       "atomic": true,
       "composes": [],
@@ -17959,6 +19259,219 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "hazardField",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:hazard-field",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "hazard-field-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "hazard-field-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "hazard-field-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:hazard-field",
+        "simulation:hazard-field"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createHazardFieldKit",
+        "module": "./src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js",
+        "publicSubpath": "./domains/simulation/hazard-field"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "pursuitPressure",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:pursuit-pressure",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "pursuit-pressure-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "pursuit-pressure-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "pursuit-pressure-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:pursuit-pressure",
+        "simulation:pursuit-pressure"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own coherent pursuit distance, warning bands, caught state, recovery, and transition history.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createPursuitPressureKit",
+        "module": "./src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js",
+        "publicSubpath": "./domains/simulation/pursuit-pressure"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "lifecycleProgression",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:simulation:progression:lifecycle",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "lifecycle-progression-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:simulation:progression",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "lifecycle-progression-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "lifecycle-progression-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-progression-pressure.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:simulation:progression:lifecycle",
+        "progression:lifecycle"
+      ],
+      "requires": [
+        "n:simulation"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createLifecycleProgressionKit",
+        "module": "./src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js",
+        "publicSubpath": "./domains/simulation/progression/lifecycle"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "spatial",
       "atomic": true,
       "composes": [],
@@ -19828,8 +21341,13 @@
     "./domains/host": "./src/core-domains/host/index.js",
     "./domains/host/capabilities": "./src/core-domains/host/kits/host-capability-kit/index.js",
     "./domains/interaction": "./src/core-domains/interaction/index.js",
+    "./domains/interaction/assistance-target": "./src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js",
+    "./domains/interaction/environmental-affordance": "./src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js",
     "./domains/interaction/input": "./src/core-domains/interaction/subdomains/input/kits/input-kit/index.js",
+    "./domains/interaction/request/fulfillment": "./src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js",
+    "./domains/interaction/request/queue": "./src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js",
     "./domains/interaction/runtime": "./src/core-domains/interaction/kits/interaction-kit/index.js",
+    "./domains/interaction/transfer-zone": "./src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js",
     "./domains/mcp": "./src/core-domains/mcp/index.js",
     "./domains/mcp/registry": "./src/core-domains/mcp/kits/mcp-registry-kit/index.js",
     "./domains/network": "./src/core-domains/network/index.js",
@@ -19879,6 +21397,7 @@
     "./domains/simulation/adapters/articulated-drive": "./src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js",
     "./domains/simulation/economy/accounts": "./src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js",
     "./domains/simulation/economy/cargo": "./src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js",
+    "./domains/simulation/hazard-field": "./src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js",
     "./domains/simulation/motion": "./src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js",
     "./domains/simulation/motion/articulated": "./src/core-domains/simulation/subdomains/motion/subdomains/articulated-motion-domain/index.js",
     "./domains/simulation/motion/locomotion": "./src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js",
@@ -19890,6 +21409,8 @@
     "./domains/simulation/physics": "./src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js",
     "./domains/simulation/physics/articulated": "./src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js",
     "./domains/simulation/physics/world-contact": "./src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js",
+    "./domains/simulation/progression/lifecycle": "./src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js",
+    "./domains/simulation/pursuit-pressure": "./src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js",
     "./domains/simulation/recovery/soft-respawn": "./src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js",
     "./domains/simulation/runtime": "./src/core-domains/simulation/kits/simulation-kit/index.js",
     "./domains/spatial": "./src/core-domains/spatial/index.js",
@@ -19921,7 +21442,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef",
+  "registryHash": "267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -21558,11 +23079,11 @@
     },
     {
       "path": "src/core-domains/interaction/domain.manifest.js",
-      "sha256": "df98a7a2dfb6a28c04c64e12d05d162caff233c43589b8428dd04b25da2bd011"
+      "sha256": "c6703d03c0c206bef3fae66142701757d2847aca689884853ead996c81ada845"
     },
     {
       "path": "src/core-domains/interaction/index.js",
-      "sha256": "0976000f361d8397ad25c7240f5426e12c94d49f32a488836b1a173fdfe3a7bf"
+      "sha256": "0f1a5f1b1c2f238c8329a1a07bfa83f07102f2de68eebbb14efb1c44257904b1"
     },
     {
       "path": "src/core-domains/interaction/kits/interaction-kit/activation.js",
@@ -21589,6 +23110,66 @@
       "sha256": "74ee50ac86a3e100a50c4d9794a00a2f12bbc5e470e7341119f9d41ed5406b9b"
     },
     {
+      "path": "src/core-domains/interaction/restored-behavior-manifests.js",
+      "sha256": "8ad8eacc2c9515d3df46e8adcf46a4afe7584c49196fb7e0eab704f63c2b8c11"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/index.js",
+      "sha256": "a6c3e71b440dc8ec88b3eef306618ac0cc4ff05b25920f1bbacfde2e2488bcc3"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/contracts.js",
+      "sha256": "8d71e2210c21ca5e44d2a657cb79179d2b5ca09d7fbb8db887d259470b092377"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js",
+      "sha256": "6ee43430e1f5ac8e18822111546a386f8e3abe4e6fefc41dbaa4a0265fbd1b4d"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js",
+      "sha256": "5038d60288b83c1346ee052edcbe58a3a895b5f519e4f55c7305c26458d93e69"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/services.js",
+      "sha256": "832b9c8e97d448b8cec9a15f6f4c7d32cf22b4b173162f1bcb1522fe06778650"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/state.js",
+      "sha256": "df73b46c883c8834018f88345917ff258ffc77440666c95c30e0f99eb433a020"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js",
+      "sha256": "6c02a4d8fa36bfd7ace6b9c159bcdb9c4e18ba8155e3eec582636ad5157ac410"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/index.js",
+      "sha256": "0a5fe5798c7b2364f8b73d9c0b395f2b58bbff704189d5a1f1092460ef8d63c8"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/contracts.js",
+      "sha256": "e39f8b7f6cfc64f9ed324a03a324578d671d9f6aee17ef56ce4efac842957843"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js",
+      "sha256": "2381308822552d35ae1c760861df8dadcddf0916ea2f4fd2bd97fea9d85ca6fd"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js",
+      "sha256": "5f91a12564167dc9d8586a81b2f6e6431e9f124278c199cae4e64c322346b7f1"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/services.js",
+      "sha256": "ccaefe8e98021a944cda7eacb5c16c1f0c528c8e93d34ec37fbcfb1721c55918"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/state.js",
+      "sha256": "318546f88ed6571ba710024d7b6e53212a125fec3d9129d781f53075855c770f"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js",
+      "sha256": "3fa609ef356777dc02157e4316eca2169f6a216101c352756218ce741dcb90ef"
+    },
+    {
       "path": "src/core-domains/interaction/subdomains/input/kits/input-kit/actions.js",
       "sha256": "6092547cc2ae2ad257ff6ae35fe694748df7fa4cd6ff8025da9b80313172086b"
     },
@@ -21611,6 +23192,102 @@
     {
       "path": "src/core-domains/interaction/subdomains/input/kits/input-kit/intent.js",
       "sha256": "0d669bc785a485f3c17a1dbbc9664f324e87b7b2cba9a1fc894a48f843f62d4c"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/index.js",
+      "sha256": "510caf96e16200cef447beb8f2bc1beddc70008a91134be31cbd741f74007b7f"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomain.manifest.js",
+      "sha256": "0cae8e83361011731245e84243fde22da8dc5c389caa4923b458edeb47f1ef39"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/index.js",
+      "sha256": "dea224a25c6ff81457636dc9abe3bb2fb9f61487542de823eb03a6ba628b229b"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/contracts.js",
+      "sha256": "16dfe2de43a32db0a49593645c2919d09d98f0c32dc4fe3785244882a2d20f9e"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js",
+      "sha256": "f9947eb843a6da775df7dabec86c18db62073b2520db6a32dd11aa8cb0e500df"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js",
+      "sha256": "0f1d4b77226bb1157aadc807abb5a64c477f74f9252e737ee8aadad99319a851"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/services.js",
+      "sha256": "f82d6a1e436789cf8e301cede27f75552a4ba0c32375091c52decd4b554e2b1c"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/state.js",
+      "sha256": "f77bec55da620e26d27fd1254610133688377c4e460de064ccd06f695f69f9c1"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js",
+      "sha256": "ca3d3025f35acfd0c9662758bc06709cfeb1ad6275d772ecb3794cc095bb3178"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/index.js",
+      "sha256": "926ba75bbbf068e4668c771325384ea58bea16b318a986963990f86a049d75a6"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/contracts.js",
+      "sha256": "4b0ebccfb4791c7fe6e5fa1bf74bffe20b19b99adbe21674627d5828bacebdca"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js",
+      "sha256": "b6a86b2b991bbb64ce8bc6ec0b7063a3cadf8852d1060700f0c06c7d4b844c4f"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js",
+      "sha256": "1ecaf8335b2a04162e6662f20c7f2f57a8dbd97c98cdcc7eb7bf2d88cf6b5cc6"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/services.js",
+      "sha256": "b4888a7b54ebca762f808e9175a58aa106ae0ec345857c08f1e2c13eee54e92d"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/state.js",
+      "sha256": "a4b5d4bd59a4929837df24943df203c3d497532556081d936976564ddc3e8422"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js",
+      "sha256": "1aa93e240f61ea75983e57fd65a4c47591997b5871c4fc7e3f7407d9bcb129e8"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/index.js",
+      "sha256": "3522e9d6a8a5e7d504353d55b5038bf732d383749e248555d40244ed50a5a25e"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/contracts.js",
+      "sha256": "4a30fce111be2eb9c5359d8d400cc807669395725dc9624a8dfbbb37b64ce2dd"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js",
+      "sha256": "e1fadfa95bab2ad1b693d3f620b6b66da0ade63c45b495d0ac84bb361e981c7e"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js",
+      "sha256": "e5ac5cba416a1d7f11c61f56b5ecbb274da95dd37ff5bf8938ebf4bd0c1ce2b9"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/services.js",
+      "sha256": "18545d95b3dd260bd6b9cf84db3e18d9e020557ae103b3607e1388eb10550cba"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/state.js",
+      "sha256": "f845f57738f7c27aee57943f99d8d9833a0e5f5484e670dee5d6398a15aec312"
+    },
+    {
+      "path": "src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js",
+      "sha256": "a11e9617d83743c0adbeaf3ed19df89a60ed57578694c73edcec80c1e8f5381d"
+    },
+    {
+      "path": "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",
+      "sha256": "243c784493e0c8841442039a14eb1b4e1a5f4d46f0bc53ada61049f789089349"
     },
     {
       "path": "src/core-domains/manifest-domain-service-kit.js",
@@ -22182,7 +23859,7 @@
     },
     {
       "path": "src/core-domains/simulation/index.js",
-      "sha256": "8acf13843d703c4b6d101bb215bd946608571efe3703cd6f2b1b8a2bf831712b"
+      "sha256": "6140e7e7c661299d34f5c861a62797944a2ddc6e1da5f21751ee0effa4085f9f"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/checkpoints.js",
@@ -22222,7 +23899,7 @@
     },
     {
       "path": "src/core-domains/simulation/restored-behavior-manifests.js",
-      "sha256": "be2f4b65b3c2b1cae6a3d15965a9ae3c79f269fd5ff70e00ddf339cd58f2f2eb"
+      "sha256": "fc278edd057a57fba9b4be62718d8d2ab7d43f3a2ae5da930012990a01ebec66"
     },
     {
       "path": "src/core-domains/simulation/subdomains/economy/index.js",
@@ -22287,6 +23964,34 @@
     {
       "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js",
       "sha256": "f92d05a5d7b9500dd63b0178577bf6c9c525abd05318d91a44d754d99d7b758f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/index.js",
+      "sha256": "36c3b090e347a16071ee44cefed74f51db2f0a6e4befbc133f15de82cce1c630"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/contracts.js",
+      "sha256": "cdab97c5a8a875a34e8c51fa5a9e18ac0891c0fdb88c3eff7e660e683f82c21f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js",
+      "sha256": "7380d078cbb3b29964fa3d56dd694569fdc254bf9492f22a6acf853a8b6ac6bb"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js",
+      "sha256": "320385b6a45bacb84e147a26c039d31f53370abe3ab55b4b9776cbe3eead265f"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/services.js",
+      "sha256": "4ff0508ceb49ca708a962f7cb4445aa8d79577fe84410261c2b0a8b54d3db7a5"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/state.js",
+      "sha256": "b1fc153c88c35757d4171bf48caf3ad2ac765676e788c4a6fbed150fdc9d9bf3"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js",
+      "sha256": "3115611a23622f14afc0607dd94dce645f1c10f433ab19e7311ec52890ff373a"
     },
     {
       "path": "src/core-domains/simulation/subdomains/motion/index.js",
@@ -22513,6 +24218,70 @@
       "sha256": "eaf8752c08461103cb61a934af01b10c5375fade0a83d591184eaada09ecaa5e"
     },
     {
+      "path": "src/core-domains/simulation/subdomains/progression/index.js",
+      "sha256": "c33255d521f63d071c20b4e1589db5c8e74c4693078ddcb636fda984530ab452"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomain.manifest.js",
+      "sha256": "2aff28b09201044a73397cb512bc2a90078f25237c32aa94f2242a179d91af12"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/index.js",
+      "sha256": "2d26c8668ca16f1c668f8c903f18190c33d4b59e4dc42e2a92c2510379a3acb7"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/contracts.js",
+      "sha256": "26902ff02b3cd08e705c79976bb848b31d3a12affdfad47a97f417e48b7d879d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js",
+      "sha256": "cd32a98f61638d20107473c3d1f4ea772d02c5ed3a36404564fa390312550471"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js",
+      "sha256": "26e683922cc49220e6fc0f213be8bdc35f1ef684dd67f34c9b691ffbd21ce97d"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/services.js",
+      "sha256": "927cfae05ccd841ce5b2e0986dd47e13c05c2286575472126032124b647fb9e3"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/state.js",
+      "sha256": "1ac645d1322d89733bc5729cca44d6499840093f84bfc589c09a5c5eec8e1821"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js",
+      "sha256": "a8b9339114170fc78288b2729e9593f7ea7e8acac1e871ebb3898e52c9e11394"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/index.js",
+      "sha256": "6e4c109cc06dd6536300203fe53a5cd2333e5de8bf0fedac0f703f03fd95fd6a"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/contracts.js",
+      "sha256": "6dbe66122def8d110f716e3f1b885252aca276e3fac0dc44ef128afa93837865"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js",
+      "sha256": "d0a51fa8398cb2157b0cecc115c5bb737e22ec7d0924faf080218813a9653987"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js",
+      "sha256": "060a77f21c6f9e36f726b1ad1874b9cadc42a28c7cdbe500b85afc9febd51a02"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/services.js",
+      "sha256": "703d6b9ae6324111eb9e3bbb49497aa5bf0762d2e1bc361830fb33fec75544e3"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/state.js",
+      "sha256": "45fc846dc4c2780a8adeb23fafcae95e54c405fe80d3471d9f40f4a72a118f92"
+    },
+    {
+      "path": "src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js",
+      "sha256": "116d32d892e542d813e1475adce1889191e65db97a07a2ac94530507b25c11bf"
+    },
+    {
       "path": "src/core-domains/simulation/subdomains/recovery/index.js",
       "sha256": "44d142122e39a1ae19dba4b1bdcb864ae24d0ed58c9b757ecbf05d2571f24075"
     },
@@ -22555,6 +24324,10 @@
     {
       "path": "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
       "sha256": "2a3f4a24939b7a19acaf9520bfc4291cdb19859bc0706c9f385be0914f1f4932"
+    },
+    {
+      "path": "src/core-domains/simulation/tests/restored-progression-pressure.mjs",
+      "sha256": "94bd0f3d4376fc81cbdbce19f3e8ea5fa6910cff46c3fec4e4388ddfb5be0683"
     },
     {
       "path": "src/core-domains/spatial/domain.manifest.js",

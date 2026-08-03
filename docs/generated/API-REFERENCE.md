@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
+Registry SHA-256: `267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807`
 
 ## Domains
 
@@ -37,6 +37,12 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `n:host` | - | Own host capability descriptors and fallback contracts without platform implementation. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
+| `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
+| `n:interaction:environmental-affordance` | `n:interaction` | Own portable affordance proximity and activation state. | stable-candidate |
+| `n:interaction:request` | `n:interaction` | Own portable request queue and fulfillment boundaries. | stable-candidate |
+| `n:interaction:request:queue` | `n:interaction:request` | Own queued request patience, fulfillment, expiry, and effect descriptors. | stable-candidate |
+| `n:interaction:request:fulfillment` | `n:interaction:request` | Own spatial request destination, deadline, completion, expiry, and reward state. | stable-candidate |
+| `n:interaction:transfer-zone` | `n:interaction` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. | stable-candidate |
 | `n:mcp` | - | Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch. | stable-candidate |
 | `n:network` | - | Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts. | stable-candidate |
 | `n:object` | - | Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement. | stable-candidate |
@@ -84,6 +90,10 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `n:simulation:operations:facility` | `n:simulation:operations` | Own deterministic facility capacity, condition, status, cycles, and operation receipts. | stable-candidate |
 | `n:simulation:operations:occupant-flow` | `n:simulation:operations` | Own deterministic occupant spawning, patience, service, and abandonment state. | stable-candidate |
 | `n:simulation:operations:transport-route` | `n:simulation:operations` | Own deterministic transport stops, carriers, capacity, travel, and arrival receipts. | stable-candidate |
+| `n:simulation:hazard-field` | `n:simulation` | Own deterministic bounded hazard state, spawning, motion, and collision queries. | stable-candidate |
+| `n:simulation:pursuit-pressure` | `n:simulation` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. | stable-candidate |
+| `n:simulation:progression` | `n:simulation` | Own portable progression capability and lifecycle ownership boundaries. | stable-candidate |
+| `n:simulation:progression:lifecycle` | `n:simulation:progression` | Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors. | stable-candidate |
 | `n:spatial` | - | Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math. | stable-candidate |
 | `n:spatial:scale` | `n:spatial` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. | stable-candidate |
 | `n:world` | - | Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts. | stable-candidate |
@@ -171,6 +181,11 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `host-capability-kit` | `n:host` | `nexusengine/domains/host/capabilities` | Describe available host capabilities and select declarative fallback modes. |
 | `interaction-kit` | `n:interaction` | `nexusengine/domains/interaction/runtime` | Manage interaction targets, affordances, activation, and results. |
 | `input-contract-kit` | `n:interaction:input` | `nexusengine/domains/interaction/input` | Normalize semantic input actions, axes, contexts, and bindings. |
+| `assistance-target-kit` | `n:interaction:assistance-target` | `nexusengine/domains/interaction/assistance-target` | Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection. |
+| `environmental-affordance-kit` | `n:interaction:environmental-affordance` | `nexusengine/domains/interaction/environmental-affordance` | Own read-only affordance proximity queries and exact-once activation progress. |
+| `request-queue-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/request/queue` | Own deterministic queued requests, patience, fulfillment, expiry, and portable effect descriptors. |
+| `request-fulfillment-kit` | `n:interaction:request:fulfillment` | `nexusengine/domains/interaction/request/fulfillment` | Own spatial request destinations, deadlines, completion, expiry, and reward totals. |
+| `transfer-zone-kit` | `n:interaction:transfer-zone` | `nexusengine/domains/interaction/transfer-zone` | Own accepted types, dwell, capacity, occupancy, and exact-once transfer completions. |
 | `mcp-registry-kit` | `n:mcp` | `nexusengine/domains/mcp/registry` | Register and dispatch schema-valid MCP providers through an explicit authorization boundary. |
 | `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe network sessions, messages, authority, and synchronization without owning transport. |
 | `object-registry-kit` | `n:object` | `nexusengine/domains/object/registry` | Own object identity and renderer-neutral lifecycle records. |
@@ -226,6 +241,9 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `facility-operations-kit` | `n:simulation:operations:facility` | `nexusengine/domains/simulation/operations/facility` | Own deterministic facility capacity, condition, status, cycle, and portable output receipts. |
 | `occupant-flow-kit` | `n:simulation:operations:occupant-flow` | `nexusengine/domains/simulation/operations/occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
 | `transport-route-kit` | `n:simulation:operations:transport-route` | `nexusengine/domains/simulation/operations/transport-route` | Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts. |
+| `hazard-field-kit` | `n:simulation:hazard-field` | `nexusengine/domains/simulation/hazard-field` | Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries. |
+| `pursuit-pressure-kit` | `n:simulation:pursuit-pressure` | `nexusengine/domains/simulation/pursuit-pressure` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. |
+| `lifecycle-progression-kit` | `n:simulation:progression:lifecycle` | `nexusengine/domains/simulation/progression/lifecycle` | Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors. |
 | `spatial-contract-kit` | `n:spatial` | `nexusengine/domains/spatial/contracts` | Describe transforms, bounds, zones, spaces, and spatial query requests. |
 | `spatial-angle-math-kit` | `n:spatial` | `nexusengine/domains/spatial/angle-math` | Normalize, compare, and interpolate angular values. |
 | `spatial-vector-math-kit` | `n:spatial` | `nexusengine/domains/spatial/vector-math` | Create and operate on renderer-neutral vector values. |

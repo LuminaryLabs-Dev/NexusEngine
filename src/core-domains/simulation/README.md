@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:simulation`
 - Status: `stable-candidate`
-- Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
+- Registry SHA-256: `267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807`
 - Public entry: `nexusengine/domains/simulation`
 
 ## Responsibility
@@ -47,6 +47,10 @@ Own deterministic simulation objectives, resources, hazards, pressure, checkpoin
 | `n:simulation:operations:facility` | Own deterministic facility capacity, condition, status, cycles, and operation receipts. |
 | `n:simulation:operations:occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
 | `n:simulation:operations:transport-route` | Own deterministic transport stops, carriers, capacity, travel, and arrival receipts. |
+| `n:simulation:hazard-field` | Own deterministic bounded hazard state, spawning, motion, and collision queries. |
+| `n:simulation:pursuit-pressure` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. |
+| `n:simulation:progression` | Own portable progression capability and lifecycle ownership boundaries. |
+| `n:simulation:progression:lifecycle` | Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors. |
 
 ## Atomic Kits
 
@@ -68,6 +72,9 @@ Own deterministic simulation objectives, resources, hazards, pressure, checkpoin
 | `facility-operations-kit` | `nexusengine/domains/simulation/operations/facility` | Own deterministic facility capacity, condition, status, cycle, and portable output receipts. |
 | `occupant-flow-kit` | `nexusengine/domains/simulation/operations/occupant-flow` | Own deterministic occupant spawning, patience, service, and abandonment state. |
 | `transport-route-kit` | `nexusengine/domains/simulation/operations/transport-route` | Own deterministic stops, carriers, capacity, calls, travel progress, and arrival receipts. |
+| `hazard-field-kit` | `nexusengine/domains/simulation/hazard-field` | Own deterministic bounded hazards, verified spawn identities, motion, and read-only collision queries. |
+| `pursuit-pressure-kit` | `nexusengine/domains/simulation/pursuit-pressure` | Own coherent pursuit distance, warning bands, caught state, recovery, and transition history. |
+| `lifecycle-progression-kit` | `nexusengine/domains/simulation/progression/lifecycle` | Own prerequisite-gated lifecycle start, timing, completion, and portable effect descriptors. |
 
 ## Lifecycle
 

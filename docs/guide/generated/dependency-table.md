@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830bfef`
+Registry SHA-256: `267ff7b50e8011b2f1f21f506e20a10f5d5a68a1bd8c63c51cf1221b9432a807`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -33,6 +33,12 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `n:host` | - | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
+| `n:interaction:assistance-target` | `n:interaction` | - |
+| `n:interaction:environmental-affordance` | `n:interaction` | - |
+| `n:interaction:request` | `n:interaction` | - |
+| `n:interaction:request:queue` | `n:interaction` | - |
+| `n:interaction:request:fulfillment` | `n:interaction` | - |
+| `n:interaction:transfer-zone` | `n:interaction` | - |
 | `n:mcp` | - | `n:composition` |
 | `n:network` | - | - |
 | `n:object` | - | `n:asset`, `n:simulation:physics` |
@@ -80,6 +86,10 @@ Registry SHA-256: `f9e9afc0934ea34e93e2b4f6f579456c68c98752b57cc667310b9503c830b
 | `n:simulation:operations:facility` | `n:simulation` | - |
 | `n:simulation:operations:occupant-flow` | `n:simulation` | - |
 | `n:simulation:operations:transport-route` | `n:simulation` | - |
+| `n:simulation:hazard-field` | `n:simulation` | - |
+| `n:simulation:pursuit-pressure` | `n:simulation` | - |
+| `n:simulation:progression` | `n:simulation` | - |
+| `n:simulation:progression:lifecycle` | `n:simulation` | - |
 | `n:spatial` | - | - |
 | `n:spatial:scale` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |
