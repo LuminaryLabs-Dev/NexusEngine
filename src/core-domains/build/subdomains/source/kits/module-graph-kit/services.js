@@ -81,7 +81,34 @@ export function createModuleGraphService() {
     });
   }
 
-  return Object.freeze({ create });
+  function subgraph(graph, entry) {
+    const byPath = new Map(graph.modules.map((module) => [module.path, module]));
+    if (!byPath.has(entry)) throw new Error(`Build target entry is absent from the module graph: ${entry}.`);
+    const reachable = new Set();
+    const queue = [entry];
+    while (queue.length) {
+      const modulePath = queue.shift();
+      if (reachable.has(modulePath)) continue;
+      reachable.add(modulePath);
+      const module = byPath.get(modulePath);
+      for (const imported of module.imports) {
+        if (!imported.external && imported.resolved && byPath.has(imported.resolved)) queue.push(imported.resolved);
+      }
+    }
+    const modules = graph.modules.filter((module) => reachable.has(module.path));
+    const externalPackages = [...new Set(modules.flatMap((module) => module.imports.filter((entry) => entry.external).map((entry) => entry.package)))].sort();
+    const missing = graph.missing.filter((record) => reachable.has(record.from));
+    const identity = { entry, modules, externalPackages, missing };
+    return Object.freeze({
+      entry,
+      modules: Object.freeze(modules),
+      externalPackages: Object.freeze(externalPackages),
+      missing: Object.freeze(missing),
+      contentHash: contentIntegrity(stableJson(identity))
+    });
+  }
+
+  return Object.freeze({ create, subgraph });
 }
 
 export default createModuleGraphService;

@@ -1,4 +1,7 @@
-import { posixPath } from "../../contracts.js";
+import { writeFile } from "node:fs/promises";
+import path from "node:path";
+
+import { posixPath, stableValue } from "../../contracts.js";
 
 export function findWebEntry(projectSource) {
   const packageFile = projectSource.files.find((file) => file.path === "package.json");
@@ -25,13 +28,32 @@ export function webPlan(context, kind, linker) {
   if (!context.irValidation.ok) errors.push(...context.irValidation.errors);
   const closure = linker.plan(context);
   errors.push(...closure.errors);
-  if (!findWebEntry(context.projectSource)) errors.push({ code: "web-entry-missing" });
+  const entry = context.targetEntry ?? findWebEntry(context.projectSource);
+  if (!entry) errors.push({ code: "web-entry-missing" });
   return Object.freeze({
     status: errors.length ? "blocked" : "ready",
     executionMode: "javascript",
-    entry: findWebEntry(context.projectSource),
+    entry,
     externalPackages: context.moduleGraph.externalPackages,
     sourceClosure: closure,
     errors: Object.freeze(errors)
   });
+}
+
+export async function writeWebTargetDiagnostics(context, closure) {
+  const engineSource = closure.sourceRecords.find((record) => record.package === "nexusengine") ?? null;
+  const diagnostics = Object.freeze({
+    schema: "nexusengine.web-build-diagnostics/1",
+    planId: context.plan.id,
+    registryHash: context.plan.registryHash,
+    target: context.targetPlan.id,
+    entry: closure.entryModule,
+    closureHash: closure.closureHash,
+    executionMode: "javascript",
+    engineSource,
+    sourceRecords: closure.sourceRecords,
+    toolchain: closure.toolchain
+  });
+  await writeFile(path.join(context.stage, "nexusengine-build-diagnostics.json"), `${JSON.stringify(stableValue(diagnostics), null, 2)}\n`);
+  return diagnostics;
 }

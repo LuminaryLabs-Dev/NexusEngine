@@ -104,6 +104,48 @@ export function createBuildExecutionService(services, config = {}) {
     });
   }
 
+  function inspectTarget(inspection, entry) {
+    if (!entry) return inspection;
+    const moduleGraph = services.moduleGraph.subgraph(inspection.moduleGraph, entry);
+    const reachable = new Set(moduleGraph.modules.map((module) => module.path));
+    const parsedModules = inspection.parsedModules.filter((parsed) => reachable.has(parsed.record.path));
+    const effects = inspection.effects.filter((effect) => reachable.has(effect.path));
+    const selectedProjectSource = Object.freeze({
+      ...inspection.projectSource,
+      sourceFiles: Object.freeze(inspection.projectSource.sourceFiles.filter((file) => reachable.has(file.path)))
+    });
+    const typeAnalysis = services.typeAnalysis.analyze(selectedProjectSource);
+    const dependencyAnalysis = services.dependencyAnalysis.analyze(moduleGraph, inspection.sourceRecords);
+    const kitIr = services.kitIr.create({
+      projectFingerprint: inspection.projectFingerprint,
+      parsedModules,
+      effects,
+      moduleGraph,
+      typeAnalysis,
+      dependencyAnalysis
+    });
+    const executionIr = services.executionIr.create(kitIr);
+    const irValidation = services.irValidation.validate(kitIr, executionIr);
+    const sourceMap = services.sourceMap.create(kitIr, executionIr);
+    const classification = services.portabilityClassifier.classify(kitIr);
+    return Object.freeze({
+      ...inspection,
+      targetEntry: entry,
+      parsedModules,
+      effects,
+      moduleGraph,
+      typeAnalysis,
+      dependencyAnalysis,
+      kitIr,
+      executionIr,
+      irValidation,
+      sourceMap,
+      classification,
+      javascriptFallback: services.javascriptFallback.describe(classification),
+      rustLowering: services.rustLowering.lower(executionIr, classification)
+    });
+  }
+
   async function inspect(project) {
     return publicInspection(await inspectInternal(project));
   }
@@ -114,31 +156,52 @@ export function createBuildExecutionService(services, config = {}) {
     const toolchains = services.toolchainDiscovery.discover();
     const toolchainSources = services.toolchainSource.list();
     const targets = [];
+    const targetContexts = new Map();
 
     for (const target of request.targets) {
       const provider = services.targetRegistry.get(target);
       if (!provider) throw new RangeError(`Build target has no provider: ${target}.`);
-      const capabilityResolution = services.capabilityResolution.resolve(inspection.classification, target);
+      const entry = services.projectSource.targetEntry(inspection.projectSource, target);
+      const targetInspection = inspectTarget(inspection, entry);
+      const capabilityResolution = services.capabilityResolution.resolve(targetInspection.classification, target);
       const executionSelection = services.fallbackSelection.select(
-        inspection.classification,
+        targetInspection.classification,
         target,
         capabilityResolution,
         request.profile
       );
       const targetPlan = await provider.plan({
-        ...inspection,
+        ...targetInspection,
         request,
         capabilityResolution,
         executionSelection,
         toolchains,
         toolchainSources
       });
-      targets.push(Object.freeze({
+      const targetRecord = Object.freeze({
         id: target,
         provider: services.targetRegistry.list().find((record) => record.id === target),
+        analysis: Object.freeze({
+          entry,
+          moduleGraphHash: targetInspection.moduleGraph.contentHash,
+          kitIrHash: targetInspection.kitIr.contentHash,
+          executionIrHash: targetInspection.executionIr.contentHash,
+          classificationHash: targetInspection.classification.contentHash,
+          sourceMapHash: targetInspection.sourceMap.contentHash
+        }),
         capabilityResolution,
         executionSelection,
         ...clone(targetPlan)
+      });
+      targets.push(targetRecord);
+      targetContexts.set(target, Object.freeze({
+        ...targetInspection,
+        request,
+        capabilityResolution,
+        executionSelection,
+        toolchains,
+        toolchainSources,
+        targetPlan: targetRecord
       }));
     }
 
@@ -158,15 +221,7 @@ export function createBuildExecutionService(services, config = {}) {
       publicPlan,
       request,
       inspection,
-      targetContexts: new Map(targets.map((target) => [target.id, Object.freeze({
-        ...inspection,
-        request,
-        capabilityResolution: target.capabilityResolution,
-        executionSelection: target.executionSelection,
-        toolchains,
-        toolchainSources,
-        targetPlan: target
-      })]))
+      targetContexts
     }));
     return publicPlan;
   }

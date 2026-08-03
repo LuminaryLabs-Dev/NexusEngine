@@ -1,5 +1,5 @@
 import { defineBuildTargetProvider } from "../../../../kits/target-registry-kit/services.js";
-import { webPlan } from "../../../../web-target-helpers.js";
+import { webPlan, writeWebTargetDiagnostics } from "../../../../web-target-helpers.js";
 
 export function createWebStaticTargetProvider(config = {}) {
   const linker = config.linker;
@@ -20,6 +20,7 @@ export function createWebStaticTargetProvider(config = {}) {
         entry: context.targetPlan.entry,
         sourceRecords: context.sourceRecords
       }, { mode: "static" });
+      await writeWebTargetDiagnostics(context, closure);
       return {
         ok: true,
         status: "built",

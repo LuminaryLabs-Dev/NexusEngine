@@ -3,7 +3,7 @@ import path from "node:path";
 
 import { stableValue } from "../../../../../../contracts.js";
 import { defineBuildTargetProvider } from "../../../../kits/target-registry-kit/services.js";
-import { webPlan } from "../../../../web-target-helpers.js";
+import { webPlan, writeWebTargetDiagnostics } from "../../../../web-target-helpers.js";
 
 function liveServiceWorker(closureHash) {
   return `const CACHE = ${JSON.stringify(`nexusengine-live-${closureHash.slice("sha256:".length, 12)}`)};
@@ -57,6 +57,7 @@ export function createWebLiveTargetProvider(config = {}) {
         entry: context.targetPlan.entry,
         sourceRecords: context.sourceRecords
       }, { mode: "live", loader: "nexusengine-live-loader.mjs" });
+      await writeWebTargetDiagnostics(context, closure);
       await writeFile(path.join(context.stage, "nexusengine-live-loader.mjs"), liveLoader(closure.entryModule));
       await writeFile(path.join(context.stage, "nexusengine-live-sw.mjs"), liveServiceWorker(closure.closureHash));
       const sourceFiles = (await linker.collectFiles(context.stage)).filter((file) => ![

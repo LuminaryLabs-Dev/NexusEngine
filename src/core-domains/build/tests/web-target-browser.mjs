@@ -93,6 +93,11 @@ try {
     assert.equal(targetReceipt?.status, "succeeded");
     const files = await listFiles(targetReceipt.destination);
     assert.equal(files.some((file) => file.startsWith("node_modules/")), false);
+    const diagnostics = JSON.parse(await readFile(path.join(targetReceipt.destination, "nexusengine-build-diagnostics.json"), "utf8"));
+    assert.equal(diagnostics.planId, plan.id);
+    assert.equal(diagnostics.registryHash, plan.registryHash);
+    assert.equal(diagnostics.target, target);
+    assert.equal(diagnostics.closureHash, targetReceipt.artifact.metadata.closureHash);
     const index = await readFile(path.join(targetReceipt.destination, "index.html"), "utf8");
     assert.equal(/https?:\/\//.test(index), false);
     assert.equal(/type=["']importmap/.test(index), false);

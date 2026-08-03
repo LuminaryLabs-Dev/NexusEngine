@@ -1,0 +1,16 @@
+{
+  "name": "nexusengine-build-mixed-target-fixture",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "module": "src/web.js",
+  "nexusengineBuild": {
+    "include": ["index.html", "src"],
+    "entries": {
+      "android-xr": "src/native.js",
+      "pcvr": "src/native.js",
+      "web-live": "src/web.js",
+      "web-static": "src/web.js"
+    }
+  }
+}

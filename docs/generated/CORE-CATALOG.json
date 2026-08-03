@@ -16293,7 +16293,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
+  "registryHash": "0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -16998,7 +16998,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/services.js",
-      "sha256": "025ff7be9742afcdfa3b273c8b2efb74103475dcaf6330d08737d253da55f0dc"
+      "sha256": "37a7e49e3aff568d321bd16c1b40da7e8c2cb18881cd028009722751ae0d43b1"
     },
     {
       "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/sources.json",
@@ -17230,7 +17230,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/services.js",
-      "sha256": "e10cd36994aeb2ba4741a327eefb6a5893ae115348cfb5ebf96690250633555c"
+      "sha256": "92913d6223537bfe4265e4eb3298f50445a7be4b2dd8bf69b97f48676f898e0b"
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/sources.json",
@@ -17254,7 +17254,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/services.js",
-      "sha256": "fa3923e0c49aadf3d4d418fbf8511d9bee9012bd37eefba1c87cd78d838c9d2f"
+      "sha256": "dc07e0bbeb61528ddc20c7227422b75412082bc2cdb823e7b906597afff5159c"
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/sources.json",
@@ -17302,7 +17302,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/services.js",
-      "sha256": "30a51a8cf4ee1d4086e6d52911932ffbfe78333359f83b2141f9b1f02c0eac0b"
+      "sha256": "633297f8c7e47ca33a27ad8c1df0f382e2f0512063c5e45baef1eec44f5beea2"
     },
     {
       "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/sources.json",
@@ -17530,7 +17530,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js",
-      "sha256": "8e9692b4399d65ec346a5df904b08149e126245be2fd0a07496ea42d0730dd60"
+      "sha256": "e6ea487c05000f8014e0a89903dea6e40e469fdb1c0b91af7ac75beae158c1ee"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/sources.json",
@@ -17562,7 +17562,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js",
-      "sha256": "76d0101639e7075f43ccadf812756ed1d02e37007fc02ffec654a51703502c89"
+      "sha256": "9525eb1943ecfe54562445b7d9acce9b0bc48df92a254f65d2d82188465ae26a"
     },
     {
       "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/sources.json",
@@ -17578,7 +17578,7 @@
     },
     {
       "path": "src/core-domains/build/subdomains/target/web-target-helpers.js",
-      "sha256": "ce40a8421daf89ba7285a8e376f818c1ef92e0d12e881539cbaa1a640073c20e"
+      "sha256": "e05b0ae5b2623a19aebf2760d8707c6b24d85e1b10b8e76eae3053de84f05eb6"
     },
     {
       "path": "src/core-domains/build/subdomains/toolchain/index.js",
@@ -17749,6 +17749,22 @@
       "sha256": "c40ec0546fc04c8f7ca4c27fa22ab5c0f4707d8474dcad14f14070fa0e6e700d"
     },
     {
+      "path": "src/core-domains/build/tests/fixtures/mixed-target-project/package.json",
+      "sha256": "7972e4eb99ca166601b411f94d4b9763983fb58d9087f86bdeab90a2a4cfa751"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/mixed-target-project/src/native.js",
+      "sha256": "1c2c1d5275813545017f2f3defce2211d5064172e31121eab0e82b032351d038"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/mixed-target-project/src/web.js",
+      "sha256": "47accd15b1f943aa4dbdeb41afb3a811d8a806a1a5ed19fbf230198b9826eea1"
+    },
+    {
+      "path": "src/core-domains/build/tests/fixtures/mixed-target-project/tools/repository-only.js",
+      "sha256": "417cb6cabf7a089bb09b4df084aee3cf9180d2309cf9f49dbc501cb715f2d14d"
+    },
+    {
       "path": "src/core-domains/build/tests/fixtures/native-project/package.json",
       "sha256": "096dfb1513894f6ccc8c5eb24f8e9d786346f92e2298d38154b6bfab231ee9b2"
     },
@@ -17766,7 +17782,7 @@
     },
     {
       "path": "src/core-domains/build/tests/multi-target.mjs",
-      "sha256": "eda6a99c9732e762c30b9fe9137b82c0aafe4f657a2d8ea35cdb8e8837678070"
+      "sha256": "543a815925b78b42fa49e2753916e587b2a999b29af0034619611a412ac9c552"
     },
     {
       "path": "src/core-domains/build/tests/native-lowering.mjs",
@@ -17786,7 +17802,7 @@
     },
     {
       "path": "src/core-domains/build/tests/web-target-browser.mjs",
-      "sha256": "6bd163b7a45ad0a975c2434c0092c59455a4fda75dec5303a79fdde9ab56c803"
+      "sha256": "2fd6f5ae87b4a3d7458b034b6bcd278f8543b9abf60e545b55916eb4317a5476"
     },
     {
       "path": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",

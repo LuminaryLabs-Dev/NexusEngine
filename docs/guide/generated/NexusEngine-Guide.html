@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab<br>
-      Guide content SHA-256: 3dd98062adbbbd11dd18e6b16394131885980bac3fc5c250f915d87d3e5059d8<br><br>
+      Core registry SHA-256: 0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd<br>
+      Guide content SHA-256: 43ea2e2fbc3e48b4df1603b9f2ba0f737bb98c26816d99d9bef8624d638dc4e8<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -488,6 +488,21 @@ and cannot be imported by runtime Domains.</p>
 <p>Build fingerprints every project file before planning and immediately before
 execution. It fingerprints the project again after every aggregate run. Any
 changed, added, or removed source path fails project immutability proof.</p>
+<p>Large repositories may declare exact target entrypoints and an analysis include
+set in <code>package.json</code>. Paths are literal repository-relative paths, not globs.
+Excluded files remain part of the whole-project immutability fingerprint but do
+not enter target compilation graphs.</p>
+<pre><code class="language-json">{
+  &quot;nexusengineBuild&quot;: {
+    &quot;include&quot;: [&quot;index.html&quot;, &quot;src&quot;],
+    &quot;entries&quot;: {
+      &quot;web-static&quot;: &quot;src/main.js&quot;,
+      &quot;android-xr&quot;: &quot;src/native-main.js&quot;,
+      &quot;pcvr&quot;: &quot;src/native-main.js&quot;
+    }
+  }
+}
+</code></pre>
 <h2>Commands</h2>
 <pre><code class="language-bash">nexusengine inspect ./project
 
@@ -544,7 +559,10 @@ their requested capabilities are supported. OpenXR and QuickJS-NG source comes
 from exact commits with verified archive SHA-256 values. A native target is
 <code>package-proven</code> only after its target compiler and package validator succeed.
 The release requires Linux Android XR and Windows PCVR package jobs; runtime and
-headset execution remain separate <code>hardware: false</code> evidence for <code>0.0.4</code>.</p>
+headset execution remain separate <code>hardware: false</code> evidence for <code>0.0.4</code>.
+Every Web artifact also contains <code>nexusengine-build-diagnostics.json</code> with its
+exact plan, registry, target, closure, source, Engine dependency, and linker
+identity for a product diagnostic view.</p>
 <h2>Source Security</h2>
 <p>Build accepts npm registry integrity, crates.io checksums, exact Git commits,
 versioned vendor installers, and immutable HTTPS ESM URLs. Metadata discovery
@@ -716,7 +734,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
+<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -798,7 +816,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
+<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
 <table>
 <thead>
 <tr>
@@ -1180,7 +1198,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
+<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2386,7 +2404,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab</code></p>
+<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
 <ul>
 <li>Source modules: 581</li>
 <li>Manifest-proven public atoms: 123</li>

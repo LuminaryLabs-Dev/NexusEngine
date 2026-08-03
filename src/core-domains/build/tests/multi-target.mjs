@@ -25,4 +25,19 @@ const retried = await build.apply(plan.id, plan.id, { out: outputRoot });
 assert.equal(retried.status, "failed");
 assert.equal(retried.targets.find((target) => target.target === "web-static").cached, true);
 
-console.log("Build multi-target partial failure preserves successful target cache");
+const mixedFixture = path.resolve("src/core-domains/build/tests/fixtures/mixed-target-project");
+const mixedBuild = createBuildDomain({ stateRoot: await mkdtemp(path.join(tmpdir(), "nexusengine-mixed-target-state-")) });
+const mixedInspection = await mixedBuild.inspect(mixedFixture);
+assert.equal(mixedInspection.projectSource.files.some((file) => file.path === "tools/repository-only.js"), false);
+assert.equal(mixedInspection.projectFingerprint.files.some((file) => file.path === "tools/repository-only.js"), true);
+const mixedPlan = await mixedBuild.plan({ project: mixedFixture, targets: ["android-xr", "web-static"] });
+const mixedAndroid = mixedPlan.targets.find((target) => target.id === "android-xr");
+const mixedWeb = mixedPlan.targets.find((target) => target.id === "web-static");
+assert.equal(mixedAndroid.analysis.entry, "src/native.js");
+assert.equal(mixedAndroid.executionSelection.mode, "native");
+assert.equal(mixedAndroid.capabilityResolution.ok, true);
+assert.equal(mixedWeb.analysis.entry, "src/web.js");
+assert.equal(mixedWeb.executionSelection.mode, "javascript");
+assert.equal(mixedWeb.capabilityResolution.ok, true);
+
+console.log("Build multi-target graphs isolate target entries while preserving whole-project immutability and successful target cache");

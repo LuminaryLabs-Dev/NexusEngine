@@ -2,7 +2,7 @@ import { contentIntegrity, stableJson } from "../../../../contracts.js";
 
 export function createSourceFingerprintService() {
   function fingerprint(projectSource) {
-    const records = projectSource.files.map(({ path, size, mode, integrity }) => ({
+    const records = (projectSource.integrityFiles ?? projectSource.files).map(({ path, size, mode, integrity }) => ({
       path,
       size,
       mode,

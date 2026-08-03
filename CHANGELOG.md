@@ -40,6 +40,11 @@
 - Android XR APK and Windows PCVR executable package builders with external
   native stages, structural validators, immutable source receipts, and required
   hosted package-proof jobs. Hardware execution remains separate.
+- Target-specific reachable module graphs declared through exact
+  `nexusengineBuild.entries`, while excluded analysis files remain covered by
+  the whole-project immutability fingerprint.
+- Web artifact diagnostics containing the exact plan, registry, dependency
+  closure, Engine source, and linker identities.
 
 ### Changed
 

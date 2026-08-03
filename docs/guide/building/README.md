@@ -20,6 +20,24 @@ Build fingerprints every project file before planning and immediately before
 execution. It fingerprints the project again after every aggregate run. Any
 changed, added, or removed source path fails project immutability proof.
 
+Large repositories may declare exact target entrypoints and an analysis include
+set in `package.json`. Paths are literal repository-relative paths, not globs.
+Excluded files remain part of the whole-project immutability fingerprint but do
+not enter target compilation graphs.
+
+```json
+{
+  "nexusengineBuild": {
+    "include": ["index.html", "src"],
+    "entries": {
+      "web-static": "src/main.js",
+      "android-xr": "src/native-main.js",
+      "pcvr": "src/native-main.js"
+    }
+  }
+}
+```
+
 ## Commands
 
 ```bash
@@ -85,6 +103,9 @@ from exact commits with verified archive SHA-256 values. A native target is
 `package-proven` only after its target compiler and package validator succeed.
 The release requires Linux Android XR and Windows PCVR package jobs; runtime and
 headset execution remain separate `hardware: false` evidence for `0.0.4`.
+Every Web artifact also contains `nexusengine-build-diagnostics.json` with its
+exact plan, registry, target, closure, source, Engine dependency, and linker
+identity for a product diagnostic view.
 
 ## Source Security
 

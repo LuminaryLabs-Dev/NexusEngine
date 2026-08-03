@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`<br>
-Guide content SHA-256: `3dd98062adbbbd11dd18e6b16394131885980bac3fc5c250f915d87d3e5059d8`
+Core registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`<br>
+Guide content SHA-256: `43ea2e2fbc3e48b4df1603b9f2ba0f737bb98c26816d99d9bef8624d638dc4e8`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -469,6 +469,24 @@ Build fingerprints every project file before planning and immediately before
 execution. It fingerprints the project again after every aggregate run. Any
 changed, added, or removed source path fails project immutability proof.
 
+Large repositories may declare exact target entrypoints and an analysis include
+set in `package.json`. Paths are literal repository-relative paths, not globs.
+Excluded files remain part of the whole-project immutability fingerprint but do
+not enter target compilation graphs.
+
+```json
+{
+  "nexusengineBuild": {
+    "include": ["index.html", "src"],
+    "entries": {
+      "web-static": "src/main.js",
+      "android-xr": "src/native-main.js",
+      "pcvr": "src/native-main.js"
+    }
+  }
+}
+```
+
 ## Commands
 
 ```bash
@@ -534,6 +552,9 @@ from exact commits with verified archive SHA-256 values. A native target is
 `package-proven` only after its target compiler and package validator succeed.
 The release requires Linux Android XR and Windows PCVR package jobs; runtime and
 headset execution remain separate `hardware: false` evidence for `0.0.4`.
+Every Web artifact also contains `nexusengine-build-diagnostics.json` with its
+exact plan, registry, target, closure, source, Engine dependency, and linker
+identity for a product diagnostic view.
 
 ## Source Security
 
@@ -735,7 +756,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
+Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -817,7 +838,7 @@ Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6
 
 # Core Dependency Table
 
-Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
+Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -903,7 +924,7 @@ Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
+Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
 
 ## Domains
 
@@ -1119,7 +1140,7 @@ Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab`
+Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
 
 - Source modules: 581
 - Manifest-proven public atoms: 123

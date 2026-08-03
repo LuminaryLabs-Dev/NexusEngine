@@ -6569,7 +6569,8 @@
       "proof": null,
       "publicExports": [
         "findWebEntry",
-        "webPlan"
+        "webPlan",
+        "writeWebTargetDiagnostics"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -14907,7 +14908,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "b531c3f17bad94851bfdef607fe83feae7f46542f6687071ce6089a1735a6bab",
+  "registrySha256": "0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }
