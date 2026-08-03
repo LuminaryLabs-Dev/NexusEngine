@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -67,6 +67,7 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:simulation:motion` | `n:simulation` | - |
 | `n:simulation:motion:articulated` | `n:simulation:motion` | - |
 | `n:spatial` | - | - |
+| `n:spatial:scale` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |
 | `n:world:scene` | `n:world` | - |
 | `n:world:weather` | `n:world` | - |
@@ -77,3 +78,11 @@ Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f
 | `n:world:feature:ecology` | `n:world:feature` | - |
 | `n:world:feature:settlement` | `n:world:feature` | - |
 | `n:world:feature:atmosphere` | `n:world:feature` | - |
+| `n:world:navigation` | `n:world` | - |
+| `n:world:navigation:navmesh` | `navigation:walkability-source` | - |
+| `n:world:navigation:pathfinding` | `navigation:navmesh` | - |
+| `n:world:navigation:route-field` | `n:world` | - |
+| `n:world:navigation:landmark-guidance` | `n:world` | - |
+| `n:world:generation` | `n:world` | - |
+| `n:world:terrain` | `n:world` | - |
+| `n:world:water-surface` | `n:world` | - |

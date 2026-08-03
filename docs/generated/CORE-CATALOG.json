@@ -6366,6 +6366,107 @@
       ]
     },
     {
+      "domainPath": "n:spatial:scale",
+      "forbiddenResponsibilities": [
+        "authored world progression",
+        "camera policy",
+        "render scaling"
+      ],
+      "id": "spatial-scale-domain",
+      "inputs": [
+        {
+          "description": "Spatial Scale required capability.",
+          "deterministic": true,
+          "id": "n:spatial",
+          "schema": null
+        }
+      ],
+      "label": "Spatial Scale",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Spatial Scale API without duplicate state or systems.",
+        "install": "Create one Spatial Scale state owner and public API.",
+        "replay": "Reapply equivalent Spatial Scale inputs deterministically.",
+        "reset": "Restore the configured Spatial Scale baseline.",
+        "snapshot": "Serialize Spatial Scale state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Spatial Scale provided capability.",
+          "deterministic": true,
+          "id": "n:spatial:scale",
+          "schema": null
+        },
+        {
+          "description": "Spatial Scale provided capability.",
+          "deterministic": true,
+          "id": "spatial:scale-anchor",
+          "schema": null
+        },
+        {
+          "description": "Spatial Scale provided capability.",
+          "deterministic": true,
+          "id": "spatial:scale-band",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "scale anchors",
+        "scale bands",
+        "subject scale"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Spatial Scale state and registry records.",
+          "id": "spatial-scale-domain-state",
+          "owner": "spatial-scale-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:spatial",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Spatial Scale contract fixture.",
+            "deterministic": true,
+            "id": "spatial-scale-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Spatial Scale composition fixture.",
+            "deterministic": true,
+            "id": "spatial-scale-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/spatial/tests/spatial-scale-restoration.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:spatial"
+      ],
+      "responsibility": "Own subject scale, scale anchors, proximity bands, and deterministic scale queries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Spatial Scale behavior.",
+          "deterministic": true,
+          "id": "n:spatial:scale:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:world",
       "forbiddenResponsibilities": [
         "authored maps",
@@ -7380,6 +7481,803 @@
           "description": "Install, validate, snapshot, reset, and replay World Atmosphere Feature behavior.",
           "deterministic": true,
           "id": "n:world:feature:atmosphere:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:navigation",
+      "forbiddenResponsibilities": [
+        "agent locomotion",
+        "authored routes",
+        "navigation rendering",
+        "physics resolution"
+      ],
+      "id": "world-navigation-domain",
+      "inputs": [
+        {
+          "description": "World Navigation required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "World Navigation",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed World Navigation API without duplicate state or systems.",
+        "install": "Create one World Navigation state owner and public API.",
+        "replay": "Reapply equivalent World Navigation inputs deterministically.",
+        "reset": "Restore the configured World Navigation baseline.",
+        "snapshot": "Serialize World Navigation state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "World Navigation provided capability.",
+          "deterministic": true,
+          "id": "n:world:navigation",
+          "schema": null
+        },
+        {
+          "description": "World Navigation provided capability.",
+          "deterministic": true,
+          "id": "navigation:graph-contract",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "landmark guidance",
+        "navigation graph contracts",
+        "path queries",
+        "route fields"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable World Navigation state and registry records.",
+          "id": "world-navigation-domain-state",
+          "owner": "world-navigation-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct World Navigation contract fixture.",
+            "deterministic": true,
+            "id": "world-navigation-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed World Navigation composition fixture.",
+            "deterministic": true,
+            "id": "world-navigation-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own renderer-neutral navigation graphs, path queries, route fields, and landmark guidance.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay World Navigation behavior.",
+          "deterministic": true,
+          "id": "n:world:navigation:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:navigation:navmesh",
+      "forbiddenResponsibilities": [
+        "agent motion",
+        "authored maps",
+        "path search"
+      ],
+      "id": "world-navigation-navmesh-domain",
+      "inputs": [
+        {
+          "description": "Navigation NavMesh required capability.",
+          "deterministic": true,
+          "id": "navigation:walkability-source",
+          "schema": null
+        }
+      ],
+      "label": "Navigation NavMesh",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Navigation NavMesh API without duplicate state or systems.",
+        "install": "Create one Navigation NavMesh state owner and public API.",
+        "replay": "Reapply equivalent Navigation NavMesh inputs deterministically.",
+        "reset": "Restore the configured Navigation NavMesh baseline.",
+        "snapshot": "Serialize Navigation NavMesh state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Navigation NavMesh provided capability.",
+          "deterministic": true,
+          "id": "n:world:navigation:navmesh",
+          "schema": null
+        },
+        {
+          "description": "Navigation NavMesh provided capability.",
+          "deterministic": true,
+          "id": "navigation:navmesh",
+          "schema": null
+        },
+        {
+          "description": "Navigation NavMesh provided capability.",
+          "deterministic": true,
+          "id": "navigation:graph",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "navigation cells",
+        "portals",
+        "waypoint graphs"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Navigation NavMesh state and registry records.",
+          "id": "world-navigation-navmesh-domain-state",
+          "owner": "world-navigation-navmesh-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world:navigation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Navigation NavMesh contract fixture.",
+            "deterministic": true,
+            "id": "world-navigation-navmesh-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Navigation NavMesh composition fixture.",
+            "deterministic": true,
+            "id": "world-navigation-navmesh-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "navigation:walkability-source"
+      ],
+      "responsibility": "Own deterministic 2D navigation cells, portals, and 3D waypoint graphs derived from walkability.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Navigation NavMesh behavior.",
+          "deterministic": true,
+          "id": "n:world:navigation:navmesh:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:navigation:pathfinding",
+      "forbiddenResponsibilities": [
+        "agent locomotion",
+        "authored objectives",
+        "graph generation"
+      ],
+      "id": "world-navigation-pathfinding-domain",
+      "inputs": [
+        {
+          "description": "Navigation Pathfinding required capability.",
+          "deterministic": true,
+          "id": "navigation:navmesh",
+          "schema": null
+        }
+      ],
+      "label": "Navigation Pathfinding",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Navigation Pathfinding API without duplicate state or systems.",
+        "install": "Create one Navigation Pathfinding state owner and public API.",
+        "replay": "Reapply equivalent Navigation Pathfinding inputs deterministically.",
+        "reset": "Restore the configured Navigation Pathfinding baseline.",
+        "snapshot": "Serialize Navigation Pathfinding state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Navigation Pathfinding provided capability.",
+          "deterministic": true,
+          "id": "n:world:navigation:pathfinding",
+          "schema": null
+        },
+        {
+          "description": "Navigation Pathfinding provided capability.",
+          "deterministic": true,
+          "id": "navigation:pathfinding",
+          "schema": null
+        },
+        {
+          "description": "Navigation Pathfinding provided capability.",
+          "deterministic": true,
+          "id": "navigation:astar",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "A* search",
+        "graph adapters",
+        "path requests",
+        "path results"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Navigation Pathfinding state and registry records.",
+          "id": "world-navigation-pathfinding-domain-state",
+          "owner": "world-navigation-pathfinding-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world:navigation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Navigation Pathfinding contract fixture.",
+            "deterministic": true,
+            "id": "world-navigation-pathfinding-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Navigation Pathfinding composition fixture.",
+            "deterministic": true,
+            "id": "world-navigation-pathfinding-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "navigation:navmesh"
+      ],
+      "responsibility": "Own deterministic path requests, A* resolution, results, and graph adapters.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Navigation Pathfinding behavior.",
+          "deterministic": true,
+          "id": "n:world:navigation:pathfinding:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:navigation:route-field",
+      "forbiddenResponsibilities": [
+        "agent movement",
+        "authored routes",
+        "path search"
+      ],
+      "id": "world-navigation-route-field-domain",
+      "inputs": [
+        {
+          "description": "Navigation Route Field required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "Navigation Route Field",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Navigation Route Field API without duplicate state or systems.",
+        "install": "Create one Navigation Route Field state owner and public API.",
+        "replay": "Reapply equivalent Navigation Route Field inputs deterministically.",
+        "reset": "Restore the configured Navigation Route Field baseline.",
+        "snapshot": "Serialize Navigation Route Field state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Navigation Route Field provided capability.",
+          "deterministic": true,
+          "id": "n:world:navigation:route-field",
+          "schema": null
+        },
+        {
+          "description": "Navigation Route Field provided capability.",
+          "deterministic": true,
+          "id": "navigation:route-field",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "route corridors",
+        "route markers",
+        "route proximity queries"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Navigation Route Field state and registry records.",
+          "id": "world-navigation-route-field-domain-state",
+          "owner": "world-navigation-route-field-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world:navigation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Navigation Route Field contract fixture.",
+            "deterministic": true,
+            "id": "world-navigation-route-field-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Navigation Route Field composition fixture.",
+            "deterministic": true,
+            "id": "world-navigation-route-field-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own generic route marker and corridor descriptors plus deterministic proximity queries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Navigation Route Field behavior.",
+          "deterministic": true,
+          "id": "n:world:navigation:route-field:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:navigation:landmark-guidance",
+      "forbiddenResponsibilities": [
+        "UI prompts",
+        "agent movement",
+        "authored objectives"
+      ],
+      "id": "world-navigation-landmark-guidance-domain",
+      "inputs": [
+        {
+          "description": "Navigation Landmark Guidance required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "Navigation Landmark Guidance",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Navigation Landmark Guidance API without duplicate state or systems.",
+        "install": "Create one Navigation Landmark Guidance state owner and public API.",
+        "replay": "Reapply equivalent Navigation Landmark Guidance inputs deterministically.",
+        "reset": "Restore the configured Navigation Landmark Guidance baseline.",
+        "snapshot": "Serialize Navigation Landmark Guidance state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Navigation Landmark Guidance provided capability.",
+          "deterministic": true,
+          "id": "n:world:navigation:landmark-guidance",
+          "schema": null
+        },
+        {
+          "description": "Navigation Landmark Guidance provided capability.",
+          "deterministic": true,
+          "id": "navigation:landmark-guidance",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "landmark identity",
+        "landmark proximity",
+        "landmark transitions"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Navigation Landmark Guidance state and registry records.",
+          "id": "world-navigation-landmark-guidance-domain-state",
+          "owner": "world-navigation-landmark-guidance-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world:navigation",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Navigation Landmark Guidance contract fixture.",
+            "deterministic": true,
+            "id": "world-navigation-landmark-guidance-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Navigation Landmark Guidance composition fixture.",
+            "deterministic": true,
+            "id": "world-navigation-landmark-guidance-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own reusable landmark discovery, reach, completion, priority, and proximity state.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Navigation Landmark Guidance behavior.",
+          "deterministic": true,
+          "id": "n:world:navigation:landmark-guidance:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:generation",
+      "forbiddenResponsibilities": [
+        "authored levels",
+        "game objectives",
+        "render descriptors"
+      ],
+      "id": "world-generation-domain",
+      "inputs": [
+        {
+          "description": "World Generation required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "World Generation",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed World Generation API without duplicate state or systems.",
+        "install": "Create one World Generation state owner and public API.",
+        "replay": "Reapply equivalent World Generation inputs deterministically.",
+        "reset": "Restore the configured World Generation baseline.",
+        "snapshot": "Serialize World Generation state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "World Generation provided capability.",
+          "deterministic": true,
+          "id": "n:world:generation",
+          "schema": null
+        },
+        {
+          "description": "World Generation provided capability.",
+          "deterministic": true,
+          "id": "world:procedural-generation",
+          "schema": null
+        },
+        {
+          "description": "World Generation provided capability.",
+          "deterministic": true,
+          "id": "navigation:walkability-source",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "generated connectors",
+        "generated regions",
+        "generation configuration",
+        "walkability output"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable World Generation state and registry records.",
+          "id": "world-generation-domain-state",
+          "owner": "world-generation-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct World Generation contract fixture.",
+            "deterministic": true,
+            "id": "world-generation-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed World Generation composition fixture.",
+            "deterministic": true,
+            "id": "world-generation-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own deterministic generic region, connector, point, graph, and walkability generation.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay World Generation behavior.",
+          "deterministic": true,
+          "id": "n:world:generation:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:terrain",
+      "forbiddenResponsibilities": [
+        "authored presets",
+        "camera volumes",
+        "game routes",
+        "terrain rendering"
+      ],
+      "id": "world-terrain-domain",
+      "inputs": [
+        {
+          "description": "World Terrain required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "World Terrain",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed World Terrain API without duplicate state or systems.",
+        "install": "Create one World Terrain state owner and public API.",
+        "replay": "Reapply equivalent World Terrain inputs deterministically.",
+        "reset": "Restore the configured World Terrain baseline.",
+        "snapshot": "Serialize World Terrain state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "World Terrain provided capability.",
+          "deterministic": true,
+          "id": "n:world:terrain",
+          "schema": null
+        },
+        {
+          "description": "World Terrain provided capability.",
+          "deterministic": true,
+          "id": "world:terrain-sampling",
+          "schema": null
+        },
+        {
+          "description": "World Terrain provided capability.",
+          "deterministic": true,
+          "id": "world:terrain-provider",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "terrain cells",
+        "terrain layers",
+        "terrain samples",
+        "terrain streaming state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable World Terrain state and registry records.",
+          "id": "world-terrain-domain-state",
+          "owner": "world-terrain-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct World Terrain contract fixture.",
+            "deterministic": true,
+            "id": "world-terrain-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed World Terrain composition fixture.",
+            "deterministic": true,
+            "id": "world-terrain-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own deterministic terrain layer evaluation, sampling, cell preparation, streaming state, and portable cell evidence.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay World Terrain behavior.",
+          "deterministic": true,
+          "id": "n:world:terrain:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:world:water-surface",
+      "forbiddenResponsibilities": [
+        "authored water presets",
+        "fluid solver",
+        "water rendering"
+      ],
+      "id": "world-water-surface-domain",
+      "inputs": [
+        {
+          "description": "World Water Surface required capability.",
+          "deterministic": true,
+          "id": "n:world",
+          "schema": null
+        }
+      ],
+      "label": "World Water Surface",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed World Water Surface API without duplicate state or systems.",
+        "install": "Create one World Water Surface state owner and public API.",
+        "replay": "Reapply equivalent World Water Surface inputs deterministically.",
+        "reset": "Restore the configured World Water Surface baseline.",
+        "snapshot": "Serialize World Water Surface state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "World Water Surface provided capability.",
+          "deterministic": true,
+          "id": "n:world:water-surface",
+          "schema": null
+        },
+        {
+          "description": "World Water Surface provided capability.",
+          "deterministic": true,
+          "id": "world:water-surface",
+          "schema": null
+        },
+        {
+          "description": "World Water Surface provided capability.",
+          "deterministic": true,
+          "id": "world:water-query",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "water current descriptors",
+        "water query state",
+        "water zones",
+        "wave phase"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable World Water Surface state and registry records.",
+          "id": "world-water-surface-domain-state",
+          "owner": "world-water-surface-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:world",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct World Water Surface contract fixture.",
+            "deterministic": true,
+            "id": "world-water-surface-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed World Water Surface composition fixture.",
+            "deterministic": true,
+            "id": "world-water-surface-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:world"
+      ],
+      "responsibility": "Own renderer-neutral water zones, currents, drag, depth, wave phase, hazards, and spatial queries.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay World Water Surface behavior.",
+          "deterministic": true,
+          "id": "n:world:water-surface:lifecycle",
           "schema": null
         }
       ]
@@ -15269,6 +16167,78 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "spatialScale",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:spatial:scale",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "spatial-scale-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:spatial",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "spatial-scale-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "spatial-scale-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/spatial/tests/spatial-scale-restoration.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:spatial:scale",
+        "spatial:scale-anchor",
+        "spatial:scale-band"
+      ],
+      "requires": [
+        "n:spatial"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createSpatialScaleKit",
+        "module": "./src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js",
+        "publicSubpath": "./domains/spatial/scale"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "world",
       "atomic": true,
       "composes": [],
@@ -16133,6 +17103,508 @@
       },
       "status": "stable-candidate",
       "version": "0.0.4"
+    },
+    {
+      "apiName": "navmesh",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:navigation:navmesh",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "navmesh-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world:navigation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "navmesh-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "navmesh-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:navigation:navmesh",
+        "navigation:graph",
+        "navigation:navmesh"
+      ],
+      "requires": [
+        "navigation:walkability-source"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Build deterministic 2D navigation meshes and portable 3D waypoint graphs from walkability.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createNavMeshKit",
+        "module": "./src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js",
+        "publicSubpath": "./domains/world/navigation/navmesh"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "pathfinding",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:navigation:pathfinding",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "pathfinding-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world:navigation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "pathfinding-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "pathfinding-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:navigation:pathfinding",
+        "navigation:astar",
+        "navigation:pathfinding"
+      ],
+      "requires": [
+        "navigation:navmesh"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Resolve deterministic A* path requests over portable grid and navigation graph adapters.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createPathfindingKit",
+        "module": "./src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js",
+        "publicSubpath": "./domains/world/navigation/pathfinding"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "routeField",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:navigation:route-field",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "route-field-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world:navigation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "route-field-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "route-field-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:navigation:route-field",
+        "navigation:route-field"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Manage reusable route marker and corridor descriptors plus pure proximity queries.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createRouteFieldKit",
+        "module": "./src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js",
+        "publicSubpath": "./domains/world/navigation/route-field"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "landmarkGuidance",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:navigation:landmark-guidance",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "landmark-guidance-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world:navigation",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "landmark-guidance-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "landmark-guidance-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:navigation:landmark-guidance",
+        "navigation:landmark-guidance"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Manage deterministic landmark discovery, reach, completion, priority, and proximity state.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createLandmarkGuidanceKit",
+        "module": "./src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js",
+        "publicSubpath": "./domains/world/navigation/landmark-guidance"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "proceduralGeneration",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:generation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "procedural-generation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "procedural-generation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "procedural-generation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:generation",
+        "navigation:walkability-source",
+        "world:procedural-generation"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Generate deterministic generic regions, connectors, points, graphs, and walkability from complete normalized configuration.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createProceduralGenerationKit",
+        "module": "./src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js",
+        "publicSubpath": "./domains/world/generation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "terrain",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:terrain",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "terrain-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "terrain-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "terrain-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:terrain",
+        "world:terrain-provider",
+        "world:terrain-sampling"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Evaluate deterministic terrain layers and manage portable sampled terrain cells without rendering ownership.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createTerrainKit",
+        "module": "./src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js",
+        "publicSubpath": "./domains/world/terrain"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "waterSurface",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:world:water-surface",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "water-surface-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:world",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "water-surface-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "water-surface-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:world:water-surface",
+        "world:water-query",
+        "world:water-surface"
+      ],
+      "requires": [
+        "n:world"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Manage renderer-neutral water zones, currents, drag, wave phase, hazards, and pure queries.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createWaterSurfaceKit",
+        "module": "./src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js",
+        "publicSubpath": "./domains/world/water-surface"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
     }
   ],
   "packageExports": {
@@ -16277,6 +17749,7 @@
     "./domains/spatial/angle-math": "./src/core-domains/spatial/kits/angle-math-kit.js",
     "./domains/spatial/contracts": "./src/core-domains/spatial/kits/spatial-kit/index.js",
     "./domains/spatial/quaternion-math": "./src/core-domains/spatial/kits/quaternion-math-kit.js",
+    "./domains/spatial/scale": "./src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js",
     "./domains/spatial/transform-math": "./src/core-domains/spatial/kits/transform-math-kit.js",
     "./domains/spatial/vector-math": "./src/core-domains/spatial/kits/vector-math-kit.js",
     "./domains/world": "./src/core-domains/world/index.js",
@@ -16288,12 +17761,20 @@
     "./domains/world/feature/semantic": "./src/core-domains/world/subdomains/world-feature-domain/kits/semantic-feature-kit/index.js",
     "./domains/world/feature/settlement": "./src/core-domains/world/subdomains/world-feature-domain/subdomains/settlement-feature-domain/index.js",
     "./domains/world/foundation": "./src/core-domains/world/subdomains/world-foundation-domain/world-foundation-domain.js",
+    "./domains/world/generation": "./src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js",
+    "./domains/world/navigation": "./src/core-domains/world/subdomains/navigation/index.js",
+    "./domains/world/navigation/landmark-guidance": "./src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js",
+    "./domains/world/navigation/navmesh": "./src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js",
+    "./domains/world/navigation/pathfinding": "./src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js",
+    "./domains/world/navigation/route-field": "./src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js",
     "./domains/world/runtime": "./src/core-domains/world/world-domain.js",
     "./domains/world/scene": "./src/core-domains/world/subdomains/scene/kits/scene-kit/index.js",
+    "./domains/world/terrain": "./src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js",
+    "./domains/world/water-surface": "./src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js",
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359",
+  "registryHash": "b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -17906,7 +19387,7 @@
     },
     {
       "path": "src/core-domains/domain-kit.js",
-      "sha256": "42b07a4b7015f45d2f06b61a8f90b1eb7b4a486c396159eb96468c9118722051"
+      "sha256": "b28b8251bd198c8b7a95063552e1c959b2a26eccb7259c8c20feb5cc2ded6a74"
     },
     {
       "path": "src/core-domains/domain-manifest.js",
@@ -17994,7 +19475,7 @@
     },
     {
       "path": "src/core-domains/manifest-kit-contract.js",
-      "sha256": "bc89c23fa7c9f83b70c81a57ff2983ee449ea1b33f246a28cb307d36c8977e82"
+      "sha256": "0c782f29fef22de8f8c1bc209ecd6669b09916401573fa1eca5e6fab20f0c216"
     },
     {
       "path": "src/core-domains/mcp/adapters/node-mcp-sdk-adapter/index.js",
@@ -18486,7 +19967,7 @@
     },
     {
       "path": "src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js",
-      "sha256": "46f9e862aed7ac420e29cc1bbe5e1bdfe73f9bee980cfa9f85f57ca7acda28d3"
+      "sha256": "e92b76c51c7b07a774d75e95bfe0ff42d7c7f6d8a24f9d548128c26db1323e90"
     },
     {
       "path": "src/core-domains/simulation/domain.manifest.js",
@@ -18582,11 +20063,11 @@
     },
     {
       "path": "src/core-domains/spatial/domain.manifest.js",
-      "sha256": "470166067af51edb069d9a13572a357654722bf5e11fcc6608445ad1b843024a"
+      "sha256": "2be56a1bfe2934349940392f93432d72fbf8c5b5f91a0d8f3a7f97c72c516971"
     },
     {
       "path": "src/core-domains/spatial/index.js",
-      "sha256": "4cb31af645836f79f0fd40c614fc1c887ebd35624737b10a7b0404a5c6bdf3ea"
+      "sha256": "eaa6a736d28b1e63ccf3c342a6ff0bf94137a18f3c56dc8c325dfd8ee8f658f4"
     },
     {
       "path": "src/core-domains/spatial/kits/angle-math-kit.js",
@@ -18609,6 +20090,38 @@
       "sha256": "dc9da06785780b05bb342b346f2d3e01e831389c1e070eb25b22f1ba936116bd"
     },
     {
+      "path": "src/core-domains/spatial/subdomains/scale/index.js",
+      "sha256": "bb02817f8966cdca283fffaf34918ff17caf1509966c09aa2f426f4862636b49"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/contracts.js",
+      "sha256": "d192c79aa11febf12d46733567cb1616de88f05f42430f2d7249193153b682c3"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js",
+      "sha256": "ea6a50787549316b9b0cef9f222cceeb6c271964d44e2d6b62eefb895d5df654"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js",
+      "sha256": "576c77305d56cbd32c6877eb55a5765a2d1e785df61daf0e0bada42e0307f166"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/services.js",
+      "sha256": "15a36ef5362f0247ed4992a5964e2eadf75cc7d5d7db7ee9c6aed344011a71b5"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/state.js",
+      "sha256": "f3bda10c7fe510dfa8f517d546874fa17b03730e89658a5e5b47f8655ce72196"
+    },
+    {
+      "path": "src/core-domains/spatial/subdomains/scale/subdomain.manifest.js",
+      "sha256": "fdafa6568dc5fabcf37e2e2a77cae69397a55f61eeb0222d770d98e0de83c69c"
+    },
+    {
+      "path": "src/core-domains/spatial/tests/spatial-scale-restoration.mjs",
+      "sha256": "b90fc76ab050767cc11b52e5d03afb065e92799c7a7d1accddf5791ce10f8ac6"
+    },
+    {
       "path": "src/core-domains/tests/domain-manifest-contract.mjs",
       "sha256": "f1746589ca64b29b1e1cfef9aa89e8d7cae7ff7390f45ea39c7c2932ec6042e0"
     },
@@ -18618,11 +20131,11 @@
     },
     {
       "path": "src/core-domains/world/domain.manifest.js",
-      "sha256": "1c78898e8ef388351322a86d65d701ce8fdad1f6b56c8bb028219c21e7581f10"
+      "sha256": "4b7b9a9be8080eb21b75c25e7fde038b8f551821cb15d4515b5ca4e6a53f53db"
     },
     {
       "path": "src/core-domains/world/index.js",
-      "sha256": "7fe2d6487f5aba7de060f7ad65f85687b9caf02e07bb2721273714e4f8e5ddb4"
+      "sha256": "7a85a5cfcee0cd224d7b92c7b46b794d6fb88e249d9acf72f08148962ae8302f"
     },
     {
       "path": "src/core-domains/world/kit.manifest.json",
@@ -18665,12 +20178,164 @@
       "sha256": "24a5eec9a72bb3b0118d0ac5d6ebfc5b76c1f9423e3e9a3819f7d973ed1ca1b5"
     },
     {
+      "path": "src/core-domains/world/restored-behavior-manifests.js",
+      "sha256": "5481e8b2e12f7c11e0467505d32e89ddad28f6db9fce3c93bfbad486b60b0e61"
+    },
+    {
       "path": "src/core-domains/world/snapshot.js",
       "sha256": "e4ab1c0d78a6b987cb66715fac703cd4fc3d15974aca23a55ce7c17fe9db4d65"
     },
     {
       "path": "src/core-domains/world/state.js",
       "sha256": "1f632a933f7ff4ec74251826fde0e35d1ba15d0089c2b43a936328ac1e8d1c10"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/index.js",
+      "sha256": "4a305a8838778a298c883be31f3a586e9aeafaa3381bced48cf92101ed696e4c"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/contracts.js",
+      "sha256": "9c6e85080fdf609cf91ab6e350c1adda6fbe217b287a38df69d05596933fabf2"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js",
+      "sha256": "ddaf15a50055a776ee491c7b0fe0e4f768b30c9204bab5ef1723a02575f08fc7"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js",
+      "sha256": "f651051d9c2f5aa5f1a1448983c281663d632e5233d51160f49d740fb22f1a3a"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/services.js",
+      "sha256": "fbe78ad91799a8f8bc90e0dba9029882ff935d9362ec96d1ea7b344ef4006739"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/state.js",
+      "sha256": "11d2099a779c85c940ab32603a101bd2ae5e4442f288b6d4b1b4fdafbe41c860"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/generation/subdomain.manifest.js",
+      "sha256": "5dc8ac357ddf5e76f4d86760a73ef281b1622b1dfb12465d0bb8102ea4577d35"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/index.js",
+      "sha256": "20c0668af765651087200d0706f2ad39ca6518a91605264753b56f32aaac1657"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomain.manifest.js",
+      "sha256": "c8b8a3cfe216844e404affe371d2af849670da01d41ab72b2bdd5caf12274f09"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/index.js",
+      "sha256": "2d3f2b7b5b30a9ace9633ec1418319f51c3e05d5f4f8c1b05b3fbe1beb725358"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/contracts.js",
+      "sha256": "57da8961c0e31f84efd7c53188e5f7c6eca3fd6c51d03a872663e6bd2a65df8d"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js",
+      "sha256": "2a118e1bd61e95590134c09ed2d355ea0543edd27df4dc32ebdcf29b9bfe9207"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js",
+      "sha256": "39990db4093fdda457c9978954e56d0114a9b58f1e7f5776a835273bdce0b61d"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/services.js",
+      "sha256": "29f84c710c755ab42cb4ca55e3341e7855e9583f118bd5878e29ae1acc566425"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/state.js",
+      "sha256": "54f55f1ca1f442f8358f2dee18b91f33a1cc241d67a741cecf8b902c879868bd"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js",
+      "sha256": "ab8fa3db4d12476d3c1cb80d10c1ba92cb1d702314ed7cdc8d01492b812f25c2"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/index.js",
+      "sha256": "eb397f7ccd7d92471bfad4afd825a934600f44374a9d54e6b1e980935e8a6860"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/contracts.js",
+      "sha256": "e5e896328c6fb6c8b4599830b1e48f72c8077b246e65e1a62d2354910be1dd43"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js",
+      "sha256": "36f16a71c42c6d3e8d00ac7131ac3a7d57b89368fd7668b1740684899fb9e3e6"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js",
+      "sha256": "99a42ec74c374226acb7fc20e46ca632aebb64308939a49536810524ee2b300b"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/services.js",
+      "sha256": "9df361ca2361dd2e44a47fe151119b94b2f0182da902d43c28ec9456da0e9817"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/state.js",
+      "sha256": "fd46e547a4f9f2917b52eeb988164d03742d2f494bc9cd505c54aaf367655c67"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js",
+      "sha256": "bc99a29b45c8d15c90e377c38eda796ef392b448efe26315a30c00939cf8f8c8"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/index.js",
+      "sha256": "3c381102224ad801bff06c2694056e72ed7b71f7cca6d69da9f5df3d9227ab38"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/contracts.js",
+      "sha256": "797969e5775fba186a5284c72f4bb70757dc8ecc0dd97b34334a24427d5024d3"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js",
+      "sha256": "4f19127f540d9bc41818e8b640bb4c7fe3c65ec406c43253999421a54123b207"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js",
+      "sha256": "1e683ba24f3f51ec4d8141840771adb5abd877d7fd50cd1ab24a97e3a737aacb"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/services.js",
+      "sha256": "aa34f44df6e0bbed3fa0a2e02b7bf8ea032297cfe13372631623a7acca90876e"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/state.js",
+      "sha256": "826da56ae521757c7dadd13945690877d850afe635e2afd2adf0dc0ae9e0aff7"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js",
+      "sha256": "7fac5635afdc316cee8a1b4ef94dbd3fa592bbc42ea017853fd02624b66266c6"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/index.js",
+      "sha256": "43723258bfa909126e014d05743cced3f4cc6bb739c3fe50d9b79fb467b83787"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/contracts.js",
+      "sha256": "02d3ab9499cd825ab339f252c3279c2a44c17747e16a17e6de5dfcc120966a0d"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js",
+      "sha256": "9e972ff242acab8a00866284b0f5fb4eab6288c0f250113bc2a3ba20c722ab1e"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js",
+      "sha256": "aaae559bad34a9a410a5e60e5b52d8c1e765ee8fed8d406cf177ec298e7b7edc"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/services.js",
+      "sha256": "54807215f32b220b1b5d505fa0fd2b54610257600fa415dbe94437d27329c0f5"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/state.js",
+      "sha256": "63aa047d39c0a0b482ca27c5781a96369b886c233711246379af38d1aa93aedd"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js",
+      "sha256": "3bf0fc24846ac1f6524d14ead66a989f0e4d81dc33f0a2ffa2a7ab895fe65926"
     },
     {
       "path": "src/core-domains/world/subdomains/scene/kits/scene-kit/constants.js",
@@ -18711,6 +20376,62 @@
     {
       "path": "src/core-domains/world/subdomains/scene/kits/scene-kit/utils.js",
       "sha256": "a6f250ac4674f214d834f38ae5f62f87431fcf3a8d51ab0af4d67033625a89db"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/index.js",
+      "sha256": "44ff2cfab61ce84e93395b054b0bd468c1e1eb9ff55a6627c7595e9b346e1097"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/contracts.js",
+      "sha256": "f32babadf2e6b57caa9db831a0a77c0864f53c2c0ea55e8f11297d89eab4f85d"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js",
+      "sha256": "8d89682b65e0d0187a778a15d81ad031ac1e0333ba892047de8faaa27ebe619a"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js",
+      "sha256": "2747a6242bb3bfcbc202f2caccb2f5ac6e72d8f189e7a4dd0230975d9611b05e"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/services.js",
+      "sha256": "a5170a2b0714897b27c9e7fec8225c4a01d9942f7aa8821eec8ad3b6deb946c0"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/state.js",
+      "sha256": "0d887f1ed4c773088c0f0ff49605a15043c5e94eb9875fea2e403c940e0cbdff"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/terrain/subdomain.manifest.js",
+      "sha256": "617b6264c4eb3701d71cc427c0e37dae17f7f8ed5e7319e4ea9d3aaa04e2fbf6"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/index.js",
+      "sha256": "b93877fdb12bc09fee8ab012059c0e5bdb4d6745478198115c7a24b5e79490b9"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/contracts.js",
+      "sha256": "23fae66074021bed3b5e03deab99f7d17b8f9e1978daee8c45557ee2761c9f06"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js",
+      "sha256": "cfa2e9edbcd099472bc926e79eb507894966e5f93eb8b430eb1d77c095571667"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js",
+      "sha256": "39a2f88dc26eedf265091a8a856fa4532c9af4a5ec887def4be6cdd5eb2dd3ef"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/services.js",
+      "sha256": "0a772c49c2762c78a79c150dbcd86170a8446c1d7fc404a9a83570d21a905494"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/state.js",
+      "sha256": "f7c27a9335f710f5e0ca638ba872a85fb7af12a3bc382daf6ae0b306f0007585"
+    },
+    {
+      "path": "src/core-domains/world/subdomains/water-surface/subdomain.manifest.js",
+      "sha256": "c04b3f50619ab2717c575c5035a13d440124440b09c23e35a88bb98d0574632e"
     },
     {
       "path": "src/core-domains/world/subdomains/weather/contracts.js",
@@ -18877,6 +20598,10 @@
       "sha256": "0e1010712d0b02bb36b318e4764b58f5a0082dc0070f71861f46cee86a9748ef"
     },
     {
+      "path": "src/core-domains/world/tests/restored-world-behaviors.mjs",
+      "sha256": "f5f13273079bcc8fe024a89299a04b860e46a729c02af26d6c184cc6ac80d8b0"
+    },
+    {
       "path": "src/core-domains/world/validation.js",
       "sha256": "691b0504ee9926b4b75addb6093e87a848511bcb2be8d8e7ad04d33bf2c89634"
     },
@@ -18914,7 +20639,7 @@
     },
     {
       "path": "src/foundation/idempotency-ledger.js",
-      "sha256": "54c040337c95257ef831443adfb0292b6f5f6d7606cb8d37550e51a62ea2e86f"
+      "sha256": "46147d83419266c6bdb3a1cb2966e5924f671b5cffdd6d1214f0870a1decfe2f"
     },
     {
       "path": "src/foundation/index.js",
@@ -18934,7 +20659,7 @@
     },
     {
       "path": "src/foundation/serializable-state.js",
-      "sha256": "6758bb7ee45244a9ba36ce6a8d612a1e3b4d6eb1d40ea688f7cf976542f6dae7"
+      "sha256": "83642eaac3e02a5998d36286e0636714efbe5f29e9fb50fc83c41a826fb40f71"
     },
     {
       "path": "src/foundation/sha256.js",
@@ -18954,7 +20679,7 @@
     },
     {
       "path": "src/runtime-kit.js",
-      "sha256": "d1d032d427f7a427002ed78aa1fff9645ba223b6b59d3261817ceafe017e88a6"
+      "sha256": "a5126162f7b9b2a21de9f4b70f267abbcf79f83538257a5edff86b4f6ec3e543"
     }
   ]
 }

@@ -19,3 +19,7 @@ export * from "./subdomains/world-feature-domain/index.js";
 export * from "./adapters/terrain-provider-adapter/index.js";
 export { createSceneKit } from "./subdomains/scene/kits/scene-kit/index.js";
 export * from "./subdomains/weather/index.js";
+export * from "./subdomains/navigation/index.js";
+export * from "./subdomains/generation/index.js";
+export * from "./subdomains/terrain/index.js";
+export * from "./subdomains/water-surface/index.js";

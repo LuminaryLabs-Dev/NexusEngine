@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:spatial`
 - Status: `stable-candidate`
-- Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
+- Registry SHA-256: `b7aaf0c3c56ec5e6c0c3b3a9a087d68f46ef42a1e2b0f758704870ec36cba1c2`
 - Public entry: `nexusengine/domains/spatial`
 
 ## Responsibility
@@ -29,7 +29,9 @@ Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance quer
 
 ## Subdomains
 
-None.
+| Path | Responsibility |
+| --- | --- |
+| `n:spatial:scale` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. |
 
 ## Atomic Kits
 
@@ -40,6 +42,7 @@ None.
 | `spatial-vector-math-kit` | `nexusengine/domains/spatial/vector-math` | Create and operate on renderer-neutral vector values. |
 | `spatial-transform-math-kit` | `nexusengine/domains/spatial/transform-math` | Calculate deterministic transforms, bases, interpolation, and planar projections. |
 | `spatial-quaternion-math-kit` | `nexusengine/domains/spatial/quaternion-math` | Create, compose, normalize, rotate, and interpolate quaternions. |
+| `spatial-scale-kit` | `nexusengine/domains/spatial/scale` | Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions. |
 
 ## Lifecycle
 
