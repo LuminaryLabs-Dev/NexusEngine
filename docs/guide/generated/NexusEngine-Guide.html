@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd<br>
-      Guide content SHA-256: 43ea2e2fbc3e48b4df1603b9f2ba0f737bb98c26816d99d9bef8624d638dc4e8<br><br>
+      Core registry SHA-256: 8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359<br>
+      Guide content SHA-256: 1bc26d79de9c114877c415a78e6cf0bcb8023f4d3bc4bb66349d4d6b1b79896f<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -569,6 +569,10 @@ versioned vendor installers, and immutable HTTPS ESM URLs. Metadata discovery
 does not execute source. Moving references, absent licenses, integrity
 mismatches, path escapes, incomplete dependency closure, and duplicate source
 identities fail before target execution.</p>
+<p>Exact <code>git+https</code> lock entries stay on their canonical HTTPS transport inside
+isolated npm stages. Build adds deterministic SSH-to-HTTPS Git rewrites for the
+recorded host while retaining any caller-provided rewrites used by a controlled
+local source mirror.</p>
 <p>The base npm install performs no Build downloads. Network provisioning is a
 separate approved operation and caches verified bytes by content hash.</p>
 <h2>MCP</h2>
@@ -734,7 +738,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
+<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -816,7 +820,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
+<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
 <table>
 <thead>
 <tr>
@@ -1198,7 +1202,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
+<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2404,7 +2408,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd</code></p>
+<p>Registry SHA-256: <code>8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359</code></p>
 <ul>
 <li>Source modules: 581</li>
 <li>Manifest-proven public atoms: 123</li>

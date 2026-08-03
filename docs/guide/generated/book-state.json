@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd",
-  "contentHash": "sha256:43ea2e2fbc3e48b4df1603b9f2ba0f737bb98c26816d99d9bef8624d638dc4e8",
+  "registryHash": "8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359",
+  "contentHash": "sha256:1bc26d79de9c114877c415a78e6cf0bcb8023f4d3bc4bb66349d4d6b1b79896f",
   "chapters": [
     {
       "id": "start-here",
@@ -82,7 +82,7 @@
       "source": "docs/guide/building/README.md",
       "googleDocTab": "10 Build Domain",
       "generated": false,
-      "contentHash": "sha256:a2114797b7766181339daba03f35d20aabecbbdeec6af3cd87d0bb34c4258f30"
+      "contentHash": "sha256:0fe2bb2d9c39f207089f708d8681314548b751199cfaf437b171f370320d4f88"
     },
     {
       "id": "testing",
@@ -122,7 +122,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:c51e8e9a71495d8354a5185fc737df8a6cdccec03b220db659c24f4d67074089"
+      "contentHash": "sha256:961c3d15da604ba8d1fa37b85411d5f4439d04150de08dc3e5fa2d002e6db8f1"
     },
     {
       "id": "dependency-table",
@@ -130,7 +130,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:712b575802e7e817043ef0d9f634128eb0e0a91354075abee6ccc0ef06e627e4"
+      "contentHash": "sha256:f26a55eb2b144b1538b401f192b8bba9dc1229df64be63ab9093c3813576c9c7"
     },
     {
       "id": "api-reference",
@@ -138,7 +138,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:44f47f1005d461848d39a0d18ed2c1faff2aefc737c857273e04b8d1bf4ff4d9"
+      "contentHash": "sha256:272a64a7c1e0a4e6ce3d1d2ce0cdf9d78b20d93f2518c674e9578b5966174466"
     },
     {
       "id": "ownership-ledger",
@@ -146,7 +146,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:ffbd75e4801d59c18bda6f10948dadad2e815e92bbc57a94a478131dac8b3265"
+      "contentHash": "sha256:f0dc5fdaf06a9b5b800cece15e1119af9eee519c22c30ed9ec9f4ceb18203dfb"
     },
     {
       "id": "root-migration-map",

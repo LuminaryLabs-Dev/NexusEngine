@@ -8,6 +8,23 @@ import path from "node:path";
 import { chromium } from "playwright";
 
 import { createBuildDomain } from "../index.js";
+import { createCanonicalGitTransportEnvironment } from "../subdomains/compile/kits/web-module-linker-kit/services.js";
+
+const gitTransportEnvironment = createCanonicalGitTransportEnvironment([
+  {
+    sourceKind: "git",
+    canonicalLocator: "https://github.com/LuminaryLabs-Dev/NexusEngine.git"
+  }
+], {
+  GIT_CONFIG_COUNT: "1",
+  GIT_CONFIG_KEY_0: "url.file:///tmp/local-engine.git.insteadOf",
+  GIT_CONFIG_VALUE_0: "https://github.com/LuminaryLabs-Dev/NexusEngine.git"
+});
+assert.equal(gitTransportEnvironment.GIT_CONFIG_COUNT, "3");
+assert.equal(gitTransportEnvironment.GIT_CONFIG_KEY_1, "url.https://github.com/.insteadOf");
+assert.equal(gitTransportEnvironment.GIT_CONFIG_VALUE_1, "ssh://git@github.com/");
+assert.equal(gitTransportEnvironment.GIT_CONFIG_KEY_2, "url.https://github.com/.insteadOf");
+assert.equal(gitTransportEnvironment.GIT_CONFIG_VALUE_2, "git@github.com:");
 
 const fixture = path.resolve("src/core-domains/build/tests/fixtures/external-project");
 const stateRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-build-browser-state-"));

@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:network`
 - Status: `stable-candidate`
-- Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
+- Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
 - Public entry: `nexusengine/domains/network`
 
 ## Responsibility

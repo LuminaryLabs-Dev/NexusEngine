@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`<br>
-Guide content SHA-256: `43ea2e2fbc3e48b4df1603b9f2ba0f737bb98c26816d99d9bef8624d638dc4e8`
+Core registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`<br>
+Guide content SHA-256: `1bc26d79de9c114877c415a78e6cf0bcb8023f4d3bc4bb66349d4d6b1b79896f`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -564,6 +564,11 @@ does not execute source. Moving references, absent licenses, integrity
 mismatches, path escapes, incomplete dependency closure, and duplicate source
 identities fail before target execution.
 
+Exact `git+https` lock entries stay on their canonical HTTPS transport inside
+isolated npm stages. Build adds deterministic SSH-to-HTTPS Git rewrites for the
+recorded host while retaining any caller-provided rewrites used by a controlled
+local source mirror.
+
 The base npm install performs no Build downloads. Network provisioning is a
 separate approved operation and caches verified bytes by content hash.
 
@@ -756,7 +761,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
+Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -838,7 +843,7 @@ Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d
 
 # Core Dependency Table
 
-Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
+Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -924,7 +929,7 @@ Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
+Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
 
 ## Domains
 
@@ -1140,7 +1145,7 @@ Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `0ddb768ad5bc0a015bdaefa33227e7901c42c192d5f129963270b5dbf1a2d8cd`
+Registry SHA-256: `8d65c7d6589811bdb9a56b80021095b16c1b8ce91bac4b488698132179c7f359`
 
 - Source modules: 581
 - Manifest-proven public atoms: 123

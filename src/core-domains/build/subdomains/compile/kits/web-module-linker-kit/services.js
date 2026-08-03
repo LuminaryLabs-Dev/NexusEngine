@@ -113,6 +113,35 @@ function outputEntry(metafile, workingRoot, stageRoot) {
   throw new Error("Web linker emitted no entry module.");
 }
 
+export function createCanonicalGitTransportEnvironment(sourceRecords, environment = process.env) {
+  const parsedCount = Number.parseInt(environment.GIT_CONFIG_COUNT ?? "0", 10);
+  const existingCount = Number.isSafeInteger(parsedCount) && parsedCount >= 0 ? parsedCount : 0;
+  const hosts = [...new Set(sourceRecords
+    .filter((record) => record.sourceKind === "git")
+    .map((record) => {
+      try {
+        const locator = new URL(record.canonicalLocator);
+        return locator.protocol === "https:" ? locator.host : null;
+      } catch {
+        return null;
+      }
+    })
+    .filter(Boolean))]
+    .sort();
+  if (!hosts.length) return Object.freeze({});
+
+  const additions = hosts.flatMap((host) => [
+    [`url.https://${host}/.insteadOf`, `ssh://git@${host}/`],
+    [`url.https://${host}/.insteadOf`, `git@${host}:`]
+  ]);
+  const output = { GIT_CONFIG_COUNT: String(existingCount + additions.length) };
+  for (const [offset, [key, value]] of additions.entries()) {
+    output[`GIT_CONFIG_KEY_${existingCount + offset}`] = key;
+    output[`GIT_CONFIG_VALUE_${existingCount + offset}`] = value;
+  }
+  return Object.freeze(output);
+}
+
 export function createWebModuleLinkerService(config = {}) {
   const processExecution = config.processExecution;
   if (!processExecution) throw new TypeError("Web module linker requires process execution.");
@@ -202,13 +231,14 @@ export function createWebModuleLinkerService(config = {}) {
       await materializeProject(context.projectSource, workingRoot);
       if (context.moduleGraph.externalPackages.length) {
         const npmCommand = process.platform === "win32" ? "npm.cmd" : "npm";
+        const gitTransportEnvironment = createCanonicalGitTransportEnvironment(context.sourceRecords);
         const installed = await processExecution.run(npmCommand, [
           "ci",
           "--ignore-scripts",
           "--omit=dev",
           "--no-audit",
           "--no-fund"
-        ], { cwd: workingRoot });
+        ], { cwd: workingRoot, env: gitTransportEnvironment });
         if (!installed.ok) throw new Error(`Locked Web dependency install failed: ${installed.stderr || installed.error}.`);
       }
       const toolchain = await ensureToolchain();
