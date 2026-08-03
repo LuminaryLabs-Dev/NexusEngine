@@ -1,4 +1,5 @@
 import { createDomainKit } from "../../../../../domain-kit.js";
+import { operationRequestHash } from "../../../../../../foundation/idempotency-ledger.js";
 
 const clone = (value) => value === undefined ? undefined : structuredClone(value);
 
@@ -11,8 +12,7 @@ function normalizeId(value, label) {
 function createInitialState(config = {}) {
   return {
     ledgers: clone(config.ledgers ?? {}),
-    operationCount: 0,
-    duplicateCount: 0
+    operationCount: 0
   };
 }
 
@@ -65,19 +65,24 @@ export function createTransactionLedgerKit(config = {}) {
         return clone(ledger?.operations?.[normalizeId(operationId, "operation")] ?? null);
       }
 
-      function record(ledgerId, operationId, result = null, metadata = {}) {
+      function record(ledgerId, operationId, result = null, metadata = {}, request = {}) {
         const ledgerKey = ensureLedger(ledgerId);
         const operationKey = normalizeId(operationId, "operation");
+        const requestHash = operationRequestHash(request);
         const currentState = state();
         const currentLedger = currentState.ledgers[ledgerKey];
         const existing = currentLedger.operations[operationKey];
         if (existing) {
-          baseApi.update({ duplicateCount: Number(currentState.duplicateCount ?? 0) + 1 }, "updated");
-          return { applied: false, duplicate: true, record: clone(existing) };
+          if (existing.requestHash !== requestHash) {
+            throw new TypeError(`Operation ${operationKey} was already recorded with different content.`);
+          }
+          return { applied: false, duplicate: true, result: clone(existing.result), record: clone(existing) };
         }
 
         const entry = {
           id: operationKey,
+          operationId: operationKey,
+          requestHash,
           sequence: Number(currentLedger.sequence ?? 0) + 1,
           result: clone(result),
           metadata: clone(metadata ?? {})
@@ -99,16 +104,22 @@ export function createTransactionLedgerKit(config = {}) {
         return { applied: true, duplicate: false, record: clone(entry) };
       }
 
-      function applyOnce(ledgerId, operationId, operation, metadata = {}) {
+      function applyOnce(ledgerId, operationId, requestOrOperation, operationOrMetadata, metadata = {}) {
+        const legacy = typeof requestOrOperation === "function";
+        const request = legacy ? {} : requestOrOperation ?? {};
+        const operation = legacy ? requestOrOperation : operationOrMetadata;
+        const recordMetadata = legacy ? operationOrMetadata ?? {} : metadata;
         if (typeof operation !== "function") throw new TypeError("applyOnce requires an operation function.");
         const existing = getRecord(ledgerId, operationId);
         if (existing) {
-          const currentState = state();
-          baseApi.update({ duplicateCount: Number(currentState.duplicateCount ?? 0) + 1 }, "updated");
+          const requestHash = operationRequestHash(request);
+          if (existing.requestHash !== requestHash) {
+            throw new TypeError(`Operation ${normalizeId(operationId, "operation")} was already applied with different content.`);
+          }
           return { applied: false, duplicate: true, result: clone(existing.result), record: existing };
         }
         const result = operation();
-        const recorded = record(ledgerId, operationId, result, metadata);
+        const recorded = record(ledgerId, operationId, result, recordMetadata, request);
         return { ...recorded, result: clone(result) };
       }
 

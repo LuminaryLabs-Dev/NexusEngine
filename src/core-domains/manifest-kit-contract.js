@@ -1,4 +1,4 @@
-import { CORE_DOMAIN_CATALOG } from "./catalog.js";
+import { CORE_DOMAIN_CATALOG, CORE_REGISTRY_SHA256 } from "./catalog.js";
 
 const contractsById = new Map(CORE_DOMAIN_CATALOG.kits.map((record) => [record.id, record]));
 
@@ -36,7 +36,8 @@ export function applyManifestKitContract(config = {}) {
       manifestSchema: contract.schema,
       manifestKind: contract.kind,
       manifestEnvironments: [...contract.environments],
-      manifestSource: { ...contract.source }
+      manifestSource: { ...contract.source },
+      manifestFingerprint: `sha256:${CORE_REGISTRY_SHA256}`
     }
   };
 }

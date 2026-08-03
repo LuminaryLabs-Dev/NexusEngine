@@ -6,11 +6,13 @@ const engine = createEngine({ kits: [createTransactionLedgerKit()] });
 const ledger = engine.n.transaction;
 
 let applications = 0;
-const first = ledger.applyOnce("farming", "plant:plot-1:1", () => {
+const request = { plotId: "plot-1", cropId: "taro" };
+const first = ledger.applyOnce("farming", "plant:plot-1:1", request, () => {
   applications += 1;
   return { plotId: "plot-1", cropId: "taro" };
 });
-const duplicate = ledger.applyOnce("farming", "plant:plot-1:1", () => {
+const beforeDuplicate = ledger.getSnapshot();
+const duplicate = ledger.applyOnce("farming", "plant:plot-1:1", request, () => {
   applications += 1;
   return { incorrect: true };
 });
@@ -20,6 +22,12 @@ assert.equal(duplicate.applied, false);
 assert.equal(duplicate.duplicate, true);
 assert.equal(applications, 1);
 assert.deepEqual(duplicate.result, { plotId: "plot-1", cropId: "taro" });
+assert.deepEqual(ledger.getSnapshot(), beforeDuplicate);
+assert.throws(
+  () => ledger.applyOnce("farming", "plant:plot-1:1", { ...request, cropId: "yam" }, () => null),
+  /different content/
+);
+assert.deepEqual(ledger.getSnapshot(), beforeDuplicate);
 
 const snapshot = ledger.getSnapshot();
 const replacement = createEngine({ kits: [createTransactionLedgerKit()] });

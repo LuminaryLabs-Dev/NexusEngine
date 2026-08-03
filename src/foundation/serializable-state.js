@@ -1,17 +1,29 @@
+function assertPortable(value, path, stack) {
+  if (value === null || typeof value === "string" || typeof value === "boolean") return;
+  if (typeof value === "number") {
+    if (!Number.isFinite(value)) throw new TypeError(`${path} must contain only finite numbers.`);
+    return;
+  }
+  if (typeof value !== "object") {
+    throw new TypeError(`${path} must contain only JSON-portable values.`);
+  }
+  if (stack.has(value)) throw new TypeError(`${path} must not contain cyclic references.`);
+  stack.add(value);
+  if (Array.isArray(value)) {
+    value.forEach((entry, index) => assertPortable(entry, `${path}[${index}]`, stack));
+    stack.delete(value);
+    return;
+  }
+  const prototype = Object.getPrototypeOf(value);
+  if (prototype !== Object.prototype && prototype !== null) {
+    throw new TypeError(`${path} must use plain objects instead of ${value.constructor?.name ?? "custom values"}.`);
+  }
+  for (const [key, entry] of Object.entries(value)) assertPortable(entry, `${path}.${key}`, stack);
+  stack.delete(value);
+}
+
 export function assertSerializableState(value, path = "state") {
-  try {
-    structuredClone(value);
-  } catch (error) {
-    throw new TypeError(`${path} must be structured-clone serializable: ${error.message}`);
-  }
-  if (typeof value === "function") {
-    throw new TypeError(`${path} must not be a function.`);
-  }
-  if (value && typeof value === "object") {
-    for (const [key, entry] of Object.entries(value)) {
-      assertSerializableState(entry, `${path}.${key}`);
-    }
-  }
+  assertPortable(value, path, new WeakSet());
   return value;
 }
 

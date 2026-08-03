@@ -1,5 +1,8 @@
 import { defineEvent, defineResource } from "../ecs.js";
 import { defineDomainServiceKit } from "../domain-service-kit.js";
+import { createOperationReceipt, operationRequestHash } from "../foundation/idempotency-ledger.js";
+import { cloneSerializableState } from "../foundation/serializable-state.js";
+import { sha256Integrity } from "../foundation/sha256.js";
 import { applyManifestKitContract } from "./manifest-kit-contract.js";
 
 const DEFAULT_EVENT_NAMES = Object.freeze([
@@ -13,6 +16,38 @@ const DEFAULT_EVENT_NAMES = Object.freeze([
 function clone(value) {
   if (value === undefined) return undefined;
   return structuredClone(value);
+}
+
+function stableFingerprintValue(value, stack = new WeakSet()) {
+  if (typeof value === "function") return { $function: Function.prototype.toString.call(value) };
+  if (value === undefined) return { $undefined: true };
+  if (value === null || typeof value !== "object") return value;
+  if (stack.has(value)) throw new TypeError("Domain Kit configuration cannot contain cycles.");
+  stack.add(value);
+  const result = Array.isArray(value)
+    ? value.map((entry) => stableFingerprintValue(entry, stack))
+    : Object.fromEntries(Object.keys(value).sort().map((key) => [key, stableFingerprintValue(value[key], stack)]));
+  stack.delete(value);
+  return result;
+}
+
+function contentFingerprint(config, domain, apiName) {
+  const payload = stableFingerprintValue({
+    manifestFingerprint: config.metadata?.manifestFingerprint ?? null,
+    id: config.id ?? `n-${domain}-kit`,
+    domain,
+    domainPath: config.domainPath ?? `n:${domain}`,
+    apiName,
+    version: config.version ?? "0.0.4",
+    requires: config.requires ?? [],
+    provides: config.provides ?? [],
+    config: config.config ?? {},
+    initialState: config.initialState ?? {},
+    descriptors: config.descriptors ?? {},
+    policies: config.policies ?? {},
+    adapters: config.adapters ?? {}
+  });
+  return sha256Integrity(JSON.stringify(payload));
 }
 
 function cloneSerializableObject(value = {}) {
@@ -61,14 +96,14 @@ function createState(config, extra = {}) {
     id: config.id ?? `${config.domain}-state`,
     domain: config.domain,
     version: config.version ?? "0.0.4",
-    config: clone(config.config ?? {}),
-    descriptors: clone(config.descriptors ?? {}),
+    config: cloneSerializableState(config.config ?? {}),
+    descriptors: cloneSerializableState(config.descriptors ?? {}),
     policies: createPolicyDescriptors(config.policies ?? {}),
     adapters: Object.keys(config.adapters ?? {}),
     metadata: cloneSerializableObject(config.metadata ?? {}),
     sequence: now,
     lastEvent: null,
-    ...clone(config.initialState ?? {})
+    ...cloneSerializableState(config.initialState ?? {})
   };
 }
 
@@ -141,33 +176,85 @@ export function createDomainKit(config = {}) {
       purpose: config.purpose ?? `${domain} capability domain`,
       capabilityDomain: true,
       descriptor,
-      ...cloneSerializableObject(config.metadata ?? {})
+      ...cloneSerializableObject(config.metadata ?? {}),
+      contentFingerprint: contentFingerprint(config, domain, apiName)
     },
     initWorld({ world }) {
       world.setResource(State, createState(stateConfig));
       config.initWorld?.({ world, State, events, descriptor, config: stateConfig });
     },
     createApi({ engine, world }) {
-      const getState = () => world.getResource(State);
+      const readState = () => world.getResource(State);
+      const getState = () => cloneSerializableState(readState());
       const setState = (next, eventName = "updated", payload = {}) => {
-        world.setResource(State, next);
+        const portable = cloneSerializableState(next);
+        if (JSON.stringify(readState()) === JSON.stringify(portable)) return getState();
+        world.setResource(State, portable);
         const event = events[toPascal(eventName)] ?? events.Updated;
-        if (event) world.emit(event, { domain, state: clone(next), ...clone(payload) });
-        return next;
+        if (event) world.emit(event, { domain, state: clone(portable), ...clone(payload) });
+        return clone(portable);
+      };
+
+      const applyCommand = (command, execute) => {
+        if (!isObject(command)) throw new TypeError(`${domain} command must be an object.`);
+        const operationId = String(command.operationId ?? "").trim();
+        if (!operationId) throw new TypeError(`${domain} command requires operationId.`);
+        if (typeof execute !== "function") throw new TypeError(`${domain} command requires an executor.`);
+        const request = cloneSerializableState(command);
+        const requestHash = operationRequestHash(request);
+        const current = getState();
+        const receipts = current.operationReceipts ?? {};
+        const existing = receipts[operationId];
+        if (existing) {
+          if (existing.requestHash !== requestHash) {
+            throw new TypeError(`${domain} operation ${operationId} was already applied with different content.`);
+          }
+          return clone(existing);
+        }
+        const outcome = execute(clone(current), clone(request)) ?? {};
+        if (!isObject(outcome)) throw new TypeError(`${domain} command executor must return an object.`);
+        const revision = Number(current.sequence ?? 0) + 1;
+        const receipt = createOperationReceipt({
+          operationId,
+          request,
+          kitId: descriptor.id,
+          revision,
+          result: outcome.result ?? null
+        });
+        const patch = cloneSerializableState(outcome.patch ?? {});
+        const commandEvents = (outcome.events ?? []).map((eventRecord) => {
+          const event = events[toPascal(eventRecord?.name)];
+          if (!event) throw new TypeError(`${domain} command referenced unknown event ${eventRecord?.name}.`);
+          return { event, payload: cloneSerializableState(eventRecord.payload ?? {}) };
+        });
+        const next = mergeState(current, {
+          ...patch,
+          operationReceipts: { ...receipts, [operationId]: receipt }
+        }, outcome.eventName ?? "updated");
+        setState(next, outcome.eventName ?? "updated", {
+          ...(outcome.payload ?? {}),
+          receipt
+        });
+        for (const eventRecord of commandEvents) {
+          world.emit(eventRecord.event, { domain, receipt, ...eventRecord.payload });
+        }
+        return clone(receipt);
       };
 
       const api = {
         descriptor,
         getState,
+        applyCommand,
         getSnapshot() {
           return clone(getState());
         },
         loadSnapshot(snapshot = {}) {
-          const next = mergeState(createState(stateConfig), clone(snapshot), "snapshotLoaded");
+          if (!isObject(snapshot)) throw new TypeError(`${domain} snapshot must be an object.`);
+          const next = { ...createState(stateConfig), ...cloneSerializableState(snapshot) };
           return setState(next, "snapshotLoaded");
         },
         reset(payload = {}) {
-          return setState(createState({ ...stateConfig, ...(isObject(payload) ? payload : {}) }), "reset", { payload });
+          return setState(createState(stateConfig), "reset", { payload: isObject(payload) ? clone(payload) : {} });
         },
         configure(patch = {}) {
           return setState(mergeState(getState(), { config: patch }, "configured"), "configured", { patch });

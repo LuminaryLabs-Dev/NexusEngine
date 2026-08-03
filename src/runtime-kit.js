@@ -34,6 +34,17 @@ function normalizeTokenList(value, fieldName, kitId) {
   });
 }
 
+function kitFingerprint(kit) {
+  const value = kit?.metadata?.contentFingerprint ?? kit?.metadata?.manifestFingerprint ?? null;
+  return typeof value === "string" && /^sha256:[0-9a-f]{64}$/.test(value) ? value : null;
+}
+
+function findInstalledKit(engine, kit) {
+  if (!Array.isArray(engine.kits)) engine.kits = [];
+  if (engine.kits.includes(kit)) return kit;
+  return engine.kits.find((entry) => entry?.id === kit.id) ?? null;
+}
+
 export function defineRuntimeKit(config = {}) {
   const kit = {
     id: config.id ?? "runtime-kit",
@@ -125,21 +136,18 @@ export function installRuntimeKit(engine, kit, options = {}) {
     throw new TypeError("installRuntimeKit expects a NexusEngine engine.");
   }
 
-  engine.kit = kit;
-  if (!Array.isArray(engine.kits)) {
-    engine.kits = [];
-  }
-
-  if (engine.kits.includes(kit)) {
-    return kit;
+  const installed = findInstalledKit(engine, kit);
+  if (installed) {
+    if (installed === kit) return installed;
+    const installedFingerprint = kitFingerprint(installed);
+    const incomingFingerprint = kitFingerprint(kit);
+    if (installedFingerprint && installedFingerprint === incomingFingerprint) return installed;
+    throw new TypeError(`Runtime kit ${kit.id} is already installed with different content.`);
   }
 
   if (kit.metadata?.kind === "domain-service-kit") {
     if (!engine.domainServiceKits || typeof engine.domainServiceKits !== "object") {
       engine.domainServiceKits = {};
-    }
-    if (engine.domainServiceKits[kit.id]) {
-      throw new TypeError(`Domain service kit ${kit.id} is already installed.`);
     }
     const installedProvides = new Set(engine.kits.flatMap((entry) => entry.provides ?? []));
     const missing = (kit.requires ?? []).filter((token) => !installedProvides.has(token));
@@ -151,6 +159,8 @@ export function installRuntimeKit(engine, kit, options = {}) {
   } else if (kit.metadata?.domainPath) {
     registerDomainPathForKit(engine, kit);
   }
+
+  engine.kit = kit;
 
   if (!engine.kitBindings || typeof engine.kitBindings !== "object") {
     engine.kitBindings = {};
