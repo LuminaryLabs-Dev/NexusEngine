@@ -1,0 +1,19 @@
+{
+  "id": "check:installed-api-parity",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.460Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "npm run core:contracts plus fresh packed-consumer imports",
+    "summary": "Validated 159 manifest-backed factories and imported all 27 restored atoms plus nine adapters from public tarball subpaths.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "docs/migrations/0.0.4-restored-behaviors.json",
+      "docs/generated/PACKAGE-EXPORTS.json"
+    ]
+  }
+}

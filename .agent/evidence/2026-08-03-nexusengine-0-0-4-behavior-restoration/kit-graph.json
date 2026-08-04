@@ -1,0 +1,33 @@
+{
+  "id": "kit-graph",
+  "ok": true,
+  "at": "2026-08-03T16:25:52.112Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "schema": "nexus-headless-kit-graph/1",
+    "nodes": [
+      {
+        "id": "n-core-graphics-render-layer-graph-kit",
+        "path": "src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/kit.json",
+        "domain": "core-graphics-render-layer-graph",
+        "requires": [],
+        "provides": [
+          "n:graphics:render-layer-graph",
+          "n:graphics:render-pass-contract",
+          "n:graphics:render-layer-validation"
+        ]
+      },
+      {
+        "id": "core-world-domain",
+        "path": "src/core-domains/world/kit.manifest.json",
+        "domain": null,
+        "requires": [],
+        "provides": []
+      }
+    ],
+    "edges": [],
+    "unresolved": [],
+    "valid": true
+  }
+}

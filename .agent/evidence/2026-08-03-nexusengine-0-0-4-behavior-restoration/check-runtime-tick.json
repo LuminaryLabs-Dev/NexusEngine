@@ -1,0 +1,18 @@
+{
+  "id": "check:runtime-tick",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.497Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "npm test runtime and domain smoke suites",
+    "summary": "Composed runtime ticks and restored operations passed without any internal engine.tick(0) calls.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "tests/run-all.mjs"
+    ]
+  }
+}

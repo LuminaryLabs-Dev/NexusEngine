@@ -1,0 +1,17 @@
+{
+  "id": "differences:1",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.555Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "moduleCountBefore": 126,
+    "moduleCountAfter": 201,
+    "missingBefore": [],
+    "missingAfter": [],
+    "regressions": [],
+    "requiredOutcomes": []
+  }
+}

@@ -1,0 +1,42 @@
+{
+  "id": "plan:1",
+  "ok": true,
+  "at": "2026-08-03T16:25:52.120Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "goal": "Restore the 26 reusable behavior modules removed at",
+    "mode": "Planning and implementation",
+    "scope": [],
+    "requiredOutcomes": [],
+    "constraints": [],
+    "requiredChecks": [
+      "repository-integrity",
+      "test-coverage",
+      "kit-composition",
+      "installed-api-parity",
+      "descriptor-integrity",
+      "snapshot-reset-replay",
+      "public-export-integrity",
+      "deterministic-replay",
+      "runtime-tick"
+    ],
+    "steps": [
+      "Inspect the owning domain and nearest existing kit.",
+      "Implement the smallest compositional change that satisfies the target.",
+      "Reconcile public exports, package surfaces, docs, snapshots, and fixtures.",
+      "Run and record repository-integrity.",
+      "Run and record test-coverage.",
+      "Run and record kit-composition.",
+      "Run and record installed-api-parity.",
+      "Run and record descriptor-integrity.",
+      "Run and record snapshot-reset-replay.",
+      "Run and record public-export-integrity.",
+      "Run and record deterministic-replay.",
+      "Run and record runtime-tick.",
+      "Verify and compare observed evidence before claiming completion."
+    ]
+  }
+}

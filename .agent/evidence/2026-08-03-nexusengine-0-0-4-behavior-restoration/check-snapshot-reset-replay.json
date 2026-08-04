@@ -1,0 +1,19 @@
+{
+  "id": "check:snapshot-reset-replay",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.475Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "restored behavior lifecycle suites and runtime Kit idempotency smoke",
+    "summary": "Snapshot/load/reset repeatability, exact replay, changed-content conflicts, and semantic-state stability passed for restored state owners.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "src/runtime-kit.js",
+      "src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js"
+    ]
+  }
+}

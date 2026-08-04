@@ -1,0 +1,19 @@
+{
+  "id": "check:kit-composition",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.449Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "restored-integration-adapters.mjs plus Core Composition MCP release tests",
+    "summary": "All nine adapters and six recipes passed composed install, ordering, repeated apply, and exactly-once receipt checks.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "src/core-domains/simulation/tests/restored-integration-adapters.mjs",
+      "src/core-domains/composition/recipes/restored-behavior-recipes.js"
+    ]
+  }
+}

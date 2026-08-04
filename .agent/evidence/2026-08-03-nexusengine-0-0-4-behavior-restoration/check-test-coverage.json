@@ -1,0 +1,19 @@
+{
+  "id": "check:test-coverage",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.442Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "npm test && npm run test:release",
+    "summary": "Passed 101 smoke tests and 34 independent 0.0.4 release-candidate tests at the exact commit.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "tests/run-all.mjs",
+      "tests/release-0.0.4-run-all.mjs"
+    ]
+  }
+}

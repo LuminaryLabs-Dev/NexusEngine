@@ -1,0 +1,19 @@
+{
+  "id": "check:descriptor-integrity",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.467Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "restored World, Motion, Presentation, Economy, and Interaction regression suites",
+    "summary": "Renderer-neutral descriptors, finite portable state, stable IDs, bounds, ties, and deep-clone boundaries passed.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "src/core-domains/world/tests/restored-world-behaviors.mjs",
+      "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+    ]
+  }
+}

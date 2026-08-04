@@ -1,0 +1,19 @@
+{
+  "id": "check:deterministic-replay",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.489Z",
+  "iteration": 1,
+  "source": "exact-commit-proof",
+  "value": {
+    "ok": true,
+    "command": "procedural generation, navigation, schedule, route, composition, and Build replay tests",
+    "summary": "Normalized SHA-256 procedural identity, deterministic ties, large-delta advancement, stable plan ordering, and repeated receipts passed.",
+    "details": {
+      "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+    },
+    "artifacts": [
+      "src/core-domains/world/tests/restored-world-behaviors.mjs",
+      "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+    ]
+  }
+}

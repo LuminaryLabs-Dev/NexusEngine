@@ -1,0 +1,54 @@
+# Development Run Ledger
+
+- 2026-08-03T16:25:51.796Z | iteration 1 | evidence | bootstrap | target-loaded: ok
+- 2026-08-03T16:25:51.796Z | iteration 1 | evidence | bootstrap | agent-instructions: ok
+- 2026-08-03T16:25:51.797Z | iteration 1 | route-complete | bootstrap | Loaded AGENTS.md and the current target.
+- 2026-08-03T16:25:52.109Z | iteration 1 | evidence | inspect | repository-inspection: ok
+- 2026-08-03T16:25:52.111Z | iteration 1 | evidence | inspect | module-graph-before: ok
+- 2026-08-03T16:25:52.112Z | iteration 1 | evidence | inspect | kit-graph: ok
+- 2026-08-03T16:25:52.113Z | iteration 1 | route-complete | inspect | Inspected repository, kit graph, and public relative module graph.
+- 2026-08-03T16:25:52.115Z | iteration 1 | evidence | classify-risk | risk-classification: ok
+- 2026-08-03T16:25:52.116Z | iteration 1 | evidence | classify-risk | required-checks: ok
+- 2026-08-03T16:25:52.117Z | iteration 1 | route-complete | classify-risk | Inferred reliability checks from target, repository, changes, contracts, and module graph.
+- 2026-08-03T16:25:52.119Z | iteration 1 | evidence | plan | fixture-plan: ok
+- 2026-08-03T16:25:52.120Z | iteration 1 | evidence | plan | plan:1: ok
+- 2026-08-03T16:25:52.121Z | iteration 1 | route-complete | plan | Generated a target-driven plan from inferred reliability requirements.
+- 2026-08-03T16:25:52.123Z | iteration 1 | evidence | validate-plan | plan-validation:1: ok
+- 2026-08-03T16:25:52.124Z | iteration 1 | evidence | validate-plan | validation: ok
+- 2026-08-03T16:25:52.125Z | iteration 1 | route-complete | validate-plan | Validated that the plan has a goal, steps, and inferred checks.
+- 2026-08-03T21:48:19.772Z | iteration 1 | evidence | apply | applied-changes:1: ok
+- 2026-08-03T21:48:19.775Z | iteration 1 | route-complete | apply | Restored 26 historical modules as 27 atoms, nine adapters, and six recipes; published migration and read-only audit evidence at f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3.
+- 2026-08-03T21:48:19.906Z | iteration 1 | evidence | reload | module-graph-after:1: ok
+- 2026-08-03T21:48:20.008Z | iteration 1 | evidence | reload | public-entry-import:1: ok
+- 2026-08-03T21:48:20.015Z | iteration 1 | route-complete | reload | Reloaded and revalidated the public relative module graph.
+- 2026-08-03T21:50:04.297Z | iteration 1 | evidence | run-fixtures | fixture-run:1: ok
+- 2026-08-03T21:50:04.321Z | iteration 1 | evidence | run-fixtures | check:repository-integrity: ok
+- 2026-08-03T21:50:04.331Z | iteration 1 | evidence | run-fixtures | check:test-coverage: ok
+- 2026-08-03T21:50:04.340Z | iteration 1 | evidence | run-fixtures | fixture-result:kit-composition:1: failed
+- 2026-08-03T21:50:04.350Z | iteration 1 | evidence | run-fixtures | fixture-result:installed-api-parity:1: failed
+- 2026-08-03T21:50:04.357Z | iteration 1 | evidence | run-fixtures | fixture-result:descriptor-integrity:1: failed
+- 2026-08-03T21:50:04.366Z | iteration 1 | evidence | run-fixtures | fixture-result:snapshot-reset-replay:1: failed
+- 2026-08-03T21:50:04.377Z | iteration 1 | evidence | run-fixtures | check:public-export-integrity: ok
+- 2026-08-03T21:50:04.387Z | iteration 1 | evidence | run-fixtures | fixture-result:deterministic-replay:1: failed
+- 2026-08-03T21:50:04.397Z | iteration 1 | evidence | run-fixtures | fixture-result:runtime-tick:1: failed
+- 2026-08-03T21:50:04.434Z | iteration 1 | evidence | run-fixtures | check:repository-integrity: ok
+- 2026-08-03T21:50:04.442Z | iteration 1 | evidence | run-fixtures | check:test-coverage: ok
+- 2026-08-03T21:50:04.450Z | iteration 1 | evidence | run-fixtures | check:kit-composition: ok
+- 2026-08-03T21:50:04.460Z | iteration 1 | evidence | run-fixtures | check:installed-api-parity: ok
+- 2026-08-03T21:50:04.468Z | iteration 1 | evidence | run-fixtures | check:descriptor-integrity: ok
+- 2026-08-03T21:50:04.476Z | iteration 1 | evidence | run-fixtures | check:snapshot-reset-replay: ok
+- 2026-08-03T21:50:04.482Z | iteration 1 | evidence | run-fixtures | check:public-export-integrity: ok
+- 2026-08-03T21:50:04.489Z | iteration 1 | evidence | run-fixtures | check:deterministic-replay: ok
+- 2026-08-03T21:50:04.498Z | iteration 1 | evidence | run-fixtures | check:runtime-tick: ok
+- 2026-08-03T21:50:04.504Z | iteration 1 | route-complete | run-fixtures | All inferred reliability fixtures have successful recorded evidence.
+- 2026-08-03T21:50:04.520Z | iteration 1 | evidence | verify | verification:1: ok
+- 2026-08-03T21:50:04.530Z | iteration 1 | evidence | verify | verification: ok
+- 2026-08-03T21:50:04.539Z | iteration 1 | route-complete | verify | All inferred reliability checks passed.
+- 2026-08-03T21:50:04.555Z | iteration 1 | evidence | compare | differences:1: ok
+- 2026-08-03T21:50:04.561Z | iteration 1 | evidence | compare | differences: ok
+- 2026-08-03T21:50:04.566Z | iteration 1 | route-complete | compare | Compared before and after evidence without finding new module regressions.
+- 2026-08-03T21:50:04.581Z | iteration 1 | evidence | decide | remaining-risk-report:1: ok
+- 2026-08-03T21:50:04.588Z | iteration 1 | evidence | decide | remaining-risk-report: ok
+- 2026-08-03T21:50:04.598Z | iteration 1 | route-complete | decide | Completion evidence is sufficient and no unresolved reliability risk remains.
+- 2026-08-03T21:50:04.615Z | iteration 1 | evidence | report | report: ok
+- 2026-08-03T21:50:04.622Z | iteration 1 | run-complete | report | Guided development target proven complete.

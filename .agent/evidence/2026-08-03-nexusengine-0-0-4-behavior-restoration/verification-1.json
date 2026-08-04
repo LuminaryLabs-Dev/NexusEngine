@@ -1,0 +1,130 @@
+{
+  "id": "verification:1",
+  "ok": true,
+  "at": "2026-08-03T21:50:04.519Z",
+  "iteration": 1,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 1,
+    "checks": [
+      {
+        "id": "repository-integrity",
+        "ok": true,
+        "command": "clean detached worktree generation plus git diff --exit-code",
+        "summary": "Exact commit regenerated ownership and release manifests with zero drift; boundaries reported 865 production modules and zero ownership violations.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "docs/DSK_MANIFEST_0.0.4.json",
+          "docs/KIT-OWNERSHIP.json"
+        ]
+      },
+      {
+        "id": "test-coverage",
+        "ok": true,
+        "command": "npm test && npm run test:release",
+        "summary": "Passed 101 smoke tests and 34 independent 0.0.4 release-candidate tests at the exact commit.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "tests/run-all.mjs",
+          "tests/release-0.0.4-run-all.mjs"
+        ]
+      },
+      {
+        "id": "kit-composition",
+        "ok": true,
+        "command": "restored-integration-adapters.mjs plus Core Composition MCP release tests",
+        "summary": "All nine adapters and six recipes passed composed install, ordering, repeated apply, and exactly-once receipt checks.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs",
+          "src/core-domains/composition/recipes/restored-behavior-recipes.js"
+        ]
+      },
+      {
+        "id": "installed-api-parity",
+        "ok": true,
+        "command": "npm run core:contracts plus fresh packed-consumer imports",
+        "summary": "Validated 159 manifest-backed factories and imported all 27 restored atoms plus nine adapters from public tarball subpaths.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "docs/migrations/0.0.4-restored-behaviors.json",
+          "docs/generated/PACKAGE-EXPORTS.json"
+        ]
+      },
+      {
+        "id": "descriptor-integrity",
+        "ok": true,
+        "command": "restored World, Motion, Presentation, Economy, and Interaction regression suites",
+        "summary": "Renderer-neutral descriptors, finite portable state, stable IDs, bounds, ties, and deep-clone boundaries passed.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs",
+          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+        ]
+      },
+      {
+        "id": "snapshot-reset-replay",
+        "ok": true,
+        "command": "restored behavior lifecycle suites and runtime Kit idempotency smoke",
+        "summary": "Snapshot/load/reset repeatability, exact replay, changed-content conflicts, and semantic-state stability passed for restored state owners.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "src/runtime-kit.js",
+          "src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js"
+        ]
+      },
+      {
+        "id": "public-export-integrity",
+        "ok": true,
+        "command": "public-api-freeze, public entrypoint reachability, npm pack, fresh install",
+        "summary": "Validated 205 package modules, 678 modules reachable from public entrypoints, no forwarding exports, no symlink, and no NexusEngine-Kits dependency.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "package.json",
+          "docs/generated/PACKAGE-EXPORTS.json"
+        ]
+      },
+      {
+        "id": "deterministic-replay",
+        "ok": true,
+        "command": "procedural generation, navigation, schedule, route, composition, and Build replay tests",
+        "summary": "Normalized SHA-256 procedural identity, deterministic ties, large-delta advancement, stable plan ordering, and repeated receipts passed.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "src/core-domains/world/tests/restored-world-behaviors.mjs",
+          "src/core-domains/simulation/tests/restored-economy-operations.mjs"
+        ]
+      },
+      {
+        "id": "runtime-tick",
+        "ok": true,
+        "command": "npm test runtime and domain smoke suites",
+        "summary": "Composed runtime ticks and restored operations passed without any internal engine.tick(0) calls.",
+        "details": {
+          "commit": "f220a655b431f9ee7c37ea61d3b0d81ac2b3eeb3"
+        },
+        "artifacts": [
+          "tests/run-all.mjs"
+        ]
+      }
+    ],
+    "failed": []
+  }
+}
