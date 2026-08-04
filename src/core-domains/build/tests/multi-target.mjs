@@ -5,11 +5,27 @@ import path from "node:path";
 
 import { createBuildDomain } from "../index.js";
 
+async function withEnvironmentVariablesUnset(names, operation) {
+  const previous = new Map(names.map((name) => [name, process.env[name]]));
+  try {
+    for (const name of names) delete process.env[name];
+    return await operation();
+  } finally {
+    for (const [name, value] of previous) {
+      if (value === undefined) delete process.env[name];
+      else process.env[name] = value;
+    }
+  }
+}
+
 const fixture = path.resolve("src/core-domains/build/tests/fixtures/minimal-project");
 const stateRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-multi-target-state-"));
 const outputRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-multi-target-output-"));
 const build = createBuildDomain({ stateRoot });
-const plan = await build.plan({ project: fixture, targets: ["android-xr", "web-static"] });
+const plan = await withEnvironmentVariablesUnset(
+  ["ANDROID_SDK_ROOT", "ANDROID_NDK_HOME"],
+  () => build.plan({ project: fixture, targets: ["android-xr", "web-static"] })
+);
 const android = plan.targets.find((target) => target.id === "android-xr");
 assert.equal(android.status, "blocked");
 assert.equal(android.sourceRecords.every((source) => source.resolutionStatus === "resolved"), true);

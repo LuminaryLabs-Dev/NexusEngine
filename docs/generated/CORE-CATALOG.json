@@ -22091,7 +22091,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "ad617b439ff651d79352fa7d11f37bc687e36aaae1d1550bc7ffef042c0b776f",
+  "registryHash": "0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -23580,7 +23580,7 @@
     },
     {
       "path": "src/core-domains/build/tests/multi-target.mjs",
-      "sha256": "543a815925b78b42fa49e2753916e587b2a999b29af0034619611a412ac9c552"
+      "sha256": "7995cb5bdc018921ee44089c67b8c096c1b9214889250d111cf564fac5487d77"
     },
     {
       "path": "src/core-domains/build/tests/native-lowering.mjs",

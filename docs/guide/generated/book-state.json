@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "ad617b439ff651d79352fa7d11f37bc687e36aaae1d1550bc7ffef042c0b776f",
-  "contentHash": "sha256:a19381b4a49d774ec8ed2b902a848301747445906eb2424184f53d75f2ff06bd",
+  "registryHash": "0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
+  "contentHash": "sha256:df1644fe6c4cb14d1df82be60a08ff6e0918ef738a9c3d1794537e5a91906e6c",
   "chapters": [
     {
       "id": "start-here",
@@ -122,7 +122,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:04e795e32446190c438777d04726ebb7cd52b60fa927b3f329d219a00bd1af79"
+      "contentHash": "sha256:d3c236dc2ce3ef6f3f83cb432d9b6f7e361ebde59aec759e5ea7893f4b12aaa7"
     },
     {
       "id": "dependency-table",
@@ -130,7 +130,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:a291fa2aabd01da57cf17f1df7cf6dbea298afef5f320269528c6e14123e17c2"
+      "contentHash": "sha256:89c382202a7b35480f4a9700514ce2c35e1e75edc91a8cd21b41ee800c9a91f7"
     },
     {
       "id": "api-reference",
@@ -138,7 +138,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:9546a7375863ddfafd33fe6c48547e074afe97b14684e8b3d183c74bdffc3e05"
+      "contentHash": "sha256:8d3d283f2c4c35916129ffae914f1b723a52130c1d2386a0d1af9dccf2a27598"
     },
     {
       "id": "ownership-ledger",
@@ -146,7 +146,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:99536fcf7a300457e4d221541d8b2aadaa70bdc3fc63aa75e80d8ce16c964add"
+      "contentHash": "sha256:e828209fe9bf67a7998f48dacfcbc9bc6c54dc1c1352695550a88af394311311"
     },
     {
       "id": "restored-behavior-migration",
