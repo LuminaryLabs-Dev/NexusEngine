@@ -38,8 +38,9 @@ and import maps, never runtime forwarding exports.
   toolchains, artifacts, and receipts live under `~/.nexusengine`.
 - Dependencies are retrieved on demand from exact canonical upstream records,
   verified before use, and never downloaded by package postinstall hooks.
-- Isolated npm stages preserve canonical `git+https` transport for exact Git
-  records and append, rather than replace, caller-provided Git rewrite rules.
+- Isolated npm stages normalize exact GitHub HTTPS and npm GitHub SSH lock
+  records to canonical HTTPS, reject other SSH identities, and append rather
+  than replace caller-provided Git rewrite rules.
 - Repeated target flags normalize into one deterministic target set. Shared
   stages run once, target stages are isolated, and every target has its own
   receipt.

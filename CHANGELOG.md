@@ -74,6 +74,9 @@
 - Duplicate Kit installation now compares a generated SHA-256 fingerprint, and
   Transaction replay now compares the complete request hash before returning
   an original exactly-once receipt.
+- Exact npm lock records using GitHub HTTPS or npm's GitHub SSH spelling now
+  resolve to one canonical HTTPS source identity; moving refs and other SSH
+  sources still fail before Build mutation.
 - The historical overloaded World Physics behavior is split into World Contact
   and Soft Respawn. The current provider-neutral `createPhysicsKit` remains a
   separate Physics contract.

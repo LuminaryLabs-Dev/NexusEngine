@@ -206,6 +206,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
+  "registryHash": "ad617b439ff651d79352fa7d11f37bc687e36aaae1d1550bc7ffef042c0b776f",
   "schema": "nexusengine.package-exports/1"
 }

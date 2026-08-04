@@ -4803,7 +4803,8 @@
       "proof": null,
       "publicExports": [
         "createDependencySourceService",
-        "normalizeBuildSourceRecord"
+        "normalizeBuildSourceRecord",
+        "parseLockedGitSource"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -20470,7 +20471,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2",
+  "registrySha256": "ad617b439ff651d79352fa7d11f37bc687e36aaae1d1550bc7ffef042c0b776f",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

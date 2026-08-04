@@ -115,10 +115,11 @@ does not execute source. Moving references, absent licenses, integrity
 mismatches, path escapes, incomplete dependency closure, and duplicate source
 identities fail before target execution.
 
-Exact `git+https` lock entries stay on their canonical HTTPS transport inside
-isolated npm stages. Build adds deterministic SSH-to-HTTPS Git rewrites for the
-recorded host while retaining any caller-provided rewrites used by a controlled
-local source mirror.
+Exact `git+https` lock entries and npm's exact
+`git+ssh://git@github.com/...#<commit>` lock spelling resolve to one canonical
+GitHub HTTPS source identity inside isolated npm stages. Credentials,
+non-GitHub SSH sources, and moving refs remain rejected. Build retains any
+caller-provided rewrites used by a controlled local source mirror.
 
 The base npm install performs no Build downloads. Network provisioning is a
 separate approved operation and caches verified bytes by content hash.

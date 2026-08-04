@@ -13,6 +13,7 @@ import {
 
 const SOURCE_KINDS = new Set(["crates-io", "git", "https-esm", "npm", "vendor-installer"]);
 const MOVING_VERSION = /^(?:latest|next|main|master|head|\*|[~^<>]=?|workspace:|file:|link:)/i;
+const EXACT_GIT_COMMIT = /^[0-9a-f]{40}$/i;
 
 function exactVersion(value, label) {
   const version = requireText(value, label);
@@ -20,6 +21,42 @@ function exactVersion(value, label) {
     throw new TypeError(`${label} must be exact and immutable: ${version}.`);
   }
   return version;
+}
+
+export function parseLockedGitSource(value) {
+  const resolved = String(value ?? "");
+  const separator = resolved.lastIndexOf("#");
+  if (separator <= 0) return null;
+  const exactCommit = resolved.slice(separator + 1);
+  if (!EXACT_GIT_COMMIT.test(exactCommit)) return null;
+
+  const source = resolved.slice(0, separator);
+  if (source.startsWith("git+https://")) {
+    const locator = new URL(source.slice("git+".length));
+    if (locator.username || locator.password || locator.search || locator.hash) return null;
+    return Object.freeze({
+      canonicalLocator: locator.href,
+      exactCommit: exactCommit.toLowerCase()
+    });
+  }
+
+  if (source.startsWith("git+ssh://")) {
+    const locator = new URL(source.slice("git+".length));
+    if (
+      locator.hostname.toLowerCase() !== "github.com"
+      || locator.username !== "git"
+      || locator.password
+      || locator.port
+      || locator.search
+      || locator.hash
+    ) return null;
+    return Object.freeze({
+      canonicalLocator: `https://github.com${locator.pathname}`,
+      exactCommit: exactCommit.toLowerCase()
+    });
+  }
+
+  return null;
 }
 
 export function normalizeBuildSourceRecord(input = {}) {
@@ -132,16 +169,16 @@ export function createDependencySourceService() {
       const license = typeof entry.license === "string"
         ? entry.license
         : typeof installed?.license === "string" ? installed.license : null;
-      const git = /^(git\+https:\/\/[^#]+)#([0-9a-f]{40})$/i.exec(entry.resolved);
+      const git = parseLockedGitSource(entry.resolved);
       if (git) {
         const integrity = await packageTreeIntegrity(projectSource.root, packageName);
         records.push(normalizeBuildSourceRecord({
-          id: `git:${packageName}@${git[2].toLowerCase()}`,
+          id: `git:${packageName}@${git.exactCommit}`,
           sourceKind: "git",
           package: packageName,
           packagePath: packagePath(packageName),
-          canonicalLocator: git[1].replace(/^git\+/, ""),
-          exactVersion: git[2].toLowerCase(),
+          canonicalLocator: git.canonicalLocator,
+          exactVersion: git.exactCommit,
           integrity,
           license,
           transitiveDependencies: dependencies.map((dependency) => `npm:${dependency}`),

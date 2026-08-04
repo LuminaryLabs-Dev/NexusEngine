@@ -2,7 +2,7 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `c8cfad63537117f9464ebbb502fed5daa1034c8226da1e9c0fce4513ab8104a2`
+Registry SHA-256: `ad617b439ff651d79352fa7d11f37bc687e36aaae1d1550bc7ffef042c0b776f`
 
 - Source modules: 831
 - Manifest-proven public atoms: 159
