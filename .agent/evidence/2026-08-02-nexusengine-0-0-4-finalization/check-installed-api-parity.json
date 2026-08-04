@@ -1,0 +1,37 @@
+{
+  "id": "check:installed-api-parity",
+  "ok": true,
+  "at": "2026-08-04T07:50:44.667Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "npm run core:contracts && node tests/core-capability-domain-barrels-smoke.mjs",
+    "summary": "Manifest factories and installed domain-barrel APIs passed parity checks.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "npm run core:contracts",
+          "status": 0,
+          "signal": null,
+          "durationMs": 2556,
+          "stdout": "\n> nexusengine@0.0.4 core:contracts\n> node scripts/check-manifest-execution-parity.mjs\n\nValidated executable parity for 159 manifest-backed Core Kits.\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node tests/core-capability-domain-barrels-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 2485,
+          "stdout": "core capability package surface installed 159 manifest-backed Kits\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}

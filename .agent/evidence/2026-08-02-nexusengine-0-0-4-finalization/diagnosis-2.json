@@ -1,0 +1,14 @@
+{
+  "id": "diagnosis:2",
+  "ok": true,
+  "at": "2026-08-04T07:40:31.441Z",
+  "iteration": 2,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "failedRoute": "run-fixtures",
+    "reason": "Repository test script failed.",
+    "repairRoute": "plan",
+    "requiredAction": "Revise the plan and implementation using the failed evidence before rerunning checks."
+  }
+}

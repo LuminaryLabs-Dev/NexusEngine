@@ -1,0 +1,313 @@
+{
+  "schema": "nexus-headless-reliability-fixture-run/1",
+  "ok": true,
+  "complete": true,
+  "passed": [
+    "kit-composition",
+    "installed-api-parity",
+    "descriptor-integrity",
+    "snapshot-reset-replay",
+    "browser-startup",
+    "deterministic-replay",
+    "runtime-tick"
+  ],
+  "failed": [],
+  "pending": [],
+  "results": [
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-003-kit-composition",
+      "checkId": "kit-composition",
+      "mode": "capability",
+      "action": "fixture.kitComposition",
+      "ok": true,
+      "status": "passed",
+      "command": "node src/core-domains/simulation/tests/restored-integration-adapters.mjs && node src/core-domains/composition/tests/composition-mcp-smoke.mjs",
+      "summary": "Adapters, recipes, composition ordering, and exactly-once apply passed.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node src/core-domains/simulation/tests/restored-integration-adapters.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 1622,
+            "stdout": "restored optional integration adapters and recipes: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/composition/tests/composition-mcp-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 3111,
+            "stdout": "Core Composition MCP exactly-once smoke ok\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-004-installed-api-parity",
+      "checkId": "installed-api-parity",
+      "mode": "capability",
+      "action": "fixture.installedApiParity",
+      "ok": true,
+      "status": "passed",
+      "command": "npm run core:contracts && node tests/core-capability-domain-barrels-smoke.mjs",
+      "summary": "Manifest factories and installed domain-barrel APIs passed parity checks.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "npm run core:contracts",
+            "status": 0,
+            "signal": null,
+            "durationMs": 2556,
+            "stdout": "\n> nexusengine@0.0.4 core:contracts\n> node scripts/check-manifest-execution-parity.mjs\n\nValidated executable parity for 159 manifest-backed Core Kits.\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node tests/core-capability-domain-barrels-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 2485,
+            "stdout": "core capability package surface installed 159 manifest-backed Kits\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-005-descriptor-integrity",
+      "checkId": "descriptor-integrity",
+      "mode": "capability",
+      "action": "fixture.descriptorIntegrity",
+      "ok": true,
+      "status": "passed",
+      "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs && node src/core-domains/presentation/tests/third-person-camera-restoration.mjs && node tests/core-domains/core-object-fidelity-domain-smoke.mjs",
+      "summary": "World, camera, and Object fidelity descriptors passed schema and clone-boundary checks.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 1104,
+            "stdout": "restored World behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 564,
+            "stdout": "third-person camera restoration: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node tests/core-domains/core-object-fidelity-domain-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 2161,
+            "stdout": "core object fidelity and capture contract smoke ok\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-006-snapshot-reset-replay",
+      "checkId": "snapshot-reset-replay",
+      "mode": "capability",
+      "action": "fixture.snapshotResetReplay",
+      "ok": true,
+      "status": "passed",
+      "command": "node tests/runtime-kit-idempotency-smoke.mjs && node src/core-domains/simulation/tests/restored-economy-operations.mjs && node src/core-domains/interaction/tests/restored-interaction-behaviors.mjs && node src/core-domains/build/tests/full-build-loop.mjs",
+      "summary": "Runtime, restored state owners, and Build receipts passed reset, snapshot, and replay checks.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node tests/runtime-kit-idempotency-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 506,
+            "stdout": "runtime Kit idempotency smoke: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 610,
+            "stdout": "restored Economy and Operations behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 571,
+            "stdout": "restored Interaction behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/build/tests/full-build-loop.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 16832,
+            "stdout": "Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-008-browser-startup",
+      "checkId": "browser-startup",
+      "mode": "capability",
+      "action": "fixture.browserStartup",
+      "ok": true,
+      "status": "passed",
+      "command": "node src/core-domains/build/tests/web-target-browser.mjs",
+      "summary": "Verified web-live and web-static targets started cleanly in Chromium.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node src/core-domains/build/tests/web-target-browser.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 11764,
+            "stdout": "Build Web targets: one verified npm dependency closure starts cleanly in web-live and web-static\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-009-deterministic-replay",
+      "checkId": "deterministic-replay",
+      "mode": "capability",
+      "action": "fixture.deterministicReplay",
+      "ok": true,
+      "status": "passed",
+      "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs && node tests/sequence-node-runtime-smoke.mjs && node src/core-domains/composition/tests/composition-mcp-smoke.mjs && node src/core-domains/build/tests/full-build-loop.mjs",
+      "summary": "World, sequence, composition, and Build replay produced deterministic results.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 1059,
+            "stdout": "restored World behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node tests/sequence-node-runtime-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 1907,
+            "stdout": "sequence-node-runtime-smoke ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/composition/tests/composition-mcp-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 2451,
+            "stdout": "Core Composition MCP exactly-once smoke ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/build/tests/full-build-loop.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 12773,
+            "stdout": "Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    },
+    {
+      "schema": "nexus-headless-reliability-fixture-result/1",
+      "fixtureId": "fixture-010-runtime-tick",
+      "checkId": "runtime-tick",
+      "mode": "capability",
+      "action": "fixture.runtimeTick",
+      "ok": true,
+      "status": "passed",
+      "command": "node tests/realtime-core-tick-contract-smoke.mjs && node src/core-domains/simulation/tests/restored-motion-behaviors.mjs && node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+      "summary": "Realtime, motion, and operations ticks passed without hidden internal ticks.",
+      "details": {
+        "commands": [
+          {
+            "ok": true,
+            "command": "node tests/realtime-core-tick-contract-smoke.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 460,
+            "stdout": "realtime core tick contract smoke ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 453,
+            "stdout": "restored Motion and contact behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          },
+          {
+            "ok": true,
+            "command": "node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+            "status": 0,
+            "signal": null,
+            "durationMs": 457,
+            "stdout": "restored Economy and Operations behaviors: ok\n",
+            "stderr": "",
+            "error": null
+          }
+        ]
+      }
+    }
+  ]
+}

@@ -6,7 +6,7 @@
   "source": "guided-development-session",
   "value": {
     "schema": "nexus-headless-repository-inspection/1",
-    "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+    "root": "<historical-worktree>",
     "package": {
       "name": "nexusengine",
       "version": "0.0.4",

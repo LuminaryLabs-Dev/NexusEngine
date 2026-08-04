@@ -1,0 +1,53 @@
+{
+  "id": "plan:2",
+  "ok": true,
+  "at": "2026-08-04T07:40:31.892Z",
+  "iteration": 2,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 2,
+    "goal": "Finalize NexusEngine `0.0.4` as a reproducible, committed release candidate:",
+    "mode": "Planning and implementation",
+    "scope": [],
+    "requiredOutcomes": [
+      "Every production Build file is tracked and reproducible from a clean clone.",
+      "`web-static` emits a complete local dependency closure; `web-live` uses the",
+      "Android XR produces a validated ARM64 APK and PCVR produces a validated",
+      "Build remains outside the runtime graph, projects remain byte-for-byte",
+      "Repeated approved application returns the original receipt without rebuilding.",
+      "NexusEngine-Kits, Editor, Simulator, and The Open Above install an exact",
+      "Documentation, exports, MCP resources, catalogs, guide, PDF, and release",
+      "All local, clean-clone, packed-tarball, hosted package, consumer, showcase,"
+    ],
+    "constraints": [],
+    "requiredChecks": [
+      "repository-integrity",
+      "test-coverage",
+      "kit-composition",
+      "installed-api-parity",
+      "descriptor-integrity",
+      "snapshot-reset-replay",
+      "public-export-integrity",
+      "browser-startup",
+      "deterministic-replay",
+      "runtime-tick"
+    ],
+    "steps": [
+      "Inspect the owning domain and nearest existing kit.",
+      "Implement the smallest compositional change that satisfies the target.",
+      "Reconcile public exports, package surfaces, docs, snapshots, and fixtures.",
+      "Run and record repository-integrity.",
+      "Run and record test-coverage.",
+      "Run and record kit-composition.",
+      "Run and record installed-api-parity.",
+      "Run and record descriptor-integrity.",
+      "Run and record snapshot-reset-replay.",
+      "Run and record public-export-integrity.",
+      "Run and record browser-startup.",
+      "Run and record deterministic-replay.",
+      "Run and record runtime-tick.",
+      "Verify and compare observed evidence before claiming completion."
+    ]
+  }
+}

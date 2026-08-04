@@ -16,3 +16,55 @@
 - 2026-08-02T22:10:15.535Z | iteration 1 | evidence | validate-plan | plan-validation:1: ok
 - 2026-08-02T22:10:15.539Z | iteration 1 | evidence | validate-plan | validation: ok
 - 2026-08-02T22:10:15.540Z | iteration 1 | route-complete | validate-plan | Validated that the plan has a goal, steps, and inferred checks.
+- 2026-08-04T07:35:27.674Z | iteration 1 | evidence | apply | applied-changes:1: ok
+- 2026-08-04T07:35:27.681Z | iteration 1 | route-complete | apply | Integrated the complete manifest-driven Build Domain, Core consolidation, 26-module behavior restoration, generated documentation, release policy, and preserved restoration evidence.
+- 2026-08-04T07:35:28.094Z | iteration 1 | evidence | reload | module-graph-after:1: ok
+- 2026-08-04T07:35:29.508Z | iteration 1 | evidence | reload | public-entry-import:1: ok
+- 2026-08-04T07:35:29.553Z | iteration 1 | route-complete | reload | Reloaded and revalidated the public relative module graph.
+- 2026-08-04T07:40:30.815Z | iteration 1 | evidence | run-fixtures | fixture-run:1: failed
+- 2026-08-04T07:40:30.954Z | iteration 1 | evidence | run-fixtures | check:repository-integrity: ok
+- 2026-08-04T07:40:31.024Z | iteration 1 | evidence | run-fixtures | fixture-result:test-coverage:1: failed
+- 2026-08-04T07:40:31.125Z | iteration 1 | evidence | run-fixtures | check:test-coverage: failed
+- 2026-08-04T07:40:31.213Z | iteration 2 | route-failed | run-fixtures | Repository test script failed.
+- 2026-08-04T07:40:31.442Z | iteration 2 | evidence | diagnose | diagnosis:2: ok
+- 2026-08-04T07:40:31.511Z | iteration 2 | route-complete | diagnose | Diagnosed failed evidence and routed the run back to planning.
+- 2026-08-04T07:40:31.893Z | iteration 2 | evidence | plan | plan:2: ok
+- 2026-08-04T07:40:31.982Z | iteration 2 | route-complete | plan | Generated a target-driven plan from inferred reliability requirements.
+- 2026-08-04T07:40:32.176Z | iteration 2 | evidence | validate-plan | plan-validation:2: ok
+- 2026-08-04T07:40:32.312Z | iteration 2 | evidence | validate-plan | validation: ok
+- 2026-08-04T07:40:32.468Z | iteration 2 | route-complete | validate-plan | Validated that the plan has a goal, steps, and inferred checks.
+- 2026-08-04T07:42:35.083Z | iteration 2 | evidence | apply | applied-changes:2: ok
+- 2026-08-04T07:42:35.170Z | iteration 2 | route-complete | apply | Classified the prior test result as a harness timeout after 300 seconds, not a test assertion failure; rerun the unchanged committed suite with a 15-minute fixture budget.
+- 2026-08-04T07:42:36.116Z | iteration 2 | evidence | reload | module-graph-after:2: ok
+- 2026-08-04T07:42:36.604Z | iteration 2 | evidence | reload | public-entry-import:2: ok
+- 2026-08-04T07:42:36.669Z | iteration 2 | route-complete | reload | Reloaded and revalidated the public relative module graph.
+- 2026-08-04T07:48:13.525Z | iteration 2 | evidence | run-fixtures | fixture-run:2: ok
+- 2026-08-04T07:48:13.769Z | iteration 2 | evidence | run-fixtures | check:test-coverage: ok
+- 2026-08-04T07:48:13.862Z | iteration 2 | evidence | run-fixtures | fixture-result:kit-composition:2: failed
+- 2026-08-04T07:48:13.964Z | iteration 2 | evidence | run-fixtures | fixture-result:installed-api-parity:2: failed
+- 2026-08-04T07:48:14.043Z | iteration 2 | evidence | run-fixtures | fixture-result:descriptor-integrity:2: failed
+- 2026-08-04T07:48:14.136Z | iteration 2 | evidence | run-fixtures | fixture-result:snapshot-reset-replay:2: failed
+- 2026-08-04T07:48:14.268Z | iteration 2 | evidence | run-fixtures | check:public-export-integrity: ok
+- 2026-08-04T07:48:14.399Z | iteration 2 | evidence | run-fixtures | fixture-result:browser-startup:2: failed
+- 2026-08-04T07:48:14.527Z | iteration 2 | evidence | run-fixtures | fixture-result:deterministic-replay:2: failed
+- 2026-08-04T07:48:14.626Z | iteration 2 | evidence | run-fixtures | fixture-result:runtime-tick:2: failed
+- 2026-08-04T07:50:44.420Z | iteration 2 | evidence | run-fixtures | fixture-run:2: ok
+- 2026-08-04T07:50:44.590Z | iteration 2 | evidence | run-fixtures | check:kit-composition: ok
+- 2026-08-04T07:50:44.667Z | iteration 2 | evidence | run-fixtures | check:installed-api-parity: ok
+- 2026-08-04T07:50:44.744Z | iteration 2 | evidence | run-fixtures | check:descriptor-integrity: ok
+- 2026-08-04T07:50:44.836Z | iteration 2 | evidence | run-fixtures | check:snapshot-reset-replay: ok
+- 2026-08-04T07:50:44.915Z | iteration 2 | evidence | run-fixtures | check:browser-startup: ok
+- 2026-08-04T07:50:45.065Z | iteration 2 | evidence | run-fixtures | check:deterministic-replay: ok
+- 2026-08-04T07:50:45.188Z | iteration 2 | evidence | run-fixtures | check:runtime-tick: ok
+- 2026-08-04T07:50:45.286Z | iteration 2 | route-complete | run-fixtures | All inferred reliability fixtures have successful recorded evidence.
+- 2026-08-04T07:50:45.444Z | iteration 2 | evidence | verify | verification:2: ok
+- 2026-08-04T07:50:45.489Z | iteration 2 | evidence | verify | verification: ok
+- 2026-08-04T07:50:45.568Z | iteration 2 | route-complete | verify | All inferred reliability checks passed.
+- 2026-08-04T07:50:45.804Z | iteration 2 | evidence | compare | differences:2: ok
+- 2026-08-04T07:50:45.910Z | iteration 2 | evidence | compare | differences: ok
+- 2026-08-04T07:50:46.028Z | iteration 2 | route-complete | compare | Compared before and after evidence without finding new module regressions.
+- 2026-08-04T07:50:46.264Z | iteration 2 | evidence | decide | remaining-risk-report:2: ok
+- 2026-08-04T07:50:46.514Z | iteration 2 | evidence | decide | remaining-risk-report: ok
+- 2026-08-04T07:50:46.569Z | iteration 2 | route-complete | decide | Completion evidence is sufficient and no unresolved reliability risk remains.
+- 2026-08-04T07:50:46.818Z | iteration 2 | evidence | report | report: ok
+- 2026-08-04T07:50:46.923Z | iteration 2 | run-complete | report | Guided development target proven complete.

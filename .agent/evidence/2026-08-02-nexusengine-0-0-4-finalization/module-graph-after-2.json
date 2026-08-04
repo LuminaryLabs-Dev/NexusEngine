@@ -1,15 +1,15 @@
 {
-  "id": "module-graph-before",
+  "id": "module-graph-after:2",
   "ok": true,
-  "at": "2026-08-02T22:10:15.516Z",
-  "iteration": 1,
+  "at": "2026-08-04T07:42:36.109Z",
+  "iteration": 2,
   "source": "guided-development-session",
   "value": {
     "schema": "nexus-headless-module-graph/1",
-    "root": "<historical-worktree>",
+    "root": "<repository-root>",
     "entry": "src/index.js",
-    "moduleCount": 125,
-    "edgeCount": 266,
+    "moduleCount": 201,
+    "edgeCount": 416,
     "truncated": false,
     "modules": [
       {
@@ -107,7 +107,8 @@
           "./kits/composition-registry-kit/index.js",
           "./domain.manifest.js",
           "./services/composition-apply-controller.js",
-          "./adapters/mcp/composition-mcp-provider.js"
+          "./adapters/mcp/composition-mcp-provider.js",
+          "./recipes/restored-behavior-recipes.js"
         ]
       },
       {
@@ -208,7 +209,8 @@
         "path": "src/core-domains/interaction/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./restored-behavior-manifests.js"
         ]
       },
       {
@@ -243,35 +245,44 @@
         "path": "src/core-domains/presentation/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./subdomains/camera/subdomains/third-person/subdomain.manifest.js",
+          "./subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js",
+          "./adapters/camera-world-occlusion-adapter-kit/kit.manifest.js"
         ]
       },
       {
         "path": "src/core-domains/runtime/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./subdomains/sequence/subdomains/schedule/subdomain.manifest.js",
+          "./subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js"
         ]
       },
       {
         "path": "src/core-domains/simulation/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./restored-behavior-manifests.js"
         ]
       },
       {
         "path": "src/core-domains/spatial/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./subdomains/scale/subdomain.manifest.js",
+          "./subdomains/scale/kits/spatial-scale-kit/kit.manifest.js"
         ]
       },
       {
         "path": "src/core-domains/world/domain.manifest.js",
         "specifiers": [
           "../domain-manifest.js",
-          "../manifest-input.js"
+          "../manifest-input.js",
+          "./restored-behavior-manifests.js"
         ]
       },
       {
@@ -302,6 +313,10 @@
         ]
       },
       {
+        "path": "src/core-domains/composition/recipes/restored-behavior-recipes.js",
+        "specifiers": []
+      },
+      {
         "path": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-library.js",
         "specifiers": []
       },
@@ -324,6 +339,9 @@
         "specifiers": [
           "../ecs.js",
           "../domain-service-kit.js",
+          "../foundation/idempotency-ledger.js",
+          "../foundation/serializable-state.js",
+          "../foundation/sha256.js",
           "./manifest-kit-contract.js"
         ]
       },
@@ -379,7 +397,8 @@
           "./subdomains/artifact/kits/artifact-output-kit/kit.manifest.js",
           "./subdomains/proof/kits/project-immutability-kit/kit.manifest.js",
           "./subdomains/proof/kits/cross-runtime-parity-kit/kit.manifest.js",
-          "./subdomains/proof/kits/target-validation-kit/kit.manifest.js"
+          "./subdomains/proof/kits/target-validation-kit/kit.manifest.js",
+          "./subdomains/compile/kits/web-module-linker-kit/kit.manifest.js"
         ]
       },
       {
@@ -403,6 +422,125 @@
         ]
       },
       {
+        "path": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifiers": [
+          "./subdomains/assistance-target/subdomain.manifest.js",
+          "./subdomains/environmental-affordance/subdomain.manifest.js",
+          "./subdomains/request/subdomain.manifest.js",
+          "./subdomains/request/subdomains/queue/subdomain.manifest.js",
+          "./subdomains/request/subdomains/fulfillment/subdomain.manifest.js",
+          "./subdomains/transfer-zone/subdomain.manifest.js",
+          "./subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js",
+          "./subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js",
+          "./subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js",
+          "./subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js",
+          "./subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js",
+          "./adapters/occupant-request-adapter-kit/kit.manifest.js",
+          "./adapters/transport-request-adapter-kit/kit.manifest.js",
+          "./adapters/request-economy-adapter-kit/kit.manifest.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifiers": [
+          "./subdomains/motion/subdomains/locomotion/subdomain.manifest.js",
+          "./subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
+          "./subdomains/physics/subdomains/world-contact/subdomain.manifest.js",
+          "./subdomains/recovery/subdomain.manifest.js",
+          "./subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
+          "./subdomains/economy/subdomain.manifest.js",
+          "./subdomains/economy/subdomains/accounts/subdomain.manifest.js",
+          "./subdomains/economy/subdomains/cargo/subdomain.manifest.js",
+          "./subdomains/operations/subdomain.manifest.js",
+          "./subdomains/operations/subdomains/facility/subdomain.manifest.js",
+          "./subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js",
+          "./subdomains/operations/subdomains/transport-route/subdomain.manifest.js",
+          "./subdomains/hazard-field/subdomain.manifest.js",
+          "./subdomains/pursuit-pressure/subdomain.manifest.js",
+          "./subdomains/progression/subdomain.manifest.js",
+          "./subdomains/progression/subdomains/lifecycle/subdomain.manifest.js",
+          "./subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js",
+          "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js",
+          "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js",
+          "./subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js",
+          "./subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js",
+          "./subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js",
+          "./subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js",
+          "./subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js",
+          "./subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js",
+          "./subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js",
+          "./subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js",
+          "./subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js",
+          "./adapters/locomotion-contact-response-adapter-kit/kit.manifest.js",
+          "./adapters/vehicle-water-response-adapter-kit/kit.manifest.js",
+          "./adapters/lifecycle-economy-adapter-kit/kit.manifest.js",
+          "./adapters/lifecycle-facility-adapter-kit/kit.manifest.js",
+          "./adapters/facility-economy-adapter-kit/kit.manifest.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/spatial/subdomains/scale/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifiers": [
+          "./subdomains/navigation/subdomain.manifest.js",
+          "./subdomains/navigation/subdomains/navmesh/subdomain.manifest.js",
+          "./subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js",
+          "./subdomains/navigation/subdomains/route-field/subdomain.manifest.js",
+          "./subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js",
+          "./subdomains/generation/subdomain.manifest.js",
+          "./subdomains/terrain/subdomain.manifest.js",
+          "./subdomains/water-surface/subdomain.manifest.js",
+          "./subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js",
+          "./subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js",
+          "./subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js",
+          "./subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js",
+          "./subdomains/generation/kits/procedural-generation-kit/kit.manifest.js",
+          "./subdomains/terrain/kits/terrain-kit/kit.manifest.js",
+          "./subdomains/water-surface/kits/water-surface-kit/kit.manifest.js"
+        ]
+      },
+      {
         "path": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js",
         "specifiers": [
           "./registry.js"
@@ -414,7 +552,8 @@
           "../../../../domain-path.js",
           "../../../../foundation/sha256.js",
           "../../../../release.js",
-          "../../../catalog.js"
+          "../../../catalog.js",
+          "../../recipes/restored-behavior-recipes.js"
         ]
       },
       {
@@ -440,6 +579,21 @@
         "specifiers": [
           "./catalog.js"
         ]
+      },
+      {
+        "path": "src/foundation/idempotency-ledger.js",
+        "specifiers": [
+          "./serializable-state.js",
+          "./sha256.js"
+        ]
+      },
+      {
+        "path": "src/foundation/serializable-state.js",
+        "specifiers": []
+      },
+      {
+        "path": "src/foundation/sha256.js",
+        "specifiers": []
       },
       {
         "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/kit.manifest.js",
@@ -718,6 +872,12 @@
         ]
       },
       {
+        "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../manifest-input.js"
+        ]
+      },
+      {
         "path": "src/core-domains/build/subdomains/source/subdomain.manifest.js",
         "specifiers": [
           "../../manifest-input.js"
@@ -808,8 +968,376 @@
         ]
       },
       {
-        "path": "src/foundation/sha256.js",
-        "specifiers": []
+        "path": "src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/request/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/economy/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/progression/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/generation/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/terrain/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/water-surface/subdomain.manifest.js",
+        "specifiers": [
+          "../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
+      },
+      {
+        "path": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js",
+        "specifiers": [
+          "../../../../../manifest-input.js"
+        ]
       },
       {
         "path": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",
@@ -1175,6 +1703,12 @@
         "to": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js"
       },
       {
+        "from": "src/core-domains/composition/index.js",
+        "specifier": "./recipes/restored-behavior-recipes.js",
+        "kind": "relative",
+        "to": "src/core-domains/composition/recipes/restored-behavior-recipes.js"
+      },
+      {
         "from": "src/core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js",
         "specifier": "./sequence-node-library.js",
         "kind": "relative",
@@ -1343,6 +1877,12 @@
         "to": "src/core-domains/manifest-input.js"
       },
       {
+        "from": "src/core-domains/interaction/domain.manifest.js",
+        "specifier": "./restored-behavior-manifests.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/restored-behavior-manifests.js"
+      },
+      {
         "from": "src/core-domains/mcp/domain.manifest.js",
         "specifier": "../../release.js",
         "kind": "relative",
@@ -1403,6 +1943,24 @@
         "to": "src/core-domains/manifest-input.js"
       },
       {
+        "from": "src/core-domains/presentation/domain.manifest.js",
+        "specifier": "./subdomains/camera/subdomains/third-person/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/presentation/domain.manifest.js",
+        "specifier": "./subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/presentation/domain.manifest.js",
+        "specifier": "./adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js"
+      },
+      {
         "from": "src/core-domains/runtime/domain.manifest.js",
         "specifier": "../domain-manifest.js",
         "kind": "relative",
@@ -1413,6 +1971,18 @@
         "specifier": "../manifest-input.js",
         "kind": "relative",
         "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/runtime/domain.manifest.js",
+        "specifier": "./subdomains/sequence/subdomains/schedule/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/runtime/domain.manifest.js",
+        "specifier": "./subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js"
       },
       {
         "from": "src/core-domains/simulation/domain.manifest.js",
@@ -1427,6 +1997,12 @@
         "to": "src/core-domains/manifest-input.js"
       },
       {
+        "from": "src/core-domains/simulation/domain.manifest.js",
+        "specifier": "./restored-behavior-manifests.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/restored-behavior-manifests.js"
+      },
+      {
         "from": "src/core-domains/spatial/domain.manifest.js",
         "specifier": "../domain-manifest.js",
         "kind": "relative",
@@ -1439,6 +2015,18 @@
         "to": "src/core-domains/manifest-input.js"
       },
       {
+        "from": "src/core-domains/spatial/domain.manifest.js",
+        "specifier": "./subdomains/scale/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/spatial/subdomains/scale/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/spatial/domain.manifest.js",
+        "specifier": "./subdomains/scale/kits/spatial-scale-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js"
+      },
+      {
         "from": "src/core-domains/world/domain.manifest.js",
         "specifier": "../domain-manifest.js",
         "kind": "relative",
@@ -1449,6 +2037,12 @@
         "specifier": "../manifest-input.js",
         "kind": "relative",
         "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/domain.manifest.js",
+        "specifier": "./restored-behavior-manifests.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/restored-behavior-manifests.js"
       },
       {
         "from": "src/core-domains/composition/kits/composition-registry-kit/index.js",
@@ -1533,6 +2127,24 @@
         "specifier": "../domain-service-kit.js",
         "kind": "relative",
         "to": "src/domain-service-kit.js"
+      },
+      {
+        "from": "src/core-domains/domain-kit.js",
+        "specifier": "../foundation/idempotency-ledger.js",
+        "kind": "relative",
+        "to": "src/foundation/idempotency-ledger.js"
+      },
+      {
+        "from": "src/core-domains/domain-kit.js",
+        "specifier": "../foundation/serializable-state.js",
+        "kind": "relative",
+        "to": "src/foundation/serializable-state.js"
+      },
+      {
+        "from": "src/core-domains/domain-kit.js",
+        "specifier": "../foundation/sha256.js",
+        "kind": "relative",
+        "to": "src/foundation/sha256.js"
       },
       {
         "from": "src/core-domains/domain-kit.js",
@@ -1817,6 +2429,12 @@
         "to": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/kit.manifest.js"
       },
       {
+        "from": "src/core-domains/build/kit-manifests.js",
+        "specifier": "./subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js"
+      },
+      {
         "from": "src/core-domains/build/subdomain-manifests.js",
         "specifier": "./subdomains/source/subdomain.manifest.js",
         "kind": "relative",
@@ -1907,6 +2525,420 @@
         "to": "src/core-domains/build/subdomains/target/subdomains/pcvr/subdomain.manifest.js"
       },
       {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/assistance-target/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/environmental-affordance/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/request/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/request/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/request/subdomains/queue/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/request/subdomains/fulfillment/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/transfer-zone/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./adapters/occupant-request-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./adapters/transport-request-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/interaction/restored-behavior-manifests.js",
+        "specifier": "./adapters/request-economy-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/motion/subdomains/locomotion/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/physics/subdomains/world-contact/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/recovery/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/economy/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/economy/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/economy/subdomains/accounts/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/economy/subdomains/cargo/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/facility/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/transport-route/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/hazard-field/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/pursuit-pressure/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/progression/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/progression/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/progression/subdomains/lifecycle/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./adapters/locomotion-contact-response-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./adapters/vehicle-water-response-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./adapters/lifecycle-economy-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./adapters/lifecycle-facility-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/simulation/restored-behavior-manifests.js",
+        "specifier": "./adapters/facility-economy-adapter-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/spatial/subdomains/scale/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/navmesh/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/route-field/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/generation/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/generation/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/terrain/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/terrain/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/water-surface/subdomain.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/water-surface/subdomain.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/generation/kits/procedural-generation-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/terrain/kits/terrain-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js"
+      },
+      {
+        "from": "src/core-domains/world/restored-behavior-manifests.js",
+        "specifier": "./subdomains/water-surface/kits/water-surface-kit/kit.manifest.js",
+        "kind": "relative",
+        "to": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js"
+      },
+      {
         "from": "src/core-domains/composition/kits/composition-registry-kit/composition-tree.js",
         "specifier": "./registry.js",
         "kind": "relative",
@@ -1937,6 +2969,12 @@
         "to": "src/core-domains/catalog.js"
       },
       {
+        "from": "src/core-domains/composition/kits/composition-registry-kit/registry.js",
+        "specifier": "../../recipes/restored-behavior-recipes.js",
+        "kind": "relative",
+        "to": "src/core-domains/composition/recipes/restored-behavior-recipes.js"
+      },
+      {
         "from": "src/core-domains/composition/kits/composition-registry-kit/services.js",
         "specifier": "./registry.js",
         "kind": "relative",
@@ -1965,6 +3003,18 @@
         "specifier": "./catalog.js",
         "kind": "relative",
         "to": "src/core-domains/catalog.js"
+      },
+      {
+        "from": "src/foundation/idempotency-ledger.js",
+        "specifier": "./serializable-state.js",
+        "kind": "relative",
+        "to": "src/foundation/serializable-state.js"
+      },
+      {
+        "from": "src/foundation/idempotency-ledger.js",
+        "specifier": "./sha256.js",
+        "kind": "relative",
+        "to": "src/foundation/sha256.js"
       },
       {
         "from": "src/core-domains/build/subdomains/source/kits/project-source-kit/kit.manifest.js",
@@ -2243,6 +3293,12 @@
         "to": "src/core-domains/build/manifest-input.js"
       },
       {
+        "from": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+        "specifier": "../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/build/manifest-input.js"
+      },
+      {
         "from": "src/core-domains/build/subdomains/source/subdomain.manifest.js",
         "specifier": "../../manifest-input.js",
         "kind": "relative",
@@ -2331,6 +3387,378 @@
         "specifier": "../../../../manifest-input.js",
         "kind": "relative",
         "to": "src/core-domains/build/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/assistance-target/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/environmental-affordance/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/request/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/request/subdomains/queue/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/transfer-zone/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/interaction/adapters/request-economy-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/recovery/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/economy/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/facility/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/hazard-field/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/pursuit-pressure/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/progression/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/adapters/locomotion-contact-response-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/adapters/lifecycle-economy-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/adapters/lifecycle-facility-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/simulation/adapters/facility-economy-adapter-kit/kit.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/route-field/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/subdomain.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/generation/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/terrain/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/water-surface/subdomain.manifest.js",
+        "specifier": "../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/kit.manifest.js",
+        "specifier": "../../../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
+      },
+      {
+        "from": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/kit.manifest.js",
+        "specifier": "../../../../../manifest-input.js",
+        "kind": "relative",
+        "to": "src/core-domains/manifest-input.js"
       },
       {
         "from": "src/core-domains/mcp/kits/mcp-registry-kit/index.js",

@@ -1,0 +1,21 @@
+{
+  "id": "fixture-result:deterministic-replay:2",
+  "ok": false,
+  "at": "2026-08-04T07:48:14.525Z",
+  "iteration": 2,
+  "source": "fixture-synthesizer",
+  "value": {
+    "schema": "nexus-headless-reliability-fixture-result/1",
+    "fixtureId": "fixture-009-deterministic-replay",
+    "checkId": "deterministic-replay",
+    "mode": "capability",
+    "action": "fixture.deterministicReplay",
+    "ok": false,
+    "status": "requires-capability",
+    "summary": "deterministic-replay has no registered executor.",
+    "requiredCapabilities": [
+      "test.runDeterministicReplay",
+      "engine.replay"
+    ]
+  }
+}

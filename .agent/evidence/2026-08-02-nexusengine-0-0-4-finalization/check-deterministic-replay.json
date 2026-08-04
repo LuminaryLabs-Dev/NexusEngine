@@ -1,0 +1,57 @@
+{
+  "id": "check:deterministic-replay",
+  "ok": true,
+  "at": "2026-08-04T07:50:45.063Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs && node tests/sequence-node-runtime-smoke.mjs && node src/core-domains/composition/tests/composition-mcp-smoke.mjs && node src/core-domains/build/tests/full-build-loop.mjs",
+    "summary": "World, sequence, composition, and Build replay produced deterministic results.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 1059,
+          "stdout": "restored World behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node tests/sequence-node-runtime-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 1907,
+          "stdout": "sequence-node-runtime-smoke ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/composition/tests/composition-mcp-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 2451,
+          "stdout": "Core Composition MCP exactly-once smoke ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/build/tests/full-build-loop.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 12773,
+          "stdout": "Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}

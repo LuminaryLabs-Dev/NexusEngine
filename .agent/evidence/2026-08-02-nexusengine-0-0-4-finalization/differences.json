@@ -1,0 +1,26 @@
+{
+  "id": "differences",
+  "ok": true,
+  "at": "2026-08-04T07:50:45.910Z",
+  "iteration": 2,
+  "source": "guided-development-session",
+  "value": {
+    "ok": true,
+    "iteration": 2,
+    "moduleCountBefore": 125,
+    "moduleCountAfter": 201,
+    "missingBefore": [],
+    "missingAfter": [],
+    "regressions": [],
+    "requiredOutcomes": [
+      "Every production Build file is tracked and reproducible from a clean clone.",
+      "`web-static` emits a complete local dependency closure; `web-live` uses the",
+      "Android XR produces a validated ARM64 APK and PCVR produces a validated",
+      "Build remains outside the runtime graph, projects remain byte-for-byte",
+      "Repeated approved application returns the original receipt without rebuilding.",
+      "NexusEngine-Kits, Editor, Simulator, and The Open Above install an exact",
+      "Documentation, exports, MCP resources, catalogs, guide, PDF, and release",
+      "All local, clean-clone, packed-tarball, hosted package, consumer, showcase,"
+    ]
+  }
+}

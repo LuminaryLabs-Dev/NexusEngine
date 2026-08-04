@@ -1,0 +1,27 @@
+{
+  "id": "check:browser-startup",
+  "ok": true,
+  "at": "2026-08-04T07:50:44.914Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "node src/core-domains/build/tests/web-target-browser.mjs",
+    "summary": "Verified web-live and web-static targets started cleanly in Chromium.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "node src/core-domains/build/tests/web-target-browser.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 11764,
+          "stdout": "Build Web targets: one verified npm dependency closure starts cleanly in web-live and web-static\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}

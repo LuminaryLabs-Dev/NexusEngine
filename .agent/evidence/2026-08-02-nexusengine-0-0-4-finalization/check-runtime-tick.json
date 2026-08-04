@@ -1,0 +1,47 @@
+{
+  "id": "check:runtime-tick",
+  "ok": true,
+  "at": "2026-08-04T07:50:45.187Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "node tests/realtime-core-tick-contract-smoke.mjs && node src/core-domains/simulation/tests/restored-motion-behaviors.mjs && node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+    "summary": "Realtime, motion, and operations ticks passed without hidden internal ticks.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "node tests/realtime-core-tick-contract-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 460,
+          "stdout": "realtime core tick contract smoke ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 453,
+          "stdout": "restored Motion and contact behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 457,
+          "stdout": "restored Economy and Operations behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}

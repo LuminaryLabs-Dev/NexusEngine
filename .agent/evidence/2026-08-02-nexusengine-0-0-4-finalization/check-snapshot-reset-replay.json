@@ -1,0 +1,57 @@
+{
+  "id": "check:snapshot-reset-replay",
+  "ok": true,
+  "at": "2026-08-04T07:50:44.835Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "node tests/runtime-kit-idempotency-smoke.mjs && node src/core-domains/simulation/tests/restored-economy-operations.mjs && node src/core-domains/interaction/tests/restored-interaction-behaviors.mjs && node src/core-domains/build/tests/full-build-loop.mjs",
+    "summary": "Runtime, restored state owners, and Build receipts passed reset, snapshot, and replay checks.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "node tests/runtime-kit-idempotency-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 506,
+          "stdout": "runtime Kit idempotency smoke: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/simulation/tests/restored-economy-operations.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 610,
+          "stdout": "restored Economy and Operations behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 571,
+          "stdout": "restored Interaction behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/build/tests/full-build-loop.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 16832,
+          "stdout": "Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}

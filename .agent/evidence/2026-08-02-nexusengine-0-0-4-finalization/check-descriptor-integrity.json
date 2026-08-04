@@ -1,0 +1,47 @@
+{
+  "id": "check:descriptor-integrity",
+  "ok": true,
+  "at": "2026-08-04T07:50:44.743Z",
+  "iteration": 2,
+  "source": "generated-fixture",
+  "value": {
+    "ok": true,
+    "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs && node src/core-domains/presentation/tests/third-person-camera-restoration.mjs && node tests/core-domains/core-object-fidelity-domain-smoke.mjs",
+    "summary": "World, camera, and Object fidelity descriptors passed schema and clone-boundary checks.",
+    "details": {
+      "commands": [
+        {
+          "ok": true,
+          "command": "node src/core-domains/world/tests/restored-world-behaviors.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 1104,
+          "stdout": "restored World behaviors: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 564,
+          "stdout": "third-person camera restoration: ok\n",
+          "stderr": "",
+          "error": null
+        },
+        {
+          "ok": true,
+          "command": "node tests/core-domains/core-object-fidelity-domain-smoke.mjs",
+          "status": 0,
+          "signal": null,
+          "durationMs": 2161,
+          "stdout": "core object fidelity and capture contract smoke ok\n",
+          "stderr": "",
+          "error": null
+        }
+      ]
+    },
+    "artifacts": []
+  }
+}
