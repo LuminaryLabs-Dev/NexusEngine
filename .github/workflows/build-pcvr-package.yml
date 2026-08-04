@@ -17,10 +17,12 @@ jobs:
     name: Build PCVR Package
     runs-on: windows-latest
     timeout-minutes: 45
-    env:
-      NEXUSENGINE_HOME: ${{ runner.temp }}/nexusengine
 
     steps:
+      - name: Configure NexusEngine state root
+        shell: pwsh
+        run: '"NEXUSENGINE_HOME=${{ runner.temp }}/nexusengine" | Out-File -FilePath $env:GITHUB_ENV -Encoding utf8 -Append'
+
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 

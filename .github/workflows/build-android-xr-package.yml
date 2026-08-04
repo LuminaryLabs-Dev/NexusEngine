@@ -17,10 +17,12 @@ jobs:
     name: Build Android XR Package
     runs-on: ubuntu-latest
     timeout-minutes: 45
-    env:
-      NEXUSENGINE_HOME: ${{ runner.temp }}/nexusengine
 
     steps:
+      - name: Configure NexusEngine state root
+        shell: bash
+        run: echo "NEXUSENGINE_HOME=${{ runner.temp }}/nexusengine" >> "$GITHUB_ENV"
+
       - name: Checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
 
