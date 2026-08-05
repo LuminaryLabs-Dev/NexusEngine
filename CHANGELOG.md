@@ -77,6 +77,9 @@
 - Exact npm lock records using GitHub HTTPS or npm's GitHub SSH spelling now
   resolve to one canonical HTTPS source identity; moving refs and other SSH
   sources still fail before Build mutation.
+- Vegetation ecology exposes the correctly named
+  `scoreVegetationSuitability` helper at the canonical Object/Vegetation
+  package subpath.
 - The historical overloaded World Physics behavior is split into World Contact
   and Soft Respawn. The current provider-neutral `createPhysicsKit` remains a
   separate Physics contract.

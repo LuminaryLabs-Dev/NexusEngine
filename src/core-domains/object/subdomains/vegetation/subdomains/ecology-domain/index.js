@@ -1,6 +1,6 @@
 import { createDomainKit } from "../../../../../domain-kit.js";
 import {
-  svegetationSuitability,
+  scoreVegetationSuitability,
   selectVegetationSpecies
 } from "../../kits/object-vegetation-kit/contracts.js";
 
@@ -21,7 +21,7 @@ export function createVegetationEcologyKit(config = {}) {
     services: ["suitability", "selection"],
     createApi() {
       return {
-        score: svegetationSuitability,
+        score: scoreVegetationSuitability,
         select: selectVegetationSpecies
       };
     },

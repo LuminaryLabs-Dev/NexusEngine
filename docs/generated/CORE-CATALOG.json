@@ -22091,7 +22091,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
+  "registryHash": "740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -24208,15 +24208,15 @@
     },
     {
       "path": "src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/contracts.js",
-      "sha256": "da4db125d380da9f5079b3d1a23a49ced130cd5d29a7c4eacd64aa6a581bb75d"
+      "sha256": "07877304175ef2a68b12de124f03e297090e90b04a877b1c49280aabe3657e17"
     },
     {
       "path": "src/core-domains/object/subdomains/vegetation/kits/object-vegetation-kit/index.js",
-      "sha256": "86088a4c9aee6fe9cbc63a503a5f6ccce8ebd42fc9e73a4b2b8195b3592d31d0"
+      "sha256": "fa14846120329ff72a49adabc019e4cfb3bc8bf04bc4925591f59ba6e07aab62"
     },
     {
       "path": "src/core-domains/object/subdomains/vegetation/subdomains/ecology-domain/index.js",
-      "sha256": "58d5eaebb15655c56e985811f90af300699e6380ba09255c6fcb9a8312541bde"
+      "sha256": "9b557e6e10ba0982c47ea4dc387de4f9f12e94f77d24248cf47a628fa52491c3"
     },
     {
       "path": "src/core-domains/object/subdomains/vegetation/subdomains/foliage-domain/index.js",

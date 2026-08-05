@@ -252,7 +252,7 @@ function suitability(value, target, tolerance) {
   return clamp(1 - Math.abs(value - target) / Math.max(0.001, tolerance), 0, 1);
 }
 
-export function svegetationSuitability(speciesInput, environmentInput = {}) {
+export function scoreVegetationSuitability(speciesInput, environmentInput = {}) {
   const species = createVegetationSpeciesDescriptor(speciesInput);
   const environment = normalizedEnvironment(environmentInput);
   const ecology = species.ecology;
@@ -271,7 +271,7 @@ export function svegetationSuitability(speciesInput, environmentInput = {}) {
 export function selectVegetationSpecies(speciesValues = [], environment = {}, seed = "vegetation-selection") {
   const species = speciesValues.map(createVegetationSpeciesDescriptor).sort((left, right) => left.id.localeCompare(right.id));
   if (!species.length) return null;
-  const scores = species.map((entry) => svegetationSuitability(entry, environment));
+  const scores = species.map((entry) => scoreVegetationSuitability(entry, environment));
   const total = scores.reduce((sum, value) => sum + value, 0);
   if (total <= 0) return species[Math.floor(randomUnit(seed, "fallback") * species.length) % species.length];
   let cursor = randomUnit(seed, "weighted") * total;

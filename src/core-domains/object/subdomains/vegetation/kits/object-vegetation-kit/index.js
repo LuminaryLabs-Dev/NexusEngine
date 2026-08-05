@@ -3,7 +3,7 @@ import {
   createVegetationInstanceDescriptor,
   createVegetationSpeciesDescriptor,
   equalVegetationDescriptors,
-  svegetationSuitability,
+  scoreVegetationSuitability,
   selectVegetationSpecies,
   updateVegetationLifecycle,
   validateVegetationInstance,
@@ -160,7 +160,7 @@ export function createVegetationKit(config = {}) {
         scoreSpecies(speciesId, environment = {}) {
           const species = getSpecies(speciesId);
           if (!species) throw new RangeError(`Unknown vegetation species: ${speciesId}`);
-          return svegetationSuitability(species, environment);
+          return scoreVegetationSuitability(species, environment);
         },
         selectSpecies(environment = {}, seed = "vegetation-selection", filter = null) {
           const values = listSpecies().filter((entry) => typeof filter === "function" ? filter(entry) : true);

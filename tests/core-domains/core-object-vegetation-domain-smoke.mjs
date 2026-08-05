@@ -5,6 +5,7 @@ import {
   createFoliageCardFamilyDescriptor,
   createFoliageClusterDescriptor,
   createFoliagePlacementRecipe,
+  scoreVegetationSuitability,
   createTreeCanopyComposition
 } from "../helpers/public-package-surface.mjs";
 
@@ -59,6 +60,7 @@ vegetation.registerInstance(instanceA);
 assert.equal(vegetation.setLifecycleState(instanceA.id, "damaged").lifecycle.state, "damaged");
 
 const idealEnvironment = { moisture: 0.65, elevation: 0.35, slope: 0.3, temperature: 0.55, cluster: 1 };
+assert.equal(scoreVegetationSuitability(species, idealEnvironment), ecology.score(species, idealEnvironment));
 assert.ok(ecology.score(species, idealEnvironment) > 1);
 assert.equal(ecology.select([species], idealEnvironment, "selection").id, species.id);
 assert.equal(vegetation.selectSpecies(idealEnvironment, "selection").id, species.id);

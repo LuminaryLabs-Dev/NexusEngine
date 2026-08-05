@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
-  "compositionRegistryHash": "sha256:517e5197e57d309599a6949418cf944e805eac08fb7b89c18a49360699c3002a",
+  "registryHash": "sha256:740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
+  "compositionRegistryHash": "sha256:da993bbeddfbf1f23ff47899411d8bee9109b9a89f388e162d2d201c244d26ad",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
-      "integrity": "sha256:0fe0ffcc730675224e5a487231520ffec4f07153e8665fe18ccef21743adb9aa",
+      "sourceCommit": "builtin:740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
+      "integrity": "sha256:740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
       "status": "available",
       "environments": [
         "browser",
