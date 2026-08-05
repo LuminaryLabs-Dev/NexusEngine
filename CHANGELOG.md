@@ -5,6 +5,9 @@
 - Added public contribution, security, operations, and visual-identity guides.
 - Added an agent-readable repository profile and reusable repository image
   pack under `docs/assets/brand/`.
+- Made hosted release proof provision Poppler explicitly and resolve Android
+  `sdkmanager` from the configured SDK root rather than assuming it is on
+  `PATH`.
 - Clarified package status, publication evidence, and the current license-file
   limitation without changing runtime behavior.
 
