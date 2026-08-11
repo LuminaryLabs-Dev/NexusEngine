@@ -1,0 +1,63 @@
+{
+  "schemaVersion": "nexusengine.version-failure-point/1",
+  "version": "0.0.5",
+  "recordedAt": "2026-08-11",
+  "policy": {
+    "main": "development integration branch; incomplete work may be published when sanitized and explicitly documented",
+    "numericVersionBranch": "immutable release branch; all configured release gates must pass"
+  },
+  "sourceSnapshot": "d2a32b01e21446a593cf037a68fce3051b7af45c",
+  "proof": {
+    "passed": [
+      "npm ci --ignore-scripts --no-audit --no-fund",
+      "npx --no-install playwright install chromium",
+      "npm run core:contracts",
+      "npm run ownership:generate",
+      "npm run protokits:check",
+      "npm run migrations:check",
+      "npm run release:manifest",
+      "npm run boundaries:check",
+      "npm pack --dry-run --json",
+      "npm run security:scan-history"
+    ],
+    "failed": [
+      {
+        "command": "npm run core:check",
+        "failure": "n:physics:collider is not proven"
+      },
+      {
+        "command": "npm test",
+        "failure": "Core catalog generation stops because n:physics:collider is not proven"
+      },
+      {
+        "command": "npm run test:release",
+        "failure": "Core catalog generation stops because n:physics:collider is not proven"
+      },
+      {
+        "command": "npm run docs:check",
+        "failure": "Generated guide drift: docs/NexusEngine-Guide.md"
+      },
+      {
+        "command": "git diff --exit-code",
+        "failure": "Release generation changes docs/DSK_MANIFEST_0.0.4.json, docs/KIT-OWNERSHIP.json, and docs/KIT-OWNERSHIP.md"
+      }
+    ]
+  },
+  "matrix": {
+    "masterPackages": 67,
+    "proven": 12,
+    "pending": 55,
+    "activePackage": "master-package-n-physics-detection"
+  },
+  "security": {
+    "treeFindings": 0,
+    "introducedHistoryFindings": 0,
+    "report": ".agent/versions/0.0.5/publish-history-scan.json"
+  },
+  "releaseEffect": {
+    "mainDevelopmentPushBlocked": false,
+    "immutableVersionBranchBlocked": true,
+    "npmPublicationBlocked": true
+  },
+  "nextAction": "Prove Physics Collider and Detection, regenerate the Core catalog and documentation, then continue the remaining master packages."
+}

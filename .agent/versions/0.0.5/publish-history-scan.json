@@ -4,7 +4,7 @@
   "repository": ".",
   "rewrite": null,
   "tree": {
-    "filesScanned": 2741,
+    "filesScanned": 2743,
     "findings": {
       "mac-home": 0,
       "linux-home": 0,
@@ -23,7 +23,7 @@
   },
   "history": {
     "range": "origin/main..HEAD",
-    "commitsScanned": 1,
+    "commitsScanned": 2,
     "findings": {
       "mac-home": {
         "commits": 0,
@@ -81,5 +81,5 @@
   },
   "findingCount": 0,
   "result": "passed",
-  "integrity": "a0364fb71ac7062be0bdef51050e1ad2e6f01c6d5e37a84759e1a752a39bdd13"
+  "integrity": "7d5e9216b2660636b41c7802b2b943f791794a933174f7a68d97b784df5c0f11"
 }

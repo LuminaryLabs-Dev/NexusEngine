@@ -6,6 +6,7 @@
   "baseSha": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
   "lastCommittedDevelopmentSha": "5d6558ccd44eaaacbdb6c9d569439437b85ede5a",
   "candidateSha": null,
+  "sanitizedSourceSnapshotSha": "d2a32b01e21446a593cf037a68fce3051b7af45c",
   "masterPackages": {
     "total": 67,
     "proven": 12,
@@ -30,6 +31,14 @@
     "hostedChecks": "pending",
     "releaseApproval": "pending"
   },
-  "pushSafe": false,
-  "nextAction": "Finish the bounded Physics Detection source review and remaining packages; before push, create and rescan one clean candidate commit based directly on origin/main."
+  "branchPolicy": {
+    "main": "active-development",
+    "numericVersionBranches": "immutable-proven-releases"
+  },
+  "mainDevelopmentPushSafe": true,
+  "immutableReleaseReady": false,
+  "pushSafe": true,
+  "failureRecord": ".agent/versions/0.0.5/failure-point.json",
+  "handoff": ".agent/versions/0.0.5/HANDOFF.md",
+  "nextAction": "Publish the sanitized development snapshot to main, then prove Physics Collider and Detection before continuing the remaining packages."
 }
