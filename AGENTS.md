@@ -80,6 +80,7 @@ This repository owns:
 - deterministic ticks
 - reset and snapshot expectations
 - renderer-agnostic descriptors
+- provider-neutral Render execution contracts and portable transport records
 - validation paths for promoted behavior
 - transport-neutral host, policy, MCP, and composition contracts
 - manifest-owned universal navigation, world, motion, economy, operations,
@@ -93,6 +94,61 @@ platform-specific exception: it never enters an application runtime graph, and
 runtime Domains cannot import it. Complete games and presets belong in
 experiment or game repositories. The retired ProtoKit workflow is not an
 implementation destination.
+
+`n:presentation` owns renderer-neutral visual meaning. `n:render` owns the
+backend-neutral execution boundary. `n:host` owns platform surface capability
+contracts, and concrete renderer providers remain external. Do not put GPU
+handles, Three.js objects, WebGL calls, shader compilation, or frame submission
+inside Core contracts. Do not make Render reinterpret or own Presentation
+graphs.
+
+`n:render:lifecycle` owns portable selected-provider composition state and
+receipts, not executable provider lifecycle. Runtime still owns engine ticking
+and generic Kit installation. Render recovery must either prove a ready resume
+or return to installed state for a fresh startup; coordinated failure must
+restore every affected lifecycle atom.
+
+`n:render:device` owns only portable device identity, feature and limit
+negotiation, capability profiles, semantic memory and queue accounting, device
+lifecycle, loss facts, and read-only diagnostics. Concrete providers own GPU
+handles, real allocation, command encoding, queue execution, and repair. Keep
+Render Lifecycle and Device Lifecycle separate: the former owns the selected
+provider composition; the latter owns the returned device's portable state.
+
+`n:render:buffer` owns portable logical Buffer descriptors, explicit field
+layouts, semantic typed views, bounded update requests, and portable provider
+receipts. It references exact Render Resource identities and Device queue
+submissions. Resource owns residency, Device owns queue completion, Asset owns
+source bytes and content identity, Geometry and Texture own higher-level
+meaning, and providers own GPU handles, allocation, mapping, byte transfer,
+submission, and repair. Do not copy those responsibilities into Buffer.
+
+`n:render:texture` owns portable Texture formats, exact logical Texture
+records, typed subresource views, explicit mip plans, Buffer-backed stream
+requests, and proven subresource residency. It references public Resource,
+Buffer, and Device queue capabilities. Asset owns source content and decoding;
+Presentation owns material, image, lighting, and authored shadow meaning;
+Pipeline and Frame own attachment execution; providers own GPU handles,
+allocation, upload, mip generation, eviction, repair, and backend format
+mapping. Do not hide those responsibilities inside Texture.
+
+`n:render:shader` owns portable Shader stage and language contracts, immutable
+source and include lineage, module and program topology, variants, bounded
+permutations, logical compile state, normalized provider reflection, and
+semantic cache links to resident `shader-program` Resources. Reuse the single
+`shader-schema-kit` under `n:render:contracts`; never create another owner.
+Core may validate explicit compile requests and receipts, but providers own
+preprocessing, parsing, compilation, linking, binary artifacts, GPU program
+handles, backend reflection execution, and repair. Material owns parameter
+binding, Pipeline owns execution state, and Presentation owns visual meaning.
+
+`n:render:material` owns exact portable Shader-slot association, Material
+parameters, Texture and sampler bindings, instances, variants, validation, and
+semantic cache lineage. Material slot visibility must exactly match its Shader
+binding. Current Material resolution must recheck required Texture resource and
+subresource residency; an eviction invalidates dependent Material validation
+and cache use without mutating Material state. Providers still own GPU binding
+objects and execution, while Presentation owns authored visual meaning.
 
 The `0.0.4` restoration ledger is an active ownership contract. Its 26
 historical modules map to 27 corrected atoms, nine optional integration

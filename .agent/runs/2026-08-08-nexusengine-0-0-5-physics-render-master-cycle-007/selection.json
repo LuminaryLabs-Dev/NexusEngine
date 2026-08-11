@@ -1,0 +1,17 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-007",
+  "masterPackageId": "master-package-n-physics-contracts",
+  "sourceGroup": "n:physics/contracts",
+  "detailedNodeCount": 42,
+  "reason": "No dependencies and highest leverage for every later Physics package.",
+  "missionPackageCount": 67,
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

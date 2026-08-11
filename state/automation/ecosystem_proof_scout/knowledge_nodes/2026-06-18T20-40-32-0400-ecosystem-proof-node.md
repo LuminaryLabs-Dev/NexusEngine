@@ -39,7 +39,7 @@
 
 ## Next Search Branches
 - branch: local-to-public-proof-sync
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, GitHub Pages build source
+- files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`, GitHub Pages build source
 - question: What exact commits or generated outputs must contain the DSK proof route and first-wave ledger for public review?
 - branch: import-map-public-shape
 - files or folders: `experiments/dsk-first-wave-proof/index.html`, ProtoKits README import-map guidance, public CDN URLs

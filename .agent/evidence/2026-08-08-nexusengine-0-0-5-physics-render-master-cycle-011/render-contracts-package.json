@@ -1,0 +1,297 @@
+{
+  "schema": "nexusengine.render-contracts-package-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011",
+  "baseHead": "1df482f70a6caae04c5ab474107c4b0095dafd8e",
+  "proofState": "committed-sha-proven",
+  "exactCommittedHead": "f9f1088569e89c1436ac74953e2262042c62d075",
+  "registrySha256": "176d84268de00bd9f01a21aff0fb31def85ee6f879fe93e090f067f0799e2568",
+  "guideContentSha256": "94c5174e1d0b08bf4236116d7af06d04904a38ab8efd8400d168a53303b299dd",
+  "domainPath": "n:render:contracts",
+  "kits": [
+    "render-domain-contract-kit",
+    "render-provider-contract-kit",
+    "render-resource-schema-kit",
+    "render-frame-schema-kit",
+    "render-pass-schema-kit",
+    "shader-schema-kit",
+    "render-event-schema-kit"
+  ],
+  "publicSubpaths": [
+    "nexusengine/domains/render",
+    "nexusengine/domains/render/contracts",
+    "nexusengine/domains/render/contract",
+    "nexusengine/domains/render/provider-contract",
+    "nexusengine/domains/render/resource-schema",
+    "nexusengine/domains/render/frame-schema",
+    "nexusengine/domains/render/pass-schema",
+    "nexusengine/domains/render/shader-schema",
+    "nexusengine/domains/render/event-schema"
+  ],
+  "validation": {
+    "targetedGraphicsAndRenderSmoke": "passed",
+    "directSevenKitProbe": "passed",
+    "deterministicPropertyProbe": {
+      "status": "passed",
+      "recordSets": 1000,
+      "normalizations": 5000,
+      "finiteJsonPortable": true,
+      "signedZeroCanonical": true,
+      "keyOrderIndependent": true
+    },
+    "coreCheck": "passed",
+    "coreContracts": "passed",
+    "ownershipCheck": {
+      "status": "passed",
+      "manifestProvenPublicAtoms": 191,
+      "unreviewedModules": 0,
+      "violations": 0
+    },
+    "surfaceCheck": {
+      "status": "passed",
+      "packageModules": 244
+    },
+    "releaseManifestCheck": "passed",
+    "docsCheck": {
+      "status": "passed",
+      "pdfPages": 148,
+      "nonblank": true,
+      "unclipped": true
+    },
+    "migrationsCheck": "passed",
+    "protokitsCheck": "passed",
+    "boundariesCheck": {
+      "status": "passed",
+      "productionModules": 987
+    },
+    "npmTest": {
+      "status": "passed",
+      "tests": 101
+    },
+    "releaseTest": {
+      "status": "passed",
+      "tests": 34
+    },
+    "packDryRun": {
+      "status": "passed",
+      "filename": "nexusengine-0.0.4.tgz",
+      "bytes": 2897445,
+      "unpackedBytes": 8760384,
+      "entries": 1211,
+      "integrity": "sha512-YehnLBb/99t6e+jh69UfQfVohMLVB8/VaCmEGZYBxb8FjI7ceMbBoC+FHfpQb60YfEpXhN4Xprg/oYvKYYQ9CQ=="
+    },
+    "isolatedCommittedWorktree": {
+      "status": "passed",
+      "head": "f9f1088569e89c1436ac74953e2262042c62d075",
+      "install": "GIT_SSH_COMMAND=false npm ci --ignore-scripts --no-audit --no-fund",
+      "statusDriftBeforePacking": false,
+      "smokeTests": 101,
+      "releaseTests": 34
+    },
+    "freshInstall": "passed",
+    "freshImport": {
+      "status": "passed",
+      "subpaths": 9,
+      "registryHashMatched": true
+    },
+    "freshComposition": {
+      "status": "passed",
+      "requestedKits": 6,
+      "selectedKits": 8,
+      "renderContractKits": 7,
+      "missing": []
+    },
+    "freshLifecycle": {
+      "status": "passed",
+      "sameInstanceNoOp": true,
+      "equivalentInstallNoOp": true,
+      "changedContentRejected": true,
+      "repeatStableReset": true,
+      "repeatStableLoad": true,
+      "restartRestored": true,
+      "portableRecordTypes": 5
+    },
+    "packagedFiles": 1211,
+    "symlinkCount": 0,
+    "hiddenRepositoryPathCount": 0,
+    "privateMachinePathMatches": 0,
+    "browserAndHumanView": {
+      "status": "deferred-not-applicable",
+      "reason": "This package validates nonvisual transport contracts and executes no renderer. Browser, pixel, and Human View gates belong to provider and The Open Above packages."
+    },
+    "harnessRetries": [
+      {
+        "phase": "property-probe-command-construction",
+        "result": "failed-before-execution",
+        "reason": "The first orchestration string interpolated the probe loop variable before Node ran.",
+        "correction": "Reran the same bounded probe with plain string concatenation."
+      },
+      {
+        "phase": "property-probe-expected-order",
+        "result": "assertion-mismatch",
+        "reason": "The first expectation assumed numeric suffix order instead of the documented lexical canonical order.",
+        "correction": "Reran against lexical canonical ordering; all 1,000 record sets passed."
+      }
+    ]
+  },
+  "ownership": {
+    "presentationOwnsVisualMeaning": true,
+    "renderContractsOwnExecutionRecords": true,
+    "hostOwnsPlatformSurfaceCapabilities": true,
+    "buildOwnsTargetPackaging": true,
+    "providerOwnsGpuExecutionAndHandles": true,
+    "renderContractsOrderPresentationGraphs": false,
+    "renderContractsExecuteProviders": false,
+    "renderContractsCompileShaders": false
+  },
+  "behavior": {
+    "strictUnknownFieldRejection": true,
+    "duplicateReferenceRejection": true,
+    "portableFiniteRecords": true,
+    "callerInputCloned": true,
+    "nestedSignedZeroCanonical": true,
+    "sameInstanceInstallNoOp": true,
+    "equivalentInstallNoOp": true,
+    "changedContentConflictBeforeMutation": true,
+    "repeatStableSnapshotLoad": true,
+    "repeatStableReset": true,
+    "missingRootCapabilityRejected": true,
+    "compositionDependencyOrderProven": true,
+    "concreteRendererIncluded": false
+  },
+  "plannedDuplicateDisposition": {
+    "kitId": "shader-schema-kit",
+    "canonicalOwner": "n:render:contracts",
+    "laterSourceGroup": "n:render/shader",
+    "requiredResolution": "reuse, distinct proved rename, or duplicate disposition",
+    "secondIdentityAllowed": false
+  },
+  "tarball": {
+    "filename": "nexusengine-0.0.4.tgz",
+    "bytes": 2897445,
+    "unpackedBytes": 8760384,
+    "entries": 1211,
+    "shasum": "56e45a9ee5ba3be7b6ae00099679d7b507dc6f9e",
+    "sha256": "903309140f17534364a9bdf8dcff4ade85c9962011b5ce94e78220ed792059a1",
+    "integrity": "sha512-YehnLBb/99t6e+jh69UfQfVohMLVB8/VaCmEGZYBxb8FjI7ceMbBoC+FHfpQb60YfEpXhN4Xprg/oYvKYYQ9CQ==",
+    "symlinkEntries": 0
+  },
+  "rollups": {
+    "renderContractsCapability": {
+      "status": "completed",
+      "actionsCompleted": 49,
+      "actionsTotal": 49,
+      "kitsCompleted": 7,
+      "kitsTotal": 7,
+      "sourceCommit": "f9f1088569e89c1436ac74953e2262042c62d075"
+    },
+    "renderDomain": {
+      "status": "in_progress",
+      "packagesCompleted": 1,
+      "packagesTotal": 25,
+      "completedPackage": "master-package-n-render-contracts"
+    },
+    "mission": {
+      "status": "in_progress",
+      "packagesCompleted": 5,
+      "packagesTotal": 67,
+      "protectedVersion": "origin/0.0.4",
+      "releaseBranchCreated": false,
+      "mainPushed": false
+    }
+  },
+  "detailedActions": {
+    "render-domain-contract-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/domain.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/domain.manifest.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/CORE-CATALOG.json", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "render-provider-contract-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/contract-manifests.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/API-REFERENCE.md", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "render-resource-schema-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/contract-manifests.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/PACKAGE-EXPORTS.json", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "render-frame-schema-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/contract-manifests.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/API-REFERENCE.md", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "render-pass-schema-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/CURRENT-ARCHITECTURE.md", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "shader-schema-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/contract-manifests.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/API-REFERENCE.md", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    },
+    "render-event-schema-kit": {
+      "C": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/kit.manifest.js", "src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/contracts.js"] },
+      "I": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/index.js"] },
+      "L": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "P": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "G": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["src/core-domains/render/subdomains/contracts/contract-manifests.js", "tests/core-domains/core-graphics-domain-smoke.mjs"] },
+      "D": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["package.json", "docs/generated/API-REFERENCE.md", "docs/migrations/0.0.5-render-contracts.md"] },
+      "R": { "status": "passed", "commit": "f9f1088569e89c1436ac74953e2262042c62d075", "evidence": ["tests/core-domains/core-graphics-domain-smoke.mjs", ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/render-contracts-package.json"] }
+    }
+  },
+  "matrixReconciliation": {
+    "detailedBeforeSha256": "b645c28623875a12254d902d7f941332c6299f628df7c19ae07c2d1222477351",
+    "detailedAfterSha256": "454c54242e1c63cc85a1d9d238906c1fa8271b4c1a8bf555aa42d5db7ceca966",
+    "masterBeforeSha256": "a546794775d098c86cd4082f9a8c408d5036bc07d084a41ef4d0f4aaaee3d213",
+    "masterAfterSha256": "215032571cb9670960499fb58f0d9e2d5803e8e7aa24c678c351c0d2118e53d8",
+    "detailedActionsCompleted": 49,
+    "detailedActionsTotal": 49,
+    "matrixNodesRepresented": 3343,
+    "matrixNodesTotal": 3343,
+    "masterNodes": 74,
+    "masterPackages": 67,
+    "masterPackagesCompleted": 5,
+    "masterValidation": "passed"
+  },
+  "nextPackage": {
+    "id": "master-package-n-render-lifecycle",
+    "sourceGroup": "n:render/lifecycle",
+    "detailedActions": 42,
+    "kitCount": 6,
+    "reason": "This is the smallest proof-ready semantic package, directly extends the completed Render contracts, and unlocks the Render device path. The one-row checklist projection is deferred because it cannot prove the complete cross-Kit contract gate yet.",
+    "implementedInThisCycle": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false,
+    "consumerChanged": false
+  },
+  "nextProof": "Begin a new bounded cycle for master-package-n-render-lifecycle, revalidate the current matrix hashes and repository state, then inspect existing Runtime lifecycle, Render contracts, and provider boundaries before implementation."
+}

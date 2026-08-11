@@ -29,9 +29,9 @@ Result: partial; core remains green, but ProtoKits local/fetched checks, Experim
 - Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
@@ -43,7 +43,7 @@ Result: partial; core remains green, but ProtoKits local/fetched checks, Experim
 - ProtoKits disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave.test.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - Experiments local available checkout: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because sibling ProtoKits imports package `nexusengine`, which is not resolvable.
 - Experiments disposable fetched-ref extraction at `origin/0.0.2` `eaeec53bc44e13136e18af37ed4c3f0755b57e60`: `npm run check` -> passed after generating 100 flat route wrappers in the disposable directory.
-- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `/private/tmp/NexusEngine/src/index.js`.
+- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `${TMPDIR}/NexusEngine/src/index.js`.
 - Public URL checks used direct `curl -L -s -o /dev/null -w "%{http_code}"`.
 - Human-view validation used Playwright CLI. Snapshot showed heading `DSK first-wave proof`, description text, and `Booting...`; console/network output showed 404s for sibling NexusEngine and ProtoKits module paths. Playwright browser and scratch artifacts were closed/removed.
 - Targeted `rg`/file inspections checked DSK aliases, `engine.n.*`, direct package imports, proof route import maps, Experiments aggregate scripts, and ownership docs.

@@ -61,19 +61,19 @@
   files or folders: `npm run automation:preflight`, `git rev-parse HEAD origin/main origin/0.0.2`
   question: Should automation proof require checkout of the latest release branch name, or is commit equality against the resolved target enough?
 - branch: protokits-targeted-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
+  files or folders: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
   question: Which module-source model makes targeted first-wave DSK proof resolve `nexusengine` in local and detached release layouts?
 - branch: experiments-aggregate-canonical-route
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
+  files or folders: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
   question: Why is `the-open-above-v2` still versioned in aggregate route validation?
 - branch: experiments-targeted-dsk-api-installation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-foundation`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-service-kits`
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `repo://NexusEngine-ProtoKits/protokits/domain-foundation`, `repo://NexusEngine-ProtoKits/protokits/domain-service-kits`
   question: Why are expected first-wave APIs missing from `engine.n` after proof kit installation?
 - branch: public-proof-import-shape
   files or folders: public DSK proof route, raw proof source, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, package dependency, or import maps?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should DSK first-wave proof be included in aggregate validation after route smoke is green?
 
 ## Not Claimed

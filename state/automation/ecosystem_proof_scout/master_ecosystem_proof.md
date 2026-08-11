@@ -1281,11 +1281,11 @@
 - branch: protokits-local-vs-release-vs-main-proof
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy.
+- next files: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy.
 - branch: experiments-main-drift-and-release-ref-proof
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`, route/proof tests.
+- next files: `repo://NexusEngine-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`, route/proof tests.
 - branch: protokits-cdn-proof-path
 - owner: next scout
 - priority: high
@@ -1309,15 +1309,15 @@
 - branch: protokits-package-version-policy
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, fetched `origin/0.0.2`, first-wave DSK adapter metadata.
+- next files: `repo://NexusEngine-ProtoKits/package.json`, fetched `origin/0.0.2`, first-wave DSK adapter metadata.
 - branch: protokits-fetched-ref-module-resolution
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`, package/link/CDN resolution setup.
+- next files: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`, package/link/CDN resolution setup.
 - branch: experiments-targeted-dsk-fetched-ref
 - owner: next scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, `tests/dsk-first-wave-experiment-smoke.mjs`, `experiments/dsk-first-wave-proof/src/proof.js`, sibling path layout.
+- next files: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, `tests/dsk-first-wave-experiment-smoke.mjs`, `experiments/dsk-first-wave-proof/src/proof.js`, sibling path layout.
 - branch: public-proof-import-shape
 - owner: next scout
 - priority: high
@@ -1337,7 +1337,7 @@
 - branch: sibling-release-alignment-watch
 - owner: next scout
 - priority: medium
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`.
+- next files: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`.
 - branch: stale-cdn-pins
 - owner: next scout
 - priority: medium

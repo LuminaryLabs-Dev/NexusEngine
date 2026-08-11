@@ -1,0 +1,650 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018",
+  "masterPackageId": "master-package-n-render-material",
+  "sourceGroup": "n:render/material",
+  "status": "completed-and-reconciled",
+  "scope": {
+    "detailedActions": 63,
+    "plannedKits": 9,
+    "newKits": 9,
+    "reusedKits": 0
+  },
+  "ownership": {
+    "material": "portable execution bindings parameter sets Texture-view and sampler bindings instances variants validation and cache links",
+    "presentation": "authored visual PBR UV procedural and texture-slot meaning",
+    "physics": "density friction restitution and contact meaning",
+    "shader": "program variant compile and reflection records",
+    "textureResource": "Texture views residency and execution-resource lifecycle",
+    "pipeline": "draw-pass and pipeline execution state",
+    "provider": "GPU objects handles uploads binding execution and repair"
+  },
+  "implementation": {
+    "sourceFiles": 32,
+    "sourceLines": 1458,
+    "newAtomicKits": 9,
+    "sourceAggregateSha256": "1d3d4fcf2925066ecfe25faa6685eef3f0196fcda10b18052a2ffa55c8e44b5c",
+    "registrySha256": "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8"
+  },
+  "repairs": [
+    "Material slot stage visibility now exactly matches its Shader binding instead of accepting a strict subset.",
+    "Current Material resolution revalidates required Texture lifecycle and subresource residency after registration.",
+    "Evicted required Texture subresources now invalidate dependent Material validation and cache use without Material-state mutation.",
+    "The complete import guide now installs the Buffer dependency required by Texture streaming.",
+    "README, Guide, migration map, changelog, package exports, and generated catalogs now report the same Material surface."
+  ],
+  "worktreeProof": {
+    "targetedSmoke": "passed",
+    "fullTests": "101 passed",
+    "releaseTests": "34 passed",
+    "boundaries": "1214 production modules passed",
+    "docs": "70 active files passed",
+    "guidePdf": "171 nonblank unclipped pages",
+    "publicPackageModules": 316,
+    "publicReachableModules": 1027,
+    "packageEntries": 1445,
+    "tarballSha256": "a5d51105c3c32da8860d7e8cc1d68b3441ecb6ca25d175c6336d6c2c1bdec16d",
+    "freshInstall": "passed with SSH disabled and without scripts or package symlink",
+    "materialExports": "9 atomic subpaths and 9 APIs passed",
+    "hygiene": "no secret absolute-user-path symlink ignored-source or diff-format finding",
+    "harnessConstraint": "Guide PDF checks share one temporary directory and must execute serially"
+  },
+  "committedProof": {
+    "sourceCommit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+    "freshNpmCi": "passed with SSH disabled",
+    "targetedSmoke": "passed",
+    "fullTests": "101 passed",
+    "releaseTests": "34 passed",
+    "tarballSha256": "a5d51105c3c32da8860d7e8cc1d68b3441ecb6ca25d175c6336d6c2c1bdec16d",
+    "freshInstall": "passed without scripts or package symlink",
+    "materialExports": "9 atomic subpaths and 9 APIs passed",
+    "worktreeTarballHashMatched": true,
+    "detachedWorktreeClean": true
+  },
+  "pending": [],
+  "matrixMutated": true,
+  "push": false,
+  "branchCreated": false,
+  "detailedActions": {
+    "material-contract-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-contract-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-contract-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-contract-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-binding-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-binding-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-binding-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-binding-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-instance-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-instance-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-instance-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-instance-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-parameter-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-parameter-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-parameter-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-parameter-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "texture-binding-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/texture-binding-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/texture-binding-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/texture-binding-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "sampler-binding-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/sampler-binding-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/sampler-binding-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/sampler-binding-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-variant-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-variant-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-variant-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-variant-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-validation-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-validation-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-validation-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-validation-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    },
+    "material-cache-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-cache-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/material/kits/material-cache-kit/contracts.js",
+          "src/core-domains/render/subdomains/material/material-contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/kits/material-cache-kit/index.js",
+          "src/core-domains/render/subdomains/material/material-registry-kit.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "src/core-domains/render/subdomains/material/material-manifests.js",
+          "src/core-domains/render/subdomains/material/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-material.md",
+          "docs/generated/API-REFERENCE.md",
+          "CHANGELOG.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/render-material-package.json",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018/committed-proof.json"
+        ]
+      }
+    }
+  },
+  "rollups": {
+    "renderMaterialCapability": {
+      "status": "completed",
+      "detailedActionsCompleted": 63,
+      "plannedKitsCompleted": 9,
+      "sourceCommit": "b5e5981764ca080c506ed37409760e9c94a473b3"
+    },
+    "renderDomain": {
+      "status": "in_progress",
+      "completedPackages": 8,
+      "remainingPackages": 17,
+      "latestCompletedPackage": "n:render/material"
+    },
+    "mission": {
+      "status": "in_progress",
+      "completedMasterPackages": 12,
+      "remainingMasterPackages": 55
+    }
+  },
+  "matrixReconciliation": {
+    "changedRows": 66,
+    "detailedActionsCompleted": 63,
+    "detailedBeforeSha256": "b0c1a02e9eec46fc41e0b268caa6e5dde1311162398c6c403113c79dd9097b57",
+    "detailedAfterSha256": "a0b2ec70d1411396e9842997fa763edcd18fc3967113fa00a91fc7d99eeb4aa9",
+    "masterBeforeSha256": "7403c1a4e42327f73b5ec6edd92cd5eec2ed5f36020157970ce74c3cc3c0cdb4",
+    "masterAfterSha256": "34d0a06d24e60fb80a596867954aeee803a10a44da2eb303d898b08b44a8643a",
+    "projectionCoverage": "3343/3343",
+    "completedMasterPackages": 12,
+    "completedRenderPackages": 8,
+    "nextPackage": "master-package-n-physics-body"
+  }
+}

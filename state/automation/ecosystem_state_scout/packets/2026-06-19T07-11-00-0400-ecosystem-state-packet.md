@@ -4,7 +4,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-19T07-11-00-0400
 - UTC timestamp: 2026-06-19T11:11:00Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: core NexusEngine, sibling NexusEngine-ProtoKits, sibling NexusEngine-Experiments
 
 ## Lane Goal
@@ -81,11 +81,11 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - Latest current-lane packets and nodes.
 - Latest neighboring packets and nodes from `dsk_architecture_scout`, `ecosystem_proof_scout`, `deep_bug_report_scout`, and `domain_kit_idea_expander`.
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 
 ## Ecosystem Findings
 - Core remains aligned with the latest remote release branch `0.0.2`; `HEAD` equals `origin/0.0.2`.

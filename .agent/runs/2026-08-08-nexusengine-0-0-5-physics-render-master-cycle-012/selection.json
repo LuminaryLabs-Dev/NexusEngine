@@ -1,0 +1,22 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-012",
+  "masterPackageId": "master-package-n-render-lifecycle",
+  "sourceGroup": "n:render/lifecycle",
+  "detailedNodeCount": 42,
+  "kitCount": 6,
+  "dependencies": ["master-package-n-render-contracts"],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "454c54242e1c63cc85a1d9d238906c1fa8271b4c1a8bf555aa42d5db7ceca966",
+  "masterMatrixSha256": "215032571cb9670960499fb58f0d9e2d5803e8e7aa24c678c351c0d2118e53d8",
+  "headBeforeCycle": "74009f46a699f2eadbb2e0c25a3a8ed7b8585185",
+  "reason": "This is the smallest proof-ready semantic package, directly extends the completed Render contracts, and unlocks the Render device path.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

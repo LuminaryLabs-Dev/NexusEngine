@@ -1,0 +1,21 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008",
+  "masterPackageId": "master-package-n-physics-lifecycle",
+  "sourceGroup": "n:physics/lifecycle",
+  "detailedNodeCount": 42,
+  "kitCount": 6,
+  "dependency": "master-package-n-physics-contracts",
+  "dependencyStatus": "completed",
+  "matrixSha256": "c51c2035d4f5a36b73479bb83beeb5fb2e22890eb51c315d25497b21169ebb63",
+  "headBeforeCycle": "cc6694fe883c4fb24bb1992778e7dec2fcc5d139",
+  "reason": "The package is dependency-ready, already partially evidenced, and gates every Physics world, body, execution, determinism, recovery, and provider package.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

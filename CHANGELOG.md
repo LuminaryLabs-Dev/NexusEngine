@@ -2,6 +2,89 @@
 
 ## Unreleased
 
+- Added canonical `n:render` and `n:render:contracts` ownership with atomic
+  Domain, provider, resource, frame, resolved-pass, shader-interface, and event
+  contract Kits.
+- Added strict portable Render execution records that reject unknown fields,
+  duplicate references, backend handles, cycles, non-plain objects, and
+  non-finite values.
+- Added canonical `n:render:lifecycle` ownership with six atomic provider
+  installation, startup, shutdown, reset, snapshot, and recovery Kits.
+- Added exact-once provider lifecycle receipts, coordinated rollback, portable
+  composed snapshots, and explicit recovery outcomes for in-place resume or a
+  required fresh startup.
+- Added canonical `n:render:device` ownership with nine atomic device contract,
+  feature, limit, capability, memory, queue, lifecycle, loss, and diagnostics
+  Kits.
+- Added strict portable device records, deterministic feature and limit
+  negotiation, exact-once memory and queue accounting, explicit provider
+  receipts, loss resolution, and read-only aggregate diagnostics.
+- Added canonical `n:render:resource` ownership with ten atomic contract,
+  identity, reference, state, lifecycle, cache, budget, upload, release, and
+  integrity Kits.
+- Added deterministic resource revision lineage, reference-guarded release,
+  Device Memory claim mapping, queue-backed provider receipts, content
+  integrity evidence, repeat-stable lifecycle state, and semantic cache
+  eviction selection without provider execution.
+- Added canonical `n:render:buffer` ownership with eight atomic logical Buffer,
+  layout, Vertex, Index, Uniform, Storage, Instance, and Indirect Kits.
+- Added exact Resource-backed Buffer revisions, explicit portable field
+  layouts, bounded typed views, queue-correlated update receipts, immutable
+  update rejection, and deterministic snapshot and replay behavior.
+- Added canonical `n:render:texture` ownership with eleven atomic Texture
+  format, resource, 2D, Cube, Array, render-target, depth, shadow, mipmap,
+  stream, and subresource-residency Kits.
+- Added exact Resource-backed Texture revisions, strict portable format and
+  subresource views, contiguous mip plans, Buffer-bounded stream payloads,
+  queue-correlated provider receipts, exact mip content identity, and
+  deterministic residency admission and eviction state.
+- Added canonical `n:render:shader` ownership with twelve atomic Shader
+  contract, language, source, include, module, program, variant, permutation,
+  error, compile, reflection, and cache Kits while reusing the existing
+  canonical `shader-schema-kit` under `n:render:contracts`.
+- Added immutable SHA-256 source closure, acyclic include resolution, strict
+  program topology, bounded read-only permutation expansion, capability- and
+  queue-validated exact-once compile receipts, normalized provider reflection,
+  and resident `shader-program` Resource cache linkage without compiler or GPU
+  execution in Core.
+- Added canonical `n:render:material` ownership with nine atomic contract,
+  binding, parameter, Texture-binding, sampler-binding, instance, variant,
+  validation, and semantic-cache Kits.
+- Added exact Shader-slot visibility matching, strict portable Material
+  composition records, current Texture residency revalidation, deterministic
+  composition hashes, and cache rejection after dependent resource eviction.
+- Kept renderer-neutral visual meaning and graph planning in Presentation,
+  host surfaces in Host, target packaging in Build, and concrete GPU execution
+  in external providers.
+- Added canonical `n:physics` and `n:physics:contracts` ownership with atomic
+  Domain, provider, state, command, event, and query contract Kits.
+- Added strict deterministic Physics transport schemas that reject unknown
+  fields, backend handles, cycles, non-plain objects, and non-finite values.
+- Moved the Physics contract implementations to their manifest-owned semantic
+  folders while retaining their generated public package subpaths.
+- Added canonical `n:physics:lifecycle` ownership with six atomic installation,
+  startup, step, shutdown, reset, and snapshot Kits.
+- Split the old installation Kit's immediate-ready lifecycle into explicit
+  provider-neutral stages with exact-once receipts, strict sequencing,
+  cross-Kit rollback, and portable composed snapshots.
+- Removed the transitional `nexusengine/domains/physics/installation` export;
+  installation now uses `nexusengine/domains/physics/lifecycle/installation`
+  with no forwarding compatibility layer.
+- Added canonical `n:physics:material` ownership with atomic friction,
+  restitution, density, physical-surface, combine-policy, and registry Kits.
+- Added immutable exact-once physical material records and symmetric pair
+  resolution with explicit coefficient modes and deterministic precedence.
+- Kept renderer materials, authored surface effects, colliders, contacts,
+  solver impulses, and concrete provider handles outside the material domain.
+- Added canonical `n:physics:world` ownership with atomic world-settings,
+  gravity-field, force-field, wind-field, time-scale, simulation-region, and
+  immutable Physics world registry Kits.
+- Added deterministic uniform, radial, point, gust, and corridor sampling with
+  strict portable records, exact-once definitions, stable region precedence,
+  world bounds policy, and read-only aggregate Physics world samples.
+- Kept authored weather, semantic World regions, Runtime clocks, body response,
+  solver execution, visual wind, game routes, and native provider state outside
+  the Physics World subdomain.
 - Added public contribution, security, operations, and visual-identity guides.
 - Added an agent-readable repository profile and reusable repository image
   pack under `docs/assets/brand/`.

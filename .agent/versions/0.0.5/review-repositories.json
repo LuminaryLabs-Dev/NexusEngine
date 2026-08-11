@@ -1,0 +1,5 @@
+{
+  "engine": ".",
+  "providers": "repo://NexusEngine-Kits",
+  "consumer": null
+}

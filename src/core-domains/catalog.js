@@ -10,15 +10,17 @@ import manifest8 from "./interaction/domain.manifest.js";
 import manifest9 from "./mcp/domain.manifest.js";
 import manifest10 from "./network/domain.manifest.js";
 import manifest11 from "./object/domain.manifest.js";
-import manifest12 from "./policy/domain.manifest.js";
-import manifest13 from "./presentation/domain.manifest.js";
-import manifest14 from "./runtime/domain.manifest.js";
-import manifest15 from "./simulation/domain.manifest.js";
-import manifest16 from "./spatial/domain.manifest.js";
-import manifest17 from "./world/domain.manifest.js";
+import manifest12 from "./physics/domain.manifest.js";
+import manifest13 from "./policy/domain.manifest.js";
+import manifest14 from "./presentation/domain.manifest.js";
+import manifest15 from "./render/domain.manifest.js";
+import manifest16 from "./runtime/domain.manifest.js";
+import manifest17 from "./simulation/domain.manifest.js";
+import manifest18 from "./spatial/domain.manifest.js";
+import manifest19 from "./world/domain.manifest.js";
 import { flattenCoreDomainManifests } from "./domain-manifest.js";
 
-export const CORE_REGISTRY_SHA256 = "740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af";
+export const CORE_REGISTRY_SHA256 = "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8";
 
 export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest0,
@@ -38,7 +40,9 @@ export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest14,
   manifest15,
   manifest16,
-  manifest17
+  manifest17,
+  manifest18,
+  manifest19
 ]);
 
 export const CORE_DOMAIN_CATALOG = flattenCoreDomainManifests(CORE_DOMAIN_MANIFESTS);

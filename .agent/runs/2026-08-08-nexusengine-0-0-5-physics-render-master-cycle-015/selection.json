@@ -1,0 +1,24 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-015",
+  "masterPackageId": "master-package-n-render-buffer",
+  "sourceGroup": "n:render/buffer",
+  "detailedNodeCount": 56,
+  "kitCount": 8,
+  "dependencies": [
+    "master-package-n-render-resource"
+  ],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "a2911fbf2c074e9ca210972ebce4cb7494bd495fb2c9f96bd68763d96ad53995",
+  "masterMatrixSha256": "cb8c8de65e964137add9db8fb62a0f687071aedb46b22ec37d4e78a275530601",
+  "headBeforeCycle": "047867e3f3257af8e3a2911f3516f0f49a168713",
+  "reason": "Render Buffer is dependency-ready and has the highest downstream leverage, directly unlocking Texture and Geometry and transitively affecting 28 packages.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

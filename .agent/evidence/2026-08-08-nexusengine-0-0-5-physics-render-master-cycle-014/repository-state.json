@@ -1,0 +1,20 @@
+{
+  "schema": "nexusengine.repository-state/1",
+  "capturedAt": "2026-08-08",
+  "repository": "${NEXUSENGINE_REPO_ROOT}",
+  "branch": "codex/nexusengine-physics-render",
+  "head": "9129485aaa7ddf24cd6e550c7b81f7642fa30947",
+  "worktree": "clean",
+  "detailedMatrixSha256": "34861309f73775f4f5ca707d3c0de8a7209ac98ea00c0685c741ea6226d5a48c",
+  "masterMatrixSha256": "1b6dcbadee46d7e1a721850f05a00174ac4d695536e0f3a0ce4e78d6137ab179",
+  "remoteRefs": {
+    "main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "0.0.5": null,
+    "0.0.6": null
+  },
+  "mutationAuthorized": {
+    "push": false,
+    "releaseBranch": false
+  }
+}

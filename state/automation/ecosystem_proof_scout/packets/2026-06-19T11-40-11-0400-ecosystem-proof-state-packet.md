@@ -26,9 +26,9 @@ Result: partial; core remains latest-ref aligned and validation-green, but fetch
 - Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.

@@ -6,7 +6,7 @@ Expand NexusEngine domain and kit idea inventories from described examples and a
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
+- Workspace: repo://NexusEngine
 - Primary docs:
   - docs/described_examples.md
   - docs/domain_ideas.md

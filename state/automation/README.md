@@ -19,7 +19,7 @@ Local high-reasoning automations that track NexusEngine ecosystem state, runtime
 ## Rules
 
 - Use `.agent/start-here.md` first.
-- Run locally in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`.
+- Run locally in `repo://NexusEngine`.
 - Run `npm run automation:preflight` at the start of every lane.
 - Use the preflight `latestReleaseBranch` as the branch to compare against; do not hardcode `0.0.2`.
 - Audit lanes write only inside their lane folders.

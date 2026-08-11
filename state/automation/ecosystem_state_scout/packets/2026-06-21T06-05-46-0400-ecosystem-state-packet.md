@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core commit remains aligned with the preflight-resolved release ref and tests pass, but branch-name drift, sibling main-ahead state, Experiments aggregate failure, targeted DSK failures, npm 404, and public browser import 404s keep ecosystem proof red.
 

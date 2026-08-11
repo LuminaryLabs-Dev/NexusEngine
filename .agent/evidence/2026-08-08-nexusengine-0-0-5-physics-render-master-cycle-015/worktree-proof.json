@@ -1,0 +1,36 @@
+{
+  "schema": "nexusengine.goal-package-worktree-proof/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-015",
+  "masterPackageId": "master-package-n-render-buffer",
+  "headBeforeSourceCommit": "047867e3f3257af8e3a2911f3516f0f49a168713",
+  "sourceAggregateSha256": "7ed473ddcdd2d2a6426dcd32c8e37934d42b1d584a459bdc5199b0b0c80ac9ed",
+  "registrySha256": "9a4eb712a926cdf31103919e02fe9afd3a9770a6f788bcdf92f343508d1eeea3",
+  "tarballSha256": "50dda899971acaf45f575deb0f4f809528b836d8c70e6744341bb139413859dd",
+  "checks": {
+    "targetedGraphicsSmoke": "passed",
+    "coreContracts": "224 passed",
+    "productionBoundaryModules": "1103 passed",
+    "publicPackageModules": "281 passed",
+    "fullTests": "passed",
+    "releaseTests": "passed",
+    "activeDocs": "67 passed",
+    "guidePdf": "160 nonblank unclipped pages",
+    "freshTarballConsumer": "passed",
+    "sshDisabled": true,
+    "packageSymlink": false,
+    "hygiene": "passed"
+  },
+  "repairs": [
+    "Use non-32-bit power-of-two validation.",
+    "Require explicit alignment for dynamic Uniform Buffer views.",
+    "Revalidate update receipts and content revisions during snapshot load."
+  ],
+  "observedHarnessFailure": {
+    "phase": "first fresh consumer attempt",
+    "cause": "repository-relative generated helper was executed from the consumer root",
+    "resolution": "execute the unchanged helper from the installed package tree",
+    "engineDefect": false
+  },
+  "push": false,
+  "branchCreated": false
+}

@@ -6,7 +6,7 @@
   "source": "guided-development-session",
   "value": {
     "schema": "nexus-headless-module-graph/1",
-    "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+    "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
     "entry": "src/index.js",
     "moduleCount": 368,
     "edgeCount": 808,

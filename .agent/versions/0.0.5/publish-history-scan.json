@@ -1,0 +1,85 @@
+{
+  "schemaVersion": "nexusengine.publish-history-scan/1",
+  "mode": "scan",
+  "repository": ".",
+  "rewrite": null,
+  "tree": {
+    "filesScanned": 2741,
+    "findings": {
+      "mac-home": 0,
+      "linux-home": 0,
+      "windows-home": 0,
+      "mac-private-temp": 0,
+      "mac-var-folders": 0,
+      "github-classic-token": 0,
+      "github-fine-token": 0,
+      "openai-token": 0,
+      "aws-access-key": 0,
+      "google-api-key": 0,
+      "private-key": 0,
+      "url-userinfo": 0,
+      "authorization-header": 0
+    }
+  },
+  "history": {
+    "range": "origin/main..HEAD",
+    "commitsScanned": 1,
+    "findings": {
+      "mac-home": {
+        "commits": 0,
+        "files": 0
+      },
+      "linux-home": {
+        "commits": 0,
+        "files": 0
+      },
+      "windows-home": {
+        "commits": 0,
+        "files": 0
+      },
+      "mac-private-temp": {
+        "commits": 0,
+        "files": 0
+      },
+      "mac-var-folders": {
+        "commits": 0,
+        "files": 0
+      },
+      "github-classic-token": {
+        "commits": 0,
+        "files": 0
+      },
+      "github-fine-token": {
+        "commits": 0,
+        "files": 0
+      },
+      "openai-token": {
+        "commits": 0,
+        "files": 0
+      },
+      "aws-access-key": {
+        "commits": 0,
+        "files": 0
+      },
+      "google-api-key": {
+        "commits": 0,
+        "files": 0
+      },
+      "private-key": {
+        "commits": 0,
+        "files": 0
+      },
+      "url-userinfo": {
+        "commits": 0,
+        "files": 0
+      },
+      "authorization-header": {
+        "commits": 0,
+        "files": 0
+      }
+    }
+  },
+  "findingCount": 0,
+  "result": "passed",
+  "integrity": "a0364fb71ac7062be0bdef51050e1ad2e6f01c6d5e37a84759e1a752a39bdd13"
+}

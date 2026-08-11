@@ -71,10 +71,10 @@
 
 ## Next Search Branches
 - branch: protokits-local-vs-release-vs-main-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy
+  files or folders: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, fetched `origin/main`, package metadata, release branch policy
   question: Should proof consume local ProtoKits `main`, `origin/main`, or the preflight-resolved release branch?
 - branch: experiments-main-drift-and-release-ref-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`
+  files or folders: `repo://NexusEngine-Experiments`, fetched `origin/main`, fetched `origin/0.0.2`
   question: Should proof stay pinned to preflight `origin/0.0.2` or also inspect sibling `origin/main` drift now that main is 29 commits ahead?
 - branch: branch-name-vs-ref-alignment
   files or folders: `npm run automation:preflight`, core and sibling git refs
@@ -83,13 +83,13 @@
   files or folders: `src/index.js`, `src/host.js`, `tests/host-smoke.mjs`, `examples/three-host/`, `docs/ideal/ideal-hosts.md`
   question: Is the dirty host/docs/source work intended for release proof, or should ecosystem proof ignore it until committed and promoted?
 - branch: protokits-targeted-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `tests/dsk-first-wave.test.mjs`, `protokits/nexus-dsk-adapter/index.js`
+  files or folders: `repo://NexusEngine-ProtoKits/package.json`, `tests/dsk-first-wave.test.mjs`, `protokits/nexus-dsk-adapter/index.js`
   question: Which module-source model makes targeted first-wave DSK proof resolve `nexusengine` locally and in detached release layouts?
 - branch: experiments-aggregate-canonical-route
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
+  files or folders: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
   question: Why does aggregate validation still see `the-open-above-v2` as versioned?
 - branch: experiments-targeted-dsk-api-installation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-foundation`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-service-kits`
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `repo://NexusEngine-ProtoKits/protokits/domain-foundation`, `repo://NexusEngine-ProtoKits/protokits/domain-service-kits`
   question: Why are expected first-wave APIs missing from `engine.n` after proof kit installation?
 - branch: public-proof-import-shape
   files or folders: public DSK proof route, raw proof source, public CDN/raw URLs

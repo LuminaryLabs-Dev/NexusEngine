@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core and ProtoKits remain latest-release aligned, but module-source proof still blocks ProtoKits validation, Experiments targeted proof, and public browser proof.
 
@@ -85,7 +85,7 @@
 - Experiments local checkout remains clean but behind fetched `origin/0.0.2`: local `57b3d668891794ddad00c765ce4faf342a3d9000`, origin `3e047f693f3ed58cab1c362deb09a597398d05e5`, ahead/behind `0 2`.
 - Experiments local targeted DSK validation remains red: `node tests/dsk-first-wave-experiment-smoke.mjs` failed through local ProtoKits `protokits/nexus-dsk-adapter/index.js` because package `nexusengine` is not resolvable.
 - Experiments disposable fetched-ref aggregate validation passed: `npm run check` generated 100 flat route wrappers and passed the aggregate smoke chain.
-- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve sibling `/private/tmp/NexusEngine/src/index.js` from proof imports.
+- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve sibling `${TMPDIR}/NexusEngine/src/index.js` from proof imports.
 - Public DSK proof remains HTTP-visible but not browser-complete: Playwright snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console history showed 404s for deployed sibling module paths.
 - Experiments aggregate validation remains a separate green claim from targeted DSK proof; `package.json` aggregate `check` does not include `tests/dsk-first-wave-experiment-smoke.mjs`.
 
@@ -107,7 +107,7 @@
 - ProtoKits local/latest-ref `node tests/dsk-first-wave.test.mjs` failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - Experiments `git fetch --prune origin`, status, rev-parse, and ahead/behind checks showed local `57b3d668891794ddad00c765ce4faf342a3d9000`, origin `3e047f693f3ed58cab1c362deb09a597398d05e5`, and ahead/behind `0 2`.
 - Experiments local `node tests/dsk-first-wave-experiment-smoke.mjs` failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine` from local ProtoKits `protokits/nexus-dsk-adapter/index.js`.
-- Experiments disposable fetched `origin/0.0.2` at `3e047f693f3ed58cab1c362deb09a597398d05e5` passed `npm run check` and failed targeted DSK smoke on missing sibling `/private/tmp/NexusEngine/src/index.js`.
+- Experiments disposable fetched `origin/0.0.2` at `3e047f693f3ed58cab1c362deb09a597398d05e5` passed `npm run check` and failed targeted DSK smoke on missing sibling `${TMPDIR}/NexusEngine/src/index.js`.
 - Fetch checks confirmed proof route/raw/CDN files remain public, while runtime dependency paths used by the public page remain 404.
 - Playwright CLI opened the public DSK proof route; snapshot showed `Booting...`; console history showed 404s for `NexusEngine/src/index.js`, ProtoKits `domain-foundation`, and ProtoKits `domain-service-kits`.
 

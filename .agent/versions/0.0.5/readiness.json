@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "nexusengine.version-readiness/1",
+  "version": "0.0.5",
+  "updatedAt": "2026-08-11",
+  "phase": "active-source-integration",
+  "baseSha": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+  "lastCommittedDevelopmentSha": "5d6558ccd44eaaacbdb6c9d569439437b85ede5a",
+  "candidateSha": null,
+  "masterPackages": {
+    "total": 67,
+    "proven": 12,
+    "pending": 55
+  },
+  "sourceIntegration": {
+    "integratedUnproven": 6,
+    "currentPackage": "master-package-n-physics-detection",
+    "currentPackageState": "uncommitted-source-review"
+  },
+  "gates": {
+    "planningLocalization": "passed",
+    "sensitiveDataScan": "passed",
+    "cleanCandidateHistory": "passed",
+    "sourceFreeze": "pending",
+    "featureValidation": "pending",
+    "providers": "pending",
+    "compositionAndMcp": "pending",
+    "consumers": "pending",
+    "theOpenAbove": "pending",
+    "documentation": "pending",
+    "hostedChecks": "pending",
+    "releaseApproval": "pending"
+  },
+  "pushSafe": false,
+  "nextAction": "Finish the bounded Physics Detection source review and remaining packages; before push, create and rescan one clean candidate commit based directly on origin/main."
+}

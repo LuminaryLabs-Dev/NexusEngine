@@ -1,0 +1,10 @@
+{
+  "matrix": ".agent/versions/0.0.5/feature-matrix.jsonl",
+  "selectedNode": "goal-kit-n-physics-lifecycle-physics-installation-kit-i",
+  "matrixRevisionAtSelection": 0,
+  "owner": "codex",
+  "route": "nexus-contract-validate-it -> one-change-it",
+  "reason": "Lifecycle behavior is dependency-unlocked by the installation contract and provides the first repeat-safe Physics state transition proof.",
+  "excluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"],
+  "status": "completed"
+}

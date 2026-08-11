@@ -1,0 +1,34 @@
+{
+  "schema": "nexusengine.goal-package-worktree-proof/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-016",
+  "masterPackageId": "master-package-n-render-texture",
+  "headBeforeSourceCommit": "61019c9d23d884f79b9807f503045908f8f62c24",
+  "sourceAggregateSha256": "4c4930cbd8ea4100cf897b90451b71aba380f6a6a8c4b935f241894f62b8b719",
+  "registrySha256": "ef665488c1135eafcfa72e79325b12024d8449104138fdd5710de685358f05fe",
+  "tarballSha256": "78c4899cbf62e83ad8198e0c2baf7144a4e50091a2c1b93cf033f1b1c9de182f",
+  "checks": {
+    "targetedGraphicsSmoke": "passed",
+    "coreContracts": "235 passed",
+    "productionBoundaryModules": "1141 passed",
+    "publicPackageModules": "293 passed",
+    "fullTests": "101 passed",
+    "releaseTests": "34 passed",
+    "activeDocs": "68 passed",
+    "guidePdf": "164 nonblank unclipped pages",
+    "packageEntries": 1370,
+    "freshTarballConsumer": "passed",
+    "textureExports": "11 passed",
+    "sshDisabled": true,
+    "packageSymlink": false,
+    "hygiene": "passed"
+  },
+  "repairs": [
+    "Require exact ordered mip content identities for source-provided streaming.",
+    "Require an aligned copy-source Buffer range large enough for the streamed texel footprint.",
+    "Reject repeat admission of the same completed stream under a different operation ID.",
+    "Keep historical stream snapshots loadable after resource release while requiring residency for new requests and completions.",
+    "Reject missing Texture formats and safe-integer overflow before stream mutation."
+  ],
+  "push": false,
+  "branchCreated": false
+}

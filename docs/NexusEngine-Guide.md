@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`<br>
-Guide content SHA-256: `203756ba02e7ba0ad005b64a723948b43304ffb83c1e06f8704dbec28594003d`
+Core registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`<br>
+Guide content SHA-256: `568dd75c66852116b269b6a4d0592ee1417d34e65a5912256f8ba27df4dbf4d4`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -217,6 +217,68 @@ Generation fails when a public atom lacks source or proof. Compliance is never i
 
 The generated Domain Index appendix contains every active path.
 
+## Canonical Physics Foundation
+
+`n:physics` owns the canonical Physics identity. Its `n:physics:contracts`
+subdomain owns the portable provider, state, command, event, and query
+boundaries. Each boundary is an independently installable atomic Kit with one
+generated public subpath.
+
+Contract records are strict and JSON-portable. They reject unknown top-level
+fields, non-finite numbers, functions, platform handles, cycles, and non-plain
+objects, then normalize accepted records into deterministic key order. The
+contract package does not claim body ownership, collision detection, solving,
+or provider execution; those capabilities promote only with their own proof.
+
+The existing `n:simulation:physics` surface remains separate during the staged
+`0.0.5` implementation. Its eventual cutover is not implied by the presence of
+the new contract package.
+
+`n:physics:lifecycle` is the next canonical subdomain. It separates six reasons
+to change:
+
+- Installation owns aggregate phase and provider identity.
+- Startup owns readiness requests and provider receipts.
+- Step owns strict step ordering and provider-neutral frame receipts.
+- Shutdown owns stop requests and completion receipts.
+- Reset restores the composed lifecycle through public APIs.
+- Snapshot captures and restores those APIs atomically.
+
+The lifecycle does not call a solver or install a concrete provider. A later
+provider package consumes its portable requests and supplies the reviewed
+receipts. Failed coordinated mutations restore every touched lifecycle state.
+
+`n:physics:material` separates six physical material responsibilities:
+
+- Friction normalizes static, dynamic, rolling, spinning, and anisotropic data.
+- Restitution normalizes bounce coefficient and activation threshold.
+- Density uses positive kilograms-per-cubic-meter records.
+- Surface owns physical classification and portable tags only.
+- Combine Policy resolves two materials symmetrically without solving contact.
+- Physics Material owns immutable IDs and exact-once registry mutations.
+
+The material registry depends on the five specialist capabilities through
+public tokens. A material record contains no shader, texture, sound, particle,
+collider, solver impulse, or provider handle. Those concerns remain separate
+even when a product maps one physical surface to visual and audio effects.
+
+`n:physics:world` separates seven solver-facing environment responsibilities:
+
+- World Settings normalizes coordinate handedness, length units, up axis,
+  optional bounds, and out-of-bounds policy.
+- Gravity Field owns uniform and point-gravity acceleration records.
+- Force Field owns non-gravity force or acceleration records.
+- Wind Field owns uniform, deterministic gust, and corridor flow velocity.
+- Time Scale combines explicit Physics-only scale records deterministically.
+- Simulation Region resolves physical simulate, sleep, or disable behavior.
+- Physics World owns immutable world IDs and references the six capabilities.
+
+World sampling is read-only and provider-neutral. It returns portable
+acceleration, force, wind velocity, region, bounds, and scaled-delta records.
+Authored weather stays under `n:world:weather`; atmosphere corridors and game
+routes stay with World or the product; Runtime owns clocks and schedules; later
+Body and Solver packages consume the Physics output.
+
 ## Restored Behavior Shape
 
 Twenty-six historical source modules become 27 atomic behaviors because the
@@ -267,6 +329,50 @@ A snapshot contains portable semantic state. It excludes renderer objects, funct
 ## Reset
 
 Reset restores the configured baseline. Calling reset twice returns the same snapshot and must not duplicate resources or lifecycle hooks.
+
+## Physics Lifecycle
+
+The canonical Physics lifecycle uses explicit stages rather than treating
+installation as proof that a provider is ready:
+
+```txt
+uninstalled -> installed -> starting -> ready -> stopping -> installed
+                                  \-> failed <-/
+```
+
+Every mutation carries an `operationId`. Exact replay returns the original
+receipt; changed content under the same ID fails before mutation. Installation
+owns the phase. Startup, Step, Shutdown, Reset, and Snapshot own separate state
+resources and coordinate only through public capability APIs. Multi-API reset
+and restore operations capture pre-call snapshots and roll every component back
+when any validation or load fails.
+
+## Physics Materials
+
+Physical material descriptors are immutable under one material ID. Defining a
+new record requires an `operationId`; exact replay returns the original receipt,
+changed command content fails before mutation, and a different command cannot
+replace an existing ID with different material content. Removal follows the
+same exact-once rule.
+
+Friction, restitution, density, surface, and combine-policy normalization are
+read-only. Pair resolution does not mutate either material or policy state and
+returns byte-equivalent output when the two material arguments are reversed.
+Snapshots contain only portable records, sorted IDs, revisions, and receipts.
+
+## Physics Worlds
+
+Gravity, force, wind, time-scale, simulation-region, and Physics world records
+use immutable IDs and exact-once mutation receipts. Repeating an accepted
+definition returns the original receipt. Reusing its operation ID with changed
+content, or redefining a record ID with different content, fails before state
+changes.
+
+Field, region, scale, and aggregate world sampling are read-only. A world
+snapshot stores only normalized records, sorted IDs, revisions, and receipts;
+it never stores provider worlds, native handles, clocks, weather objects, or
+query diagnostics. Loading a world snapshot validates every capability
+reference before replacing state.
 
 ## Replay
 
@@ -450,6 +556,103 @@ Browser, Node, native, editor, terminal, repository, filesystem, storage, transp
 ## Provider
 
 A provider implements one Domain contract. Examples include physics solving, model inference, speech synthesis, asset retrieval, or capture rendering. Core can own request and result schemas while the provider owns vendor handles, caches, and external effects.
+
+For Physics, `nexusengine/domains/physics/provider-contract` validates a
+provider's lifecycle and execution methods without installing or executing the
+provider. Provider capability metadata must be portable; backend worlds,
+native handles, caches, and solver state remain provider-owned. State,
+commands, events, and query records cross the boundary through the sibling
+contract Kits under `n:physics:contracts`.
+
+The provider does not become ready merely because it was selected.
+`n:physics:lifecycle` emits explicit startup, step, shutdown, reset, and
+snapshot requests. The provider executes the relevant operation and returns a
+portable receipt. Core owns sequencing and replay; the provider owns backend
+worlds, handles, solver state, and platform effects.
+
+Physical material records cross the provider boundary as portable input. Core
+owns their identity, validated coefficients, surface classification, and
+deterministic pair policy. A provider may translate those records into native
+backend materials, but native handles and caches never enter Core snapshots.
+The provider executes the resulting contact response; `n:physics:material`
+does not calculate impulses or silently map physical surfaces to renderer or
+audio assets.
+
+Physics world records also cross the provider boundary as portable input. Core
+resolves world settings, gravity acceleration, generic fields, physical flow,
+time scale, and simulation-region policy. A provider applies those records to
+its native world, bodies, broad phase, and solver. Provider handles and cached
+native field objects never enter Core snapshots.
+
+`n:world:weather` remains the authored weather authority. A product or explicit
+adapter may translate accepted weather or atmosphere descriptors into a
+physical wind-field command. That translation does not transfer weather,
+rendering, or gameplay ownership into `n:physics:world`.
+
+For Render, `nexusengine/domains/render/provider-contract` validates resource
+and frame execution methods without installing or invoking the provider.
+Portable resource, frame, resolved-pass, shader-interface, and event records
+cross the sibling contract Kits under `n:render:contracts`. Native devices,
+GPU handles, compiled shaders, command encoders, caches, and platform surfaces
+remain provider- or host-owned.
+
+`n:render:lifecycle` records which provider composition is selected and tracks
+its startup, shutdown, reset, snapshot, and recovery receipts. It never retains
+the provider object or invokes its methods. A ready recovery receipt may return
+the lifecycle to `ready`; a nonready receipt returns it to `installed`, after
+which the provider must complete a new startup. Runtime lifecycle remains the
+owner of engine ticking and generic Kit installation.
+
+`n:render:device` records the portable identity and accepted capabilities of a
+device returned by that provider. Separate atoms own feature declarations,
+numeric limits, capability profiles, semantic memory reservations, logical
+queue submissions, acquisition state, loss records, and read-only diagnostics.
+Provider receipts are explicit command inputs. GPU handles, real allocation,
+command encoding, queue execution, and repair never enter these Core records.
+
+`n:render:resource` records exact execution-resource identities, references,
+portable residency, integrity evidence, accounting, and provider operation
+receipts. `n:render:buffer` builds portable logical Buffer descriptors,
+explicit layouts, and typed views over those exact identities. Buffer updates
+refer to Device queue submissions and accept explicit provider receipts; Core
+never retains source bytes or performs allocation, mapping, transfer, command
+submission, or repair.
+
+`n:render:texture` builds portable Texture formats, exact Texture records,
+typed subresource views, mip plans, stream requests, and residency evidence on
+those Resource and Buffer contracts. A stream names the exact source-provided
+mip content, a bounded copy-source staging Buffer range, and one Device queue
+submission. Completion records a matching provider receipt; only completed
+streams may establish resident subresources. Asset still owns source content
+and decoding, Presentation owns visual and authored shadow meaning, Pipeline
+and Frame own attachment execution, and providers own allocation, upload, mip
+generation, eviction, repair, and backend format mapping.
+
+`n:render:shader` records portable language capabilities, immutable source and
+include revisions, module and program topology, deterministic variants,
+bounded permutations, logical compile state, normalized reflection, and cache
+links to resident `shader-program` Resources. Compile requests name an exact
+SHA-256 module/source/include closure and a matching Device queue submission;
+completion accepts only an explicit provider receipt for the same device,
+submission, and compile identity. The existing Shader interface schema remains
+under `n:render:contracts`. Core does not preprocess, parse, compile, link,
+retain binaries or GPU programs, execute backend reflection, or repair source.
+
+`n:render:material` associates exact portable Material slots with Shader
+interfaces, typed parameter values, resident Texture views and subresources,
+sampler descriptors, complete instances, and Shader variants. Validation names
+one completed compile and matching reflection record, while cache records point
+to resident `material` Resources with the same composition hash. Current
+resolution always rechecks Texture lifecycle and subresource residency, so an
+eviction makes dependent validation and cache use stale without changing stored
+Material state. Presentation still owns authored visual meaning, and providers
+own GPU bind groups, sampler objects, uploads, binding commands, execution, and
+repair.
+
+A Presentation render-layer graph expresses visual meaning and ordering policy.
+It is not a GPU command graph. A later explicit bridge resolves an accepted
+Presentation graph into strict Render pass records; the Render Pass contract
+does not silently take ownership of semantic layers or reorder them.
 
 ## Adapter
 
@@ -834,7 +1037,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -881,6 +1084,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 - `n:object:vegetation:foliage`: Own deterministic foliage structure and descriptors.
 - `n:object:vegetation:ecology`: Own deterministic vegetation suitability scoring and species selection.
 - `n:object:placement`: Own deterministic placement transforms, grounding, alignment, fit, and validation receipts.
+- `n:physics`: Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains.
+- `n:physics:contracts`: Own portable Physics provider, state, command, event, and query boundary schemas.
+- `n:physics:lifecycle`: Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts.
+- `n:physics:material`: Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy.
+- `n:physics:world`: Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions.
 - `n:policy`: Own product-neutral permission, guard, sandbox, and runtime safety decisions.
 - `n:presentation`: Own renderer-neutral presentation descriptors and output policy contracts.
 - `n:presentation:output`: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.
@@ -893,6 +1101,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 - `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
 - `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
 - `n:presentation:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
+- `n:render`: Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains.
+- `n:render:contracts`: Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas.
+- `n:render:lifecycle`: Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state.
+- `n:render:device`: Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics.
+- `n:render:resource`: Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state.
+- `n:render:buffer`: Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts.
+- `n:render:texture`: Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency.
+- `n:render:shader`: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.
+- `n:render:material`: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.
@@ -949,7 +1166,7 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 
 # Core Dependency Table
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -998,6 +1215,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:object:vegetation:foliage` | `n:object:vegetation` | - |
 | `n:object:vegetation:ecology` | `n:object:vegetation` | - |
 | `n:object:placement` | `object:descriptor-contract` | - |
+| `n:physics` | `n:runtime` | - |
+| `n:physics:contracts` | `n:physics` | - |
+| `n:physics:lifecycle` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:provider-contract`, `physics:state-schema` | - |
+| `n:physics:material` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
+| `n:physics:world` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
 | `n:policy` | - | - |
 | `n:presentation` | - | - |
 | `n:presentation:output` | `n:presentation` | - |
@@ -1010,6 +1232,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:presentation:capture` | `n:presentation` | - |
 | `n:presentation:sky` | `n:presentation` | - |
 | `n:presentation:camera:third-person` | `character:resolution`, `motion:velocity`, `n:presentation:camera` | - |
+| `n:render` | `n:runtime` | - |
+| `n:render:contracts` | `n:render` | - |
+| `n:render:lifecycle` | `n:render`, `render:provider-contract` | - |
+| `n:render:device` | `n:render`, `render:installation`, `render:provider-contract` | - |
+| `n:render:resource` | `n:render`, `render:device-contract`, `render:device-lifecycle`, `render:device-memory`, `render:device-queue`, `render:resource-schema` | - |
+| `n:render:buffer` | `n:render`, `n:render:resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
+| `n:render:texture` | `n:render`, `n:render:buffer`, `n:render:resource`, `render:buffer-resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
+| `n:render:shader` | `n:render`, `n:render:contracts`, `n:render:device`, `n:render:resource`, `render:device-capability`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-schema` | - |
+| `n:render:material` | `n:render`, `n:render:resource`, `n:render:shader`, `n:render:texture`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-compile`, `render:shader-program`, `render:shader-reflection`, `render:shader-variant`, `render:texture-residency`, `render:texture-resource` | - |
 | `n:runtime` | - | - |
 | `n:runtime:realtime` | `n:runtime` | - |
 | `n:runtime:data` | `n:runtime` | - |
@@ -1068,7 +1299,7 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 ## Domains
 
@@ -1119,6 +1350,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:object:vegetation:foliage` | `n:object:vegetation` | Own deterministic foliage structure and descriptors. | stable-candidate |
 | `n:object:vegetation:ecology` | `n:object:vegetation` | Own deterministic vegetation suitability scoring and species selection. | stable-candidate |
 | `n:object:placement` | `n:object` | Own deterministic placement transforms, grounding, alignment, fit, and validation receipts. | stable-candidate |
+| `n:physics` | - | Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains. | stable-candidate |
+| `n:physics:contracts` | `n:physics` | Own portable Physics provider, state, command, event, and query boundary schemas. | stable-candidate |
+| `n:physics:lifecycle` | `n:physics` | Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts. | stable-candidate |
+| `n:physics:material` | `n:physics` | Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy. | stable-candidate |
+| `n:physics:world` | `n:physics` | Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions. | stable-candidate |
 | `n:policy` | - | Own product-neutral permission, guard, sandbox, and runtime safety decisions. | stable-candidate |
 | `n:presentation` | - | Own renderer-neutral presentation descriptors and output policy contracts. | stable-candidate |
 | `n:presentation:output` | `n:presentation` | Own surface, safe-area, viewport, aspect, bar, and render-resolution policy. | stable-candidate |
@@ -1131,6 +1367,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:presentation:capture` | `n:presentation` | Own observation requests, view sets, framing, capture jobs, progress, and result contracts. | stable-candidate |
 | `n:presentation:sky` | `n:presentation` | Own generic sky, atmosphere, cloud, horizon, and celestial descriptors. | stable-candidate |
 | `n:presentation:camera:third-person` | `n:presentation:camera` | Own renderer-neutral third-person camera follow descriptors. | stable-candidate |
+| `n:render` | - | Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains. | stable-candidate |
+| `n:render:contracts` | `n:render` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. | stable-candidate |
+| `n:render:lifecycle` | `n:render` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. | stable-candidate |
+| `n:render:device` | `n:render` | Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics. | stable-candidate |
+| `n:render:resource` | `n:render` | Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state. | stable-candidate |
+| `n:render:buffer` | `n:render` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. | stable-candidate |
+| `n:render:texture` | `n:render` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. | stable-candidate |
+| `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
+| `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -1268,6 +1513,31 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `object-meshoptimizer-shape-provider-kit` | `n:object:shape` | `nexusengine/domains/object/shape/meshoptimizer-provider` | Resolve object shape jobs through an explicitly registered meshoptimizer-compatible provider. |
 | `object-shape-fidelity-adapter-kit` | `n:object:fidelity` | `nexusengine/domains/object/adapters/shape-fidelity` | Translate qualified shape records into Object Fidelity form requests. |
 | `object-vegetation-bridge-kit` | `n:object:vegetation` | `nexusengine/domains/object/adapters/vegetation-object` | Project vegetation identities into canonical Object descriptors without owning either state. |
+| `physics-domain-contract-kit` | `n:physics` | `nexusengine/domains/physics/contract` | Expose the canonical backend-neutral Physics ownership and contract boundary. |
+| `physics-provider-contract-kit` | `n:physics:contracts` | `nexusengine/domains/physics/provider-contract` | Describe and validate backend Physics providers without owning a concrete solver. |
+| `physics-state-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/state-schema` | Validate and normalize portable Physics snapshots for deterministic replay. |
+| `physics-command-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/command-schema` | Define deterministic, exact-once Physics command envelopes. |
+| `physics-event-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/event-schema` | Define ordered, portable Physics event envelopes. |
+| `physics-query-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/query-schema` | Define read-only portable Physics query request and result envelopes. |
+| `physics-installation-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Physics composition. |
+| `physics-startup-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
+| `physics-step-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/step` | Own deterministic Physics step requests, completion ordering, and provider-neutral frame receipts. |
+| `physics-shutdown-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
+| `physics-reset-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/reset` | Reset composed Physics lifecycle state atomically through public capability APIs. |
+| `physics-snapshot-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Physics lifecycle state. |
+| `friction-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/friction` | Normalize portable isotropic and anisotropic physical friction descriptors. |
+| `restitution-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/restitution` | Normalize physical restitution coefficient and activation-threshold descriptors. |
+| `density-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/density` | Normalize positive SI physical mass-density descriptors. |
+| `surface-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/surface` | Normalize renderer-neutral physical surface classification and tags. |
+| `material-combine-policy-kit` | `n:physics:material` | `nexusengine/domains/physics/material/combine-policy` | Resolve physical material pairs with deterministic symmetric coefficient-combine policy. |
+| `physics-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/registry` | Own immutable portable physical material records and exact-once registry mutations. |
+| `physics-world-settings-kit` | `n:physics:world` | `nexusengine/domains/physics/world/settings` | Normalize portable Physics coordinate, unit, bounds, and out-of-bounds settings. |
+| `gravity-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/gravity-field` | Own portable deterministic uniform and point-gravity field records and sampling. |
+| `force-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/force-field` | Own portable deterministic non-gravity force and acceleration field records and sampling. |
+| `wind-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/wind-field` | Own portable deterministic physical flow-velocity field records and sampling. |
+| `time-scale-kit` | `n:physics:world` | `nexusengine/domains/physics/world/time-scale` | Own portable deterministic Physics-only time-scale records and delta resolution. |
+| `simulation-region-kit` | `n:physics:world` | `nexusengine/domains/physics/world/simulation-region` | Own portable physical simulation activation regions and deterministic point resolution. |
+| `physics-world-kit` | `n:physics:world` | `nexusengine/domains/physics/world/registry` | Own immutable Physics world records and compose public field, scale, and region capabilities into read-only samples. |
 | `policy-kit` | `n:policy` | `nexusengine/domains/policy/guard` | Evaluate declarative runtime safety and permission rules. |
 | `presentation-registry-kit` | `n:presentation` | `nexusengine/domains/presentation/registry` | Register renderer-neutral presentation capabilities and descriptors. |
 | `presentation-output-kit` | `n:presentation:output` | `nexusengine/domains/presentation/output` | Calculate renderer-neutral surfaces, safe areas, viewports, aspect policy, and render resolution. |
@@ -1287,6 +1557,78 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `sky-descriptor-kit` | `n:presentation:sky` | `nexusengine/domains/presentation/sky` | Create generic sky, horizon, atmosphere, cloud, and celestial descriptors. |
 | `third-person-camera-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
 | `camera-world-occlusion-adapter-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/adapters/camera-world-occlusion` | Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state. |
+| `render-domain-contract-kit` | `n:render` | `nexusengine/domains/render/contract` | Expose the canonical backend-neutral Render ownership and execution-contract boundary. |
+| `render-provider-contract-kit` | `n:render:contracts` | `nexusengine/domains/render/provider-contract` | Validate concrete Render providers without executing or retaining provider code or handles. |
+| `render-resource-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/resource-schema` | Validate and normalize portable Render resource records without exposing backend handles. |
+| `render-frame-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/frame-schema` | Validate and normalize portable Render frame execution records. |
+| `render-pass-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/pass-schema` | Validate and normalize resolved provider-facing Render pass records without owning Presentation graph planning. |
+| `shader-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/shader-schema` | Validate and normalize portable shader-interface records shared by Render providers. |
+| `render-event-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/event-schema` | Validate and normalize ordered portable Render lifecycle and execution events. |
+| `render-installation-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Render composition. |
+| `render-startup-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
+| `render-shutdown-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
+| `render-recovery-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/recovery` | Coordinate deterministic recovery from a failed Render provider lifecycle without owning provider repair execution. |
+| `render-reset-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/reset` | Reset composed Render lifecycle state atomically through public capability APIs. |
+| `render-snapshot-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Render lifecycle state. |
+| `render-device-contract-kit` | `n:render:device` | `nexusengine/domains/render/device/contract` | Define the portable identity and ownership boundary for one Render device. |
+| `device-feature-kit` | `n:render:device` | `nexusengine/domains/render/device/feature` | Own canonical Render device feature declarations and deterministic requirement negotiation. |
+| `device-limit-kit` | `n:render:device` | `nexusengine/domains/render/device/limit` | Own portable Render device limit profiles and deterministic requirement checks. |
+| `device-capability-kit` | `n:render:device` | `nexusengine/domains/render/device/capability` | Compose a portable Render device identity, feature set, and limit profile into one capability record. |
+| `device-memory-kit` | `n:render:device` | `nexusengine/domains/render/device/memory` | Own portable memory budgets, semantic reservations, and exact-once accounting receipts. |
+| `device-queue-kit` | `n:render:device` | `nexusengine/domains/render/device/queue` | Own logical Render queue descriptors and exact-once submission and completion receipts. |
+| `device-lifecycle-kit` | `n:render:device` | `nexusengine/domains/render/device/lifecycle` | Own portable acquisition, readiness, loss, failure, recovery, and release state for one selected Render device. |
+| `device-loss-kit` | `n:render:device` | `nexusengine/domains/render/device/loss` | Own exact-once Render device loss incidents and externally proven resolution records. |
+| `device-diagnostics-kit` | `n:render:device` | `nexusengine/domains/render/device/diagnostics` | Project deterministic read-only diagnostics from public Render device capabilities. |
+| `render-resource-contract-kit` | `n:render:resource` | `nexusengine/domains/render/resource/contract` | Define portable Render execution-resource identity, lifecycle, operation, and provider receipt contracts. |
+| `resource-identity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/identity` | Own deterministic Render execution-resource identities, revisions, and dependency lineage. |
+| `resource-state-kit` | `n:render:resource` | `nexusengine/domains/render/resource/state` | Define portable Render resource phases and legal lifecycle transitions. |
+| `resource-reference-kit` | `n:render:resource` | `nexusengine/domains/render/resource/reference` | Own exact, portable references to Render execution-resource identities. |
+| `resource-integrity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/integrity` | Record portable integrity comparisons for exact Render resource identities. |
+| `resource-cache-kit` | `n:render:resource` | `nexusengine/domains/render/resource/cache` | Index reusable provider resources by exact portable content identity and deterministic access order. |
+| `resource-budget-kit` | `n:render:resource` | `nexusengine/domains/render/resource/budget` | Map exact Render resource identities to existing Device Memory reservations without duplicating capacity authority. |
+| `resource-upload-kit` | `n:render:resource` | `nexusengine/domains/render/resource/upload` | Record exact Render resource upload requests, provider receipts, and failures against completed Device Queue submissions. |
+| `resource-release-kit` | `n:render:resource` | `nexusengine/domains/render/resource/release` | Record exact Render resource release requests, provider receipts, and failures after reference safety checks. |
+| `resource-lifecycle-kit` | `n:render:resource` | `nexusengine/domains/render/resource/lifecycle` | Own the portable lifecycle state of exact Render resource identities using explicit upload and release receipts. |
+| `buffer-resource-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/resource` | Own portable logical Buffer records, exact content revisions, and bounded provider update receipts. |
+| `buffer-layout-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/layout` | Own explicit portable Buffer field formats, member offsets, alignments, and stride. |
+| `vertex-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/vertex` | Own logical Vertex Buffer views with exact resource, layout, count, and range validation. |
+| `index-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/index` | Own logical Index Buffer views with exact resource, format, count, alignment, and range validation. |
+| `uniform-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/uniform` | Own logical Uniform Buffer ranges with exact layout, size, and explicit dynamic-alignment validation. |
+| `storage-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/storage` | Own logical Storage Buffer ranges with explicit access, layout, element-count, and range validation. |
+| `instance-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/instance` | Own logical Instance Buffer views with exact resource, layout, count, and range validation. |
+| `indirect-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/indirect` | Own logical Indirect Buffer command ranges with exact type, count, stride, alignment, and range validation. |
+| `texture-format-kit` | `n:render:texture` | `nexusengine/domains/render/texture/format` | Own portable Texture format aspects, block layout, and provider-neutral capability declarations. |
+| `texture-resource-kit` | `n:render:texture` | `nexusengine/domains/render/texture/resource` | Own exact logical Texture records derived from canonical Render Resource identities and portable formats. |
+| `texture-2d-kit` | `n:render:texture` | `nexusengine/domains/render/texture/2d` | Own logical 2D Texture views with exact identity and mip-range validation. |
+| `texture-cube-kit` | `n:render:texture` | `nexusengine/domains/render/texture/cube` | Own logical Cube Texture views with exact identity, six-face, and mip-range validation. |
+| `texture-array-kit` | `n:render:texture` | `nexusengine/domains/render/texture/array` | Own logical 2D Texture Array views with exact identity, layer-range, and mip-range validation. |
+| `render-target-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/render-target` | Own logical color attachment Texture views with exact format and subresource qualification. |
+| `depth-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/depth` | Own logical depth-stencil Texture views with exact aspect, format, and subresource qualification. |
+| `shadow-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/shadow` | Own provider-neutral shadow-readable depth views without owning authored shadow policy or execution. |
+| `mipmap-kit` | `n:render:texture` | `nexusengine/domains/render/texture/mipmap` | Own explicit portable Texture mip-chain plans with exact contiguous levels and source identities. |
+| `texture-stream-kit` | `n:render:texture` | `nexusengine/domains/render/texture/stream` | Own exact Texture subresource stream requests and portable provider completion or failure receipts. |
+| `texture-residency-kit` | `n:render:texture` | `nexusengine/domains/render/texture/residency` | Own desired and proven resident Texture subresources derived from completed stream receipts. |
+| `shader-contract-kit` | `n:render:shader` | `nexusengine/domains/render/shader/contract` | Define the canonical provider-neutral Shader execution boundary and stage topology. |
+| `shader-language-kit` | `n:render:shader` | `nexusengine/domains/render/shader/language` | Own portable Shader language capabilities, source kinds, stages, and feature requirements. |
+| `shader-source-kit` | `n:render:shader` | `nexusengine/domains/render/shader/source` | Own immutable text or binary Shader source revisions and exact integrity. |
+| `shader-include-kit` | `n:render:shader` | `nexusengine/domains/render/shader/include` | Own immutable Shader include records and a deterministic acyclic dependency graph. |
+| `shader-module-kit` | `n:render:shader` | `nexusengine/domains/render/shader/module` | Own one portable Shader stage module, entry point, and exact source closure. |
+| `shader-program-kit` | `n:render:shader` | `nexusengine/domains/render/shader/program` | Own linked portable Shader program topology and its canonical interface. |
+| `shader-variant-kit` | `n:render:shader` | `nexusengine/domains/render/shader/variant` | Own exact Shader define and specialization selections with deterministic identity. |
+| `shader-permutation-kit` | `n:render:shader` | `nexusengine/domains/render/shader/permutation` | Own bounded deterministic Shader permutation axes and read-only expansion. |
+| `shader-error-kit` | `n:render:shader` | `nexusengine/domains/render/shader/error` | Normalize portable Shader diagnostics without owning compiler execution or repair. |
+| `shader-compile-kit` | `n:render:shader` | `nexusengine/domains/render/shader/compile` | Own exact-once logical Shader compile requests and provider completion or failure receipts. |
+| `shader-reflection-kit` | `n:render:shader` | `nexusengine/domains/render/shader/reflection` | Validate normalized provider reflection against the completed compile and program interface. |
+| `shader-cache-kit` | `n:render:shader` | `nexusengine/domains/render/shader/cache` | Link completed Shader compiles to resident shader-program Render Resources and select deterministic eviction candidates. |
+| `material-contract-kit` | `n:render:material` | `nexusengine/domains/render/material/contract` | Define the canonical backend-neutral Render Material execution boundary. |
+| `material-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/binding` | Map portable Material slots to one exact Shader program interface. |
+| `material-parameter-kit` | `n:render:material` | `nexusengine/domains/render/material/parameter` | Own typed portable values for exact Material parameter slots. |
+| `texture-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/texture-binding` | Bind exact resident Texture views and subresources to Material slots. |
+| `sampler-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/sampler-binding` | Own portable sampler state for exact Material sampler slots. |
+| `material-instance-kit` | `n:render:material` | `nexusengine/domains/render/material/instance` | Compose one complete portable Material execution instance from exact bindings. |
+| `material-variant-kit` | `n:render:material` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
+| `material-validation-kit` | `n:render:material` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
+| `material-cache-kit` | `n:render:material` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |
@@ -1296,7 +1638,7 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `runtime-startup-kit` | `n:runtime:startup` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
 | `schedule-kit` | `n:runtime:sequence:schedule` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
 | `simulation-state-kit` | `n:simulation` | `nexusengine/domains/simulation/runtime` | Manage deterministic simulation objectives, resources, hazards, timers, and resolution receipts. |
-| `physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
+| `simulation-physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
 | `articulated-physics-kit` | `n:simulation:physics:articulated` | `nexusengine/domains/simulation/physics/articulated` | Manage backend-neutral articulated body topology and joint dynamics state. |
 | `motion-contract-kit` | `n:simulation:motion` | `nexusengine/domains/simulation/motion` | Manage intent-to-motion descriptors, trajectories, velocity state, and movement policies. |
 | `two-bone-ik-kit` | `n:simulation:motion` | `nexusengine/domains/simulation/motion/two-bone-ik` | Solve deterministic two-bone inverse-kinematics poses. |
@@ -1353,11 +1695,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
-- Source modules: 831
-- Manifest-proven public atoms: 159
-- Manifest-owned internal modules: 647
+- Source modules: 1180
+- Manifest-proven public atoms: 256
+- Manifest-owned internal modules: 899
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -1817,6 +2159,100 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `src/core-domains/object/subdomains/vegetation/subdomains/ecology-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/subdomains/vegetation/subdomains/foliage-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/subdomains/vegetation/subdomains/tree-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/domain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/contract-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-command-schema-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-command-schema-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-command-schema-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-domain-contract-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-domain-contract-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-domain-contract-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-event-schema-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-event-schema-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-event-schema-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-provider-contract-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-provider-contract-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-provider-contract-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-query-schema-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-query-schema-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-query-schema-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-state-schema-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-state-schema-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/kits/physics-state-schema-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/portable-value.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/contracts/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/lifecycle-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/density-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/density-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/density-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/friction-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/friction-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/friction-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/physics-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/physics-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/physics-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/restitution-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/restitution-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/restitution-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/surface-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/surface-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/kits/surface-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/material-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/material-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/material/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/force-field-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/force-field-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/force-field-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/gravity-field-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/gravity-field-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/gravity-field-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-settings-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-settings-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/physics-world-settings-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/simulation-region-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/simulation-region-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/simulation-region-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/time-scale-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/time-scale-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/time-scale-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/wind-field-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/wind-field-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/kits/wind-field-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/record-registry.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/world-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/subdomains/world/world-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/domain.manifest.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/index.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/kits/policy-kit/index.js` | `n:policy` | manifest-proven-public-atom | NexusEngine Core |
@@ -1872,6 +2308,260 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `src/core-domains/presentation/subdomains/ui/kits/ui-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/subdomains/ui/kits/ui-scale-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/domain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/buffer-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/buffer-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/buffer-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-layout-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-layout-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-layout-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-resource-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-resource-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/buffer-resource-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/index-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/index-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/index-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/indirect-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/indirect-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/indirect-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/instance-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/instance-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/instance-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/storage-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/storage-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/storage-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/uniform-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/uniform-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/uniform-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/vertex-buffer-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/vertex-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/kits/vertex-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/buffer/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/contract-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-domain-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-event-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-frame-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-pass-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-provider-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/render-resource-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/kits/shader-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/portable-value.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/contracts/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/device-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/device-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-capability-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-capability-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-capability-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-diagnostics-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-diagnostics-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-diagnostics-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-feature-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-feature-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-feature-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-lifecycle-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-lifecycle-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-lifecycle-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-limit-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-limit-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-limit-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-loss-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-loss-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-loss-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-memory-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-memory-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-memory-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-queue-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-queue-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/device-queue-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/render-device-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/render-device-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/kits/render-device-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/device/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-installation-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-installation-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-installation-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-recovery-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-recovery-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-recovery-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-reset-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-reset-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-reset-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-shutdown-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-shutdown-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-shutdown-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-snapshot-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-snapshot-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-snapshot-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-startup-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-startup-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/kits/render-startup-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/lifecycle-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/lifecycle-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/lifecycle/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-cache-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-cache-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-cache-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-instance-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-instance-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-instance-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-parameter-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-parameter-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-parameter-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-validation-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-validation-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-validation-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-variant-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-variant-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/material-variant-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/sampler-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/sampler-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/sampler-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/texture-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/texture-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/kits/texture-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/material-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/material-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/material-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/material/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-budget-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-budget-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-budget-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-cache-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-cache-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-cache-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-identity-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-identity-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-identity-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-reference-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-reference-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-reference-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-release-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-release-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-release-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-state-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-state-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-state-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-upload-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-upload-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/kits/resource-upload-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/resource-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/resource-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/resource/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-cache-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-cache-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-cache-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-compile-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-compile-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-compile-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-error-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-error-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-error-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-include-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-include-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-include-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-language-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-language-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-language-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-module-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-module-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-module-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-permutation-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-permutation-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-permutation-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-program-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-program-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-program-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-reflection-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-reflection-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-reflection-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-source-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-source-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-source-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-variant-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-variant-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/kits/shader-variant-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/shader-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/shader-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/shader-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/shader/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/depth-texture-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/depth-texture-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/depth-texture-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/mipmap-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/mipmap-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/mipmap-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/render-target-texture-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/render-target-texture-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/render-target-texture-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/shadow-texture-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/shadow-texture-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/shadow-texture-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-2d-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-2d-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-2d-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-array-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-array-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-array-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-cube-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-cube-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-cube-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-format-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-format-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-format-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-residency-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-residency-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-residency-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-resource-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-resource-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-resource-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-stream-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-stream-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/kits/texture-stream-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/texture-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/texture-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/subdomains/texture/texture-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/domain.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
@@ -2008,7 +2698,8 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `src/core-domains/simulation/subdomains/operations/subdomains/transport-route/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/adapters/articulated-motion-drive-adapter/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/kits/physics-kit/catalog-factory.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/kits/physics-kit/provider.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/subdomains/physics/subdomains/articulated-dynamics-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |

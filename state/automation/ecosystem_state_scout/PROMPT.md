@@ -6,7 +6,7 @@ Audit NexusEngine ecosystem state across core, ProtoKits, Experiments, DSK promo
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
+- Workspace: repo://NexusEngine
 - Output lane: state/automation/ecosystem_state_scout/packets/
 - Knowledge node lane: state/automation/ecosystem_state_scout/knowledge_nodes/
 - Master tracker: state/automation/ecosystem_state_scout/master_ecosystem_state.md

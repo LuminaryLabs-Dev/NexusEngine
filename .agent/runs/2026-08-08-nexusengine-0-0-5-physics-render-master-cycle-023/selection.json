@@ -1,0 +1,36 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-023",
+  "masterPackageId": "master-package-n-physics-detection",
+  "sourceGroup": "n:physics/detection",
+  "detailedNodeCount": 77,
+  "plannedKitCount": 11,
+  "dependencies": [
+    "master-package-n-physics-shape",
+    "master-package-n-physics-collider"
+  ],
+  "dependencyStatus": "source-integrated-unproven",
+  "matrixSha256": "686e1416c95d977092d538942047bf06e709addf55dc4490d45f4c330445fd6e",
+  "masterMatrixSha256": "9062dbb71a685efefa9bbe3533b85f081898e9f91fb021216ae9cb555359260e",
+  "checklistSha256": "bc64dcd4a1f2fcfbd5889278b6d1bd7306ec010f0db20b891b0a66b0a0eb31bd",
+  "candidatePacket": "${NEXUSENGINE_BATCH_WORKSPACE}/source-candidates/candidates/master-package-n-physics-detection/candidate.json",
+  "candidatePacketSha256": "9bdf14f0561c8c9b191438cafb5d9707ea1aea9e6a59c0946a781a2e55555951",
+  "candidateStatus": "semantic-review-required",
+  "allowedWriteScope": [
+    "src/core-domains/physics/subdomains/detection/**",
+    "src/core-domains/physics/domain.manifest.js",
+    "src/core-domains/physics/index.js",
+    ".agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-023/**",
+    "goal.md"
+  ],
+  "forbiddenActions": [
+    "execute Engine feature tests before source integration completes",
+    "run generated catalog or documentation workflows",
+    "mutate either goal matrix or checklist",
+    "promote detailed or master package state",
+    "push or mutate protected refs"
+  ],
+  "headBeforeCycle": "5d6558ccd44eaaacbdb6c9d569439437b85ede5a",
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

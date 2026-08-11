@@ -6,7 +6,7 @@ Audit NexusEngine public consumption paths: GitHub branches, raw source URLs, CD
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
+- Workspace: repo://NexusEngine
 - Output lane: state/automation/public_link_scout/reports/
 - Knowledge node lane: state/automation/public_link_scout/knowledge_nodes/
 - Master tracker: state/automation/public_link_scout/master_public_links.md

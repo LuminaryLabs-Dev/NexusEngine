@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core and ProtoKits are latest-release aligned, but package/module-source proof still blocks ProtoKits validation, Experiments targeted proof, and public browser proof.
 

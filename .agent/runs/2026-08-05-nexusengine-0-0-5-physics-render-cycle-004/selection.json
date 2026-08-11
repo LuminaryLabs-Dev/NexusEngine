@@ -1,0 +1,10 @@
+{
+  "matrix": ".agent/versions/0.0.5/feature-matrix.jsonl",
+  "selectedNode": "goal-kit-n-physics-lifecycle-physics-installation-kit-c",
+  "matrixRevisionAtSelection": 0,
+  "owner": "codex",
+  "route": "nexus-contract-validate-it -> one-change-it",
+  "reason": "The installation lifecycle is the next independent Physics boundary before body and solver implementation.",
+  "excluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"],
+  "status": "completed"
+}

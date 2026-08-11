@@ -26,9 +26,9 @@ Result: partial; core is release-aligned and available-checkout validation passe
 - Worktree note: NexusEngine had pre-existing modified/untracked automation/doc state before this run. ProtoKits and Experiments status output showed only behind status, not local modified/untracked files. No pull, reset, rebase, merge, deployment, or source edit was performed from this lane.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.

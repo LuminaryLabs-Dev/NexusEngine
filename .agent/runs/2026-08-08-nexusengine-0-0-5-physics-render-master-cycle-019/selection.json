@@ -1,0 +1,28 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-019",
+  "masterPackageId": "master-package-n-physics-body",
+  "sourceGroup": "n:physics/body",
+  "detailedNodeCount": 91,
+  "plannedKitCount": 13,
+  "newKitCount": 13,
+  "reusedKitCount": 0,
+  "dependencies": [
+    "master-package-n-physics-contracts",
+    "master-package-n-physics-lifecycle"
+  ],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "a0b2ec70d1411396e9842997fa763edcd18fc3967113fa00a91fc7d99eeb4aa9",
+  "masterMatrixSha256": "34d0a06d24e60fb80a596867954aeee803a10a44da2eb303d898b08b44a8643a",
+  "reviewPacket": "${NEXUSENGINE_BATCH_WORKSPACE}/outputs/nexusengine-0.0.5-batch-review-post-material-20260808/packets/master-package-n-physics-body.json",
+  "reviewPacketVerdict": "ready-for-isolated-implementation",
+  "headBeforeCycle": "516e2575d4e9a9a80ba25669cdd806a8e610278b",
+  "reason": "Physics Body is dependency-ready and has the highest remaining leverage: five direct and 23 transitive package unlocks.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

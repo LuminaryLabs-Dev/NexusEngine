@@ -29,7 +29,7 @@
 
 ## Next Search Branches
 - branch: sibling-branch-reconciliation
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`
 - question: Which DSK first-wave local proof artifacts are intended for commit, and do they still pass after rebasing or merging latest `origin/0.0.2`?
 - branch: public-consumption-wording
 - files or folders: `README.md`, `package.json`, public GitHub/raw/jsDelivr/npm endpoints

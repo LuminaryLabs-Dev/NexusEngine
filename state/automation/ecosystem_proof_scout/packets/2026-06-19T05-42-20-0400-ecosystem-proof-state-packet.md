@@ -26,9 +26,9 @@ Result: partial; core is release-aligned and local proof smokes pass on availabl
 - Worktree note: after fetch, ProtoKits and Experiments showed no modified/untracked status in the available checkout output, but both are behind their release refs. No pull, reset, rebase, merge, deployment, or source edit was performed from this lane.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.

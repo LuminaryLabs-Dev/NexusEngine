@@ -71,16 +71,16 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as a required targeted command?
 - branch: sibling-release-alignment-watch
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+  files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`
   question: Do sibling branches remain clean/aligned on the next run?
 - branch: expanded-protokits-public-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/fluid-water-lab`, public routes
+  files or folders: `repo://NexusEngine-ProtoKits/protokits`, `repo://NexusEngine-Experiments/experiments/fluid-water-lab`, public routes
   question: Which expanded fluid/water/domain surfaces need browser-complete proof rows after first-wave proof loads?
 - branch: receipt-integrity-hardening
   files or folders: `src/timing-window-kit.js`, `src/interaction-target-kit.js`, `src/collectible-kit.js`, `src/request-fulfillment-kit.js`, proof fixtures

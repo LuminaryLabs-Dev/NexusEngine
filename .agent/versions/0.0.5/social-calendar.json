@@ -1,0 +1,7 @@
+{
+  "schemaVersion": "nexusengine.version-social-calendar/1",
+  "version": "0.0.5",
+  "status": "not-scheduled",
+  "entries": [],
+  "policy": "No completion or release claim may be scheduled without matching committed proof."
+}

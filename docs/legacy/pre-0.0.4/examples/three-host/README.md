@@ -42,14 +42,14 @@ index.html
 ## Run
 
 ```bash
-cd /Users/crimsonwheeler/Documents/GitHub/NexusEngine
+cd repo://NexusEngine
 node examples/three-host/descriptor-snapshot.mjs
 ```
 
 Open the browser proof:
 
 ```text
-/Users/crimsonwheeler/Documents/GitHub/NexusEngine/examples/three-host/index.html
+repo://NexusEngine/examples/three-host/index.html
 ```
 
 If a browser blocks local module imports from `file://`, serve the repo with any local static server and open:

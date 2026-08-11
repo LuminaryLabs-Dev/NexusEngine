@@ -26,7 +26,7 @@
 - optional npm metadata: 404
 
 ## Files inspected
-- `/Users/crimsonwheeler/.codex/automations/nexus-realtime-domain-and-kit-idea-expansion/memory.md`
+- `${CODEX_HOME}/automations/nexus-realtime-domain-and-kit-idea-expansion/memory.md`
 - `.agent/start-here.md`
 - `.agent/operating-model.md`
 - `.agent/automation-rules.md`

@@ -13,9 +13,9 @@ Result: partial; local and raw `0.0.2` proof remains green, public browser proof
 - NexusEngine worktree already contains unrelated automation/docs changes outside this lane; ProtoKits and Experiments worktrees were clean.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `git fetch --prune origin`.

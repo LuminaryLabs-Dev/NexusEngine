@@ -29,7 +29,7 @@
 - id: ecosystem-proof-006-e
   parent: ecosystem-proof-006
   lesson: DSK first-wave proof coverage is still not part of the Experiments aggregate check.
-  evidence: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; the targeted command passed separately.
+  evidence: `repo://NexusEngine-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; the targeted command passed separately.
   look further: Add the DSK proof smoke to aggregate validation or document the targeted command as required evidence.
 - id: ecosystem-proof-006-f
   parent: ecosystem-proof-006
@@ -61,19 +61,19 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
   question: Should public proof modules resolve through CDN `0.0.2` URLs, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or a documented targeted command?
 - branch: sibling-worktree-dirt
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+  files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`
   question: Is current sibling dirt unrelated local work, review-relevant proof work, or a blocker for ecosystem promotion claims?
 - branch: compatibility-shim-exit
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+  files or folders: `repo://NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
   question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?
 - branch: idea-proof-coverage-matrix
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/described_examples.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/domain_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/kits_ideas.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments`
+  files or folders: `repo://NexusEngine/docs/described_examples.md`, `repo://NexusEngine/docs/domain_ideas.md`, `repo://NexusEngine/docs/kits_ideas.md`, `repo://NexusEngine-ProtoKits/protokits`, `repo://NexusEngine-Experiments/experiments`
   question: Which idea domains should get the next executable proof path after first-wave DSK public loading works?
 
 ## Not Claimed

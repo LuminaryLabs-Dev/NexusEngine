@@ -10,7 +10,7 @@
   parent: ecosystem-root-005
   lesson: The public DSK proof route is HTTP-visible but still stuck at `Booting...` in a browser.
   evidence: Playwright snapshot for `https://luminarylabs-agents.github.io/NexusEngine-Experiments/experiments/dsk-first-wave-proof/` showed `Booting...`; console errors showed 404 module loads for NexusEngine and ProtoKits GitHub Pages paths.
-  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, or build-step import maps.
+  look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, or build-step import maps.
 - id: branch-alignment-stable-2026-06-18T23-08-42-0400
   parent: ecosystem-root-005
   lesson: Core and sibling repos remain cleanly aligned with `origin/0.0.2`.
@@ -50,7 +50,7 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+- files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
 - question: Should the public DSK proof use CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: public-consumption-wording
 - files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, `https://registry.npmjs.org/nexusengine`

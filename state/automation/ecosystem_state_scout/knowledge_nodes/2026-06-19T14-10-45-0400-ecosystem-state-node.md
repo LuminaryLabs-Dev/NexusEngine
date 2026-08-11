@@ -19,7 +19,7 @@
 - id: experiments-targeted-fetched-ref-resolution-2026-06-19-1410
   parent: ecosystem-root-016
   lesson: Experiments fetched-ref aggregate proof can pass while fetched-ref targeted DSK proof fails on sibling-relative imports.
-  evidence: Disposable Experiments `origin/0.0.2` at `799fad882461502faa84b132f70de011e7dbe0cb` passed `npm run check`; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `/private/tmp/NexusEngine/src/index.js`.
+  evidence: Disposable Experiments `origin/0.0.2` at `799fad882461502faa84b132f70de011e7dbe0cb` passed `npm run check`; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `${TMPDIR}/NexusEngine/src/index.js`.
   look further: Run targeted DSK proof with the same module-source strategy intended for public proof.
 - id: public-proof-import-shape-2026-06-19-1410
   parent: ecosystem-root-016
@@ -84,19 +84,19 @@
   files or folders: `package.json`, sibling package metadata, Experiments proof import maps, public CDN/raw URLs
   question: Should release proof resolve NexusEngine through package/workspace dependency, CDN `0.0.2`, same-origin assets, or build-step import maps?
 - branch: protokits-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+  files or folders: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
   question: Can fetched ProtoKits validate without relying on an undeclared ambient sibling checkout?
 - branch: experiments-targeted-dsk-fetched-ref
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+  files or folders: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
   question: Can fetched Experiments targeted DSK proof pass with the intended module-source strategy?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: generated-route-validation-boundary
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+  files or folders: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
   question: Should route generation be made idempotent, moved out of default check, or run only in disposable validation worktrees?
 - branch: traversal-proof-integrity
   files or folders: `src/pathfinding-kit.js`, `src/navmesh-kit.js`, `src/procedural-kit.js`, `src/world-physics-kit.js`, proof fixtures

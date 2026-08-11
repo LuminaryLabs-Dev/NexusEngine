@@ -1,0 +1,26 @@
+{
+  "schema": "nexusengine.goal-evidence/1",
+  "cycle": "2026-08-05-nexusengine-0-0-5-physics-render-cycle-003",
+  "nodeId": "goal-kit-n-physics-contracts-physics-provider-contract-kit-i",
+  "decision": "observed-pass",
+  "repository": "${NEXUSENGINE_REPO_ROOT}",
+  "commitBeforeCycle": "05a4cbe",
+  "artifacts": [
+    "src/core-domains/physics/kits/physics-provider-contract-kit/index.js",
+    "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+  ],
+  "observations": {
+    "contractSchema": "nexusengine.physics-provider-contract/1",
+    "providerLifecycle": ["initialize", "step", "reset", "dispose"],
+    "normalizedOutputs": ["frame", "contacts", "queries"],
+    "registrySha256": "1bd1b410fc9be476c55e80a7831f542696d3de5f9551f7d310116d11ffa16a81",
+    "atomicKitCount": 161,
+    "fullSmokeTests": 101,
+    "guidePdfPages": 132,
+    "remoteMain": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease040": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease050": null
+  },
+  "repair": "Generated outputs were refreshed after the source fingerprint changed; subsequent gates passed.",
+  "scopeExcluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"]
+}

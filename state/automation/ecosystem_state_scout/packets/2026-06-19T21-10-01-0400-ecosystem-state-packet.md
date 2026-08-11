@@ -81,7 +81,7 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - latest ecosystem state packets/nodes: `2026-06-19T18-09-41-0400`, `2026-06-19T19-10-05-0400`, `2026-06-19T20-10-14-0400`
 - latest neighboring packet/node sets from `dsk_architecture_scout`, `ecosystem_proof_scout`, `deep_bug_report_scout`, and `domain_kit_idea_expander`
-- sibling package metadata and DSK proof files in `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits` and `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- sibling package metadata and DSK proof files in `repo://NexusEngine-ProtoKits` and `repo://NexusEngine-Experiments`
 
 ## Ecosystem Findings
 - Core remains current on the preflight-resolved latest release branch and `npm test` passed 8 smoke tests.
@@ -97,7 +97,7 @@
   - ProtoKits fetched `origin/0.0.2` failed `npm run check` during `smoke:imports` after checking 311 JavaScript modules, with 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusengine` from `protokits/nexus-dsk-adapter/index.js`.
   - ProtoKits fetched targeted `node tests/dsk-first-wave.test.mjs` failed because package `nexusengine` was not resolvable.
   - Experiments fetched `origin/0.0.2` aggregate `npm run check` passed in a disposable tree, generated 100 flat routes, and included `tropical-island-scene-static-smoke`.
-  - Experiments fetched targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `experiments/dsk-first-wave-proof/src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `/private/tmp/NexusEngine/src/index.js`.
+  - Experiments fetched targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `experiments/dsk-first-wave-proof/src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `${TMPDIR}/NexusEngine/src/index.js`.
 - Public proof is still HTTP-visible but browser-incomplete:
   - The proof route returns 200 and renders heading text.
   - Human-visible Playwright state remains `Booting...`.
@@ -130,7 +130,7 @@
 - Experiments status after fetch -> `## 0.0.2...origin/0.0.2 [behind 24]`; local `6d90b9b01a5aeac0209a2c8f2ce30f670be92a9f`, origin `799fad882461502faa84b132f70de011e7dbe0cb`, ahead/behind `0 24`.
 - Experiments local `node tests/dsk-first-wave-experiment-smoke.mjs` -> passed.
 - Experiments fetched-ref disposable `npm run check` -> passed; generated 100 flat experiment route wrappers.
-- Experiments fetched-ref disposable `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for `/private/tmp/NexusEngine/src/index.js`.
+- Experiments fetched-ref disposable `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for `${TMPDIR}/NexusEngine/src/index.js`.
 - `curl` public proof route/raw/CDN checks -> proof/raw/CDN files 200, deployed sibling module paths 404.
 - Playwright launch-state inspection -> visible `Booting...`; four console errors.
 

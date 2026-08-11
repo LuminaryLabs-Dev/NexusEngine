@@ -27,9 +27,9 @@ Result: partial; core remains latest-release aligned and smoke-green, Experiment
 - Experiments local branch `0.0.2` at `3e047f693f3ed58cab1c362deb09a597398d05e5`, matching `origin/0.0.2`; ahead/behind `0/0`; package metadata `@luminarylabs/nexusengine-experiments@0.0.2`.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
@@ -41,7 +41,7 @@ Result: partial; core remains latest-release aligned and smoke-green, Experiment
 - ProtoKits fetched `origin/0.0.2` targeted DSK smoke: `node tests/dsk-first-wave.test.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - Experiments available/latest-ref checkout: `npm run check` -> passed; generated 100 flat route wrappers and passed the aggregate smoke chain.
 - Experiments available/latest-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed against local sibling ProtoKits `main` because `domain-service-kits/index.js` does not export `createNCompletionLedgerKit`.
-- Experiments fetched `origin/0.0.2` disposable extraction: `npm run check` -> passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `/private/tmp/NexusEngine/src/index.js`.
+- Experiments fetched `origin/0.0.2` disposable extraction: `npm run check` -> passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `${TMPDIR}/NexusEngine/src/index.js`.
 - Public URL checks used Node `fetch`.
 - Human-view validation used Playwright CLI. Mandatory question: Have I checked what the human would actually see, and do I need screenshots, visual inspection, launch-state inspection, or before/after comparison to validate this properly? Answer: yes; launch-state inspection was required. Snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console/request output showed 404s for sibling NexusEngine and ProtoKits module paths. Generated `.playwright-cli` scratch files were removed.
 

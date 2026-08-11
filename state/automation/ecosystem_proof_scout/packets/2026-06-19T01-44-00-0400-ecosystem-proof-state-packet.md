@@ -29,9 +29,9 @@ Result: partial; local/raw proof remains green, but public browser proof is stil
   - Experiments has modified high-fidelity meadow files and `memory.md`, plus untracked `docs/VISUAL-EXPERIMENT-LOOP.md` and `experiments/path-meadow/`.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.

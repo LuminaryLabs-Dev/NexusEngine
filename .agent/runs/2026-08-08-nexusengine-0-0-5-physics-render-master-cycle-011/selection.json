@@ -1,0 +1,22 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011",
+  "masterPackageId": "master-package-n-render-contracts",
+  "sourceGroup": "n:render/contracts",
+  "detailedNodeCount": 49,
+  "kitCount": 7,
+  "dependencies": [],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "b645c28623875a12254d902d7f941332c6299f628df7c19ae07c2d1222477351",
+  "masterMatrixSha256": "a546794775d098c86cd4082f9a8c408d5036bc07d084a41ef4d0f4aaaee3d213",
+  "headBeforeCycle": "1df482f70a6caae04c5ab474107c4b0095dafd8e",
+  "reason": "This is the selected dependency-ready Render package. It opens the Render graph with portable execution contracts while preserving Presentation, Host, Build, and provider ownership.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

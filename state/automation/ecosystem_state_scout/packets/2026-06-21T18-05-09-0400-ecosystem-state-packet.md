@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core and sibling `origin/0.0.2` refs are aligned and core smoke tests now pass 9 tests, but the ecosystem proof remains red across dirty core host-surface changes, sibling `origin/main` drift, ProtoKits targeted package resolution, Experiments aggregate route validation, Experiments targeted DSK API installation, npm metadata, and public browser module loading.
 

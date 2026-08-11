@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core remains commit-aligned with `origin/0.0.2` and smoke-green, but ecosystem proof is still red across ProtoKits local-vs-release separation, ProtoKits targeted package resolution, Experiments aggregate route validation, Experiments targeted DSK API installation, public browser module loading, npm metadata, package-version policy, dirty core host/docs release boundary, Host Graph Lifecycle Ownership, and new DSK Extension Service Ownership hardening.
 

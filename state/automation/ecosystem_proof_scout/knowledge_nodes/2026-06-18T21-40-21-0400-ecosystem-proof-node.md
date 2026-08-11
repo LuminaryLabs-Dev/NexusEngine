@@ -39,13 +39,13 @@
 
 ## Next Search Branches
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - question: Should public proof modules resolve through CDN `0.0.2` URLs, same-origin deployed assets, or a build step?
 - branch: compatibility-shim-exit
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- files or folders: `repo://NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - question: What condition retires old injected-runtime calls and legacy `engine.*` compatibility APIs?
 - branch: stale-cdn-pins
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/README.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs`
+- files or folders: `repo://NexusEngine-Experiments`, `repo://NexusEngine-ProtoKits/README.md`, `repo://NexusEngine-ProtoKits/docs`
 - question: Which `@main` and `@0.0.1` pins are intentional legacy examples versus proof-blocking stale paths?
 
 ## Not Claimed

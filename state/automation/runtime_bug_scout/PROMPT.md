@@ -6,7 +6,7 @@ Audit NexusEngine runtime source for ECS, scheduler, runtime-kit, DSK contract, 
 
 RUN CONFIG:
 - Environment: local
-- Workspace: /Users/crimsonwheeler/Documents/GitHub/NexusEngine
+- Workspace: repo://NexusEngine
 - Output lane: state/automation/runtime_bug_scout/findings/
 - Knowledge node lane: state/automation/runtime_bug_scout/knowledge_nodes/
 - Master tracker: state/automation/runtime_bug_scout/master_runtime_bugs.md

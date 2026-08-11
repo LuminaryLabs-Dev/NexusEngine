@@ -4,7 +4,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-20T03-07-30-0400
 - UTC preflight timestamp: 2026-06-20T07:07:31.502Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 
 ## Lane Goal
@@ -86,7 +86,7 @@
 - Experiments local checkout is clean but behind fetched `origin/0.0.2`: local `799fad882461502faa84b132f70de011e7dbe0cb`, origin `81b39bccadf2cdf8269df24cd4970a5b2d7ebbd9`, ahead/behind `0 10`.
 - Experiments local targeted DSK validation remains red: `node tests/dsk-first-wave-experiment-smoke.mjs` failed because local ProtoKits `protokits/nexus-dsk-adapter/index.js` could not resolve package `nexusengine`.
 - Experiments disposable fetched-ref aggregate validation passed: `npm run check` generated 100 flat route wrappers and passed the aggregate smoke chain.
-- Experiments disposable fetched-ref targeted DSK validation still failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `/private/tmp/NexusEngine/src/index.js` from sibling-relative proof imports.
+- Experiments disposable fetched-ref targeted DSK validation still failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `${TMPDIR}/NexusEngine/src/index.js` from sibling-relative proof imports.
 - Public DSK proof remains HTTP-visible but not browser-complete: Playwright snapshot showed heading, description, and visible `Booting...`; console/requests showed repeated 404s for deployed sibling module paths.
 - Experiments aggregate validation remains a separate green claim from targeted DSK proof; `package.json` aggregate check still does not include `tests/dsk-first-wave-experiment-smoke.mjs`.
 

@@ -34,18 +34,18 @@
 - `src/index.js`
 - `src/domain-service-kit.js`
 - `tests/`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 
 ## Commands run
-- `sed -n '1,220p' /Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
-- `sed -n '1,220p' /Users/crimsonwheeler/.codex/automations/nexusengine-ecosystem-state-packet/memory.md`
-- `rg -n "NexusEngine|ProtoKits|ecosystem state|automation" /Users/crimsonwheeler/.codex/memories/MEMORY.md`
+- `sed -n '1,220p' ${CODEX_HOME}/skills/agent-it/SKILL.md`
+- `sed -n '1,220p' ${CODEX_HOME}/automations/nexusengine-ecosystem-state-packet/memory.md`
+- `rg -n "NexusEngine|ProtoKits|ecosystem state|automation" ${CODEX_HOME}/memories/MEMORY.md`
 - `rg --files .agent state/automation | sort`
 - `git rev-parse --show-toplevel`
 - `git branch --show-current`

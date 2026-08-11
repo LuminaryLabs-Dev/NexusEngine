@@ -1,0 +1,15 @@
+{
+  "schema": "nexusengine.repository-state-evidence/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-017",
+  "repository": "NexusEngine",
+  "branch": "codex/nexusengine-physics-render",
+  "head": "b5029206d8af8ce22c31bb8fd09f0f91eeb9e86e",
+  "worktree": "clean",
+  "originMain": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+  "origin004": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+  "origin005": null,
+  "aheadOfOriginMain": 36,
+  "behindOriginMain": 0,
+  "pushAuthorized": false,
+  "protectedRefMutationAuthorized": false
+}

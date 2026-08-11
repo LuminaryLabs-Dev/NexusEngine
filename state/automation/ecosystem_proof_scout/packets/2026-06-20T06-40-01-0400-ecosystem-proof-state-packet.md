@@ -27,9 +27,9 @@ Result: partial; core remains latest-release aligned and smoke-green, ProtoKits 
 - Experiments local branch `0.0.2` at `57b3d668891794ddad00c765ce4faf342a3d9000`; fetched `origin/0.0.2` at `3e047f693f3ed58cab1c362deb09a597398d05e5`; ahead/behind `0/2`; package metadata `@luminarylabs/nexusengine-experiments@0.0.2`.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
@@ -40,7 +40,7 @@ Result: partial; core remains latest-release aligned and smoke-green, ProtoKits 
 - Experiments local: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because sibling ProtoKits imports package `nexusengine`, which is not resolvable.
 - ProtoKits disposable fetched-ref extraction at `origin/0.0.2` `3d42b725dd166274ff6c5452beef86ef17863852`: `npm run check` -> failed after 370 syntax-checked modules with 110 import-smoke failures rooted in missing package `nexusengine`; targeted `node tests/dsk-first-wave.test.mjs` failed with the same missing package.
 - Experiments disposable fetched-ref extraction at `origin/0.0.2` `3e047f693f3ed58cab1c362deb09a597398d05e5`: `npm run check` -> passed; final line reported flat route smoke passed for 100 generated AAA registry routes.
-- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `/private/tmp/NexusEngine/src/index.js`.
+- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `${TMPDIR}/NexusEngine/src/index.js`.
 - Public URL checks used Node `fetch`.
 - Human-view validation used Playwright CLI. Mandatory question: Have I checked what the human would actually see, and do I need screenshots, visual inspection, launch-state inspection, or before/after comparison to validate this properly? Answer: yes; launch-state inspection was required. Snapshot showed heading `DSK first-wave proof`, description text, and visible `Booting...`; console/requests showed 404s for sibling NexusEngine and ProtoKits module paths. Playwright scratch artifacts and disposable fetched-ref artifacts were removed.
 

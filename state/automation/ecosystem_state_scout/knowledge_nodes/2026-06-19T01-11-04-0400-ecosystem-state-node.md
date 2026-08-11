@@ -24,7 +24,7 @@
 - id: aggregate-dsk-proof-validation-2026-06-19T01-11-04-0400
   parent: ecosystem-root-007
   lesson: Experiments aggregate validation passes but still does not include the DSK first-wave smoke.
-  evidence: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; `npm run check` and the targeted DSK smoke both passed separately.
+  evidence: `repo://NexusEngine-Experiments/package.json` `check` script does not list `tests/dsk-first-wave-experiment-smoke.mjs`; `npm run check` and the targeted DSK smoke both passed separately.
   look further: Add the DSK smoke to an aggregate check or document the targeted command as required release evidence.
 - id: public-consumption-npm-gap-2026-06-19T01-11-04-0400
   parent: ecosystem-root-007
@@ -61,13 +61,13 @@
 
 ## Next Search Branches
 - branch: sibling-worktree-dirt
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`
 - question: Is current sibling dirt unrelated local work, review-relevant proof work, or a blocker for ecosystem promotion claims?
 - branch: public-proof-import-shape
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+- files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
 - question: Should the public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as a required targeted command?
 - branch: public-consumption-wording
 - files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, `https://registry.npmjs.org/nexusengine`

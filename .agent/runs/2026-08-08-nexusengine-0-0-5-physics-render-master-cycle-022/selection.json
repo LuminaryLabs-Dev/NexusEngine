@@ -1,0 +1,35 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-022",
+  "masterPackageId": "master-package-n-render-surface",
+  "sourceGroup": "n:render/surface",
+  "detailedNodeCount": 63,
+  "plannedKitCount": 9,
+  "dependencies": [
+    "master-package-n-render-device"
+  ],
+  "dependencyStatus": "proven",
+  "matrixSha256": "a0b2ec70d1411396e9842997fa763edcd18fc3967113fa00a91fc7d99eeb4aa9",
+  "masterMatrixSha256": "34d0a06d24e60fb80a596867954aeee803a10a44da2eb303d898b08b44a8643a",
+  "checklistSha256": "68e58575aeeb8c5559a4db8c36e687e98d78ad28f8bf08c816464bd05096b6ad",
+  "candidatePacket": "${NEXUSENGINE_BATCH_WORKSPACE}/source-candidates/candidates/master-package-n-render-surface/candidate.json",
+  "candidatePacketSha256": "2eabc0705f4d59f7bf9aea2db3193d472fd5493f34a528fcb1de87dc7b4d781c",
+  "candidateStatus": "dependency-review-required",
+  "allowedWriteScope": [
+    "src/core-domains/render/subdomains/surface/**",
+    "src/core-domains/render/domain.manifest.js",
+    "src/core-domains/render/index.js",
+    ".agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-022/**",
+    "goal.md"
+  ],
+  "forbiddenActions": [
+    "execute Engine feature tests before source integration completes",
+    "run generated catalog or documentation workflows",
+    "mutate either goal matrix or checklist",
+    "promote detailed or master package state",
+    "push or mutate protected refs"
+  ],
+  "headBeforeCycle": "73c4b4a6c4fb97e5e92d97b450c15f58ff1c0a30",
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

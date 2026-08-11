@@ -4,7 +4,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-19T17-10-00-0400
 - UTC timestamp: 2026-06-19T21:10:00Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: core NexusEngine, sibling NexusEngine-ProtoKits, sibling NexusEngine-Experiments
 
 ## Lane Goal
@@ -82,15 +82,15 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - Latest current-lane packets/nodes: `2026-06-19T16-09-07-0400`, `2026-06-19T15-10-04-0400`, and `2026-06-19T14-10-45-0400`
 - Latest neighboring packets/nodes from `dsk_architecture_scout`, `ecosystem_proof_scout`, `deep_bug_report_scout`, and `domain_kit_idea_expander`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- Fetched `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits` `origin/0.0.2:package.json`
-- Disposable extracted `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits` `origin/0.0.2`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- Fetched `repo://NexusEngine-ProtoKits` `origin/0.0.2:package.json`
+- Disposable extracted `repo://NexusEngine-ProtoKits` `origin/0.0.2`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - Fetched `origin/0.0.2:package.json`, `origin/0.0.2:experiments/dsk-first-wave-proof/index.html`, and `origin/0.0.2:experiments/dsk-first-wave-proof/src/proof.js`
-- Disposable extracted `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments` `origin/0.0.2`
+- Disposable extracted `repo://NexusEngine-Experiments` `origin/0.0.2`
 
 ## Ecosystem Findings
 - Core remains aligned with latest remote release branch `0.0.2`; `HEAD` equals `origin/0.0.2`.
@@ -106,7 +106,7 @@
 - Experiments local available checkout is clean but behind fetched `origin/0.0.2` by 24 commits: local `6d90b9b01a5aeac0209a2c8f2ce30f670be92a9f`, origin `799fad882461502faa84b132f70de011e7dbe0cb`.
 - Experiments targeted DSK validation passed on the available checkout: `node tests/dsk-first-wave-experiment-smoke.mjs`.
 - Experiments disposable fetched-ref aggregate validation passed: `npm run check` generated 100 flat route wrappers in the disposable extraction and passed its aggregate smoke chain.
-- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `/private/tmp/NexusEngine/src/index.js` from sibling-relative proof imports.
+- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `${TMPDIR}/NexusEngine/src/index.js` from sibling-relative proof imports.
 - Local and fetched Experiments aggregate scripts still omit `tests/dsk-first-wave-experiment-smoke.mjs`.
 - Local Experiments aggregate script includes `tests/fluid-water-lab-static-smoke.mjs`; fetched aggregate script includes `tests/tropical-island-scene-static-smoke.mjs`.
 - Public DSK proof route is still HTTP-visible but not browser-ready: Playwright snapshot showed heading text plus `Booting...`, and direct request checks showed 404s for missing sibling GitHub Pages module paths.

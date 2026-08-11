@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
-  "contentHash": "sha256:203756ba02e7ba0ad005b64a723948b43304ffb83c1e06f8704dbec28594003d",
+  "registryHash": "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8",
+  "contentHash": "sha256:568dd75c66852116b269b6a4d0592ee1417d34e65a5912256f8ba27df4dbf4d4",
   "chapters": [
     {
       "id": "start-here",
@@ -34,7 +34,7 @@
       "source": "docs/guide/chapters/04-domains-and-atoms.md",
       "googleDocTab": "04 Domains And Atoms",
       "generated": false,
-      "contentHash": "sha256:ec318c048bfe9a68d1a3e4b28d56659dc29e3b6ffecce0e895aa6af9fb9029c9"
+      "contentHash": "sha256:18fa8089f34129095be40f9bc026de72fe27269ae17ecbe7a7f60b1ec4efaa20"
     },
     {
       "id": "lifecycle",
@@ -42,7 +42,7 @@
       "source": "docs/guide/chapters/05-state-lifecycle-idempotence.md",
       "googleDocTab": "05 Lifecycle",
       "generated": false,
-      "contentHash": "sha256:6f263ddc3ade6bc19f3b55014604a7fd17e460cdca79636022b7a0a318913b40"
+      "contentHash": "sha256:e7d2dfe5b121557f4c16626b8a90fca0333dc65230a4e85e4fe0ccb912f7567f"
     },
     {
       "id": "composition",
@@ -74,7 +74,7 @@
       "source": "docs/guide/chapters/09-hosts-providers-adapters.md",
       "googleDocTab": "09 Integration",
       "generated": false,
-      "contentHash": "sha256:8577a64568abbf7fe68fd9b877c8f3596bfdb7f7f110395ff52a958956672e34"
+      "contentHash": "sha256:b8f7509954b199c2241843368bdb8506b4bc434b6bac65316bc50046c760cd23"
     },
     {
       "id": "build-domain",
@@ -122,7 +122,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:e5acc3ce9ca41819afceaef24a00a5acea7546f5f8a68466a5b93b22c2dffaa3"
+      "contentHash": "sha256:1f8bec55d8881751e6404746cd38934fef95a6e60f19c5a9e72b70881dd8b5ad"
     },
     {
       "id": "dependency-table",
@@ -130,7 +130,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:cf707e743dc1b6bec671817b1a68091d42c559b6602848a7b35258d91d838da2"
+      "contentHash": "sha256:8abafe917030989dc4c0092d3cf52426e336bca55fe233cf5f12b7c188348b69"
     },
     {
       "id": "api-reference",
@@ -138,7 +138,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:8eb8f77ecc5e496fd854b9bb9d951762791de65cc489c2ca093569c81ad2f3a3"
+      "contentHash": "sha256:e6d77ce628756275a6137dd161640c267f084c92714f38a7dcac6d7baec6d07b"
     },
     {
       "id": "ownership-ledger",
@@ -146,7 +146,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:7a7fdddf921e4d6f2b02a665d0e36eb8452c21a81873473bc6324c434815b9a0"
+      "contentHash": "sha256:74990aecd74f8173ef1af0a4341b851afa721e514b01e3ad318219671c79fd61"
     },
     {
       "id": "restored-behavior-migration",

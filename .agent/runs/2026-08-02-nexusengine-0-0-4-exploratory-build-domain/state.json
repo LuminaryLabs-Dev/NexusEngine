@@ -138,7 +138,7 @@
       "source": "guided-development-session",
       "value": {
         "schema": "nexus-headless-repository-inspection/1",
-        "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+        "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
         "package": {
           "name": "nexusengine",
           "version": "0.0.4",
@@ -1824,7 +1824,7 @@
       "source": "guided-development-session",
       "value": {
         "schema": "nexus-headless-module-graph/1",
-        "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+        "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
         "entry": "src/index.js",
         "moduleCount": 60,
         "edgeCount": 138,
@@ -3421,7 +3421,7 @@
       "source": "guided-development-session",
       "value": {
         "schema": "nexus-headless-module-graph/1",
-        "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+        "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
         "entry": "src/index.js",
         "moduleCount": 125,
         "edgeCount": 266,
@@ -5917,7 +5917,7 @@
       "source": "guided-development-session",
       "value": {
         "schema": "nexus-headless-module-graph/1",
-        "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+        "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
         "entry": "src/index.js",
         "moduleCount": 125,
         "edgeCount": 266,
@@ -8513,7 +8513,7 @@
             "details": {
               "repository": {
                 "schema": "nexus-headless-repository-inspection/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "package": {
                   "name": "nexusengine",
                   "version": "0.0.4",
@@ -10192,7 +10192,7 @@
               },
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,
@@ -12718,7 +12718,7 @@
             "status": "passed",
             "signal": null,
             "durationMs": 127362,
-            "stdout": "\n> nexusengine@0.0.4 test\n> node tests/run-all.mjs\n\nChecked 18 Domain manifests, 73 Domain records, and 122 atomic Kits (f046414dd368f20c01f5e2d49195c1b0528a29e9aa32b925eb6d6052a68b04d7).\nValidated executable parity for 122 manifest-backed Core Kits.\nCore boundaries ok: 594 production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.\nActive docs ok: 52 files, 60 kit suggestions reclassified.\nChecked ownership ledger v2 {\n  sourceModules: 576,\n  manifestProvenPublicAtoms: 122,\n  manifestOwnedInternalModules: 429,\n  rootContractModules: 25,\n  unreviewedModules: 0,\n  violations: 0\n}\nRoot module dispositions ok: 61 retired source records.\nChecked frozen ProtoKit extraction: 530 folders, 3698 classified source items.\nTest package surface ok: 167 package modules.\nChecked /Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation/docs/DSK_MANIFEST_0.0.4.json\nChecked 20 guide chapters (sha256:55869d9084ff8d28d16956eb48c12f185f10aa03e2a7b25c8cad317deb2e3033).\nguide basic engine example ok\nguide object placement example ok\nguide composition inspection example ok\npublic-api-freeze ok\nValidated 468 modules reachable from 167 public entrypoints.\ndomain-service-kit-smoke ok\ndomain-path-api-registration-smoke ok\ncore-domain-kits-smoke ok\nCore Domain manifest v2 hierarchy and proof contract ok\ncore world domain smoke passed\nworld foundation domain smoke passed\nworld feature domain smoke passed\nlandform feature domain smoke passed\nworld feature catalog smoke passed\nworld feature foundation integration passed\nworld terrain compatibility passed\ncore weather and layered weather smoke passed\nsequence-node-library-smoke ok\nsequence-node-runtime-smoke ok\nsequence-node-frame-driver-smoke ok\nsequence-node-kit-deploy-smoke ok\nsequence-node-surface-bridge-smoke ok\ncore capability package surface installed 122 manifest-backed Kits\nrealtime core tick contract smoke ok\ncore-data-kit piece smoke ok\ncore-object-kit smoke ok\ncore-input-kit piece smoke ok\ncore-scene-kit smoke ok\ncore motion kit smoke ok\ncore utility articulation smoke ok\ncore-graphics-kit piece smoke ok\ncore graphics procedural material smoke ok\ncore graphics reflection kit smoke ok\ncore graphics render-layer contract test ok\ncore graphics render-layer graph smoke ok\ncore graphics domain smoke ok\ncore-simulation-kit piece smoke ok\ncore promoted services smoke ok\ncore child capabilities smoke ok\ncore simulation resolution smoke ok\ncore physics provider smoke ok\ncore motion domain smoke ok\ncore physics domain smoke ok\ncore compute provider-neutral domain smoke ok\ncore capture domain smoke ok\ncore object shape input-output smoke ok {\n  sourceTriangles: 952,\n  reducedTriangles: 345,\n  proxyTriangles: 187,\n  boundsDeviation: 0.04441004986648385,\n  qualification: 'approved'\n}\ncore object shape skinned qualification smoke ok {\n  requestedRatio: 0.4,\n  approvedRatio: 0.7,\n  qualificationAttempts: 3,\n  poseCount: 3,\n  silhouetteViews: 36\n}\ncore capture shape visual smoke ok {\n  outputPath: '/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-object-shape-capture-4zrgNz/source-vs-reduced.svg',\n  minimumSilhouetteIou: 0.9287020109689214,\n  averageSilhouetteIou: 0.9490706471294997,\n  sourceTriangles: 1140,\n  reducedTriangles: 502\n}\ncore object fidelity and capture contract smoke ok\ncore object vegetation domain smoke passed\ncore object vegetation natural growth and compute contract smoke passed\ndomain-owned Core catalog smoke ok\ncore Object Placement smoke ok\ncore Object Placement roundtrip ok\ncore MCP registry smoke ok\ncore MCP contract negative checks ok\ncore MCP stdio smoke ok\nCore Composition MCP exactly-once smoke ok\nBuild Domain tree: 15 subdomains, 46 atomic Kit contracts, and acyclic dependency traversal ok\nBuild dependency source identity rejects moving references\nBuild project immutability proof detects byte changes\nBuild multi-target partial failure preserves successful target cache\nBuild full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\nBuild CLI repeated-target, approval, apply, and persisted no-op contracts ok\nBuild MCP inspect, plan, exact approval, apply, and receipt tools ok\nBuild Web targets: generated web-live and web-static artifacts start cleanly in Chromium\ncore creature character player smoke ok\ncore speech provider-neutral contract smoke ok\ncore-interaction-kit piece smoke ok\ncore model provider contract smoke ok\ncore-agent-kit piece smoke ok\ncore debug kit smoke ok\ncore startup domain: launch, preparation, continuation, failure, retry, first-frame, and snapshot passed\ncore assets async smoke passed\ncore assets bundle smoke passed\ncore assets cache smoke passed\ncore assets deduplication smoke passed\ncore assets startup bridge smoke passed\ncore presentation domain smoke ok\ncore custom replacement smoke ok\nPassed 90 smoke tests.\n",
+            "stdout": "\n> nexusengine@0.0.4 test\n> node tests/run-all.mjs\n\nChecked 18 Domain manifests, 73 Domain records, and 122 atomic Kits (f046414dd368f20c01f5e2d49195c1b0528a29e9aa32b925eb6d6052a68b04d7).\nValidated executable parity for 122 manifest-backed Core Kits.\nCore boundaries ok: 594 production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.\nActive docs ok: 52 files, 60 kit suggestions reclassified.\nChecked ownership ledger v2 {\n  sourceModules: 576,\n  manifestProvenPublicAtoms: 122,\n  manifestOwnedInternalModules: 429,\n  rootContractModules: 25,\n  unreviewedModules: 0,\n  violations: 0\n}\nRoot module dispositions ok: 61 retired source records.\nChecked frozen ProtoKit extraction: 530 folders, 3698 classified source items.\nTest package surface ok: 167 package modules.\nChecked ${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation/docs/DSK_MANIFEST_0.0.4.json\nChecked 20 guide chapters (sha256:55869d9084ff8d28d16956eb48c12f185f10aa03e2a7b25c8cad317deb2e3033).\nguide basic engine example ok\nguide object placement example ok\nguide composition inspection example ok\npublic-api-freeze ok\nValidated 468 modules reachable from 167 public entrypoints.\ndomain-service-kit-smoke ok\ndomain-path-api-registration-smoke ok\ncore-domain-kits-smoke ok\nCore Domain manifest v2 hierarchy and proof contract ok\ncore world domain smoke passed\nworld foundation domain smoke passed\nworld feature domain smoke passed\nlandform feature domain smoke passed\nworld feature catalog smoke passed\nworld feature foundation integration passed\nworld terrain compatibility passed\ncore weather and layered weather smoke passed\nsequence-node-library-smoke ok\nsequence-node-runtime-smoke ok\nsequence-node-frame-driver-smoke ok\nsequence-node-kit-deploy-smoke ok\nsequence-node-surface-bridge-smoke ok\ncore capability package surface installed 122 manifest-backed Kits\nrealtime core tick contract smoke ok\ncore-data-kit piece smoke ok\ncore-object-kit smoke ok\ncore-input-kit piece smoke ok\ncore-scene-kit smoke ok\ncore motion kit smoke ok\ncore utility articulation smoke ok\ncore-graphics-kit piece smoke ok\ncore graphics procedural material smoke ok\ncore graphics reflection kit smoke ok\ncore graphics render-layer contract test ok\ncore graphics render-layer graph smoke ok\ncore graphics domain smoke ok\ncore-simulation-kit piece smoke ok\ncore promoted services smoke ok\ncore child capabilities smoke ok\ncore simulation resolution smoke ok\ncore physics provider smoke ok\ncore motion domain smoke ok\ncore physics domain smoke ok\ncore compute provider-neutral domain smoke ok\ncore capture domain smoke ok\ncore object shape input-output smoke ok {\n  sourceTriangles: 952,\n  reducedTriangles: 345,\n  proxyTriangles: 187,\n  boundsDeviation: 0.04441004986648385,\n  qualification: 'approved'\n}\ncore object shape skinned qualification smoke ok {\n  requestedRatio: 0.4,\n  approvedRatio: 0.7,\n  qualificationAttempts: 3,\n  poseCount: 3,\n  silhouetteViews: 36\n}\ncore capture shape visual smoke ok {\n  outputPath: '${TMPDIR}/var-folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-object-shape-capture-4zrgNz/source-vs-reduced.svg',\n  minimumSilhouetteIou: 0.9287020109689214,\n  averageSilhouetteIou: 0.9490706471294997,\n  sourceTriangles: 1140,\n  reducedTriangles: 502\n}\ncore object fidelity and capture contract smoke ok\ncore object vegetation domain smoke passed\ncore object vegetation natural growth and compute contract smoke passed\ndomain-owned Core catalog smoke ok\ncore Object Placement smoke ok\ncore Object Placement roundtrip ok\ncore MCP registry smoke ok\ncore MCP contract negative checks ok\ncore MCP stdio smoke ok\nCore Composition MCP exactly-once smoke ok\nBuild Domain tree: 15 subdomains, 46 atomic Kit contracts, and acyclic dependency traversal ok\nBuild dependency source identity rejects moving references\nBuild project immutability proof detects byte changes\nBuild multi-target partial failure preserves successful target cache\nBuild full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok\nBuild CLI repeated-target, approval, apply, and persisted no-op contracts ok\nBuild MCP inspect, plan, exact approval, apply, and receipt tools ok\nBuild Web targets: generated web-live and web-static artifacts start cleanly in Chromium\ncore creature character player smoke ok\ncore speech provider-neutral contract smoke ok\ncore-interaction-kit piece smoke ok\ncore model provider contract smoke ok\ncore-agent-kit piece smoke ok\ncore debug kit smoke ok\ncore startup domain: launch, preparation, continuation, failure, retry, first-frame, and snapshot passed\ncore assets async smoke passed\ncore assets bundle smoke passed\ncore assets cache smoke passed\ncore assets deduplication smoke passed\ncore assets startup bridge smoke passed\ncore presentation domain smoke ok\ncore custom replacement smoke ok\nPassed 90 smoke tests.\n",
             "stderr": "",
             "error": null,
             "summary": "Repository test script passed."
@@ -12790,7 +12790,7 @@
             "details": {
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,
@@ -15400,7 +15400,7 @@
         "details": {
           "repository": {
             "schema": "nexus-headless-repository-inspection/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+            "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
             "package": {
               "name": "nexusengine",
               "version": "0.0.4",
@@ -17079,7 +17079,7 @@
           },
           "moduleGraph": {
             "schema": "nexus-headless-module-graph/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+            "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
             "entry": "src/index.js",
             "moduleCount": 125,
             "edgeCount": 266,
@@ -19706,7 +19706,7 @@
         "details": {
           "moduleGraph": {
             "schema": "nexus-headless-module-graph/1",
-            "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+            "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
             "entry": "src/index.js",
             "moduleCount": 125,
             "edgeCount": 266,
@@ -22492,7 +22492,7 @@
             "details": {
               "repository": {
                 "schema": "nexus-headless-repository-inspection/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "package": {
                   "name": "nexusengine",
                   "version": "0.0.4",
@@ -24171,7 +24171,7 @@
               },
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,
@@ -26762,7 +26762,7 @@
             "details": {
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,
@@ -29387,7 +29387,7 @@
             "details": {
               "repository": {
                 "schema": "nexus-headless-repository-inspection/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "package": {
                   "name": "nexusengine",
                   "version": "0.0.4",
@@ -31066,7 +31066,7 @@
               },
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,
@@ -33657,7 +33657,7 @@
             "details": {
               "moduleGraph": {
                 "schema": "nexus-headless-module-graph/1",
-                "root": "/Users/crimsonwheeler/Documents/Codex/Nexus004/NexusEngine-Core-Consolidation",
+                "root": "${CODEX_WORKSPACE}/Nexus004/NexusEngine-Core-Consolidation",
                 "entry": "src/index.js",
                 "moduleCount": 125,
                 "edgeCount": 266,

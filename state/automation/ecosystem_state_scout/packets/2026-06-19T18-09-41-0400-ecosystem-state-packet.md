@@ -7,7 +7,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-19T18-09-41-0400
 - UTC timestamp: 2026-06-19T22:09:41Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: core NexusEngine, sibling NexusEngine-ProtoKits, sibling NexusEngine-Experiments
 
 ## Prior State Context
@@ -100,7 +100,7 @@
 - Experiments local available checkout is clean but behind fetched `origin/0.0.2` by 24 commits: local `6d90b9b01a5aeac0209a2c8f2ce30f670be92a9f`, origin `799fad882461502faa84b132f70de011e7dbe0cb`.
 - Experiments targeted DSK validation passed on the available checkout: `node tests/dsk-first-wave-experiment-smoke.mjs`.
 - Experiments disposable fetched-ref aggregate validation passed: `npm run check` generated 100 flat route wrappers in the disposable extraction and passed its aggregate smoke chain.
-- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `/private/tmp/NexusEngine/src/index.js` from sibling-relative proof imports.
+- Experiments disposable fetched-ref targeted DSK validation failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `${TMPDIR}/NexusEngine/src/index.js` from sibling-relative proof imports.
 - Local and fetched Experiments aggregate scripts still omit `tests/dsk-first-wave-experiment-smoke.mjs`.
 - Local Experiments aggregate script includes `tests/fluid-water-lab-static-smoke.mjs`; fetched aggregate script includes `tests/tropical-island-scene-static-smoke.mjs`.
 - Public DSK proof route is still HTTP-visible but not browser-ready: Playwright snapshot showed heading text plus `Booting...`, and direct request checks showed 404s for missing sibling GitHub Pages module paths.

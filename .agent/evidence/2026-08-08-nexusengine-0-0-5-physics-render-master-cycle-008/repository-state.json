@@ -1,0 +1,32 @@
+{
+  "schema": "nexusengine.repository-state-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008",
+  "head": "cc6694fe883c4fb24bb1992778e7dec2fcc5d139",
+  "branch": "codex/nexusengine-physics-render",
+  "worktreeClean": true,
+  "matrixValid": true,
+  "selectedPackage": "master-package-n-physics-lifecycle",
+  "existingImplementation": {
+    "path": "src/core-domains/physics/kits/physics-installation-kit/index.js",
+    "domainPath": "n:physics",
+    "overloadedOperations": ["install", "start", "stop"],
+    "missingAtomicKits": [
+      "physics-startup-kit",
+      "physics-step-kit",
+      "physics-shutdown-kit",
+      "physics-reset-kit",
+      "physics-snapshot-kit"
+    ]
+  },
+  "controller": {
+    "executable": "nexus-editor",
+    "available": false,
+    "trackerMutated": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false
+  }
+}

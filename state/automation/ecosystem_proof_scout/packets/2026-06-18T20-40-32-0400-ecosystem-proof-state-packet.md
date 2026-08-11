@@ -12,9 +12,9 @@ Result: partial; local proof remains green, public proof remains missing
 - Experiments: latest remote release branch is `0.0.2` at `0cc2a76d9db452de36d06d4543b201e33087a079`; local `0.0.2` is `91addadb6bcec8470fcb23dc9364fc19adef4287`; ahead/behind `0/38`.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; required public links OK; optional npm metadata 404.

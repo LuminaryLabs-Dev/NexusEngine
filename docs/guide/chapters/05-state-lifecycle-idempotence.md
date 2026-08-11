@@ -18,6 +18,50 @@ A snapshot contains portable semantic state. It excludes renderer objects, funct
 
 Reset restores the configured baseline. Calling reset twice returns the same snapshot and must not duplicate resources or lifecycle hooks.
 
+## Physics Lifecycle
+
+The canonical Physics lifecycle uses explicit stages rather than treating
+installation as proof that a provider is ready:
+
+```txt
+uninstalled -> installed -> starting -> ready -> stopping -> installed
+                                  \-> failed <-/
+```
+
+Every mutation carries an `operationId`. Exact replay returns the original
+receipt; changed content under the same ID fails before mutation. Installation
+owns the phase. Startup, Step, Shutdown, Reset, and Snapshot own separate state
+resources and coordinate only through public capability APIs. Multi-API reset
+and restore operations capture pre-call snapshots and roll every component back
+when any validation or load fails.
+
+## Physics Materials
+
+Physical material descriptors are immutable under one material ID. Defining a
+new record requires an `operationId`; exact replay returns the original receipt,
+changed command content fails before mutation, and a different command cannot
+replace an existing ID with different material content. Removal follows the
+same exact-once rule.
+
+Friction, restitution, density, surface, and combine-policy normalization are
+read-only. Pair resolution does not mutate either material or policy state and
+returns byte-equivalent output when the two material arguments are reversed.
+Snapshots contain only portable records, sorted IDs, revisions, and receipts.
+
+## Physics Worlds
+
+Gravity, force, wind, time-scale, simulation-region, and Physics world records
+use immutable IDs and exact-once mutation receipts. Repeating an accepted
+definition returns the original receipt. Reusing its operation ID with changed
+content, or redefining a record ID with different content, fails before state
+changes.
+
+Field, region, scale, and aggregate world sampling are read-only. A world
+snapshot stores only normalized records, sorted IDs, revisions, and receipts;
+it never stores provider worlds, native handles, clocks, weather objects, or
+query diagnostics. Loading a world snapshot validates every capability
+reference before replacing state.
+
 ## Replay
 
 Deterministic replay starts from an accepted snapshot and applies the same ordered inputs. Any nondeterministic source is injected by the host and recorded as input. Random behavior uses explicit seeds or provider receipts.

@@ -1,0 +1,49 @@
+{
+  "schema": "nexusengine.repository-state-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009",
+  "head": "6e3d91541707a882cdf23b6d7c845c00018137fb",
+  "branch": "codex/nexusengine-physics-render",
+  "worktreeClean": true,
+  "matrixValid": true,
+  "selectedPackage": "master-package-n-physics-material",
+  "existingImplementation": {
+    "canonicalEngineMaterialDomain": null,
+    "historicalEngineCommitMatch": null,
+    "historicalEvidence": [
+      "repo://NexusEngine-ProtoKits/protokits/simple-rigid-body-kit/index.js",
+      "repo://NexusEngine-ProtoKits/protokits/simple-rigid-body-kit/README.md",
+      "repo://NexusEngine-Rust/local-kits/physics-cube-object-kit.mjs"
+    ],
+    "disposition": "Extract physical coefficients and deterministic combination contracts; do not copy overloaded body, collision, integration, rendering, or product behavior."
+  },
+  "ownership": {
+    "owns": [
+      "physical material identity",
+      "friction descriptors",
+      "restitution descriptors",
+      "density descriptors",
+      "physical surface classification",
+      "material pair combination policy"
+    ],
+    "forbidden": [
+      "visual materials",
+      "shaders and textures",
+      "authored audio or effects",
+      "body and collider state",
+      "contact generation",
+      "solver execution",
+      "concrete provider handles"
+    ]
+  },
+  "controller": {
+    "executable": "nexus-editor",
+    "available": false,
+    "trackerMutated": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false
+  }
+}

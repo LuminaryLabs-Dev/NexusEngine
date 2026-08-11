@@ -1,0 +1,576 @@
+{
+  "schema": "nexusengine.physics-material-package-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009",
+  "baseHead": "6e3d91541707a882cdf23b6d7c845c00018137fb",
+  "proofState": "committed-sha-proven",
+  "exactCommittedHead": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+  "registrySha256": "ef314620e72611d23a5be2931556d5977a743fb0d5a60fa35076409b3ac43ee0",
+  "guideContentSha256": "d3c5c7a6252d5430fdaf31afa6168b3d95a761e1b999f21eb62b4355c129f694",
+  "domainPath": "n:physics:material",
+  "kits": [
+    "physics-material-kit",
+    "friction-material-kit",
+    "restitution-material-kit",
+    "density-material-kit",
+    "surface-material-kit",
+    "material-combine-policy-kit"
+  ],
+  "publicSubpaths": [
+    "nexusengine/domains/physics/material",
+    "nexusengine/domains/physics/material/registry",
+    "nexusengine/domains/physics/material/friction",
+    "nexusengine/domains/physics/material/restitution",
+    "nexusengine/domains/physics/material/density",
+    "nexusengine/domains/physics/material/surface",
+    "nexusengine/domains/physics/material/combine-policy"
+  ],
+  "validation": {
+    "targetedPhysicsSmoke": "passed",
+    "directSixKitProbe": "passed",
+    "coreCheck": "passed",
+    "coreContracts": "passed",
+    "ownershipCheck": "passed",
+    "surfaceCheck": "passed",
+    "releaseManifestCheck": "passed",
+    "docsCheck": {
+      "status": "passed",
+      "pdfPages": 141,
+      "nonblank": true,
+      "unclipped": true
+    },
+    "migrationsCheck": "passed",
+    "boundariesCheck": "passed",
+    "npmTest": {
+      "status": "passed",
+      "tests": 101
+    },
+    "releaseTest": {
+      "status": "passed",
+      "tests": 34
+    },
+    "packDryRun": {
+      "status": "passed",
+      "filename": "nexusengine-0.0.4.tgz",
+      "bytes": 2782314,
+      "unpackedBytes": 8340324,
+      "entries": 1155,
+      "integrity": "sha512-hNFw2DaklJji7fFDEy7atUL7+lYi2FsjA7/7IJ44iKAb1NoAUfY1EWi8g/uL9LRCtwnhT8VaCDxUXPUImAtSfQ=="
+    },
+    "isolatedCommittedWorktree": {
+      "status": "passed",
+      "head": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+      "install": "GIT_SSH_COMMAND=false npm ci --ignore-scripts --no-audit --no-fund",
+      "statusDrift": false
+    },
+    "freshInstall": "passed",
+    "freshImport": {
+      "status": "passed",
+      "subpaths": 9,
+      "registryHashMatched": true
+    },
+    "freshComposition": {
+      "status": "passed",
+      "requestedKit": "physics-material-kit",
+      "selectedKits": 11,
+      "missing": []
+    },
+    "freshMaterialLifecycle": {
+      "status": "passed",
+      "operations": [
+        "define",
+        "exact-replay",
+        "changed-replay-rejection",
+        "pair-resolve",
+        "snapshot",
+        "reset",
+        "restore",
+        "remove"
+      ],
+      "symmetricPair": true,
+      "repeatStableRestore": true
+    },
+    "symlinkCount": 0,
+    "harnessRetries": [
+      {
+        "phase": "fresh-consumer-eval",
+        "result": "failed-before-import",
+        "reason": "The first inline Node command encoded newlines literally.",
+        "correction": "Reran the same assertions with shell-safe module source."
+      },
+      {
+        "phase": "fresh-consumer-runtime",
+        "result": "dependency-gate-rejected",
+        "reason": "The proof harness disabled default Core Kits and therefore omitted required n:runtime.",
+        "correction": "Reran the documented public composition with default Core Kits enabled."
+      },
+      {
+        "phase": "evidence-write",
+        "result": "failed-before-write",
+        "reason": "The first inline writer allowed shell expansion of JavaScript template literals.",
+        "correction": "Reran the structured JSON rewrite with shell-protected source."
+      }
+    ]
+  },
+  "behavior": {
+    "registryMutationExactOnce": true,
+    "changedRequestRejectedBeforeMutation": true,
+    "queriesReadOnly": true,
+    "pairResolutionSymmetric": true,
+    "pairPolicyDeterministic": true,
+    "portableFiniteState": true,
+    "visualMaterialOwnership": false,
+    "solverOrProviderExecution": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false,
+    "consumerChanged": false
+  },
+  "nextProof": "Begin a new bounded cycle for master-package-n-physics-world, revalidate the current matrix hashes and repository state, then inspect existing World/Physics ownership before any implementation.",
+  "tarball": {
+    "filename": "nexusengine-0.0.4.tgz",
+    "bytes": 2782314,
+    "unpackedBytes": 8340324,
+    "entries": 1155,
+    "shasum": "88944e21649b1190eae4529eb17d52a60ec386da",
+    "sha256": "74b4198cf1d8774c8cf9f30925cd58a057f32bc7a686245acdc2e5c0faa53690",
+    "integrity": "sha512-hNFw2DaklJji7fFDEy7atUL7+lYi2FsjA7/7IJ44iKAb1NoAUfY1EWi8g/uL9LRCtwnhT8VaCDxUXPUImAtSfQ==",
+    "symlinkEntries": 0
+  },
+  "detailedActions": {
+    "physics-material-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/physics-material-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/physics-material-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/physics-material-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    },
+    "friction-material-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/friction-material-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/friction-material-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/friction-material-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    },
+    "restitution-material-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/restitution-material-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/restitution-material-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/restitution-material-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    },
+    "density-material-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/density-material-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/density-material-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/density-material-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    },
+    "surface-material-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/surface-material-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/surface-material-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/surface-material-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    },
+    "material-combine-policy-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/contracts.js",
+          "src/core-domains/physics/subdomains/material/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, schemas, capability tokens, and canonical subdomain contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/kits/material-combine-policy-kit/index.js"
+        ],
+        "acceptance": "Atomic provider-neutral implementation is committed under the canonical Material owner without solver, collider, renderer, or private coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, deep-clone boundaries, repeat-stable reset/load, exact replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, non-finite rejection, changed-content conflict, deterministic ties, and query immutability are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "src/core-domains/physics/subdomains/material/material-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-capability refusal, deterministic Composition closure, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-material.md"
+        ],
+        "acceptance": "Seven nested exports, catalog, ownership, Guide, migration, MCP resources, and registry hash are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6b2743881414d4ece4b1645d9e58a94d245606d5",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/physics-material-package.json"
+        ],
+        "acceptance": "Exact committed source passes full and release suites, deterministic packing, SSH-disabled fresh install, nine public imports, Composition, lifecycle replay, and zero-symlink proof."
+      }
+    }
+  },
+  "matrixReconciliation": {
+    "detailedBeforeSha256": "629cb91325cad55a6773084edd56c4d5740d0391d71454ee7a1f4ed58ecb9a7d",
+    "detailedAfterSha256": "bf474d593aa74ef371cdd9e00b249e50b61c6d998fee30369d70ae326fc7c506",
+    "masterBeforeSha256": "9c008398d8aff6b99f1263a16291f77f74b8945cfd3568acbe45c1a910e5ca8f",
+    "masterAfterSha256": "2008477a178728b0e257cc0a064e959e51de81957966bac1e76be0bae9781a7b",
+    "detailedActionsCompleted": 42,
+    "detailedActionsTotal": 42,
+    "matrixNodesRepresented": 3343,
+    "matrixNodesTotal": 3343,
+    "masterNodes": 74,
+    "masterPackages": 67,
+    "masterValidation": "passed"
+  },
+  "rollups": {
+    "materialCapability": {
+      "status": "completed",
+      "actionsCompleted": 42,
+      "actionsTotal": 42,
+      "sourceCommit": "6b2743881414d4ece4b1645d9e58a94d245606d5"
+    },
+    "physicsDomain": {
+      "status": "in_progress",
+      "packagesCompleted": 3,
+      "packagesTotal": 21,
+      "completedPackage": "master-package-n-physics-material"
+    },
+    "mission": {
+      "status": "in_progress",
+      "packagesCompleted": 3,
+      "packagesTotal": 67,
+      "protectedVersion": "origin/0.0.4",
+      "releaseBranchCreated": false,
+      "mainPushed": false
+    }
+  },
+  "nextPackage": {
+    "id": "master-package-n-physics-world",
+    "sourceGroup": "n:physics/world",
+    "detailedActions": 49,
+    "reason": "Smallest dependency-ready semantic Physics package after excluding the unprovable aggregate checklist gate; it preserves serial Physics ownership and unlocks later surfaces and integration work.",
+    "implementedInThisCycle": false
+  }
+}

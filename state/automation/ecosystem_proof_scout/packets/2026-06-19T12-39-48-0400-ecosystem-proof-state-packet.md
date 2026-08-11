@@ -26,9 +26,9 @@ Result: partial; core is latest-ref aligned and test-green, local available-chec
 - Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
@@ -38,7 +38,7 @@ Result: partial; core is latest-ref aligned and test-green, local available-chec
 - ProtoKits local available checkout: `node tests/dsk-first-wave.test.mjs` -> passed.
 - Experiments local available checkout: `node tests/dsk-first-wave-experiment-smoke.mjs` -> passed.
 - ProtoKits disposable fetched-ref worktree at `origin/0.0.2`: `npm run check` -> failed after syntax passed because `smoke:imports` could not resolve package `nexusengine`; targeted `node tests/dsk-first-wave.test.mjs` also failed with `ERR_MODULE_NOT_FOUND` for `nexusengine`. Scratch worktree was removed.
-- Experiments disposable fetched-ref worktree at `origin/0.0.2`: `npm run check` -> passed after generating 100 flat route wrappers; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `/private/tmp/NexusEngine/src/index.js`. Scratch worktree was removed.
+- Experiments disposable fetched-ref worktree at `origin/0.0.2`: `npm run check` -> passed after generating 100 flat route wrappers; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `${TMPDIR}/NexusEngine/src/index.js`. Scratch worktree was removed.
 - Public URL checks used direct `curl -L -s -o /dev/null -w "%{http_code}"`.
 - Human-view validation used Playwright CLI from `/tmp`: opened the public DSK proof route, captured snapshot/console/network state, then closed the browser and removed `/tmp/.playwright-cli`.
 - Targeted `rg`/file inspections checked DSK aliases, `engine.n.*`, compatibility shims, public import maps, stale pins, aggregate scripts, proof coverage, and docs/how-to-experiment.md alignment.

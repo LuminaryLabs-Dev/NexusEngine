@@ -1,0 +1,39 @@
+{
+  "schemaVersion": "nexusengine.version-contract/1",
+  "repository": "LuminaryLabs-Dev/NexusEngine",
+  "version": "0.0.5",
+  "status": "active",
+  "base": {
+    "remote": "origin",
+    "defaultBranch": "main",
+    "baseSha": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "preservedReleaseBranch": "0.0.4"
+  },
+  "scope": {
+    "requiredDomains": ["n:physics", "n:render"],
+    "requiredAreas": ["providers", "composition", "mcp", "documentation", "consumers", "release"],
+    "showcase": "repo://TheOpenAbove"
+  },
+  "controlPlane": {
+    "goal": ".agent/versions/0.0.5/goal.md",
+    "masterMatrix": ".agent/versions/0.0.5/master-matrix.jsonl",
+    "featureMatrix": ".agent/versions/0.0.5/feature-matrix.jsonl",
+    "checklist": ".agent/versions/0.0.5/checklist.md",
+    "readiness": ".agent/versions/0.0.5/readiness.json",
+    "events": ".agent/versions/0.0.5/events.jsonl"
+  },
+  "branchPolicy": {
+    "origin004Immutable": true,
+    "origin005CreatedOnlyAfterExactShaApproval": true,
+    "mainPushRequiresExactShaApproval": true,
+    "forcePushAllowed": false,
+    "developmentBranch": "codex/nexusengine-physics-render"
+  },
+  "completion": {
+    "allMasterPackagesProven": true,
+    "exactCommittedCandidateRequired": true,
+    "cleanPackageAndConsumerProofRequired": true,
+    "theOpenAboveProofRequired": true,
+    "hostedChecksRequired": true
+  }
+}

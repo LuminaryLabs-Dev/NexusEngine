@@ -1,7 +1,12 @@
 const objectSchema = Object.freeze({ type: "object", additionalProperties: true });
 
-export function domainNode({ id, domainPath, parentDomainPath = null, label, responsibility, owns, forbiddenResponsibilities, requires = [], optional = [], provides, proofReferences, stateId = `${id}-state`, status = "stable-candidate" }) {
-  if (!proofReferences?.length) throw new TypeError(`${domainPath} requires explicit proof references.`);
+export function domainNode({ id, domainPath, parentDomainPath = null, label, responsibility, owns, forbiddenResponsibilities, requires = [], optional = [], provides, proofReferences = [], proofStatus = "proven", stateId = `${id}-state`, status = "stable-candidate" }) {
+  if (!["proven", "pending", "rejected"].includes(proofStatus)) {
+    throw new TypeError(`${domainPath} proofStatus must be proven, pending, or rejected.`);
+  }
+  if (proofStatus === "proven" && !proofReferences.length) {
+    throw new TypeError(`${domainPath} requires explicit proof references.`);
+  }
   return {
     identity: { id, domainPath, parentDomainPath, label, status },
     ownership: { responsibility, owns, forbiddenResponsibilities },
@@ -25,7 +30,7 @@ export function domainNode({ id, domainPath, parentDomainPath = null, label, res
     dependencies: { requires, optional },
     settingsSchema: objectSchema,
     proof: {
-      status: "proven",
+      status: proofStatus,
       references: proofReferences,
       consumers: [
         { id: `${id}-direct-consumer`, description: `Direct ${label} contract fixture.` },
@@ -35,8 +40,13 @@ export function domainNode({ id, domainPath, parentDomainPath = null, label, res
   };
 }
 
-export function atomicKit({ id, responsibility, domainPath, apiName, requires = [], provides, module, exportName, publicSubpath, proofReferences, version = "0.0.4", status = "stable-candidate", kind = "domain-service-kit", environments = ["browser", "node", "worker"] }) {
-  if (!proofReferences?.length) throw new TypeError(`${id} requires explicit proof references.`);
+export function atomicKit({ id, responsibility, domainPath, apiName, requires = [], provides, module, exportName, publicSubpath, proofReferences = [], proofStatus = "proven", version = "0.0.4", status = "stable-candidate", kind = "domain-service-kit", environments = ["browser", "node", "worker"] }) {
+  if (!["proven", "pending", "rejected"].includes(proofStatus)) {
+    throw new TypeError(`${id} proofStatus must be proven, pending, or rejected.`);
+  }
+  if (proofStatus === "proven" && !proofReferences.length) {
+    throw new TypeError(`${id} requires explicit proof references.`);
+  }
   return {
     id,
     version,
@@ -62,7 +72,7 @@ export function atomicKit({ id, responsibility, domainPath, apiName, requires = 
     settingsSchema: objectSchema,
     source: { module, exportName, publicSubpath },
     proof: {
-      status: "proven",
+      status: proofStatus,
       references: proofReferences,
       consumers: [
         { id: `${id}-direct-consumer`, description: "Direct API contract fixture." },

@@ -4,7 +4,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-20T01-59-37-0400
 - UTC timestamp: 2026-06-20T05:59:37Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 
 ## Lane Goal
@@ -87,7 +87,7 @@
 - Experiments local checkout has advanced since the prior packet but is still behind fetched `origin/0.0.2`: local `799fad882461502faa84b132f70de011e7dbe0cb`, origin `eaeec53bc44e13136e18af37ed4c3f0755b57e60`, ahead/behind `0 3`.
 - Experiments local targeted DSK validation is no longer green: `node tests/dsk-first-wave-experiment-smoke.mjs` failed because local ProtoKits `protokits/nexus-dsk-adapter/index.js` could not resolve package `nexusengine`.
 - Experiments disposable fetched-ref aggregate validation still passed: `npm run check` generated 100 flat route wrappers and passed the aggregate smoke chain.
-- Experiments disposable fetched-ref targeted DSK validation still failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `/private/tmp/NexusEngine/src/index.js` from sibling-relative proof imports.
+- Experiments disposable fetched-ref targeted DSK validation still failed: `node tests/dsk-first-wave-experiment-smoke.mjs` could not resolve `${TMPDIR}/NexusEngine/src/index.js` from sibling-relative proof imports.
 - Public DSK proof remains HTTP-visible but not browser-complete: Playwright snapshot showed heading `DSK first-wave proof` and visible `Booting...`; console showed 404s for deployed sibling module paths.
 - Local proof route files still use sibling-relative imports: import map `../../../NexusEngine/src/index.js`, proof import `../../../../NexusEngine/src/index.js`, and ProtoKits imports under `../../../../NexusEngine-ProtoKits/protokits/...`.
 

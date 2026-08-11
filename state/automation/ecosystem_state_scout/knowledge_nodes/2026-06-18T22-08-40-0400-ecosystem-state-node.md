@@ -15,7 +15,7 @@
   parent: ecosystem-root-004
   lesson: First-wave DSK proof passes locally but still imports local sibling checkouts rather than public URLs.
   evidence: `node tests/dsk-first-wave.test.mjs` passed; `node tests/dsk-first-wave-experiment-smoke.mjs` passed; `experiments/dsk-first-wave-proof/src/proof.js` imports local `NexusEngine` and `NexusEngine-ProtoKits` paths.
-  look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URL variant.
+  look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URL variant.
 - id: branch-alignment-stable-2026-06-18T22-08-40-0400
   parent: ecosystem-root-004
   lesson: The prior sibling branch drift remains resolved.
@@ -42,7 +42,7 @@
 - files or folders: `README.md`, `package.json`, public GitHub/raw/jsDelivr/npm endpoint results
 - question: Should public docs distinguish GitHub/jsDelivr branch consumption from unavailable npm package consumption?
 - branch: public-dsk-proof
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
 - question: Can the first-wave proof be validated from public URLs without local sibling checkout imports?
 - branch: package-version-policy
 - files or folders: `package.json`, remote branch list, raw public `package.json`

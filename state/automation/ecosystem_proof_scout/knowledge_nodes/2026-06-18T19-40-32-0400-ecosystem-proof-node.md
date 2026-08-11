@@ -34,7 +34,7 @@
 
 ## Next Search Branches
 - branch: public-proof-alignment
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, public GitHub Pages output
+- files or folders: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`, public GitHub Pages output
 - question: Why are local passing DSK proof artifacts absent from sampled public/raw `0.0.2` URLs?
 - branch: stale-cdn-pins
 - files or folders: `NexusEngine-ProtoKits/README.md`, `NexusEngine-ProtoKits/protokits/**/README.md`, `NexusEngine-Experiments/experiments/**`

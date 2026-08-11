@@ -4,7 +4,7 @@
 - Automation: Nexus Engine: Ecosystem State Packet
 - Local timestamp: 2026-06-18T23-08-42-0400
 - UTC timestamp: 2026-06-19T03:08:42Z
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: core NexusEngine, sibling NexusEngine-ProtoKits, sibling NexusEngine-Experiments
 
 ## Lane Goal
@@ -78,14 +78,14 @@
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
 - Latest ecosystem state packets and nodes from this lane.
 - Latest neighboring packets and nodes from DSK architecture, ecosystem proof, deep bug report, and domain kit idea lanes.
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- `repo://NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 
 ## Ecosystem Findings
 - Core remains aligned with latest remote release branch `0.0.2`; `HEAD` equals `origin/0.0.2`.

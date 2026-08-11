@@ -37,7 +37,7 @@
 - files or folders: `README.md`, `package.json`, `scripts/automation-preflight.mjs`, public npm registry endpoint
 - question: Should README/package language distinguish GitHub/jsDelivr consumption from npm package availability?
 - branch: non-local-dsk-proof
-- files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
 - question: Can the first-wave DSK proof run from public URLs or vendored release artifacts instead of local sibling paths?
 - branch: package-version-policy
 - files or folders: `package.json`, release branches, public raw package metadata

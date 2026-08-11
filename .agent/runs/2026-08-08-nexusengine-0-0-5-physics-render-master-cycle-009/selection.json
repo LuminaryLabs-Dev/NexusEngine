@@ -1,0 +1,22 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009",
+  "masterPackageId": "master-package-n-physics-material",
+  "sourceGroup": "n:physics/material",
+  "detailedNodeCount": 42,
+  "kitCount": 6,
+  "dependency": "master-package-n-physics-contracts",
+  "dependencyStatus": "completed",
+  "matrixSha256": "629cb91325cad55a6773084edd56c4d5740d0391d71454ee7a1f4ed58ecb9a7d",
+  "masterMatrixSha256": "9c008398d8aff6b99f1263a16291f77f74b8945cfd3568acbe45c1a910e5ca8f",
+  "headBeforeCycle": "6e3d91541707a882cdf23b6d7c845c00018137fb",
+  "reason": "This is the smallest dependency-ready Physics package with direct leverage over both Collider and Solver, and its proof can remain fully provider-neutral.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

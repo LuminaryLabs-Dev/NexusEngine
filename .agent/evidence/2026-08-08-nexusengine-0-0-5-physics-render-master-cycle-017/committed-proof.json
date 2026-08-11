@@ -1,0 +1,22 @@
+{
+  "schema": "nexusengine.goal-package-committed-proof/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-017",
+  "masterPackageId": "master-package-n-render-shader",
+  "sourceCommit": "c2c337b371ab464fa06d0134bea79d74a2937590",
+  "registrySha256": "21de163ec0cd1536a4de22a9f5a5b4a65d50c58b71b5e18c3c7141f5e818211d",
+  "tarballSha256": "0c200ca5c588347a917eb53e6d1e9bde581bd72cbd426252af90742e6ac678e9",
+  "proof": {
+    "freshNpmCi": "passed with SSH disabled",
+    "targetedGraphicsSmoke": "passed",
+    "fullTests": "101 passed",
+    "releaseTests": "34 passed",
+    "freshTarballConsumer": "passed",
+    "allTwelveShaderImports": "passed",
+    "allTwelveShaderApis": "passed",
+    "packageSymlink": false,
+    "detachedWorktreeClean": true,
+    "worktreeTarballHashMatched": true
+  },
+  "push": false,
+  "branchCreated": false
+}

@@ -29,7 +29,7 @@
 
 ## Files inspected
 - `$CODEX_HOME/automations/nexus-realtime-domain-and-kit-idea-expansion/memory.md`
-- `/Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
+- `${CODEX_HOME}/skills/agent-it/SKILL.md`
 - `.agent/start-here.md`
 - `.agent/operating-model.md`
 - `.agent/automation-rules.md`

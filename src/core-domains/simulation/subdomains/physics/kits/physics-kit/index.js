@@ -7,12 +7,14 @@ export function createPhysicsKit(config = {}) {
   const provider = createPhysicsProviderExtension(config.providerConfig ?? {});
   return createDomainKit({
     ...config,
-    manifestId: "physics-contract-kit",
+    manifestId: config.manifestId ?? "physics-contract-kit",
     id: config.id ?? "physics-contract-kit",
     domain: "physics",
     domainPath: config.domainPath ?? "n:simulation:physics",
-    parentDomainPath: config.parentDomainPath ?? "n:simulation",
+    parentDomainPath: config.parentDomainPath === undefined ? "n:simulation" : config.parentDomainPath,
     apiName: config.apiName ?? "physics",
+    requires: config.requires ?? ["n:simulation"],
+    provides: config.provides ?? ["n:simulation:physics", "physics:descriptor", "physics:query", "physics:provider-contract"],
     purpose: "Physics descriptors, colliders, contacts, grounding, constraints, articulated dynamics inputs, collision queries, and backend-neutral provider boundaries.",
     owns: [
       "colliders",

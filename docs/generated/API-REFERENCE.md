@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 ## Domains
 
@@ -53,6 +53,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:object:vegetation:foliage` | `n:object:vegetation` | Own deterministic foliage structure and descriptors. | stable-candidate |
 | `n:object:vegetation:ecology` | `n:object:vegetation` | Own deterministic vegetation suitability scoring and species selection. | stable-candidate |
 | `n:object:placement` | `n:object` | Own deterministic placement transforms, grounding, alignment, fit, and validation receipts. | stable-candidate |
+| `n:physics` | - | Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains. | stable-candidate |
+| `n:physics:contracts` | `n:physics` | Own portable Physics provider, state, command, event, and query boundary schemas. | stable-candidate |
+| `n:physics:lifecycle` | `n:physics` | Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts. | stable-candidate |
+| `n:physics:material` | `n:physics` | Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy. | stable-candidate |
+| `n:physics:world` | `n:physics` | Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions. | stable-candidate |
 | `n:policy` | - | Own product-neutral permission, guard, sandbox, and runtime safety decisions. | stable-candidate |
 | `n:presentation` | - | Own renderer-neutral presentation descriptors and output policy contracts. | stable-candidate |
 | `n:presentation:output` | `n:presentation` | Own surface, safe-area, viewport, aspect, bar, and render-resolution policy. | stable-candidate |
@@ -65,6 +70,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:presentation:capture` | `n:presentation` | Own observation requests, view sets, framing, capture jobs, progress, and result contracts. | stable-candidate |
 | `n:presentation:sky` | `n:presentation` | Own generic sky, atmosphere, cloud, horizon, and celestial descriptors. | stable-candidate |
 | `n:presentation:camera:third-person` | `n:presentation:camera` | Own renderer-neutral third-person camera follow descriptors. | stable-candidate |
+| `n:render` | - | Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains. | stable-candidate |
+| `n:render:contracts` | `n:render` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. | stable-candidate |
+| `n:render:lifecycle` | `n:render` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. | stable-candidate |
+| `n:render:device` | `n:render` | Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics. | stable-candidate |
+| `n:render:resource` | `n:render` | Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state. | stable-candidate |
+| `n:render:buffer` | `n:render` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. | stable-candidate |
+| `n:render:texture` | `n:render` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. | stable-candidate |
+| `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
+| `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -202,6 +216,31 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `object-meshoptimizer-shape-provider-kit` | `n:object:shape` | `nexusengine/domains/object/shape/meshoptimizer-provider` | Resolve object shape jobs through an explicitly registered meshoptimizer-compatible provider. |
 | `object-shape-fidelity-adapter-kit` | `n:object:fidelity` | `nexusengine/domains/object/adapters/shape-fidelity` | Translate qualified shape records into Object Fidelity form requests. |
 | `object-vegetation-bridge-kit` | `n:object:vegetation` | `nexusengine/domains/object/adapters/vegetation-object` | Project vegetation identities into canonical Object descriptors without owning either state. |
+| `physics-domain-contract-kit` | `n:physics` | `nexusengine/domains/physics/contract` | Expose the canonical backend-neutral Physics ownership and contract boundary. |
+| `physics-provider-contract-kit` | `n:physics:contracts` | `nexusengine/domains/physics/provider-contract` | Describe and validate backend Physics providers without owning a concrete solver. |
+| `physics-state-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/state-schema` | Validate and normalize portable Physics snapshots for deterministic replay. |
+| `physics-command-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/command-schema` | Define deterministic, exact-once Physics command envelopes. |
+| `physics-event-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/event-schema` | Define ordered, portable Physics event envelopes. |
+| `physics-query-schema-kit` | `n:physics:contracts` | `nexusengine/domains/physics/query-schema` | Define read-only portable Physics query request and result envelopes. |
+| `physics-installation-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Physics composition. |
+| `physics-startup-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
+| `physics-step-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/step` | Own deterministic Physics step requests, completion ordering, and provider-neutral frame receipts. |
+| `physics-shutdown-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
+| `physics-reset-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/reset` | Reset composed Physics lifecycle state atomically through public capability APIs. |
+| `physics-snapshot-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Physics lifecycle state. |
+| `friction-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/friction` | Normalize portable isotropic and anisotropic physical friction descriptors. |
+| `restitution-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/restitution` | Normalize physical restitution coefficient and activation-threshold descriptors. |
+| `density-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/density` | Normalize positive SI physical mass-density descriptors. |
+| `surface-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/surface` | Normalize renderer-neutral physical surface classification and tags. |
+| `material-combine-policy-kit` | `n:physics:material` | `nexusengine/domains/physics/material/combine-policy` | Resolve physical material pairs with deterministic symmetric coefficient-combine policy. |
+| `physics-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/registry` | Own immutable portable physical material records and exact-once registry mutations. |
+| `physics-world-settings-kit` | `n:physics:world` | `nexusengine/domains/physics/world/settings` | Normalize portable Physics coordinate, unit, bounds, and out-of-bounds settings. |
+| `gravity-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/gravity-field` | Own portable deterministic uniform and point-gravity field records and sampling. |
+| `force-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/force-field` | Own portable deterministic non-gravity force and acceleration field records and sampling. |
+| `wind-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/wind-field` | Own portable deterministic physical flow-velocity field records and sampling. |
+| `time-scale-kit` | `n:physics:world` | `nexusengine/domains/physics/world/time-scale` | Own portable deterministic Physics-only time-scale records and delta resolution. |
+| `simulation-region-kit` | `n:physics:world` | `nexusengine/domains/physics/world/simulation-region` | Own portable physical simulation activation regions and deterministic point resolution. |
+| `physics-world-kit` | `n:physics:world` | `nexusengine/domains/physics/world/registry` | Own immutable Physics world records and compose public field, scale, and region capabilities into read-only samples. |
 | `policy-kit` | `n:policy` | `nexusengine/domains/policy/guard` | Evaluate declarative runtime safety and permission rules. |
 | `presentation-registry-kit` | `n:presentation` | `nexusengine/domains/presentation/registry` | Register renderer-neutral presentation capabilities and descriptors. |
 | `presentation-output-kit` | `n:presentation:output` | `nexusengine/domains/presentation/output` | Calculate renderer-neutral surfaces, safe areas, viewports, aspect policy, and render resolution. |
@@ -221,6 +260,78 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `sky-descriptor-kit` | `n:presentation:sky` | `nexusengine/domains/presentation/sky` | Create generic sky, horizon, atmosphere, cloud, and celestial descriptors. |
 | `third-person-camera-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
 | `camera-world-occlusion-adapter-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/adapters/camera-world-occlusion` | Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state. |
+| `render-domain-contract-kit` | `n:render` | `nexusengine/domains/render/contract` | Expose the canonical backend-neutral Render ownership and execution-contract boundary. |
+| `render-provider-contract-kit` | `n:render:contracts` | `nexusengine/domains/render/provider-contract` | Validate concrete Render providers without executing or retaining provider code or handles. |
+| `render-resource-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/resource-schema` | Validate and normalize portable Render resource records without exposing backend handles. |
+| `render-frame-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/frame-schema` | Validate and normalize portable Render frame execution records. |
+| `render-pass-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/pass-schema` | Validate and normalize resolved provider-facing Render pass records without owning Presentation graph planning. |
+| `shader-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/shader-schema` | Validate and normalize portable shader-interface records shared by Render providers. |
+| `render-event-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/event-schema` | Validate and normalize ordered portable Render lifecycle and execution events. |
+| `render-installation-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Render composition. |
+| `render-startup-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
+| `render-shutdown-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
+| `render-recovery-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/recovery` | Coordinate deterministic recovery from a failed Render provider lifecycle without owning provider repair execution. |
+| `render-reset-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/reset` | Reset composed Render lifecycle state atomically through public capability APIs. |
+| `render-snapshot-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Render lifecycle state. |
+| `render-device-contract-kit` | `n:render:device` | `nexusengine/domains/render/device/contract` | Define the portable identity and ownership boundary for one Render device. |
+| `device-feature-kit` | `n:render:device` | `nexusengine/domains/render/device/feature` | Own canonical Render device feature declarations and deterministic requirement negotiation. |
+| `device-limit-kit` | `n:render:device` | `nexusengine/domains/render/device/limit` | Own portable Render device limit profiles and deterministic requirement checks. |
+| `device-capability-kit` | `n:render:device` | `nexusengine/domains/render/device/capability` | Compose a portable Render device identity, feature set, and limit profile into one capability record. |
+| `device-memory-kit` | `n:render:device` | `nexusengine/domains/render/device/memory` | Own portable memory budgets, semantic reservations, and exact-once accounting receipts. |
+| `device-queue-kit` | `n:render:device` | `nexusengine/domains/render/device/queue` | Own logical Render queue descriptors and exact-once submission and completion receipts. |
+| `device-lifecycle-kit` | `n:render:device` | `nexusengine/domains/render/device/lifecycle` | Own portable acquisition, readiness, loss, failure, recovery, and release state for one selected Render device. |
+| `device-loss-kit` | `n:render:device` | `nexusengine/domains/render/device/loss` | Own exact-once Render device loss incidents and externally proven resolution records. |
+| `device-diagnostics-kit` | `n:render:device` | `nexusengine/domains/render/device/diagnostics` | Project deterministic read-only diagnostics from public Render device capabilities. |
+| `render-resource-contract-kit` | `n:render:resource` | `nexusengine/domains/render/resource/contract` | Define portable Render execution-resource identity, lifecycle, operation, and provider receipt contracts. |
+| `resource-identity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/identity` | Own deterministic Render execution-resource identities, revisions, and dependency lineage. |
+| `resource-state-kit` | `n:render:resource` | `nexusengine/domains/render/resource/state` | Define portable Render resource phases and legal lifecycle transitions. |
+| `resource-reference-kit` | `n:render:resource` | `nexusengine/domains/render/resource/reference` | Own exact, portable references to Render execution-resource identities. |
+| `resource-integrity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/integrity` | Record portable integrity comparisons for exact Render resource identities. |
+| `resource-cache-kit` | `n:render:resource` | `nexusengine/domains/render/resource/cache` | Index reusable provider resources by exact portable content identity and deterministic access order. |
+| `resource-budget-kit` | `n:render:resource` | `nexusengine/domains/render/resource/budget` | Map exact Render resource identities to existing Device Memory reservations without duplicating capacity authority. |
+| `resource-upload-kit` | `n:render:resource` | `nexusengine/domains/render/resource/upload` | Record exact Render resource upload requests, provider receipts, and failures against completed Device Queue submissions. |
+| `resource-release-kit` | `n:render:resource` | `nexusengine/domains/render/resource/release` | Record exact Render resource release requests, provider receipts, and failures after reference safety checks. |
+| `resource-lifecycle-kit` | `n:render:resource` | `nexusengine/domains/render/resource/lifecycle` | Own the portable lifecycle state of exact Render resource identities using explicit upload and release receipts. |
+| `buffer-resource-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/resource` | Own portable logical Buffer records, exact content revisions, and bounded provider update receipts. |
+| `buffer-layout-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/layout` | Own explicit portable Buffer field formats, member offsets, alignments, and stride. |
+| `vertex-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/vertex` | Own logical Vertex Buffer views with exact resource, layout, count, and range validation. |
+| `index-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/index` | Own logical Index Buffer views with exact resource, format, count, alignment, and range validation. |
+| `uniform-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/uniform` | Own logical Uniform Buffer ranges with exact layout, size, and explicit dynamic-alignment validation. |
+| `storage-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/storage` | Own logical Storage Buffer ranges with explicit access, layout, element-count, and range validation. |
+| `instance-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/instance` | Own logical Instance Buffer views with exact resource, layout, count, and range validation. |
+| `indirect-buffer-kit` | `n:render:buffer` | `nexusengine/domains/render/buffer/indirect` | Own logical Indirect Buffer command ranges with exact type, count, stride, alignment, and range validation. |
+| `texture-format-kit` | `n:render:texture` | `nexusengine/domains/render/texture/format` | Own portable Texture format aspects, block layout, and provider-neutral capability declarations. |
+| `texture-resource-kit` | `n:render:texture` | `nexusengine/domains/render/texture/resource` | Own exact logical Texture records derived from canonical Render Resource identities and portable formats. |
+| `texture-2d-kit` | `n:render:texture` | `nexusengine/domains/render/texture/2d` | Own logical 2D Texture views with exact identity and mip-range validation. |
+| `texture-cube-kit` | `n:render:texture` | `nexusengine/domains/render/texture/cube` | Own logical Cube Texture views with exact identity, six-face, and mip-range validation. |
+| `texture-array-kit` | `n:render:texture` | `nexusengine/domains/render/texture/array` | Own logical 2D Texture Array views with exact identity, layer-range, and mip-range validation. |
+| `render-target-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/render-target` | Own logical color attachment Texture views with exact format and subresource qualification. |
+| `depth-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/depth` | Own logical depth-stencil Texture views with exact aspect, format, and subresource qualification. |
+| `shadow-texture-kit` | `n:render:texture` | `nexusengine/domains/render/texture/shadow` | Own provider-neutral shadow-readable depth views without owning authored shadow policy or execution. |
+| `mipmap-kit` | `n:render:texture` | `nexusengine/domains/render/texture/mipmap` | Own explicit portable Texture mip-chain plans with exact contiguous levels and source identities. |
+| `texture-stream-kit` | `n:render:texture` | `nexusengine/domains/render/texture/stream` | Own exact Texture subresource stream requests and portable provider completion or failure receipts. |
+| `texture-residency-kit` | `n:render:texture` | `nexusengine/domains/render/texture/residency` | Own desired and proven resident Texture subresources derived from completed stream receipts. |
+| `shader-contract-kit` | `n:render:shader` | `nexusengine/domains/render/shader/contract` | Define the canonical provider-neutral Shader execution boundary and stage topology. |
+| `shader-language-kit` | `n:render:shader` | `nexusengine/domains/render/shader/language` | Own portable Shader language capabilities, source kinds, stages, and feature requirements. |
+| `shader-source-kit` | `n:render:shader` | `nexusengine/domains/render/shader/source` | Own immutable text or binary Shader source revisions and exact integrity. |
+| `shader-include-kit` | `n:render:shader` | `nexusengine/domains/render/shader/include` | Own immutable Shader include records and a deterministic acyclic dependency graph. |
+| `shader-module-kit` | `n:render:shader` | `nexusengine/domains/render/shader/module` | Own one portable Shader stage module, entry point, and exact source closure. |
+| `shader-program-kit` | `n:render:shader` | `nexusengine/domains/render/shader/program` | Own linked portable Shader program topology and its canonical interface. |
+| `shader-variant-kit` | `n:render:shader` | `nexusengine/domains/render/shader/variant` | Own exact Shader define and specialization selections with deterministic identity. |
+| `shader-permutation-kit` | `n:render:shader` | `nexusengine/domains/render/shader/permutation` | Own bounded deterministic Shader permutation axes and read-only expansion. |
+| `shader-error-kit` | `n:render:shader` | `nexusengine/domains/render/shader/error` | Normalize portable Shader diagnostics without owning compiler execution or repair. |
+| `shader-compile-kit` | `n:render:shader` | `nexusengine/domains/render/shader/compile` | Own exact-once logical Shader compile requests and provider completion or failure receipts. |
+| `shader-reflection-kit` | `n:render:shader` | `nexusengine/domains/render/shader/reflection` | Validate normalized provider reflection against the completed compile and program interface. |
+| `shader-cache-kit` | `n:render:shader` | `nexusengine/domains/render/shader/cache` | Link completed Shader compiles to resident shader-program Render Resources and select deterministic eviction candidates. |
+| `material-contract-kit` | `n:render:material` | `nexusengine/domains/render/material/contract` | Define the canonical backend-neutral Render Material execution boundary. |
+| `material-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/binding` | Map portable Material slots to one exact Shader program interface. |
+| `material-parameter-kit` | `n:render:material` | `nexusengine/domains/render/material/parameter` | Own typed portable values for exact Material parameter slots. |
+| `texture-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/texture-binding` | Bind exact resident Texture views and subresources to Material slots. |
+| `sampler-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/sampler-binding` | Own portable sampler state for exact Material sampler slots. |
+| `material-instance-kit` | `n:render:material` | `nexusengine/domains/render/material/instance` | Compose one complete portable Material execution instance from exact bindings. |
+| `material-variant-kit` | `n:render:material` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
+| `material-validation-kit` | `n:render:material` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
+| `material-cache-kit` | `n:render:material` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |
@@ -230,7 +341,7 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `runtime-startup-kit` | `n:runtime:startup` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
 | `schedule-kit` | `n:runtime:sequence:schedule` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
 | `simulation-state-kit` | `n:simulation` | `nexusengine/domains/simulation/runtime` | Manage deterministic simulation objectives, resources, hazards, timers, and resolution receipts. |
-| `physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
+| `simulation-physics-contract-kit` | `n:simulation:physics` | `nexusengine/domains/simulation/physics` | Describe physical bodies, colliders, contacts, constraints, queries, and provider boundaries. |
 | `articulated-physics-kit` | `n:simulation:physics:articulated` | `nexusengine/domains/simulation/physics/articulated` | Manage backend-neutral articulated body topology and joint dynamics state. |
 | `motion-contract-kit` | `n:simulation:motion` | `nexusengine/domains/simulation/motion` | Manage intent-to-motion descriptors, trajectories, velocity state, and movement policies. |
 | `two-bone-ik-kit` | `n:simulation:motion` | `nexusengine/domains/simulation/motion/two-bone-ik` | Solve deterministic two-bone inverse-kinematics poses. |

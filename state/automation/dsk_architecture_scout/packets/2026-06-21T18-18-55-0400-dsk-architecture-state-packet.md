@@ -33,8 +33,8 @@
 - worktree note: pre-existing modified `src/index.js`, `tests/public-api-freeze.mjs`, and `tests/run-all.mjs` plus untracked host docs/examples/source/test files were present before this DSK run. This lane wrote only this packet, its knowledge node, and the DSK tracker update.
 
 ## Files inspected
-- `/Users/crimsonwheeler/.codex/automations/nexusengine-dsk-architecture-state-packet/memory.md`
-- `/Users/crimsonwheeler/.codex/skills/agent-it/SKILL.md`
+- `${CODEX_HOME}/automations/nexusengine-dsk-architecture-state-packet/memory.md`
+- `${CODEX_HOME}/skills/agent-it/SKILL.md`
 - `.agent/start-here.md`, `.agent/operating-model.md`, `.agent/automation-rules.md`, `.agent/report-format.md`, `.agent/AGENT_MEMORY.md`, `.agent/CHANGE_LOG.md`
 - `memory.md`, `README.md`, `package.json`
 - `state/automation/AUTOMATION_MANIFEST.md`, `state/automation/README.md`, `state/automation/KNOWLEDGE_NODE_CONTRACT.md`, `state/automation/dsk_architecture_scout/PROMPT.md`, `state/automation/dsk_architecture_scout/master_dsk_architecture.md`

@@ -186,15 +186,15 @@
 - parent: ecosystem-root-036
 - child: protokits-local-aggregate-regression-2026-06-23-1901
 - relationship: ProtoKits local clean `main` is no longer aggregate-green; it is 140 commits ahead of `origin/0.0.2`, 11 behind `origin/main`, and `npm run check` fails at `generic-promotion-gate-smoke` on `pressure emits warning transition`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/generic-promotion-gate-smoke.test.mjs`, local `main`, `origin/main`, package/workspace release policy
+- look further: `repo://NexusEngine-ProtoKits/tests/generic-promotion-gate-smoke.test.mjs`, local `main`, `origin/main`, package/workspace release policy
 - parent: ecosystem-root-036
 - child: protokits-release-targeted-package-resolution-2026-06-23-1901
 - relationship: disposable `origin/0.0.2` ProtoKits aggregate validation still passes, but local and disposable targeted first-wave DSK smoke cannot resolve package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- look further: `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
 - parent: ecosystem-root-036
 - child: experiments-local-release-main-drift-2026-06-23-1901
 - relationship: Experiments local clean `main` is now 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`; local and disposable release checks still fail aggregate route validation and targeted `engine.n.zoneField`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
+- look further: `repo://NexusEngine-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
 - parent: ecosystem-root-036
 - child: public-browser-module-404-2026-06-23-1901
 - relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
@@ -214,11 +214,11 @@
 - parent: ecosystem-root-035
 - child: protokits-local-ahead-release-behind-main-2026-06-23-0606
 - relationship: ProtoKits local clean `main` passes aggregate checks but remains 103 commits ahead of the preflight-resolved release branch and is now 30 commits behind fetched `origin/main`, so local dev proof, release-ref proof, and latest-main proof must stay separated.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- look further: `repo://NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
 - parent: ecosystem-root-035
 - child: experiments-main-drift-release-ref-proof-2026-06-23-0606
 - relationship: Experiments local clean `main` still equals `origin/0.0.2`, but fetched `origin/main` advanced 29 commits ahead while aggregate route validation and targeted DSK proof remain red.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
+- look further: `repo://NexusEngine-Experiments`, `origin/main`, `origin/0.0.2`, route generation and DSK proof policy
 - parent: ecosystem-root-035
 - child: core-dirty-host-docs-release-boundary-2026-06-23-0606
 - relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
@@ -226,11 +226,11 @@
 - parent: ecosystem-root-035
 - child: protokits-targeted-package-resolution-2026-06-23-0606
 - relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- look further: `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
 - parent: ecosystem-root-035
 - child: experiments-aggregate-targeted-proof-red-2026-06-23-0606
 - relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- look further: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - parent: ecosystem-root-035
 - child: public-browser-module-404-2026-06-23-0606
 - relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
@@ -254,7 +254,7 @@
 - parent: ecosystem-root-034
 - child: protokits-local-ahead-release-ref-2026-06-22-1807
 - relationship: ProtoKits local clean `main` passes aggregate checks but remains 103 commits ahead of the preflight-resolved release branch, so local dev proof and release-ref proof must stay separated.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- look further: `repo://NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
 - parent: ecosystem-root-034
 - child: core-dirty-host-docs-release-boundary-2026-06-22-1807
 - relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
@@ -262,11 +262,11 @@
 - parent: ecosystem-root-034
 - child: protokits-targeted-package-resolution-2026-06-22-1807
 - relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- look further: `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
 - parent: ecosystem-root-034
 - child: experiments-aggregate-targeted-proof-red-2026-06-22-1807
 - relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- look further: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - parent: ecosystem-root-034
 - child: public-browser-module-404-2026-06-22-1807
 - relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
@@ -286,7 +286,7 @@
 - parent: ecosystem-root-033
 - child: protokits-local-ahead-release-ref-2026-06-22-0605
 - relationship: ProtoKits local clean `main` passes aggregate checks but is 103 commits ahead of the preflight-resolved release branch, so local dev proof and release-ref proof must be separated.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
+- look further: `repo://NexusEngine-ProtoKits`, `origin/0.0.2`, `origin/main`, package/workspace release policy
 - parent: ecosystem-root-033
 - child: core-dirty-host-docs-release-boundary-2026-06-22-0605
 - relationship: core refs are aligned and 9 smoke tests pass, but dirty host/docs/source/test changes are local evidence only until intentionally committed and release-scoped.
@@ -294,11 +294,11 @@
 - parent: ecosystem-root-033
 - child: protokits-targeted-package-resolution-2026-06-22-0605
 - relationship: local and disposable release targeted ProtoKits first-wave DSK smoke still cannot resolve package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- look further: `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
 - parent: ecosystem-root-033
 - child: experiments-aggregate-targeted-proof-red-2026-06-22-0605
 - relationship: Experiments local `main` equals `origin/0.0.2`, but aggregate validation fails on `the-open-above-v2` and targeted DSK proof fails on missing `engine.n.zoneField`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- look further: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 - parent: ecosystem-root-033
 - child: public-browser-module-404-2026-06-22-0605
 - relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
@@ -318,15 +318,15 @@
 - parent: ecosystem-root-032
 - child: protokits-targeted-package-resolution-2026-06-21-1805
 - relationship: aggregate ProtoKits checks pass locally and in disposable release layout, but targeted first-wave DSK smoke still cannot resolve `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
+- look further: `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, package/workspace/CDN/link model
 - parent: ecosystem-root-032
 - child: experiments-aggregate-canonical-route-2026-06-21-1805
 - relationship: disposable release-ref aggregate Experiments validation still fails because `the-open-above-v2` is versioned.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers
+- look further: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers
 - parent: ecosystem-root-032
 - child: experiments-targeted-dsk-api-installation-2026-06-21-1805
 - relationship: targeted Experiments DSK proof reaches execution but `engine.n.zoneField` is undefined.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, ProtoKits first-wave DSK adapters
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, ProtoKits first-wave DSK adapters
 - parent: ecosystem-root-032
 - child: public-browser-module-404-2026-06-21-1805
 - relationship: public proof route is HTTP 200 but human-visible `Booting...` with deployed core/ProtoKit module 404s.
@@ -358,7 +358,7 @@
 - parent: ecosystem-root-003
 - child: non-local-dsk-proof
 - relationship: local DSK proof passes but imports local sibling checkout paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
 - parent: ecosystem-root-003
 - child: package-version-policy
 - relationship: latest branch is `0.0.2`, public raw package metadata reports `nexusengine@0.1.0`
@@ -370,7 +370,7 @@
 - parent: ecosystem-root-004
 - child: dsk-proof-local-path-2026-06-18T22-08-40-0400
 - relationship: local DSK proof passes but imports local sibling checkout paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
 - parent: ecosystem-root-004
 - child: branch-alignment-stable-2026-06-18T22-08-40-0400
 - relationship: core and sibling repos are clean/aligned on `0.0.2`
@@ -386,7 +386,7 @@
 - parent: ecosystem-root-005
 - child: public-proof-browser-failure-2026-06-18T23-08-42-0400
 - relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-005
 - child: branch-alignment-stable-2026-06-18T23-08-42-0400
 - relationship: core, ProtoKits, and Experiments all have `HEAD` equal to `origin/0.0.2`
@@ -410,11 +410,11 @@
 - parent: ecosystem-root-006
 - child: public-proof-import-shape-2026-06-19T00-11-28-0400
 - relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-006
 - child: aggregate-dsk-proof-validation-2026-06-19T00-11-28-0400
 - relationship: Experiments aggregate `npm run check` passes but does not list `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-006
 - child: branch-local-proof-stable-2026-06-19T00-11-28-0400
 - relationship: core, ProtoKits, and Experiments all have `HEAD` equal to `origin/0.0.2`, and targeted local DSK proof commands pass
@@ -430,7 +430,7 @@
 - parent: ecosystem-root-007
 - child: sibling-worktree-dirt-2026-06-19T01-11-04-0400
 - relationship: core and sibling release HEADs align, but ProtoKits and Experiments now have local modified/untracked high-fidelity/meadow memory/docs work
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- look further: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`
 - parent: ecosystem-root-007
 - child: branch-local-proof-stable-2026-06-19T01-11-04-0400
 - relationship: core, ProtoKits, and Experiments have `HEAD` equal to `origin/0.0.2`, and local validation commands pass
@@ -438,11 +438,11 @@
 - parent: ecosystem-root-007
 - child: public-proof-import-shape-2026-06-19T01-11-04-0400
 - relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-007
 - child: aggregate-dsk-proof-validation-2026-06-19T01-11-04-0400
 - relationship: Experiments aggregate `npm run check` passes but does not list `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-007
 - child: public-consumption-npm-gap-2026-06-19T01-11-04-0400
 - relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
@@ -462,19 +462,19 @@
 - parent: ecosystem-root-008
 - child: sibling-latest-ref-validation-2026-06-19-0609
 - relationship: sibling local checkouts are clean but behind fetched release refs, so available-checkout validation is separate from latest-ref validation
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`
 - parent: ecosystem-root-008
 - child: public-proof-import-shape-2026-06-19-0609
 - relationship: public DSK proof route is HTTP 200 but browser execution stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-008
 - child: aggregate-dsk-proof-validation-2026-06-19-0609
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs`, including on fetched `origin/0.0.2`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-008
 - child: expanded-protokits-proof-coverage-2026-06-19-0609
 - relationship: fetched ProtoKits release ref adds fluid/water/domain surfaces beyond local checkout while first-wave browser proof remains blocked
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`
+- look further: `repo://NexusEngine-ProtoKits/protokits`, `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`
 - parent: ecosystem-root-008
 - child: public-consumption-npm-gap-2026-06-19-0609
 - relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
@@ -494,15 +494,15 @@
 - parent: ecosystem-root-009
 - child: public-proof-import-shape-2026-06-19-0711
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-009
 - child: aggregate-dsk-proof-validation-2026-06-19-0711
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` even though both commands pass separately
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-009
 - child: expanded-protokits-proof-coverage-2026-06-19-0711
 - relationship: latest ProtoKits validation now includes expanded fluid/water/domain surfaces, but that is local command proof rather than browser-complete proof
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/fluid-water-lab`, public routes
+- look further: `repo://NexusEngine-ProtoKits/protokits`, `repo://NexusEngine-Experiments/experiments/fluid-water-lab`, public routes
 - parent: ecosystem-root-009
 - child: receipt-integrity-hardening-2026-06-19-0711
 - relationship: neighboring bug and idea lanes add receipt identity, event idempotency, claim policy, and request identity to DSK hardening gates
@@ -526,19 +526,19 @@
 - parent: ecosystem-root-010
 - child: experiments-latest-ref-drift-2026-06-19-0813
 - relationship: Experiments available checkout is clean and validation-green, but fetched `origin/0.0.2` is ahead by 22 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, fast-forward or separate latest-ref validation
+- look further: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, fast-forward or separate latest-ref validation
 - parent: ecosystem-root-010
 - child: public-proof-import-shape-2026-06-19-0813
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-010
 - child: aggregate-dsk-proof-validation-2026-06-19-0813
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` on local and fetched package metadata
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-010
 - child: generated-flat-route-cleanliness-2026-06-19-0813
 - relationship: Experiments aggregate validation dirties flat route wrappers and requires cleanup to preserve scout lane boundaries
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-010
 - child: bridge-state-hardening-2026-06-19-0813
 - relationship: neighboring bug and idea lanes add bridge phase, step receipt, delegated action reconciliation, and wrapper state ownership to hardening gates
@@ -562,15 +562,15 @@
 - parent: ecosystem-root-011
 - child: experiments-latest-ref-drift-2026-06-19-0912
 - relationship: Experiments available checkout is clean and targeted DSK proof passes, but fetched `origin/0.0.2` is still ahead by 22 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
+- look further: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
 - parent: ecosystem-root-011
 - child: public-proof-import-shape-2026-06-19-0912
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-011
 - child: aggregate-dsk-proof-validation-2026-06-19-0912
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` and starts with generated route output
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
 - parent: ecosystem-root-011
 - child: source-state-hardening-2026-06-19-0912
 - relationship: neighboring bug and idea lanes add authored-source isolation, reset-source policy, retention-limit semantics, and initial terminal receipts to hardening gates
@@ -578,7 +578,7 @@
 - parent: ecosystem-root-011
 - child: generated-route-validation-boundary-2026-06-19-0912
 - relationship: Experiments aggregate validation remains write-producing, so scout lanes need cleanup-safe or disposable validation before running it
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-011
 - child: public-consumption-npm-gap-2026-06-19-0912
 - relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
@@ -598,19 +598,19 @@
 - parent: ecosystem-root-012
 - child: experiments-latest-ref-drift-2026-06-19-1010
 - relationship: Experiments available checkout is clean and targeted DSK proof passes, but fetched `origin/0.0.2` is still ahead by 22 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
+- look further: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
 - parent: ecosystem-root-012
 - child: public-proof-import-shape-2026-06-19-1010
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-012
 - child: aggregate-dsk-proof-validation-2026-06-19-1010
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` and starts with generated route output
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
 - parent: ecosystem-root-012
 - child: generated-route-validation-boundary-2026-06-19-1010
 - relationship: Experiments aggregate validation remains write-producing, so scout lanes need cleanup-safe or disposable validation before running it
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-012
 - child: source-state-hardening-2026-06-19-1010
 - relationship: neighboring architecture, bug, and idea lanes keep authored-source isolation, reset-source policy, retention-limit semantics, and initial terminal receipts in hardening gates
@@ -638,19 +638,19 @@
 - parent: ecosystem-root-013
 - child: experiments-latest-ref-drift-2026-06-19-1108
 - relationship: Experiments available checkout is clean and targeted DSK proof passes, but fetched `origin/0.0.2` advanced again and is now ahead by 24 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
+- look further: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
 - parent: ecosystem-root-013
 - child: public-proof-import-shape-2026-06-19-1108
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-013
 - child: aggregate-dsk-proof-validation-2026-06-19-1108
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` and starts with generated route output
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
 - parent: ecosystem-root-013
 - child: generated-route-validation-boundary-2026-06-19-1108
 - relationship: Experiments aggregate validation remains write-producing, so scout lanes need cleanup-safe or disposable validation before running it
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-013
 - child: source-state-hardening-2026-06-19-1108
 - relationship: neighboring architecture, bug, and idea lanes keep authored-source isolation, reset-source policy, retention-limit semantics, and initial terminal receipts in hardening gates
@@ -678,23 +678,23 @@
 - parent: ecosystem-root-014
 - child: protokits-latest-ref-drift-2026-06-19-1208
 - relationship: ProtoKits available checkout is clean and validation-green, but fetched `origin/0.0.2` is ahead by 5 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`, disposable latest-ref validation
+- look further: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`, disposable latest-ref validation
 - parent: ecosystem-root-014
 - child: experiments-latest-ref-drift-2026-06-19-1208
 - relationship: Experiments available checkout is clean and targeted DSK proof passes, but fetched `origin/0.0.2` remains ahead by 24 commits
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
+- look further: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`, disposable latest-ref validation
 - parent: ecosystem-root-014
 - child: public-proof-import-shape-2026-06-19-1208
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-014
 - child: aggregate-dsk-proof-validation-2026-06-19-1208
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs` and starts with generated route output
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, disposable validation worktree
 - parent: ecosystem-root-014
 - child: generated-route-validation-boundary-2026-06-19-1208
 - relationship: Experiments aggregate validation remains write-producing, so scout lanes need cleanup-safe or disposable validation before running it
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-014
 - child: public-consumption-npm-gap-2026-06-19-1208
 - relationship: GitHub/raw/jsDelivr remain reachable while npm registry metadata returns 404
@@ -722,23 +722,23 @@
 - parent: ecosystem-root-015
 - child: protokits-package-resolution-2026-06-19-1309
 - relationship: local ProtoKits checks pass, but disposable fetched `origin/0.0.2` validation fails because package `nexusengine` is unresolved
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-015
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1309
 - relationship: disposable fetched Experiments aggregate passes, but targeted DSK proof fails because sibling `NexusEngine/src/index.js` is absent
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-015
 - child: public-proof-import-shape-2026-06-19-1309
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-015
 - child: aggregate-dsk-proof-validation-2026-06-19-1309
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-015
 - child: generated-route-validation-boundary-2026-06-19-1309
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-015
 - child: traversal-proof-integrity-2026-06-19-1309
 - relationship: neighboring bug and idea lanes add navigation cost, navmesh identity, procedural signature, and recovery receipt/state rows to hardening gates
@@ -762,23 +762,23 @@
 - parent: ecosystem-root-016
 - child: protokits-package-resolution-2026-06-19-1410
 - relationship: local ProtoKits checks pass, but disposable fetched `origin/0.0.2` validation fails because package `nexusengine` is unresolved
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-016
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1410
 - relationship: disposable fetched Experiments aggregate passes, but targeted DSK proof fails because sibling `NexusEngine/src/index.js` is absent
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-016
 - child: public-proof-import-shape-2026-06-19-1410
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on missing GitHub Pages module paths
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-016
 - child: aggregate-dsk-proof-validation-2026-06-19-1410
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-016
 - child: generated-route-validation-boundary-2026-06-19-1410
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-016
 - child: traversal-proof-integrity-2026-06-19-1410
 - relationship: neighboring DSK, bug, proof, and idea lanes keep navigation cost, navmesh identity, procedural signature, and recovery receipt/state rows in hardening scope
@@ -806,23 +806,23 @@
 - parent: ecosystem-root-017
 - child: protokits-package-resolution-2026-06-19-1510
 - relationship: ProtoKits latest-ref validation fails because fetched `origin/0.0.2` cannot resolve package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-017
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1510
 - relationship: Experiments fetched aggregate passes while targeted DSK smoke fails on sibling-relative `NexusEngine` resolution
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-017
 - child: public-proof-import-shape-2026-06-19-1510
 - relationship: public DSK proof route is HTTP 200 but remains browser-stuck at `Booting...` on sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-017
 - child: aggregate-dsk-proof-validation-2026-06-19-1510
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-017
 - child: generated-route-validation-boundary-2026-06-19-1510
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-017
 - child: runtime-failure-boundary-hardening-2026-06-19-1510
 - relationship: runtime failure-boundary rows remain hardening scope rather than public module-loading scope
@@ -850,23 +850,23 @@
 - parent: ecosystem-root-018
 - child: protokits-package-resolution-2026-06-19-1609
 - relationship: local ProtoKits proof passes while fetched `origin/0.0.2` cannot resolve package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-018
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1609
 - relationship: fetched Experiments aggregate passes but targeted DSK proof cannot resolve sibling `NexusEngine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-018
 - child: public-proof-import-shape-2026-06-19-1609
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on deployed sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-018
 - child: aggregate-dsk-proof-validation-2026-06-19-1609
 - relationship: Experiments aggregate validation still omits the DSK first-wave smoke
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-018
 - child: generated-route-validation-boundary-2026-06-19-1609
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-018
 - child: lifecycle-parity-hardening-2026-06-19-1609
 - relationship: neighboring bug and idea lanes add movement receipt, terrain parity, partial-start cleanup, and AR session stop-state rows as separate hardening inventory
@@ -890,23 +890,23 @@
 - parent: ecosystem-root-019
 - child: protokits-package-resolution-2026-06-19-1710
 - relationship: local ProtoKits proof passes while fetched `origin/0.0.2` cannot resolve package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-019
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1710
 - relationship: fetched Experiments aggregate passes but targeted DSK proof cannot resolve sibling `NexusEngine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-019
 - child: public-proof-import-shape-2026-06-19-1710
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on deployed sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-019
 - child: aggregate-dsk-proof-validation-2026-06-19-1710
 - relationship: Experiments aggregate validation still omits the DSK first-wave smoke
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-019
 - child: generated-route-validation-boundary-2026-06-19-1710
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-019
 - child: query-command-semantics-hardening-2026-06-19-1710
 - relationship: neighboring bug and idea lanes add terminal receipts, query/transition policy, rejected commands, and query snapshot isolation as separate hardening inventory
@@ -930,23 +930,23 @@
 - parent: ecosystem-root-020
 - child: protokits-package-resolution-2026-06-19-1809
 - relationship: local ProtoKits proof passes while fetched `origin/0.0.2` cannot resolve package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-020
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1809
 - relationship: fetched Experiments aggregate passes but targeted DSK proof cannot resolve sibling `NexusEngine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-020
 - child: public-proof-import-shape-2026-06-19-1809
 - relationship: public DSK proof route is HTTP 200 but browser execution still stalls on deployed sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - parent: ecosystem-root-020
 - child: aggregate-dsk-proof-validation-2026-06-19-1809
 - relationship: Experiments aggregate validation still omits the DSK first-wave smoke
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-020
 - child: generated-route-validation-boundary-2026-06-19-1809
 - relationship: Experiments aggregate validation remains write-producing and should stay disposable for scout lanes
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- look further: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - parent: ecosystem-root-020
 - child: proof-readiness-queue-2026-06-19-1809
 - relationship: neighboring domain idea lane adds proof-readiness queueing as separate planning inventory, not proof that module-source blockers are fixed
@@ -970,11 +970,11 @@
 - parent: ecosystem-root-021
 - child: protokits-package-resolution-2026-06-19-1910
 - relationship: local ProtoKits available-checkout validation passes while disposable fetched `origin/0.0.2` cannot resolve package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package resolution policy
+- look further: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package resolution policy
 - parent: ecosystem-root-021
 - child: experiments-targeted-fetched-ref-resolution-2026-06-19-1910
 - relationship: fetched Experiments aggregate passes while targeted DSK smoke fails on missing sibling `NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, proof import paths
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, proof import paths
 - parent: ecosystem-root-021
 - child: public-proof-import-shape-2026-06-19-1910
 - relationship: public DSK proof route is HTTP 200 but browser-visible state remains `Booting...` with sibling module 404s
@@ -982,7 +982,7 @@
 - parent: ecosystem-root-021
 - child: aggregate-dsk-proof-validation-2026-06-19-1910
 - relationship: Experiments aggregate `check` still omits `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, targeted DSK smoke, release evidence checklist
+- look further: `repo://NexusEngine-Experiments/package.json`, targeted DSK smoke, release evidence checklist
 - parent: ecosystem-root-021
 - child: generated-route-validation-boundary-2026-06-19-1910
 - relationship: fetched Experiments aggregate generated 100 flat route wrappers in disposable extraction, so scout validation should stay out of the main checkout
@@ -1002,7 +1002,7 @@
 - parent: ecosystem-root-022
 - child: protokits-fetched-ref-drift-2026-06-19-2010
 - relationship: ProtoKits fetched `origin/0.0.2` advanced to `f0fa45a` and detached validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-022
 - child: module-source-strategy-2026-06-19-2010
 - relationship: ProtoKits fetched-ref proof, Experiments targeted fetched-ref proof, and public browser proof still share one module-source blocker
@@ -1010,7 +1010,7 @@
 - parent: ecosystem-root-022
 - child: public-proof-import-shape-2026-06-19-2010
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-022
 - child: compatibility-content-safety-inventory-2026-06-19-2010
 - relationship: legacy sequence and AR text-safety rows are hardening inventory, not distribution proof
@@ -1022,15 +1022,15 @@
 - parent: ecosystem-root-023
 - child: protokits-fetched-ref-drift-2026-06-19-2110
 - relationship: ProtoKits fetched `origin/0.0.2` remains 26 commits ahead and detached validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-023
 - child: experiments-targeted-dsk-fetched-ref-2026-06-19-2110
 - relationship: fetched Experiments aggregate passes while targeted DSK smoke still fails on missing sibling `NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-023
 - child: public-proof-import-shape-2026-06-19-2110
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-023
 - child: ar-spatial-read-model-hardening-2026-06-19-2110
 - relationship: AR launch and SpatialRoom read-model rows are hardening inventory, not distribution proof
@@ -1042,15 +1042,15 @@
 - parent: ecosystem-root-024
 - child: protokits-fetched-ref-drift-2026-06-19-2210
 - relationship: ProtoKits fetched `origin/0.0.2` remains 26 commits ahead and detached validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-024
 - child: experiments-targeted-dsk-fetched-ref-2026-06-19-2210
 - relationship: fetched Experiments aggregate passes while targeted DSK smoke still fails on missing sibling `NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-024
 - child: public-proof-import-shape-2026-06-19-2210
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-024
 - child: proof-signal-integrity-hardening-2026-06-19-2210
 - relationship: ARExperience receipt, WebXR hit-test, tick-time, and finite-scale rows are hardening inventory, not distribution proof
@@ -1062,15 +1062,15 @@
 - parent: ecosystem-root-025
 - child: protokits-latest-ref-drift-2026-06-20-0159
 - relationship: ProtoKits local `f006fa3` is 31 commits behind fetched `origin/0.0.2` `b1d6909`, and disposable fetched-ref validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-025
 - child: experiments-targeted-dsk-regression-2026-06-20-0159
 - relationship: Experiments local targeted proof now fails through ProtoKits package resolution, while fetched aggregate passes and fetched targeted proof still fails on missing sibling `NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout
 - parent: ecosystem-root-025
 - child: public-proof-import-shape-2026-06-20-0159
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-025
 - child: proof-readiness-queue-boundary-2026-06-20-0159
 - relationship: latest domain idea lane found repeated module-source and proof-signal evidence should refine existing proof-readiness inventory, not create a duplicate durable idea family
@@ -1078,23 +1078,23 @@
 - parent: ecosystem-root-026
 - child: protokits-latest-ref-drift-2026-06-20-0307
 - relationship: ProtoKits fetched `origin/0.0.2` advanced to `9ab73e0`; local `f006fa3` is 39 commits behind and fetched validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-026
 - child: local-available-checkout-regression-2026-06-20-0307
 - relationship: ProtoKits local check, ProtoKits local targeted DSK smoke, and Experiments local targeted DSK smoke still fail on missing package `nexusengine`
 - look further: local package/workspace setup for ProtoKits and Experiments DSK proof
 - parent: ecosystem-root-026
 - child: experiments-targeted-dsk-fetched-ref-2026-06-20-0307
-- relationship: fetched Experiments aggregate passes while targeted DSK smoke still fails on missing sibling `/private/tmp/NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+- relationship: fetched Experiments aggregate passes while targeted DSK smoke still fails on missing sibling `${TMPDIR}/NexusEngine/src/index.js`
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
 - parent: ecosystem-root-026
 - child: public-proof-import-shape-2026-06-20-0307
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-026
 - child: aggregate-targeted-proof-boundary-2026-06-20-0307
 - relationship: fetched Experiments aggregate `npm run check` passes but does not include `tests/dsk-first-wave-experiment-smoke.mjs`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, targeted DSK proof smoke
+- look further: `repo://NexusEngine-Experiments/package.json`, targeted DSK proof smoke
 - parent: ecosystem-root-026
 - child: hardening-boundary-separation-2026-06-20-0307
 - relationship: composition-proof ownership and runtime identity/lifecycle ownership are hardening inventory, not module-source or public browser proof fixes
@@ -1102,15 +1102,15 @@
 - parent: ecosystem-root-027
 - child: protokits-latest-ref-drift-2026-06-20-0410
 - relationship: ProtoKits fetched `origin/0.0.2` advanced to `82c879f`; local `ee9e964` is 7 commits behind and local/fetched validation still fails on missing package `nexusengine`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, fetched `origin/0.0.2`
 - parent: ecosystem-root-027
 - child: experiments-targeted-dsk-fetched-ref-2026-06-20-0410
 - relationship: Experiments fetched aggregate passes while local and fetched targeted DSK smoke remain red; local fails through ProtoKits package resolution and fetched fails on missing sibling `NexusEngine/src/index.js`
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout, fetched `origin/0.0.2`
 - parent: ecosystem-root-027
 - child: public-proof-import-shape-2026-06-20-0410
 - relationship: public DSK proof route is HTTP 200 but human-visible Playwright state remains `Booting...` with sibling module 404s
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, CDN/raw URLs, deployed sibling paths
 - parent: ecosystem-root-027
 - child: package-version-policy-2026-06-20-0410
 - relationship: core branch `0.0.2` serves package version `0.1.0`, local ProtoKits reports `0.0.1`, fetched ProtoKits reports `0.0.2`, and npm metadata remains 404
@@ -1122,11 +1122,11 @@
 - parent: ecosystem-root-028
 - child: protokits-ref-aligned-package-resolution-2026-06-20-0511
 - relationship: ProtoKits local and fetched refs are aligned at `3d42b72`, but local/fetched validation still fails on undeclared or unresolved package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, package/workspace/CDN strategy
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, package/workspace/CDN strategy
 - parent: ecosystem-root-028
 - child: experiments-targeted-proof-still-red-2026-06-20-0511
 - relationship: Experiments fetched aggregate `npm run check` passes while local/fetched targeted DSK smoke remains red.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, proof import layout, fetched `origin/0.0.2`
 - parent: ecosystem-root-028
 - child: public-proof-import-shape-2026-06-20-0511
 - relationship: Public proof route is HTTP 200 but human-visible Playwright state remains `Booting...` because deployed sibling module imports 404.
@@ -1142,19 +1142,19 @@
 - parent: ecosystem-root-029
 - child: protokits-package-resolution-2026-06-20-0609
 - relationship: ProtoKits latest-ref alignment is stable, but local/latest-ref validation still fails on unresolved package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- look further: `repo://NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - parent: ecosystem-root-029
 - child: experiments-targeted-proof-2026-06-20-0609
 - relationship: Experiments fetched aggregate validation passes while local/fetched targeted DSK proof remains red.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`
 - parent: ecosystem-root-029
 - child: public-proof-import-shape-2026-06-20-0609
 - relationship: Public proof route is HTTP-visible but remains browser-stuck at `Booting...` on deployed module 404s.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
 - parent: ecosystem-root-029
 - child: aggregate-targeted-proof-boundary-2026-06-20-0609
 - relationship: Aggregate Experiments validation is still separate from first-wave targeted DSK proof.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-029
 - child: package-version-policy-2026-06-20-0609
 - relationship: Release branch `0.0.2`, package metadata `nexusengine@0.1.0`, and npm registry 404 remain separate public consumption signals.
@@ -1170,19 +1170,19 @@
 - parent: ecosystem-root-030
 - child: protokits-package-resolution-2026-06-20-1811
 - relationship: ProtoKits latest-ref alignment is stable, but local/latest-ref validation still fails on unresolved package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- look further: `repo://NexusEngine-ProtoKits/protokits/nexus-dsk-adapter/index.js`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
 - parent: ecosystem-root-030
 - child: experiments-targeted-proof-2026-06-20-1811
 - relationship: Experiments fetched aggregate validation passes while local/fetched targeted DSK proof remains red.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`
+- look further: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`
 - parent: ecosystem-root-030
 - child: public-proof-import-shape-2026-06-20-1811
 - relationship: Public proof route is HTTP-visible but remains browser-stuck at `Booting...` on deployed module 404s.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
 - parent: ecosystem-root-030
 - child: aggregate-targeted-proof-boundary-2026-06-20-1811
 - relationship: Aggregate Experiments validation is still separate from first-wave targeted DSK proof.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- look further: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - parent: ecosystem-root-030
 - child: package-version-policy-2026-06-20-1811
 - relationship: Release branch `0.0.2`, package metadata `nexusengine@0.1.0`, and npm registry 404 remain separate public consumption signals.
@@ -1202,15 +1202,15 @@
 - parent: ecosystem-root-031
 - child: protokits-targeted-package-resolution-2026-06-21-0605
 - relationship: ProtoKits aggregate checks pass locally and at detached release ref, but targeted first-wave DSK proof cannot resolve package `nexusengine`.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
+- look further: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`
 - parent: ecosystem-root-031
 - child: experiments-aggregate-canonical-route-2026-06-21-0605
 - relationship: Experiments aggregate validation is red because canonical route smoke rejects `the-open-above-v2` as versioned.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
+- look further: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated route wrappers, `index.html`
 - parent: ecosystem-root-031
 - child: experiments-targeted-dsk-api-installation-2026-06-21-0605
 - relationship: Experiments targeted DSK proof reaches execution but `engine.n.zoneField` is undefined, so first-wave promoted APIs are not installed as the proof expects.
-- look further: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-foundation/`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-service-kits/`
+- look further: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `repo://NexusEngine-ProtoKits/protokits/domain-foundation/`, `repo://NexusEngine-ProtoKits/protokits/domain-service-kits/`
 - parent: ecosystem-root-031
 - child: public-browser-module-404-2026-06-21-0605
 - relationship: Public DSK proof route is HTTP 200 but human-visible `Booting...` because deployed NexusEngine and ProtoKits module paths return 404.
@@ -1228,7 +1228,7 @@
 - branch: local-available-checkout-proof
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- next files: `repo://NexusEngine-ProtoKits/package.json`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - branch: dsk-ledger-proof-drift
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1236,7 +1236,7 @@
 - branch: sibling-branch-reconciliation
 - owner: ecosystem_state_scout
 - priority: low
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
+- next files: `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
 - branch: public-consumption-wording
 - owner: ecosystem_state_scout
 - priority: high
@@ -1244,7 +1244,7 @@
 - branch: non-local-dsk-proof
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- next files: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
 - branch: package-version-policy
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1252,15 +1252,15 @@
 - branch: public-dsk-proof
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
+- next files: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`, public CDN/raw URLs
 - branch: public-proof-import-shape
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
+- next files: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, CDN `0.0.2`, same-origin deploy assets, build-step import maps
 - branch: aggregate-dsk-proof-validation
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- next files: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
 - branch: dsk-composition-audit-readiness
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1272,7 +1272,7 @@
 - branch: sibling-release-alignment-watch
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`
+- next files: `repo://NexusEngine-ProtoKits`, `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`
 - branch: dsk-hardening-proof-gates
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1280,7 +1280,7 @@
 - branch: expanded-protokits-proof-coverage
 - owner: ecosystem_state_scout
 - priority: medium
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits`, `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`
+- next files: `repo://NexusEngine-ProtoKits/protokits`, `docs/described_examples.md`, `docs/domain_ideas.md`, `docs/kits_ideas.md`
 - branch: receipt-integrity-hardening
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1288,11 +1288,11 @@
 - branch: experiments-latest-ref-validation
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`, fetched `origin/0.0.2`
+- next files: `repo://NexusEngine-Experiments`, fetched `origin/0.0.2`
 - branch: generated-flat-route-cleanliness
 - owner: ecosystem_state_scout
 - priority: medium
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
+- next files: `repo://NexusEngine-Experiments/scripts/generate-flat-experiment-routes.mjs`, `repo://NexusEngine-Experiments/package.json`
 - branch: bridge-state-hardening
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1308,7 +1308,7 @@
 - branch: protokits-latest-ref-validation
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
+- next files: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `tests/universal-game-domain-kits.test.mjs`
 - branch: service-lifecycle-config-hardening
 - owner: ecosystem_state_scout
 - priority: medium
@@ -1364,11 +1364,11 @@
 - branch: experiments-aggregate-canonical-route
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated routes, `index.html`
+- next files: `repo://NexusEngine-Experiments/tests/canonical-game-routes-smoke.mjs`, generated routes, `index.html`
 - branch: experiments-targeted-dsk-api-installation
 - owner: ecosystem_state_scout
 - priority: high
-- next files: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-foundation/`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/protokits/domain-service-kits/`
+- next files: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, `repo://NexusEngine-ProtoKits/protokits/domain-foundation/`, `repo://NexusEngine-ProtoKits/protokits/domain-service-kits/`
 
 ## Resolved Or Superseded
 - id: ecosystem-root-032

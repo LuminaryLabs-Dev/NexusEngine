@@ -2,7 +2,7 @@
 
 ## Scope
 - Automation: Nexus Engine: Ecosystem State Packet
-- Workspace: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- Workspace: `repo://NexusEngine`
 - Repos checked: NexusEngine core, NexusEngine-ProtoKits, NexusEngine-Experiments
 - Result: partial; core remains commit-aligned with the preflight-resolved release branch `0.0.2` and smoke-green, but ecosystem proof remains red. New drift since `ecosystem-root-035`: ProtoKits local `main` moved to 140 commits ahead of `origin/0.0.2` and 11 behind `origin/main`, ProtoKits local aggregate validation now fails, Experiments local `main` moved to 67 commits ahead of `origin/0.0.2` and 50 behind `origin/main`, and the optional ProtoKits jsDelivr path recovered to 200.
 

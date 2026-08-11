@@ -1,0 +1,50 @@
+{
+  "schema": "nexusengine.repository-state-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-010",
+  "head": "7fab8f7889ca73b4895e6a3a5bc377f70852b70f",
+  "branch": "codex/nexusengine-physics-render",
+  "worktreeClean": true,
+  "matrixValid": true,
+  "selectedPackage": "master-package-n-physics-world",
+  "existingImplementation": {
+    "canonicalEnginePhysicsWorldDomain": null,
+    "historicalEngineCommitMatch": null,
+    "historicalEvidence": [
+      "repo://NexusEngine-ProtoKits/protokits/wind-field-kit/index.js",
+      "repo://NexusEngine-ProtoKits/protokits/high-fidelity-meadow-kits/index.js",
+      "repo://TheOpenAbove/src/runtime/airstream-domain"
+    ],
+    "disposition": "Extract portable deterministic physical-field and sampling contracts; do not copy weather ownership, renderer/game behavior, mutable queries, or product routes."
+  },
+  "ownership": {
+    "owns": [
+      "Physics world identity and records",
+      "Physics coordinate and bounds settings",
+      "gravity field descriptors",
+      "generic physical force field descriptors",
+      "physical wind velocity fields",
+      "Physics-only time scales",
+      "physical simulation activation regions"
+    ],
+    "forbidden": [
+      "authored weather and climate",
+      "semantic World regions",
+      "Runtime scheduling and clocks",
+      "bodies, colliders, contacts, or solving",
+      "concrete provider handles",
+      "visual wind, particles, shaders, and audio",
+      "game routes and product rules"
+    ]
+  },
+  "controller": {
+    "executable": "nexus-editor",
+    "available": false,
+    "trackerMutated": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false
+  }
+}

@@ -1,0 +1,709 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014",
+  "masterPackageId": "master-package-n-render-resource",
+  "sourceGroup": "n:render/resource",
+  "status": "completed-and-reconciled",
+  "scope": {
+    "detailedActions": 70,
+    "kits": 10
+  },
+  "ownership": {
+    "renderContracts": "generic portable Render resource schema",
+    "asset": "source identity, decoded content, Asset cache providers, and provider jobs",
+    "device": "capability-bound memory reservations and logical queue completion",
+    "resource": "portable execution-resource identity, references, lifecycle, semantic cache and residency, admission mapping, and integrity evidence",
+    "provider": "GPU handles, allocation, upload, release, execution, repair, and eviction"
+  },
+  "implementation": {
+    "domainPath": "n:render:resource",
+    "productionFiles": 34,
+    "atomicKits": [
+      "render-resource-contract-kit",
+      "resource-identity-kit",
+      "resource-reference-kit",
+      "resource-state-kit",
+      "resource-lifecycle-kit",
+      "resource-cache-kit",
+      "resource-budget-kit",
+      "resource-upload-kit",
+      "resource-release-kit",
+      "resource-integrity-kit"
+    ],
+    "registrySha256": "a2ffb914ab957675db2b2f4fea91c05ef6b4c3ff2885e24c4d019fbc86a46416",
+    "sourceAggregateSha256": "89eacc9c67cddf5ca3af60d745bbbc8dc82e60f26916f947fc9e22f49e6d745c"
+  },
+  "worktreeProof": {
+    "targetedSmoke": "passed",
+    "coreCheck": "passed",
+    "contractParity": "passed",
+    "boundaries": "passed",
+    "documentation": "passed",
+    "repositorySmokeTests": 101,
+    "releaseCandidateTests": 34,
+    "guidePdfPages": 157,
+    "packageEntryCount": 1301,
+    "freshInstall": "passed-with-scripts-disabled",
+    "publicSubpathsImported": 10,
+    "tarballSha1": "8dbd8b0d4afe981042239c75b7dd6a5db60ceaf6",
+    "tarballIntegrity": "sha512-7EYSycGGiLeb71bGnCi9zEsf/H5GfCpgU+WsvbuuxMJHjV6gF7QNRoG4REIhs5nhDO4g7fy7fzx907EbZRfz4A=="
+  },
+  "committedProof": {
+    "sourceCommit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+    "registrySha256": "a2ffb914ab957675db2b2f4fea91c05ef6b4c3ff2885e24c4d019fbc86a46416",
+    "guideContentSha256": "c3d9e47f2554a5dea0bf583e97daa5f07963f695738f2cfca6d5ec2db3ba0382",
+    "repositorySmokeTests": 101,
+    "releaseCandidateTests": 34,
+    "tarballSha256": "32653958fef0dd91168ab177232c3f5fd70e610900d7deec2acda63ceecb7776",
+    "packageEntryCount": 1301,
+    "freshConsumer": "passed",
+    "replay": "exact",
+    "restart": "restored",
+    "packageHygiene": {
+      "symlinks": 0,
+      "hiddenGitAgentPaths": 0,
+      "privateMachinePaths": 0
+    }
+  },
+  "pending": [],
+  "matrixMutated": true,
+  "push": false,
+  "branchCreated": false,
+  "detailedActions": {
+    "render-resource-contract-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/render-resource-contract-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-identity-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-identity-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-identity-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-identity-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-reference-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-reference-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-reference-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-reference-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-state-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-state-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-state-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-state-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-lifecycle-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-lifecycle-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-cache-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-cache-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-cache-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-cache-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-budget-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-budget-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-budget-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-budget-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-upload-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-upload-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-upload-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-upload-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-release-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-release-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-release-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-release-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    },
+    "resource-integrity-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/kit.manifest.js",
+          "src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/contracts.js"
+        ]
+      },
+      "I": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/kits/resource-integrity-kit/index.js"
+        ]
+      },
+      "L": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ]
+      },
+      "P": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      },
+      "G": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "src/core-domains/render/subdomains/resource/resource-manifests.js",
+          "src/core-domains/render/subdomains/resource/subdomain.manifest.js"
+        ]
+      },
+      "D": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "package.json",
+          "docs/migrations/0.0.5-render-resource.md",
+          "docs/generated/API-REFERENCE.md"
+        ]
+      },
+      "R": {
+        "status": "passed",
+        "commit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+        "evidence": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/render-resource-package.json"
+        ]
+      }
+    }
+  },
+  "rollups": {
+    "renderResourceCapability": {
+      "status": "completed",
+      "actionsCompleted": 70,
+      "actionsTotal": 70,
+      "kitsCompleted": 10,
+      "kitsTotal": 10,
+      "sourceCommit": "6a53e948d296da061971e770e7f5abcab3a69d0c"
+    },
+    "renderDomain": {
+      "status": "in_progress",
+      "packagesCompleted": 4,
+      "packagesTotal": 25,
+      "completedPackage": "master-package-n-render-resource"
+    },
+    "mission": {
+      "status": "in_progress",
+      "packagesCompleted": 8,
+      "packagesTotal": 67,
+      "protectedVersion": "origin/0.0.4",
+      "releaseBranchCreated": false,
+      "mainPushed": false
+    }
+  },
+  "matrixReconciliation": {
+    "status": "passed",
+    "detailedBeforeSha256": "34861309f73775f4f5ca707d3c0de8a7209ac98ea00c0685c741ea6226d5a48c",
+    "detailedAfterSha256": "a2911fbf2c074e9ca210972ebce4cb7494bd495fb2c9f96bd68763d96ad53995",
+    "masterBeforeSha256": "1b6dcbadee46d7e1a721850f05a00174ac4d695536e0f3a0ce4e78d6137ab179",
+    "masterAfterSha256": "cb8c8de65e964137add9db8fb62a0f687071aedb46b22ec37d4e78a275530601",
+    "detailedActionsCompleted": 70,
+    "detailedActionsTotal": 70,
+    "changedRows": 73,
+    "matrixNodesRepresented": 3343,
+    "matrixNodesTotal": 3343,
+    "masterNodes": 74,
+    "masterPackages": 67,
+    "masterPackagesCompleted": 8,
+    "masterValidation": "passed",
+    "sourceCommit": "6a53e948d296da061971e770e7f5abcab3a69d0c",
+    "proofCommit": "b11a04a729a8409b9ff57fb6848e1943c86a92d5"
+  },
+  "nextPackage": {
+    "id": "master-package-n-render-buffer",
+    "sourceGroup": "n:render/buffer",
+    "detailedActions": 56,
+    "kitCount": 8,
+    "dependencies": [
+      "master-package-n-render-resource"
+    ],
+    "directUnlocks": [
+      "master-package-n-render-texture",
+      "master-package-n-render-geometry"
+    ],
+    "transitiveUnlocks": 28,
+    "reason": "Render Buffer is dependency-ready and has the highest downstream leverage of the eligible packages. It establishes typed byte ranges, update and mapping contracts, and usage validation needed by Texture, Geometry, Material, Scene, Pipeline, providers, and final frame execution.",
+    "implementedInThisCycle": false
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false,
+    "consumerChanged": false
+  },
+  "nextProof": "Begin a new bounded cycle for master-package-n-render-buffer, revalidate matrix hashes and repository state, then freeze Buffer ownership against generic Resource state, Device Memory and Queue, concrete provider allocation, Geometry, and Texture before implementation."
+}

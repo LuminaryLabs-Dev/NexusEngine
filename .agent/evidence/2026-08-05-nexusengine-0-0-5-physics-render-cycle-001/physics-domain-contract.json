@@ -1,0 +1,26 @@
+{
+  "schema": "nexusengine.goal-evidence/1",
+  "nodeId": "goal-kit-n-physics-contracts-physics-domain-contract-kit-c",
+  "decision": "observed",
+  "sourceHead": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+  "registrySha256": "7da50d885dccc1ff6324e7f777531d989bc399127b87e57bcb88d19789b8faf5",
+  "domain": {
+    "path": "n:physics",
+    "parent": null,
+    "kitId": "physics-domain-contract-kit",
+    "apiName": "physics",
+    "publicSubpath": "nexusengine/domains/physics/contract",
+    "requires": ["n:runtime"],
+    "provides": ["n:physics", "physics:body", "physics:collider", "physics:contact", "physics:provider-contract", "physics:query"]
+  },
+  "proof": [
+    "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+    "tests/core-kits/core-physics-provider-smoke.mjs",
+    "npm test",
+    "npm run core:check",
+    "npm run boundaries:check",
+    "npm run docs:check"
+  ],
+  "acceptance": "pass",
+  "nextAction": "Select the next eligible Physics contract leaf; do not promote solver or provider behavior from this contract proof."
+}

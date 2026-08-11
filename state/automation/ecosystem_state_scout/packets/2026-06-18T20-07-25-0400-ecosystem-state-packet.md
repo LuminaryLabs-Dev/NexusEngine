@@ -11,7 +11,7 @@
 - current branch is the latest release branch.
 
 ## Current branch
-- repo: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
+- repo: `repo://NexusEngine`
 - branch: `0.0.2`
 - local HEAD: `2b3b66da33a2c561f0ad901604ba09404f747a82`
 - origin/0.0.2: `2b3b66da33a2c561f0ad901604ba09404f747a82`
@@ -36,13 +36,13 @@
 - `src/index.js`
 - `src/domain-service-kit.js`
 - `tests/domain-service-kit-smoke.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/`
+- `repo://NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js`
 
 ## Commands run
 - `git branch --show-current`
@@ -51,11 +51,11 @@
 - `git ls-remote --heads origin`
 - `npm run automation:preflight`
 - `npm test`
-- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits status --short --branch`
-- `git -C /Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments status --short --branch`
+- `git -C repo://NexusEngine-ProtoKits status --short --branch`
+- `git -C repo://NexusEngine-Experiments status --short --branch`
 - `node tests/dsk-first-wave.test.mjs` in `NexusEngine-ProtoKits`
 - `node tests/dsk-first-wave-experiment-smoke.mjs` in `NexusEngine-Experiments`
-- `node -e "import('/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js')..."`
+- `node -e "import('repo://NexusEngine-Experiments/experiments/aaa-batch/host/game-registry.js')..."`
 
 ## Public links checked
 - `https://github.com/LuminaryLabs-Dev/NexusEngine`: ok, 200

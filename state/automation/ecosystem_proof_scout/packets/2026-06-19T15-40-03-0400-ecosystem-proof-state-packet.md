@@ -28,9 +28,9 @@ Result: partial; core and local available-checkout proof are green, but fetched-
 - Core package metadata remains `nexusengine@0.1.0`; raw public branch `0.0.2/package.json` is reachable.
 
 ## Repos inspected
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`
+- `repo://NexusEngine`
+- `repo://NexusEngine-ProtoKits`
+- `repo://NexusEngine-Experiments`
 
 ## Commands run
 - NexusEngine: `npm run automation:preflight` -> passed; latest branch `0.0.2`; required GitHub/raw/jsDelivr links OK; optional npm metadata 404.
@@ -42,7 +42,7 @@ Result: partial; core and local available-checkout proof are green, but fetched-
 - ProtoKits disposable fetched-ref worktree at `origin/0.0.2`: `npm run check` -> failed after checking 296 JavaScript modules because `smoke:imports` had 110 import failures rooted in `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - ProtoKits disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave.test.mjs` -> failed with `ERR_MODULE_NOT_FOUND` for package `nexusengine`.
 - Experiments disposable fetched-ref worktree at `origin/0.0.2`: `npm run check` -> passed after generating 100 flat route wrappers in the disposable worktree.
-- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `/private/tmp/NexusEngine/src/index.js`.
+- Experiments disposable fetched-ref targeted DSK smoke: `node tests/dsk-first-wave-experiment-smoke.mjs` -> failed because `experiments/dsk-first-wave-proof/src/proof.js` imports `../../../../NexusEngine/src/index.js`, resolving to missing `${TMPDIR}/NexusEngine/src/index.js`.
 - Public URL checks used direct `curl -L -s -o /dev/null -w "%{http_code}"`.
 - Human-view validation asked whether launch-state inspection was needed; yes, because the public DSK proof is user-visible and HTTP 200 is insufficient. Playwright CLI opened the public proof route, captured snapshot/console/request state, closed the browser, and removed `.playwright-cli` scratch artifacts.
 - Targeted `rg`/file inspections checked DSK aliases, `engine.n.*`, compatibility shims, public import maps, stale pins, aggregate scripts, proof coverage, and ownership docs.

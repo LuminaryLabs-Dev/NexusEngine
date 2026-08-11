@@ -1,0 +1,22 @@
+{
+  "schema": "nexusengine.goal-package-committed-proof/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018",
+  "masterPackageId": "master-package-n-render-material",
+  "sourceCommit": "b5e5981764ca080c506ed37409760e9c94a473b3",
+  "registrySha256": "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8",
+  "tarballSha256": "a5d51105c3c32da8860d7e8cc1d68b3441ecb6ca25d175c6336d6c2c1bdec16d",
+  "proof": {
+    "freshNpmCi": "passed with SSH disabled",
+    "targetedGraphicsSmoke": "passed",
+    "fullTests": "101 passed",
+    "releaseTests": "34 passed",
+    "freshTarballConsumer": "passed",
+    "allNineMaterialImports": "passed",
+    "allNineMaterialApis": "passed",
+    "packageSymlink": false,
+    "detachedWorktreeClean": true,
+    "worktreeTarballHashMatched": true
+  },
+  "push": false,
+  "branchCreated": false
+}

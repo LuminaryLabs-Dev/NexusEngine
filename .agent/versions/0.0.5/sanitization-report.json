@@ -1,0 +1,67 @@
+{
+  "schemaVersion": "nexusengine.publish-sanitization-report/1",
+  "version": "0.0.5",
+  "scannedAt": "2026-08-11",
+  "scope": {
+    "selection": "tracked and nonignored untracked files",
+    "filesScanned": 2739,
+    "jsonAndJsonlParsed": 373,
+    "initialTextFilesRewritten": 249
+  },
+  "normalization": {
+    "canonicalPlanningRoot": ".agent/versions/0.0.5",
+    "repositoryPaths": "repository-relative",
+    "siblingRepositories": "repo://<name>",
+    "homeDirectory": "${HOME}",
+    "codexHome": "${CODEX_HOME:-${HOME}/.codex}",
+    "repositoryRoot": "${NEXUSENGINE_REPO_ROOT:-$(git rev-parse --show-toplevel)}",
+    "disposableInputs": "${NEXUSENGINE_BATCH_WORKSPACE}",
+    "temporaryPaths": "${TMPDIR}"
+  },
+  "machineIdentityFindings": {
+    "userHomePaths": 0,
+    "linuxHomePaths": 0,
+    "windowsUserPaths": 0,
+    "localUserNames": 0,
+    "macOSTemporaryPaths": 0,
+    "workspaceAuthorityPaths": 0
+  },
+  "credentialFindings": {
+    "githubTokens": 0,
+    "openAITokens": 0,
+    "awsAccessKeys": 0,
+    "googleApiKeys": 0,
+    "privateKeyHeaders": 0,
+    "urlCredentials": 0,
+    "authorizationHeaders": 0,
+    "literalSecretAssignments": 0,
+    "trackedEnvironmentFiles": 0
+  },
+  "candidateHistory": {
+    "range": "origin/main..HEAD",
+    "commitsScanned": 1,
+    "credentialFindingCommits": 0,
+    "machinePathFindingCommits": 0,
+    "machinePathFindingFiles": 0,
+    "status": "passed",
+    "requiredRemediation": null
+  },
+  "approvedPublicPatterns": [
+    "git@github.com SSH transport examples",
+    "git@example.com test fixture",
+    "public repository identities"
+  ],
+  "validation": {
+    "structuredDataParse": "passed",
+    "masterMatrixGeneration": "passed",
+    "masterMatrixNodes": 74,
+    "masterWorkPackages": 67,
+    "detailedNodes": 3343,
+    "structuralErrors": 0,
+    "manifestBackedCoreKitsChecked": 335,
+    "manifestExecutionParity": "passed",
+    "gitDiffCheck": "passed"
+  },
+  "result": "passed",
+  "releaseNote": "Tree and introduced-history scans pass for the clean squashed candidate. Release readiness remains independently gated."
+}

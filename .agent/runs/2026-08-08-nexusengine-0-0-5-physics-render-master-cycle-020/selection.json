@@ -1,0 +1,43 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-020",
+  "masterPackageId": "master-package-n-physics-collider",
+  "sourceGroup": "n:physics/collider",
+  "detailedNodeCount": 84,
+  "plannedKitCount": 12,
+  "dependencies": [
+    "master-package-n-physics-body",
+    "master-package-n-physics-shape",
+    "master-package-n-physics-material"
+  ],
+  "dependencyStatus": "source-interfaces-present-proof-blocked",
+  "matrixSha256": "a0b2ec70d1411396e9842997fa763edcd18fc3967113fa00a91fc7d99eeb4aa9",
+  "masterMatrixSha256": "34d0a06d24e60fb80a596867954aeee803a10a44da2eb303d898b08b44a8643a",
+  "checklistSha256": "68e58575aeeb8c5559a4db8c36e687e98d78ad28f8bf08c816464bd05096b6ad",
+  "candidatePacket": "${NEXUSENGINE_BATCH_WORKSPACE}/source-candidates/candidates/master-package-n-physics-collider/candidate.json",
+  "candidatePacketSha256": "51ed3e343d660258a5dfadb2008ab442def8b3286e4daaff382ac673b05f7bc6",
+  "candidateStatus": "boundary-review-required",
+  "quarantinedPaths": [
+    "atomic-collider-kit.js",
+    "collider-kits.js"
+  ],
+  "allowedWriteScope": [
+    "src/core-domains/manifest-input.js",
+    "src/core-domains/physics/subdomains/collider/**",
+    "src/core-domains/physics/domain.manifest.js",
+    "src/core-domains/physics/index.js",
+    ".agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-020/**",
+    "goal.md"
+  ],
+  "scopeExtensionReason": "The canonical manifest helper required a backward-compatible explicit pending proof state so source-first Collider manifests can be wired without false proof references.",
+  "forbiddenActions": [
+    "execute Engine feature tests before source integration completes",
+    "mutate either goal matrix or checklist",
+    "copy quarantined root-level candidate files",
+    "promote detailed or master package state",
+    "push or mutate protected refs"
+  ],
+  "headBeforeCycle": "06cce293d2030cea7ed14987d5c604ff9556b0fe",
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

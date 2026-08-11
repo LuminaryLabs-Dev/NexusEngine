@@ -24,7 +24,7 @@
 - id: ecosystem-proof-031-d
   parent: ecosystem-proof-031
   lesson: Experiments latest-ref aggregate is green, but targeted DSK proof remains red in both available and disposable layouts.
-  evidence: Experiments `HEAD` and `origin/0.0.2` both resolve to `3e047f693f3ed58cab1c362deb09a597398d05e5`; `npm run check` passed; local targeted smoke failed because local sibling ProtoKits `main` lacks `createNCompletionLedgerKit`; disposable fetched targeted smoke failed on missing `/private/tmp/NexusEngine/src/index.js`.
+  evidence: Experiments `HEAD` and `origin/0.0.2` both resolve to `3e047f693f3ed58cab1c362deb09a597398d05e5`; `npm run check` passed; local targeted smoke failed because local sibling ProtoKits `main` lacks `createNCompletionLedgerKit`; disposable fetched targeted smoke failed on missing `${TMPDIR}/NexusEngine/src/index.js`.
   look further: Validate targeted DSK proof with the same module-source strategy intended for public proof.
 - id: ecosystem-proof-031-e
   parent: ecosystem-proof-031
@@ -66,19 +66,19 @@
 
 ## Next Search Branches
 - branch: protokits-release-source-alignment
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata
+  files or folders: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata
   question: Should local proof require checking out the release branch, or should this lane always use disposable fetched refs for release proof?
 - branch: module-source-strategy
   files or folders: `package.json`, sibling package metadata, ProtoKits DSK adapter, Experiments proof import maps, public CDN/raw URLs
   question: Should release proof resolve NexusEngine through package/workspace dependency, CDN `0.0.2`, same-origin deployed assets, or build-step import maps?
 - branch: protokits-package-resolution
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`, fetched `origin/0.0.2`
+  files or folders: `repo://NexusEngine-ProtoKits/package.json`, `protokits/nexus-dsk-adapter/index.js`, `tests/dsk-first-wave.test.mjs`, fetched `origin/0.0.2`
   question: Can ProtoKits validate latest-ref DSK proof without relying on an undeclared package?
 - branch: experiments-targeted-dsk-local-and-fetched
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+  files or folders: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
   question: Can Experiments targeted DSK proof pass with release-aligned siblings and the intended module-source strategy?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: telemetry-command-hardening-separation
   files or folders: `src/telemetry-kit.js`, `src/request-queue-kit.js`, `src/transport-route-kit.js`, `src/input-intent-kit.js`, neighboring hardening nodes

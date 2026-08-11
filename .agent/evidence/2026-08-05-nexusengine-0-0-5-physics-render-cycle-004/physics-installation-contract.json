@@ -1,0 +1,32 @@
+{
+  "schema": "nexusengine.goal-evidence/1",
+  "cycle": "2026-08-05-nexusengine-0-0-5-physics-render-cycle-004",
+  "nodeId": "goal-kit-n-physics-lifecycle-physics-installation-kit-c",
+  "decision": "observed-pass",
+  "repository": "${NEXUSENGINE_REPO_ROOT}",
+  "commitBeforeCycle": "87f4440",
+  "artifacts": [
+    "src/core-domains/physics/kits/physics-installation-kit/index.js",
+    "src/core-domains/physics/domain.manifest.js",
+    "src/core-domains/physics/index.js",
+    "package.json",
+    "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+  ],
+  "observations": {
+    "kitId": "physics-installation-kit",
+    "apiName": "physicsInstallation",
+    "domainPath": "n:physics",
+    "requires": ["n:physics"],
+    "provides": ["physics:installation"],
+    "schema": "nexusengine.physics-installation/1",
+    "initialPhase": "uninstalled",
+    "registrySha256": "016da6a1b7c25a036ef66e53b81cb36cfe1e4e79592b5ed8362e674cb3e09373",
+    "atomicKitCount": 162,
+    "fullSmokeTests": 101,
+    "guidePdfPages": 132,
+    "remoteMain": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease040": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease050": null
+  },
+  "scopeExcluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"]
+}

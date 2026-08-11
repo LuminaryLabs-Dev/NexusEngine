@@ -1,0 +1,64 @@
+{
+  "schemaVersion": "nexusengine.goal-batch-delivery-config/1",
+  "mission": "Deliver a production-ready NexusEngine 0.0.5 Physics and Render release through one resumable source-first campaign.",
+  "mode": "source-first",
+  "inputs": {
+    "masterMatrix": ".agent/versions/0.0.5/master-matrix.jsonl",
+    "detailMatrix": ".agent/versions/0.0.5/feature-matrix.jsonl",
+    "checklist": ".agent/versions/0.0.5/checklist.md",
+    "repositoryMap": ".agent/versions/0.0.5/batch-review-repositories.json",
+    "sourceCampaign": "${NEXUSENGINE_BATCH_WORKSPACE}/source-candidates",
+    "sourceIntegrationLedger": ".agent/versions/0.0.5/source-integration-ledger.jsonl"
+  },
+  "execution": {
+    "harnessRepository": "repo://NexusEngine-Agent",
+    "model": "gpt-5.6-luna",
+    "reasoningEffort": "low",
+    "candidateConcurrency": 8,
+    "integrationConcurrency": 1,
+    "repairConcurrency": 4,
+    "resume": true
+  },
+  "outputs": {
+    "plan": ".agent/versions/0.0.5/delivery"
+  },
+  "phasePolicy": {
+    "plan": "enabled-read-only",
+    "source": "complete-unproven",
+    "integrate": "disabled-until-plan-reviewed",
+    "sourceFreeze": "required-before-feature-tests",
+    "validate": "disabled-until-source-freeze",
+    "repair": "disabled-until-observed-failure",
+    "consumerProof": "disabled-until-package-validation",
+    "reconcile": "observed-evidence-only",
+    "releaseReview": "explicit-approval-only"
+  },
+  "timing": {
+    "forecastUnit": "agent-hours",
+    "humanAttentionUnit": "minutes",
+    "categories": [
+      "orchestratorActiveMs",
+      "agentActiveMs",
+      "toolWaitMs",
+      "validationMs",
+      "humanBlockedMs",
+      "suspendedMs",
+      "wallElapsedMs"
+    ],
+    "humanWaitRequiresExplicitPauseResume": true
+  },
+  "promotion": {
+    "sourcePresenceIsProof": false,
+    "detailMatrixIsAuthority": true,
+    "masterMatrixIsProjection": true,
+    "packageRequiresEveryDetailedNode": true,
+    "rollupRequiresEveryChildPackage": true
+  },
+  "releaseBoundary": {
+    "preserveBranch": "0.0.4",
+    "targetReleaseBranch": "0.0.5",
+    "createReleaseBranchBeforeApproval": false,
+    "finalMainState": "ready for 0.0.6 development",
+    "theOpenAboveDependency": "approved NexusEngine main commit"
+  }
+}

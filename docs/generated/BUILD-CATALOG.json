@@ -4805,7 +4805,7 @@
     "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js"
   },
-  "registryHash": "740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af",
+  "registryHash": "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8",
   "schema": "nexusengine.build-catalog/1",
   "sourceFiles": [
     {

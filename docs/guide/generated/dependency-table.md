@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -49,6 +49,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:object:vegetation:foliage` | `n:object:vegetation` | - |
 | `n:object:vegetation:ecology` | `n:object:vegetation` | - |
 | `n:object:placement` | `object:descriptor-contract` | - |
+| `n:physics` | `n:runtime` | - |
+| `n:physics:contracts` | `n:physics` | - |
+| `n:physics:lifecycle` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:provider-contract`, `physics:state-schema` | - |
+| `n:physics:material` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
+| `n:physics:world` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
 | `n:policy` | - | - |
 | `n:presentation` | - | - |
 | `n:presentation:output` | `n:presentation` | - |
@@ -61,6 +66,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 | `n:presentation:capture` | `n:presentation` | - |
 | `n:presentation:sky` | `n:presentation` | - |
 | `n:presentation:camera:third-person` | `character:resolution`, `motion:velocity`, `n:presentation:camera` | - |
+| `n:render` | `n:runtime` | - |
+| `n:render:contracts` | `n:render` | - |
+| `n:render:lifecycle` | `n:render`, `render:provider-contract` | - |
+| `n:render:device` | `n:render`, `render:installation`, `render:provider-contract` | - |
+| `n:render:resource` | `n:render`, `render:device-contract`, `render:device-lifecycle`, `render:device-memory`, `render:device-queue`, `render:resource-schema` | - |
+| `n:render:buffer` | `n:render`, `n:render:resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
+| `n:render:texture` | `n:render`, `n:render:buffer`, `n:render:resource`, `render:buffer-resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
+| `n:render:shader` | `n:render`, `n:render:contracts`, `n:render:device`, `n:render:resource`, `render:device-capability`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-schema` | - |
+| `n:render:material` | `n:render`, `n:render:resource`, `n:render:shader`, `n:render:texture`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-compile`, `render:shader-program`, `render:shader-reflection`, `render:shader-variant`, `render:texture-residency`, `render:texture-resource` | - |
 | `n:runtime` | - | - |
 | `n:runtime:realtime` | `n:runtime` | - |
 | `n:runtime:data` | `n:runtime` | - |

@@ -1,0 +1,30 @@
+{
+  "schema": "nexusengine.goal-package-committed-proof/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-015",
+  "masterPackageId": "master-package-n-render-buffer",
+  "sourceCommit": "a9ff107fa187ce2a6285557bcc223cd2427c4877",
+  "registrySha256": "9a4eb712a926cdf31103919e02fe9afd3a9770a6f788bcdf92f343508d1eeea3",
+  "tarballSha256": "50dda899971acaf45f575deb0f4f809528b836d8c70e6744341bb139413859dd",
+  "proof": {
+    "freshNpmCi": "passed with SSH disabled",
+    "typescriptDependency": "@typescript/typescript6@6.0.2 installed from lockfile",
+    "targetedGraphicsSmoke": "passed",
+    "fullTests": "passed",
+    "releaseTests": "passed",
+    "freshTarballConsumer": "passed",
+    "allEightBufferImports": "passed",
+    "packageSymlink": false,
+    "detachedWorktreeClean": true,
+    "worktreeTarballHashMatched": true
+  },
+  "harnessCorrections": [
+    {
+      "failure": "initial npm ci ran in the development checkout instead of the new detached worktree",
+      "effect": "the first detached test had no installed dependencies",
+      "resolution": "run npm ci with the exact detached worktree as cwd",
+      "productDefect": false
+    }
+  ],
+  "push": false,
+  "branchCreated": false
+}

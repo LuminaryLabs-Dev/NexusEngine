@@ -1,0 +1,46 @@
+{
+  "schema": "nexusengine.goal-evidence/1",
+  "cycle": "2026-08-05-nexusengine-0-0-5-physics-render-cycle-002",
+  "nodeId": "goal-kit-n-physics-contracts-physics-provider-contract-kit-c",
+  "decision": "observed-pass",
+  "repository": "${NEXUSENGINE_REPO_ROOT}",
+  "commitBeforeCycle": "214b2ef2e31f44fab62853c4b44768a724998940",
+  "artifacts": [
+    "src/core-domains/physics/kits/physics-provider-contract-kit/index.js",
+    "src/core-domains/physics/domain.manifest.js",
+    "src/core-domains/physics/index.js",
+    "package.json",
+    "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+  ],
+  "observations": {
+    "providerContractKit": {
+      "id": "physics-provider-contract-kit",
+      "domainPath": "n:physics",
+      "apiName": "physicsProviderContract",
+      "requires": ["n:physics"],
+      "provides": ["physics:provider-contract-definition"],
+      "requiredMethods": ["initialize", "syncBodies", "syncColliders", "submitMotionRequests", "step", "getFrame", "reset", "dispose"]
+    },
+    "registrySha256": "b50bff527e20b6667edbfdf6755ef3f697293bbc64c9c3b90ec80ff3e4a8e299",
+    "atomicKitCount": 161,
+    "fullSmokeTests": 101,
+    "guidePdfPages": 132,
+    "remoteMain": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease040": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "remoteRelease050": null
+  },
+  "proofCommands": [
+    "node tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+    "node tests/core-domains/core-physics-domain-smoke.mjs",
+    "node tests/core-kits/core-physics-provider-smoke.mjs",
+    "npm test",
+    "npm run core:check",
+    "npm run boundaries:check",
+    "npm run ownership:check",
+    "npm run test:surface:check",
+    "npm run release:manifest:check",
+    "npm run docs:check",
+    "git diff --check"
+  ],
+  "scopeExcluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"]
+}

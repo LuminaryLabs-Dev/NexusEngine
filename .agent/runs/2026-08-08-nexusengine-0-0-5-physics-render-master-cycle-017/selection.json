@@ -1,0 +1,26 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-017",
+  "masterPackageId": "master-package-n-render-shader",
+  "sourceGroup": "n:render/shader",
+  "detailedNodeCount": 91,
+  "plannedKitCount": 13,
+  "newKitCount": 12,
+  "reusedKitCount": 1,
+  "dependencies": [
+    "master-package-n-render-device"
+  ],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "0d0320f061d11eba4a38acb4300b353e22242ee9dc5b5c827621f80857943a09",
+  "masterMatrixSha256": "a4f5025c9730a4cb8e5a0be7fa990b0ba800c940f6b452fba2c7d36e69eb5088",
+  "headBeforeCycle": "b5029206d8af8ce22c31bb8fd09f0f91eeb9e86e",
+  "reason": "Render Shader is dependency-ready and has the highest remaining transitive leverage: three direct and 25 transitive package unlocks.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

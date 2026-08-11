@@ -1,0 +1,31 @@
+{
+  "schema": "nexusengine.mission-update-evidence/1",
+  "observedAt": "2026-08-08",
+  "classification": "additive-release-continuation",
+  "previousFeaturePackagesPreserved": true,
+  "kitRows": 461,
+  "kitActions": 3227,
+  "masterPackages": 67,
+  "detailedNodes": 3343,
+  "detailedAtomicNodes": 3268,
+  "dependencyCycles": 0,
+  "newOutcome": {
+    "release": "Publish exact approved commit A as immutable origin/0.0.5 and prove Git HTTPS plus jsDelivr imports.",
+    "continuation": "Keep main as the default mutable line ready for progress toward 0.0.6.",
+    "consumer": "The Open Above tracks HTTPS #main through exact lock-resolved SHA receipts and repeatable clean validation."
+  },
+  "matrixSha256": "5dc0a27544e3765f3e50f437df89a46bd32377ac14b8f9432216b1ddb5e4b5ae",
+  "masterMatrixSha256": "09890e7ebeabf3bc3508c98f5e2e2355234bfd6305af9a8ebab70070789bc184",
+  "checklistSha256": "dc4836d0443159531138618cec2c0d151a78bb67484c5c9b2e0ed0d307e0e869",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false
+  }
+}

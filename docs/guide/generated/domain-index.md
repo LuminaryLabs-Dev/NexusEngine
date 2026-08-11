@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb3af`
+Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -47,6 +47,11 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 - `n:object:vegetation:foliage`: Own deterministic foliage structure and descriptors.
 - `n:object:vegetation:ecology`: Own deterministic vegetation suitability scoring and species selection.
 - `n:object:placement`: Own deterministic placement transforms, grounding, alignment, fit, and validation receipts.
+- `n:physics`: Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains.
+- `n:physics:contracts`: Own portable Physics provider, state, command, event, and query boundary schemas.
+- `n:physics:lifecycle`: Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts.
+- `n:physics:material`: Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy.
+- `n:physics:world`: Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions.
 - `n:policy`: Own product-neutral permission, guard, sandbox, and runtime safety decisions.
 - `n:presentation`: Own renderer-neutral presentation descriptors and output policy contracts.
 - `n:presentation:output`: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.
@@ -59,6 +64,15 @@ Registry SHA-256: `740e0916c8017e4e2a91be79c7b02359c4fa1186d7174a52d6311ec8563cb
 - `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
 - `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
 - `n:presentation:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
+- `n:render`: Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains.
+- `n:render:contracts`: Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas.
+- `n:render:lifecycle`: Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state.
+- `n:render:device`: Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics.
+- `n:render:resource`: Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state.
+- `n:render:buffer`: Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts.
+- `n:render:texture`: Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency.
+- `n:render:shader`: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.
+- `n:render:material`: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.

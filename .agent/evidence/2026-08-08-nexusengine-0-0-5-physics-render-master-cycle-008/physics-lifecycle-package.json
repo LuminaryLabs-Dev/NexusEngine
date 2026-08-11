@@ -1,0 +1,536 @@
+{
+  "schema": "nexusengine.physics-lifecycle-package-evidence/1",
+  "observedAt": "2026-08-08",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008",
+  "baseHead": "cc6694fe883c4fb24bb1992778e7dec2fcc5d139",
+  "proofState": "committed-sha-proven",
+  "exactCommittedHead": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+  "registrySha256": "283ea57dda51afd5b01a711b04b5110d062078f0171adfd1f8b3e702267e3162",
+  "domainPath": "n:physics:lifecycle",
+  "kits": [
+    "physics-installation-kit",
+    "physics-startup-kit",
+    "physics-step-kit",
+    "physics-shutdown-kit",
+    "physics-reset-kit",
+    "physics-snapshot-kit"
+  ],
+  "publicSubpaths": [
+    "nexusengine/domains/physics/lifecycle",
+    "nexusengine/domains/physics/lifecycle/installation",
+    "nexusengine/domains/physics/lifecycle/startup",
+    "nexusengine/domains/physics/lifecycle/step",
+    "nexusengine/domains/physics/lifecycle/shutdown",
+    "nexusengine/domains/physics/lifecycle/reset",
+    "nexusengine/domains/physics/lifecycle/snapshot"
+  ],
+  "retiredSubpath": "nexusengine/domains/physics/installation",
+  "validation": {
+    "targetedPhysicsSmoke": "passed",
+    "coreCheck": "passed",
+    "coreContracts": "passed",
+    "ownershipCheck": "passed",
+    "surfaceCheck": "passed",
+    "releaseManifestCheck": "passed",
+    "docsCheck": "passed",
+    "migrationsCheck": "passed",
+    "boundariesCheck": "passed",
+    "npmTest": {
+      "status": "passed",
+      "tests": 101
+    },
+    "releaseTest": {
+      "status": "passed",
+      "tests": 34
+    },
+    "isolatedCommittedWorktree": {
+      "status": "passed",
+      "head": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+      "install": "GIT_SSH_COMMAND=false npm ci --ignore-scripts --no-audit --no-fund",
+      "statusDrift": false
+    },
+    "packDryRun": "passed",
+    "freshInstall": "passed",
+    "freshImport": {
+      "status": "passed",
+      "subpaths": 9,
+      "retiredSubpathRejected": true
+    },
+    "freshComposition": {
+      "status": "passed",
+      "requestedKit": "physics-snapshot-kit",
+      "selectedKits": 12,
+      "missing": []
+    },
+    "freshLifecycle": {
+      "status": "passed",
+      "operations": [
+        "install",
+        "startup",
+        "step",
+        "snapshot-capture",
+        "reset",
+        "snapshot-restore",
+        "shutdown"
+      ],
+      "exactReplay": true
+    },
+    "symlinkCount": 0,
+    "retiredSourceAbsent": true
+  },
+  "tarball": {
+    "filename": "nexusengine-0.0.4.tgz",
+    "bytes": 2732737,
+    "entries": 1132,
+    "sha256": "489e77654d073207feaeffe6e92150c5f0246d492a433ddbc9211cfec1054121"
+  },
+  "mutation": {
+    "push": false,
+    "branchCreated": false,
+    "deployment": false
+  },
+  "nextProof": "Select exactly one dependency-ready master package and begin a new bounded cycle.",
+  "detailedActions": {
+    "physics-installation-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-installation-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    },
+    "physics-startup-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-startup-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    },
+    "physics-step-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-step-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    },
+    "physics-shutdown-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-shutdown-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    },
+    "physics-reset-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-reset-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    },
+    "physics-snapshot-kit": {
+      "C": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/kit.manifest.js",
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/contracts.js",
+          "src/core-domains/physics/subdomains/lifecycle/subdomain.manifest.js"
+        ],
+        "acceptance": "Manifest, ownership, API, and capability-token contract are generated and validated."
+      },
+      "I": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/kits/physics-snapshot-kit/index.js"
+        ],
+        "acceptance": "Atomic implementation is committed under the canonical lifecycle owner without private or hidden coupling."
+      },
+      "L": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Independent portable state, exact-once commands, stable reset, stable load, replay, and rollback are proven."
+      },
+      "P": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Normal behavior, invalid input, changed-content replay, failure transitions, and rollback are directly exercised."
+      },
+      "G": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "src/core-domains/physics/subdomains/lifecycle/lifecycle-manifests.js",
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+        ],
+        "acceptance": "Manifest dependencies, missing-provider refusal, deterministic composition order, and public capability integration are proven."
+      },
+      "D": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "package.json",
+          "docs/generated/CORE-CATALOG.json",
+          "docs/generated/PACKAGE-EXPORTS.json",
+          "docs/migrations/0.0.5-physics-lifecycle.md"
+        ],
+        "acceptance": "Nested exports, catalog, ownership, Guide, migration, MCP guide resources, and retirement documentation are generated and current."
+      },
+      "R": {
+        "status": "passed",
+        "commit": "183cf966cdb4f2667eed05ffeaea950bfc8d8764",
+        "evidence": [
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          ".agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-008/physics-lifecycle-package.json"
+        ],
+        "acceptance": "Exact committed package passes full suites, deterministic packing, SSH-disabled fresh install, public imports, no symlinks, and lifecycle execution."
+      }
+    }
+  },
+  "rollups": {
+    "lifecycleCapability": {
+      "status": "completed",
+      "detailedActions": 42,
+      "completedActions": 42,
+      "kits": 6,
+      "acceptance": "Every lifecycle Kit has directly evidenced C, I, L, P, G, D, and R actions."
+    },
+    "physicsDomain": {
+      "status": "in_progress",
+      "completedPackages": [
+        "n:physics/contracts",
+        "n:physics/lifecycle"
+      ],
+      "acceptance": "Lifecycle is complete; remaining Physics packages stay open."
+    },
+    "mission": {
+      "status": "in_progress",
+      "completedMasterPackages": 2,
+      "totalMasterPackages": 67,
+      "acceptance": "The lifecycle package advances the mission without claiming Physics, Render, provider, consumer, or release completion."
+    }
+  },
+  "matrixReconciliation": {
+    "status": "passed",
+    "beforeDetailedSha256": "c51c2035d4f5a36b73479bb83beeb5fb2e22890eb51c315d25497b21169ebb63",
+    "afterDetailedSha256": "629cb91325cad55a6773084edd56c4d5740d0391d71454ee7a1f4ed58ecb9a7d",
+    "masterSha256": "9c008398d8aff6b99f1263a16291f77f74b8945cfd3568acbe45c1a910e5ca8f",
+    "masterNodes": 74,
+    "masterPackages": 67,
+    "detailedNodesRepresented": 3343,
+    "detailedNodesTotal": 3343,
+    "lifecycleProjection": {
+      "completed": 42,
+      "inProgress": 0,
+      "pending": 0,
+      "blocked": 0
+    },
+    "packageProjection": {
+      "completed": 2,
+      "pending": 65
+    },
+    "dependencyReady": [
+      "n:physics/world",
+      "n:physics/body",
+      "n:physics/shape",
+      "n:physics/material",
+      "n:render/contracts",
+      "goal-checklist-kit-c-contract-and-ownership"
+    ]
+  }
+}

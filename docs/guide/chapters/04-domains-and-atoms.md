@@ -32,6 +32,68 @@ Generation fails when a public atom lacks source or proof. Compliance is never i
 
 The generated Domain Index appendix contains every active path.
 
+## Canonical Physics Foundation
+
+`n:physics` owns the canonical Physics identity. Its `n:physics:contracts`
+subdomain owns the portable provider, state, command, event, and query
+boundaries. Each boundary is an independently installable atomic Kit with one
+generated public subpath.
+
+Contract records are strict and JSON-portable. They reject unknown top-level
+fields, non-finite numbers, functions, platform handles, cycles, and non-plain
+objects, then normalize accepted records into deterministic key order. The
+contract package does not claim body ownership, collision detection, solving,
+or provider execution; those capabilities promote only with their own proof.
+
+The existing `n:simulation:physics` surface remains separate during the staged
+`0.0.5` implementation. Its eventual cutover is not implied by the presence of
+the new contract package.
+
+`n:physics:lifecycle` is the next canonical subdomain. It separates six reasons
+to change:
+
+- Installation owns aggregate phase and provider identity.
+- Startup owns readiness requests and provider receipts.
+- Step owns strict step ordering and provider-neutral frame receipts.
+- Shutdown owns stop requests and completion receipts.
+- Reset restores the composed lifecycle through public APIs.
+- Snapshot captures and restores those APIs atomically.
+
+The lifecycle does not call a solver or install a concrete provider. A later
+provider package consumes its portable requests and supplies the reviewed
+receipts. Failed coordinated mutations restore every touched lifecycle state.
+
+`n:physics:material` separates six physical material responsibilities:
+
+- Friction normalizes static, dynamic, rolling, spinning, and anisotropic data.
+- Restitution normalizes bounce coefficient and activation threshold.
+- Density uses positive kilograms-per-cubic-meter records.
+- Surface owns physical classification and portable tags only.
+- Combine Policy resolves two materials symmetrically without solving contact.
+- Physics Material owns immutable IDs and exact-once registry mutations.
+
+The material registry depends on the five specialist capabilities through
+public tokens. A material record contains no shader, texture, sound, particle,
+collider, solver impulse, or provider handle. Those concerns remain separate
+even when a product maps one physical surface to visual and audio effects.
+
+`n:physics:world` separates seven solver-facing environment responsibilities:
+
+- World Settings normalizes coordinate handedness, length units, up axis,
+  optional bounds, and out-of-bounds policy.
+- Gravity Field owns uniform and point-gravity acceleration records.
+- Force Field owns non-gravity force or acceleration records.
+- Wind Field owns uniform, deterministic gust, and corridor flow velocity.
+- Time Scale combines explicit Physics-only scale records deterministically.
+- Simulation Region resolves physical simulate, sleep, or disable behavior.
+- Physics World owns immutable world IDs and references the six capabilities.
+
+World sampling is read-only and provider-neutral. It returns portable
+acceleration, force, wind velocity, region, bounds, and scaled-delta records.
+Authored weather stays under `n:world:weather`; atmosphere corridors and game
+routes stay with World or the product; Runtime owns clocks and schedules; later
+Body and Solver packages consume the Physics output.
+
 ## Restored Behavior Shape
 
 Twenty-six historical source modules become 27 atomic behaviors because the

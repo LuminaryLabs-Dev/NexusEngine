@@ -1,0 +1,25 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-010",
+  "masterPackageId": "master-package-n-physics-world",
+  "sourceGroup": "n:physics/world",
+  "detailedNodeCount": 49,
+  "kitCount": 7,
+  "dependencies": [
+    "master-package-n-physics-contracts",
+    "master-package-n-physics-lifecycle"
+  ],
+  "dependencyStatus": "completed",
+  "matrixSha256": "bf474d593aa74ef371cdd9e00b249e50b61c6d998fee30369d70ae326fc7c506",
+  "masterMatrixSha256": "2008477a178728b0e257cc0a064e959e51de81957966bac1e76be0bae9781a7b",
+  "headBeforeCycle": "7fab8f7889ca73b4895e6a3a5bc377f70852b70f",
+  "reason": "This is the selected dependency-ready Physics package and establishes the provider-neutral environment records required by Bodies, Surfaces, Solver, and The Open Above wind-driven proof.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null,
+    "origin/0.0.6": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

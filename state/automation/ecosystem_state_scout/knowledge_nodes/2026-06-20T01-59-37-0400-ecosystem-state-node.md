@@ -24,7 +24,7 @@
 - id: experiments-targeted-fetched-ref-resolution-2026-06-20-0159
   parent: ecosystem-root-025
   lesson: Experiments fetched aggregate proof still passes while targeted DSK proof remains blocked by sibling-relative imports.
-  evidence: Local Experiments `HEAD` was `799fad882461502faa84b132f70de011e7dbe0cb`; fetched `origin/0.0.2` was `eaeec53bc44e13136e18af37ed4c3f0755b57e60`; ahead/behind was `0 3`; disposable fetched-ref `npm run check` generated 100 flat route wrappers and passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `/private/tmp/NexusEngine/src/index.js`.
+  evidence: Local Experiments `HEAD` was `799fad882461502faa84b132f70de011e7dbe0cb`; fetched `origin/0.0.2` was `eaeec53bc44e13136e18af37ed4c3f0755b57e60`; ahead/behind was `0 3`; disposable fetched-ref `npm run check` generated 100 flat route wrappers and passed; targeted `node tests/dsk-first-wave-experiment-smoke.mjs` failed because `src/proof.js` resolved `../../../../NexusEngine/src/index.js` to missing `${TMPDIR}/NexusEngine/src/index.js`.
   look further: Run targeted DSK proof with the same module-source strategy intended for public proof.
 - id: public-proof-import-shape-2026-06-20-0159
   parent: ecosystem-root-025
@@ -71,19 +71,19 @@
   files or folders: `package.json`, sibling package metadata, ProtoKits `protokits/nexus-dsk-adapter/index.js`, Experiments proof import maps, public CDN/raw URLs
   question: Should release proof resolve NexusEngine through package/workspace dependency, CDN `0.0.2`, same-origin deployed assets, or build-step import maps?
 - branch: local-available-checkout-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-ProtoKits/package.json`, `repo://NexusEngine-ProtoKits/tests/dsk-first-wave.test.mjs`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: What local package/workspace setup should make available-checkout proof reproducible without ambient assumptions?
 - branch: protokits-latest-ref-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `protokits/nexus-dsk-adapter/index.js`
+  files or folders: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, `protokits/nexus-dsk-adapter/index.js`
   question: Can fetched ProtoKits validate without relying on an undeclared ambient package or sibling checkout?
 - branch: experiments-targeted-dsk-fetched-ref
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
+  files or folders: `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`, fetched `origin/0.0.2`, sibling path layout
   question: Can fetched Experiments targeted DSK proof pass with the intended module-source strategy?
 - branch: public-proof-import-shape
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
+  files or folders: `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`, `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`, public CDN/raw URLs
   question: Should public proof modules resolve through CDN `0.0.2`, same-origin deployed assets, or a build-step import map?
 - branch: aggregate-dsk-proof-validation
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`, `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
+  files or folders: `repo://NexusEngine-Experiments/package.json`, `repo://NexusEngine-Experiments/tests/dsk-first-wave-experiment-smoke.mjs`
   question: Should the DSK first-wave proof smoke be part of `npm run check`, `npm run check:deploy`, or documented as required targeted evidence?
 - branch: proof-readiness-refinement
   files or folders: `docs/domain_ideas.md`, `docs/kits_ideas.md`, ecosystem proof/state packets

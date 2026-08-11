@@ -70,7 +70,7 @@
   files or folders: `src/host.js`, `tests/host-smoke.mjs`
   question: Which host adapter capability, identity, lifecycle, and snapshot policies must be executable before host graphs count as proof?
 - branch: protokits-local-vs-release-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+  files or folders: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
   question: Should DSK proof consume local ProtoKits `main`, `origin/main`, or the preflight-resolved release branch?
 - branch: branch-name-vs-ref-alignment
   files or folders: `npm run automation:preflight`, `git rev-parse HEAD origin/main origin/0.0.2`

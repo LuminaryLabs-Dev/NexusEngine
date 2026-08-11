@@ -1,0 +1,10 @@
+{
+  "matrix": ".agent/versions/0.0.5/feature-matrix.jsonl",
+  "selectedNode": "goal-kit-n-physics-contracts-physics-state-schema-kit-c",
+  "matrixRevisionAtSelection": 0,
+  "owner": "codex",
+  "route": "nexus-contract-validate-it -> one-change-it",
+  "reason": "Portable state validation is a prerequisite for deterministic Physics replay and rollback.",
+  "excluded": ["n:render", "physics-backend", "consumer-integration", "main-push", "0.0.5-branch"],
+  "status": "completed"
+}

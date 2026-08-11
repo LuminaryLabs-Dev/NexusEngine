@@ -30,6 +30,18 @@ The modular source for the guide is `guide/book.json` plus
 
 ## Migration
 
+- [0.0.5 Render Contract Foundation](migrations/0.0.5-render-contracts.md)
+- [0.0.5 Render Lifecycle](migrations/0.0.5-render-lifecycle.md)
+- [0.0.5 Render Device](migrations/0.0.5-render-device.md)
+- [0.0.5 Render Resource](migrations/0.0.5-render-resource.md)
+- [0.0.5 Render Buffer](migrations/0.0.5-render-buffer.md)
+- [0.0.5 Render Texture](migrations/0.0.5-render-texture.md)
+- [0.0.5 Render Shader](migrations/0.0.5-render-shader.md)
+- [0.0.5 Render Material](migrations/0.0.5-render-material.md)
+- [0.0.5 Physics Contract Foundation](migrations/0.0.5-physics-contracts.md)
+- [0.0.5 Physics Lifecycle Cutover](migrations/0.0.5-physics-lifecycle.md)
+- [0.0.5 Physics Material Domain](migrations/0.0.5-physics-material.md)
+- [0.0.5 Physics World Domain](migrations/0.0.5-physics-world.md)
 - [0.0.4 Semantic Domain Cutover](migrations/0.0.4-domain-cutover.md)
 - [0.0.4 Restored Behaviors](migrations/0.0.4-restored-behaviors.md)
 - [0.0.4 Build Domain Cutover](migrations/0.0.4-build-domain.md)

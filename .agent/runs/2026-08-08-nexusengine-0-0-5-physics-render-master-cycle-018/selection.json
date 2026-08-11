@@ -1,0 +1,26 @@
+{
+  "schema": "nexusengine.goal-cycle-selection/1",
+  "cycleId": "2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-018",
+  "masterPackageId": "master-package-n-render-material",
+  "sourceGroup": "n:render/material",
+  "detailedNodeCount": 63,
+  "plannedKitCount": 9,
+  "newKitCount": 9,
+  "reusedKitCount": 0,
+  "dependencies": [
+    "master-package-n-render-shader",
+    "master-package-n-render-texture"
+  ],
+  "dependencyStatus": "dependency-ready",
+  "matrixSha256": "b0c1a02e9eec46fc41e0b268caa6e5dde1311162398c6c403113c79dd9097b57",
+  "masterMatrixSha256": "7403c1a4e42327f73b5ec6edd92cd5eec2ed5f36020157970ce74c3cc3c0cdb4",
+  "headBeforeCycle": "9f6664f7086da5fb094e99f0775979792ceff4d4",
+  "reason": "Render Material is dependency-ready and has the highest remaining transitive leverage: three direct and 24 transitive package unlocks.",
+  "protectedRefs": {
+    "origin/0.0.4": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/main": "16aee598c06efcb7b511e4827ee3f7e23ce3549b",
+    "origin/0.0.5": null
+  },
+  "pushAuthorized": false,
+  "releaseBranchAuthorized": false
+}

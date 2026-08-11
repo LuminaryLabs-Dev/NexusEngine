@@ -68,7 +68,7 @@
   files or folders: `src/economy-kit.js`, `src/timing-window-kit.js`, `src/resource-pressure-kit.js`, `src/lifecycle-progression-kit.js`, `src/facility-operations-kit.js`
   question: Which command/config/read APIs should clone/freeze submitted nested data and return immutable summaries versus explicit mutable handles?
 - branch: protokits-local-vs-release-proof
-  files or folders: `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
+  files or folders: `repo://NexusEngine-ProtoKits`, fetched `origin/0.0.2`, package metadata, release branch policy
   question: Should DSK proof consume local ProtoKits `main`, `origin/main`, or the preflight-resolved release branch?
 - branch: module-source-proof-boundary
   files or folders: ecosystem proof/state packets, sibling ProtoKits and Experiments proof paths, public CDN/raw URLs

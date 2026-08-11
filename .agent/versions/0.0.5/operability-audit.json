@@ -1,0 +1,3309 @@
+{
+  "schema": "nexusengine.goal-agent-operability-audit/1",
+  "generatedAt": "2026-08-11T20:32:24.978Z",
+  "authority": "human-agent-preflight",
+  "mutationAuthority": "none",
+  "inputs": {
+    "master": {
+      "path": ".agent/versions/0.0.5/master-matrix.jsonl",
+      "sha256": "9062dbb71a685efefa9bbe3533b85f081898e9f91fb021216ae9cb555359260e"
+    },
+    "detail": {
+      "path": ".agent/versions/0.0.5/feature-matrix.jsonl",
+      "sha256": "686e1416c95d977092d538942047bf06e709addf55dc4490d45f4c330445fd6e"
+    },
+    "checklist": {
+      "path": ".agent/versions/0.0.5/checklist.md",
+      "sha256": "bc64dcd4a1f2fcfbd5889278b6d1bd7306ec010f0db20b891b0a66b0a0eb31bd"
+    },
+    "repository": {
+      "path": ".",
+      "branch": "codex/nexusengine-physics-render",
+      "sha": "5d6558ccd44eaaacbdb6c9d569439437b85ede5a",
+      "status": "M .agent/evidence/2026-07-23-make-nexusengine-core-and-its-active-documentation-enforce-one-ownership/fixture-run-1.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/check-public-export-integrity.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/check-repository-integrity.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/fixture-run-1.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/module-graph-after-1.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/module-graph.json\n M .agent/evidence/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/repository-inspection.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/check-public-export-integrity.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/check-repository-integrity.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/fixture-run-1.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/module-graph-after-1.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/module-graph.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/repository-inspection.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/verification-1.json\n M .agent/evidence/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/verification.json\n M .agent/evidence/2026-08-05-nexusengine-0-0-5-physics-render-cycle-002/physics-provider-contract.json\n M .agent/evidence/2026-08-05-nexusengine-0-0-5-physics-render-cycle-003/physics-provider-contract.json\n M .agent/evidence/2026-08-05-nexusengine-0-0-5-physics-render-cycle-004/physics-installation-contract.json\n M .agent/evidence/2026-08-05-nexusengine-0-0-5-physics-render-cycle-005/physics-installation.json\n M .agent/evidence/2026-08-05-nexusengine-0-0-5-physics-render-cycle-006/physics-state-schema.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-010/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-011/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-012/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-013/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-014/repository-state.json\n M .agent/evidence/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-015/repository-state.json\n M .agent/runs/2026-07-23-make-nexusengine-core-and-its-active-documentation-enforce-one-ownership/fixture-results.json\n M .agent/runs/2026-07-23-make-nexusengine-core-and-its-active-documentation-enforce-one-ownership/state.json\n M .agent/runs/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/fixture-results.json\n M .agent/runs/2026-07-31-complete-the-nexusengine-0-0-4-core-consolidation-and-frozen-protokit/state.json\n M .agent/runs/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/fixture-results.json\n M .agent/runs/2026-08-02-nexusengine-0-0-4-exploratory-build-domain/state.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-001/selection.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-002/selection.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-003/selection.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-004/selection.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-005/selection.json\n M .agent/runs/2026-08-05-nexusengine-0-0-5-physics-render-cycle-006/selection.json\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-007/ledger.jsonl\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-009/ledger.jsonl\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-019/selection.json\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-020/operability.json\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-020/selection.json\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-021/selection.json\n M .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-022/selection.json\n M .agent/target.md\n M docs/legacy/pre-0.0.4/examples/three-host/README.md\n M goal.md\n M memory.md\n M src/core-domains/physics/domain.manifest.js\n M src/core-domains/physics/index.js\n M state/automation/README.md\n M state/automation/deep_bug_report_scout/PROMPT.md\n M state/automation/domain_kit_idea_expander/PROMPT.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T00-00-47-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T01-54-57-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T02-01-55-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T03-01-44-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T04-01-35-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T05-02-13-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T06-01-42-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T07-00-46-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T17-37-38-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T18-00-21-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-20T19-02-02-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-21T07-02-40-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-21T19-03-16-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-22T07-03-20-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-22T19-04-12-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-23T07-02-55-0400-domain-kit-idea-expansion-packet.md\n M state/automation/domain_kit_idea_expander/packets/2026-06-23T19-03-43-0400-domain-kit-idea-expansion-packet.md\n M state/automation/dsk_architecture_scout/PROMPT.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T06-24-24-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T07-24-53-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T08-23-23-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T09-25-20-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T10-23-10-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T11-23-07-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T12-23-47-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T13-24-43-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-19T14-24-17-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-22T06-19-35-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/knowledge_nodes/2026-06-22T18-19-08-0400-dsk-architecture-node.md\n M state/automation/dsk_architecture_scout/master_dsk_architecture.md\n M state/automation/dsk_architecture_scout/packets/2026-06-20T17-38-41-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-20T18-23-40-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-21T06-19-09-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-21T18-18-55-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-22T06-19-35-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-22T18-19-08-0400-dsk-architecture-state-packet.md\n M state/automation/dsk_architecture_scout/packets/2026-06-23T18-59-21-0400-dsk-architecture-state-packet.md\n M state/automation/ecosystem_proof_scout/PROMPT.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T19-40-32-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T20-40-32-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T21-40-21-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T22-40-48-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-18T23-39-46-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T01-44-00-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T05-42-20-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T06-46-32-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T07-42-18-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T08-48-39-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T09-44-04-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T10-45-02-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T11-40-11-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T12-39-48-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T13-40-31-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T14-41-14-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T15-40-03-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T16-39-19-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T17-39-50-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T18-39-22-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T19-40-15-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T20-39-49-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T21-41-45-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-19T22-40-52-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T01-59-45-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T02-40-59-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T03-41-33-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T04-42-18-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T05-39-53-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T06-40-01-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-20T18-41-30-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-21T06-36-07-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-21T18-35-45-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-22T06-36-22-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-22T18-36-17-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-23T06-38-41-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/knowledge_nodes/2026-06-23T19-02-41-0400-ecosystem-proof-node.md\n M state/automation/ecosystem_proof_scout/master_ecosystem_proof.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-18T19-40-32-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-18T20-40-32-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-18T21-40-21-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-18T22-40-48-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-18T23-39-46-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T01-44-00-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T05-42-20-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T06-46-32-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T07-42-18-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T08-48-39-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T09-44-04-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T10-45-02-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T11-40-11-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T12-39-48-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T13-40-31-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T14-41-14-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T15-40-03-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T16-39-19-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T17-39-50-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T18-39-22-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T19-40-15-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T20-39-49-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T21-41-45-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-19T22-40-52-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T01-59-45-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T02-40-59-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T03-41-33-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T04-42-18-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T05-39-53-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T06-40-01-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-20T18-41-30-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-21T06-36-07-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-21T18-35-45-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-22T06-36-22-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-22T18-36-17-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-23T06-38-41-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_proof_scout/packets/2026-06-23T19-02-41-0400-ecosystem-proof-state-packet.md\n M state/automation/ecosystem_state_scout/PROMPT.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T20-07-25-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T21-06-20-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T22-08-40-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-18T23-08-42-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T00-11-28-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T01-11-04-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T06-09-33-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T07-11-00-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T08-13-48-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T09-12-09-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T10-10-19-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T11-08-56-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T12-08-54-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T13-09-40-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T14-10-45-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T15-10-04-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T16-09-07-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T17-10-00-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T18-09-41-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T19-10-05-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T20-10-14-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T21-10-01-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-19T22-10-08-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T01-59-37-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T03-07-30-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T04-10-40-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T05-11-41-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T06-09-43-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-20T18-11-35-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-21T06-05-46-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-21T18-05-09-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-22T06-05-45-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-22T18-07-07-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-23T06-06-22-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/knowledge_nodes/2026-06-23T19-01-48-0400-ecosystem-state-node.md\n M state/automation/ecosystem_state_scout/master_ecosystem_state.md\n M state/automation/ecosystem_state_scout/packets/2026-06-18T20-07-25-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-18T21-06-20-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-18T22-08-40-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-18T23-08-42-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T00-11-28-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T01-11-04-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T06-09-33-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T07-11-00-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T08-13-48-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T09-12-09-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T10-10-19-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T11-08-56-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T12-08-54-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T13-09-40-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T14-10-45-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T15-10-04-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T16-09-07-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T17-10-00-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T18-09-41-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T19-10-05-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T20-10-14-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T21-10-01-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-19T22-10-08-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T01-59-37-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T03-07-30-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T04-10-40-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T05-11-41-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T06-09-43-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-20T18-11-35-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-21T06-05-46-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-21T18-05-09-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-22T06-05-45-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-22T18-07-07-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-23T06-06-22-0400-ecosystem-state-packet.md\n M state/automation/ecosystem_state_scout/packets/2026-06-23T19-01-48-0400-ecosystem-state-packet.md\n M state/automation/public_link_scout/PROMPT.md\n M state/automation/runtime_bug_scout/PROMPT.md\n?? .agent/runs/2026-08-08-nexusengine-0-0-5-physics-render-master-cycle-023/\n?? .agent/versions/\n?? src/core-domains/physics/subdomains/detection/",
+      "statusHash": "bb20f2b6d03f3f7a52f5de90b0eb96f2a89b8c634957e267f285920f23736de7"
+    },
+    "activePackage": "master-package-n-physics-detection"
+  },
+  "summary": {
+    "masterNodes": 74,
+    "rollups": 7,
+    "packages": 67,
+    "detailedNodes": 3343,
+    "atomicDetails": 3268,
+    "masterStatuses": {
+      "in_progress": 3,
+      "pending": 59,
+      "completed": 12
+    },
+    "packageStatuses": {
+      "completed": 12,
+      "pending": 55
+    },
+    "detailedStatuses": {
+      "completed": 686,
+      "pending": 2582
+    },
+    "packageClassifications": {
+      "dependency-ready": 7,
+      "completed": 12,
+      "dependency-blocked": 47,
+      "active-local-unreconciled": 1
+    },
+    "structuralErrorCount": 0,
+    "reviewOnlyEligiblePackages": 67,
+    "editEligiblePackages": 7
+  },
+  "findings": [
+    {
+      "severity": "pass",
+      "code": "STRUCTURAL_INTEGRITY",
+      "detail": "IDs, parents, package dependencies, detailed coverage, input paths, and dependency cycles passed."
+    },
+    {
+      "severity": "warning",
+      "code": "CAPSULE_CONTEXT_REQUIRED",
+      "detail": "The matrix is a control plane, not a complete worker prompt. Every dispatch must add a repository revision/status pin, scope, commands, prohibitions, and output schema."
+    },
+    {
+      "severity": "warning",
+      "code": "GENERIC_ATOMIC_ACCEPTANCE",
+      "detail": "3227 atomic acceptance clauses use a generic evidence suffix and require package-local source and test context."
+    },
+    {
+      "severity": "warning",
+      "code": "UNASSIGNED_DETAILED_OWNERS",
+      "detail": "2729 atomic nodes defer ownership to their master package; the binding step must resolve and record that owner."
+    },
+    {
+      "severity": "warning",
+      "code": "PARALLEL_REVIEW_ONLY",
+      "detail": "All packages may be reviewed concurrently, but repository edits and matrix transitions must remain isolated and dependency ordered."
+    },
+    {
+      "severity": "warning",
+      "code": "ACTIVE_LOCAL_PACKAGE",
+      "detail": "master-package-n-physics-detection has local unreconciled work and must receive a diff audit, not a clean-slate implementation proposal."
+    }
+  ],
+  "requiredDispatchCapsule": [
+    "master and detailed matrix hashes",
+    "repository path, branch, SHA, and status hash",
+    "one master package and its detailed child records",
+    "dependency evidence and exclusions",
+    "current source and test inventory for the source group",
+    "allowed read scope and no-write authority",
+    "forbidden mutation, integration, publication, and matrix actions",
+    "structured review-packet schema",
+    "time, token, and retry budgets"
+  ],
+  "structuralErrors": {
+    "duplicateMasterIds": [],
+    "duplicateDetailIds": [],
+    "missingMasterParents": [],
+    "missingDetailParents": [],
+    "missingDependencies": [],
+    "dependencyCycles": [],
+    "missingDetailedReferences": [],
+    "unownedAtomicDetails": [],
+    "multiplyOwnedAtomicDetails": [],
+    "missingInputPaths": []
+  },
+  "packages": [
+    {
+      "id": "master-package-goal-checklist-kit-c-contract-and-ownership",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-c-contract-and-ownership",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 0,
+      "dependencies": [],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-contracts",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/contracts",
+      "owner": "physics-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 0,
+      "dependencies": [],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "completed": 42
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-render-contracts",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/contracts",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 0,
+      "dependencies": [],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "completed": 49
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-i-implementation",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-i-implementation",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-c-contract-and-ownership",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-lifecycle",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/lifecycle",
+      "owner": "physics-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "completed": 42
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-physics-material",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/material",
+      "owner": "physics-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "completed": 42
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-physics-shape",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/shape",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 98,
+        "expected": 98,
+        "statusCounts": {
+          "pending": 98
+        },
+        "unassignedOwners": 98,
+        "genericAcceptance": 98
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-camera",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/camera",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-contracts",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-lifecycle",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/lifecycle",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 1,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-contracts",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "completed": 42
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-l-lifecycle",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-l-lifecycle",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 2,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-i-implementation",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-body",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/body",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 2,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-lifecycle",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 91,
+        "expected": 91,
+        "statusCounts": {
+          "pending": 91
+        },
+        "unassignedOwners": 91,
+        "genericAcceptance": 91
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-world",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/world",
+      "owner": "physics-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 2,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-lifecycle",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "completed": 49
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-render-device",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/device",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 2,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-contracts",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-lifecycle",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "completed": 63
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-p-direct-proof",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-p-direct-proof",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-l-lifecycle",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-collider",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/collider",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-body",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-shape",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-material",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 84,
+        "expected": 84,
+        "statusCounts": {
+          "pending": 84
+        },
+        "unassignedOwners": 84,
+        "genericAcceptance": 84
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-constraints",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/constraints",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-body",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 84,
+        "expected": 84,
+        "statusCounts": {
+          "pending": 84
+        },
+        "unassignedOwners": 84,
+        "genericAcceptance": 84
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-resource",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/resource",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-device",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 70,
+        "expected": 70,
+        "statusCounts": {
+          "completed": 70
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 70
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-render-shader",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/shader",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-device",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 91,
+        "expected": 91,
+        "statusCounts": {
+          "completed": 91
+        },
+        "unassignedOwners": 91,
+        "genericAcceptance": 91
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-render-surface",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/surface",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 3,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-device",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "pending": 63
+        },
+        "unassignedOwners": 63,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-g-composition-provider-proof",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-g-composition-provider-proof",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 4,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-p-direct-proof",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-detection",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/detection",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "active-local-unreconciled",
+      "wave": 4,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-shape",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-collider",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "pending": 77
+        },
+        "unassignedOwners": 77,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "audit-current-diff-only"
+    },
+    {
+      "id": "master-package-n-render-buffer",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/buffer",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 4,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-resource",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "completed": 56
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-d-documentation-and-exports",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-kit-d-documentation-and-exports",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 5,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-g-composition-provider-proof",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-contact",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/contact",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 5,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-detection",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 84,
+        "expected": 84,
+        "statusCounts": {
+          "pending": 84
+        },
+        "unassignedOwners": 84,
+        "genericAcceptance": 84
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-queries",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/queries",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 5,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-detection",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-collider",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "pending": 77
+        },
+        "unassignedOwners": 77,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-geometry",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/geometry",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 5,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-resource",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-buffer",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "pending": 63
+        },
+        "unassignedOwners": 63,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-texture",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/texture",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 5,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-resource",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-buffer",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "completed": 77
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-n-physics-solver",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/solver",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 6,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-body",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-contact",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-constraints",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-material",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 91,
+        "expected": 91,
+        "statusCounts": {
+          "pending": 91
+        },
+        "unassignedOwners": 91,
+        "genericAcceptance": 91
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-surfaces",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/surfaces",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 6,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-world",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-collider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-queries",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "pending": 63
+        },
+        "unassignedOwners": 63,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-animation",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/animation",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 6,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-geometry",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-material",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/material",
+      "owner": "render-core-owner",
+      "status": "completed",
+      "classification": "completed",
+      "wave": 6,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-shader",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-texture",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "completed": 63
+        },
+        "unassignedOwners": 63,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "summarize-existing-evidence"
+    },
+    {
+      "id": "master-package-goal-checklist-kit-r-release-integrity",
+      "parentId": "master-domain-release",
+      "domain": "release",
+      "sourceGroup": "goal-checklist-kit-r-release-integrity",
+      "owner": "release-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 6,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-kit-d-documentation-and-exports",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 1,
+        "expected": 1,
+        "statusCounts": {
+          "pending": 1
+        },
+        "unassignedOwners": 1,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-articulation",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/articulation",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 7,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-body",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-constraints",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-execution",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/execution",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 7,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-contact",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-integration",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/integration",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 7,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-world",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-body",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-collider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-queries",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-lighting",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/lighting",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-ready",
+      "wave": 7,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-material",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": true,
+      "approvalGated": false,
+      "detailed": {
+        "total": 84,
+        "expected": 84,
+        "statusCounts": {
+          "pending": 84
+        },
+        "unassignedOwners": 84,
+        "genericAcceptance": 84
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": true,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-pipeline",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/pipeline",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 7,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-device",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-surface",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-shader",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-material",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 112,
+        "expected": 112,
+        "statusCounts": {
+          "pending": 112
+        },
+        "unassignedOwners": 112,
+        "genericAcceptance": 112
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-determinism",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/determinism",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 8,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-execution",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-effects",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/effects",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 8,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-pipeline",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-texture",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 70,
+        "expected": 70,
+        "statusCounts": {
+          "pending": 70
+        },
+        "unassignedOwners": 70,
+        "genericAcceptance": 70
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-frame",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/frame",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 8,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-pipeline",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-surface",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 84,
+        "expected": 84,
+        "statusCounts": {
+          "pending": 84
+        },
+        "unassignedOwners": 84,
+        "genericAcceptance": 84
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-scene",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/scene",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 8,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-geometry",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-material",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-lighting",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "pending": 77
+        },
+        "unassignedOwners": 77,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-provider",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/provider",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contracts",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-queries",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-determinism",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "pending": 42
+        },
+        "unassignedOwners": 42,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-recovery",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/recovery",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-contact",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-queries",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-determinism",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-bridge",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/bridge",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-scene",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-frame",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-animation",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 70,
+        "expected": 70,
+        "statusCounts": {
+          "pending": 70
+        },
+        "unassignedOwners": 70,
+        "genericAcceptance": 70
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-capture",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/capture",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-frame",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-texture",
+          "status": "completed"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 42,
+        "expected": 42,
+        "statusCounts": {
+          "pending": 42
+        },
+        "unassignedOwners": 42,
+        "genericAcceptance": 42
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-postprocess",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/postprocess",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-pipeline",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-frame",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "pending": 77
+        },
+        "unassignedOwners": 77,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-visibility",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/visibility",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 9,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-scene",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-camera",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 63,
+        "expected": 63,
+        "statusCounts": {
+          "pending": 63
+        },
+        "unassignedOwners": 63,
+        "genericAcceptance": 63
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-physics-diagnostics",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "n:physics/diagnostics",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 10,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-solver",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-queries",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 56,
+        "expected": 56,
+        "statusCounts": {
+          "pending": 56
+        },
+        "unassignedOwners": 56,
+        "genericAcceptance": 56
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-provider",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/provider",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 10,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-device",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-pipeline",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-frame",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-bridge",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-diagnostics",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/diagnostics",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-frame",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 77,
+        "expected": 77,
+        "statusCounts": {
+          "pending": 77
+        },
+        "unassignedOwners": 77,
+        "genericAcceptance": 77
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-n-render-xr",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "n:render/xr",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-camera",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-physics-physx",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:physics/physx",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-diagnostics",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-physics-rapier",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:physics/rapier",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-diagnostics",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-physics-reference",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:physics/reference",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-physics-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-diagnostics",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-physics-recovery",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 28,
+        "expected": 28,
+        "statusCounts": {
+          "pending": 28
+        },
+        "unassignedOwners": 28,
+        "genericAcceptance": 28
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-webgl2",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/webgl2",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 11,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-shader",
+          "status": "completed"
+        },
+        {
+          "id": "master-package-n-render-pipeline",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-physics-domain",
+      "parentId": "master-domain-physics",
+      "domain": "n:physics",
+      "sourceGroup": "goal-checklist-physics-domain",
+      "owner": "physics-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 12,
+      "dependencies": [
+        {
+          "id": "master-package-nexusengine-kits-n-physics-reference",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-nexusengine-kits-n-physics-rapier",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-nexusengine-kits-n-physics-physx",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 4,
+        "expected": 4,
+        "statusCounts": {
+          "pending": 4
+        },
+        "unassignedOwners": 4,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-headless",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/headless",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 12,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-provider",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-diagnostics",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-openxr",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/openxr",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 12,
+      "dependencies": [
+        {
+          "id": "master-package-n-render-xr",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-provider",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-threejs",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/threejs",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 12,
+      "dependencies": [
+        {
+          "id": "master-package-nexusengine-kits-n-render-webgl2",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-n-render-scene",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 49,
+        "expected": 49,
+        "statusCounts": {
+          "pending": 49
+        },
+        "unassignedOwners": 49,
+        "genericAcceptance": 49
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-android-xr",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/android-xr",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 13,
+      "dependencies": [
+        {
+          "id": "master-package-nexusengine-kits-n-render-openxr",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-nexusengine-kits-n-render-pcvr",
+      "parentId": "master-domain-providers",
+      "domain": "providers",
+      "sourceGroup": "NexusEngine-Kits/n:render/pcvr",
+      "owner": "provider-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 13,
+      "dependencies": [
+        {
+          "id": "master-package-nexusengine-kits-n-render-openxr",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 35,
+        "expected": 35,
+        "statusCounts": {
+          "pending": 35
+        },
+        "unassignedOwners": 35,
+        "genericAcceptance": 35
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-render-domain",
+      "parentId": "master-domain-render",
+      "domain": "n:render",
+      "sourceGroup": "goal-checklist-render-domain",
+      "owner": "render-core-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 14,
+      "dependencies": [
+        {
+          "id": "master-package-nexusengine-kits-n-render-headless",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-nexusengine-kits-n-render-threejs",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-nexusengine-kits-n-render-android-xr",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-nexusengine-kits-n-render-pcvr",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 4,
+        "expected": 4,
+        "statusCounts": {
+          "pending": 4
+        },
+        "unassignedOwners": 4,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-existing-domain-integration",
+      "parentId": "master-domain-integration",
+      "domain": "integration",
+      "sourceGroup": "goal-checklist-existing-domain-integration",
+      "owner": "composition-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 15,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-physics-domain",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-goal-checklist-render-domain",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-goal-checklist-kit-r-release-integrity",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 3,
+        "expected": 3,
+        "statusCounts": {
+          "pending": 3
+        },
+        "unassignedOwners": 3,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-the-open-above",
+      "parentId": "master-domain-consumer",
+      "domain": "consumer",
+      "sourceGroup": "goal-checklist-the-open-above",
+      "owner": "showcase-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 16,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-existing-domain-integration",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 3,
+        "expected": 3,
+        "statusCounts": {
+          "pending": 3
+        },
+        "unassignedOwners": 3,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-version-freeze-and-main-continuation",
+      "parentId": "master-domain-release",
+      "domain": "release",
+      "sourceGroup": "goal-checklist-version-freeze-and-main-continuation",
+      "owner": "release-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 17,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-the-open-above",
+          "status": "pending"
+        },
+        {
+          "id": "master-package-goal-checklist-kit-d-documentation-and-exports",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": true,
+      "detailed": {
+        "total": 4,
+        "expected": 4,
+        "statusCounts": {
+          "pending": 4
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-checklist-open-above-main-validation-loop",
+      "parentId": "master-domain-consumer",
+      "domain": "consumer",
+      "sourceGroup": "goal-checklist-open-above-main-validation-loop",
+      "owner": "showcase-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 18,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-version-freeze-and-main-continuation",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 3,
+        "expected": 3,
+        "statusCounts": {
+          "pending": 3
+        },
+        "unassignedOwners": 0,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    },
+    {
+      "id": "master-package-goal-final-completion-gate",
+      "parentId": "master-domain-release",
+      "domain": "release",
+      "sourceGroup": "goal-final-completion-gate",
+      "owner": "release-owner",
+      "status": "pending",
+      "classification": "dependency-blocked",
+      "wave": 19,
+      "dependencies": [
+        {
+          "id": "master-package-goal-checklist-open-above-main-validation-loop",
+          "status": "pending"
+        }
+      ],
+      "dependenciesReady": false,
+      "approvalGated": false,
+      "detailed": {
+        "total": 13,
+        "expected": 13,
+        "statusCounts": {
+          "pending": 13
+        },
+        "unassignedOwners": 13,
+        "genericAcceptance": 0
+      },
+      "operability": {
+        "structurallyBound": true,
+        "reviewOnlyEligible": true,
+        "editEligible": false,
+        "missingCapsuleFields": [
+          "repositorySha",
+          "repositoryStatusHash",
+          "allowedReadScope",
+          "allowedWriteScope",
+          "forbiddenActions",
+          "testCommands",
+          "outputSchema",
+          "conflictExclusions",
+          "resolvedDetailedOwner",
+          "normalizedAcceptanceMapping"
+        ]
+      },
+      "harnessAction": "generate-read-only-review-packet"
+    }
+  ]
+}

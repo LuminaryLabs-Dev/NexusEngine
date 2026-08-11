@@ -52,11 +52,11 @@
 - `state/automation/KNOWLEDGE_NODE_CONTRACT.md`
 - `state/automation/ecosystem_state_scout/PROMPT.md`
 - `state/automation/ecosystem_state_scout/master_ecosystem_state.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/package.json`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
-- `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
+- `repo://NexusEngine-ProtoKits/package.json`
+- `repo://NexusEngine-ProtoKits/docs/DSK-FIRST-WAVE-LEDGER.md`
+- `repo://NexusEngine-Experiments/package.json`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/index.html`
+- `repo://NexusEngine-Experiments/experiments/dsk-first-wave-proof/src/proof.js`
 
 ## Commands run
 - `npm run automation:preflight`
@@ -80,9 +80,9 @@
   - result: pass, 8 smoke tests
 - `curl -L -s -o /dev/null -w ...` for GitHub/raw/jsDelivr/npm endpoints
   - result: GitHub 200, raw package 200, jsDelivr source 200, npm metadata 404
-- sibling `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-ProtoKits`: `git status --short --branch`, release branch list, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`
+- sibling `repo://NexusEngine-ProtoKits`: `git status --short --branch`, release branch list, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`
   - result: clean on `0.0.2`, `HEAD` equals `origin/0.0.2` at `87888c9c0aa5b4dff67bd3438fe897ee22a95a7b`
-- sibling `/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Experiments`: `git status --short --branch`, release branch list, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`
+- sibling `repo://NexusEngine-Experiments`: `git status --short --branch`, release branch list, `git rev-parse HEAD`, `git rev-parse origin/0.0.2`
   - result: clean on `0.0.2`, `HEAD` equals `origin/0.0.2` at `056a12f4f786e61326417943682fcae29cc254e1`
 - sibling ProtoKits: `node tests/dsk-first-wave.test.mjs`
   - result: pass, `first-wave DSK migration tests passed`
