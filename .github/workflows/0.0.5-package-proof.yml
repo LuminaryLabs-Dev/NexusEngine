@@ -1,0 +1,51 @@
+name: 0.0.5 Package Proof
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-domains/physics/subdomains/body/**"
+      - "src/core-domains/physics/subdomains/shape/**"
+      - "src/core-domains/physics/subdomains/collider/**"
+      - "src/core-domains/physics/subdomains/detection/**"
+      - "src/core-domains/render/subdomains/surface/**"
+      - "tests/core-domains/core-physics-body-smoke.mjs"
+      - "tests/core-domains/core-physics-shape-smoke.mjs"
+      - "tests/core-domains/core-physics-collider-smoke.mjs"
+      - "tests/core-domains/core-physics-detection-smoke.mjs"
+      - "tests/core-domains/core-render-surface-smoke.mjs"
+      - ".github/workflows/0.0.5-package-proof.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  package-proof:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Physics Body
+        run: node tests/core-domains/core-physics-body-smoke.mjs
+      - name: Physics Shape
+        run: node tests/core-domains/core-physics-shape-smoke.mjs
+      - name: Physics Collider
+        run: node tests/core-domains/core-physics-collider-smoke.mjs
+      - name: Physics Detection
+        run: node tests/core-domains/core-physics-detection-smoke.mjs
+      - name: Render Surface
+        run: node tests/core-domains/core-render-surface-smoke.mjs
+      - name: Backend-boundary grep
+        run: |
+          ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
+            src/core-domains/physics/subdomains/body \
+            src/core-domains/physics/subdomains/shape \
+            src/core-domains/physics/subdomains/collider \
+            src/core-domains/physics/subdomains/detection \
+            src/core-domains/render/subdomains/surface
