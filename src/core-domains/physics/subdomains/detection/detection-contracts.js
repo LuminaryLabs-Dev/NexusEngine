@@ -320,9 +320,9 @@ export function normalizeContinuousCollisionInput(input = {}, label = "Continuou
       shapeB: value.shapeB,
       poseA: value.poseA,
       poseB: value.poseB,
-      tolerance: value.tolerance,
-      maxIterations: value.maxIterations,
-      metadata: value.metadata
+      tolerance: value.tolerance ?? 1e-7,
+      maxIterations: value.maxIterations ?? 32,
+      metadata: value.metadata ?? {}
     }, label),
     velocityA: normalizeDetectionVector(value.velocityA, `${label}.velocityA`, [0, 0, 0]),
     velocityB: normalizeDetectionVector(value.velocityB, `${label}.velocityB`, [0, 0, 0]),
