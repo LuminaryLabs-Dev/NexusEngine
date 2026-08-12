@@ -34,6 +34,10 @@ jobs:
           node tests/core-domains/core-render-surface-smoke.mjs
       - name: Promote manifests, exports, and migration surfaces
         run: node scripts/promote-0.0.5-five-goal-surface.mjs
+      - name: Regenerate development catalog and ownership
+        run: |
+          node scripts/generate-core-catalog.mjs --allow-pending
+          node scripts/generate-kit-ownership-ledger.mjs
       - name: Prove public package surface
         run: node tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs
       - name: Backend boundary
@@ -46,7 +50,7 @@ jobs:
             src/core-domains/render/subdomains/surface
       - name: Core boundaries
         run: node scripts/check-core-boundaries.mjs
-      - name: Confirm catalog advances past Collider and Detection
+      - name: Confirm strict catalog advances past Collider and Detection
         shell: bash
         run: |
           set +e
@@ -61,6 +65,26 @@ jobs:
           grep -F "n:physics:constraints is not proven." /tmp/core-catalog.log
           ! grep -F "n:physics:collider is not proven." /tmp/core-catalog.log
           ! grep -F "n:physics:detection is not proven." /tmp/core-catalog.log
+      - name: Validate generated development catalog is stable
+        run: |
+          node scripts/generate-core-catalog.mjs --allow-pending --check
+          node scripts/generate-kit-ownership-ledger.mjs --check
+      - name: Validate changed path scope
+        shell: bash
+        run: |
+          git status --porcelain | tee /tmp/five-goal-changes.txt
+          while IFS= read -r line; do
+            [ -z "$line" ] && continue
+            file="${line:3}"
+            case "$file" in
+              CHANGELOG.md|package.json|scripts/generate-core-catalog.mjs|tests/run-all.mjs|tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs) ;;
+              src/core-domains/catalog.js|src/core-domains/*/README.md) ;;
+              src/core-domains/physics/subdomains/collider/*|src/core-domains/physics/subdomains/detection/*|src/core-domains/render/subdomains/surface/*) ;;
+              docs/generated/*|docs/guide/generated/*|docs/KIT-OWNERSHIP.json|docs/KIT-OWNERSHIP.md) ;;
+              docs/migrations/0.0.5-physics-body.md|docs/migrations/0.0.5-physics-shape.md|docs/migrations/0.0.5-physics-collider.md|docs/migrations/0.0.5-physics-detection.md|docs/migrations/0.0.5-render-surface.md) ;;
+              *) echo "Unexpected changed path: $file"; exit 1 ;;
+            esac
+          done < /tmp/five-goal-changes.txt
       - name: Diff integrity
         run: git diff --check
       - name: Commit promoted public surface
@@ -68,19 +92,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            src/core-domains/physics/subdomains/collider \
-            src/core-domains/physics/subdomains/detection \
-            src/core-domains/render/subdomains/surface \
-            package.json \
-            CHANGELOG.md \
-            docs/migrations/0.0.5-physics-body.md \
-            docs/migrations/0.0.5-physics-shape.md \
-            docs/migrations/0.0.5-physics-collider.md \
-            docs/migrations/0.0.5-physics-detection.md \
-            docs/migrations/0.0.5-render-surface.md \
-            tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs \
-            tests/run-all.mjs
+          git add -A
           if git diff --cached --quiet; then
             echo "Five-goal public surface already promoted."
             exit 0

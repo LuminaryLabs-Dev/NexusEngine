@@ -71,6 +71,25 @@ const pendingFamilies = Object.freeze([
   }
 ]);
 
+function enableDevelopmentCatalogMode() {
+  const generatorPath = path.join(root, "scripts/generate-core-catalog.mjs");
+  let source = fs.readFileSync(generatorPath, "utf8");
+  const declaration = 'const allowPending = process.argv.includes("--allow-pending");';
+  if (!source.includes(declaration)) {
+    const checkDeclaration = 'const check = process.argv.includes("--check");';
+    if (!source.includes(checkDeclaration)) throw new Error("Core catalog generator check declaration changed unexpectedly.");
+    source = source.replace(checkDeclaration, `${checkDeclaration}\n${declaration}`);
+
+    const oldProof = `function validateProof(proof, label) {\n  if (proof.status !== "proven") throw new Error(\`\${label} is not proven.\`);\n  if (!proof.references.length) throw new Error(\`\${label} has no proof references.\`);\n  for (const reference of proof.references) assertRepoFile(reference, \`\${label} proof\`);\n}`;
+    const newProof = `function validateProof(proof, label) {\n  if (proof.status !== "proven") {\n    if (allowPending && proof.status === "pending") return;\n    throw new Error(\`\${label} is not proven.\`);\n  }\n  if (!proof.references.length) throw new Error(\`\${label} has no proof references.\`);\n  for (const reference of proof.references) assertRepoFile(reference, \`\${label} proof\`);\n}`;
+    if (!source.includes(oldProof)) throw new Error("Core catalog generator proof validator changed unexpectedly.");
+    source = source.replace(oldProof, newProof);
+    fs.writeFileSync(generatorPath, source);
+  }
+}
+
+enableDevelopmentCatalogMode();
+
 function walk(directory, output = []) {
   for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
     const target = path.join(directory, entry.name);
@@ -222,4 +241,4 @@ if (!runAll.includes(publicTestEntry.trim())) {
   fs.writeFileSync(runAllPath, runAll);
 }
 
-console.log(`Promoted five-goal public surface: ${Object.keys(targetExports).length} package exports, 35 pending manifests, 5 migration notes.`);
+console.log(`Promoted five-goal public surface: ${Object.keys(targetExports).length} target exports, 35 pending manifests, 5 migration notes, development catalog mode enabled.`);
