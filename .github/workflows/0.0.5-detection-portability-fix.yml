@@ -30,16 +30,8 @@ jobs:
           from pathlib import Path
           p = Path('src/core-domains/physics/subdomains/detection/detection-contracts.js')
           s = p.read_text()
-          old = '''      tolerance: value.tolerance,
-                maxIterations: value.maxIterations,
-                metadata: value.metadata'''
-          # Match the actual indentation while keeping the replacement narrow.
-          old = '''      tolerance: value.tolerance,
-      maxIterations: value.maxIterations,
-      metadata: value.metadata'''
-          new = '''      tolerance: value.tolerance ?? 1e-7,
-      maxIterations: value.maxIterations ?? 32,
-      metadata: value.metadata ?? {}'''
+          old = "\n".join(["      tolerance: value.tolerance,", "      maxIterations: value.maxIterations,", "      metadata: value.metadata"])
+          new = "\n".join(["      tolerance: value.tolerance ?? 1e-7,", "      maxIterations: value.maxIterations ?? 32,", "      metadata: value.metadata ?? {}"])
           if old not in s:
               raise SystemExit('continuous collision optional-field block not found')
           p.write_text(s.replace(old, new, 1))
