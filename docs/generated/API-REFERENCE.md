@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+Registry SHA-256: `61c125b08dd3dd69fff9eb077a33da2c46c2045603309ed98c931c2457894f9e`
 
 ## Domains
 
@@ -56,7 +56,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:physics` | - | Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains. | stable-candidate |
 | `n:physics:contracts` | `n:physics` | Own portable Physics provider, state, command, event, and query boundary schemas. | stable-candidate |
 | `n:physics:lifecycle` | `n:physics` | Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts. | stable-candidate |
+| `n:physics:body` | `n:physics` | Own portable provider-neutral body identity, state, mass properties, sleep state, lifecycle, and exact-once registry mutations. | stable-candidate |
+| `n:physics:shape` | `n:physics` | Own portable provider-neutral collision-shape identity, geometry descriptors, validation, and exact-once registration. | stable-candidate |
 | `n:physics:material` | `n:physics` | Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy. | stable-candidate |
+| `n:physics:collider` | `n:physics` | Own portable collider identity, attachment, filtering, sensor semantics, lifecycle, and exact-once records. | stable-candidate |
+| `n:physics:detection` | `n:physics` | Own provider-neutral broad-phase and narrow-phase collision classification without contact or solver behavior. | stable-candidate |
+| `n:physics:constraints` | `n:physics` | Own portable constraint descriptors, exact records, lifecycle status, revisions, and break policy semantics. | stable-candidate |
 | `n:physics:world` | `n:physics` | Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions. | stable-candidate |
 | `n:policy` | - | Own product-neutral permission, guard, sandbox, and runtime safety decisions. | stable-candidate |
 | `n:presentation` | - | Own renderer-neutral presentation descriptors and output policy contracts. | stable-candidate |
@@ -74,11 +79,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:render:contracts` | `n:render` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. | stable-candidate |
 | `n:render:lifecycle` | `n:render` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. | stable-candidate |
 | `n:render:device` | `n:render` | Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics. | stable-candidate |
+| `n:render:surface` | `n:render` | Own portable output-surface descriptors, logical regions, format choices, and deterministic transition intents. | stable-candidate |
 | `n:render:resource` | `n:render` | Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state. | stable-candidate |
 | `n:render:buffer` | `n:render` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. | stable-candidate |
 | `n:render:texture` | `n:render` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. | stable-candidate |
 | `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
 | `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
+| `n:render:camera` | `n:render` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -228,12 +235,74 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `physics-shutdown-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
 | `physics-reset-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/reset` | Reset composed Physics lifecycle state atomically through public capability APIs. |
 | `physics-snapshot-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Physics lifecycle state. |
+| `body-identity-kit` | `n:physics:body` | `nexusengine/domains/physics/body/identity` | Normalize stable portable Physics body identity, tags, and metadata. |
+| `body-type-kit` | `n:physics:body` | `nexusengine/domains/physics/body/type` | Normalize static, dynamic, and kinematic Physics body modes. |
+| `body-pose-kit` | `n:physics:body` | `nexusengine/domains/physics/body/pose` | Normalize body position and canonical quaternion orientation. |
+| `body-velocity-kit` | `n:physics:body` | `nexusengine/domains/physics/body/velocity` | Normalize finite linear and angular Physics body velocity descriptors. |
+| `body-force-kit` | `n:physics:body` | `nexusengine/domains/physics/body/force` | Normalize portable force, torque, and impulse accumulator descriptors. |
+| `body-mass-kit` | `n:physics:body` | `nexusengine/domains/physics/body/mass` | Normalize body mass, inverse mass, and center-of-mass descriptors. |
+| `body-inertia-kit` | `n:physics:body` | `nexusengine/domains/physics/body/inertia` | Normalize principal inertia, inverse inertia, and local inertia orientation. |
+| `body-damping-kit` | `n:physics:body` | `nexusengine/domains/physics/body/damping` | Normalize finite nonnegative linear and angular damping descriptors. |
+| `body-sleep-kit` | `n:physics:body` | `nexusengine/domains/physics/body/sleep` | Normalize body sleep state and explicit exact-once sleep commands. |
+| `body-wake-kit` | `n:physics:body` | `nexusengine/domains/physics/body/wake` | Normalize explicit exact-once Physics body wake commands. |
+| `body-lifecycle-kit` | `n:physics:body` | `nexusengine/domains/physics/body/lifecycle` | Normalize active and disabled body lifecycle state and exact transition commands. |
+| `body-state-kit` | `n:physics:body` | `nexusengine/domains/physics/body/state` | Compose atomic portable body descriptors into one coherent provider-neutral body state. |
+| `body-registry-kit` | `n:physics:body` | `nexusengine/domains/physics/body/registry` | Own portable Physics body records and exact-once lifecycle transitions without solver execution. |
+| `shape-identity-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/identity` | Normalize stable portable Physics shape identity, type, and metadata. |
+| `shape-validation-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/validation` | Validate any canonical portable Physics shape descriptor without mutation. |
+| `sphere-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/sphere` | Normalize portable sphere collision geometry. |
+| `box-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/box` | Normalize portable box collision geometry. |
+| `capsule-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/capsule` | Normalize portable capsule collision geometry. |
+| `cylinder-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/cylinder` | Normalize portable cylinder collision geometry. |
+| `cone-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/cone` | Normalize portable cone collision geometry. |
+| `plane-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/plane` | Normalize portable infinite-plane collision geometry. |
+| `convex-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/convex` | Normalize portable convex-hull collision geometry. |
+| `triangle-mesh-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/triangle-mesh` | Normalize indexed portable triangle-mesh collision geometry. |
+| `heightfield-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/heightfield` | Normalize sampled portable heightfield collision geometry. |
+| `compound-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/compound` | Normalize portable compound collision-shape references and local poses. |
+| `scaled-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/scaled` | Normalize portable positive nonuniform scaling of a referenced collision shape. |
+| `shape-registry-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/registry` | Own exact-once deterministic registration and lookup of portable Physics shapes. |
 | `friction-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/friction` | Normalize portable isotropic and anisotropic physical friction descriptors. |
 | `restitution-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/restitution` | Normalize physical restitution coefficient and activation-threshold descriptors. |
 | `density-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/density` | Normalize positive SI physical mass-density descriptors. |
 | `surface-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/surface` | Normalize renderer-neutral physical surface classification and tags. |
 | `material-combine-policy-kit` | `n:physics:material` | `nexusengine/domains/physics/material/combine-policy` | Resolve physical material pairs with deterministic symmetric coefficient-combine policy. |
 | `physics-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/registry` | Own immutable portable physical material records and exact-once registry mutations. |
+| `collider-identity-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/identity` | Normalize stable portable Physics collider identity, tags, and metadata. |
+| `collider-attachment-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/attachment` | Normalize a collider attachment to public Body and Shape registry identities. |
+| `collider-pose-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/pose` | Normalize provider-neutral collider-local position and orientation descriptors. |
+| `collider-material-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/material` | Normalize a collider reference to one public Physics material identity. |
+| `collision-layer-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/layer` | Normalize one bounded provider-neutral collision layer. |
+| `collision-mask-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/mask` | Normalize a deterministic bounded collision-layer set and its portable bit value. |
+| `collision-group-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/group` | Normalize a named collision layer-and-mask policy descriptor. |
+| `collider-filter-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/filter` | Normalize provider-neutral collider layer, mask, group, and exclusion descriptors. |
+| `sensor-collider-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/sensor` | Normalize non-solving sensor semantics independently from collision detection and event dispatch. |
+| `trigger-collider-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/trigger` | Normalize event-selection semantics for a sensor-backed trigger collider. |
+| `collider-lifecycle-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/lifecycle` | Normalize provider-neutral enabled and disabled collider lifecycle state and commands. |
+| `collider-registry-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/registry` | Own portable collider records, revisions, reference validation, and exact-once mutations. |
+| `collision-detection-result-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/result` | Normalize finite portable collision results and stable result ordering. |
+| `broad-phase-pair-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/broad-phase-pair` | Normalize, filter, deduplicate, and stably order broad-phase pairs. |
+| `spatial-partition-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/spatial-partition` | Own exact-once portable broad-phase proxy records and deterministic bounds queries. |
+| `dynamic-tree-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/dynamic-tree` | Build and query deterministic immutable AABB trees from portable proxies. |
+| `sweep-and-prune-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/sweep-and-prune` | Generate deterministic broad-phase pairs by sorted-axis interval sweeping. |
+| `shape-intersection-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/shape-intersection` | Resolve exact analytic primitive and convex-plane shape intersections. |
+| `gjk-detection-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/gjk` | Determine convex support-shape separation or intersection with deterministic GJK simplex evolution. |
+| `epa-penetration-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/epa` | Expand an intersecting GJK simplex into deterministic convex penetration witnesses. |
+| `continuous-collision-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/continuous-collision` | Compute exact linear sphere-sphere time of impact and reject unsupported sweep pairs. |
+| `narrow-phase-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/narrow-phase` | Dispatch supported analytic and convex algorithms into one portable collision result. |
+| `broad-phase-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/broad-phase` | Own canonical Detection discovery and deterministic broad-phase strategy selection. |
+| `ball-socket-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/ball-socket` | Normalize portable ball-socket constraint descriptors without provider or solver execution. |
+| `cone-twist-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/cone-twist` | Normalize portable cone-twist constraint descriptors without provider or solver execution. |
+| `distance-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/distance` | Normalize portable bounded-distance constraint descriptors without provider or solver execution. |
+| `drive-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/drive` | Normalize portable positional and velocity drive constraint descriptors. |
+| `fixed-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/fixed` | Normalize portable fixed constraint descriptors without provider or solver execution. |
+| `hinge-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/hinge` | Normalize portable local-axis hinge constraint descriptors. |
+| `limit-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/limit` | Normalize portable linear and angular limit constraint descriptors. |
+| `motor-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/motor` | Normalize portable bounded motor constraint descriptors. |
+| `slider-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/slider` | Normalize portable local-axis slider constraint descriptors. |
+| `spring-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/spring` | Normalize portable linear and angular spring constraint descriptors. |
+| `constraint-break-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/break` | Normalize and purely evaluate portable constraint break thresholds. |
+| `constraint-registry-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/registry` | Own deterministic portable constraint records, terminal break state, and exact-once mutations. |
 | `physics-world-settings-kit` | `n:physics:world` | `nexusengine/domains/physics/world/settings` | Normalize portable Physics coordinate, unit, bounds, and out-of-bounds settings. |
 | `gravity-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/gravity-field` | Own portable deterministic uniform and point-gravity field records and sampling. |
 | `force-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/force-field` | Own portable deterministic non-gravity force and acceleration field records and sampling. |
@@ -282,6 +351,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `device-lifecycle-kit` | `n:render:device` | `nexusengine/domains/render/device/lifecycle` | Own portable acquisition, readiness, loss, failure, recovery, and release state for one selected Render device. |
 | `device-loss-kit` | `n:render:device` | `nexusengine/domains/render/device/loss` | Own exact-once Render device loss incidents and externally proven resolution records. |
 | `device-diagnostics-kit` | `n:render:device` | `nexusengine/domains/render/device/diagnostics` | Project deterministic read-only diagnostics from public Render device capabilities. |
+| `render-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/render-surface` | Own portable base Render surface descriptors and exact-once lifecycle records. |
+| `surface-format-kit` | `n:render:surface` | `nexusengine/domains/render/surface/format` | Own portable color, depth, alpha, sample, and HDR surface format selections. |
+| `window-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/window` | Own portable window-surface descriptors without host window handles or platform transitions. |
+| `offscreen-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/offscreen` | Own portable offscreen layer, sample, and usage policy while base Surface owns dimensions. |
+| `swapchain-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/swapchain` | Own portable swapchain requests without creating GPU swapchains or provider handles. |
+| `viewport-kit` | `n:render:surface` | `nexusengine/domains/render/surface/viewport` | Own bounded portable viewport regions and depth ranges. |
+| `scissor-kit` | `n:render:surface` | `nexusengine/domains/render/surface/scissor` | Own bounded portable scissor regions without issuing provider commands. |
+| `resize-kit` | `n:render:surface` | `nexusengine/domains/render/surface/resize` | Own portable resize intents without mutating host or provider surfaces. |
+| `fullscreen-kit` | `n:render:surface` | `nexusengine/domains/render/surface/fullscreen` | Own portable fullscreen enter and exit intents without platform execution. |
 | `render-resource-contract-kit` | `n:render:resource` | `nexusengine/domains/render/resource/contract` | Define portable Render execution-resource identity, lifecycle, operation, and provider receipt contracts. |
 | `resource-identity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/identity` | Own deterministic Render execution-resource identities, revisions, and dependency lineage. |
 | `resource-state-kit` | `n:render:resource` | `nexusengine/domains/render/resource/state` | Define portable Render resource phases and legal lifecycle transitions. |
@@ -332,6 +410,14 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `material-variant-kit` | `n:render:material` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
 | `material-validation-kit` | `n:render:material` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
 | `material-cache-kit` | `n:render:material` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
+| `camera-binding-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-binding` | Own portable camera binding semantics and deterministic state. |
+| `camera-jitter-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
+| `camera-projection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-projection` | Own portable camera projection semantics and deterministic state. |
+| `camera-reprojection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
+| `camera-view-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-view` | Own portable camera view semantics and deterministic state. |
+| `camera-viewport-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
+| `multiview-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
+| `stereo-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |

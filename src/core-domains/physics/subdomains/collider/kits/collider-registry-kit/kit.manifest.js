@@ -26,6 +26,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-registry-kit/index.js",
   exportName: "createColliderRegistryKit",
   publicSubpath: "./domains/physics/collider/registry",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

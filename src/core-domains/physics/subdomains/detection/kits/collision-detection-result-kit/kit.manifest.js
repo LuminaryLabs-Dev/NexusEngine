@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/collision-detection-result-kit/index.js",
   exportName: "createCollisionDetectionResultKit",
   publicSubpath: "./domains/physics/detection/result",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

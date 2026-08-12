@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collision-layer-kit/index.js",
   exportName: "createCollisionLayerKit",
   publicSubpath: "./domains/physics/collider/layer",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

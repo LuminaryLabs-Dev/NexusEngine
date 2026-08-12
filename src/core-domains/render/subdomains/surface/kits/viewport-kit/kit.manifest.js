@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/viewport-kit/index.js",
   exportName: "createViewportKit",
   publicSubpath: "./domains/render/surface/viewport",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

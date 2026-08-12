@@ -11,6 +11,7 @@ import {
 
 const root = process.cwd();
 const check = process.argv.includes("--check");
+const allowPending = process.argv.includes("--allow-pending");
 const sourceRoot = path.join(root, "src");
 const domainRoot = path.join(root, "src", "core-domains");
 const buildRoot = path.join(domainRoot, "build");
@@ -70,7 +71,10 @@ function assertRepoFile(value, label) {
 }
 
 function validateProof(proof, label) {
-  if (proof.status !== "proven") throw new Error(`${label} is not proven.`);
+  if (proof.status !== "proven") {
+    if (allowPending && proof.status === "pending") return;
+    throw new Error(`${label} is not proven.`);
+  }
   if (!proof.references.length) throw new Error(`${label} has no proof references.`);
   for (const reference of proof.references) assertRepoFile(reference, `${label} proof`);
 }

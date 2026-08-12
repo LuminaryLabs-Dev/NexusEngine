@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collision-group-kit/index.js",
   exportName: "createCollisionGroupKit",
   publicSubpath: "./domains/physics/collider/group",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

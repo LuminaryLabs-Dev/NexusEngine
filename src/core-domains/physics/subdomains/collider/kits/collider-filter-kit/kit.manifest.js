@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-filter-kit/index.js",
   exportName: "createColliderFilterKit",
   publicSubpath: "./domains/physics/collider/filter",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

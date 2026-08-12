@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/surface-format-kit/index.js",
   exportName: "createSurfaceFormatKit",
   publicSubpath: "./domains/render/surface/format",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

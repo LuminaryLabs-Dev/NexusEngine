@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/gjk-detection-kit/index.js",
   exportName: "createGjkDetectionKit",
   publicSubpath: "./domains/physics/detection/gjk",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-pose-kit/index.js",
   exportName: "createColliderPoseKit",
   publicSubpath: "./domains/physics/collider/pose",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-identity-kit/index.js",
   exportName: "createColliderIdentityKit",
   publicSubpath: "./domains/physics/collider/identity",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

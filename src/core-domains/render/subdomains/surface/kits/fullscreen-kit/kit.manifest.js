@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/fullscreen-kit/index.js",
   exportName: "createFullscreenKit",
   publicSubpath: "./domains/render/surface/fullscreen",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

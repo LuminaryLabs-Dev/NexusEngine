@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-attachment-kit/index.js",
   exportName: "createColliderAttachmentKit",
   publicSubpath: "./domains/physics/collider/attachment",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

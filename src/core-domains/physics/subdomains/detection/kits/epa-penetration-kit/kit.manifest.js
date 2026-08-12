@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/epa-penetration-kit/index.js",
   exportName: "createEpaPenetrationKit",
   publicSubpath: "./domains/physics/detection/epa",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

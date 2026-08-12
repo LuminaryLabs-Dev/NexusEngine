@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/offscreen-surface-kit/index.js",
   exportName: "createOffscreenSurfaceKit",
   publicSubpath: "./domains/render/surface/offscreen",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

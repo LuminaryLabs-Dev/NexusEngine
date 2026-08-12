@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/dynamic-tree-kit/index.js",
   exportName: "createDynamicTreeKit",
   publicSubpath: "./domains/physics/detection/dynamic-tree",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

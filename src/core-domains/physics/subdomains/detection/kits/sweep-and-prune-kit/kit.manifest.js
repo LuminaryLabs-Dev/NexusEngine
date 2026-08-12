@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/sweep-and-prune-kit/index.js",
   exportName: "createSweepAndPruneKit",
   publicSubpath: "./domains/physics/detection/sweep-and-prune",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

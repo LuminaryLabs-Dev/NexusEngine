@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/resize-kit/index.js",
   exportName: "createResizeKit",
   publicSubpath: "./domains/render/surface/resize",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:render`
 - Status: `stable-candidate`
-- Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+- Registry SHA-256: `61c125b08dd3dd69fff9eb077a33da2c46c2045603309ed98c931c2457894f9e`
 - Public entry: `nexusengine/domains/render`
 
 ## Responsibility
@@ -15,7 +15,7 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 
 - Render domain identity
 - Render execution capability catalog
-- provider-neutral Render contracts, lifecycle, portable device state, resource state, Buffer state, Texture state, Shader state, and Material execution state
+- provider-neutral Render contracts, lifecycle, portable device state, Surface state, resource state, Buffer state, Texture state, Shader state, and Material execution state
 
 ## Does Not Own
 
@@ -32,11 +32,13 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `n:render:contracts` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. |
 | `n:render:lifecycle` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. |
 | `n:render:device` | Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics. |
+| `n:render:surface` | Own portable output-surface descriptors, logical regions, format choices, and deterministic transition intents. |
 | `n:render:resource` | Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state. |
 | `n:render:buffer` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. |
 | `n:render:texture` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. |
 | `n:render:shader` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. |
 | `n:render:material` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. |
+| `n:render:camera` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. |
 
 ## Atomic Kits
 
@@ -64,6 +66,15 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `device-lifecycle-kit` | `nexusengine/domains/render/device/lifecycle` | Own portable acquisition, readiness, loss, failure, recovery, and release state for one selected Render device. |
 | `device-loss-kit` | `nexusengine/domains/render/device/loss` | Own exact-once Render device loss incidents and externally proven resolution records. |
 | `device-diagnostics-kit` | `nexusengine/domains/render/device/diagnostics` | Project deterministic read-only diagnostics from public Render device capabilities. |
+| `render-surface-kit` | `nexusengine/domains/render/surface/render-surface` | Own portable base Render surface descriptors and exact-once lifecycle records. |
+| `surface-format-kit` | `nexusengine/domains/render/surface/format` | Own portable color, depth, alpha, sample, and HDR surface format selections. |
+| `window-surface-kit` | `nexusengine/domains/render/surface/window` | Own portable window-surface descriptors without host window handles or platform transitions. |
+| `offscreen-surface-kit` | `nexusengine/domains/render/surface/offscreen` | Own portable offscreen layer, sample, and usage policy while base Surface owns dimensions. |
+| `swapchain-surface-kit` | `nexusengine/domains/render/surface/swapchain` | Own portable swapchain requests without creating GPU swapchains or provider handles. |
+| `viewport-kit` | `nexusengine/domains/render/surface/viewport` | Own bounded portable viewport regions and depth ranges. |
+| `scissor-kit` | `nexusengine/domains/render/surface/scissor` | Own bounded portable scissor regions without issuing provider commands. |
+| `resize-kit` | `nexusengine/domains/render/surface/resize` | Own portable resize intents without mutating host or provider surfaces. |
+| `fullscreen-kit` | `nexusengine/domains/render/surface/fullscreen` | Own portable fullscreen enter and exit intents without platform execution. |
 | `render-resource-contract-kit` | `nexusengine/domains/render/resource/contract` | Define portable Render execution-resource identity, lifecycle, operation, and provider receipt contracts. |
 | `resource-identity-kit` | `nexusengine/domains/render/resource/identity` | Own deterministic Render execution-resource identities, revisions, and dependency lineage. |
 | `resource-state-kit` | `nexusengine/domains/render/resource/state` | Define portable Render resource phases and legal lifecycle transitions. |
@@ -114,6 +125,14 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `material-variant-kit` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
 | `material-validation-kit` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
 | `material-cache-kit` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
+| `camera-binding-kit` | `nexusengine/domains/render/camera/camera-binding` | Own portable camera binding semantics and deterministic state. |
+| `camera-jitter-kit` | `nexusengine/domains/render/camera/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
+| `camera-projection-kit` | `nexusengine/domains/render/camera/camera-projection` | Own portable camera projection semantics and deterministic state. |
+| `camera-reprojection-kit` | `nexusengine/domains/render/camera/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
+| `camera-view-kit` | `nexusengine/domains/render/camera/camera-view` | Own portable camera view semantics and deterministic state. |
+| `camera-viewport-kit` | `nexusengine/domains/render/camera/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
+| `multiview-camera-kit` | `nexusengine/domains/render/camera/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
+| `stereo-camera-kit` | `nexusengine/domains/render/camera/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
 
 ## Lifecycle
 

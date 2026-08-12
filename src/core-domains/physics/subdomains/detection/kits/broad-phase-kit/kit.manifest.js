@@ -18,6 +18,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/broad-phase-kit/index.js",
   exportName: "createBroadPhaseKit",
   publicSubpath: "./domains/physics/detection/broad-phase",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

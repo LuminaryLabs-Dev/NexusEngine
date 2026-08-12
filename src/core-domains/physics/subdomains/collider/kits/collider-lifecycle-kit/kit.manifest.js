@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collider-lifecycle-kit/index.js",
   exportName: "createColliderLifecycleKit",
   publicSubpath: "./domains/physics/collider/lifecycle",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

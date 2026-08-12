@@ -34,6 +34,5 @@ export default domainNode({
     "render:fullscreen",
     "render:surface-format"
   ],
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/render-surface-kit/index.js",
   exportName: "createRenderSurfaceKit",
   publicSubpath: "./domains/render/surface/render-surface",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

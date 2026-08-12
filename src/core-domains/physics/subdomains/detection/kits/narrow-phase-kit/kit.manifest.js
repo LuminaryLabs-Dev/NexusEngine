@@ -18,6 +18,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/narrow-phase-kit/index.js",
   exportName: "createNarrowPhaseKit",
   publicSubpath: "./domains/physics/detection/narrow-phase",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

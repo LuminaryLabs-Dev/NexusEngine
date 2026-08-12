@@ -46,6 +46,5 @@ export default domainNode({
     "physics:collider",
     "physics:collider-registry"
   ],
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

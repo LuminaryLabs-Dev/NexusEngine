@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/spatial-partition-kit/index.js",
   exportName: "createSpatialPartitionKit",
   publicSubpath: "./domains/physics/detection/spatial-partition",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

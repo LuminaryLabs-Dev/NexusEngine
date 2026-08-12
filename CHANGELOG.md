@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added canonical `n:physics:body` and `n:physics:shape` ownership with provider-neutral body state and portable primitive, mesh, heightfield, compound, and scaled collision-shape semantics.
+- Added canonical `n:physics:collider` ownership for body/shape attachment, local pose, material references, collision filtering, sensors, triggers, lifecycle, and exact-once records without detection or solver execution.
+- Added canonical `n:physics:detection` ownership for deterministic broad-phase, spatial partition, dynamic-tree, sweep-and-prune, narrow-phase, GJK, EPA, continuous-collision, and normalized result semantics while keeping backend execution replaceable.
+- Added canonical `n:render:surface` ownership for portable window, offscreen, swapchain, viewport, scissor, resize, fullscreen, and surface-format state without DOM, native-window, WebGL, WebGPU, or renderer handles.
+- Added direct five-package proof fixtures, clean public package imports, and backend-boundary checks so these Core packages remain compatible with future CPU, worker, native, or GPU-backed providers.
 - Added canonical `n:render` and `n:render:contracts` ownership with atomic
   Domain, provider, resource, frame, resolved-pass, shader-interface, and event
   contract Kits.

@@ -36,6 +36,5 @@ export default domainNode({
     "physics:continuous-collision",
     "physics:collision-detection-result"
   ],
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

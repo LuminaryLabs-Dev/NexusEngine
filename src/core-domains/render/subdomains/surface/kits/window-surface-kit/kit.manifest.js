@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/window-surface-kit/index.js",
   exportName: "createWindowSurfaceKit",
   publicSubpath: "./domains/render/surface/window",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/render/subdomains/surface/kits/swapchain-surface-kit/index.js",
   exportName: "createSwapchainSurfaceKit",
   publicSubpath: "./domains/render/surface/swapchain",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-render-surface-smoke.mjs"]
 });

@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/continuous-collision-kit/index.js",
   exportName: "createContinuousCollisionKit",
   publicSubpath: "./domains/physics/detection/continuous-collision",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

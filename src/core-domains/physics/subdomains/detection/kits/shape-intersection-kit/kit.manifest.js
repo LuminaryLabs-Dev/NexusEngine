@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/detection/kits/shape-intersection-kit/index.js",
   exportName: "createShapeIntersectionKit",
   publicSubpath: "./domains/physics/detection/shape-intersection",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-detection-smoke.mjs"]
 });

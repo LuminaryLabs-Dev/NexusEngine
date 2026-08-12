@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/sensor-collider-kit/index.js",
   exportName: "createSensorColliderKit",
   publicSubpath: "./domains/physics/collider/sensor",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });

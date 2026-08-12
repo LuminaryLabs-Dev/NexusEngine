@@ -10,6 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/subdomains/collider/kits/collision-mask-kit/index.js",
   exportName: "createCollisionMaskKit",
   publicSubpath: "./domains/physics/collider/mask",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-collider-smoke.mjs"]
 });
