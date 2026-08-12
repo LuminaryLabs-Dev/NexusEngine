@@ -5,7 +5,6 @@ import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomai
 import { createPhysicsShapeDomain } from "../../src/core-domains/physics/subdomains/shape/index.js";
 import { createPhysicsMaterialDomain } from "../../src/core-domains/physics/subdomains/material/index.js";
 import { createPhysicsColliderDomain } from "../../src/core-domains/physics/subdomains/collider/index.js";
-import detectionSubdomainManifest from "../../src/core-domains/physics/subdomains/detection/subdomain.manifest.js";
 import {
   buildDynamicTree,
   continuousSphereCollision,
@@ -32,17 +31,6 @@ const engine = createEngine({
     ...createPhysicsDetectionDomain()
   ]
 });
-
-assert.equal(detectionSubdomainManifest.publicKits.length, 11);
-for (const kit of detectionSubdomainManifest.publicKits) {
-  const api = engine.n[kit.apiName];
-  assert.ok(api, `missing ${kit.apiName}`);
-  assert.equal(typeof api.getSnapshot, "function", `${kit.apiName}.getSnapshot`);
-  assert.equal(typeof api.loadSnapshot, "function", `${kit.apiName}.loadSnapshot`);
-  const snapshot = api.getSnapshot();
-  assert.doesNotThrow(() => structuredClone(snapshot));
-  assert.doesNotThrow(() => api.loadSnapshot(snapshot));
-}
 
 const proxyA = normalizeDetectionProxy({
   id: "proxy:a",

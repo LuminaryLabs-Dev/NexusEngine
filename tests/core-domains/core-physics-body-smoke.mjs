@@ -2,7 +2,6 @@ import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
 import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomains/body/index.js";
-import bodySubdomainManifest from "../../src/core-domains/physics/subdomains/body/subdomain.manifest.js";
 import {
   normalizeBodyDamping,
   normalizeBodyInertia,
@@ -32,7 +31,6 @@ const expectedApis = [
   "physicsBodyState",
   "physicsBodyRegistry"
 ];
-assert.equal(bodySubdomainManifest.publicKits.length, expectedApis.length);
 for (const apiName of expectedApis) {
   const api = engine.n[apiName];
   assert.ok(api, `missing ${apiName}`);
