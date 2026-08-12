@@ -1,7 +1,8 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
-import { createPhysicsBodyDomain, normalizeBodyState } from "../../src/core-domains/physics/subdomains/body/index.js";
+import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomains/body/index.js";
+import { normalizeBodyState } from "../../src/core-domains/physics/subdomains/body/body-contracts.js";
 import { createPhysicsShapeDomain } from "../../src/core-domains/physics/subdomains/shape/index.js";
 import { createPhysicsMaterialDomain } from "../../src/core-domains/physics/subdomains/material/index.js";
 import {
