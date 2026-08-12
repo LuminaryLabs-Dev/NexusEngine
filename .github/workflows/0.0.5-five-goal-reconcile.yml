@@ -39,9 +39,11 @@ jobs:
           node tests/core-domains/core-render-surface-smoke.mjs
           node tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs
 
-      - name: Pre-reconciliation Core gates
+      - name: Reconcile generated development catalog from source anchor
         run: |
           npm run core:contracts
+          node scripts/generate-core-catalog.mjs --allow-pending
+          node scripts/generate-kit-ownership-ledger.mjs
           npm run ownership:check
           npm run boundaries:check
           node scripts/generate-core-catalog.mjs --allow-pending --check
@@ -148,13 +150,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add \
-            .agent/versions/0.0.5/feature-matrix.jsonl \
-            .agent/versions/0.0.5/master-matrix.jsonl \
-            .agent/versions/0.0.5/master-matrix.md \
-            .agent/versions/0.0.5/master-goal-prompt.md \
-            .agent/versions/0.0.5/failure-point.json \
-            .agent/evidence/2026-08-12-nexusengine-0-0-5-five-goal-milestone \
-            .agent/runs/2026-08-12-nexusengine-0-0-5-five-goal-milestone
+          git add -A
           git commit -m "docs(0.0.5): reconcile five goal milestone to 17 of 67"
           git push origin HEAD:main
