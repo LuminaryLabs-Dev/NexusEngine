@@ -1,0 +1,89 @@
+name: 0.0.5 Five Goal Promotion
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/promote-0.0.5-five-goal-surface.mjs"
+      - ".github/workflows/0.0.5-five-goal-promotion.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  promote:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Direct package proof before promotion
+        run: |
+          node tests/core-domains/core-physics-body-smoke.mjs
+          node tests/core-domains/core-physics-shape-smoke.mjs
+          node tests/core-domains/core-physics-collider-smoke.mjs
+          node tests/core-domains/core-physics-detection-smoke.mjs
+          node tests/core-domains/core-render-surface-smoke.mjs
+      - name: Promote manifests, exports, and migration surfaces
+        run: node scripts/promote-0.0.5-five-goal-surface.mjs
+      - name: Prove public package surface
+        run: node tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs
+      - name: Backend boundary
+        run: |
+          ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
+            src/core-domains/physics/subdomains/body \
+            src/core-domains/physics/subdomains/shape \
+            src/core-domains/physics/subdomains/collider \
+            src/core-domains/physics/subdomains/detection \
+            src/core-domains/render/subdomains/surface
+      - name: Core boundaries
+        run: node scripts/check-core-boundaries.mjs
+      - name: Confirm catalog advances past Collider and Detection
+        shell: bash
+        run: |
+          set +e
+          node scripts/generate-core-catalog.mjs --check > /tmp/core-catalog.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/core-catalog.log
+          if [ "$status" -eq 0 ]; then
+            echo "Expected the incomplete 0.0.5 catalog to stop at a later pending package."
+            exit 1
+          fi
+          grep -F "n:physics:constraints is not proven." /tmp/core-catalog.log
+          ! grep -F "n:physics:collider is not proven." /tmp/core-catalog.log
+          ! grep -F "n:physics:detection is not proven." /tmp/core-catalog.log
+      - name: Diff integrity
+        run: git diff --check
+      - name: Commit promoted public surface
+        shell: bash
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            src/core-domains/physics/subdomains/collider \
+            src/core-domains/physics/subdomains/detection \
+            src/core-domains/render/subdomains/surface \
+            package.json \
+            CHANGELOG.md \
+            docs/migrations/0.0.5-physics-body.md \
+            docs/migrations/0.0.5-physics-shape.md \
+            docs/migrations/0.0.5-physics-collider.md \
+            docs/migrations/0.0.5-physics-detection.md \
+            docs/migrations/0.0.5-render-surface.md \
+            tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs \
+            tests/run-all.mjs
+          if git diff --cached --quiet; then
+            echo "Five-goal public surface already promoted."
+            exit 0
+          fi
+          git commit -m "feat(0.0.5): promote five goal public surfaces"
+          git push origin HEAD:main
