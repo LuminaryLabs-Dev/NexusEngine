@@ -8,11 +8,11 @@ This is a deterministic strong-model execution projection over the detailed matr
 - Executable work packages: 67
 - Detailed nodes represented exactly once: 3343
 - Detailed atomic nodes covered exactly once: 3268
-- Completed packages: 12
+- Completed packages: 17
 - Active packages: 0
-- Pending packages: 55
-- Dependency-ready packages: 7
-- Detailed matrix SHA-256: `686e1416c95d977092d538942047bf06e709addf55dc4490d45f4c330445fd6e`
+- Pending packages: 50
+- Dependency-ready packages: 8
+- Detailed matrix SHA-256: `6ce081cd3ff20d89ab9f415af02835eb20d876d3aab21f7e669d25780eda5df2`
 
 ## Execution Contract
 
@@ -25,11 +25,12 @@ This is a deterministic strong-model execution projection over the detailed matr
 
 ## Current Eligible Packages
 
-- `n:physics/body`: pending, 91 detailed actions
-- `n:physics/shape`: pending, 98 detailed actions
-- `n:render/surface`: pending, 63 detailed actions
+- `n:physics/contact`: pending, 84 detailed actions
+- `n:physics/constraints`: pending, 84 detailed actions
+- `n:physics/queries`: pending, 77 detailed actions
 - `n:render/geometry`: pending, 63 detailed actions
 - `n:render/lighting`: pending, 84 detailed actions
+- `n:render/pipeline`: pending, 112 detailed actions
 - `n:render/camera`: pending, 56 detailed actions
 - `goal-checklist-kit-c-contract-and-ownership`: pending, 1 detailed actions
 
@@ -51,11 +52,11 @@ This is a deterministic strong-model execution projection over the detailed matr
 | `n:physics/contracts` | 42 | completed | 0 |
 | `n:physics/lifecycle` | 42 | completed | 1 |
 | `n:physics/world` | 49 | completed | 2 |
-| `n:physics/body` | 91 | pending | 2 |
-| `n:physics/shape` | 98 | pending | 1 |
-| `n:physics/collider` | 84 | pending | 3 |
+| `n:physics/body` | 91 | completed | 2 |
+| `n:physics/shape` | 98 | completed | 1 |
+| `n:physics/collider` | 84 | completed | 3 |
 | `n:physics/material` | 42 | completed | 1 |
-| `n:physics/detection` | 77 | pending | 2 |
+| `n:physics/detection` | 77 | completed | 2 |
 | `n:physics/contact` | 84 | pending | 1 |
 | `n:physics/solver` | 91 | pending | 4 |
 | `n:physics/constraints` | 84 | pending | 1 |
@@ -71,7 +72,7 @@ This is a deterministic strong-model execution projection over the detailed matr
 | `n:render/contracts` | 49 | completed | 0 |
 | `n:render/lifecycle` | 42 | completed | 1 |
 | `n:render/device` | 63 | completed | 2 |
-| `n:render/surface` | 63 | pending | 1 |
+| `n:render/surface` | 63 | completed | 1 |
 | `n:render/resource` | 70 | completed | 1 |
 | `n:render/buffer` | 56 | completed | 1 |
 | `n:render/texture` | 77 | completed | 2 |

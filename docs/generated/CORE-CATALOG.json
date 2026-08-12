@@ -38496,7 +38496,7 @@
     "./domains/world/weather": "./src/core-domains/world/subdomains/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/subdomains/weather/subdomains/layered-weather-domain/index.js"
   },
-  "registryHash": "61c125b08dd3dd69fff9eb077a33da2c46c2045603309ed98c931c2457894f9e",
+  "registryHash": "82eeb9fc6ff59d3d3a855e58ac6a726b25eaeec33465c1fbad6aca9b025c3aa2",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -41241,7 +41241,7 @@
     },
     {
       "path": "src/core-domains/physics/subdomains/detection/detection-contracts.js",
-      "sha256": "134d2065dc982c49dd15d664509052690b840f353a0ea7fa115475d73363a4b5"
+      "sha256": "e8cf845495e57e901e44b944ef16c3aabec3af9ea423c793223845d39253a5c9"
     },
     {
       "path": "src/core-domains/physics/subdomains/detection/detection-kit.js",

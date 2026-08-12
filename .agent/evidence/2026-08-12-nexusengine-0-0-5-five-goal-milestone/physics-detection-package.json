@@ -1,0 +1,714 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "milestoneId": "2026-08-12-nexusengine-0-0-5-five-goal-milestone",
+  "masterPackageId": "master-package-n-physics-detection",
+  "sourceGroup": "n:physics/detection",
+  "status": "completed",
+  "owner": "physics-core-owner",
+  "sourceAnchor": "f0ff535de6766760862c81214260e7ea51110995",
+  "publicPromotionCommit": "2f278d7ce145c580a06da1f355bb81026e8f5bb3",
+  "directProofRun": "31559584273",
+  "publicPromotionRun": "31558873869",
+  "reconciliationRun": "31559791132",
+  "scope": {
+    "kits": 11,
+    "detailedActions": 77,
+    "checklistCodes": [
+      "C",
+      "I",
+      "L",
+      "P",
+      "G",
+      "D",
+      "R"
+    ]
+  },
+  "ownership": {
+    "providerNeutral": true,
+    "backendHandlesPrivate": true,
+    "gpuForwardCompatible": true
+  },
+  "implementation": {
+    "directProof": "tests/core-domains/core-physics-detection-smoke.mjs",
+    "migration": "docs/migrations/0.0.5-physics-detection.md",
+    "publicSurfaceProof": "tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs"
+  },
+  "package": {
+    "status": "completed",
+    "acceptance": "Every referenced detailed node has scope-matching observed evidence; public imports, direct behavior, lifecycle/composition, documentation, release-boundary checks, and backend neutrality are proven."
+  },
+  "detailedActions": {
+    "broad-phase-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "spatial-partition-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-spatial-partition-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "dynamic-tree-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-dynamic-tree-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "sweep-and-prune-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-sweep-and-prune-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "broad-phase-pair-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-broad-phase-pair-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "narrow-phase-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-narrow-phase-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "shape-intersection-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-shape-intersection-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "gjk-detection-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-gjk-detection-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "epa-penetration-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-epa-penetration-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "continuous-collision-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-continuous-collision-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collision-detection-result-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-c",
+        "evidence": [
+          "source:n:physics/detection",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-detection-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-detection.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-detection-collision-detection-result-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    }
+  },
+  "matrixMutated": true
+}

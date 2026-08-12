@@ -1,0 +1,775 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "milestoneId": "2026-08-12-nexusengine-0-0-5-five-goal-milestone",
+  "masterPackageId": "master-package-n-physics-collider",
+  "sourceGroup": "n:physics/collider",
+  "status": "completed",
+  "owner": "physics-core-owner",
+  "sourceAnchor": "f0ff535de6766760862c81214260e7ea51110995",
+  "publicPromotionCommit": "2f278d7ce145c580a06da1f355bb81026e8f5bb3",
+  "directProofRun": "31559584273",
+  "publicPromotionRun": "31558873869",
+  "reconciliationRun": "31559791132",
+  "scope": {
+    "kits": 12,
+    "detailedActions": 84,
+    "checklistCodes": [
+      "C",
+      "I",
+      "L",
+      "P",
+      "G",
+      "D",
+      "R"
+    ]
+  },
+  "ownership": {
+    "providerNeutral": true,
+    "backendHandlesPrivate": true,
+    "gpuForwardCompatible": true
+  },
+  "implementation": {
+    "directProof": "tests/core-domains/core-physics-collider-smoke.mjs",
+    "migration": "docs/migrations/0.0.5-physics-collider.md",
+    "publicSurfaceProof": "tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs"
+  },
+  "package": {
+    "status": "completed",
+    "acceptance": "Every referenced detailed node has scope-matching observed evidence; public imports, direct behavior, lifecycle/composition, documentation, release-boundary checks, and backend neutrality are proven."
+  },
+  "detailedActions": {
+    "collider-registry-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-registry-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-identity-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-identity-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-attachment-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-attachment-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-pose-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-pose-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-material-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-material-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-filter-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-filter-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collision-layer-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-layer-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collision-mask-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-mask-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collision-group-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collision-group-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "sensor-collider-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-sensor-collider-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "trigger-collider-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-trigger-collider-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "collider-lifecycle-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-c",
+        "evidence": [
+          "source:n:physics/collider",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-collider-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-collider.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-collider-collider-lifecycle-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    }
+  },
+  "matrixMutated": true
+}

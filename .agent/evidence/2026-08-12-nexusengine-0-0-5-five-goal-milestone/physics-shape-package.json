@@ -1,0 +1,897 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "milestoneId": "2026-08-12-nexusengine-0-0-5-five-goal-milestone",
+  "masterPackageId": "master-package-n-physics-shape",
+  "sourceGroup": "n:physics/shape",
+  "status": "completed",
+  "owner": "physics-core-owner",
+  "sourceAnchor": "f0ff535de6766760862c81214260e7ea51110995",
+  "publicPromotionCommit": "2f278d7ce145c580a06da1f355bb81026e8f5bb3",
+  "directProofRun": "31559584273",
+  "publicPromotionRun": "31558873869",
+  "reconciliationRun": "31559791132",
+  "scope": {
+    "kits": 14,
+    "detailedActions": 98,
+    "checklistCodes": [
+      "C",
+      "I",
+      "L",
+      "P",
+      "G",
+      "D",
+      "R"
+    ]
+  },
+  "ownership": {
+    "providerNeutral": true,
+    "backendHandlesPrivate": true,
+    "gpuForwardCompatible": true
+  },
+  "implementation": {
+    "directProof": "tests/core-domains/core-physics-shape-smoke.mjs",
+    "migration": "docs/migrations/0.0.5-physics-shape.md",
+    "publicSurfaceProof": "tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs"
+  },
+  "package": {
+    "status": "completed",
+    "acceptance": "Every referenced detailed node has scope-matching observed evidence; public imports, direct behavior, lifecycle/composition, documentation, release-boundary checks, and backend neutrality are proven."
+  },
+  "detailedActions": {
+    "shape-registry-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-registry-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "shape-identity-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-identity-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "shape-validation-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-shape-validation-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "sphere-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-sphere-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "box-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-box-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "capsule-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-capsule-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "cylinder-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cylinder-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "cone-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-cone-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "plane-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-plane-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "convex-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-convex-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "triangle-mesh-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-triangle-mesh-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "heightfield-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-heightfield-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "compound-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-compound-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "scaled-shape-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-c",
+        "evidence": [
+          "source:n:physics/shape",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-shape-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-shape.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-shape-scaled-shape-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    }
+  },
+  "matrixMutated": true
+}

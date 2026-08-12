@@ -1,0 +1,836 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "milestoneId": "2026-08-12-nexusengine-0-0-5-five-goal-milestone",
+  "masterPackageId": "master-package-n-physics-body",
+  "sourceGroup": "n:physics/body",
+  "status": "completed",
+  "owner": "physics-core-owner",
+  "sourceAnchor": "f0ff535de6766760862c81214260e7ea51110995",
+  "publicPromotionCommit": "2f278d7ce145c580a06da1f355bb81026e8f5bb3",
+  "directProofRun": "31559584273",
+  "publicPromotionRun": "31558873869",
+  "reconciliationRun": "31559791132",
+  "scope": {
+    "kits": 13,
+    "detailedActions": 91,
+    "checklistCodes": [
+      "C",
+      "I",
+      "L",
+      "P",
+      "G",
+      "D",
+      "R"
+    ]
+  },
+  "ownership": {
+    "providerNeutral": true,
+    "backendHandlesPrivate": true,
+    "gpuForwardCompatible": true
+  },
+  "implementation": {
+    "directProof": "tests/core-domains/core-physics-body-smoke.mjs",
+    "migration": "docs/migrations/0.0.5-physics-body.md",
+    "publicSurfaceProof": "tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs"
+  },
+  "package": {
+    "status": "completed",
+    "acceptance": "Every referenced detailed node has scope-matching observed evidence; public imports, direct behavior, lifecycle/composition, documentation, release-boundary checks, and backend neutrality are proven."
+  },
+  "detailedActions": {
+    "body-registry-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-registry-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-identity-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-identity-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-state-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-state-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-type-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-type-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-pose-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-pose-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-velocity-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-velocity-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-force-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-force-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-mass-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-mass-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-inertia-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-inertia-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-damping-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-damping-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-sleep-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-sleep-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-wake-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-wake-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "body-lifecycle-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-c",
+        "evidence": [
+          "source:n:physics/body",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-physics-body-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-physics-body.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-physics-body-body-lifecycle-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    }
+  },
+  "matrixMutated": true
+}

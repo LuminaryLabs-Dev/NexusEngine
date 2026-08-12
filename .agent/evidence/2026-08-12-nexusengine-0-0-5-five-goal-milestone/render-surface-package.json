@@ -1,0 +1,592 @@
+{
+  "schema": "nexusengine.goal-package-evidence/1",
+  "milestoneId": "2026-08-12-nexusengine-0-0-5-five-goal-milestone",
+  "masterPackageId": "master-package-n-render-surface",
+  "sourceGroup": "n:render/surface",
+  "status": "completed",
+  "owner": "render-core-owner",
+  "sourceAnchor": "f0ff535de6766760862c81214260e7ea51110995",
+  "publicPromotionCommit": "2f278d7ce145c580a06da1f355bb81026e8f5bb3",
+  "directProofRun": "31559584273",
+  "publicPromotionRun": "31558873869",
+  "reconciliationRun": "31559791132",
+  "scope": {
+    "kits": 9,
+    "detailedActions": 63,
+    "checklistCodes": [
+      "C",
+      "I",
+      "L",
+      "P",
+      "G",
+      "D",
+      "R"
+    ]
+  },
+  "ownership": {
+    "providerNeutral": true,
+    "backendHandlesPrivate": true,
+    "gpuForwardCompatible": true
+  },
+  "implementation": {
+    "directProof": "tests/core-domains/core-render-surface-smoke.mjs",
+    "migration": "docs/migrations/0.0.5-render-surface.md",
+    "publicSurfaceProof": "tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs"
+  },
+  "package": {
+    "status": "completed",
+    "acceptance": "Every referenced detailed node has scope-matching observed evidence; public imports, direct behavior, lifecycle/composition, documentation, release-boundary checks, and backend neutrality are proven."
+  },
+  "detailedActions": {
+    "render-surface-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-render-surface-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "window-surface-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-window-surface-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "offscreen-surface-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-offscreen-surface-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "swapchain-surface-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-swapchain-surface-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "viewport-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-viewport-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "scissor-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-scissor-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "resize-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-resize-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "fullscreen-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-fullscreen-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    },
+    "surface-format-kit": {
+      "C": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-c",
+        "evidence": [
+          "source:n:render/surface",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "I": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-i",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "commit:f0ff535de6766760862c81214260e7ea51110995"
+        ]
+      },
+      "L": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-l",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "P": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-p",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "G": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-g",
+        "evidence": [
+          "test:tests/core-domains/core-render-surface-smoke.mjs",
+          "run:31559584273"
+        ]
+      },
+      "D": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-d",
+        "evidence": [
+          "migration:docs/migrations/0.0.5-render-surface.md",
+          "test:tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs",
+          "commit:2f278d7ce145c580a06da1f355bb81026e8f5bb3"
+        ]
+      },
+      "R": {
+        "status": "completed",
+        "nodeId": "goal-kit-n-render-surface-surface-format-kit-r",
+        "evidence": [
+          "run:31559584273",
+          "run:31558873869",
+          "commit:f0ff535de6766760862c81214260e7ea51110995",
+          "strict-next-blocker:n:physics:constraints"
+        ]
+      }
+    }
+  },
+  "matrixMutated": true
+}
