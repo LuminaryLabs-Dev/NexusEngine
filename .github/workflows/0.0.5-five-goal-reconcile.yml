@@ -1,0 +1,160 @@
+name: 0.0.5 Five Goal Reconcile
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/0.0.5-five-goal-reconcile.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  reconcile:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    env:
+      SOURCE_ANCHOR: f0ff535de6766760862c81214260e7ea51110995
+      DIRECT_PROOF_RUN: "31559584273"
+      PUBLIC_PROMOTION_COMMIT: 2f278d7ce145c580a06da1f355bb81026e8f5bb3
+      PUBLIC_PROMOTION_RUN: "31558873869"
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+      - run: npm ci --ignore-scripts --no-audit --no-fund
+
+      - name: Direct five-package proof
+        run: |
+          node tests/core-domains/core-physics-body-smoke.mjs
+          node tests/core-domains/core-physics-shape-smoke.mjs
+          node tests/core-domains/core-physics-collider-smoke.mjs
+          node tests/core-domains/core-physics-detection-smoke.mjs
+          node tests/core-domains/core-render-surface-smoke.mjs
+          node tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs
+
+      - name: Pre-reconciliation Core gates
+        run: |
+          npm run core:contracts
+          npm run ownership:check
+          npm run boundaries:check
+          node scripts/generate-core-catalog.mjs --allow-pending --check
+          node scripts/generate-kit-ownership-ledger.mjs --check
+
+      - name: Confirm strict blocker already advanced
+        shell: bash
+        run: |
+          set +e
+          npm run core:check > /tmp/pre-core-check.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/pre-core-check.log
+          test "$status" -ne 0
+          grep -F "n:physics:constraints is not proven." /tmp/pre-core-check.log
+          ! grep -F "n:physics:collider is not proven." /tmp/pre-core-check.log
+          ! grep -F "n:physics:detection is not proven." /tmp/pre-core-check.log
+
+      - name: Reconcile exactly five packages
+        run: |
+          node .agent/versions/0.0.5/tools/reconcile-five-goal-milestone.mjs
+          node .agent/versions/0.0.5/tools/generate-master-matrix.mjs
+
+      - name: Assert exact 17 of 67 projection
+        run: |
+          node --input-type=module - <<'NODE'
+          import fs from 'node:fs';
+          const rows = fs.readFileSync('.agent/versions/0.0.5/master-matrix.jsonl', 'utf8').trim().split('\n').map(JSON.parse);
+          const packages = rows.filter((row) => row.level === 'atomic-action');
+          const complete = packages.filter((row) => row.status === 'completed');
+          const pending = packages.filter((row) => row.status === 'pending');
+          const active = packages.filter((row) => row.status === 'in_progress');
+          if (packages.length !== 67) throw new Error(`expected 67 packages, found ${packages.length}`);
+          if (complete.length !== 17) throw new Error(`expected 17 complete, found ${complete.length}`);
+          if (pending.length !== 50) throw new Error(`expected 50 pending, found ${pending.length}`);
+          if (active.length !== 0) throw new Error(`expected 0 active packages, found ${active.length}`);
+          const targets = [
+            'master-package-n-physics-body',
+            'master-package-n-physics-shape',
+            'master-package-n-physics-collider',
+            'master-package-n-physics-detection',
+            'master-package-n-render-surface'
+          ];
+          for (const id of targets) {
+            const row = packages.find((entry) => entry.id === id);
+            if (!row || row.status !== 'completed') throw new Error(`${id} is not completed`);
+          }
+          const detailed = fs.readFileSync('.agent/versions/0.0.5/feature-matrix.jsonl', 'utf8').trim().split('\n').map(JSON.parse);
+          const groups = new Set(['n:physics/body', 'n:physics/shape', 'n:physics/collider', 'n:physics/detection', 'n:render/surface']);
+          const targetDetailed = detailed.filter((row) => row.level === 'atomic-action' && groups.has(row.parentGroup ?? row.parentId));
+          if (targetDetailed.length !== 413) throw new Error(`expected 413 target detailed nodes, found ${targetDetailed.length}`);
+          if (targetDetailed.some((row) => row.status !== 'completed')) throw new Error('not every target detailed node is completed');
+          console.log('five-goal projection ok: 17/67 complete, 50 pending, 413/413 target detailed nodes complete');
+          NODE
+
+      - name: Post-reconciliation generated-state gates
+        run: |
+          node .agent/versions/0.0.5/tools/generate-master-matrix.mjs --check
+          npm run core:contracts
+          npm run ownership:check
+          npm run boundaries:check
+          node scripts/generate-core-catalog.mjs --allow-pending --check
+          node scripts/generate-kit-ownership-ledger.mjs --check
+
+      - name: Strict core check must stop at next package
+        shell: bash
+        run: |
+          set +e
+          npm run core:check > /tmp/post-core-check.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/post-core-check.log
+          test "$status" -ne 0
+          grep -F "n:physics:constraints is not proven." /tmp/post-core-check.log
+          ! grep -F "n:physics:collider is not proven." /tmp/post-core-check.log
+          ! grep -F "n:physics:detection is not proven." /tmp/post-core-check.log
+
+      - name: Full npm test must stop at same strict blocker
+        shell: bash
+        run: |
+          set +e
+          npm test > /tmp/npm-test.log 2>&1
+          status=$?
+          set -e
+          cat /tmp/npm-test.log
+          test "$status" -ne 0
+          grep -F "n:physics:constraints is not proven." /tmp/npm-test.log
+          ! grep -F "n:physics:collider is not proven." /tmp/npm-test.log
+          ! grep -F "n:physics:detection is not proven." /tmp/npm-test.log
+
+      - name: Backend-neutrality gate
+        run: |
+          ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
+            src/core-domains/physics/subdomains/body \
+            src/core-domains/physics/subdomains/shape \
+            src/core-domains/physics/subdomains/collider \
+            src/core-domains/physics/subdomains/detection \
+            src/core-domains/render/subdomains/surface
+
+      - name: Diff integrity
+        run: git diff --check
+
+      - name: Commit 17 of 67 milestone
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            .agent/versions/0.0.5/feature-matrix.jsonl \
+            .agent/versions/0.0.5/master-matrix.jsonl \
+            .agent/versions/0.0.5/master-matrix.md \
+            .agent/versions/0.0.5/master-goal-prompt.md \
+            .agent/versions/0.0.5/failure-point.json \
+            .agent/evidence/2026-08-12-nexusengine-0-0-5-five-goal-milestone \
+            .agent/runs/2026-08-12-nexusengine-0-0-5-five-goal-milestone
+          git commit -m "docs(0.0.5): reconcile five goal milestone to 17 of 67"
+          git push origin HEAD:main
