@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
 import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomains/body/index.js";
+import bodySubdomainManifest from "../../src/core-domains/physics/subdomains/body/subdomain.manifest.js";
 import {
   normalizeBodyDamping,
   normalizeBodyInertia,
@@ -31,15 +32,37 @@ const expectedApis = [
   "physicsBodyState",
   "physicsBodyRegistry"
 ];
+assert.equal(bodySubdomainManifest.publicKits.length, expectedApis.length);
 for (const apiName of expectedApis) {
-  assert.ok(engine.n[apiName], `missing ${apiName}`);
+  const api = engine.n[apiName];
+  assert.ok(api, `missing ${apiName}`);
+  assert.equal(typeof api.getSnapshot, "function", `${apiName}.getSnapshot`);
+  assert.equal(typeof api.loadSnapshot, "function", `${apiName}.loadSnapshot`);
+  const snapshot = api.getSnapshot();
+  assert.doesNotThrow(() => structuredClone(snapshot));
+  assert.doesNotThrow(() => api.loadSnapshot(snapshot));
 }
+
+const forceContract = engine.n.physicsBodyForce.getContract();
+assert.deepEqual(forceContract.accumulators, ["force", "torque", "linearImpulse", "angularImpulse"]);
+assert.equal(forceContract.applicationOwnedByProvider, true);
+assert.equal(forceContract.automaticClearingOwnedByProvider, true);
+const force = engine.n.physicsBodyForce.normalize({
+  force: [1, 2, 3],
+  torque: [4, 5, 6],
+  linearImpulse: [7, 8, 9],
+  angularImpulse: [10, 11, 12]
+});
+assert.deepEqual(force.force, [1, 2, 3]);
+assert.deepEqual(force.angularImpulse, [10, 11, 12]);
+assert.equal(engine.n.physicsBodyForce.inspect(force).valid, true);
 
 const body = normalizeBodyState({
   identity: { id: "body:alpha", tags: ["dynamic", "test"] },
   type: { kind: "dynamic" },
   pose: { position: [1, 2, 3], rotation: [0, 0, 0, -2] },
   velocity: { linear: [4, 0, 0], angular: [0, 1, 0] },
+  force,
   mass: { kilograms: 2 },
   inertia: { principal: [2, 4, 8] },
   damping: { linear: 0.1, angular: 0.2 }
@@ -49,6 +72,7 @@ assert.equal(body.identity.id, "body:alpha");
 assert.deepEqual(body.pose.rotation, [0, 0, 0, 1]);
 assert.equal(body.mass.inverseMass, 0.5);
 assert.deepEqual(body.inertia.inversePrincipal, [0.5, 0.25, 0.125]);
+assert.deepEqual(body.force.force, [1, 2, 3]);
 assert.doesNotThrow(() => structuredClone(body));
 assert.equal(JSON.stringify(body).includes("Rapier"), false);
 assert.equal(JSON.stringify(body).includes("PhysX"), false);

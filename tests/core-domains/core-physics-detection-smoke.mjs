@@ -5,15 +5,20 @@ import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomai
 import { createPhysicsShapeDomain } from "../../src/core-domains/physics/subdomains/shape/index.js";
 import { createPhysicsMaterialDomain } from "../../src/core-domains/physics/subdomains/material/index.js";
 import { createPhysicsColliderDomain } from "../../src/core-domains/physics/subdomains/collider/index.js";
+import detectionSubdomainManifest from "../../src/core-domains/physics/subdomains/detection/subdomain.manifest.js";
 import {
   buildDynamicTree,
+  continuousSphereCollision,
   createPhysicsDetectionDomain,
   detectBroadPhase,
   detectNarrowPhase,
   dynamicTreePairs,
+  epaPenetration,
   gjkDetect,
   normalizeDetectionProxy,
   queryDynamicTree,
+  sortBroadPhasePairs,
+  sortCollisionResults,
   sweepAndPrunePairs
 } from "../../src/core-domains/physics/subdomains/detection/index.js";
 
@@ -27,6 +32,17 @@ const engine = createEngine({
     ...createPhysicsDetectionDomain()
   ]
 });
+
+assert.equal(detectionSubdomainManifest.publicKits.length, 11);
+for (const kit of detectionSubdomainManifest.publicKits) {
+  const api = engine.n[kit.apiName];
+  assert.ok(api, `missing ${kit.apiName}`);
+  assert.equal(typeof api.getSnapshot, "function", `${kit.apiName}.getSnapshot`);
+  assert.equal(typeof api.loadSnapshot, "function", `${kit.apiName}.loadSnapshot`);
+  const snapshot = api.getSnapshot();
+  assert.doesNotThrow(() => structuredClone(snapshot));
+  assert.doesNotThrow(() => api.loadSnapshot(snapshot));
+}
 
 const proxyA = normalizeDetectionProxy({
   id: "proxy:a",
@@ -58,6 +74,7 @@ assert.deepEqual(
   sweepPairs,
   "broad-phase output must be deterministic regardless of input ordering"
 );
+assert.deepEqual(sortBroadPhasePairs([...sweepPairs, ...sweepPairs]), sweepPairs, "pair deduplication must be deterministic");
 
 const tree = buildDynamicTree([proxyFar, proxyA, proxyB]);
 assert.equal(tree.proxyCount, 3);
@@ -88,15 +105,59 @@ const penetrating = detectNarrowPhase({
 assert.equal(penetrating.intersects, true);
 assert.ok(["touching", "penetrating"].includes(penetrating.status));
 
+const boxA = { id: "shape:box:a", type: "box", halfExtents: [1, 1, 1] };
+const boxB = { id: "shape:box:b", type: "box", halfExtents: [1, 1, 1] };
 const gjkSeparated = gjkDetect({
-  shapeA: { id: "shape:box:a", type: "box", halfExtents: [1, 1, 1] },
-  shapeB: { id: "shape:box:b", type: "box", halfExtents: [1, 1, 1] },
+  shapeA: boxA,
+  shapeB: boxB,
   poseA: { position: [0, 0, 0] },
   poseB: { position: [5, 0, 0] },
   maxIterations: 32
 });
 assert.equal(gjkSeparated.intersects, false);
 assert.ok(gjkSeparated.iterations <= 32);
+
+const overlapRequest = {
+  shapeA: boxA,
+  shapeB: boxB,
+  poseA: { position: [0, 0, 0] },
+  poseB: { position: [0.5, 0.25, 0.1] },
+  maxIterations: 64,
+  tolerance: 1e-6
+};
+const gjkOverlap = gjkDetect(overlapRequest);
+assert.equal(gjkOverlap.intersects, true, `expected intersecting GJK result, received ${gjkOverlap.status}`);
+const penetration = epaPenetration({ ...overlapRequest, gjkResult: gjkOverlap });
+assert.equal(penetration.schema, "nexusengine.physics-penetration-result/1");
+assert.ok(["penetrating", "touching"].includes(penetration.status), `unexpected EPA status ${penetration.status}`);
+assert.ok(Number.isFinite(penetration.depth));
+assert.ok(penetration.depth >= 0);
+assert.ok(penetration.iterations <= 64);
+assert.ok(Array.isArray(penetration.normal) && penetration.normal.length === 3);
+
+const continuous = continuousSphereCollision({
+  shapeA: sphereA,
+  shapeB: sphereB,
+  poseA: { position: [0, 0, 0] },
+  poseB: { position: [10, 0, 0] },
+  velocityA: [20, 0, 0],
+  velocityB: [0, 0, 0],
+  maxTime: 1
+});
+assert.equal(continuous.intersects, true);
+assert.equal(continuous.status, "touching");
+assert.equal(continuous.algorithm, "continuous-sphere-sphere");
+assert.ok(Math.abs(continuous.timeOfImpact - 0.4) < 1e-9);
+const unsupportedContinuous = continuousSphereCollision({
+  shapeA: boxA,
+  shapeB: sphereB,
+  poseA: { position: [0, 0, 0] },
+  poseB: { position: [10, 0, 0] },
+  velocityA: [20, 0, 0],
+  velocityB: [0, 0, 0],
+  maxTime: 1
+});
+assert.equal(unsupportedContinuous.status, "unsupported");
 
 const partition = engine.n.physicsSpatialPartition;
 const defineA = partition.defineProxy({ operationId: "proxy:define:a", proxy: proxyA });
@@ -117,12 +178,27 @@ assert.equal(engine.n.physicsNarrowPhase.detect({
   poseA: { position: [0, 0, 0] },
   poseB: { position: [3, 0, 0] }
 }).status, "separated");
+const engineContinuous = engine.n.physicsContinuousCollision.sweep({
+  shapeA: sphereA,
+  shapeB: sphereB,
+  poseA: { position: [0, 0, 0] },
+  poseB: { position: [10, 0, 0] },
+  velocityA: [20, 0, 0],
+  velocityB: [0, 0, 0],
+  maxTime: 1
+});
+assert.equal(engineContinuous.timeOfImpact, continuous.timeOfImpact);
 
+const sortedResults = sortCollisionResults([penetrating, separated]);
+assert.equal(sortedResults.length, 2);
 assert.doesNotThrow(() => structuredClone({
   broad,
   penetrating,
+  penetration,
+  continuous,
   tree,
-  proxies: partition.listProxies()
+  proxies: partition.listProxies(),
+  sortedResults
 }));
 
 console.log("core physics detection smoke ok");
