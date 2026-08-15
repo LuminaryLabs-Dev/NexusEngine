@@ -1,0 +1,381 @@
+name: Semantic Core Domain Path Migration
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: semantic-core-domain-path-migration
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+
+      - name: Phase 1 - mechanical move and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          import crypto from 'node:crypto';
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { execFileSync } from 'node:child_process';
+
+          const list = () => execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+          const digest = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          const flatten = (file) => file.startsWith('src/core-domains/')
+            ? file.split('/').filter((part) => part !== 'subdomains').join('/')
+            : file;
+
+          const allOldFiles = list();
+          const records = allOldFiles
+            .filter((file) => file.startsWith('src/core-domains/'))
+            .map((oldPath) => ({ oldPath, newPath: flatten(oldPath), sha256: digest(oldPath) }));
+
+          const targets = new Set();
+          for (const record of records) {
+            if (targets.has(record.newPath)) throw new Error(`collision: ${record.newPath}`);
+            targets.add(record.newPath);
+          }
+
+          const moved = records.filter((record) => record.oldPath !== record.newPath)
+            .sort((a, b) => b.oldPath.length - a.oldPath.length);
+          for (const record of moved) {
+            fs.mkdirSync(path.dirname(record.newPath), { recursive: true });
+            fs.renameSync(record.oldPath, record.newPath);
+          }
+
+          const prune = (dir) => {
+            if (!fs.existsSync(dir)) return;
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              if (entry.isDirectory()) prune(path.join(dir, entry.name));
+            }
+            if (dir !== 'src/core-domains' && fs.existsSync(dir) && fs.readdirSync(dir).length === 0) fs.rmdirSync(dir);
+          };
+          prune('src/core-domains');
+
+          const now = [];
+          const walk = (dir) => {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              const target = path.join(dir, entry.name);
+              if (entry.isDirectory()) walk(target);
+              else if (entry.isFile()) now.push(target.split(path.sep).join('/'));
+            }
+          };
+          walk('src/core-domains');
+
+          if (now.length !== records.length) throw new Error(`file count changed ${records.length} -> ${now.length}`);
+          if (now.some((file) => file.split('/').includes('subdomains'))) throw new Error('subdomains/ directory remains');
+          for (const record of records) {
+            if (!fs.existsSync(record.newPath)) throw new Error(`missing: ${record.newPath}`);
+            if (digest(record.newPath) !== record.sha256) throw new Error(`content changed: ${record.oldPath}`);
+          }
+
+          fs.writeFileSync('/tmp/path-map.json', JSON.stringify({ allOldFiles, records }, null, 2));
+          console.log(`PHASE1_OK moved=${moved.length} coreFiles=${records.length}`);
+          NODE
+          git add -A src/core-domains
+          test -z "$(find src/core-domains -type d -name subdomains -print -quit)"
+          echo "Phase 1 regression gate passed: locations changed; contents did not."
+
+      - name: Phase 2 - add isolated import sandbox and verify
+        shell: bash
+        run: |
+          set -euo pipefail
+          cat > tests/core-domains/core-domain-import-smoke.mjs <<'SMOKE'
+          import assert from 'node:assert/strict';
+          import { readdir } from 'node:fs/promises';
+          import path from 'node:path';
+          import { fileURLToPath, pathToFileURL } from 'node:url';
+
+          const repoRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '../..');
+          const coreRoot = path.join(repoRoot, 'src', 'core-domains');
+          const failures = [];
+          const imported = [];
+          const wrappers = [];
+
+          const repoPath = (file) => path.relative(repoRoot, file).split(path.sep).join('/');
+          const kind = (file) => {
+            const rel = repoPath(file);
+            if (file.endsWith('/domain.manifest.js')) return 'domain manifest';
+            if (file.endsWith('/subdomain.manifest.js')) return 'semantic-domain manifest';
+            if (file.endsWith('/kit.manifest.js')) return 'kit manifest';
+            if (rel.includes('/kits/')) return 'kit entrypoint';
+            if (rel.includes('/providers/')) return 'provider entrypoint';
+            if (rel.includes('/adapters/')) return 'adapter entrypoint';
+            return 'domain entrypoint';
+          };
+
+          async function discover(dir) {
+            const found = [];
+            for (const entry of await readdir(dir, { withFileTypes: true })) {
+              const target = path.join(dir, entry.name);
+              if (entry.isDirectory()) {
+                if (entry.name === 'subdomains') wrappers.push(repoPath(target));
+                if (entry.name !== 'tests') found.push(...await discover(target));
+              } else if (
+                entry.isFile()
+                && (entry.name === 'index.js'
+                  || entry.name === 'domain.manifest.js'
+                  || entry.name === 'subdomain.manifest.js'
+                  || entry.name === 'kit.manifest.js')
+              ) {
+                found.push(target);
+              }
+            }
+            return found;
+          }
+
+          async function load(file, label = kind(file)) {
+            try {
+              await import(pathToFileURL(file).href);
+              imported.push({ label, path: repoPath(file) });
+            } catch (error) {
+              failures.push({ label, path: repoPath(file), code: error?.code ?? null, message: error?.message ?? String(error) });
+            }
+          }
+
+          const files = (await discover(coreRoot)).sort();
+          assert.deepEqual(wrappers, [], `generic wrappers remain:\n${wrappers.join('\n')}`);
+          for (const file of files) await load(file);
+          await load(path.join(repoRoot, 'src', 'index.js'), 'public root export');
+          await load(path.join(repoRoot, 'src', 'engine.js'), 'engine entrypoint');
+
+          console.log({ discovered: files.length, imported: imported.length, failed: failures.length });
+          for (const failure of failures) console.error(failure);
+          assert.equal(failures.length, 0, `${failures.length} import failure(s)`);
+          console.log('core domain import smoke ok');
+          SMOKE
+
+          node <<'NODE'
+          import crypto from 'node:crypto';
+          import fs from 'node:fs';
+          const state = JSON.parse(fs.readFileSync('/tmp/path-map.json', 'utf8'));
+          const digest = (file) => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+          for (const record of state.records) {
+            if (!fs.existsSync(record.newPath)) throw new Error(`lost: ${record.newPath}`);
+            if (digest(record.newPath) !== record.sha256) throw new Error(`Phase 2 touched production: ${record.newPath}`);
+          }
+          console.log('PHASE2_OK production content still byte-identical');
+          NODE
+          git add tests/core-domains/core-domain-import-smoke.mjs
+          echo "Phase 2 regression gate passed."
+
+      - name: Phase 3 - repair only real path references
+        shell: bash
+        run: |
+          set -euo pipefail
+          node <<'NODE'
+          import fs from 'node:fs';
+          import path from 'node:path';
+          import { execFileSync } from 'node:child_process';
+
+          const state = JSON.parse(fs.readFileSync('/tmp/path-map.json', 'utf8'));
+          const oldFiles = new Set(state.allOldFiles);
+          const oldToNew = new Map();
+          const newToOld = new Map();
+
+          for (const oldPath of state.allOldFiles) {
+            const newPath = oldPath.startsWith('src/core-domains/')
+              ? oldPath.split('/').filter((part) => part !== 'subdomains').join('/')
+              : oldPath;
+            oldToNew.set(oldPath, newPath);
+            if (newToOld.has(newPath) && newToOld.get(newPath) !== oldPath) throw new Error(`non-bijective mapping: ${newPath}`);
+            newToOld.set(newPath, oldPath);
+          }
+
+          const tracked = execFileSync('git', ['ls-files', '-z'], { encoding: 'utf8' }).split('\0').filter(Boolean);
+          const sourceExts = new Set(['.js', '.mjs', '.cjs', '.ts', '.mts', '.cts']);
+          const excluded = ['.agent/', 'docs/legacy/'];
+          const tempWorkflow = '.github/workflows/semantic-path-migration.yml';
+
+          const rel = (value) => value.startsWith('.') ? value : `./${value}`;
+          const resolveOld = (source, specifier) => {
+            const suffixAt = specifier.search(/[?#]/);
+            const clean = suffixAt < 0 ? specifier : specifier.slice(0, suffixAt);
+            const suffix = suffixAt < 0 ? '' : specifier.slice(suffixAt);
+            const base = path.posix.normalize(path.posix.join(path.posix.dirname(source), clean));
+            const choices = [
+              [base, 'exact', ''],
+              [`${base}.js`, 'ext', '.js'],
+              [`${base}.mjs`, 'ext', '.mjs'],
+              [`${base}.cjs`, 'ext', '.cjs'],
+              [`${base}.json`, 'ext', '.json'],
+              [path.posix.join(base, 'index.js'), 'index', '/index.js'],
+              [path.posix.join(base, 'index.mjs'), 'index', '/index.mjs']
+            ];
+            const choice = choices.find(([target]) => oldFiles.has(target));
+            return choice ? { target: choice[0], kind: choice[1], trim: choice[2], suffix } : null;
+          };
+
+          const rewriteSpecifier = (currentSource, specifier) => {
+            if (!(specifier.startsWith('./') || specifier.startsWith('../'))) return specifier;
+            const oldSource = newToOld.get(currentSource) ?? currentSource;
+            const resolved = resolveOld(oldSource, specifier);
+            if (!resolved) return specifier;
+            const newTarget = oldToNew.get(resolved.target) ?? resolved.target;
+            let next = rel(path.posix.relative(path.posix.dirname(currentSource), newTarget));
+            if (resolved.kind === 'ext' && next.endsWith(resolved.trim)) next = next.slice(0, -resolved.trim.length);
+            if (resolved.kind === 'index' && next.endsWith(resolved.trim)) next = rel(next.slice(0, -resolved.trim.length));
+            return `${next}${resolved.suffix}`;
+          };
+
+          let changed = 0;
+          let specifiers = 0;
+          let physicalSegments = 0;
+          for (const file of tracked) {
+            if (file === tempWorkflow || excluded.some((prefix) => file.startsWith(prefix))) continue;
+            if (!fs.existsSync(file) || !fs.statSync(file).isFile()) continue;
+            const buffer = fs.readFileSync(file);
+            if (buffer.includes(0)) continue;
+
+            let content = buffer.toString('utf8');
+            const original = content;
+            if (sourceExts.has(path.extname(file))) {
+              content = content.replace(/(["'`])((?:\.\.?\/)[^"'`\r\n]+)\1/g, (whole, quote, specifier) => {
+                if (quote === '`' && specifier.includes('${')) return whole;
+                const next = rewriteSpecifier(file, specifier);
+                if (next !== specifier) specifiers += 1;
+                return `${quote}${next}${quote}`;
+              });
+            }
+
+            const count = content.split('/subdomains/').length - 1;
+            if (count) {
+              content = content.replaceAll('/subdomains/', '/');
+              physicalSegments += count;
+            }
+
+            if (file === 'AGENTS.md') {
+              content = content.replace('├─ subdomains/\n', '├─ <child-domain>/\n');
+              content = content.replace('Build subdomains additionally use', 'Nested Build domains additionally use');
+            }
+            if (content !== original) {
+              fs.writeFileSync(file, content);
+              changed += 1;
+            }
+          }
+          console.log(`PATH_REPAIR changedFiles=${changed} relativeSpecifiers=${specifiers} removedSegments=${physicalSegments}`);
+          NODE
+
+          if ! grep -q 'core-domain-import-smoke.mjs' tests/run-all.mjs; then
+            sed -i '/const tests = \[/a\  "tests/core-domains/core-domain-import-smoke.mjs",' tests/run-all.mjs
+          fi
+          git add -A
+          test -z "$(find src/core-domains -type d -name subdomains -print -quit)"
+          if grep -RIl --exclude-dir=legacy --exclude=semantic-path-migration.yml 'subdomains/' \
+            src tests scripts bin examples package.json README.md AGENTS.md docs > /tmp/stale-path-files.txt; then
+            echo "Active physical subdomains/ references remain:"
+            cat /tmp/stale-path-files.txt
+            exit 1
+          fi
+          echo "Phase 3 direct-path repair gate passed."
+
+      - name: Install validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+
+      - name: Reconcile generated surfaces
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run core:generate
+          npm run ownership:generate
+          npm run migrations:generate
+          npm run protokits:generate
+          npm run test:surface:generate
+          npm run release:manifest
+          npm run guide:generate
+          npm run guide:pdf
+          git add -A
+
+      - name: Sandbox must be fully green
+        run: node tests/core-domains/core-domain-import-smoke.mjs
+
+      - name: Full existing regression suite
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run core:check
+          npm run core:contracts
+          npm run ownership:check
+          npm run protokits:check
+          npm run migrations:check
+          npm run test:surface:check
+          npm run release:manifest:check
+          npm run guide:check
+          npm test
+          npm run test:release
+          npm run boundaries:check
+          npm run docs:check
+          npm pack --dry-run --json > /tmp/npm-pack.json
+
+      - name: Final architecture gate
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -z "$(find src/core-domains -type d -name subdomains -print -quit)"
+          if grep -RIl --exclude-dir=legacy --exclude=semantic-path-migration.yml 'subdomains/' \
+            src tests scripts bin examples package.json README.md AGENTS.md docs > /tmp/stale-final.txt; then
+            cat /tmp/stale-final.txt
+            exit 1
+          fi
+          node <<'NODE'
+          import fs from 'node:fs';
+          const state = JSON.parse(fs.readFileSync('/tmp/path-map.json', 'utf8'));
+          const allowed = new Set(state.records.map((record) => record.newPath));
+          const current = [];
+          const walk = (dir) => {
+            for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
+              const target = `${dir}/${entry.name}`;
+              if (entry.isDirectory()) walk(target);
+              else if (entry.isFile()) current.push(target);
+            }
+          };
+          walk('src/core-domains');
+          const unexpected = current.filter((file) => !allowed.has(file));
+          if (unexpected.length) throw new Error(`new production files are not allowed:\n${unexpected.join('\n')}`);
+          console.log('NO_COMPATIBILITY_HELPERS_OK');
+          NODE
+          git diff --check
+          echo "Phase 3 regression gate passed."
+
+      - name: Remove migration machinery and re-smoke final tree
+        shell: bash
+        run: |
+          set -euo pipefail
+          rm .github/workflows/semantic-path-migration.yml
+          git add -A
+          git diff --check
+          node tests/core-domains/core-domain-import-smoke.mjs
+          echo "FINAL_TREE_OK"
+
+      - name: Commit completed migration directly to main
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git status --short
+          git commit -m 'refactor(core-domains): mirror semantic hierarchy in filesystem'
+          git push origin HEAD:main
