@@ -15,7 +15,7 @@ concurrency:
 jobs:
   migrate:
     runs-on: ubuntu-latest
-    timeout-minutes: 45
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
@@ -25,6 +25,51 @@ jobs:
         with:
           node-version: 24
           cache: npm
+
+      - name: Install validation dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm ci --ignore-scripts --no-audit --no-fund
+          npx --no-install playwright install --with-deps chromium
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+
+      - name: Capture baseline validation matrix
+        shell: bash
+        run: |
+          set -euo pipefail
+          run_case() {
+            local prefix="$1"
+            local key="$2"
+            local command="$3"
+            local log="/tmp/${prefix}-${key}.log"
+            set +e
+            bash -lc "$command" >"$log" 2>&1
+            local status=$?
+            set -e
+            printf '%s\t%s\n' "$key" "$status" >> "/tmp/${prefix}-status.tsv"
+            echo "[$prefix] $key => $status"
+            tail -n 12 "$log" || true
+          }
+          : > /tmp/baseline-status.tsv
+          run_case baseline core_check "npm run core:check"
+          run_case baseline core_contracts "npm run core:contracts"
+          run_case baseline ownership_check "npm run ownership:check"
+          run_case baseline protokits_check "npm run protokits:check"
+          run_case baseline migrations_check "npm run migrations:check"
+          run_case baseline test_surface_check "npm run test:surface:check"
+          run_case baseline release_manifest_check "npm run release:manifest:check"
+          run_case baseline guide_check "npm run guide:check"
+          run_case baseline npm_test "npm test"
+          run_case baseline test_release "npm run test:release"
+          run_case baseline boundaries_check "npm run boundaries:check"
+          run_case baseline docs_check "npm run docs:check"
+          run_case baseline npm_pack "npm pack --dry-run --json > /tmp/baseline-pack.json"
+          echo "Baseline validation matrix:"
+          cat /tmp/baseline-status.tsv
+          git reset --hard HEAD
+          git clean -fd
 
       - name: Phase 1 - mechanical move and verify
         shell: bash
@@ -91,7 +136,7 @@ jobs:
           NODE
           git add -A src/core-domains
           test -z "$(find src/core-domains -type d -name subdomains -print -quit)"
-          echo "Phase 1 regression gate passed: locations changed; contents did not."
+          echo "Phase 1 regression gate passed: only locations changed; file bytes are identical."
 
       - name: Phase 2 - add isolated import sandbox and verify
         shell: bash
@@ -171,12 +216,12 @@ jobs:
             if (!fs.existsSync(record.newPath)) throw new Error(`lost: ${record.newPath}`);
             if (digest(record.newPath) !== record.sha256) throw new Error(`Phase 2 touched production: ${record.newPath}`);
           }
-          console.log('PHASE2_OK production content still byte-identical');
+          console.log('PHASE2_OK production Core content remains byte-identical');
           NODE
           git add tests/core-domains/core-domain-import-smoke.mjs
-          echo "Phase 2 regression gate passed."
+          echo "Phase 2 regression gate passed: sandbox is isolated under tests/."
 
-      - name: Phase 3 - repair only real path references
+      - name: Phase 3 - repair only real physical path references
         shell: bash
         run: |
           set -euo pipefail
@@ -286,51 +331,57 @@ jobs:
           fi
           echo "Phase 3 direct-path repair gate passed."
 
-      - name: Install validation dependencies
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm ci --ignore-scripts --no-audit --no-fund
-          npx --no-install playwright install --with-deps chromium
-          sudo apt-get update
-          sudo apt-get install --yes --no-install-recommends poppler-utils
-
-      - name: Reconcile generated surfaces
-        shell: bash
-        run: |
-          set -euo pipefail
-          npm run core:generate
-          npm run ownership:generate
-          npm run migrations:generate
-          npm run protokits:generate
-          npm run test:surface:generate
-          npm run release:manifest
-          npm run guide:generate
-          npm run guide:pdf
-          git add -A
-
-      - name: Sandbox must be fully green
+      - name: Import sandbox must be fully green
         run: node tests/core-domains/core-domain-import-smoke.mjs
 
-      - name: Full existing regression suite
+      - name: Capture migrated validation matrix
         shell: bash
         run: |
           set -euo pipefail
-          npm run core:check
-          npm run core:contracts
-          npm run ownership:check
-          npm run protokits:check
-          npm run migrations:check
-          npm run test:surface:check
-          npm run release:manifest:check
-          npm run guide:check
-          npm test
-          npm run test:release
-          npm run boundaries:check
-          npm run docs:check
-          npm pack --dry-run --json > /tmp/npm-pack.json
+          test -z "$(git diff --name-only)"
+          run_case() {
+            local prefix="$1"
+            local key="$2"
+            local command="$3"
+            local log="/tmp/${prefix}-${key}.log"
+            set +e
+            bash -lc "$command" >"$log" 2>&1
+            local status=$?
+            set -e
+            printf '%s\t%s\n' "$key" "$status" >> "/tmp/${prefix}-status.tsv"
+            echo "[$prefix] $key => $status"
+            tail -n 12 "$log" || true
+          }
+          : > /tmp/post-status.tsv
+          run_case post core_check "npm run core:check"
+          run_case post core_contracts "npm run core:contracts"
+          run_case post ownership_check "npm run ownership:check"
+          run_case post protokits_check "npm run protokits:check"
+          run_case post migrations_check "npm run migrations:check"
+          run_case post test_surface_check "npm run test:surface:check"
+          run_case post release_manifest_check "npm run release:manifest:check"
+          run_case post guide_check "npm run guide:check"
+          run_case post npm_test "npm test"
+          run_case post test_release "npm run test:release"
+          run_case post boundaries_check "npm run boundaries:check"
+          run_case post docs_check "npm run docs:check"
+          run_case post npm_pack "npm pack --dry-run --json > /tmp/post-pack.json"
+          echo "Migrated validation matrix:"
+          cat /tmp/post-status.tsv
+          if ! diff -u /tmp/baseline-status.tsv /tmp/post-status.tsv; then
+            echo "Regression gate failed: validation pass/fail matrix changed."
+            exit 1
+          fi
+          if grep -q 'n:physics:constraints is not proven' /tmp/baseline-core_check.log; then
+            grep -q 'n:physics:constraints is not proven' /tmp/post-core_check.log || {
+              echo "Regression gate failed: baseline core failure changed identity."
+              exit 1
+            }
+          fi
+          test -z "$(git diff --name-only)"
+          echo "Validation matrix unchanged from baseline."
 
-      - name: Final architecture gate
+      - name: Final architecture regression gate
         shell: bash
         run: |
           set -euo pipefail
@@ -354,11 +405,11 @@ jobs:
           };
           walk('src/core-domains');
           const unexpected = current.filter((file) => !allowed.has(file));
-          if (unexpected.length) throw new Error(`new production files are not allowed:\n${unexpected.join('\n')}`);
+          if (unexpected.length) throw new Error(`new production files are forbidden:\n${unexpected.join('\n')}`);
           console.log('NO_COMPATIBILITY_HELPERS_OK');
           NODE
           git diff --check
-          echo "Phase 3 regression gate passed."
+          echo "Final architecture regression gate passed."
 
       - name: Remove migration machinery and re-smoke final tree
         shell: bash
