@@ -1,3 +1,0 @@
-import { atomicKit } from "../../../../../manifest-input.js";
-
-export default atomicKit({ id: "material-contract-kit", responsibility: "Define the canonical backend-neutral Render Material execution boundary.", domainPath: "n:render:material", apiName: "renderMaterialContract", requires: ["n:render"], provides: ["n:render:material", "render:material-contract"], module: "./src/core-domains/render/subdomains/material/kits/material-contract-kit/index.js", exportName: "createMaterialContractKit", publicSubpath: "./domains/render/material/contract", proofReferences: ["tests/core-domains/core-graphics-domain-smoke.mjs"] });

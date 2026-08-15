@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
-import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomains/body/index.js";
-import { createPhysicsShapeDomain } from "../../src/core-domains/physics/subdomains/shape/index.js";
-import { createPhysicsMaterialDomain } from "../../src/core-domains/physics/subdomains/material/index.js";
-import { createPhysicsColliderDomain } from "../../src/core-domains/physics/subdomains/collider/index.js";
+import { createPhysicsContractsDomain } from "../../src/core-domains/physics/contracts/index.js";
+import { createPhysicsBodyDomain } from "../../src/core-domains/physics/body/index.js";
+import { createPhysicsShapeDomain } from "../../src/core-domains/physics/shape/index.js";
+import { createPhysicsMaterialDomain } from "../../src/core-domains/physics/material/index.js";
+import { createPhysicsColliderDomain } from "../../src/core-domains/physics/collider/index.js";
 import {
   buildDynamicTree,
   continuousSphereCollision,
@@ -19,7 +19,7 @@ import {
   sortBroadPhasePairs,
   sortCollisionResults,
   sweepAndPrunePairs
-} from "../../src/core-domains/physics/subdomains/detection/index.js";
+} from "../../src/core-domains/physics/detection/index.js";
 
 const engine = createEngine({
   kits: [

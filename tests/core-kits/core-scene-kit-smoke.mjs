@@ -5,7 +5,7 @@ import {
   createSceneHostBinding,
   createSceneRegistry,
   mountAcceptedSceneTransition
-} from "../../src/core-domains/world/subdomains/scene/kits/scene-kit/index.js";
+} from "../../src/core-domains/world/scene/kits/scene-kit/index.js";
 
 const scenes = {
   camp: {

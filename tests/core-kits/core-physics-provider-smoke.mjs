@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createPhysicsKit } from "../../src/core-domains/simulation/subdomains/physics/kits/physics-kit/index.js";
+import { createPhysicsKit } from "../../src/core-domains/simulation/physics/kits/physics-kit/index.js";
 import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 
 let initialized = 0;

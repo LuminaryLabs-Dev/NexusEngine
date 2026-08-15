@@ -9,7 +9,7 @@ import {
   selectActiveInputContext,
   normalizeInputIntent,
   getActiveInputActions
-} from "../../src/core-domains/interaction/subdomains/input/kits/input-kit/index.js";
+} from "../../src/core-domains/interaction/input/kits/input-kit/index.js";
 
 const actions = createInputActionMap(["jump", "confirm"]);
 assert.equal(actions.jump.kind, "button", "action map normalizes actions");

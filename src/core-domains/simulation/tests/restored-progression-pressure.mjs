@@ -2,9 +2,9 @@ import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
 import { createSimulationKit } from "../kits/simulation-kit/index.js";
-import { createHazardFieldKit } from "../subdomains/hazard-field/kits/hazard-field-kit/index.js";
-import { createLifecycleProgressionKit } from "../subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js";
-import { createPursuitPressureKit } from "../subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js";
+import { createHazardFieldKit } from "../hazard-field/kits/hazard-field-kit/index.js";
+import { createLifecycleProgressionKit } from "../progression/lifecycle/kits/lifecycle-progression-kit/index.js";
+import { createPursuitPressureKit } from "../pursuit-pressure/kits/pursuit-pressure-kit/index.js";
 
 const collisionEngine = createEngine({ kits: [
   createSimulationKit(),

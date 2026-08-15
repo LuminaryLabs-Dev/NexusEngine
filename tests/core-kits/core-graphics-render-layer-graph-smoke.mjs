@@ -6,7 +6,7 @@ import {
   validateRenderLayerGraph,
   resolveRenderLayerGraph,
   createRenderLayerGraphKit
-} from "../../src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js";
+} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
 
 const graph = createRenderLayerGraph({
   id: "anime-water-stack",

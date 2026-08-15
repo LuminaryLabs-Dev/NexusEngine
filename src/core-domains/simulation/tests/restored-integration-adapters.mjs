@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
-import { createTransactionLedgerKit } from "../../runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js";
+import { createTransactionLedgerKit } from "../../runtime/transaction/kits/transaction-ledger-kit/index.js";
 import { createInteractionKit } from "../../interaction/kits/interaction-kit/index.js";
-import { createRequestQueueKit } from "../../interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js";
+import { createRequestQueueKit } from "../../interaction/request/queue/kits/request-queue-kit/index.js";
 import { createOccupantRequestAdapterKit } from "../../interaction/adapters/occupant-request-adapter-kit/index.js";
 import { createTransportRequestAdapterKit } from "../../interaction/adapters/transport-request-adapter-kit/index.js";
 import { createRequestEconomyAdapterKit } from "../../interaction/adapters/request-economy-adapter-kit/index.js";
@@ -15,11 +15,11 @@ import { createVehicleWaterResponse } from "../adapters/vehicle-water-response-a
 import { createLifecycleEconomyAdapterKit } from "../adapters/lifecycle-economy-adapter-kit/index.js";
 import { createLifecycleFacilityAdapterKit } from "../adapters/lifecycle-facility-adapter-kit/index.js";
 import { createFacilityEconomyAdapterKit } from "../adapters/facility-economy-adapter-kit/index.js";
-import { createEconomyAccountKit } from "../subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js";
-import { createFacilityOperationsKit } from "../subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js";
-import { createOccupantFlowKit } from "../subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js";
-import { createTransportRouteKit } from "../subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js";
-import { createLifecycleProgressionKit } from "../subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js";
+import { createEconomyAccountKit } from "../economy/accounts/kits/economy-account-kit/index.js";
+import { createFacilityOperationsKit } from "../operations/facility/kits/facility-operations-kit/index.js";
+import { createOccupantFlowKit } from "../operations/occupant-flow/kits/occupant-flow-kit/index.js";
+import { createTransportRouteKit } from "../operations/transport-route/kits/transport-route-kit/index.js";
+import { createLifecycleProgressionKit } from "../progression/lifecycle/kits/lifecycle-progression-kit/index.js";
 import { createCapabilityGraphService, createCompositionPlanningService, createKitRegistryService } from "../../composition/kits/composition-registry-kit/services.js";
 import { createEngineRegistrySnapshot } from "../../composition/kits/composition-registry-kit/registry.js";
 

@@ -55,17 +55,17 @@ const targets = Object.freeze([
 
 const pendingFamilies = Object.freeze([
   {
-    directory: "src/core-domains/physics/subdomains/collider",
+    directory: "src/core-domains/physics/collider",
     proof: "tests/core-domains/core-physics-collider-smoke.mjs",
     expectedManifests: 13
   },
   {
-    directory: "src/core-domains/physics/subdomains/detection",
+    directory: "src/core-domains/physics/detection",
     proof: "tests/core-domains/core-physics-detection-smoke.mjs",
     expectedManifests: 12
   },
   {
-    directory: "src/core-domains/render/subdomains/surface",
+    directory: "src/core-domains/render/surface",
     proof: "tests/core-domains/core-render-surface-smoke.mjs",
     expectedManifests: 10
   }

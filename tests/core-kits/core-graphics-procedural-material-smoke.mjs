@@ -4,7 +4,7 @@ import {
   createProceduralMaterialDescriptor,
   resolveProceduralMaterialAssignment,
   validateProceduralMaterialDescriptor
-} from "../../src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js";
+} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
 
 const descriptor = createProceduralMaterialDescriptor({
   id: "clay-library",

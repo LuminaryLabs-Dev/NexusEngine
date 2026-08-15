@@ -43,11 +43,11 @@ jobs:
       - name: Backend boundary
         run: |
           ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
-            src/core-domains/physics/subdomains/body \
-            src/core-domains/physics/subdomains/shape \
-            src/core-domains/physics/subdomains/collider \
-            src/core-domains/physics/subdomains/detection \
-            src/core-domains/render/subdomains/surface
+            src/core-domains/physics/body \
+            src/core-domains/physics/shape \
+            src/core-domains/physics/collider \
+            src/core-domains/physics/detection \
+            src/core-domains/render/surface
       - name: Core boundaries
         run: node scripts/check-core-boundaries.mjs
       - name: Confirm strict catalog advances past Collider and Detection
@@ -79,7 +79,7 @@ jobs:
             case "$file" in
               CHANGELOG.md|package.json|scripts/generate-core-catalog.mjs|tests/run-all.mjs|tests/core-domains/core-0.0.5-five-goal-public-surface-smoke.mjs) ;;
               src/core-domains/catalog.js|src/core-domains/*/README.md) ;;
-              src/core-domains/physics/subdomains/collider/*|src/core-domains/physics/subdomains/detection/*|src/core-domains/render/subdomains/surface/*) ;;
+              src/core-domains/physics/collider/*|src/core-domains/physics/detection/*|src/core-domains/render/surface/*) ;;
               docs/generated/*|docs/guide/generated/*|docs/KIT-OWNERSHIP.json|docs/KIT-OWNERSHIP.md) ;;
               docs/migrations/0.0.5-physics-body.md|docs/migrations/0.0.5-physics-shape.md|docs/migrations/0.0.5-physics-collider.md|docs/migrations/0.0.5-physics-detection.md|docs/migrations/0.0.5-render-surface.md) ;;
               *) echo "Unexpected changed path: $file"; exit 1 ;;

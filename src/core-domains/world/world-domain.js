@@ -2,13 +2,13 @@ import { createDomainKit } from "../domain-kit.js";
 import { createWorldBuilderRuntime } from "./kits/world-builder-runtime-kit/index.js";
 import { createInitialWorldState } from "./state.js";
 import { validateCoreWorldState } from "./validation.js";
-import { createWorldFoundationDomain } from "./subdomains/world-foundation-domain/index.js";
-import { createWorldFeatureDomain } from "./subdomains/world-feature-domain/index.js";
-import { createLandformFeatureDomain } from "./subdomains/world-feature-domain/subdomains/landform-feature-domain/index.js";
-import { createHydrologyFeatureDomain } from "./subdomains/world-feature-domain/subdomains/hydrology-feature-domain/index.js";
-import { createEcologyFeatureDomain } from "./subdomains/world-feature-domain/subdomains/ecology-feature-domain/index.js";
-import { createSettlementFeatureDomain } from "./subdomains/world-feature-domain/subdomains/settlement-feature-domain/index.js";
-import { createAtmosphereFeatureDomain } from "./subdomains/world-feature-domain/subdomains/atmosphere-feature-domain/index.js";
+import { createWorldFoundationDomain } from "./world-foundation-domain/index.js";
+import { createWorldFeatureDomain } from "./world-feature-domain/index.js";
+import { createLandformFeatureDomain } from "./world-feature-domain/landform-feature-domain/index.js";
+import { createHydrologyFeatureDomain } from "./world-feature-domain/hydrology-feature-domain/index.js";
+import { createEcologyFeatureDomain } from "./world-feature-domain/ecology-feature-domain/index.js";
+import { createSettlementFeatureDomain } from "./world-feature-domain/settlement-feature-domain/index.js";
+import { createAtmosphereFeatureDomain } from "./world-feature-domain/atmosphere-feature-domain/index.js";
 
 const EVENT_NAMES = [
   "configured",

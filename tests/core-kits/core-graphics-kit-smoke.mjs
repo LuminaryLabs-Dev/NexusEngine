@@ -13,7 +13,7 @@ import {
   createTerrainLodPolicyDescriptor,
   selectTerrainLodLevel,
   validateTerrainLodPolicy
-} from "../../src/core-domains/presentation/subdomains/graphics/kits/graphics-kit/index.js";
+} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
 
 assert.equal(createRenderDescriptor({ id: "cube", kind: "mesh" }).kind, "mesh", "render descriptor stores kind");
 assert.equal(createInstanceDescriptor({ count: 3 }).count, 3, "instance descriptor stores count");

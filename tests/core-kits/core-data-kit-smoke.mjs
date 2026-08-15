@@ -8,7 +8,7 @@ import {
   createStateSelector,
   createDataSchema,
   validateDataSchema
-} from "../../src/core-domains/runtime/subdomains/data/kits/data-kit/index.js";
+} from "../../src/core-domains/runtime/data/kits/data-kit/index.js";
 
 const snapshot = createSnapshotEnvelope({ id: "data", state: { value: 1 } });
 assert.equal(snapshot.state.value, 1, "snapshot stores state");

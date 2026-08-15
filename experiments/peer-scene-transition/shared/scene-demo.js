@@ -2,7 +2,7 @@ import { createRealtimeGame, createSceneKit } from "../../../src/index.js";
 import {
   createWebSceneHostBinding,
   mountAcceptedSceneTransition
-} from "../../../src/core-domains/world/subdomains/scene/kits/scene-kit/index.js";
+} from "../../../src/core-domains/world/scene/kits/scene-kit/index.js";
 
 const SNAPSHOT_KEY = "nexus.sceneSnapshot";
 

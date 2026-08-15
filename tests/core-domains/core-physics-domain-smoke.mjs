@@ -4,7 +4,7 @@ import { createSimulationKit } from "../../src/core-domains/simulation/kits/simu
 import {
   createArticulatedMotionDriveOperations,
   createPhysicsDomain
-} from "../../src/core-domains/simulation/subdomains/physics/index.js";
+} from "../../src/core-domains/simulation/physics/index.js";
 
 let constraints = [];
 let articulations = [];

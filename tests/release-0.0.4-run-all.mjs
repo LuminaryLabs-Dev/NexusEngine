@@ -34,7 +34,7 @@ const tests = [
   "src/core-domains/build/tests/mcp-build.mjs",
   "src/core-domains/build/tests/web-target-browser.mjs",
   "src/core-domains/object/tests/object-domain-smoke.mjs",
-  "src/core-domains/object/subdomains/placement/tests/placement-roundtrip.mjs"
+  "src/core-domains/object/placement/tests/placement-roundtrip.mjs"
 ];
 
 for (const test of tests) {

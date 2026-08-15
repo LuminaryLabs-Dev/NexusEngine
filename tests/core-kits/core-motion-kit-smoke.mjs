@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
 import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
-import { createMotionKit } from "../../src/core-domains/simulation/subdomains/motion/kits/motion-kit/index.js";
+import { createMotionKit } from "../../src/core-domains/simulation/motion/kits/motion-kit/index.js";
 
 const engine = createEngine({
   kits: [createSimulationKit(), createMotionKit({

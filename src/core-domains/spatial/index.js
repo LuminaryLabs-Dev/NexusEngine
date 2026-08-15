@@ -4,4 +4,4 @@ export { createAngleMathKit } from "./kits/angle-math-kit.js";
 export { createVectorMathKit } from "./kits/vector-math-kit.js";
 export { createTransformMathKit } from "./kits/transform-math-kit.js";
 export { createQuaternionMathKit } from "./kits/quaternion-math-kit.js";
-export * from "./subdomains/scale/index.js";
+export * from "./scale/index.js";

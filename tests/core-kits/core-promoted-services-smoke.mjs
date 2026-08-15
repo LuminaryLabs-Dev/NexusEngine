@@ -9,7 +9,7 @@ import {
   planCompositionTree,
   validateCompositionTree
 } from "../helpers/public-package-surface.mjs";
-import { createDataKit } from "../../src/core-domains/runtime/subdomains/data/kits/data-kit/index.js";
+import { createDataKit } from "../../src/core-domains/runtime/data/kits/data-kit/index.js";
 import { createCompositionKit } from "../../src/core-domains/composition/index.js";
 import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 

@@ -1,14 +1,14 @@
 import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
-import { createTransactionLedgerKit } from "../../runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js";
-import { createScheduleKit } from "../../runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js";
+import { createTransactionLedgerKit } from "../../runtime/transaction/kits/transaction-ledger-kit/index.js";
+import { createScheduleKit } from "../../runtime/sequence/schedule/kits/schedule-kit/index.js";
 import { createSimulationKit } from "../kits/simulation-kit/index.js";
-import { createEconomyAccountKit } from "../subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js";
-import { createCargoManifestKit } from "../subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js";
-import { createFacilityOperationsKit } from "../subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js";
-import { createOccupantFlowKit } from "../subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js";
-import { createTransportRouteKit } from "../subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js";
+import { createEconomyAccountKit } from "../economy/accounts/kits/economy-account-kit/index.js";
+import { createCargoManifestKit } from "../economy/cargo/kits/cargo-manifest-kit/index.js";
+import { createFacilityOperationsKit } from "../operations/facility/kits/facility-operations-kit/index.js";
+import { createOccupantFlowKit } from "../operations/occupant-flow/kits/occupant-flow-kit/index.js";
+import { createTransportRouteKit } from "../operations/transport-route/kits/transport-route-kit/index.js";
 
 assert.throws(() => createEconomyAccountKit({ accounts: { cash: Number.NaN } }), /finite/);
 assert.throws(() => createFacilityOperationsKit({ facilities: [{ id: "bad", output: { account: "cash", amount: Number.POSITIVE_INFINITY } }] }), /finite/);

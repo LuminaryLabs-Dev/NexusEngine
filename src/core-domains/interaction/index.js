@@ -1,11 +1,11 @@
 export { interactionDomainManifest } from "./domain.manifest.js";
 export { createInteractionKit } from "./kits/interaction-kit/index.js";
-export { createInputKit } from "./subdomains/input/kits/input-kit/index.js";
-export { createAssistanceTargetKit } from "./subdomains/assistance-target/kits/assistance-target-kit/index.js";
-export { createEnvironmentalAffordanceKit } from "./subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js";
-export { createRequestQueueKit } from "./subdomains/request/subdomains/queue/kits/request-queue-kit/index.js";
-export { createRequestFulfillmentKit } from "./subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js";
-export { createTransferZoneKit } from "./subdomains/transfer-zone/kits/transfer-zone-kit/index.js";
+export { createInputKit } from "./input/kits/input-kit/index.js";
+export { createAssistanceTargetKit } from "./assistance-target/kits/assistance-target-kit/index.js";
+export { createEnvironmentalAffordanceKit } from "./environmental-affordance/kits/environmental-affordance-kit/index.js";
+export { createRequestQueueKit } from "./request/queue/kits/request-queue-kit/index.js";
+export { createRequestFulfillmentKit } from "./request/fulfillment/kits/request-fulfillment-kit/index.js";
+export { createTransferZoneKit } from "./transfer-zone/kits/transfer-zone-kit/index.js";
 export { createOccupantRequestAdapterKit } from "./adapters/occupant-request-adapter-kit/index.js";
 export { createTransportRequestAdapterKit } from "./adapters/transport-request-adapter-kit/index.js";
 export { createRequestEconomyAdapterKit } from "./adapters/request-economy-adapter-kit/index.js";

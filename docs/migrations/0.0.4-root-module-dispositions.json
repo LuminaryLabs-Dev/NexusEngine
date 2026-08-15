@@ -18,7 +18,7 @@
   },
   "removedExports": [
     {
-      "sourcePath": "src/core-domains/compute/subdomains/model/kits/model-kit/index.js",
+      "sourcePath": "src/core-domains/compute/model/kits/model-kit/index.js",
       "exportNames": [
         "createMockModelAdapter"
       ],
@@ -28,7 +28,7 @@
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
     },
     {
-      "sourcePath": "src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js",
+      "sourcePath": "src/core-domains/presentation/sky/kits/sky-kit/index.js",
       "exportNames": [
         "CORE_SKYBOX_PRESETS"
       ],
@@ -38,7 +38,7 @@
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
     },
     {
-      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js",
+      "sourcePath": "src/core-domains/presentation/speech/kits/speech-kit/index.js",
       "exportNames": [
         "createTinyTTSAssetManifest",
         "createTinyTTSProvider",
@@ -50,7 +50,7 @@
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9"
     },
     {
-      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js",
+      "sourcePath": "src/core-domains/presentation/speech/kits/speech-kit/pocket-tts-provider.js",
       "exportNames": [
         "createPocketTTSAssetManifest",
         "createPocketTTSHttpAssetProvider",
@@ -106,7 +106,7 @@
             "packageSubpath": "nexusengine/domains/simulation/motion/locomotion",
             "factory": "createActionLocomotionKit",
             "engineApi": "engine.n.actionLocomotion",
-            "sourceModule": "src/core-domains/simulation/subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/motion/locomotion/kits/action-locomotion-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -149,7 +149,7 @@
             "packageSubpath": "nexusengine/domains/interaction/assistance-target",
             "factory": "createAssistanceTargetKit",
             "engineApi": "engine.n.assistanceTargets",
-            "sourceModule": "src/core-domains/interaction/subdomains/assistance-target/kits/assistance-target-kit/index.js"
+            "sourceModule": "src/core-domains/interaction/assistance-target/kits/assistance-target-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -192,7 +192,7 @@
             "packageSubpath": "nexusengine/domains/simulation/economy/cargo",
             "factory": "createCargoManifestKit",
             "engineApi": "engine.n.cargoManifest",
-            "sourceModule": "src/core-domains/simulation/subdomains/economy/subdomains/cargo/kits/cargo-manifest-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/economy/cargo/kits/cargo-manifest-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -238,7 +238,7 @@
             "packageSubpath": "nexusengine/domains/presentation/camera/third-person",
             "factory": "createThirdPersonCameraKit",
             "engineApi": "engine.n.thirdPersonCamera",
-            "sourceModule": "src/core-domains/presentation/subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js"
+            "sourceModule": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -278,7 +278,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/compute/subdomains/model/kits/model-kit/mock-model-adapter.js",
+      "sourcePath": "src/core-domains/compute/model/kits/model-kit/mock-model-adapter.js",
       "disposition": "recipe-data",
       "targetOwner": "NexusEngine tests",
       "requiredCoreAtoms": [
@@ -292,7 +292,7 @@
       "publicExports": []
     },
     {
-      "sourcePath": "src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js",
+      "sourcePath": "src/core-domains/presentation/speech/kits/speech-kit/pocket-tts-provider.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits adapters",
       "requiredCoreAtoms": [
@@ -318,7 +318,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/headless-scene-host.js",
+      "sourcePath": "src/core-domains/world/scene/kits/scene-kit/hosts/headless-scene-host.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Editor adapters",
       "requiredCoreAtoms": [
@@ -335,7 +335,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/native-scene-host.js",
+      "sourcePath": "src/core-domains/world/scene/kits/scene-kit/hosts/native-scene-host.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Editor adapters",
       "requiredCoreAtoms": [
@@ -352,7 +352,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/rust-native-scene-host.js",
+      "sourcePath": "src/core-domains/world/scene/kits/scene-kit/hosts/rust-native-scene-host.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Editor adapters",
       "requiredCoreAtoms": [
@@ -370,7 +370,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-html-scene-host.js",
+      "sourcePath": "src/core-domains/world/scene/kits/scene-kit/hosts/web-html-scene-host.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Editor adapters",
       "requiredCoreAtoms": [
@@ -388,7 +388,7 @@
       ]
     },
     {
-      "sourcePath": "src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/web-scene-host.js",
+      "sourcePath": "src/core-domains/world/scene/kits/scene-kit/hosts/web-scene-host.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Editor adapters",
       "requiredCoreAtoms": [
@@ -430,7 +430,7 @@
             "packageSubpath": "nexusengine/domains/simulation/economy/accounts",
             "factory": "createEconomyAccountKit",
             "engineApi": "engine.n.economy",
-            "sourceModule": "src/core-domains/simulation/subdomains/economy/subdomains/accounts/kits/economy-account-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/economy/accounts/kits/economy-account-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -472,7 +472,7 @@
             "packageSubpath": "nexusengine/domains/interaction/environmental-affordance",
             "factory": "createEnvironmentalAffordanceKit",
             "engineApi": "engine.n.environmentalAffordances",
-            "sourceModule": "src/core-domains/interaction/subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js"
+            "sourceModule": "src/core-domains/interaction/environmental-affordance/kits/environmental-affordance-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -515,7 +515,7 @@
             "packageSubpath": "nexusengine/domains/simulation/operations/facility",
             "factory": "createFacilityOperationsKit",
             "engineApi": "engine.n.facilityOperations",
-            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/facility/kits/facility-operations-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/operations/facility/kits/facility-operations-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -577,7 +577,7 @@
             "packageSubpath": "nexusengine/domains/simulation/hazard-field",
             "factory": "createHazardFieldKit",
             "engineApi": "engine.n.hazardField",
-            "sourceModule": "src/core-domains/simulation/subdomains/hazard-field/kits/hazard-field-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/hazard-field/kits/hazard-field-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -693,7 +693,7 @@
             "packageSubpath": "nexusengine/domains/world/navigation/landmark-guidance",
             "factory": "createLandmarkGuidanceKit",
             "engineApi": "engine.n.landmarkGuidance",
-            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/landmark-guidance/kits/landmark-guidance-kit/index.js"
+            "sourceModule": "src/core-domains/world/navigation/landmark-guidance/kits/landmark-guidance-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -736,7 +736,7 @@
             "packageSubpath": "nexusengine/domains/simulation/progression/lifecycle",
             "factory": "createLifecycleProgressionKit",
             "engineApi": "engine.n.lifecycleProgression",
-            "sourceModule": "src/core-domains/simulation/subdomains/progression/subdomains/lifecycle/kits/lifecycle-progression-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/progression/lifecycle/kits/lifecycle-progression-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -757,6 +757,69 @@
       ]
     },
     {
+      "sourcePath": "src/modules/nexus-diffusion/backend/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createBackendAutoSelectKit",
+        "createBackendCapabilityReportKit",
+        "createCpuBackendKit",
+        "createDiffusionBackendDomain",
+        "createWebGPUBackendDescriptorKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/checkpoint/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createCheckpointDescriptorKit",
+        "createCheckpointRestoreKit",
+        "createDiffusionCheckpointDomain",
+        "createMemoryCheckpointKit"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/dataset/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDatasetBatchStreamKit",
+        "createDiffusionDatasetDomain",
+        "createProceduralShapeDatasetKit"
+      ]
+    },
+    {
       "sourcePath": "src/modules/nexus-diffusion/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
@@ -772,6 +835,28 @@
       "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
       "publicExports": [
         "*"
+      ]
+    },
+    {
+      "sourcePath": "src/modules/nexus-diffusion/model/index.js",
+      "disposition": "external-kit",
+      "targetOwner": "NexusEngine-Kits",
+      "requiredCoreAtoms": [
+        "n:compute",
+        "n:compute:model",
+        "n:runtime:data"
+      ],
+      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
+      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
+      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
+      "proofStatus": "scheduled-external",
+      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
+      "publicExports": [
+        "createDiffusionModelDomain",
+        "createModelDescriptorKit",
+        "createModelWeightKit",
+        "createTimestepEmbeddingKit",
+        "createTinyDenoiserKit"
       ]
     },
     {
@@ -794,92 +879,7 @@
       ]
     },
     {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/backend/index.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
-      "requiredCoreAtoms": [
-        "n:compute",
-        "n:compute:model",
-        "n:runtime:data"
-      ],
-      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
-      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
-      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
-      "publicExports": [
-        "createBackendAutoSelectKit",
-        "createBackendCapabilityReportKit",
-        "createCpuBackendKit",
-        "createDiffusionBackendDomain",
-        "createWebGPUBackendDescriptorKit"
-      ]
-    },
-    {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/checkpoint/index.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
-      "requiredCoreAtoms": [
-        "n:compute",
-        "n:compute:model",
-        "n:runtime:data"
-      ],
-      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
-      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
-      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
-      "publicExports": [
-        "createCheckpointDescriptorKit",
-        "createCheckpointRestoreKit",
-        "createDiffusionCheckpointDomain",
-        "createMemoryCheckpointKit"
-      ]
-    },
-    {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/dataset/index.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
-      "requiredCoreAtoms": [
-        "n:compute",
-        "n:compute:model",
-        "n:runtime:data"
-      ],
-      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
-      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
-      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
-      "publicExports": [
-        "createDatasetBatchStreamKit",
-        "createDiffusionDatasetDomain",
-        "createProceduralShapeDatasetKit"
-      ]
-    },
-    {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/model/index.js",
-      "disposition": "external-kit",
-      "targetOwner": "NexusEngine-Kits",
-      "requiredCoreAtoms": [
-        "n:compute",
-        "n:compute:model",
-        "n:runtime:data"
-      ],
-      "reconstructionRecipe": "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.",
-      "semanticBehavior": "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation.",
-      "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
-      "proofStatus": "scheduled-external",
-      "sourceCommit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9",
-      "publicExports": [
-        "createDiffusionModelDomain",
-        "createModelDescriptorKit",
-        "createModelWeightKit",
-        "createTimestepEmbeddingKit",
-        "createTinyDenoiserKit"
-      ]
-    },
-    {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/noise/index.js",
+      "sourcePath": "src/modules/nexus-diffusion/noise/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
       "requiredCoreAtoms": [
@@ -900,7 +900,7 @@
       ]
     },
     {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/preview/index.js",
+      "sourcePath": "src/modules/nexus-diffusion/preview/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
       "requiredCoreAtoms": [
@@ -923,7 +923,7 @@
       ]
     },
     {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/sampling/index.js",
+      "sourcePath": "src/modules/nexus-diffusion/sampling/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
       "requiredCoreAtoms": [
@@ -945,7 +945,7 @@
       ]
     },
     {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/tensor/index.js",
+      "sourcePath": "src/modules/nexus-diffusion/tensor/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
       "requiredCoreAtoms": [
@@ -968,7 +968,7 @@
       ]
     },
     {
-      "sourcePath": "src/modules/nexus-diffusion/subdomains/training/index.js",
+      "sourcePath": "src/modules/nexus-diffusion/training/index.js",
       "disposition": "external-kit",
       "targetOwner": "NexusEngine-Kits",
       "requiredCoreAtoms": [
@@ -1034,7 +1034,7 @@
             "packageSubpath": "nexusengine/domains/world/navigation/navmesh",
             "factory": "createNavMeshKit",
             "engineApi": "engine.n.navmesh",
-            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/navmesh/kits/navmesh-kit/index.js"
+            "sourceModule": "src/core-domains/world/navigation/navmesh/kits/navmesh-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1074,7 +1074,7 @@
             "packageSubpath": "nexusengine/domains/simulation/operations/occupant-flow",
             "factory": "createOccupantFlowKit",
             "engineApi": "engine.n.occupantFlow",
-            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/occupant-flow/kits/occupant-flow-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/operations/occupant-flow/kits/occupant-flow-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1120,7 +1120,7 @@
             "packageSubpath": "nexusengine/domains/world/navigation/pathfinding",
             "factory": "createPathfindingKit",
             "engineApi": "engine.n.pathfinding",
-            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/pathfinding/kits/pathfinding-kit/index.js"
+            "sourceModule": "src/core-domains/world/navigation/pathfinding/kits/pathfinding-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1162,7 +1162,7 @@
             "packageSubpath": "nexusengine/domains/world/generation",
             "factory": "createProceduralGenerationKit",
             "engineApi": "engine.n.proceduralGeneration",
-            "sourceModule": "src/core-domains/world/subdomains/generation/kits/procedural-generation-kit/index.js"
+            "sourceModule": "src/core-domains/world/generation/kits/procedural-generation-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1219,7 +1219,7 @@
             "packageSubpath": "nexusengine/domains/simulation/pursuit-pressure",
             "factory": "createPursuitPressureKit",
             "engineApi": "engine.n.pursuitPressure",
-            "sourceModule": "src/core-domains/simulation/subdomains/pursuit-pressure/kits/pursuit-pressure-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/pursuit-pressure/kits/pursuit-pressure-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1335,7 +1335,7 @@
             "packageSubpath": "nexusengine/domains/interaction/request/fulfillment",
             "factory": "createRequestFulfillmentKit",
             "engineApi": "engine.n.requestFulfillment",
-            "sourceModule": "src/core-domains/interaction/subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js"
+            "sourceModule": "src/core-domains/interaction/request/fulfillment/kits/request-fulfillment-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1378,7 +1378,7 @@
             "packageSubpath": "nexusengine/domains/interaction/request/queue",
             "factory": "createRequestQueueKit",
             "engineApi": "engine.n.requestQueue",
-            "sourceModule": "src/core-domains/interaction/subdomains/request/subdomains/queue/kits/request-queue-kit/index.js"
+            "sourceModule": "src/core-domains/interaction/request/queue/kits/request-queue-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1424,7 +1424,7 @@
             "packageSubpath": "nexusengine/domains/world/navigation/route-field",
             "factory": "createRouteFieldKit",
             "engineApi": "engine.n.routeField",
-            "sourceModule": "src/core-domains/world/subdomains/navigation/subdomains/route-field/kits/route-field-kit/index.js"
+            "sourceModule": "src/core-domains/world/navigation/route-field/kits/route-field-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1503,7 +1503,7 @@
             "packageSubpath": "nexusengine/domains/runtime/sequence/schedule",
             "factory": "createScheduleKit",
             "engineApi": "engine.n.schedule",
-            "sourceModule": "src/core-domains/runtime/subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js"
+            "sourceModule": "src/core-domains/runtime/sequence/schedule/kits/schedule-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1561,7 +1561,7 @@
             "packageSubpath": "nexusengine/domains/spatial/scale",
             "factory": "createSpatialScaleKit",
             "engineApi": "engine.n.spatialScale",
-            "sourceModule": "src/core-domains/spatial/subdomains/scale/kits/spatial-scale-kit/index.js"
+            "sourceModule": "src/core-domains/spatial/scale/kits/spatial-scale-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1606,7 +1606,7 @@
             "packageSubpath": "nexusengine/domains/world/terrain",
             "factory": "createTerrainKit",
             "engineApi": "engine.n.terrain",
-            "sourceModule": "src/core-domains/world/subdomains/terrain/kits/terrain-kit/index.js"
+            "sourceModule": "src/core-domains/world/terrain/kits/terrain-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1648,7 +1648,7 @@
             "packageSubpath": "nexusengine/domains/interaction/transfer-zone",
             "factory": "createTransferZoneKit",
             "engineApi": "engine.n.transferZones",
-            "sourceModule": "src/core-domains/interaction/subdomains/transfer-zone/kits/transfer-zone-kit/index.js"
+            "sourceModule": "src/core-domains/interaction/transfer-zone/kits/transfer-zone-kit/index.js"
           }
         ],
         "requiredAdapters": [],
@@ -1688,7 +1688,7 @@
             "packageSubpath": "nexusengine/domains/simulation/operations/transport-route",
             "factory": "createTransportRouteKit",
             "engineApi": "engine.n.transportRoutes",
-            "sourceModule": "src/core-domains/simulation/subdomains/operations/subdomains/transport-route/kits/transport-route-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/operations/transport-route/kits/transport-route-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1732,7 +1732,7 @@
             "packageSubpath": "nexusengine/domains/simulation/motion/vehicle",
             "factory": "createVehicleDynamicsKit",
             "engineApi": "engine.n.vehicleDynamics",
-            "sourceModule": "src/core-domains/simulation/subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/motion/vehicle/kits/vehicle-dynamics-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1776,7 +1776,7 @@
             "packageSubpath": "nexusengine/domains/world/water-surface",
             "factory": "createWaterSurfaceKit",
             "engineApi": "engine.n.waterSurface",
-            "sourceModule": "src/core-domains/world/subdomains/water-surface/kits/water-surface-kit/index.js"
+            "sourceModule": "src/core-domains/world/water-surface/kits/water-surface-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1821,7 +1821,7 @@
             "packageSubpath": "nexusengine/domains/simulation/physics/world-contact",
             "factory": "createWorldContactKit",
             "engineApi": "engine.n.worldContact",
-            "sourceModule": "src/core-domains/simulation/subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/physics/world-contact/kits/world-contact-kit/index.js"
           },
           {
             "kitId": "soft-respawn-kit",
@@ -1829,7 +1829,7 @@
             "packageSubpath": "nexusengine/domains/simulation/recovery/soft-respawn",
             "factory": "createSoftRespawnKit",
             "engineApi": "engine.n.softRespawn",
-            "sourceModule": "src/core-domains/simulation/subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js"
+            "sourceModule": "src/core-domains/simulation/recovery/soft-respawn/kits/soft-respawn-kit/index.js"
           }
         ],
         "requiredAdapters": [

@@ -2,11 +2,11 @@ import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
 import { createInteractionKit } from "../kits/interaction-kit/index.js";
-import { createAssistanceTargetKit } from "../subdomains/assistance-target/kits/assistance-target-kit/index.js";
-import { createEnvironmentalAffordanceKit } from "../subdomains/environmental-affordance/kits/environmental-affordance-kit/index.js";
-import { createRequestQueueKit } from "../subdomains/request/subdomains/queue/kits/request-queue-kit/index.js";
-import { createRequestFulfillmentKit } from "../subdomains/request/subdomains/fulfillment/kits/request-fulfillment-kit/index.js";
-import { createTransferZoneKit } from "../subdomains/transfer-zone/kits/transfer-zone-kit/index.js";
+import { createAssistanceTargetKit } from "../assistance-target/kits/assistance-target-kit/index.js";
+import { createEnvironmentalAffordanceKit } from "../environmental-affordance/kits/environmental-affordance-kit/index.js";
+import { createRequestQueueKit } from "../request/queue/kits/request-queue-kit/index.js";
+import { createRequestFulfillmentKit } from "../request/fulfillment/kits/request-fulfillment-kit/index.js";
+import { createTransferZoneKit } from "../transfer-zone/kits/transfer-zone-kit/index.js";
 
 const engine = createEngine({ kits: [
   createInteractionKit(),

@@ -1,12 +1,12 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createRenderContractsDomain } from "../../src/core-domains/render/subdomains/contracts/index.js";
-import { createRenderLifecycleDomain } from "../../src/core-domains/render/subdomains/lifecycle/index.js";
-import { createRenderDeviceDomain } from "../../src/core-domains/render/subdomains/device/index.js";
+import { createRenderContractsDomain } from "../../src/core-domains/render/contracts/index.js";
+import { createRenderLifecycleDomain } from "../../src/core-domains/render/lifecycle/index.js";
+import { createRenderDeviceDomain } from "../../src/core-domains/render/device/index.js";
 import {
   createRenderSurfaceDomain,
   normalizeSurfaceDescriptor
-} from "../../src/core-domains/render/subdomains/surface/index.js";
+} from "../../src/core-domains/render/surface/index.js";
 
 const engine = createEngine({
   kits: [

@@ -2,12 +2,12 @@ import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
 import { createSimulationKit } from "../kits/simulation-kit/index.js";
-import { createMotionKit } from "../subdomains/motion/kits/motion-kit/index.js";
-import { createPhysicsKit } from "../subdomains/physics/kits/physics-kit/index.js";
-import { createActionLocomotionKit } from "../subdomains/motion/subdomains/locomotion/kits/action-locomotion-kit/index.js";
-import { createVehicleDynamicsKit } from "../subdomains/motion/subdomains/vehicle/kits/vehicle-dynamics-kit/index.js";
-import { createWorldContactKit } from "../subdomains/physics/subdomains/world-contact/kits/world-contact-kit/index.js";
-import { createSoftRespawnKit } from "../subdomains/recovery/subdomains/soft-respawn/kits/soft-respawn-kit/index.js";
+import { createMotionKit } from "../motion/kits/motion-kit/index.js";
+import { createPhysicsKit } from "../physics/kits/physics-kit/index.js";
+import { createActionLocomotionKit } from "../motion/locomotion/kits/action-locomotion-kit/index.js";
+import { createVehicleDynamicsKit } from "../motion/vehicle/kits/vehicle-dynamics-kit/index.js";
+import { createWorldContactKit } from "../physics/world-contact/kits/world-contact-kit/index.js";
+import { createSoftRespawnKit } from "../recovery/soft-respawn/kits/soft-respawn-kit/index.js";
 
 const engine = createEngine({ kits: [
   createSimulationKit(),

@@ -3,18 +3,18 @@ import {
   createScheduler
 } from "./ecs.js";
 import { installRuntimeKit } from "./runtime-kit.js";
-import { createSequenceNodeRuntime } from "./core-domains/runtime/subdomains/sequence/runtime/sequence-node-runtime.js";
-import { createSequenceRuntime } from "./core-domains/runtime/subdomains/sequence/runtime/sequence-runtime.js";
+import { createSequenceNodeRuntime } from "./core-domains/runtime/sequence/runtime/sequence-node-runtime.js";
+import { createSequenceRuntime } from "./core-domains/runtime/sequence/runtime/sequence-runtime.js";
 import {
   createEventSurface,
   createLifecycleSurface,
   createQuerySurface,
   createResourceSurface
-} from "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js";
-import { createRealtimeKit } from "./core-domains/runtime/subdomains/realtime/kits/realtime-kit/index.js";
-import { createSequenceKit } from "./core-domains/runtime/subdomains/sequence/kits/sequence-kit/index.js";
+} from "./core-domains/runtime/realtime/contracts/surfaces.js";
+import { createRealtimeKit } from "./core-domains/runtime/realtime/kits/realtime-kit/index.js";
+import { createSequenceKit } from "./core-domains/runtime/sequence/kits/sequence-kit/index.js";
 import { createRuntimeLifecycleKit } from "./core-domains/runtime/kits/runtime-lifecycle-kit/index.js";
-import { createTickContextScheduler } from "./core-domains/runtime/subdomains/realtime/contracts/tick-context-scheduler.js";
+import { createTickContextScheduler } from "./core-domains/runtime/realtime/contracts/tick-context-scheduler.js";
 
 function assertSurface(surface) {
   if (!surface || typeof surface.subscribe !== "function" || typeof surface.publish !== "function") {

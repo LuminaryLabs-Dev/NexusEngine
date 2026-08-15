@@ -59,9 +59,9 @@ const records = [
   ["src/hosts/browser/", "external-kit", "NexusEngine-Editor adapters", ["n:asset", "n:host", "n:presentation"], "Install browser storage and presentation implementations as host-owned leaf adapters.", "Browser IndexedDB, presentation surface, and startup adapters."],
   ["src/renderers/three/", "external-kit", "NexusEngine-Kits adapters", ["n:host", "n:object", "n:presentation"], "Install Three.js capture/output/bounds implementations as approved leaf adapters.", "Three.js capture, presentation output, and subject-bounds adapters."],
   ["src/modules/nexus-diffusion/", "external-kit", "NexusEngine-Kits", ["n:compute", "n:compute:model", "n:runtime:data"], "Expose diffusion backends through Compute/Model providers and keep training/sampling policy in an optional package.", "Diffusion model, dataset, training, sampling, tensor, noise, and preview implementation."],
-  ["src/core-domains/world/subdomains/scene/kits/scene-kit/hosts/", "external-kit", "NexusEngine-Editor adapters", ["n:host", "n:world:scene"], "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.", "Concrete web navigation, native loading, and headless scene host implementations."],
-  ["src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js", "external-kit", "NexusEngine-Kits adapters", ["n:asset", "n:compute:model", "n:presentation:speech"], "Install PocketTTS or another model/network implementation through the neutral Speech provider contract.", "Concrete hosted PocketTTS HTTP provider and model asset manifest."],
-  ["src/core-domains/compute/subdomains/model/kits/model-kit/mock-model-adapter.js", "recipe-data", "NexusEngine tests", ["n:compute:model"], "Inject a deterministic fixture adapter through the neutral Model adapter contract when testing inference flows.", "Concrete mock inference implementation used only for tests."],
+  ["src/core-domains/world/scene/kits/scene-kit/hosts/", "external-kit", "NexusEngine-Editor adapters", ["n:host", "n:world:scene"], "Implement web, native, or headless scene loading as host-owned leaf adapters against the neutral Scene host contract.", "Concrete web navigation, native loading, and headless scene host implementations."],
+  ["src/core-domains/presentation/speech/kits/speech-kit/pocket-tts-provider.js", "external-kit", "NexusEngine-Kits adapters", ["n:asset", "n:compute:model", "n:presentation:speech"], "Install PocketTTS or another model/network implementation through the neutral Speech provider contract.", "Concrete hosted PocketTTS HTTP provider and model asset manifest."],
+  ["src/core-domains/compute/model/kits/model-kit/mock-model-adapter.js", "recipe-data", "NexusEngine tests", ["n:compute:model"], "Inject a deterministic fixture adapter through the neutral Model adapter contract when testing inference flows.", "Concrete mock inference implementation used only for tests."],
   ["bin/nexus-editor.mjs", "external-kit", "NexusEngine-Editor", ["n:composition", "n:host", "n:mcp"], "Ship the CLI from NexusEngine-Editor against committed NexusEngine contracts.", "Headless editor command-line host."],
   ["tools/headless-editor/", "external-kit", "NexusEngine-Editor", ["n:composition", "n:host", "n:mcp", "n:policy"], "Own editor routing, transports, workspaces, repository tools, and guided-development implementation in NexusEngine-Editor.", "Headless editor implementation and repository development tooling."]
 ].map(([sourcePath, disposition, targetOwner, requiredCoreAtoms, reconstructionRecipe, semanticBehavior]) => ({
@@ -79,28 +79,28 @@ const records = [
 
 const removedExports = [
   {
-    sourcePath: "src/core-domains/compute/subdomains/model/kits/model-kit/index.js",
+    sourcePath: "src/core-domains/compute/model/kits/model-kit/index.js",
     exportNames: ["createMockModelAdapter"],
     disposition: "recipe-data",
     targetOwner: "NexusEngine tests",
     replacement: "Inject createModelAdapterBoundary({ infer }) into createModelKit({ adapters })."
   },
   {
-    sourcePath: "src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js",
+    sourcePath: "src/core-domains/presentation/sky/kits/sky-kit/index.js",
     exportNames: ["CORE_SKYBOX_PRESETS"],
     disposition: "recipe-data",
     targetOwner: "NexusEngine-Kits recipes or game repositories",
     replacement: "Pass caller-owned preset data to createSkyDescriptorKit({ presets }) or registerPreset()."
   },
   {
-    sourcePath: "src/core-domains/presentation/subdomains/speech/kits/speech-kit/index.js",
+    sourcePath: "src/core-domains/presentation/speech/kits/speech-kit/index.js",
     exportNames: ["createTinyTTSAssetManifest", "createTinyTTSProvider", "registerTinyTTSAssets"],
     disposition: "external-kit",
     targetOwner: "NexusEngine-Kits adapters",
     replacement: "Install a model, network, and asset implementation through createSpeechKit().registerProvider()."
   },
   {
-    sourcePath: "src/core-domains/presentation/subdomains/speech/kits/speech-kit/pocket-tts-provider.js",
+    sourcePath: "src/core-domains/presentation/speech/kits/speech-kit/pocket-tts-provider.js",
     exportNames: ["createPocketTTSAssetManifest", "createPocketTTSHttpAssetProvider", "createPocketTTSProvider", "registerPocketTTSAssets"],
     disposition: "external-kit",
     targetOwner: "NexusEngine-Kits adapters",

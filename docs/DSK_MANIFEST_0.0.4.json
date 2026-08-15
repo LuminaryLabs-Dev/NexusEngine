@@ -11737,8 +11737,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "src/core-domains/object/subdomains/placement/tests/placement-roundtrip.mjs",
-            "src/core-domains/object/subdomains/placement/tests/placement-smoke.mjs"
+            "src/core-domains/object/placement/tests/placement-roundtrip.mjs",
+            "src/core-domains/object/placement/tests/placement-smoke.mjs"
           ],
           "consumers": [
             {

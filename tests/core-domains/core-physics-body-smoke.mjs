@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
-import { createPhysicsBodyDomain } from "../../src/core-domains/physics/subdomains/body/index.js";
+import { createPhysicsContractsDomain } from "../../src/core-domains/physics/contracts/index.js";
+import { createPhysicsBodyDomain } from "../../src/core-domains/physics/body/index.js";
 import {
   normalizeBodyDamping,
   normalizeBodyInertia,
   normalizeBodyMass,
   normalizeBodyState
-} from "../../src/core-domains/physics/subdomains/body/body-contracts.js";
+} from "../../src/core-domains/physics/body/body-contracts.js";
 
 const engine = createEngine({
   kits: [

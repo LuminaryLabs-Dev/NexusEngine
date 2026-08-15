@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import {
   normalizeBuildSourceRecord,
   parseLockedGitSource
-} from "../subdomains/source/kits/dependency-source-kit/services.js";
+} from "../source/kits/dependency-source-kit/services.js";
 
 assert.throws(() => normalizeBuildSourceRecord({
   id: "npm:test@latest",

@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createTransactionLedgerKit } from "../../src/core-domains/runtime/subdomains/transaction/kits/transaction-ledger-kit/index.js";
+import { createTransactionLedgerKit } from "../../src/core-domains/runtime/transaction/kits/transaction-ledger-kit/index.js";
 
 const engine = createEngine({ kits: [createTransactionLedgerKit()] });
 const ledger = engine.n.transaction;

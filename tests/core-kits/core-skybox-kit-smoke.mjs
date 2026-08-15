@@ -7,7 +7,7 @@ import {
   createSkyboxGradientDescriptor,
   createSkyboxPreset,
   createSkyboxRenderDescriptor
-} from "../../src/core-domains/presentation/subdomains/sky/kits/sky-kit/index.js";
+} from "../../src/core-domains/presentation/sky/kits/sky-kit/index.js";
 
 assert.equal(createSkyboxGradientDescriptor({ topColor: "#123456" }).topColor, "#123456", "gradient descriptor stores top color");
 assert.equal(createSkyboxCloudLayerDescriptor({ coverage: 2 }).coverage, 1, "cloud coverage is clamped");

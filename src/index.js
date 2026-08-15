@@ -1,6 +1,6 @@
 export * from "./release.js";
 export * from "./ecs.js";
-export * from "./core-domains/runtime/subdomains/realtime/contracts/surfaces.js";
+export * from "./core-domains/runtime/realtime/contracts/surfaces.js";
 export * from "./engine.js";
 export * from "./runtime-kit.js";
 export * from "./domain-service-kit.js";

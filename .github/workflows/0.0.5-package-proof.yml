@@ -4,11 +4,11 @@ on:
   push:
     branches: [main]
     paths:
-      - "src/core-domains/physics/subdomains/body/**"
-      - "src/core-domains/physics/subdomains/shape/**"
-      - "src/core-domains/physics/subdomains/collider/**"
-      - "src/core-domains/physics/subdomains/detection/**"
-      - "src/core-domains/render/subdomains/surface/**"
+      - "src/core-domains/physics/body/**"
+      - "src/core-domains/physics/shape/**"
+      - "src/core-domains/physics/collider/**"
+      - "src/core-domains/physics/detection/**"
+      - "src/core-domains/render/surface/**"
       - "tests/core-domains/core-physics-body-smoke.mjs"
       - "tests/core-domains/core-physics-shape-smoke.mjs"
       - "tests/core-domains/core-physics-collider-smoke.mjs"
@@ -44,8 +44,8 @@ jobs:
       - name: Backend-boundary grep
         run: |
           ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
-            src/core-domains/physics/subdomains/body \
-            src/core-domains/physics/subdomains/shape \
-            src/core-domains/physics/subdomains/collider \
-            src/core-domains/physics/subdomains/detection \
-            src/core-domains/render/subdomains/surface
+            src/core-domains/physics/body \
+            src/core-domains/physics/shape \
+            src/core-domains/physics/collider \
+            src/core-domains/physics/detection \
+            src/core-domains/render/surface

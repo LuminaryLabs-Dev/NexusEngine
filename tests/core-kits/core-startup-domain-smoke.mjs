@@ -5,7 +5,7 @@ import {
   createStartupDescriptor,
   createStartupDomain,
   createStartupKit
-} from "../../src/core-domains/runtime/subdomains/startup/index.js";
+} from "../../src/core-domains/runtime/startup/index.js";
 
 function createStartupEngine() {
   return createEngine({ kits: [createStartupKit()] });

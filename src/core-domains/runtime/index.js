@@ -1,20 +1,20 @@
 export { runtimeDomainManifest } from "./domain.manifest.js";
 export { createRuntimeLifecycleKit } from "./kits/runtime-lifecycle-kit/index.js";
-export { createRealtimeKit } from "./subdomains/realtime/kits/realtime-kit/index.js";
-export { createDataKit } from "./subdomains/data/kits/data-kit/index.js";
-export { createTransactionLedgerKit } from "./subdomains/transaction/kits/transaction-ledger-kit/index.js";
-export { createPersistenceKit } from "./subdomains/persistence/kits/persistence-kit/index.js";
-export { createSequenceKit } from "./subdomains/sequence/kits/sequence-kit/index.js";
-export { createScheduleKit } from "./subdomains/sequence/subdomains/schedule/kits/schedule-kit/index.js";
-export { createStartupKit } from "./subdomains/startup/kits/startup-kit/index.js";
+export { createRealtimeKit } from "./realtime/kits/realtime-kit/index.js";
+export { createDataKit } from "./data/kits/data-kit/index.js";
+export { createTransactionLedgerKit } from "./transaction/kits/transaction-ledger-kit/index.js";
+export { createPersistenceKit } from "./persistence/kits/persistence-kit/index.js";
+export { createSequenceKit } from "./sequence/kits/sequence-kit/index.js";
+export { createScheduleKit } from "./sequence/schedule/kits/schedule-kit/index.js";
+export { createStartupKit } from "./startup/kits/startup-kit/index.js";
 
 import { createRuntimeLifecycleKit } from "./kits/runtime-lifecycle-kit/index.js";
-import { createRealtimeKit } from "./subdomains/realtime/kits/realtime-kit/index.js";
-import { createDataKit } from "./subdomains/data/kits/data-kit/index.js";
-import { createTransactionLedgerKit } from "./subdomains/transaction/kits/transaction-ledger-kit/index.js";
-import { createPersistenceKit } from "./subdomains/persistence/kits/persistence-kit/index.js";
-import { createSequenceKit } from "./subdomains/sequence/kits/sequence-kit/index.js";
-import { createStartupKit } from "./subdomains/startup/kits/startup-kit/index.js";
+import { createRealtimeKit } from "./realtime/kits/realtime-kit/index.js";
+import { createDataKit } from "./data/kits/data-kit/index.js";
+import { createTransactionLedgerKit } from "./transaction/kits/transaction-ledger-kit/index.js";
+import { createPersistenceKit } from "./persistence/kits/persistence-kit/index.js";
+import { createSequenceKit } from "./sequence/kits/sequence-kit/index.js";
+import { createStartupKit } from "./startup/kits/startup-kit/index.js";
 
 export function createRuntimeDomain(config = {}) {
   const kits = [createRuntimeLifecycleKit(config.lifecycle ?? {})];

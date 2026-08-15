@@ -3,7 +3,7 @@ import { createEngine } from "../../src/engine.js";
 import { createSimulationKit } from "../../src/core-domains/simulation/kits/simulation-kit/index.js";
 import {
   createMotionDomain
-} from "../../src/core-domains/simulation/subdomains/motion/index.js";
+} from "../../src/core-domains/simulation/motion/index.js";
 
 const EPSILON = 1e-5;
 const quaternionLength = (value) => Math.hypot(value.x, value.y, value.z, value.w);

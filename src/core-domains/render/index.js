@@ -1,16 +1,16 @@
 export { renderDomainManifest } from "./domain.manifest.js";
-export * from "./subdomains/contracts/index.js";
-export * from "./subdomains/lifecycle/index.js";
-export * from "./subdomains/device/index.js";
-export * from "./subdomains/surface/index.js";
-export * from "./subdomains/resource/index.js";
-export * from "./subdomains/buffer/index.js";
-export * from "./subdomains/texture/index.js";
-export * from "./subdomains/shader/index.js";
-export * from "./subdomains/material/index.js";
-export * from "./subdomains/camera/index.js";
+export * from "./contracts/index.js";
+export * from "./lifecycle/index.js";
+export * from "./device/index.js";
+export * from "./surface/index.js";
+export * from "./resource/index.js";
+export * from "./buffer/index.js";
+export * from "./texture/index.js";
+export * from "./shader/index.js";
+export * from "./material/index.js";
+export * from "./camera/index.js";
 
-import { createRenderDomainContractKit } from "./subdomains/contracts/kits/render-domain-contract-kit/index.js";
+import { createRenderDomainContractKit } from "./contracts/kits/render-domain-contract-kit/index.js";
 
 export function createRenderDomain(config = {}) {
   return [createRenderDomainContractKit(config)];

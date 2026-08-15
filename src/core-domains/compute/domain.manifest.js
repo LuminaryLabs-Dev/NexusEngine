@@ -10,7 +10,7 @@ export const computeDomainManifest = defineCoreDomainManifest(manifestShell({
   publicEntry: { subpath: "./domains/compute", module: "./src/core-domains/compute/index.js" },
   publicKits: [
     atomicKit({ id: "compute-graph-kit", responsibility: "Validate compute descriptors and create deterministic dependency-ordered dispatch plans.", domainPath: "n:compute", apiName: "compute", provides: ["n:compute", "compute:descriptor", "compute:graph", "compute:provider-contract"], module: "./src/core-domains/compute/kits/compute-kit/index.js", exportName: "createComputeKit", publicSubpath: "./domains/compute/graph", proofReferences: computeProof }),
-    atomicKit({ id: "model-registry-kit", responsibility: "Register model descriptors and normalize provider-neutral inference requests and results.", domainPath: "n:compute:model", apiName: "model", requires: ["n:compute"], provides: ["n:compute:model", "model:registry", "model:inference-contract"], module: "./src/core-domains/compute/subdomains/model/kits/model-kit/index.js", exportName: "createModelKit", publicSubpath: "./domains/compute/model", proofReferences: modelProof })
+    atomicKit({ id: "model-registry-kit", responsibility: "Register model descriptors and normalize provider-neutral inference requests and results.", domainPath: "n:compute:model", apiName: "model", requires: ["n:compute"], provides: ["n:compute:model", "model:registry", "model:inference-contract"], module: "./src/core-domains/compute/model/kits/model-kit/index.js", exportName: "createModelKit", publicSubpath: "./domains/compute/model", proofReferences: modelProof })
   ]
 }));
 

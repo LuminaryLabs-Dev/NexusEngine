@@ -1,3 +1,0 @@
-import { atomicKit } from "../../../../../manifest-input.js";
-
-export default atomicKit({ id: "shader-program-kit", responsibility: "Own linked portable Shader program topology and its canonical interface.", domainPath: "n:render:shader", apiName: "renderShaderPrograms", requires: ["n:render:shader", "render:shader-module", "render:shader-schema"], provides: ["render:shader-program"], module: "./src/core-domains/render/subdomains/shader/kits/shader-program-kit/index.js", exportName: "createShaderProgramKit", publicSubpath: "./domains/render/shader/program", proofReferences: ["tests/core-domains/core-graphics-domain-smoke.mjs"] });

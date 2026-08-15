@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 
-import { createProjectImmutabilityService } from "../subdomains/proof/kits/project-immutability-kit/services.js";
+import { createProjectImmutabilityService } from "../proof/kits/project-immutability-kit/services.js";
 
 const proof = createProjectImmutabilityService();
 const baseline = {

@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import {
   solveTwoBoneIK
-} from "../../src/core-domains/simulation/subdomains/motion/kits/two-bone-ik-kit/index.js";
+} from "../../src/core-domains/simulation/motion/kits/two-bone-ik-kit/index.js";
 import {
   quatFromUnitVectors,
   quatRotateVector,

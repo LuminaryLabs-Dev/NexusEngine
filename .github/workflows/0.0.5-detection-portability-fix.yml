@@ -28,7 +28,7 @@ jobs:
         run: |
           python - <<'PY'
           from pathlib import Path
-          p = Path('src/core-domains/physics/subdomains/detection/detection-contracts.js')
+          p = Path('src/core-domains/physics/detection/detection-contracts.js')
           s = p.read_text()
           old = "\n".join(["      tolerance: value.tolerance,", "      maxIterations: value.maxIterations,", "      metadata: value.metadata"])
           new = "\n".join(["      tolerance: value.tolerance ?? 1e-7,", "      maxIterations: value.maxIterations ?? 32,", "      metadata: value.metadata ?? {}"])
@@ -47,17 +47,17 @@ jobs:
       - name: Backend boundary
         run: |
           ! grep -RInE 'RapierRigidBody|PhysX|THREE\.|HTMLCanvasElement|GPUCanvasContext|WebGLRenderingContext|GPUBuffer' \
-            src/core-domains/physics/subdomains/body \
-            src/core-domains/physics/subdomains/shape \
-            src/core-domains/physics/subdomains/collider \
-            src/core-domains/physics/subdomains/detection \
-            src/core-domains/render/subdomains/surface
+            src/core-domains/physics/body \
+            src/core-domains/physics/shape \
+            src/core-domains/physics/collider \
+            src/core-domains/physics/detection \
+            src/core-domains/render/surface
       - name: Diff integrity
         run: git diff --check
       - name: Commit portability fix
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add src/core-domains/physics/subdomains/detection/detection-contracts.js
+          git add src/core-domains/physics/detection/detection-contracts.js
           git commit -m "fix(0.0.5): preserve portable continuous collision defaults"
           git push origin HEAD:main

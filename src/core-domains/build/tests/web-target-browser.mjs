@@ -8,7 +8,7 @@ import path from "node:path";
 import { chromium } from "playwright";
 
 import { createBuildDomain } from "../index.js";
-import { createCanonicalGitTransportEnvironment } from "../subdomains/compile/kits/web-module-linker-kit/services.js";
+import { createCanonicalGitTransportEnvironment } from "../compile/kits/web-module-linker-kit/services.js";
 
 const gitTransportEnvironment = createCanonicalGitTransportEnvironment([
   {

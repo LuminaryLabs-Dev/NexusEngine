@@ -1,10 +1,10 @@
 import assert from "node:assert/strict";
 import { createEngine } from "../../src/engine.js";
-import { createPhysicsContractsDomain } from "../../src/core-domains/physics/subdomains/contracts/index.js";
+import { createPhysicsContractsDomain } from "../../src/core-domains/physics/contracts/index.js";
 import {
   createPhysicsShapeDomain,
   normalizeShape
-} from "../../src/core-domains/physics/subdomains/shape/index.js";
+} from "../../src/core-domains/physics/shape/index.js";
 
 const engine = createEngine({
   kits: [

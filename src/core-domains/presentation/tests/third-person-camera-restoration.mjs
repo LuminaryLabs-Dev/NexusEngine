@@ -2,13 +2,13 @@ import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
 import { createSimulationKit } from "../../simulation/kits/simulation-kit/index.js";
-import { createMotionKit } from "../../simulation/subdomains/motion/kits/motion-kit/index.js";
+import { createMotionKit } from "../../simulation/motion/kits/motion-kit/index.js";
 import { createActorRegistryKit } from "../../actor/kits/actor-registry-kit/index.js";
-import { createCreatureKit } from "../../actor/subdomains/creature/kits/creature-kit/index.js";
-import { createCharacterKit } from "../../actor/subdomains/character/kits/character-kit/index.js";
+import { createCreatureKit } from "../../actor/creature/kits/creature-kit/index.js";
+import { createCharacterKit } from "../../actor/character/kits/character-kit/index.js";
 import { createPresentationKit } from "../kits/presentation-kit/index.js";
-import { createCameraKit } from "../subdomains/camera/kits/camera-kit/index.js";
-import { createThirdPersonCameraKit } from "../subdomains/camera/subdomains/third-person/kits/third-person-camera-kit/index.js";
+import { createCameraKit } from "../camera/kits/camera-kit/index.js";
+import { createThirdPersonCameraKit } from "../camera/third-person/kits/third-person-camera-kit/index.js";
 
 function createCameraEngine(withMotionBinding = true) {
   const engine = createEngine({ kits: [

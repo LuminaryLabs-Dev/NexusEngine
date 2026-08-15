@@ -1,7 +1,7 @@
 import { defineCoreDomainManifest } from "../domain-manifest.js";
 import { atomicKit, domainNode, manifestShell } from "../manifest-input.js";
-import spatialScale from "./subdomains/scale/subdomain.manifest.js";
-import spatialScaleKit from "./subdomains/scale/kits/spatial-scale-kit/kit.manifest.js";
+import spatialScale from "./scale/subdomain.manifest.js";
+import spatialScaleKit from "./scale/kits/spatial-scale-kit/kit.manifest.js";
 
 const spatialProof = ["tests/core-domain-kits-smoke.mjs", "tests/core-kits/core-utility-articulation-smoke.mjs"];
 const utilityProof = ["tests/core-kits/core-utility-articulation-smoke.mjs"];

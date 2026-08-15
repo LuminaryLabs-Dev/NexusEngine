@@ -1,18 +1,18 @@
 import { createObjectRegistryKit } from "./kits/object-registry-kit/index.js";
-import { createObjectShapeKit } from "./subdomains/shape/index.js";
-import { createObjectFidelityKit } from "./subdomains/fidelity/index.js";
-import { createVegetationDomain } from "./subdomains/vegetation/index.js";
-import { createMeshoptimizerShapeProviderKit } from "./subdomains/shape/providers/meshoptimizer-shape-provider-kit/index.js";
+import { createObjectShapeKit } from "./shape/index.js";
+import { createObjectFidelityKit } from "./fidelity/index.js";
+import { createVegetationDomain } from "./vegetation/index.js";
+import { createMeshoptimizerShapeProviderKit } from "./shape/providers/meshoptimizer-shape-provider-kit/index.js";
 import { createObjectShapeFidelityAdapterKit } from "./adapters/object-shape-fidelity-adapter-kit/index.js";
-import { createObjectPlacementKit } from "./subdomains/placement/index.js";
+import { createObjectPlacementKit } from "./placement/index.js";
 
 export * from "./kits/object-registry-kit/index.js";
 export * from "./state/object-registry-state.js";
 export * from "./adapters/object-shape-fidelity-adapter-kit/index.js";
-export * from "./subdomains/shape/index.js";
-export * from "./subdomains/fidelity/index.js";
-export * from "./subdomains/vegetation/index.js";
-export * from "./subdomains/placement/index.js";
+export * from "./shape/index.js";
+export * from "./fidelity/index.js";
+export * from "./vegetation/index.js";
+export * from "./placement/index.js";
 
 export function createObjectDomain(config = {}) {
   const kits = [createObjectRegistryKit(config.root ?? {})];

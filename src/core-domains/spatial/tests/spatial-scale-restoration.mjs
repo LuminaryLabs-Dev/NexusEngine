@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 
 import { createEngine } from "../../../engine.js";
 import { createSpatialKit } from "../index.js";
-import { createSpatialScaleKit } from "../subdomains/scale/kits/spatial-scale-kit/index.js";
+import { createSpatialScaleKit } from "../scale/kits/spatial-scale-kit/index.js";
 
 const engine = createEngine({ kits: [
   createSpatialKit(),

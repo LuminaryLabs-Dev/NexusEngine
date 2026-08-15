@@ -1,5 +1,5 @@
 import { clonePortableValue, inspectPortableValue } from "../../portable.js";
-import { createWorldFoundationCellProvider } from "../../subdomains/world-foundation-domain/kits/foundation-cell-resolution-kit/index.js";
+import { createWorldFoundationCellProvider } from "../../world-foundation-domain/kits/foundation-cell-resolution-kit/index.js";
 
 const TERRAIN_CAPABILITIES = Object.freeze([
   "world-foundation",

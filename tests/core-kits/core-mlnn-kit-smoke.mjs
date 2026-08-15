@@ -7,7 +7,7 @@ import {
   createModelDescriptor,
   createInferenceRequest,
   createInferenceResult
-} from "../../src/core-domains/compute/subdomains/model/kits/model-kit/index.js";
+} from "../../src/core-domains/compute/model/kits/model-kit/index.js";
 
 const registry = createModelRegistry();
 registry.register(createModelDescriptor({ id: "mock", kind: "classifier" }));

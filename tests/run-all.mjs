@@ -1,6 +1,7 @@
 import { spawnSync } from "node:child_process";
 
 const tests = [
+  "tests/core-domains/core-domain-import-smoke.mjs",
   ["scripts/generate-core-catalog.mjs", "--check"],
   "scripts/check-manifest-execution-parity.mjs",
   "scripts/check-core-boundaries.mjs",
@@ -79,8 +80,8 @@ const tests = [
   "tests/core-domains/core-object-vegetation-domain-smoke.mjs",
   "tests/core-domains/core-object-vegetation-natural-growth-smoke.mjs",
   "src/core-domains/object/tests/object-domain-smoke.mjs",
-  "src/core-domains/object/subdomains/placement/tests/placement-smoke.mjs",
-  "src/core-domains/object/subdomains/placement/tests/placement-roundtrip.mjs",
+  "src/core-domains/object/placement/tests/placement-smoke.mjs",
+  "src/core-domains/object/placement/tests/placement-roundtrip.mjs",
   "src/core-domains/mcp/tests/mcp-registry-smoke.mjs",
   "src/core-domains/mcp/tests/mcp-contract-negative.mjs",
   "src/core-domains/mcp/tests/node-stdio-smoke.mjs",

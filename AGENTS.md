@@ -436,12 +436,12 @@ src/core-domains/<semantic-domain>/
 ├─ contracts/
 ├─ state/
 ├─ kits/
-├─ subdomains/
+├─ <child-domain>/
 ├─ providers/
 └─ adapters/
 ```
 
-Build subdomains additionally use one `subdomain.manifest.js` and one
+Nested Build domains additionally use one `subdomain.manifest.js` and one
 `kit.manifest.js` per atomic Kit. The root Build entry composes those Kits and
 does not own hidden compiler, target, or artifact behavior.
 

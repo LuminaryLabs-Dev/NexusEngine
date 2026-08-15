@@ -1497,7 +1497,7 @@
       },
       "source": {
         "exportName": "createProjectSourceKit",
-        "module": "./src/core-domains/build/subdomains/source/kits/project-source-kit/index.js",
+        "module": "./src/core-domains/build/source/kits/project-source-kit/index.js",
         "publicSubpath": "./domains/build/source/project-source"
       },
       "status": "stable-candidate",
@@ -1566,7 +1566,7 @@
       },
       "source": {
         "exportName": "createSourceFingerprintKit",
-        "module": "./src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/index.js",
+        "module": "./src/core-domains/build/source/kits/source-fingerprint-kit/index.js",
         "publicSubpath": "./domains/build/source/source-fingerprint"
       },
       "status": "stable-candidate",
@@ -1635,7 +1635,7 @@
       },
       "source": {
         "exportName": "createDependencySourceKit",
-        "module": "./src/core-domains/build/subdomains/source/kits/dependency-source-kit/index.js",
+        "module": "./src/core-domains/build/source/kits/dependency-source-kit/index.js",
         "publicSubpath": "./domains/build/source/dependency-source"
       },
       "status": "stable-candidate",
@@ -1704,7 +1704,7 @@
       },
       "source": {
         "exportName": "createSourceCacheKit",
-        "module": "./src/core-domains/build/subdomains/source/kits/source-cache-kit/index.js",
+        "module": "./src/core-domains/build/source/kits/source-cache-kit/index.js",
         "publicSubpath": "./domains/build/source/source-cache"
       },
       "status": "stable-candidate",
@@ -1773,7 +1773,7 @@
       },
       "source": {
         "exportName": "createModuleGraphKit",
-        "module": "./src/core-domains/build/subdomains/source/kits/module-graph-kit/index.js",
+        "module": "./src/core-domains/build/source/kits/module-graph-kit/index.js",
         "publicSubpath": "./domains/build/source/module-graph"
       },
       "status": "stable-candidate",
@@ -1843,7 +1843,7 @@
       },
       "source": {
         "exportName": "createJavascriptAstKit",
-        "module": "./src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/index.js",
+        "module": "./src/core-domains/build/analysis/kits/javascript-ast-kit/index.js",
         "publicSubpath": "./domains/build/analysis/javascript-ast"
       },
       "status": "stable-candidate",
@@ -1912,7 +1912,7 @@
       },
       "source": {
         "exportName": "createTypeAnalysisKit",
-        "module": "./src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/index.js",
+        "module": "./src/core-domains/build/analysis/kits/type-analysis-kit/index.js",
         "publicSubpath": "./domains/build/analysis/type-analysis"
       },
       "status": "stable-candidate",
@@ -1981,7 +1981,7 @@
       },
       "source": {
         "exportName": "createEffectAnalysisKit",
-        "module": "./src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/index.js",
+        "module": "./src/core-domains/build/analysis/kits/effect-analysis-kit/index.js",
         "publicSubpath": "./domains/build/analysis/effect-analysis"
       },
       "status": "stable-candidate",
@@ -2050,7 +2050,7 @@
       },
       "source": {
         "exportName": "createDependencyAnalysisKit",
-        "module": "./src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/index.js",
+        "module": "./src/core-domains/build/analysis/kits/dependency-analysis-kit/index.js",
         "publicSubpath": "./domains/build/analysis/dependency-analysis"
       },
       "status": "stable-candidate",
@@ -2120,7 +2120,7 @@
       },
       "source": {
         "exportName": "createKitIrKit",
-        "module": "./src/core-domains/build/subdomains/ir/kits/kit-ir-kit/index.js",
+        "module": "./src/core-domains/build/ir/kits/kit-ir-kit/index.js",
         "publicSubpath": "./domains/build/ir/kit-ir"
       },
       "status": "stable-candidate",
@@ -2189,7 +2189,7 @@
       },
       "source": {
         "exportName": "createExecutionIrKit",
-        "module": "./src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js",
+        "module": "./src/core-domains/build/ir/kits/execution-ir-kit/index.js",
         "publicSubpath": "./domains/build/ir/execution-ir"
       },
       "status": "stable-candidate",
@@ -2258,7 +2258,7 @@
       },
       "source": {
         "exportName": "createIrValidationKit",
-        "module": "./src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js",
+        "module": "./src/core-domains/build/ir/kits/ir-validation-kit/index.js",
         "publicSubpath": "./domains/build/ir/ir-validation"
       },
       "status": "stable-candidate",
@@ -2327,7 +2327,7 @@
       },
       "source": {
         "exportName": "createSourceMapKit",
-        "module": "./src/core-domains/build/subdomains/ir/kits/source-map-kit/index.js",
+        "module": "./src/core-domains/build/ir/kits/source-map-kit/index.js",
         "publicSubpath": "./domains/build/ir/source-map"
       },
       "status": "stable-candidate",
@@ -2397,7 +2397,7 @@
       },
       "source": {
         "exportName": "createPortabilityClassifierKit",
-        "module": "./src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/index.js",
+        "module": "./src/core-domains/build/classification/kits/portability-classifier-kit/index.js",
         "publicSubpath": "./domains/build/classification/portability-classifier"
       },
       "status": "stable-candidate",
@@ -2466,7 +2466,7 @@
       },
       "source": {
         "exportName": "createCapabilityResolutionKit",
-        "module": "./src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/index.js",
+        "module": "./src/core-domains/build/classification/kits/capability-resolution-kit/index.js",
         "publicSubpath": "./domains/build/classification/capability-resolution"
       },
       "status": "stable-candidate",
@@ -2535,7 +2535,7 @@
       },
       "source": {
         "exportName": "createFallbackSelectionKit",
-        "module": "./src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/index.js",
+        "module": "./src/core-domains/build/classification/kits/fallback-selection-kit/index.js",
         "publicSubpath": "./domains/build/classification/fallback-selection"
       },
       "status": "stable-candidate",
@@ -2604,7 +2604,7 @@
       },
       "source": {
         "exportName": "createBuildRequestKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/build-request-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/build-request-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/build-request"
       },
       "status": "stable-candidate",
@@ -2674,7 +2674,7 @@
       },
       "source": {
         "exportName": "createTargetSetKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/target-set-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/target-set-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/target-set"
       },
       "status": "stable-candidate",
@@ -2747,7 +2747,7 @@
       },
       "source": {
         "exportName": "createBuildPlanKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/build-plan-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/build-plan"
       },
       "status": "stable-candidate",
@@ -2816,7 +2816,7 @@
       },
       "source": {
         "exportName": "createBuildApprovalKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/build-approval-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/build-approval"
       },
       "status": "stable-candidate",
@@ -2917,7 +2917,7 @@
       },
       "source": {
         "exportName": "createBuildExecutionKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/build-execution-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/build-execution"
       },
       "status": "stable-candidate",
@@ -2986,7 +2986,7 @@
       },
       "source": {
         "exportName": "createBuildReceiptKit",
-        "module": "./src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/index.js",
+        "module": "./src/core-domains/build/orchestration/kits/build-receipt-kit/index.js",
         "publicSubpath": "./domains/build/orchestration/build-receipt"
       },
       "status": "stable-candidate",
@@ -3055,7 +3055,7 @@
       },
       "source": {
         "exportName": "createRustLoweringKit",
-        "module": "./src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
+        "module": "./src/core-domains/build/compile/kits/rust-lowering-kit/index.js",
         "publicSubpath": "./domains/build/compile/rust-lowering"
       },
       "status": "stable-candidate",
@@ -3124,7 +3124,7 @@
       },
       "source": {
         "exportName": "createJavascriptFallbackKit",
-        "module": "./src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/index.js",
+        "module": "./src/core-domains/build/compile/kits/javascript-fallback-kit/index.js",
         "publicSubpath": "./domains/build/compile/javascript-fallback"
       },
       "status": "stable-candidate",
@@ -3194,7 +3194,7 @@
       },
       "source": {
         "exportName": "createRuntimeAbiKit",
-        "module": "./src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js",
+        "module": "./src/core-domains/build/compile/kits/runtime-abi-kit/index.js",
         "publicSubpath": "./domains/build/compile/runtime-abi"
       },
       "status": "stable-candidate",
@@ -3263,7 +3263,7 @@
       },
       "source": {
         "exportName": "createNativeRuntimeLinkKit",
-        "module": "./src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js",
+        "module": "./src/core-domains/build/compile/kits/native-runtime-link-kit/index.js",
         "publicSubpath": "./domains/build/compile/native-runtime-link"
       },
       "status": "stable-candidate",
@@ -3333,7 +3333,7 @@
       },
       "source": {
         "exportName": "createToolchainSourceKit",
-        "module": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js",
+        "module": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js",
         "publicSubpath": "./domains/build/toolchain/toolchain-source"
       },
       "status": "stable-candidate",
@@ -3402,7 +3402,7 @@
       },
       "source": {
         "exportName": "createToolchainDiscoveryKit",
-        "module": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/index.js",
+        "module": "./src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
         "publicSubpath": "./domains/build/toolchain/toolchain-discovery"
       },
       "status": "stable-candidate",
@@ -3472,7 +3472,7 @@
       },
       "source": {
         "exportName": "createToolchainProvisionKit",
-        "module": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js",
+        "module": "./src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
         "publicSubpath": "./domains/build/toolchain/toolchain-provision"
       },
       "status": "stable-candidate",
@@ -3541,7 +3541,7 @@
       },
       "source": {
         "exportName": "createIsolatedStageKit",
-        "module": "./src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/index.js",
+        "module": "./src/core-domains/build/toolchain/kits/isolated-stage-kit/index.js",
         "publicSubpath": "./domains/build/toolchain/isolated-stage"
       },
       "status": "stable-candidate",
@@ -3610,7 +3610,7 @@
       },
       "source": {
         "exportName": "createProcessExecutionKit",
-        "module": "./src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/index.js",
+        "module": "./src/core-domains/build/toolchain/kits/process-execution-kit/index.js",
         "publicSubpath": "./domains/build/toolchain/process-execution"
       },
       "status": "stable-candidate",
@@ -3680,7 +3680,7 @@
       },
       "source": {
         "exportName": "createTargetRegistryKit",
-        "module": "./src/core-domains/build/subdomains/target/kits/target-registry-kit/index.js",
+        "module": "./src/core-domains/build/target/kits/target-registry-kit/index.js",
         "publicSubpath": "./domains/build/target/target-registry"
       },
       "status": "stable-candidate",
@@ -3751,7 +3751,7 @@
       },
       "source": {
         "exportName": "createWebLiveTargetKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js",
+        "module": "./src/core-domains/build/target/web-live/kits/web-live-target-kit/index.js",
         "publicSubpath": "./domains/build/target/web-live/web-live-target"
       },
       "status": "stable-candidate",
@@ -3822,7 +3822,7 @@
       },
       "source": {
         "exportName": "createWebStaticTargetKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js",
+        "module": "./src/core-domains/build/target/web-static/kits/web-static-target-kit/index.js",
         "publicSubpath": "./domains/build/target/web-static/web-static-target"
       },
       "status": "stable-candidate",
@@ -3892,7 +3892,7 @@
       },
       "source": {
         "exportName": "createOpenXrRuntimeKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js",
+        "module": "./src/core-domains/build/target/openxr/kits/openxr-runtime-kit/index.js",
         "publicSubpath": "./domains/build/target/openxr/openxr-runtime"
       },
       "status": "stable-candidate",
@@ -3961,7 +3961,7 @@
       },
       "source": {
         "exportName": "createOpenXrInputKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js",
+        "module": "./src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
         "publicSubpath": "./domains/build/target/openxr/openxr-input"
       },
       "status": "stable-candidate",
@@ -4030,7 +4030,7 @@
       },
       "source": {
         "exportName": "createOpenXrRenderKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/index.js",
+        "module": "./src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
         "publicSubpath": "./domains/build/target/openxr/openxr-render"
       },
       "status": "stable-candidate",
@@ -4104,7 +4104,7 @@
       },
       "source": {
         "exportName": "createAndroidXrTargetKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/index.js",
+        "module": "./src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
         "publicSubpath": "./domains/build/target/android-xr/android-xr-target"
       },
       "status": "stable-candidate",
@@ -4178,7 +4178,7 @@
       },
       "source": {
         "exportName": "createPcvrTargetKit",
-        "module": "./src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js",
+        "module": "./src/core-domains/build/target/pcvr/kits/pcvr-target-kit/index.js",
         "publicSubpath": "./domains/build/target/pcvr/pcvr-target"
       },
       "status": "stable-candidate",
@@ -4247,7 +4247,7 @@
       },
       "source": {
         "exportName": "createArtifactCacheKit",
-        "module": "./src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/index.js",
+        "module": "./src/core-domains/build/artifact/kits/artifact-cache-kit/index.js",
         "publicSubpath": "./domains/build/artifact/artifact-cache"
       },
       "status": "stable-candidate",
@@ -4317,7 +4317,7 @@
       },
       "source": {
         "exportName": "createArtifactManifestKit",
-        "module": "./src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/index.js",
+        "module": "./src/core-domains/build/artifact/kits/artifact-manifest-kit/index.js",
         "publicSubpath": "./domains/build/artifact/artifact-manifest"
       },
       "status": "stable-candidate",
@@ -4386,7 +4386,7 @@
       },
       "source": {
         "exportName": "createArtifactIntegrityKit",
-        "module": "./src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/index.js",
+        "module": "./src/core-domains/build/artifact/kits/artifact-integrity-kit/index.js",
         "publicSubpath": "./domains/build/artifact/artifact-integrity"
       },
       "status": "stable-candidate",
@@ -4455,7 +4455,7 @@
       },
       "source": {
         "exportName": "createArtifactOutputKit",
-        "module": "./src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/index.js",
+        "module": "./src/core-domains/build/artifact/kits/artifact-output-kit/index.js",
         "publicSubpath": "./domains/build/artifact/artifact-output"
       },
       "status": "stable-candidate",
@@ -4525,7 +4525,7 @@
       },
       "source": {
         "exportName": "createProjectImmutabilityKit",
-        "module": "./src/core-domains/build/subdomains/proof/kits/project-immutability-kit/index.js",
+        "module": "./src/core-domains/build/proof/kits/project-immutability-kit/index.js",
         "publicSubpath": "./domains/build/proof/project-immutability"
       },
       "status": "stable-candidate",
@@ -4594,7 +4594,7 @@
       },
       "source": {
         "exportName": "createCrossRuntimeParityKit",
-        "module": "./src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/index.js",
+        "module": "./src/core-domains/build/proof/kits/cross-runtime-parity-kit/index.js",
         "publicSubpath": "./domains/build/proof/cross-runtime-parity"
       },
       "status": "stable-candidate",
@@ -4663,7 +4663,7 @@
       },
       "source": {
         "exportName": "createTargetValidationKit",
-        "module": "./src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js",
+        "module": "./src/core-domains/build/proof/kits/target-validation-kit/index.js",
         "publicSubpath": "./domains/build/proof/target-validation"
       },
       "status": "stable-candidate",
@@ -4733,7 +4733,7 @@
       },
       "source": {
         "exportName": "createWebModuleLinkerKit",
-        "module": "./src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
+        "module": "./src/core-domains/build/compile/kits/web-module-linker-kit/index.js",
         "publicSubpath": "./domains/build/compile/web-module-linker"
       },
       "status": "stable-candidate",
@@ -4742,68 +4742,68 @@
   ],
   "packageExports": {
     "./domains/build": "./src/core-domains/build/index.js",
-    "./domains/build/analysis": "./src/core-domains/build/subdomains/analysis/index.js",
-    "./domains/build/analysis/dependency-analysis": "./src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/index.js",
-    "./domains/build/analysis/effect-analysis": "./src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/index.js",
-    "./domains/build/analysis/javascript-ast": "./src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/index.js",
-    "./domains/build/analysis/type-analysis": "./src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/index.js",
-    "./domains/build/artifact": "./src/core-domains/build/subdomains/artifact/index.js",
-    "./domains/build/artifact/artifact-cache": "./src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/index.js",
-    "./domains/build/artifact/artifact-integrity": "./src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/index.js",
-    "./domains/build/artifact/artifact-manifest": "./src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/index.js",
-    "./domains/build/artifact/artifact-output": "./src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/index.js",
-    "./domains/build/classification": "./src/core-domains/build/subdomains/classification/index.js",
-    "./domains/build/classification/capability-resolution": "./src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/index.js",
-    "./domains/build/classification/fallback-selection": "./src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/index.js",
-    "./domains/build/classification/portability-classifier": "./src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/index.js",
-    "./domains/build/compile": "./src/core-domains/build/subdomains/compile/index.js",
-    "./domains/build/compile/javascript-fallback": "./src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/index.js",
-    "./domains/build/compile/native-runtime-link": "./src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js",
-    "./domains/build/compile/runtime-abi": "./src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js",
-    "./domains/build/compile/rust-lowering": "./src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
-    "./domains/build/compile/web-module-linker": "./src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
-    "./domains/build/ir": "./src/core-domains/build/subdomains/ir/index.js",
-    "./domains/build/ir/execution-ir": "./src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js",
-    "./domains/build/ir/ir-validation": "./src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js",
-    "./domains/build/ir/kit-ir": "./src/core-domains/build/subdomains/ir/kits/kit-ir-kit/index.js",
-    "./domains/build/ir/source-map": "./src/core-domains/build/subdomains/ir/kits/source-map-kit/index.js",
-    "./domains/build/orchestration": "./src/core-domains/build/subdomains/orchestration/index.js",
-    "./domains/build/orchestration/build-approval": "./src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/index.js",
-    "./domains/build/orchestration/build-execution": "./src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/index.js",
-    "./domains/build/orchestration/build-plan": "./src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/index.js",
-    "./domains/build/orchestration/build-receipt": "./src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/index.js",
-    "./domains/build/orchestration/build-request": "./src/core-domains/build/subdomains/orchestration/kits/build-request-kit/index.js",
-    "./domains/build/orchestration/target-set": "./src/core-domains/build/subdomains/orchestration/kits/target-set-kit/index.js",
-    "./domains/build/proof": "./src/core-domains/build/subdomains/proof/index.js",
-    "./domains/build/proof/cross-runtime-parity": "./src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/index.js",
-    "./domains/build/proof/project-immutability": "./src/core-domains/build/subdomains/proof/kits/project-immutability-kit/index.js",
-    "./domains/build/proof/target-validation": "./src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js",
-    "./domains/build/source": "./src/core-domains/build/subdomains/source/index.js",
-    "./domains/build/source/dependency-source": "./src/core-domains/build/subdomains/source/kits/dependency-source-kit/index.js",
-    "./domains/build/source/module-graph": "./src/core-domains/build/subdomains/source/kits/module-graph-kit/index.js",
-    "./domains/build/source/project-source": "./src/core-domains/build/subdomains/source/kits/project-source-kit/index.js",
-    "./domains/build/source/source-cache": "./src/core-domains/build/subdomains/source/kits/source-cache-kit/index.js",
-    "./domains/build/source/source-fingerprint": "./src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/index.js",
-    "./domains/build/target": "./src/core-domains/build/subdomains/target/index.js",
-    "./domains/build/target/android-xr": "./src/core-domains/build/subdomains/target/subdomains/android-xr/index.js",
-    "./domains/build/target/android-xr/android-xr-target": "./src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/index.js",
-    "./domains/build/target/openxr": "./src/core-domains/build/subdomains/target/subdomains/openxr/index.js",
-    "./domains/build/target/openxr/openxr-input": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js",
-    "./domains/build/target/openxr/openxr-render": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/index.js",
-    "./domains/build/target/openxr/openxr-runtime": "./src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js",
-    "./domains/build/target/pcvr": "./src/core-domains/build/subdomains/target/subdomains/pcvr/index.js",
-    "./domains/build/target/pcvr/pcvr-target": "./src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js",
-    "./domains/build/target/target-registry": "./src/core-domains/build/subdomains/target/kits/target-registry-kit/index.js",
-    "./domains/build/target/web-live": "./src/core-domains/build/subdomains/target/subdomains/web-live/index.js",
-    "./domains/build/target/web-live/web-live-target": "./src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js",
-    "./domains/build/target/web-static": "./src/core-domains/build/subdomains/target/subdomains/web-static/index.js",
-    "./domains/build/target/web-static/web-static-target": "./src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js",
-    "./domains/build/toolchain": "./src/core-domains/build/subdomains/toolchain/index.js",
-    "./domains/build/toolchain/isolated-stage": "./src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/index.js",
-    "./domains/build/toolchain/process-execution": "./src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/index.js",
-    "./domains/build/toolchain/toolchain-discovery": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/index.js",
-    "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js",
-    "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js"
+    "./domains/build/analysis": "./src/core-domains/build/analysis/index.js",
+    "./domains/build/analysis/dependency-analysis": "./src/core-domains/build/analysis/kits/dependency-analysis-kit/index.js",
+    "./domains/build/analysis/effect-analysis": "./src/core-domains/build/analysis/kits/effect-analysis-kit/index.js",
+    "./domains/build/analysis/javascript-ast": "./src/core-domains/build/analysis/kits/javascript-ast-kit/index.js",
+    "./domains/build/analysis/type-analysis": "./src/core-domains/build/analysis/kits/type-analysis-kit/index.js",
+    "./domains/build/artifact": "./src/core-domains/build/artifact/index.js",
+    "./domains/build/artifact/artifact-cache": "./src/core-domains/build/artifact/kits/artifact-cache-kit/index.js",
+    "./domains/build/artifact/artifact-integrity": "./src/core-domains/build/artifact/kits/artifact-integrity-kit/index.js",
+    "./domains/build/artifact/artifact-manifest": "./src/core-domains/build/artifact/kits/artifact-manifest-kit/index.js",
+    "./domains/build/artifact/artifact-output": "./src/core-domains/build/artifact/kits/artifact-output-kit/index.js",
+    "./domains/build/classification": "./src/core-domains/build/classification/index.js",
+    "./domains/build/classification/capability-resolution": "./src/core-domains/build/classification/kits/capability-resolution-kit/index.js",
+    "./domains/build/classification/fallback-selection": "./src/core-domains/build/classification/kits/fallback-selection-kit/index.js",
+    "./domains/build/classification/portability-classifier": "./src/core-domains/build/classification/kits/portability-classifier-kit/index.js",
+    "./domains/build/compile": "./src/core-domains/build/compile/index.js",
+    "./domains/build/compile/javascript-fallback": "./src/core-domains/build/compile/kits/javascript-fallback-kit/index.js",
+    "./domains/build/compile/native-runtime-link": "./src/core-domains/build/compile/kits/native-runtime-link-kit/index.js",
+    "./domains/build/compile/runtime-abi": "./src/core-domains/build/compile/kits/runtime-abi-kit/index.js",
+    "./domains/build/compile/rust-lowering": "./src/core-domains/build/compile/kits/rust-lowering-kit/index.js",
+    "./domains/build/compile/web-module-linker": "./src/core-domains/build/compile/kits/web-module-linker-kit/index.js",
+    "./domains/build/ir": "./src/core-domains/build/ir/index.js",
+    "./domains/build/ir/execution-ir": "./src/core-domains/build/ir/kits/execution-ir-kit/index.js",
+    "./domains/build/ir/ir-validation": "./src/core-domains/build/ir/kits/ir-validation-kit/index.js",
+    "./domains/build/ir/kit-ir": "./src/core-domains/build/ir/kits/kit-ir-kit/index.js",
+    "./domains/build/ir/source-map": "./src/core-domains/build/ir/kits/source-map-kit/index.js",
+    "./domains/build/orchestration": "./src/core-domains/build/orchestration/index.js",
+    "./domains/build/orchestration/build-approval": "./src/core-domains/build/orchestration/kits/build-approval-kit/index.js",
+    "./domains/build/orchestration/build-execution": "./src/core-domains/build/orchestration/kits/build-execution-kit/index.js",
+    "./domains/build/orchestration/build-plan": "./src/core-domains/build/orchestration/kits/build-plan-kit/index.js",
+    "./domains/build/orchestration/build-receipt": "./src/core-domains/build/orchestration/kits/build-receipt-kit/index.js",
+    "./domains/build/orchestration/build-request": "./src/core-domains/build/orchestration/kits/build-request-kit/index.js",
+    "./domains/build/orchestration/target-set": "./src/core-domains/build/orchestration/kits/target-set-kit/index.js",
+    "./domains/build/proof": "./src/core-domains/build/proof/index.js",
+    "./domains/build/proof/cross-runtime-parity": "./src/core-domains/build/proof/kits/cross-runtime-parity-kit/index.js",
+    "./domains/build/proof/project-immutability": "./src/core-domains/build/proof/kits/project-immutability-kit/index.js",
+    "./domains/build/proof/target-validation": "./src/core-domains/build/proof/kits/target-validation-kit/index.js",
+    "./domains/build/source": "./src/core-domains/build/source/index.js",
+    "./domains/build/source/dependency-source": "./src/core-domains/build/source/kits/dependency-source-kit/index.js",
+    "./domains/build/source/module-graph": "./src/core-domains/build/source/kits/module-graph-kit/index.js",
+    "./domains/build/source/project-source": "./src/core-domains/build/source/kits/project-source-kit/index.js",
+    "./domains/build/source/source-cache": "./src/core-domains/build/source/kits/source-cache-kit/index.js",
+    "./domains/build/source/source-fingerprint": "./src/core-domains/build/source/kits/source-fingerprint-kit/index.js",
+    "./domains/build/target": "./src/core-domains/build/target/index.js",
+    "./domains/build/target/android-xr": "./src/core-domains/build/target/android-xr/index.js",
+    "./domains/build/target/android-xr/android-xr-target": "./src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
+    "./domains/build/target/openxr": "./src/core-domains/build/target/openxr/index.js",
+    "./domains/build/target/openxr/openxr-input": "./src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
+    "./domains/build/target/openxr/openxr-render": "./src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
+    "./domains/build/target/openxr/openxr-runtime": "./src/core-domains/build/target/openxr/kits/openxr-runtime-kit/index.js",
+    "./domains/build/target/pcvr": "./src/core-domains/build/target/pcvr/index.js",
+    "./domains/build/target/pcvr/pcvr-target": "./src/core-domains/build/target/pcvr/kits/pcvr-target-kit/index.js",
+    "./domains/build/target/target-registry": "./src/core-domains/build/target/kits/target-registry-kit/index.js",
+    "./domains/build/target/web-live": "./src/core-domains/build/target/web-live/index.js",
+    "./domains/build/target/web-live/web-live-target": "./src/core-domains/build/target/web-live/kits/web-live-target-kit/index.js",
+    "./domains/build/target/web-static": "./src/core-domains/build/target/web-static/index.js",
+    "./domains/build/target/web-static/web-static-target": "./src/core-domains/build/target/web-static/kits/web-static-target-kit/index.js",
+    "./domains/build/toolchain": "./src/core-domains/build/toolchain/index.js",
+    "./domains/build/toolchain/isolated-stage": "./src/core-domains/build/toolchain/kits/isolated-stage-kit/index.js",
+    "./domains/build/toolchain/process-execution": "./src/core-domains/build/toolchain/kits/process-execution-kit/index.js",
+    "./domains/build/toolchain/toolchain-discovery": "./src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
+    "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
+    "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js"
   },
   "registryHash": "82eeb9fc6ff59d3d3a855e58ac6a726b25eaeec33465c1fbad6aca9b025c3aa2",
   "schema": "nexusengine.build-catalog/1",
@@ -4841,1275 +4841,1275 @@
       "sha256": "4e5cc35e48f848b6ed0cd0b55533f930262e26ae09a81562dcb1e6283e2b76ba"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/index.js",
+      "path": "src/core-domains/build/analysis/index.js",
       "sha256": "e6b44ccb1b7ab684228f4f517c7114109cd837646b796e4188df7f832f4fe088"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/contracts.js",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/contracts.js",
       "sha256": "b960c7b0aa01ebd4534a7eaeb472896c6e78117fe5d42a78647a3b348f9757e3"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/index.js",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/index.js",
       "sha256": "eabb245f410eb4b88e915a9f3fdaf315e092a8654188a706b97d91acca339826"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/kit.manifest.js",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/kit.manifest.js",
       "sha256": "3452a30bbafe8356c93ea27ded0d035ea1777234ef0f0512112dee7cb46da137"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/services.js",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/services.js",
       "sha256": "778e9bc8e1291c3922a0a7d5cb66015685c97e371f53d3e3ea9ce003ec5a4608"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/sources.json",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/dependency-analysis-kit/state.js",
+      "path": "src/core-domains/build/analysis/kits/dependency-analysis-kit/state.js",
       "sha256": "3e70fa6a00ea6ec1a704ba6a2926af36b6c60e683a1f28d58a0a67f7cfb3be8e"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/contracts.js",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/contracts.js",
       "sha256": "252b38a3ff50b0e5a5aa061943f0560707f316dde662b360e3defa4b10671f77"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/index.js",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/index.js",
       "sha256": "64e1ff5355f5e1776beb8b98b0d0752d15da05ac9434494cff74aa8b9bc70183"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/kit.manifest.js",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/kit.manifest.js",
       "sha256": "371b5d0604108bc8f9bcfb63fe86f764386c6a39fe03c679c737dff6a05f15f2"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/services.js",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/services.js",
       "sha256": "fd28abcb189e12a974b790b9680ed829ebb343c3cd45e3a99a8e62c6ffa6f8d5"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/sources.json",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/effect-analysis-kit/state.js",
+      "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/state.js",
       "sha256": "d8ba706a31b7804e4377a7abd8e30e9797ebd160387e4ef2020f103b52225962"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/contracts.js",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/contracts.js",
       "sha256": "c35805a784b2ede334034212c60ed66078a67621e9dc2c9a03be3e3e4f5bd95f"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/index.js",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/index.js",
       "sha256": "e040a25a94399c6a89a67f9631c045c3e0cee08850df98adaaa8c4a6d5bdc420"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/kit.manifest.js",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/kit.manifest.js",
       "sha256": "1f3eec9ccb852e214d450ad1c3d37814980bd0c458a5517a93a384522a3e4e12"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/services.js",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/services.js",
       "sha256": "84422c5e65d9e575e3c558950ec9db6d380b6127d86a1f2dfce3a82bad4f4b27"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/sources.json",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/sources.json",
       "sha256": "a2fd58aba4a211f5e0a6aa16a239c5600764ce0cfb554e4b979427c1d24c3351"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/javascript-ast-kit/state.js",
+      "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/state.js",
       "sha256": "5a55d04a7c4ee421a4ee12623eac8cf9298c944b004c681c44328f4eaec75ce6"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/contracts.js",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/contracts.js",
       "sha256": "c308e0a991b113847cb5205ea680eed42d34832b93d6460f63d1d1c130268191"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/index.js",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/index.js",
       "sha256": "d48a7e0936489c7db7be163a8c4ed0439aefbf1acb3e2deed3f0646d461f63fc"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/kit.manifest.js",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/kit.manifest.js",
       "sha256": "339187c87000a747436e82a99e7c8b67d58982fc6e4193fff491bbc345370510"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/services.js",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/services.js",
       "sha256": "d387f36929c50c3109d450449bc1280815100ec52028804939733f28f6f6fb53"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/sources.json",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/sources.json",
       "sha256": "a2fd58aba4a211f5e0a6aa16a239c5600764ce0cfb554e4b979427c1d24c3351"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/kits/type-analysis-kit/state.js",
+      "path": "src/core-domains/build/analysis/kits/type-analysis-kit/state.js",
       "sha256": "86d6352d98207d9c410b5db20039b10f2949070cbcd0b0cf02bda355f04f2b69"
     },
     {
-      "path": "src/core-domains/build/subdomains/analysis/subdomain.manifest.js",
+      "path": "src/core-domains/build/analysis/subdomain.manifest.js",
       "sha256": "02467db24d7a324a61179566060a7ab29e6db7098c9c9e4edfb7e9bd74dcdea8"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/index.js",
+      "path": "src/core-domains/build/artifact/index.js",
       "sha256": "85175a21f5140efdec221a21bcc796ad9525eda8aa0e540cf3568dd299a9cec4"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/contracts.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/contracts.js",
       "sha256": "848d4ffe0f7face7ac10495e0fbc414c4e80267761807991a1f28009ebc5059f"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/index.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/index.js",
       "sha256": "1ad6f0ad329aa052836cc5b3dc0b7a63a113eed6fdf44f7f7d29bc669e1f6abc"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/kit.manifest.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/kit.manifest.js",
       "sha256": "8f0afbd70a42cc3ced0c6a5faa5fc282152b39af7d2a0adee284540cef3e76a3"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/services.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/services.js",
       "sha256": "3bec105d40d48f83ddff18581fff865ad15ec9b5af8365369c9ddc7cb0635a1b"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/sources.json",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-cache-kit/state.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-cache-kit/state.js",
       "sha256": "1b6ad42dd8a139a2f37f4c3357443365409021330767810207aea4f81a959f3a"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/contracts.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/contracts.js",
       "sha256": "e91cfb6cd16e58ab6c92748fd4b05db3ba9759e0f706b8ed44d815c9af02ebf0"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/index.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/index.js",
       "sha256": "3eca8613b3df2dbf8ac44d3b342c5f901c2d387973115560f6d0b693f5b61a12"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/kit.manifest.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/kit.manifest.js",
       "sha256": "800a70bbe3bc4a2f913d7dece473bb7d21715b95d385dfc10060160b4e38835a"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/services.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/services.js",
       "sha256": "04d19ccfceafef0961605a37a42065cefca8ce685417a0a8ee792bb82e8972ad"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/sources.json",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-integrity-kit/state.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-integrity-kit/state.js",
       "sha256": "4f58f7525bfb64924a75a2932efd73b9ee2b72676f0836ea94f7aa143104ae42"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/contracts.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/contracts.js",
       "sha256": "9f8e2464214ca3c234c7d2d0a54980488414be111a914b633e274a784ca3a0cb"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/index.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/index.js",
       "sha256": "becd9cbba770c2aed6ac8243c92a44ce4b79c5cf9316c90a10a3ff8fc5f9a6b3"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/kit.manifest.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/kit.manifest.js",
       "sha256": "e410eee43b073a8fa811dd25d1b7681d93e2e3d85b0570ea27dce36eb881be96"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/services.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/services.js",
       "sha256": "c933ff65a147f484d570146733f1a6ed1baceda65d89a83fa3ac4e9ef3e88c11"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/sources.json",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-manifest-kit/state.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-manifest-kit/state.js",
       "sha256": "c453f37f537d873869b76b116ea1eac36160ba370b0c06c6848d544ba55b78e6"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/contracts.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/contracts.js",
       "sha256": "23481b43c0e8608a2933083956892892fa96436f7ac42afbd986c93175b21748"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/index.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/index.js",
       "sha256": "ef687a32b52c0826469b8e0bfe6db39e9d15a8f16e61f81941c352474f9888cd"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/kit.manifest.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/kit.manifest.js",
       "sha256": "31fead3a24fbbabf8a986faf35ae568f0ce02fe3a76bfbad7d1b63510e0b89cf"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/services.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/services.js",
       "sha256": "5076e759cb1004ce4ddd9cb3bc0d0605b7d76f53947fe435fe3d657e16360d15"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/sources.json",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/kits/artifact-output-kit/state.js",
+      "path": "src/core-domains/build/artifact/kits/artifact-output-kit/state.js",
       "sha256": "0a08b384dca3d45cf13c4665b768c584e7f43abcfec9be618291aa96816542b9"
     },
     {
-      "path": "src/core-domains/build/subdomains/artifact/subdomain.manifest.js",
+      "path": "src/core-domains/build/artifact/subdomain.manifest.js",
       "sha256": "659849bbff796c641843a56374c7c90504cc800cdda4fdf72a0b56dd7f91fb19"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/index.js",
+      "path": "src/core-domains/build/classification/index.js",
       "sha256": "f8f4558ea4f8b04759f766ca3a83f507b2dd72d917dcbc2e8f859cd723503692"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/contracts.js",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/contracts.js",
       "sha256": "c1e35de8472dfd36cb32d8a5255ff5256218f0448b6080ae7bcbce42ea39cfe7"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/index.js",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/index.js",
       "sha256": "bcc8e06d5164a5c92474d84fc62ba83c22709b433fe6d9153413a916095784dc"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/kit.manifest.js",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/kit.manifest.js",
       "sha256": "2705a5069050c62016a35fbe18f6eaad443dcac485a249f99409a80b10bcf6ab"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/services.js",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/services.js",
       "sha256": "1598d6fed1ef6220b1a6924c46dedcefac42ebec56f1d8618f5fe131997c9d95"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/sources.json",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/capability-resolution-kit/state.js",
+      "path": "src/core-domains/build/classification/kits/capability-resolution-kit/state.js",
       "sha256": "245dca89613a88fd8cacd580baf2eec84941a321e67026d838ce2e3210ab95fe"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/contracts.js",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/contracts.js",
       "sha256": "ca91373e94a9a6d8f5d69d6f5b99c4b8192a6d4531c66a2cb164edc48c4c31a7"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/index.js",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/index.js",
       "sha256": "c448ae3532815d0e0592bb175dc63ea69a9da29dd65a469974bd7ca363c78222"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/kit.manifest.js",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/kit.manifest.js",
       "sha256": "2b015bad743ef42acaca8931ed27210502a68ff2f51d802a306ff187cd1645c2"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/services.js",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/services.js",
       "sha256": "b0bacd64c510e965bcc9bcb9619ec912902328d8921e92099817d0a9857b1a3e"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/sources.json",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/fallback-selection-kit/state.js",
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/state.js",
       "sha256": "05babfe5fdd8ada088b951df4f0ee59ab04cecb1929d2acb17b36ff816895076"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/contracts.js",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/contracts.js",
       "sha256": "ee0584fef4a8783baec457d7fca7ec79a2511591f87fd9ea83d03bb7f4f9ac49"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/index.js",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/index.js",
       "sha256": "09fe10ed6276cd5b98cdf83b3179f22ee0b28c9a9eb1ee8c06dc0cd3b3f7a1c3"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/kit.manifest.js",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/kit.manifest.js",
       "sha256": "2e1b927cfe23acf23730e31b8fca8148ec7fdd4171f21a0c22dd14377122c000"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/services.js",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/services.js",
       "sha256": "b94f8d71a87127741b82ac6bead609eee6bc0c63477f6fc6a77fd4abac013983"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/sources.json",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/kits/portability-classifier-kit/state.js",
+      "path": "src/core-domains/build/classification/kits/portability-classifier-kit/state.js",
       "sha256": "ef2c9db289add67a72254aaff26928200bc358665eeff0e9aa9269c1ea952d57"
     },
     {
-      "path": "src/core-domains/build/subdomains/classification/subdomain.manifest.js",
+      "path": "src/core-domains/build/classification/subdomain.manifest.js",
       "sha256": "b7552e133b4e93782ccbe8feaf05a36b981dccd0f1dd56f57f94bc6a4a67fadd"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/index.js",
+      "path": "src/core-domains/build/compile/index.js",
       "sha256": "318f05bb9f1831bcdbe4fc2c27f188823958bedd6998bef67cd84f1fca587cde"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/contracts.js",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/contracts.js",
       "sha256": "cae9982b18462f736e766b1c4738f79971f9f590593df1aa1e5caa2394020fee"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/index.js",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/index.js",
       "sha256": "cf0e6f1c3743856e5fb4398c2436fc489621064a910cc76ebeb04476d7ae54db"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/kit.manifest.js",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/kit.manifest.js",
       "sha256": "8e8c2a8720c34b8c485569b3a27a07aebf4e2c03b3cd2c80963e3260701c4d82"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/services.js",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/services.js",
       "sha256": "51f1fe27f54da3e885f53742f5beec285a90d02b37d5ee6238c4b5c8a944be76"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/sources.json",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/sources.json",
       "sha256": "dd01823793191b2adb0a29ccc7571f112e7f131d104d8951d876a08de2c28526"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/javascript-fallback-kit/state.js",
+      "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/state.js",
       "sha256": "976e50fbfb0bb90849ac8c4d419fe6044d471111c7a8c107cfddb29c86e447fb"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/contracts.js",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/contracts.js",
       "sha256": "2e8b02b582b93d7470070fa5107f535082e0f3ee7e6a695d1872ce3b87bb8a8f"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/index.js",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/index.js",
       "sha256": "4a09ad13899f6491c5d83d90649d074a984835b35bdb97b1e61ec4a5644b66e5"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/kit.manifest.js",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/kit.manifest.js",
       "sha256": "b06a3adb7052f7a93d3745d55bbfb790e745e33c3451edc4f30b87ca8781aa3f"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/services.js",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/services.js",
       "sha256": "2ff4c393c18b40b9ea454b7b7b6150c8894bec01a9b7584cc9a370e7e1b2a63c"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/sources.json",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/native-runtime-link-kit/state.js",
+      "path": "src/core-domains/build/compile/kits/native-runtime-link-kit/state.js",
       "sha256": "53a0add38263c3448824b60ddaa5b2e15f69a1c89a5fd3b3c5ef7e7d02df6812"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/contracts.js",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/contracts.js",
       "sha256": "6a3b7537cd4d6cd4d5ac428a73f5cfdd7eafc99aa43d9942da36c6418be64266"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/index.js",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/index.js",
       "sha256": "4457d6e29d2d6611db126c55b87639e55339ea88666d05e32b2d02c3113e5bef"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/kit.manifest.js",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/kit.manifest.js",
       "sha256": "e8fbd232da964075350858b2353175fd5b367cc7e595a52bed8e4d0a9ef3e4e7"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/services.js",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/services.js",
       "sha256": "67a494aa3ccc6feb569a40cfbf201267960cd8387fe118717c3b2485299f1cc7"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/sources.json",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/runtime-abi-kit/state.js",
+      "path": "src/core-domains/build/compile/kits/runtime-abi-kit/state.js",
       "sha256": "17dea87cbc9d182bafb9fe159184c48d87db4026e37e2a0f1fecb22089a2445d"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/contracts.js",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/contracts.js",
       "sha256": "0a1532721648930a360aa426bdf62d8b6852772fdb351e6e78e1552c9ffa14ad"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/index.js",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/index.js",
       "sha256": "0ceb97561a40db183adcaf57247f2975ca8890a8b1b40007bd4614df4b2d5034"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/kit.manifest.js",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/kit.manifest.js",
       "sha256": "d77320f3e5d3df2dbc843a0eab0af067dab4f7bdea55a486db9f343ad6402fd1"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/services.js",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/services.js",
       "sha256": "47df53922941bad62410af0b7d4e28f0b8a12b8438edce50f91d6068e7f36da3"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/sources.json",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/sources.json",
       "sha256": "ac2c92ffd1cd423cee92f08fe1a9d114e15022c09b8c273d521686fe896b9f59"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/rust-lowering-kit/state.js",
+      "path": "src/core-domains/build/compile/kits/rust-lowering-kit/state.js",
       "sha256": "c55935a02d280477866b069531d4038276f5529f59e5b0fe7d1e582627cd6a9c"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/contracts.js",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/contracts.js",
       "sha256": "e31148e813fcd5207fc94281d93c55d601649e67b2b78d97b5e1b5782ac852fa"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/index.js",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/index.js",
       "sha256": "bee20f8b88a8be7e2ad0b89b6cf9ad772bbe35aa6d8bbfdd8041cb022e7639ea"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/kit.manifest.js",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/kit.manifest.js",
       "sha256": "6872577234a026ca92d25046bc8678c1cad7e73db330bb9578b47f6505a1a029"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/services.js",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/services.js",
       "sha256": "fc75d98ac12491dfa7eb0886c425b40e3d4543f3d12533e57f64c09b48d636f0"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/sources.json",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/sources.json",
       "sha256": "3cd6461363b11e05b1c9beab452742929f948e25c3ca156b5df044b6e37fbe3c"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/kits/web-module-linker-kit/state.js",
+      "path": "src/core-domains/build/compile/kits/web-module-linker-kit/state.js",
       "sha256": "d422fac3d92e9e54a4ef139071ba07cc16afb378cf178412625af485963d0f7a"
     },
     {
-      "path": "src/core-domains/build/subdomains/compile/subdomain.manifest.js",
+      "path": "src/core-domains/build/compile/subdomain.manifest.js",
       "sha256": "09b3b92f8bfa5485f63d91fc6b10508229d32e3909418f4403d897004ea43a78"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/index.js",
+      "path": "src/core-domains/build/ir/index.js",
       "sha256": "cf1c068ef5677f7d0133c8ff7679772fa92323f78b3279385b2553582707d5a9"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/contracts.js",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/contracts.js",
       "sha256": "673e4d3c1f2ba5fbf09ea54d9d6649888c4ef1bb6605714284db10ab94dedfcf"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/index.js",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/index.js",
       "sha256": "3c314a769a3e3d9c5da9f4af59aa85f9fbf3f66f47e8018502ecfc2d6e816d8b"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/kit.manifest.js",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/kit.manifest.js",
       "sha256": "364970d6f9efb00451c0fc38d4451c9e81a6d38f3c52672d66a03422392dbd1b"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/services.js",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/services.js",
       "sha256": "fdd221c4a7915c7b59f0445f4c11350c1eab5dd22bad4ba05ca380fc7813fe0c"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/sources.json",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/execution-ir-kit/state.js",
+      "path": "src/core-domains/build/ir/kits/execution-ir-kit/state.js",
       "sha256": "4b0c359fef3aaf6954fdccd8bb55d49c4d31c348dd89999cacd21f5c5917a614"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/contracts.js",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/contracts.js",
       "sha256": "88701f8e682328c1028270238acde74fee283d80e88cee3c31584fcdb1133305"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/index.js",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/index.js",
       "sha256": "3b51c2f41052912179bd3b8d350204d128df50e55855c24dbc3f6e1d39a2c2a6"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/kit.manifest.js",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/kit.manifest.js",
       "sha256": "bfc44690fac929ffdf48de0df2c506a4714163ec8727abb6be3bd63d532668d0"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/services.js",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/services.js",
       "sha256": "6dfaaf7fbf0fd20ff2447dfb7c6994c3c51873d84fd6bcd0491b61b8a8eefd32"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/sources.json",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/ir-validation-kit/state.js",
+      "path": "src/core-domains/build/ir/kits/ir-validation-kit/state.js",
       "sha256": "4b68102cf9aca2459ee05f71d96c0415908a1c0488c474e28441b70f18de2fd1"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/contracts.js",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/contracts.js",
       "sha256": "a42f99a6ba6a818fcb091b579eaef1352aedae9771b2092fd3dd753eb762b031"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/index.js",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/index.js",
       "sha256": "0c6827fcb261255015491d110cc429dfde41f06da241b03cd8483374dfa27de3"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/kit.manifest.js",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/kit.manifest.js",
       "sha256": "5de5e4fb4cc482b8df7ab2d06ac96d508ae54aa022967550e54fa08203d4005e"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/services.js",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/services.js",
       "sha256": "bd389eeb409bd3f5dfd8b21666100ee9cc265150f0b79dce1b552ac572219a71"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/sources.json",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/kit-ir-kit/state.js",
+      "path": "src/core-domains/build/ir/kits/kit-ir-kit/state.js",
       "sha256": "d3fec80fba26ab90a28b8497dd478088c10946b5c1204a73ea4c57609d558d9f"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/contracts.js",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/contracts.js",
       "sha256": "efea5b0dbf8264ce3563c557547d82cf57b60d8627ebad99dcaed4e62539d47d"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/index.js",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/index.js",
       "sha256": "b4ad0e213361c978451319c5f662c7e9aed5cb40d524ca4aaf3b12bc96c2294c"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/kit.manifest.js",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/kit.manifest.js",
       "sha256": "762e28019a65a7bffeafbf501e8fd978d279d5e972d9ca38c7cb8ae2784cfa9f"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/services.js",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/services.js",
       "sha256": "25c5bf5d11568c68107327ec4b8cfb85fc1dcf1f01c5a9f200db266789287a5e"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/sources.json",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/kits/source-map-kit/state.js",
+      "path": "src/core-domains/build/ir/kits/source-map-kit/state.js",
       "sha256": "e9aa8bbe3468cbfcd46d147e669e5821105b5f99edcc7cc51963630fd7540f79"
     },
     {
-      "path": "src/core-domains/build/subdomains/ir/subdomain.manifest.js",
+      "path": "src/core-domains/build/ir/subdomain.manifest.js",
       "sha256": "d4e7c3f12732fba973d16dde530bd0856df7d4d338fe16d176f5ecffe8f07476"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/index.js",
+      "path": "src/core-domains/build/orchestration/index.js",
       "sha256": "0ffc839f0f34feb0b77f6fac317c269db23a5a48c1bc87458bcdab9f65cb08db"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/contracts.js",
       "sha256": "0ca2361d460f1d8b8c9f9f14a10d464bd72db2f3e7caa12fb13ecac5d585bf60"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/index.js",
       "sha256": "165c8fa1fb4d1458cea424ad02d7dde29dbfe2f5d072190d176bdf7c4514f216"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/kit.manifest.js",
       "sha256": "a82ff222c94330ec635f3bfb3335f872c884c35dc0ac729041bf98c7e39f173f"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/services.js",
       "sha256": "160f61a7f9b3f2c2e6a5b528affa62e26d28f0af287caca5b266607b7317793d"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-approval-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/build-approval-kit/state.js",
       "sha256": "8d86960ca9aa745a0343660a3386f90a72e6157ed3a2f953327380e6b0282d58"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/contracts.js",
       "sha256": "38ea167d015e462ae1f13726d90374604e727e176a1fdab286e428259bda71ac"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/index.js",
       "sha256": "6dbaf31b3d8fabc256dde47c90c90404c3d22df1c577da34ac17644247df1efa"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/kit.manifest.js",
       "sha256": "8c49eccc3f719c59e364f5c10d5e8c2196bcbc3f8a8cc7f94d1af819169ffcf7"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/services.js",
       "sha256": "37a7e49e3aff568d321bd16c1b40da7e8c2cb18881cd028009722751ae0d43b1"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-execution-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/build-execution-kit/state.js",
       "sha256": "6ff6c5ade875c77b4d1e83bc206b82176e92946a7563a36039cd2c2ef36a6f9c"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/contracts.js",
       "sha256": "c702691d1959d8b45865e797bec5d83b4871fe46112a32bd17721801ef56bd3e"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/index.js",
       "sha256": "92e271e9840c16086811af7374d3f2a366fecf5a4f6a7540e3b2d5ee6dd8fdae"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/kit.manifest.js",
       "sha256": "c0d3424d159dc67aa3c80f249d67830bf6cb9f669c975f13fdf80c896de5cb04"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/services.js",
       "sha256": "ed57aa66b295c3fb804baf4f980399b4fb9f5b0d228a079f95f46b8e4aaf8242"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-plan-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/build-plan-kit/state.js",
       "sha256": "272ad87c42456fb4f4419de095218b9da45da641500652d642de040dcb8c990b"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/contracts.js",
       "sha256": "a30b908f2f223472506e858f2614f66f0f93ac3fa35f9179b0d9c5b5d2109489"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/index.js",
       "sha256": "119d9ff53f0306793351f228ba9df86193b46049d9ba822c84d7e684775c7bd7"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/kit.manifest.js",
       "sha256": "84aa46329014aa41dd18c0982e8e821bb43a3e442e2847bdcf2367680a8c3946"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/services.js",
       "sha256": "3043ebe401faa082bc9cc1b78b2b2a7b0c8953096136bb28ec701cc4b540b5ef"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-receipt-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/state.js",
       "sha256": "7bf3d4660ea6eb7ac2390ec46eb6f161287f2eb92dfcc704c58f974aadf8a3fd"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/contracts.js",
       "sha256": "4474203d3a79d7f85698f2406de145777a0dbfa1140b1796d74e5814885fc52e"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/index.js",
       "sha256": "1a5b7fd579bc94c0178e979cd8a80dd3738cc7377694617bfa7437f5e8dd3e3c"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/kit.manifest.js",
       "sha256": "65dcde8a02d346384c801570f5424bfbcf326f2c405d466439ebb5a780d4eb9d"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/services.js",
       "sha256": "70d9dace6aa6c7318f85c805f137737e29f56ad0ef5c86a66fa967b14995b5f2"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/build-request-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/build-request-kit/state.js",
       "sha256": "e70ec2e8e0ddce347200d0a17fd677fd2a1bf56a02552bcd29716b981e7282cb"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/contracts.js",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/contracts.js",
       "sha256": "835cf8bc4d41d184af777a2fe36c719facd5f2e7710d7b688e0611de5899f5c9"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/index.js",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/index.js",
       "sha256": "0d0b3a107ff0c13e829b3b0b87d5217107c70d74867a5ad00936b59c2535836c"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/kit.manifest.js",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/kit.manifest.js",
       "sha256": "d8d54a309aa4589664f7388353677e650f827e6de35b84483cad734d69ddf42c"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/services.js",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/services.js",
       "sha256": "8328c14687f5187155408fab27d488bc239c39a034e6e0d42cea856984821f7f"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/sources.json",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/kits/target-set-kit/state.js",
+      "path": "src/core-domains/build/orchestration/kits/target-set-kit/state.js",
       "sha256": "57d348f2cb01e8dc146390291181b55ea0506393b9f434435b171d813c1ca683"
     },
     {
-      "path": "src/core-domains/build/subdomains/orchestration/subdomain.manifest.js",
+      "path": "src/core-domains/build/orchestration/subdomain.manifest.js",
       "sha256": "8a13707476e5e540b6d6a4e8d669d33c4c205dc617267121e4cafaff78b51952"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/index.js",
+      "path": "src/core-domains/build/proof/index.js",
       "sha256": "c28b0a911603e2793b5aa1595707f39bb7b5c912a3bfd9df0ad1952a5fada293"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/contracts.js",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/contracts.js",
       "sha256": "edbd0a0fdcaf2ac230e3374da69bf7130ab9572dd8ec16b2e753c63529c25b7b"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/index.js",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/index.js",
       "sha256": "04f0f6680568a995f5626ac52c38e81bf747575786b688887a1a9f0a071315d1"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/kit.manifest.js",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/kit.manifest.js",
       "sha256": "fde4b15d0e12dea5664f73cd82ed19dde32431d04dbd899184cf7958d5425e24"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/services.js",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/services.js",
       "sha256": "f3fe3cf9f6990d48bbb1900db7a5666be484e54c5245ca42c45a3da0a1202f2c"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/sources.json",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/cross-runtime-parity-kit/state.js",
+      "path": "src/core-domains/build/proof/kits/cross-runtime-parity-kit/state.js",
       "sha256": "712c8ea783e7eaf199c2ff00ebdaeef5a5fe94758f7d6e70e2b29229b15f0750"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/contracts.js",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/contracts.js",
       "sha256": "80777903c48b6339a28c3cbd5d85d6c352404b35d67fc28be585917ce2e0709d"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/index.js",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/index.js",
       "sha256": "edf02d8e0a0c0685e3a02126454b14979a640424b535f7ab5d01cf1eff23f650"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/kit.manifest.js",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/kit.manifest.js",
       "sha256": "aee03fc0bff70b6eb2846c261c3b4f6666576a3dd32492855c285cd01472330a"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/services.js",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/services.js",
       "sha256": "e7942f8befeae3b03c32a45eb10db02e02bf7418092b927e1ac8aae6b6e9a519"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/sources.json",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/project-immutability-kit/state.js",
+      "path": "src/core-domains/build/proof/kits/project-immutability-kit/state.js",
       "sha256": "f18dcf17f0863fe9a4179c853454ec267e3a2454e73d6258479d13c8d51240df"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/contracts.js",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/contracts.js",
       "sha256": "993a19b1d6543a3cdb8a37d010229d660e46932d188ebb0105f7974ff10e2826"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/index.js",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/index.js",
       "sha256": "67f64607734c20410ea1ce1871aa8ca3f5b800f8d9242068656d364223a069cc"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/kit.manifest.js",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/kit.manifest.js",
       "sha256": "897dea7a21f86a13ae2c44742ba457f7eeb4840d6fdbf092e922951641fd0c15"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/services.js",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/services.js",
       "sha256": "c2860078ea2e973f75e6f22ab202fb1f7350bd58eba1994707ad1ba92c7630b4"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/sources.json",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/kits/target-validation-kit/state.js",
+      "path": "src/core-domains/build/proof/kits/target-validation-kit/state.js",
       "sha256": "2768f990af5b19b766274a7f449e0d05d9e4ca1e8df28d29bccbb84ef41bbb42"
     },
     {
-      "path": "src/core-domains/build/subdomains/proof/subdomain.manifest.js",
+      "path": "src/core-domains/build/proof/subdomain.manifest.js",
       "sha256": "bf22030fbfbeb65e6783e34376ce540c7af4c8cbcddbe15a5c799ec9ebe7c040"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/index.js",
+      "path": "src/core-domains/build/source/index.js",
       "sha256": "f9323f5e48b254b93afa84446980600c0bf5081701301ffb6a72c69e15eb541b"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/contracts.js",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/contracts.js",
       "sha256": "00dfb94cd77c46aa6d16013af153b038d70b5943207b190f002e8b3c7a53558d"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/index.js",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/index.js",
       "sha256": "766538343cd5e263769d9e1b5ab14b57cef5d6793561f64e23ab8b871e83f54c"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/kit.manifest.js",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/kit.manifest.js",
       "sha256": "f633a2c4d447fa448e8d7a1f6a0c4273973b5cc416368ae0ec56539a96235bc5"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/services.js",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/services.js",
       "sha256": "f0624851e1bc90bc77d3c52abd7f6e7b8c29db8e4e938f8c5028fa3354681e31"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/sources.json",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/dependency-source-kit/state.js",
+      "path": "src/core-domains/build/source/kits/dependency-source-kit/state.js",
       "sha256": "12797e8642ba844847fc07c06cdb050c30e607f6a0be9f3c9dc96c3e3614ba02"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/contracts.js",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/contracts.js",
       "sha256": "86a222a1122be128d0a4205c4d9658b00a55884b0ecb13859337f68081d96555"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/index.js",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/index.js",
       "sha256": "532ff94f7afdb98ebbfe1b81fb36faa129e27230530e7be322c55397bafec0dd"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/kit.manifest.js",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/kit.manifest.js",
       "sha256": "49fa1b13f0f88259766d1b1fba7afe98bc1fc0847f42341e08563d3c080a3b69"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/services.js",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/services.js",
       "sha256": "92913d6223537bfe4265e4eb3298f50445a7be4b2dd8bf69b97f48676f898e0b"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/sources.json",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/module-graph-kit/state.js",
+      "path": "src/core-domains/build/source/kits/module-graph-kit/state.js",
       "sha256": "ff858a717c2c959861d264f212bd9e47c827855efbd5b84b0a3655757966ffe5"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/contracts.js",
+      "path": "src/core-domains/build/source/kits/project-source-kit/contracts.js",
       "sha256": "747e5c950744a1939104798612e04b63a43d71372ed2a56b95881c20686538a1"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/index.js",
+      "path": "src/core-domains/build/source/kits/project-source-kit/index.js",
       "sha256": "0ad67aa98c697d9bd330ca67d43cb9dbb73469390f0ee5b6ffaa46b5bc7ef76f"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/kit.manifest.js",
+      "path": "src/core-domains/build/source/kits/project-source-kit/kit.manifest.js",
       "sha256": "95f6e95f7294f8f5b3c2410db984d2e888eacfd93669309f2ff1b46f1297ad2d"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/services.js",
+      "path": "src/core-domains/build/source/kits/project-source-kit/services.js",
       "sha256": "dc07e0bbeb61528ddc20c7227422b75412082bc2cdb823e7b906597afff5159c"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/sources.json",
+      "path": "src/core-domains/build/source/kits/project-source-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/project-source-kit/state.js",
+      "path": "src/core-domains/build/source/kits/project-source-kit/state.js",
       "sha256": "228d0cdd4d4f5a9d92eb7048f337078007fe24373bc184ad0c671e0887a453ac"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/contracts.js",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/contracts.js",
       "sha256": "3074ff1a4fd5c9e4bd4a133a7867195dab1ba5ec0ecc879f3cf6025061161fb7"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/index.js",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/index.js",
       "sha256": "2dea0630a8023d407a2bd77846557d05fd137c84729ce42c35ab0b60c6fabade"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/kit.manifest.js",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/kit.manifest.js",
       "sha256": "a9e3cce2063d3b7f28aa31fe9bfdc895f6baaf2f0fecb594bea37ce6eb6e3119"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/services.js",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/services.js",
       "sha256": "78d9363fc71dd902c6b0dd016afe8033c15ed2bf91c99e3344c1907d7ec0dd17"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/sources.json",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-cache-kit/state.js",
+      "path": "src/core-domains/build/source/kits/source-cache-kit/state.js",
       "sha256": "27d2de71d18507465f26a6f0b1d8dad5eb5b474788449ffede1f1084f6a45845"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/contracts.js",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/contracts.js",
       "sha256": "74ee7fbacc5c5fbede2d454d78502d417c1745964b130e0726d68a48d04b07de"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/index.js",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/index.js",
       "sha256": "38dd2622c0b296356476665ba7679d39ef6a5a2904ae4fda4a8042fd2e3e7a97"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/kit.manifest.js",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/kit.manifest.js",
       "sha256": "bfc79371483dd85d4d02657922c08c47ceb2cbc4338548b174a42dacdf3c5970"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/services.js",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/services.js",
       "sha256": "633297f8c7e47ca33a27ad8c1df0f382e2f0512063c5e45baef1eec44f5beea2"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/sources.json",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/kits/source-fingerprint-kit/state.js",
+      "path": "src/core-domains/build/source/kits/source-fingerprint-kit/state.js",
       "sha256": "0a0b0ad804a8f82cdac113a612cb72e236694c55c8159af96adfcb41e0ea21fc"
     },
     {
-      "path": "src/core-domains/build/subdomains/source/subdomain.manifest.js",
+      "path": "src/core-domains/build/source/subdomain.manifest.js",
       "sha256": "44ad05106aaa5dbb69fe781e867bce0316a4324faf775f363b0fc98a7b035ef6"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/index.js",
+      "path": "src/core-domains/build/target/index.js",
       "sha256": "6fc30f80c25b941c0f70593a3fa89495f4341cf28f5201d162d756587f37bfba"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/contracts.js",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/contracts.js",
       "sha256": "8d7ea53adcf35fddcaf9e234d890ddb7bfb366dcdc61923e6c1e93a3748baa76"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/index.js",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/index.js",
       "sha256": "ae5f164d0f31530a1f0a3937461986ce78d495ad2fdf9788a2e8c7367132f01a"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/kit.manifest.js",
       "sha256": "00d5663b1fcf7b4b7b3c861c1dfe2ee2b9973bb5e0d2c082ddd165be8af2c75e"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/services.js",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/services.js",
       "sha256": "49963ab3349b28b03b8fd31b0ad1077fb7196bd0bf8fbc2885c6c6c615c81e15"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/sources.json",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/kits/target-registry-kit/state.js",
+      "path": "src/core-domains/build/target/kits/target-registry-kit/state.js",
       "sha256": "3768b1512e2f09dec3bc4f7b81319eee74aff848be88285c9dae2ddce384c6f4"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/native-target-helpers.js",
+      "path": "src/core-domains/build/target/native-target-helpers.js",
       "sha256": "354672a421db5b2f46f8474ae2674aa622c4f471e355813be2c40c57330437cb"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/subdomain.manifest.js",
       "sha256": "4ee12bd8c0ed8ea87a841ec780af4a58a408f81ff5eeebadc52fbfb02c8f3282"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/index.js",
+      "path": "src/core-domains/build/target/android-xr/index.js",
       "sha256": "97997f8e4abe479543834cb76f267607893475bfd5737f4bbfc669870dc85281"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/contracts.js",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/contracts.js",
       "sha256": "e2c07c30cf93030cb3666551a0c3565ca61368d648daa1e4dccbaf3f13b57494"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/index.js",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
       "sha256": "409726f1e95683baa194bc32028260c54859eb46dd0843a136304b6ad7489623"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/kit.manifest.js",
       "sha256": "146774bb2b650f92ff8aa2c49d2ad9f1de398bed231bfcc75a618b02836b5cee"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/services.js",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/services.js",
       "sha256": "ca5aba0f98adafbd5341b1177c51c28bbf7922af73569d0beb906ec9301bd9f1"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/sources.json",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/kits/android-xr-target-kit/state.js",
+      "path": "src/core-domains/build/target/android-xr/kits/android-xr-target-kit/state.js",
       "sha256": "df335f7c8878e9779953a96691f3825b9952b6cb704f65d8d7e2e0a4f78176d8"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/android-xr/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/android-xr/subdomain.manifest.js",
       "sha256": "c0a32d562a8ea1b16c0c2f9bcfbeadef3d7630f5749249ddf856a865d5e98da1"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/index.js",
+      "path": "src/core-domains/build/target/openxr/index.js",
       "sha256": "31c041473a74aca6e02e65de5101c7c8c7a71ea9400259b236ea345e83eb8e3e"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/contracts.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/contracts.js",
       "sha256": "d3274dee238ba6838dbea514167e7f67360d73bc891249104c8d4bd94b086980"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/index.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
       "sha256": "802779a4852fee870f33941a114e9b41454508505eb9b70bb0850cf28266d124"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/kit.manifest.js",
       "sha256": "fcc19ffc2bd5982dacf093527344a8cf2f6cddf6d64cba8c8048d55d105937bf"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/native/nexus_openxr_input.c",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/native/nexus_openxr_input.c",
       "sha256": "1109f7cc5ce5a51cc13b73597a84eabbf834c4a0343062aebdd8236af4b9f944"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/services.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/services.js",
       "sha256": "07179de0df9bcd2ffe83af05038ec13f9caa6784064d95f744177cc42023c849"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/sources.json",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-input-kit/state.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-input-kit/state.js",
       "sha256": "defa978aea0517a4ac36e3553632754d07eae1d688318611162286815ef34a0a"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/contracts.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/contracts.js",
       "sha256": "dd4085fc32e0d3ef776c5181158824e7a18e2e9261ac220343e77e4af20aa286"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/index.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
       "sha256": "287a281527003390e9b4cd04c67ceaaf505c4d209e9d6d3a882ebb447db88d01"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/kit.manifest.js",
       "sha256": "32781bfc1ede801b4421bb3ffbc5ae6a4956cc32bf8920cefd9d98e3fa473cb4"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/native/nexus_openxr_render.c",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/native/nexus_openxr_render.c",
       "sha256": "e9578e18615b3b3f3861bcb6b5f287c76180077a1203b82cb9d6ff947a1b7991"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/services.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/services.js",
       "sha256": "6ff97ab27c82003e7e682cadc740393007233c9b5639060d0f8a5631d52bfc0e"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/sources.json",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-render-kit/state.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-render-kit/state.js",
       "sha256": "08ec30e030d993b0b9a045eba80ed386581d74175abeda469b1da47f068984cd"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/contracts.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/contracts.js",
       "sha256": "21e099a14b9e5fac41dcaf658579ce7cd4e70398698dfe473659aae3568b577a"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/index.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/index.js",
       "sha256": "4e446bee0a232c8800836cd0bfbc4d62bbd61b1de2965dd993bed29de6266ca0"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/kit.manifest.js",
       "sha256": "38d28f2bf720f793bb2098c894a5ca59b4ee19a33d60557c9647e2f3d497059b"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/native/nexus_openxr_host.h",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/native/nexus_openxr_host.h",
       "sha256": "4b18dc749b647e52c36b49fb4e2fdd21822c19a4f7409fa619fcb52b8c2fd882"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/native/nexus_openxr_runtime.c",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/native/nexus_openxr_runtime.c",
       "sha256": "f86bc06ec029874be3c6e8ad98ca80fff59ef01f895c674e3d9865ed555b577f"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/services.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/services.js",
       "sha256": "cc3856ced1ca421e9305b323766642af7d2aa15eb48a53766ec36c72985fb8db"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/sources.json",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/sources.json",
       "sha256": "f0a262837ab55f84c0993a3afa1606db6abcda066bcc29fc6e765be7e91dcb22"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/kits/openxr-runtime-kit/state.js",
+      "path": "src/core-domains/build/target/openxr/kits/openxr-runtime-kit/state.js",
       "sha256": "272d502e73c3e51fd80822a07a0a2499d13f8f322c58c10a308f66f8bb4229e6"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/openxr/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/openxr/subdomain.manifest.js",
       "sha256": "be2f4180b102e49ef6ff27cf7ec2616e3351d2a524e2e60dcdc3bced01752cb9"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/index.js",
+      "path": "src/core-domains/build/target/pcvr/index.js",
       "sha256": "4f00cb5fafe3c74d6e3fceadef4be57d42d216ff612133b142b7592d0ae1e9e6"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/contracts.js",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/contracts.js",
       "sha256": "f9e76107bab0910dd4c03c1af0a1858cf44d7c455555fc2500606b813ee0cbda"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/index.js",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/index.js",
       "sha256": "648005109cfda218d671bc00de70f03cf8e04f31c335dad0dca60ca810ca3c64"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/kit.manifest.js",
       "sha256": "0be7890cef3a0d216b36065841b73df06b1d283f9dd82bfebf720126a3ddfe75"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/services.js",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/services.js",
       "sha256": "a6635b7a5ffeb57432447df93b8a0fcf4de5cef2c518334d61ed14f47a2e29bc"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/sources.json",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/kits/pcvr-target-kit/state.js",
+      "path": "src/core-domains/build/target/pcvr/kits/pcvr-target-kit/state.js",
       "sha256": "6b3705072846bba4949bb9d81d747708564f11a7302f89c5499d654144f8320b"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/pcvr/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/pcvr/subdomain.manifest.js",
       "sha256": "9fad22b6b8c632ca1420a7843be278a57baf76d9852cda0254093b9c056e432c"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/index.js",
+      "path": "src/core-domains/build/target/web-live/index.js",
       "sha256": "ba281d9481c319757b954bcf932da9938a3b39494111c9915b9707b4110adba7"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/contracts.js",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/contracts.js",
       "sha256": "4f51250a9cfb621394066e9ae85a5ff1bb78db2662444b39d0ee9ccfa8bead50"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/index.js",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/index.js",
       "sha256": "c11181d87e70e26232f067515f65250758f7ce0afc453961486bed79b5493af1"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/kit.manifest.js",
       "sha256": "a413b07e714cae3e6e509a2ecba679f19cbea7acf9d62e8a822f1d7aea6b1324"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/services.js",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/services.js",
       "sha256": "e6ea487c05000f8014e0a89903dea6e40e469fdb1c0b91af7ac75beae158c1ee"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/sources.json",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/kits/web-live-target-kit/state.js",
+      "path": "src/core-domains/build/target/web-live/kits/web-live-target-kit/state.js",
       "sha256": "0bddb5aca5d74c4f2a502ab594a070b3bc8b706d8261728a38c4b3a9d192518e"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-live/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/web-live/subdomain.manifest.js",
       "sha256": "1c81795ceaed2e51e45523e2e89e0069e8eac1f1902d6a42cdf28510fac811ea"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/index.js",
+      "path": "src/core-domains/build/target/web-static/index.js",
       "sha256": "1c84363fc6025ba26d30bb421ddbca6ccff6d7ab0a54b9963b5df6fac939e609"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/contracts.js",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/contracts.js",
       "sha256": "3238675df0afa92caa85c7375068e3bb3bcfb0c646dce948768227a78a62e1be"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/index.js",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/index.js",
       "sha256": "391dadfe8de09af718df2ff3b63ba7d29bc59eb3ded3f5b6d7ce7e9aae07c796"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/kit.manifest.js",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/kit.manifest.js",
       "sha256": "4ef8f319bfa7e6257c74e58deec1bd4ba89da3bb1a553c70b32b156e9729a75e"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/services.js",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/services.js",
       "sha256": "9525eb1943ecfe54562445b7d9acce9b0bc48df92a254f65d2d82188465ae26a"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/sources.json",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/kits/web-static-target-kit/state.js",
+      "path": "src/core-domains/build/target/web-static/kits/web-static-target-kit/state.js",
       "sha256": "627184780c5550cafa50bdd10f2d8e4fe40e905184c7a6d81cecbba6ee3f2287"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/subdomains/web-static/subdomain.manifest.js",
+      "path": "src/core-domains/build/target/web-static/subdomain.manifest.js",
       "sha256": "48b09c3024f45a4bb38c1317d9918f97098d5fc76f83f500d96afb64e955c38f"
     },
     {
-      "path": "src/core-domains/build/subdomains/target/web-target-helpers.js",
+      "path": "src/core-domains/build/target/web-target-helpers.js",
       "sha256": "e05b0ae5b2623a19aebf2760d8707c6b24d85e1b10b8e76eae3053de84f05eb6"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/index.js",
+      "path": "src/core-domains/build/toolchain/index.js",
       "sha256": "8b9fc015f2f03518590991e4cc57174843467598d8023e8f1500c0a81f083c23"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/contracts.js",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/contracts.js",
       "sha256": "ed5e339be00473d62f800311af85f33bd8fce51e6f6b5aa1727da2d0c228daea"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/index.js",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/index.js",
       "sha256": "f99eba64f557fbc375f0f7c370b1ba848e8f6ae9e9b91f2bdfb1066bf16d4586"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/kit.manifest.js",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/kit.manifest.js",
       "sha256": "90036cccc91245877bc2519b3b2684f08b5e6b0a21498a25b7f0982ba16abe43"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/services.js",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/services.js",
       "sha256": "f9dcae9ee851902f2506895f6924166a94d204b54736f9107a2c4f8a644bb168"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/sources.json",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/isolated-stage-kit/state.js",
+      "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/state.js",
       "sha256": "9d7b27b708914914ac529c80412e79754ce5170d46306f521ed4744e6f22a5e8"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/contracts.js",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/contracts.js",
       "sha256": "4ca81a8d2079ddddb5b0296143838011283d7511da2009c5d193bede87bc9129"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/index.js",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/index.js",
       "sha256": "8609a735c18da124236decd2c3f5f35cbdadff87313be085630ee4b4d6b2bcff"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/kit.manifest.js",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/kit.manifest.js",
       "sha256": "500c0233bec93ae165961c6899bc1531f8b61c9e41a608e2f010878912d56099"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/services.js",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/services.js",
       "sha256": "97d90b970582d4903415b0be67b06b8b6336960c05eddf5efa802f52176ea17a"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/sources.json",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/process-execution-kit/state.js",
+      "path": "src/core-domains/build/toolchain/kits/process-execution-kit/state.js",
       "sha256": "67f6d2eaf5b8a6bf31ac6087563532e276f177ba71175c044da62cae8f7c518f"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/contracts.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/contracts.js",
       "sha256": "c0185da9d15769756600356e7e1d3b9ed37f9748ceac8c5147e39dab9cfaa024"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/index.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
       "sha256": "1f6246553a5daea3e412ca058cad1da0e8e5dde79ce8283d468389b6bc2c16af"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/kit.manifest.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/kit.manifest.js",
       "sha256": "9d8d191a5e77c06f0ab5d2ad22f230e6cc88d0b13a74b5715d1d2e27b609b459"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/services.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/services.js",
       "sha256": "a81e0fe261ffb8f3f288dac692f6dcee3bcb43c874f98032f46ba352ace08103"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/sources.json",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-discovery-kit/state.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/state.js",
       "sha256": "4a9844213cef6d6317a8202c68297a9a18912afb77d7830505ecd0d8f8c4df31"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/contracts.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/contracts.js",
       "sha256": "02db3446ae21c07d64170d3c24a2d80beb8e6f955e75347575f155953edcb500"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/index.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
       "sha256": "962bd659a987022ed1ad7701b07186d7977a20b589f0b39a58e617999f6ed789"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/kit.manifest.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/kit.manifest.js",
       "sha256": "0ff8bf041b34b9c93fc7ed1413744c11b8001be328d4c1aef5c8faee75a83f24"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/services.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/services.js",
       "sha256": "17d20f0d1c4405ddea84ab2cf2d4b1c7dd4b0a54a76c9f1742d62b07a7550117"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/sources.json",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/sources.json",
       "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-provision-kit/state.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/state.js",
       "sha256": "58839983527ced9372e0205fdc673e92b921128bfa9e43a5c364a937f85e6db3"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/contracts.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/contracts.js",
       "sha256": "6dd0991a861e5a8ac33b38c04c2dc8b96aa38fbc257d0bbb2b01ab9b7631c8e5"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/index.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js",
       "sha256": "4579a9651cf3faf0212588139e70bcfdadc1eecc7994a9f5b917ed6ac946f9ac"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/kit.manifest.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/kit.manifest.js",
       "sha256": "1004f15ec026cdd944a844918ae1c723223c143c343c3ee3e4d9f883ba16c2be"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/services.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/services.js",
       "sha256": "209850433b8851a66e62ad4f556d8b6fe9fb35f89afc9aa31000887017ac0856"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/sources.json",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/sources.json",
       "sha256": "763f0dc7f33a221dd9394f88cf46516feed95975f937a9db1f984245a9c64f28"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/kits/toolchain-source-kit/state.js",
+      "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/state.js",
       "sha256": "2490cbba2521f8f58dfbf873f43224a961c5cd482f2825147c50713265913c63"
     },
     {
-      "path": "src/core-domains/build/subdomains/toolchain/subdomain.manifest.js",
+      "path": "src/core-domains/build/toolchain/subdomain.manifest.js",
       "sha256": "787d0d2f35cf3dc289ead6d7184848fc571d1dd10ffeec8c413952788481c1cb"
     },
     {

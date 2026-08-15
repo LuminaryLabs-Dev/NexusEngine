@@ -7,7 +7,7 @@ import { pathToFileURL } from "node:url";
 import { createEngine } from "../../../index.js";
 import buildDomainManifest from "../domain.manifest.js";
 import { createBuildDomain } from "../index.js";
-import { createRustLoweringService } from "../subdomains/compile/kits/rust-lowering-kit/services.js";
+import { createRustLoweringService } from "../compile/kits/rust-lowering-kit/services.js";
 
 const fixture = path.resolve("src/core-domains/build/tests/fixtures/minimal-project");
 const stateRoot = await mkdtemp(path.join(tmpdir(), "nexusengine-build-state-"));

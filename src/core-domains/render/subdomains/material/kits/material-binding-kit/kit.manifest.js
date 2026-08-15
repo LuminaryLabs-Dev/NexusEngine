@@ -1,3 +1,0 @@
-import { atomicKit } from "../../../../../manifest-input.js";
-
-export default atomicKit({ id: "material-binding-kit", responsibility: "Map portable Material slots to one exact Shader program interface.", domainPath: "n:render:material", apiName: "renderMaterialBindings", requires: ["n:render:material", "render:material-contract", "render:shader-program"], provides: ["render:material-binding"], module: "./src/core-domains/render/subdomains/material/kits/material-binding-kit/index.js", exportName: "createMaterialBindingKit", publicSubpath: "./domains/render/material/binding", proofReferences: ["tests/core-domains/core-graphics-domain-smoke.mjs"] });

@@ -1,2 +1,0 @@
-import { atomicKit } from "../../../../../manifest-input.js";
-export default atomicKit({ id: "convex-shape-kit", responsibility: "Normalize portable convex-hull collision geometry.", domainPath: "n:physics:shape", apiName: "convexShape", requires: ["n:physics"], provides: ["n:physics:shape", "physics:convex-shape"], module: "./src/core-domains/physics/subdomains/shape/kits/convex-shape/index.js", exportName: "createConvexShapeKit", publicSubpath: "./domains/physics/shape/convex", proofReferences: ["tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"] });

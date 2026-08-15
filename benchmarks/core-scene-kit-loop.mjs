@@ -1,7 +1,7 @@
 import { performance } from "node:perf_hooks";
 import assert from "node:assert/strict";
 import { createRealtimeGame } from "../src/index.js";
-import { createSceneKit } from "../src/core-domains/world/subdomains/scene/kits/scene-kit/index.js";
+import { createSceneKit } from "../src/core-domains/world/scene/kits/scene-kit/index.js";
 
 const sceneCount = 60;
 const transitionCount = 300;
