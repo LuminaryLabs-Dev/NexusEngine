@@ -111,7 +111,7 @@ jobs:
           test "$(git diff -- .github/workflows/semantic-path-migration.yml .github/workflows/semantic-path-migration-finalize.yml | wc -l)" -eq 0
           echo "FINALIZER_PRECOMMIT_OK"
 
-      - name: Commit validated migration directly to main
+      - name: Create exact validated migration commit and hand it off
         shell: bash
         run: |
           set -euo pipefail
@@ -119,8 +119,20 @@ jobs:
           git config user.email '41898282+thecrimsondeveloper@users.noreply.github.com'
           if git diff --quiet HEAD -- && git diff --cached --quiet; then
             echo "No migration changes remain to commit."
-            exit 0
+            git rev-parse HEAD > migration-commit.txt
+          else
+            git status --short
+            git commit -m 'refactor(core-domains): mirror semantic hierarchy in filesystem'
+            git rev-parse HEAD > migration-commit.txt
+            echo "Validated migration commit: $(cat migration-commit.txt)"
+            git push origin HEAD:main || echo "Actions-token push rejected; handing exact commit SHA to connected GitHub credential."
           fi
-          git status --short
-          git commit -m 'refactor(core-domains): mirror semantic hierarchy in filesystem'
-          git push origin HEAD:main
+
+      - name: Upload validated migration commit SHA
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: validated-semantic-path-migration-commit
+          if-no-files-found: error
+          path: migration-commit.txt
+          retention-days: 1
