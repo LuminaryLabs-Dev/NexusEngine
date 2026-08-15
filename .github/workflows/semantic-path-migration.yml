@@ -331,6 +331,25 @@ jobs:
           fi
           echo "Phase 3 direct-path repair gate passed."
 
+      - name: Reconcile generated path metadata
+        shell: bash
+        run: |
+          set -euo pipefail
+          npm run ownership:generate
+          npm run migrations:generate
+          git add -A
+          test -z "$(find src/core-domains -type d -name subdomains -print -quit)"
+          if grep -RIl --exclude-dir=legacy --exclude=semantic-path-migration.yml 'subdomains/' \
+            src tests scripts bin examples package.json README.md AGENTS.md docs > /tmp/stale-generated.txt; then
+            echo "Generated metadata reintroduced stale subdomains/ references:"
+            cat /tmp/stale-generated.txt
+            exit 1
+          fi
+          npm run ownership:check
+          npm run migrations:check
+          git diff --check
+          echo "Generated ownership and migration metadata reconciled to new physical paths."
+
       - name: Import sandbox must be fully green
         run: node tests/core-domains/core-domain-import-smoke.mjs
 
@@ -426,7 +445,7 @@ jobs:
         run: |
           set -euo pipefail
           git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.email '41898282+thecrimsondeveloper@users.noreply.github.com'
           git status --short
           git commit -m 'refactor(core-domains): mirror semantic hierarchy in filesystem'
           git push origin HEAD:main
