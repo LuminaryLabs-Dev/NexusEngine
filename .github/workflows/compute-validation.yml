@@ -31,7 +31,7 @@ jobs:
       - name: Verify semantic directory rule
         run: test -z "$(find src/core-domains/compute -type d -name subdomains -print -quit)"
       - name: Validate Compute manifest import
-        run: node -e "import('./src/core-domains/compute/domain.manifest.js').then(({computeDomainManifest}) => { if (!computeDomainManifest?.root || computeDomainManifest.root.domainPath !== 'n:compute') process.exit(1); console.log('Compute manifest OK:', computeDomainManifest.subdomains.length, 'subdomains'); })"
+        run: node -e "import('./src/core-domains/compute/domain.manifest.js').then(({computeDomainManifest}) => { if (computeDomainManifest?.domainPath !== 'n:compute') process.exit(1); console.log('Compute manifest OK:', computeDomainManifest.subdomains.length, 'subdomains'); })"
       - name: Run Compute domain smoke
         run: node tests/core-domains/core-compute-domain-smoke.mjs
       - name: Run Compute Model regression smoke
