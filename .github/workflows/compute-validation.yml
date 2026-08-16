@@ -1,0 +1,38 @@
+name: Compute Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-domains/compute/**"
+      - "tests/core-domains/core-compute-domain-smoke.mjs"
+      - "tests/core-kits/core-mlnn-kit-smoke.mjs"
+      - ".github/workflows/compute-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nexus-compute-validation
+  cancel-in-progress: true
+
+jobs:
+  compute:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Check Compute source syntax
+        run: find src/core-domains/compute -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Verify semantic directory rule
+        run: test -z "$(find src/core-domains/compute -type d -name subdomains -print -quit)"
+      - name: Validate Compute manifest import
+        run: node -e "import('./src/core-domains/compute/domain.manifest.js').then(({computeDomainManifest}) => { if (!computeDomainManifest?.root || computeDomainManifest.root.domainPath !== 'n:compute') process.exit(1); console.log('Compute manifest OK:', computeDomainManifest.subdomains.length, 'subdomains'); })"
+      - name: Run Compute domain smoke
+        run: node tests/core-domains/core-compute-domain-smoke.mjs
+      - name: Run Compute Model regression smoke
+        run: node tests/core-kits/core-mlnn-kit-smoke.mjs
