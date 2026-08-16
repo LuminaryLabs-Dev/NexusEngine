@@ -1,0 +1,63 @@
+name: Shared GPU Compute Render Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-domains/host/gpu/**"
+      - "src/core-domains/compute/**"
+      - "src/core-domains/render/**"
+      - "tests/core-domains/core-gpu-shared-resource-smoke.mjs"
+      - ".github/workflows/gpu-shared-resource-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nexus-gpu-shared-resource-validation
+  cancel-in-progress: true
+
+jobs:
+  shared-gpu:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check shared GPU source syntax
+        run: |
+          node --check src/core-domains/compute/host/execution/gpu/webgpu/index.js
+          find src/core-domains/render/execution -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Verify semantic directory rule
+        run: |
+          test -z "$(find src/core-domains/host/gpu src/core-domains/compute src/core-domains/render/execution -type d -name subdomains -print -quit)"
+      - name: Validate semantic ownership manifests
+        run: |
+          node --input-type=module <<'NODE'
+          import { hostDomainManifest } from './src/core-domains/host/domain.manifest.js';
+          import { computeDomainManifest } from './src/core-domains/compute/domain.manifest.js';
+          import { renderDomainManifest } from './src/core-domains/render/domain.manifest.js';
+          const paths = (manifest) => new Set(manifest.subdomains.map((entry) => entry.identity.domainPath));
+          const host = paths(hostDomainManifest);
+          const compute = paths(computeDomainManifest);
+          const render = paths(renderDomainManifest);
+          for (const required of ['n:host:gpu','n:host:gpu:device','n:host:gpu:resource','n:host:gpu:synchronization','n:host:gpu:recovery']) if (!host.has(required)) throw new Error(`Missing ${required}`);
+          for (const required of ['n:compute:host:execution:gpu:webgpu:binding','n:compute:host:execution:gpu:webgpu:program','n:compute:host:execution:gpu:webgpu:command','n:compute:host:execution:gpu:webgpu:dispatch']) if (!compute.has(required)) throw new Error(`Missing ${required}`);
+          for (const forbidden of ['n:compute:host:execution:gpu:webgpu:device','n:compute:host:execution:gpu:webgpu:memory']) if (compute.has(forbidden)) throw new Error(`Compute must not own ${forbidden}`);
+          for (const required of ['n:render:execution:gpu:webgpu:resource','n:render:execution:gpu:webgpu:pipeline','n:render:execution:gpu:webgpu:binding','n:render:execution:gpu:webgpu:pass','n:render:execution:gpu:webgpu:draw']) if (!render.has(required)) throw new Error(`Missing ${required}`);
+          console.log('Shared GPU semantic manifests OK');
+          NODE
+      - name: Run Host GPU smoke
+        run: node tests/core-domains/core-gpu-host-smoke.mjs
+      - name: Prove zero-copy Compute to Render resource identity
+        run: node tests/core-domains/core-gpu-shared-resource-smoke.mjs
+      - name: Run Compute regression smoke
+        run: node tests/core-domains/core-compute-domain-smoke.mjs
+      - name: Run Render graphics regression smoke
+        run: node tests/core-domains/core-graphics-domain-smoke.mjs

@@ -9,6 +9,7 @@ export * from "./texture/index.js";
 export * from "./shader/index.js";
 export * from "./material/index.js";
 export * from "./camera/index.js";
+export * from "./execution/index.js";
 
 import { createRenderDomainContractKit } from "./contracts/kits/render-domain-contract-kit/index.js";
 
