@@ -51,6 +51,7 @@ jobs:
           for (const required of ['n:compute:host:execution:gpu:webgpu:binding','n:compute:host:execution:gpu:webgpu:program','n:compute:host:execution:gpu:webgpu:command','n:compute:host:execution:gpu:webgpu:dispatch']) if (!compute.has(required)) throw new Error(`Missing ${required}`);
           for (const forbidden of ['n:compute:host:execution:gpu:webgpu:device','n:compute:host:execution:gpu:webgpu:memory']) if (compute.has(forbidden)) throw new Error(`Compute must not own ${forbidden}`);
           for (const required of ['n:render:execution:gpu:webgpu:resource','n:render:execution:gpu:webgpu:pipeline','n:render:execution:gpu:webgpu:binding','n:render:execution:gpu:webgpu:pass','n:render:execution:gpu:webgpu:draw']) if (!render.has(required)) throw new Error(`Missing ${required}`);
+          for (const kit of renderDomainManifest.publicKits) if (kit.source.module.includes('/subdomains/')) throw new Error(`Render public Kit still uses retired subdomains path: ${kit.source.module}`);
           console.log('Shared GPU semantic manifests OK');
           NODE
       - name: Run Host GPU smoke
@@ -59,5 +60,5 @@ jobs:
         run: node tests/core-domains/core-gpu-shared-resource-smoke.mjs
       - name: Run Compute regression smoke
         run: node tests/core-domains/core-compute-domain-smoke.mjs
-      - name: Run Render graphics regression smoke
-        run: node tests/core-domains/core-graphics-domain-smoke.mjs
+      - name: Run existing Core Kit regression smoke
+        run: node tests/core-domain-kits-smoke.mjs
