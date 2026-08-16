@@ -55,13 +55,26 @@ export function createComputeBufferDescriptor(input = {}) {
 
 export function createComputeKernelDescriptor(input = {}) {
   const workgroupSize = dispatch(input.workgroupSize ?? input.workgroup ?? {});
+  const language = text(input.language, "provider", "compute kernel language");
+  const source = input.source ?? input.metadata?.source ?? null;
+  if (source != null && typeof source !== "string") throw new TypeError("compute kernel source must be text when provided.");
   return Object.freeze({
     schema: NEXUS_COMPUTE_KERNEL_SCHEMA,
     id: text(input.id, null, "compute kernel id"),
     entryPoint: text(input.entryPoint, "main", "compute kernel entryPoint"),
-    language: text(input.language, "provider", "compute kernel language"),
+    language,
+    source: source == null ? null : String(source),
     workgroupSize: Object.freeze(workgroupSize),
+    constants: Object.freeze(clone(input.constants ?? input.metadata?.constants ?? {})),
     metadata: clone(input.metadata ?? {})
+  });
+}
+
+function normalizeIndirect(input) {
+  if (input == null) return null;
+  return Object.freeze({
+    bufferId: text(input.bufferId, null, "compute indirect dispatch bufferId"),
+    offset: integer(input.offset, 0, "compute indirect dispatch offset", 0)
   });
 }
 
@@ -72,7 +85,9 @@ function normalizeNode(input = {}, index = 0) {
     dependsOn: Object.freeze(stringList(input.dependsOn, "compute graph dependency")),
     reads: Object.freeze(stringList(input.reads, "compute graph read buffer")),
     writes: Object.freeze(stringList(input.writes, "compute graph write buffer")),
+    bindings: Object.freeze(stringList(input.bindings, "compute graph binding buffer")),
     dispatch: Object.freeze(dispatch(input.dispatch)),
+    indirect: normalizeIndirect(input.indirect),
     metadata: clone(input.metadata ?? {})
   });
 }
@@ -118,7 +133,7 @@ export function createComputeGraphDescriptor(input = {}, registry = {}) {
     if (!registryHas(registry, "kernels", node.kernelId)) {
       throw new TypeError(`Compute graph node ${node.id} references missing kernel ${node.kernelId}.`);
     }
-    for (const bufferId of [...node.reads, ...node.writes]) {
+    for (const bufferId of [...node.reads, ...node.writes, ...node.bindings, ...(node.indirect ? [node.indirect.bufferId] : [])]) {
       if (!registryHas(registry, "buffers", bufferId)) {
         throw new TypeError(`Compute graph node ${node.id} references missing buffer ${bufferId}.`);
       }
