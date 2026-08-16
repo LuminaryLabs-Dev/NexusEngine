@@ -1,0 +1,40 @@
+name: GPU Host Validation
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "src/core-domains/host/**"
+      - "tests/core-domains/core-gpu-host-smoke.mjs"
+      - ".github/workflows/gpu-host-validation.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: nexus-gpu-host-validation
+  cancel-in-progress: true
+
+jobs:
+  gpu-host:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install repository dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Check Host GPU source syntax
+        run: find src/core-domains/host/gpu -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Verify semantic directory rule
+        run: test -z "$(find src/core-domains/host/gpu -type d -name subdomains -print -quit)"
+      - name: Validate Host manifest ownership
+        run: node -e "import('./src/core-domains/host/domain.manifest.js').then(({hostDomainManifest}) => { const paths = new Set(hostDomainManifest.subdomains.map((d) => d.identity.domainPath)); for (const required of ['n:host:gpu','n:host:gpu:device','n:host:gpu:resource','n:host:gpu:synchronization','n:host:gpu:recovery']) if (!paths.has(required)) throw new Error('Missing '+required); console.log('Host GPU manifest OK:', paths.size, 'subdomains'); })"
+      - name: Run Host GPU smoke
+        run: node tests/core-domains/core-gpu-host-smoke.mjs
+      - name: Run existing Host/Core kit smoke
+        run: node tests/core-domain-kits-smoke.mjs
