@@ -7,7 +7,9 @@ on:
       - "src/core-domains/host/gpu/**"
       - "src/core-domains/compute/**"
       - "src/core-domains/render/**"
+      - "src/core-domains/presentation/graphics/**"
       - "tests/core-domains/core-gpu-shared-resource-smoke.mjs"
+      - "tests/core-domains/core-visual-contribution-smoke.mjs"
       - ".github/workflows/gpu-shared-resource-validation.yml"
   workflow_dispatch:
 
@@ -33,6 +35,7 @@ jobs:
       - name: Check shared GPU source syntax
         run: |
           node --check src/core-domains/compute/host/execution/gpu/webgpu/index.js
+          node --check src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js
           find src/core-domains/render/execution -name '*.js' -print0 | xargs -0 -n1 node --check
       - name: Verify semantic directory rule
         run: |
@@ -54,6 +57,8 @@ jobs:
           for (const kit of renderDomainManifest.publicKits) if (kit.source.module.includes('/subdomains/')) throw new Error(`Render public Kit still uses retired subdomains path: ${kit.source.module}`);
           console.log('Shared GPU semantic manifests OK');
           NODE
+      - name: Run portable VisualContribution smoke
+        run: node tests/core-domains/core-visual-contribution-smoke.mjs
       - name: Run Host GPU smoke
         run: node tests/core-domains/core-gpu-host-smoke.mjs
       - name: Prove zero-copy Compute to Render resource identity

@@ -9,6 +9,7 @@ export * from "./vfx-descriptors.js";
 export * from "./quality-profiles.js";
 export * from "./adapters.js";
 export * from "./terrain-lod-descriptors.js";
+export * from "./visual-contributions.js";
 export * from "./render-layer-graph-kit/index.js";
 export * from "./reflection-kit/index.js";
 export * from "./instance-batches.js";
@@ -28,8 +29,8 @@ export function createGraphicsKit(config = {}) {
     domain: "graphics",
 
     apiName: config.apiName ?? "graphics",
-    purpose: "Renderer-agnostic presentation descriptors, materials, procedural material libraries, cell-scoped instance batches, lighting, reflections, terrain LOD policy, VFX, quality profiles, render-layer graphs, and adapter contracts.",
-    owns: ["render descriptors", "material descriptors", "procedural material descriptors", "cell-scoped instance batch descriptors", "lighting descriptors", "reflection descriptors", "terrain LOD policy descriptors", "VFX descriptors", "LOD descriptors", "quality profiles", "render-layer graph descriptors", "graphics adapter contracts", ...(config.owns ?? [])],
+    purpose: "Renderer-agnostic presentation descriptors, materials, portable visual contributions, procedural material libraries, cell-scoped instance batches, lighting, reflections, terrain LOD policy, VFX, quality profiles, render-layer graphs, and adapter contracts.",
+    owns: ["render descriptors", "material descriptors", "portable visual contribution descriptors", "procedural material descriptors", "cell-scoped instance batch descriptors", "lighting descriptors", "reflection descriptors", "terrain LOD policy descriptors", "VFX descriptors", "LOD descriptors", "quality profiles", "render-layer graph descriptors", "graphics adapter contracts", ...(config.owns ?? [])],
     doesNotOwn: ["renderer implementation", "DOM/WebGL side effects", "GPU pass submission", "GPU instance buffers", "backend reflection resources", "backend terrain tessellation resources", "backend shader compilation", "backend texture allocation", ...(config.doesNotOwn ?? [])],
     services: [...(config.services ?? []), "instance-batches"],
     createApi(context) {
