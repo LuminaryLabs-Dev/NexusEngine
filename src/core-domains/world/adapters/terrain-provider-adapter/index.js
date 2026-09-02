@@ -57,6 +57,49 @@ function normalizeTerrainResult(terrain, command, result, previous = null) {
   };
 }
 
+function terrainCellCommand(command, previous = null, operation = "prepare") {
+  const coordinates = command.cell.coordinates ?? [];
+  const bounds = command.cell.bounds ?? {};
+  const chunkSize = Math.max(
+    1,
+    Number(terrainMetadata(command.terrain).chunkSize)
+      || Number(bounds.maxX) - Number(bounds.minX)
+      || Number(bounds.maxZ) - Number(bounds.minZ)
+      || 1
+  );
+  const x = Number.isFinite(Number(coordinates[0]))
+    ? Math.floor(Number(coordinates[0]))
+    : Math.floor((Number(bounds.minX) || 0) / chunkSize);
+  const z = Number.isFinite(Number(coordinates[1]))
+    ? Math.floor(Number(coordinates[1]))
+    : Math.floor((Number(bounds.minZ) || 0) / chunkSize);
+  const version = Number(previous?.descriptor?.version ?? previous?.version ?? 0) + 1;
+  const domainCommand = {
+    operationId: `${command.world.id}:terrain:${command.cell.id}:${operation}:${version}`,
+    cellId: operation === "release" ? String(previous?.runtimeHandle?.id ?? `${x},${z}`) : command.cell.id,
+    x,
+    z,
+    resolution: command.cell.resolution
+  };
+  if (typeof command.terrain.getState === "function") {
+    return Object.fromEntries(Object.entries(domainCommand).filter(([, value]) => value !== undefined));
+  }
+  return Object.fromEntries(Object.entries({
+    ...domainCommand,
+    worldId: command.world.id,
+    cellId: command.cell.id,
+    x,
+    z,
+    resolution: command.cell.resolution,
+    cell: command.cell,
+    previousCell: command.previousCell,
+    changes: command.changes,
+    surface: command.surface,
+    seed: `${command.cell.seed}:terrain`,
+    previous: previous?.runtimeHandle ?? null
+  }).filter(([, value]) => value !== undefined));
+}
+
 export function createTerrainProviderAdapter({ terrain, id = "terrain-provider", critical = true } = {}) {
   if (!terrain) throw new TypeError("Terrain adapter requires a terrain kit or terrain API.");
 
@@ -68,13 +111,7 @@ export function createTerrainProviderAdapter({ terrain, id = "terrain-provider",
     prepareCell(command, previous) {
       const build = terrain.prepareCell ?? terrain.buildCell;
       const result = typeof build === "function"
-        ? build.call(terrain, {
-          worldId: command.world.id,
-          cell: command.cell,
-          surface: command.surface,
-          seed: `${command.cell.seed}:terrain`,
-          previous: previous?.runtimeHandle ?? null
-        })
+        ? build.call(terrain, terrainCellCommand({ ...command, terrain }, previous, "prepare"))
         : null;
       if (result && typeof result.then === "function") return result;
       return normalizeTerrainResult(terrain, command, result, previous);
@@ -84,32 +121,23 @@ export function createTerrainProviderAdapter({ terrain, id = "terrain-provider",
       if (typeof update !== "function") {
         const build = terrain.prepareCell ?? terrain.buildCell;
         const result = typeof build === "function"
-          ? build.call(terrain, {
-            worldId: command.world.id,
-            cell: command.cell,
-            surface: command.surface,
-            seed: `${command.cell.seed}:terrain`,
-            previous: previous?.runtimeHandle ?? null
-          })
+          ? build.call(terrain, terrainCellCommand({ ...command, terrain }, previous, "update"))
           : null;
         if (result && typeof result.then === "function") return result;
         return normalizeTerrainResult(terrain, command, result, previous);
       }
-      const result = update.call(terrain, {
-        worldId: command.world.id,
-        cell: command.cell,
-        previousCell: command.previousCell,
-        changes: command.changes,
-        surface: command.surface,
-        seed: `${command.cell.seed}:terrain`,
-        previous: previous?.runtimeHandle ?? null
-      });
+      const result = update.call(terrain, terrainCellCommand({ ...command, terrain }, previous, "update"));
       if (result && typeof result.then === "function") return result;
       if (result == null && previous) return { descriptor: previous.descriptor, runtimeHandle: previous.runtimeHandle };
       return normalizeTerrainResult(terrain, command, result, previous);
     },
     releaseCell(command, previous) {
-      terrain.releaseCell?.call(terrain, command.cell.id, previous?.runtimeHandle ?? null, command);
+      if (typeof terrain.releaseCell !== "function") return;
+      if (typeof terrain.getState === "function") {
+        terrain.releaseCell.call(terrain, terrainCellCommand({ ...command, terrain }, previous, "release"));
+        return;
+      }
+      terrain.releaseCell.call(terrain, command.cell.id, previous?.runtimeHandle ?? null, command);
     },
     snapshot() {
       return { terrain: terrainMetadata(terrain) };
