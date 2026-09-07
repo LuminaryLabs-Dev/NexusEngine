@@ -1,0 +1,18 @@
+{
+  "id": "engine-prerequisite-baseline-plan",
+  "ok": true,
+  "goal": "Verify current engine implementation",
+  "commands": [
+    {
+      "action": "development.execute",
+      "id": "check-0",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/run-all.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    }
+  ],
+  "notes": []
+}

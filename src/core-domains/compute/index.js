@@ -6,7 +6,7 @@ export * from "./graph/index.js";
 export * from "./resource/index.js";
 export * from "./dispatch/index.js";
 export * from "./host/index.js";
-export * from "./host/execution/gpu/webgpu/index.js";
+
 export * from "./host/execution/gpu/vulkan/index.js";
 export * from "./host/execution/gpu/opengl/index.js";
 export * from "./host/execution/cpu/javascript/index.js";
@@ -19,3 +19,5 @@ export function createComputeDomain(config = {}) {
 }
 
 export default createComputeDomain;
+
+export { portableClone } from "./portable.js";

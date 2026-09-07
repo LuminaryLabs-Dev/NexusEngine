@@ -1,0 +1,10 @@
+{
+  "stage": "verify",
+  "ok": false,
+  "startedAt": "2026-09-06T23:00:47.772Z",
+  "completedAt": "2026-09-06T23:00:47.776Z",
+  "error": {
+    "name": "Error",
+    "message": "check check-0 did not explicitly pass."
+  }
+}

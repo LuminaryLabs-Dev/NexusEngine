@@ -1,0 +1,5178 @@
+{
+  "schema": "nexusengine.authoring-capabilities/1",
+  "domainPath": "n:authoring",
+  "guide": "AUTHORING.md",
+  "sourceKinds": [
+    "animation",
+    "assembly",
+    "brush",
+    "curve",
+    "domain-composition",
+    "image",
+    "material",
+    "mesh",
+    "modifier",
+    "object-selection",
+    "publishing",
+    "rig",
+    "selection",
+    "sequence",
+    "shape",
+    "skin",
+    "workspace"
+  ],
+  "kits": [
+    {
+      "id": "authoring-modifier-service-kit",
+      "domainPath": "n:authoring:modifier",
+      "apiName": "authoringModifier",
+      "source": {
+        "module": "./src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/index.js",
+        "exportName": "createAuthoringModifierServiceKit",
+        "publicSubpath": "./domains/authoring/modifier"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-publishing-service-kit",
+      "domainPath": "n:authoring:publishing",
+      "apiName": "authoringPublishing",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/index.js",
+        "exportName": "createAuthoringPublishingServiceKit",
+        "publicSubpath": "./domains/authoring/publishing"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-sequence-service-kit",
+      "domainPath": "n:authoring:sequence",
+      "apiName": "authoringSequence",
+      "source": {
+        "module": "./src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/index.js",
+        "exportName": "createAuthoringSequenceServiceKit",
+        "publicSubpath": "./domains/authoring/sequence"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-domain-composition-service-kit",
+      "domainPath": "n:authoring:domain-composition",
+      "apiName": "authoringDomainComposition",
+      "source": {
+        "module": "./src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js",
+        "exportName": "createAuthoringDomainCompositionServiceKit",
+        "publicSubpath": "./domains/authoring/domain-composition"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-assembly-service-kit",
+      "domainPath": "n:authoring:assembly",
+      "apiName": "authoringAssembly",
+      "source": {
+        "module": "./src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js",
+        "exportName": "createAuthoringAssemblyServiceKit",
+        "publicSubpath": "./domains/authoring/assembly"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-animation-service-kit",
+      "domainPath": "n:authoring:animation",
+      "apiName": "authoringAnimation",
+      "source": {
+        "module": "./src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js",
+        "exportName": "createAuthoringAnimationServiceKit",
+        "publicSubpath": "./domains/authoring/animation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-skin-service-kit",
+      "domainPath": "n:authoring:skin",
+      "apiName": "authoringSkin",
+      "source": {
+        "module": "./src/core-domains/authoring/skin/kits/authoring-skin-service-kit/index.js",
+        "exportName": "createAuthoringSkinServiceKit",
+        "publicSubpath": "./domains/authoring/skin"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-rig-service-kit",
+      "domainPath": "n:authoring:rig",
+      "apiName": "authoringRig",
+      "source": {
+        "module": "./src/core-domains/authoring/rig/kits/authoring-rig-service-kit/index.js",
+        "exportName": "createAuthoringRigServiceKit",
+        "publicSubpath": "./domains/authoring/rig"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-paint-service-kit",
+      "domainPath": "n:authoring:paint",
+      "apiName": "authoringPaint",
+      "source": {
+        "module": "./src/core-domains/authoring/paint/kits/authoring-paint-service-kit/index.js",
+        "exportName": "createAuthoringPaintServiceKit",
+        "publicSubpath": "./domains/authoring/paint"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-material-service-kit",
+      "domainPath": "n:authoring:material",
+      "apiName": "authoringMaterial",
+      "source": {
+        "module": "./src/core-domains/authoring/material/kits/authoring-material-service-kit/index.js",
+        "exportName": "createAuthoringMaterialServiceKit",
+        "publicSubpath": "./domains/authoring/material"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-uv-service-kit",
+      "domainPath": "n:authoring:uv",
+      "apiName": "authoringUV",
+      "source": {
+        "module": "./src/core-domains/authoring/uv/kits/authoring-uv-service-kit/index.js",
+        "exportName": "createAuthoringUVServiceKit",
+        "publicSubpath": "./domains/authoring/uv"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-curve-service-kit",
+      "domainPath": "n:authoring:curve",
+      "apiName": "authoringCurve",
+      "source": {
+        "module": "./src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js",
+        "exportName": "createAuthoringCurveServiceKit",
+        "publicSubpath": "./domains/authoring/curve"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-sculpt-service-kit",
+      "domainPath": "n:authoring:sculpt",
+      "apiName": "authoringSculpt",
+      "source": {
+        "module": "./src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/index.js",
+        "exportName": "createAuthoringSculptServiceKit",
+        "publicSubpath": "./domains/authoring/sculpt"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-brush-service-kit",
+      "domainPath": "n:authoring:brush",
+      "apiName": "authoringBrush",
+      "source": {
+        "module": "./src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js",
+        "exportName": "createAuthoringBrushServiceKit",
+        "publicSubpath": "./domains/authoring/brush"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-workspace-service-kit",
+      "domainPath": "n:authoring:workspace",
+      "apiName": "authoringWorkspace",
+      "source": {
+        "module": "./src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/index.js",
+        "exportName": "createAuthoringWorkspaceServiceKit",
+        "publicSubpath": "./domains/authoring/workspace"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-domain-contract-kit",
+      "domainPath": "n:authoring",
+      "apiName": "authoring",
+      "source": {
+        "module": "./src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js",
+        "exportName": "createAuthoringDomainContractKit",
+        "publicSubpath": "./domains/authoring/contract"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-foundation.mjs",
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-integration.mjs",
+        "tests/core-domains/core-authoring-modeling.mjs",
+        "tests/core-domains/core-authoring-public.mjs",
+        "tests/core-domains/core-authoring-surfaces-rig.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-project-document-kit",
+      "domainPath": "n:authoring:project",
+      "apiName": "authoringProject",
+      "source": {
+        "module": "./src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js",
+        "exportName": "createAuthoringProjectDocumentKit",
+        "publicSubpath": "./domains/authoring/project"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-foundation.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-mesh-document-kit",
+      "domainPath": "n:authoring:mesh",
+      "apiName": "authoringMesh",
+      "source": {
+        "module": "./src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js",
+        "exportName": "createAuthoringMeshDocumentKit",
+        "publicSubpath": "./domains/authoring/mesh"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-editing-session-kit",
+      "domainPath": "n:authoring:editing",
+      "apiName": "authoringEditing",
+      "source": {
+        "module": "./src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js",
+        "exportName": "createAuthoringEditingSessionKit",
+        "publicSubpath": "./domains/authoring/editing"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-foundation.mjs",
+        "tests/core-domains/core-authoring-geometry.mjs",
+        "tests/core-domains/core-authoring-public.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    }
+  ],
+  "commands": [
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.bake-constraints",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "clipId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sampleRate": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "clipId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "clipId",
+          "sampleRate"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.bake-morph",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "clipId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "sampleRate": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "clipId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "clipId",
+          "sampleRate"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.key",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "clipId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "key": {
+            "type": "object"
+          },
+          "removeTime": {
+            "type": "number"
+          },
+          "trackId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "clipId",
+          "trackId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "clipId",
+          "trackId",
+          "key",
+          "removeTime"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.retarget",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mapping": {
+            "type": "object"
+          },
+          "outputId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for animation.retarget; call preview to validate its documented profile.",
+            "type": "object"
+          },
+          "targetRigId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "outputId",
+          "targetRigId",
+          "mapping"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "outputId",
+          "targetRigId",
+          "mapping",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "animation",
+          "rig",
+          "shape"
+        ],
+        "writes": [
+          "animation"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:animation",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "shape"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "animation.shape",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "keys": {
+            "items": {
+              "type": "object"
+            },
+            "type": "array"
+          },
+          "meshId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "meshId",
+          "keys"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "meshId",
+          "keys"
+        ],
+        "type": "object"
+      },
+      "profile": "seconds-trs-step-linear-hermite-relative-morph-rest-aligned-retarget/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.duplicate",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "newId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nodeId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "nodeId",
+          "newId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "nodeId",
+          "newId"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.node",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "node": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "node"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "node"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.remove-node",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nodeId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "nodeId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "nodeId"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.scatter",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "count": {
+                "maximum": 10000,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "densityAttribute": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "minDistance": {
+                "default": 0,
+                "minimum": 0,
+                "type": "number"
+              },
+              "normalYMin": {
+                "default": -1,
+                "maximum": 1,
+                "minimum": -1,
+                "type": "number"
+              },
+              "offset": {
+                "default": 0,
+                "type": "number"
+              },
+              "prefix": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "prototypeNodeId": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "scaleRange": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 2,
+                "minItems": 2,
+                "type": "array"
+              },
+              "seed": {
+                "default": 0,
+                "maximum": 4294967295,
+                "minimum": 0,
+                "type": "integer"
+              },
+              "spacingGroup": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "surfaceNodeId": {
+                "minLength": 1,
+                "type": "string"
+              }
+            },
+            "required": [
+              "surfaceNodeId",
+              "prototypeNodeId",
+              "count",
+              "prefix"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:assembly",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "assembly",
+          "mesh",
+          "material",
+          "rig",
+          "skin",
+          "shape",
+          "animation"
+        ],
+        "writes": [
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "assembly.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "right-handed-y-up-shared-asset-hierarchies/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:brush",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "brush"
+        ],
+        "writes": [
+          "brush"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "brush.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "distance-resampled-pressure-symmetry/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:brush",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "brush"
+        ],
+        "writes": [
+          "brush"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "brush.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "distance-resampled-pressure-symmetry/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:curve",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "curve"
+        ],
+        "writes": [
+          "curve"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "curve.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "polyline-cubic-bezier-parallel-transport-sweep/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:curve",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "curve"
+        ],
+        "writes": [
+          "curve"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "curve.point",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "point": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "point"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "point"
+        ],
+        "type": "object"
+      },
+      "profile": "polyline-cubic-bezier-parallel-transport-sweep/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:curve",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "curve"
+        ],
+        "writes": [
+          "curve"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "curve.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "polyline-cubic-bezier-parallel-transport-sweep/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:curve",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "curve"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "curve.sweep",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "outputId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for curve.sweep; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "outputId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "outputId",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "polyline-cubic-bezier-parallel-transport-sweep/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:domain-composition",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "domain-composition"
+        ],
+        "writes": [
+          "domain-composition"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "domain-composition.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "trusted-core-registry-composition-tree/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:domain-composition",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "domain-composition"
+        ],
+        "writes": [
+          "domain-composition"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "domain-composition.node",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "node": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "node"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "node"
+        ],
+        "type": "object"
+      },
+      "profile": "trusted-core-registry-composition-tree/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:domain-composition",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "domain-composition"
+        ],
+        "writes": [
+          "domain-composition"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "domain-composition.remove-node",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "nodeId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "nodeId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "nodeId"
+        ],
+        "type": "object"
+      },
+      "profile": "trusted-core-registry-composition-tree/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:domain-composition",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "domain-composition"
+        ],
+        "writes": [
+          "domain-composition"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "domain-composition.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "trusted-core-registry-composition-tree/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:editing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh",
+          "assembly",
+          "selection",
+          "object-selection"
+        ],
+        "writes": [
+          "selection"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "editing.modify",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "action": {
+            "enum": [
+              "add",
+              "remove",
+              "toggle",
+              "expand",
+              "contract",
+              "connected",
+              "loop",
+              "ring"
+            ]
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "action"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "fields": [
+          "id",
+          "expectedRevision",
+          "action",
+          "ids"
+        ]
+      },
+      "profile": "adjacency-selection-quad-loops/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:editing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh",
+          "assembly",
+          "selection",
+          "object-selection"
+        ],
+        "writes": [
+          "object-selection"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "editing.object-select",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "assemblyId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "assemblyId",
+          "ids"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "fields": [
+          "id",
+          "expectedRevision",
+          "assemblyId",
+          "ids"
+        ]
+      },
+      "profile": "assembly-instance-selection/1",
+      "requiredKits": [
+        "authoring-assembly-service-kit"
+      ],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:editing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh",
+          "assembly",
+          "selection",
+          "object-selection"
+        ],
+        "writes": [
+          "selection"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "editing.select",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "ids": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "meshId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mode": {
+            "enum": [
+              "object",
+              "vertex",
+              "edge",
+              "face"
+            ]
+          }
+        },
+        "required": [
+          "id",
+          "meshId",
+          "mode",
+          "ids"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "fields": [
+          "id",
+          "expectedRevision",
+          "meshId",
+          "mode",
+          "ids"
+        ]
+      },
+      "profile": "explicit-element-selection/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:material",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "material"
+        ],
+        "writes": [
+          "material"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "material.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "metallic-roughness-pbr-constant-checker-value-noise-mix/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:material",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "material"
+        ],
+        "writes": [
+          "material"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "material.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "metallic-roughness-pbr-constant-checker-value-noise-mix/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.attribute",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "attribute": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "attribute"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "attribute"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.create",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mesh": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "mesh"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "mesh"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.cube",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "size": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "size"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.primitive",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "depthSegments": {
+                "default": 1,
+                "maximum": 512,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "height": {
+                "default": 2,
+                "maximum": 1000000000,
+                "minimum": 0.000001,
+                "type": "number"
+              },
+              "minorRadius": {
+                "default": 0.35,
+                "minimum": 0.000001,
+                "type": "number"
+              },
+              "radius": {
+                "default": 1,
+                "maximum": 1000000000,
+                "minimum": 0.000001,
+                "type": "number"
+              },
+              "rings": {
+                "default": 16,
+                "maximum": 512,
+                "minimum": 3,
+                "type": "integer"
+              },
+              "segments": {
+                "default": 32,
+                "maximum": 512,
+                "minimum": 3,
+                "type": "integer"
+              },
+              "size": {
+                "default": 2,
+                "maximum": 1000000000,
+                "minimum": 0.000001,
+                "type": "number"
+              },
+              "topRadius": {
+                "maximum": 1000000000,
+                "minimum": 0,
+                "type": "number"
+              },
+              "type": {
+                "enum": [
+                  "box",
+                  "plane",
+                  "grid",
+                  "circle",
+                  "disc",
+                  "cylinder",
+                  "cone",
+                  "sphere",
+                  "torus"
+                ]
+              },
+              "widthSegments": {
+                "default": 1,
+                "maximum": 512,
+                "minimum": 1,
+                "type": "integer"
+              }
+            },
+            "required": [
+              "type"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.replace",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "mesh": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "mesh"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "mesh"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.topology",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "outputId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Operation-specific manifold, attribute, convexity and segment limits are enforced by preview before commit.",
+            "properties": {
+              "boundary": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "edges": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "faces": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "factor": {
+                "default": 0.8,
+                "exclusiveMaximum": 1,
+                "exclusiveMinimum": 0,
+                "type": "number"
+              },
+              "offset": {
+                "items": {
+                  "type": "number"
+                },
+                "maxItems": 3,
+                "minItems": 3,
+                "type": "array"
+              },
+              "operation": {
+                "enum": [
+                  "delete",
+                  "extract",
+                  "duplicate",
+                  "split",
+                  "triangulate",
+                  "weld",
+                  "fill",
+                  "extrude",
+                  "inset",
+                  "subdivide-edge",
+                  "bridge",
+                  "knife",
+                  "dissolve",
+                  "loop-cut",
+                  "bevel"
+                ]
+              },
+              "pairs": {
+                "items": {
+                  "items": {
+                    "minLength": 1,
+                    "type": "string"
+                  },
+                  "type": "array"
+                },
+                "type": "array"
+              },
+              "prefix": {
+                "minLength": 1,
+                "type": "string"
+              },
+              "segments": {
+                "maximum": 64,
+                "minimum": 2,
+                "type": "integer"
+              },
+              "tolerance": {
+                "default": 0.000001,
+                "minimum": 0,
+                "type": "number"
+              },
+              "vertices": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              },
+              "width": {
+                "default": 0.1,
+                "minimum": 0.000001,
+                "type": "number"
+              }
+            },
+            "required": [
+              "operation"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters",
+          "outputId"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:mesh",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "mesh.transform",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "coordinateFrame": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 16,
+            "minItems": 16,
+            "type": "array"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "pivot": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array"
+          },
+          "proportionalRadius": {
+            "minimum": 0,
+            "type": "number"
+          },
+          "rotation": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+          },
+          "scale": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array"
+          },
+          "selection": {
+            "type": "object"
+          },
+          "translation": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 3,
+            "minItems": 3,
+            "type": "array"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "selection",
+          "translation",
+          "rotation",
+          "scale",
+          "pivot",
+          "coordinateFrame",
+          "proportionalRadius"
+        ],
+        "type": "object"
+      },
+      "profile": "planar-manifold-polygons/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier",
+          "mesh"
+        ],
+        "writes": [
+          "modifier",
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.apply",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "meshRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "outputId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "meshRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "meshRevision",
+          "outputId"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier"
+        ],
+        "writes": [
+          "modifier"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier"
+        ],
+        "writes": [
+          "modifier"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.entry",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "entry": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "entry"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "entry"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier"
+        ],
+        "writes": [
+          "modifier"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.remove",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "entryId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "entryId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "entryId"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier"
+        ],
+        "writes": [
+          "modifier"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.reorder",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "order": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "order"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "order"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:modifier",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "modifier"
+        ],
+        "writes": [
+          "modifier"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "modifier.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.bake",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "layerId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "materialId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "materialId",
+          "layerId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "materialId",
+          "layerId"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.bake-normal",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "layerId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "materialId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "strength": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "materialId",
+          "layerId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "materialId",
+          "layerId",
+          "strength"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.fill",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "color": {
+            "items": {
+              "type": "number"
+            },
+            "maxItems": 4,
+            "minItems": 4,
+            "type": "array"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "layerId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "layerId",
+          "color"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "layerId",
+          "color"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "image",
+          "material"
+        ],
+        "writes": [
+          "image"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.stroke",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for paint.stroke; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:paint",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "paint.vertex-color",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "values": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "values"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "values"
+        ],
+        "type": "object"
+      },
+      "profile": "rgba8-64px-tiles-linear-compositing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:publishing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "publishing"
+        ],
+        "writes": [
+          "publishing"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "publishing.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "evaluated-pbr-rig-animation-packet/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:publishing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "publishing"
+        ],
+        "writes": [
+          "publishing"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "publishing.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "evaluated-pbr-rig-animation-packet/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:rig",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "rig"
+        ],
+        "writes": [
+          "rig"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "rig.bone",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "bone": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "bone"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "bone"
+        ],
+        "type": "object"
+      },
+      "profile": "trs-bones-local-copy-lookat-ccd-ik/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:rig",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "rig"
+        ],
+        "writes": [
+          "rig"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "rig.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "trs-bones-local-copy-lookat-ccd-ik/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:rig",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "rig"
+        ],
+        "writes": [
+          "rig"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "rig.remove-bone",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "boneId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "boneId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "boneId"
+        ],
+        "type": "object"
+      },
+      "profile": "trs-bones-local-copy-lookat-ccd-ik/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:rig",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "rig"
+        ],
+        "writes": [
+          "rig"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "rig.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "trs-bones-local-copy-lookat-ccd-ik/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:sculpt",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "sculpt.stroke",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for sculpt.stroke; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "fixed-topology-reversible-brush-deltas/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:sequence",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "sequence"
+        ],
+        "writes": [
+          "sequence"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "sequence.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "finite-before-during-after-linear-manual-advancement/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:sequence",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "sequence"
+        ],
+        "writes": [
+          "sequence"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "sequence.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "finite-before-during-after-linear-manual-advancement/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.bind",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "meshId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for skin.bind; call preview to validate its documented profile.",
+            "type": "object"
+          },
+          "rigId": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "meshId",
+          "rigId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "meshId",
+          "rigId",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.lock",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "boneIds": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "boneIds"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "boneIds"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.mirror",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "axis": {
+                "default": 0,
+                "enum": [
+                  0,
+                  1,
+                  2
+                ]
+              },
+              "boneMap": {
+                "additionalProperties": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "object"
+              },
+              "direction": {
+                "default": 1,
+                "enum": [
+                  -1,
+                  1
+                ]
+              },
+              "tolerance": {
+                "default": 0.00001,
+                "maximum": 1,
+                "minimum": 1e-9,
+                "type": "number"
+              }
+            },
+            "required": [
+              "boneMap"
+            ],
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.paint",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "boneId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "stroke": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "boneId",
+          "stroke"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "boneId",
+          "stroke"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.smooth",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "additionalProperties": false,
+            "properties": {
+              "factor": {
+                "default": 0.5,
+                "maximum": 1,
+                "minimum": 0,
+                "type": "number"
+              },
+              "iterations": {
+                "default": 1,
+                "maximum": 32,
+                "minimum": 1,
+                "type": "integer"
+              },
+              "vertices": {
+                "items": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "type": "array",
+                "uniqueItems": true
+              }
+            },
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:skin",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "skin",
+          "mesh",
+          "rig"
+        ],
+        "writes": [
+          "skin"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "skin.weights",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "values": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "values"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "values"
+        ],
+        "type": "object"
+      },
+      "profile": "linear-blend-distance-to-segment-diffused-binding/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:uv",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "uv.pack",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for uv.pack; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "corner-projections-face-island-unwrapping-grid-packing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:uv",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "uv.project",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for uv.project; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "corner-projections-face-island-unwrapping-grid-packing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:uv",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "uv.seams",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "edges": {
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "type": "array",
+            "uniqueItems": true
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "edges"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "edges"
+        ],
+        "type": "object"
+      },
+      "profile": "corner-projections-face-island-unwrapping-grid-packing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:uv",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "uv.transform",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for uv.transform; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "corner-projections-face-island-unwrapping-grid-packing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:uv",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "mesh"
+        ],
+        "writes": [
+          "mesh"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "uv.unwrap",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "parameters": {
+            "description": "Parameters for uv.unwrap; call preview to validate its documented profile.",
+            "type": "object"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "parameters"
+        ],
+        "type": "object"
+      },
+      "profile": "corner-projections-face-island-unwrapping-grid-packing/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:workspace",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "workspace"
+        ],
+        "writes": [
+          "workspace"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "workspace.close",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "documentId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "documentId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "documentId"
+        ],
+        "type": "object"
+      },
+      "profile": "document-reference-workspaces/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:workspace",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "workspace"
+        ],
+        "writes": [
+          "workspace"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "workspace.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "document-reference-workspaces/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:workspace",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "workspace"
+        ],
+        "writes": [
+          "workspace"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "workspace.open",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "documentId": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "documentId"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "documentId"
+        ],
+        "type": "object"
+      },
+      "profile": "document-reference-workspaces/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:workspace",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "workspace"
+        ],
+        "writes": [
+          "workspace"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "workspace.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "document-reference-workspaces/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    }
+  ]
+}

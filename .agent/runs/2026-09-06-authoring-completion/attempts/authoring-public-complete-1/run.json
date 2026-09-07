@@ -1,0 +1,112 @@
+{
+  "id": "authoring-public-complete-1",
+  "goal": "Verify current authoring implementation",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "complete",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:00.742Z",
+      "completedAt": "2026-09-07T02:10:00.785Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:00.786Z",
+      "completedAt": "2026-09-07T02:10:00.825Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:00.826Z",
+      "completedAt": "2026-09-07T02:10:00.829Z",
+      "result": {
+        "ok": true,
+        "planId": "authoring-public-complete-1-plan",
+        "commandCount": 6
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:00.829Z",
+      "completedAt": "2026-09-07T02:10:00.862Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:00.863Z",
+      "completedAt": "2026-09-07T02:10:05.762Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "authoring-public-complete-1"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:05.763Z",
+      "completedAt": "2026-09-07T02:10:05.764Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "authoring-public-complete-1"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:05.765Z",
+      "completedAt": "2026-09-07T02:10:05.813Z",
+      "result": {
+        "ok": true,
+        "checkCount": 6
+      }
+    },
+    {
+      "stage": "capture-after",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:05.814Z",
+      "completedAt": "2026-09-07T02:10:05.843Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "observed-differences",
+      "ok": true,
+      "startedAt": "2026-09-07T02:10:05.844Z",
+      "completedAt": "2026-09-07T02:10:05.846Z",
+      "result": {
+        "ok": true,
+        "structuredChanges": 0,
+        "visualChanges": 0
+      }
+    }
+  ],
+  "completedAt": "2026-09-07T02:10:05.846Z"
+}

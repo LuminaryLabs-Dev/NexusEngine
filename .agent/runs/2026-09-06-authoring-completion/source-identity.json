@@ -1,0 +1,10 @@
+{
+  "repositories": {
+    "NexusEngine": "bacc8fc0073bf92910e26776a6695d2b8ec45858",
+    "NexusEngine-Editor": "2c87650436c332324f6c74d87f774a152e3aa8a2",
+    "NexusEngine-Kits": "2ef76f03c9f9713415bf9cc22757319058a0ef47"
+  },
+  "inputSha256": "b40464768b0920c69404e78d5a4551a03a63ea5aad8729e47ce5f59967481235",
+  "node": "v24.19.0",
+  "reconstruction": true
+}

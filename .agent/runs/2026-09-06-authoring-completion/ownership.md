@@ -1,0 +1,15 @@
+# Composition and bounded reconstruction contracts
+
+Exact source is recorded in source-identity.json. No Authoring implementation exists at that Engine commit. The supplied plan fixes the overall outcome and mutation envelope; individual capability contracts are frozen before their material implementation.
+
+## First prerequisite: Constraints repair, revision 1
+
+Owner: n:physics:constraints. Ten stateless descriptor kits own normalization; constraint-break-kit owns pure threshold evaluation; constraint-registry-kit exclusively owns records, lifecycle and operation receipts. Public identities and parameter schemas remain unchanged. Body references consume the public physicsBodyRegistry API. Constraints never solves motion or deletes bodies. Exact retry returns the retained receipt; conflicting requests and stale revisions fail before mutation. Snapshots validate atomically. Explicit reset clears the registry; generic Runtime snapshot semantics are preserved. All twelve installed kits, public exports, reset/load, isolated engines, overflow, malformed input and terminal broken-state behavior need fresh proof. Raw inherited mutations must not bypass this contract. Preserve automatic body-removal semantics and document the explicit detachment guard. Allowed files: Constraints source and manifests, focused tests and helper, runner, generated catalog/ownership/public surfaces, active documentation. No changes to the shared Runtime command ledger in this repair.
+
+## Headless verification adapter, revision 1
+
+Owner: NexusEngine-Editor. Existing finite stage harness owns execution order and file evidence. New strict wrapper validates adapters, receipts, required evidence and terminal success. Development adapter owns trusted process execution and source-hash observations, not Engine production behavior. No source store, domain logic, persistent controller, security-sandbox or crash rollback claim. Public integration is an Editor export after proof. Existing headless API stays compatible. Required proof: all stages; missing evidence/checks; false success; reused directory; interrupted operation; stale source; real exit status; timeout/output bounds. Source patches are explicit between verification attempts.
+
+## Authoring ownership selected by the approved plan
+
+Project is the document commit authority. Typed children own schemas, operations and validation. Workspace retains references only. Editing owns selection and previews. Runtime owns engine installation and sequence execution at n:runtime:sequence. Composition owns trusted kit discovery and dependency planning. Published runtime identity/content belongs to Object/Asset; Presentation owns visible descriptors. Render/Host retain portable execution/lifecycle contracts; NexusEngine-Kits owns concrete GPU providers. Editor supplies transports, persistent storage and providers. No duplicate authoritative source store or fallback Engine is permitted. Remaining specialized public contracts will be frozen with inspected dependencies before their implementation.

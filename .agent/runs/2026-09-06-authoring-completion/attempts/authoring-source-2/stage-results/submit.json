@@ -1,0 +1,11 @@
+{
+  "stage": "submit",
+  "ok": true,
+  "startedAt": "2026-09-07T00:04:11.963Z",
+  "completedAt": "2026-09-07T00:04:15.041Z",
+  "result": {
+    "ok": true,
+    "submitted": true,
+    "runId": "authoring-source-2"
+  }
+}

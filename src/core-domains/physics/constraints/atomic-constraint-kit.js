@@ -1,6 +1,7 @@
 import { createDomainKit } from "../../domain-kit.js";
 import {
   assertConstraintSnapshotIdentity,
+  rejectRawConstraintMutation,
   inspectConstraintValue,
   normalizeAtomicConstraintSnapshot
 } from "./constraints-contracts.js";
@@ -36,6 +37,10 @@ export function createAtomicConstraintKit(config, specification) {
     createApi({ baseApi }) {
       const api = {
         ...baseApi,
+        update: rejectRawConstraintMutation,
+        applyCommand: rejectRawConstraintMutation,
+        configure: rejectRawConstraintMutation,
+        setDescriptor: rejectRawConstraintMutation,
         getContract: contract,
         normalize,
         inspect(input) {

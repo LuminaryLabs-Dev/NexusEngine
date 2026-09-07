@@ -1,0 +1,11 @@
+{
+  "ok": true,
+  "sourceFiles": {
+    "package.json": "sha256:449213c9bed740ac39adf49df4567dcaf1d0d10ebc3bfcb747232c75ea125575",
+    "src/core-domains/physics/constraints/constraints-contracts.js": "sha256:e4dbc1ca5c977bd32a3e28ba8eafb2b863d4017eab8e518757aefbcf52f022c6",
+    "src/core-domains/physics/constraints/atomic-constraint-kit.js": "sha256:792f30647e6453391535becb66e67bbcede9e532313cba8e82cf4f0934430de0",
+    "src/core-domains/physics/constraints/kits/constraint-registry-kit/index.js": "sha256:93a7390481fa7b766e7be3493c5098864b80098fac7c5c72d4553cfaa4b71d05",
+    "tests/run-all.mjs": "sha256:29befc7c32dccf09f2f3a6e57bfe2940cfa7b124c21f06821b228497e5568730"
+  },
+  "sourceHash": "sha256:95de48588c9e76566f40758a69c5806f2a7af0721257871e265ce5c8893cc9b0"
+}

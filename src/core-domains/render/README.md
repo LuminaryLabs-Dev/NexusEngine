@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:render`
 - Status: `stable-candidate`
-- Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+- Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 - Public entry: `nexusengine/domains/render`
 
 ## Responsibility
@@ -21,8 +21,9 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 
 - Presentation descriptor ownership
 - authored visual content
-- concrete GPU or renderer implementation
 - host surface implementation
+- raw backend handles in portable state
+- shared physical GPU ownership
 - target packaging
 
 ## Subdomains
@@ -39,6 +40,8 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `n:render:shader` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. |
 | `n:render:material` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. |
 | `n:render:camera` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. |
+| `n:render:execution` | Own realization-family semantics for portable Render work. |
+| `n:render:execution:gpu` | Own semantics common to GPU-class rendering over Host GPU resources. |
 
 ## Atomic Kits
 

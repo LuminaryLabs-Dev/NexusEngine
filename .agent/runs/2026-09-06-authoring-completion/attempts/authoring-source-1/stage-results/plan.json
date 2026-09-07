@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-09-07T00:04:03.087Z",
+  "completedAt": "2026-09-07T00:04:03.090Z",
+  "result": {
+    "ok": true,
+    "planId": "authoring-source-1-plan",
+    "commandCount": 4
+  }
+}

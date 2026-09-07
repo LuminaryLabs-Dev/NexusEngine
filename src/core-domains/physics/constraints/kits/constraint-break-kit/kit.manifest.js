@@ -10,6 +10,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/constraints/kits/constraint-break-kit/index.js",
   exportName: "createConstraintBreakKit",
   publicSubpath: "./domains/physics/constraints/break",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

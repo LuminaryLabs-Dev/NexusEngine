@@ -1,0 +1,47 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> nexusengine@0.0.4 test:release
+> node tests/release-0.0.4-run-all.mjs
+
+Checked 21 Domain manifests, 188 Domain records, and 360 atomic Kits (d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5).
+Validated executable parity for 360 manifest-backed Core Kits.
+Core boundaries ok: 1641 production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.
+Active docs ok: 86 files, 60 kit suggestions reclassified, 26 restored sources reconciled.
+Checked ownership ledger v2 {
+  sourceModules: 1604,
+  manifestProvenPublicAtoms: 360,
+  manifestOwnedInternalModules: 1219,
+  rootContractModules: 25,
+  unreviewedModules: 0,
+  violations: 0
+}
+Root module dispositions ok: 61 retired source records.
+Checked frozen ProtoKit extraction: 530 folders, 3698 classified source items.
+Test package surface ok: 428 package modules.
+Checked /workspace/scratch/52aac677ed4f/NexusEngine/docs/DSK_MANIFEST_0.0.4.json
+Checked 22 guide chapters (sha256:e7fec9e3fe648891683e0bf874c75b5873a0d05f35ecec565613d61457da3eed).
+NexusEngine Guide PDF ok: 221 nonblank, unclipped US Letter pages.
+guide basic engine example ok
+guide object placement example ok
+guide composition inspection example ok
+public-api-freeze ok
+Validated 1433 modules reachable from 428 public entrypoints.
+Core Domain manifest v2 hierarchy and proof contract ok
+core MCP registry smoke ok
+core MCP contract negative checks ok
+core MCP stdio smoke ok
+Core Composition MCP exactly-once smoke ok
+Build Domain tree: 15 subdomains, 47 atomic Kit contracts, and acyclic dependency traversal ok
+Build dependency source identity rejects moving references
+Build project immutability proof detects byte changes
+Build multi-target graphs isolate target entries while preserving whole-project immutability and successful target cache
+Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok
+Build native lowering: supported numeric Kit IR compiles with Rust parity and unsupported syntax fails closed
+Build QuickJS-NG fallback: exact source compiles and denies ambient APIs with a stable batched bridge
+Build OpenXR host: exact headers compile loader, session, input, haptics, views, swapchains, and no-runtime validation
+Build CLI repeated-target, approval, apply, and persisted no-op contracts ok
+Build MCP inspect, plan, exact approval, apply, and receipt tools ok
+Build Web targets: one verified npm dependency closure starts cleanly in web-live and web-static
+domain-owned Core catalog smoke ok
+core Object Placement roundtrip ok
+Passed 34 NexusEngine 0.0.4 release-candidate tests.

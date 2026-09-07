@@ -10,6 +10,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/constraints/kits/slider-constraint-kit/index.js",
   exportName: "createSliderConstraintKit",
   publicSubpath: "./domains/physics/constraints/slider",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

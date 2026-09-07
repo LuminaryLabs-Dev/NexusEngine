@@ -1,0 +1,95 @@
+{
+  "id": "engine-provider-migration-1",
+  "goal": "Verify current engine implementation",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "verify",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:07.029Z",
+      "completedAt": "2026-09-06T23:07:07.035Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:07.037Z",
+      "completedAt": "2026-09-06T23:07:07.040Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:07.041Z",
+      "completedAt": "2026-09-06T23:07:07.046Z",
+      "result": {
+        "ok": true,
+        "planId": "engine-provider-migration-1-plan",
+        "commandCount": 1
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:07.047Z",
+      "completedAt": "2026-09-06T23:07:07.050Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:07.051Z",
+      "completedAt": "2026-09-06T23:07:39.686Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "engine-provider-migration-1"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-09-06T23:07:39.687Z",
+      "completedAt": "2026-09-06T23:07:39.688Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "engine-provider-migration-1"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": false,
+      "startedAt": "2026-09-06T23:07:39.689Z",
+      "completedAt": "2026-09-06T23:07:39.692Z",
+      "error": {
+        "name": "Error",
+        "message": "check check-0 did not explicitly pass."
+      }
+    }
+  ],
+  "lastError": {
+    "name": "Error",
+    "message": "check check-0 did not explicitly pass."
+  }
+}

@@ -2,6 +2,11 @@
 
 ## Unreleased
 
+- Added `n:authoring`: 19 public kits for typed source documents, mesh/curve/modeling, selection/workspaces, brushes/sculpt, UV/material/paint, rig/skin/animation, assemblies, Composition, finite Runtime sequences and publishing packets. `AUTHORING.md` and the executable first-edit example describe supported profiles.
+- Added atomic revisions, retry receipts, bounded delta history, immutable shared snapshots, dependency validation and recovery proof across Authoring operations. External Editor adapters supply persistence, rendering, jobs and GLB/PNG encoding.
+- Repaired and proved all 12 Physics Constraints kits, including strict descriptor normalization, registry retries, stale revisions, break transitions and atomic restoration. Body detachment remains an explicit guard workflow; no solver was introduced.
+- Moved concrete WebGPU Host, Render, Frame and Compute providers to NexusEngine-Kits. Core retains portable provider contracts and public entrypoints; see `docs/migrations/AUTHORING-PROVIDERS.md`.
+
 - Added canonical `n:physics:body` and `n:physics:shape` ownership with provider-neutral body state and portable primitive, mesh, heightfield, compound, and scaled collision-shape semantics.
 - Added canonical `n:physics:collider` ownership for body/shape attachment, local pose, material references, collision filtering, sensors, triggers, lifecycle, and exact-once records without detection or solver execution.
 - Added canonical `n:physics:detection` ownership for deterministic broad-phase, spatial partition, dynamic-tree, sweep-and-prune, narrow-phase, GJK, EPA, continuous-collision, and normalized result semantics while keeping backend execution replaceable.

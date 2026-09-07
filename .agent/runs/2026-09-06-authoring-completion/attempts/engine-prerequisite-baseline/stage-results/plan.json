@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-09-06T23:00:43.680Z",
+  "completedAt": "2026-09-06T23:00:43.682Z",
+  "result": {
+    "ok": true,
+    "planId": "engine-prerequisite-baseline-plan",
+    "commandCount": 1
+  }
+}

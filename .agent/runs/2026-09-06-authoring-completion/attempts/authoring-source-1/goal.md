@@ -1,0 +1,1 @@
+Verify current authoring implementation

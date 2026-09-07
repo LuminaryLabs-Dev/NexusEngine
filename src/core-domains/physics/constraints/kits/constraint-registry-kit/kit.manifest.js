@@ -27,6 +27,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/constraints/kits/constraint-registry-kit/index.js",
   exportName: "createConstraintRegistryKit",
   publicSubpath: "./domains/physics/constraints/registry",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

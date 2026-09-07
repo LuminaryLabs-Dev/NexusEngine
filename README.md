@@ -9,6 +9,10 @@ targets, artifacts, and proof without entering the application runtime graph.
 
 ## Start Here
 
+To create and edit objects, meshes, materials, rigs and animation, start with
+[Authoring](AUTHORING.md). It covers the portable Core API and the real local
+Editor host, persistence, preview and GLB export.
+
 1. Read the [NexusEngine Guide](docs/NexusEngine-Guide.md), or use the generated
    [PDF](docs/NexusEngine-Guide.pdf).
 2. Use the [documentation router](docs/README.md) for contracts and migrations.

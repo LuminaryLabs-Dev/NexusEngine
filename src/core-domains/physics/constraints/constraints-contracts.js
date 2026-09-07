@@ -63,8 +63,24 @@ function normalizeSignedZero(value) {
   return Object.is(value, -0) ? 0 : value;
 }
 
+function assertDenseConstraintArrays(value, label, visited = new WeakSet()) {
+  if (!value || typeof value !== "object" || visited.has(value)) return;
+  visited.add(value);
+  if (Array.isArray(value)) {
+    for (let i = 0; i < value.length; i += 1) {
+      if (!Object.hasOwn(value, i)) throw new TypeError(`${label} cannot contain sparse arrays.`);
+    }
+  }
+  for (const key of Object.keys(value)) assertDenseConstraintArrays(value[key], label, visited);
+}
+
+export function rejectRawConstraintMutation() {
+  throw new TypeError("Use the typed Physics constraint operations; raw mutation is unsupported.");
+}
+
 export function canonicalConstraintValue(value, label = "constraint value") {
   try {
+    assertDenseConstraintArrays(value, label);
     return normalizeSignedZero(canonicalizePortableValue(value, label));
   } catch (error) {
     throw new TypeError(`${label} must be JSON-portable: ${error.message}`);
@@ -101,12 +117,12 @@ export function requireConstraintNumber(value, label, { minimum = -Infinity, max
 }
 
 export function requireConstraintNonnegativeInteger(value, label) {
-  if (!Number.isInteger(value) || value < 0) throw new TypeError(`${label} must be a nonnegative integer.`);
+  if (!Number.isSafeInteger(value) || value < 0) throw new TypeError(`${label} must be a nonnegative integer.`);
   return value;
 }
 
 export function requireConstraintPositiveInteger(value, label) {
-  if (!Number.isInteger(value) || value < 1) throw new TypeError(`${label} must be a positive integer.`);
+  if (!Number.isSafeInteger(value) || value < 1) throw new TypeError(`${label} must be a positive integer.`);
   return value;
 }
 
@@ -130,15 +146,16 @@ function normalizeEnum(value, allowed, fallback, label) {
 export function normalizeConstraintVector(value, label, fallback = [0, 0, 0]) {
   const source = value ?? fallback;
   if (!Array.isArray(source) || source.length !== 3) throw new TypeError(`${label} must be a three-number array.`);
-  return source.map((entry, index) => requireConstraintNumber(entry, `${label}[${index}]`));
+  return Array.from(source, (entry, index) => requireConstraintNumber(entry, `${label}[${index}]`));
 }
 
 export function normalizeConstraintAxis(value, label, fallback = [1, 0, 0]) {
   const axis = normalizeConstraintVector(value, label, fallback);
-  const magnitude = Math.hypot(...axis);
-  if (magnitude <= 1e-12) throw new TypeError(`${label} must have nonzero length.`);
+  const scale = Math.max(...axis.map(Math.abs));
+  const magnitude = Math.hypot(...axis.map(entry => entry / (scale || 1)));
+  if (scale <= 1e-12 / magnitude || scale === 0) throw new TypeError(`${label} must have nonzero length.`);
   return axis.map((entry) => {
-    const normalized = entry / magnitude;
+    const normalized = (entry / scale) / magnitude;
     return Object.is(normalized, -0) ? 0 : normalized;
   });
 }
@@ -146,10 +163,11 @@ export function normalizeConstraintAxis(value, label, fallback = [1, 0, 0]) {
 export function normalizeConstraintQuaternion(value, label, fallback = [0, 0, 0, 1]) {
   const source = value ?? fallback;
   if (!Array.isArray(source) || source.length !== 4) throw new TypeError(`${label} must be a four-number array.`);
-  const quaternion = source.map((entry, index) => requireConstraintNumber(entry, `${label}[${index}]`));
-  const magnitude = Math.hypot(...quaternion);
-  if (magnitude <= 1e-12) throw new TypeError(`${label} must have nonzero length.`);
-  const normalized = quaternion.map((entry) => entry / magnitude);
+  const quaternion = Array.from(source, (entry, index) => requireConstraintNumber(entry, `${label}[${index}]`));
+  const scale = Math.max(...quaternion.map(Math.abs));
+  const magnitude = Math.hypot(...quaternion.map(entry => entry / (scale || 1)));
+  if (scale <= 1e-12 / magnitude || scale === 0) throw new TypeError(`${label} must have nonzero length.`);
+  const normalized = quaternion.map((entry) => (entry / scale) / magnitude);
   const decisive = [normalized[3], normalized[0], normalized[1], normalized[2]].find((entry) => Math.abs(entry) > 1e-12) ?? 1;
   const sign = decisive < 0 ? -1 : 1;
   return normalized.map((entry) => {
@@ -396,12 +414,18 @@ export function normalizeConstraintDescriptor(input = {}, expectedType, normaliz
   };
 }
 
+export function requireConstraintOperationId(value, label) {
+  const id = requireConstraintText(value, label);
+  if (Object.hasOwn(Object.prototype, id)) throw new TypeError(`${label} is a reserved operation ID.`);
+  return id;
+}
+
 function normalizeCommandBase(input, allowedFields, schema, label) {
   requireConstraintObject(input, label);
   rejectConstraintFields(input, ["schema", "operationId", ...allowedFields], label);
   const value = canonicalConstraintValue(input, label);
   value.schema = normalizeSchema(value.schema, schema, label);
-  value.operationId = requireConstraintText(value.operationId, `${label}.operationId`);
+  value.operationId = requireConstraintOperationId(value.operationId, `${label}.operationId`);
   return value;
 }
 
@@ -531,8 +555,9 @@ export function normalizeConstraintStateSnapshot(snapshot, { domain, fields = []
   const hasOperationReceipts = value.operationReceipts !== undefined;
   const receipts = value.operationReceipts ?? {};
   requireConstraintObject(receipts, `${domain} snapshot.operationReceipts`);
-  const normalizedReceipts = {};
+  const normalizedReceipts = Object.create(null);
   for (const operationId of Object.keys(receipts).sort()) {
+    requireConstraintOperationId(operationId, `${domain} operation ID`);
     const receipt = receipts[operationId];
     requireConstraintObject(receipt, `${domain} operation receipt ${operationId}`);
     rejectConstraintFields(receipt, ["schema", "operationId", "requestHash", "kitId", "revision", "result"], `${domain} operation receipt ${operationId}`);
@@ -579,7 +604,7 @@ export function normalizeConstraintRegistrySnapshot(snapshot, normalize = normal
     fields: ["constraints", "order", "constraintRevision"],
     validate(value) {
       requireConstraintObject(value.constraints, "Physics constraint registry snapshot.constraints");
-      const constraints = {};
+      const constraints = Object.create(null);
       let liveRevisionTotal = 0;
       for (const id of Object.keys(value.constraints).sort()) {
         const record = normalizeConstraintRecord(value.constraints[id], normalize);
@@ -587,7 +612,7 @@ export function normalizeConstraintRegistrySnapshot(snapshot, normalize = normal
           throw new TypeError(`Physics constraint registry snapshot key ${id} must match constraint.id.`);
         }
         constraints[id] = record;
-        liveRevisionTotal += record.revision;
+        liveRevisionTotal = requireConstraintNonnegativeInteger(liveRevisionTotal + record.revision, "Physics constraint live revision total");
       }
       value.constraints = constraints;
       const order = Object.keys(constraints).sort();

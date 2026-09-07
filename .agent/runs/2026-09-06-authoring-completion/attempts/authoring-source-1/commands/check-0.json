@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-authoring-foundation.mjs"
+  ],
+  "code": 1,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "file:///workspace/scratch/52aac677ed4f/NexusEngine/src/core-domains/authoring/domain.manifest.js:7\nimport domain-compositionManifest from \"./domain-composition/kits/authoring-domain-composition-service-kit/kit.manifest.js\";\n             ^\n\nSyntaxError: Unexpected token '-'\n    at compileSourceTextModule (node:internal/modules/esm/utils:318:16)\n    at ModuleLoader.moduleStrategy (node:internal/modules/esm/translators:89:18)\n    at #translate (node:internal/modules/esm/loader:434:20)\n    at afterLoad (node:internal/modules/esm/loader:502:29)\n    at ModuleLoader.loadAndTranslate (node:internal/modules/esm/loader:507:12)\n    at #getOrCreateModuleJobAfterResolve (node:internal/modules/esm/loader:560:36)\n    at afterResolve (node:internal/modules/esm/loader:607:52)\n    at ModuleLoader.getOrCreateModuleJob (node:internal/modules/esm/loader:613:12)\n    at ModuleJob.syncLink (node:internal/modules/esm/module_job:163:33)\n    at ModuleJob.link (node:internal/modules/esm/module_job:253:17)\n\nNode.js v24.19.0\n"
+}

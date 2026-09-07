@@ -1,0 +1,18 @@
+{
+  "status": "in-progress",
+  "required": [
+    "focused strict harness tests",
+    "Constraints descriptor/registry/installed/public tests",
+    "existing Physics tests",
+    "Engine full gate set",
+    "Editor intent/build/browser",
+    "Kits check",
+    "all Authoring family tests",
+    "independent GLB reload and render",
+    "clean packed and exact-commit consumers"
+  ],
+  "pass": "Every material check executed and passed against current source",
+  "failed": "Any assertion or observed behavior mismatch",
+  "blocked": "Required external execution/source inaccessible",
+  "partial": "Some components proven; remaining delivery requirements unimplemented or unverified"
+}

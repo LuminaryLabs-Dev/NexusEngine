@@ -67,14 +67,7 @@ export const hostDomainManifest = defineCoreDomainManifest(manifestShell({
       proofReferences: hostProof
     })
   ],
-  providers: [{
-    id: "webgpu-gpu-host-provider",
-    domainPath: "n:host:gpu",
-    responsibility: "Realize a shared Host GPU environment through WebGPU while keeping GPUAdapter, GPUDevice, GPUBuffer, GPUTexture, and GPUQueue objects provider-private.",
-    source: { module: "./src/core-domains/host/gpu/webgpu/index.js", exportName: "createWebGPUHostProvider" },
-    environments: ["browser", "worker"],
-    proofReferences: gpuProof
-  }]
+  providers: []
 }));
 
 export default hostDomainManifest;

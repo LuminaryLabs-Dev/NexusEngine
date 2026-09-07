@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-physics-constraints-integration.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Constraints integration: twelve installed kits, public discovery, direct behavior, duplicate installation, snapshot identity, reset/load and isolated instances passed\n"
+}

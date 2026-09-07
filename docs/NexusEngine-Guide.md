@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`<br>
-Guide content SHA-256: `568dd75c66852116b269b6a4d0592ee1417d34e65a5912256f8ba27df4dbf4d4`
+Core registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`<br>
+Guide content SHA-256: `e7fec9e3fe648891683e0bf874c75b5873a0d05f35ecec565613d61457da3eed`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -14,23 +14,24 @@ This combined file is generated from `docs/guide/book.json` and modular Markdown
 2. [The NexusEngine Mental Model](#mental-model)
 3. [Build A First Runtime](#first-runtime)
 4. [Domains And Atomic Kits](#domains-atoms)
-5. [State, Lifecycle, And Idempotence](#lifecycle)
-6. [Composition And Recipes](#composition)
-7. [MCP Agent Workflow](#mcp)
-8. [Registries And Security](#registry-security)
-9. [Hosts, Providers, And Adapters](#integration-boundaries)
-10. [Build Projects And Targets](#build-domain)
-11. [Testing And Proof](#testing)
-12. [Migrating To 0.0.4](#migration)
-13. [ProtoKit Extraction](#protokit-extraction)
-14. [Release And Operating Model](#release-operation)
-15. [Generated Domain Index](#domain-index)
-16. [Generated Dependency Table](#dependency-table)
-17. [Generated Atomic API Reference](#api-reference)
-18. [Generated Ownership Ledger](#ownership-ledger)
-19. [Generated Restored Behavior Migration](#restored-behavior-migration)
-20. [Generated Root Migration Map](#root-migration-map)
-21. [Generated ProtoKit Extraction Summary](#extraction-summary)
+5. [Author Editable Source](#authoring)
+6. [State, Lifecycle, And Idempotence](#lifecycle)
+7. [Composition And Recipes](#composition)
+8. [MCP Agent Workflow](#mcp)
+9. [Registries And Security](#registry-security)
+10. [Hosts, Providers, And Adapters](#integration-boundaries)
+11. [Build Projects And Targets](#build-domain)
+12. [Testing And Proof](#testing)
+13. [Migrating To 0.0.4](#migration)
+14. [ProtoKit Extraction](#protokit-extraction)
+15. [Release And Operating Model](#release-operation)
+16. [Generated Domain Index](#domain-index)
+17. [Generated Dependency Table](#dependency-table)
+18. [Generated Atomic API Reference](#api-reference)
+19. [Generated Ownership Ledger](#ownership-ledger)
+20. [Generated Restored Behavior Migration](#restored-behavior-migration)
+21. [Generated Root Migration Map](#root-migration-map)
+22. [Generated ProtoKit Extraction Summary](#extraction-summary)
 
 ---
 
@@ -305,6 +306,291 @@ Use capability tokens for behavior dependencies and Domain paths for semantic pr
 ## Public Imports
 
 Only generated package exports are public. Production code does not import private files from sibling Domains. Cross-Domain collaboration goes through a public subpath or an explicit adapter.
+
+---
+
+<a id="authoring"></a>
+
+# Authoring
+
+`n:authoring` owns editable source for scripts, agents and editing applications.
+Its 19 kits install together through `createAuthoringDomain()`. Project is the
+single document authority; the other kits register typed source and operations.
+Use this guide to start editing. The general Engine README remains the runtime
+entry point.
+
+## Start editing in a local browser
+
+The [Editor repository](https://github.com/LuminaryLabs-Dev/NexusEngine-Editor)
+provides the real Engine host, filesystem persistence, Canvas controls, a Three
+viewport and GLB/PNG adapters. In that repository:
+
+```sh
+npm ci
+npm run authoring -- create --project /absolute/path/to/my-project
+npm run authoring -- open --project /absolute/path/to/my-project
+```
+
+Open the printed localhost URL. Create a cube, select its object in the outliner,
+use the transform gizmo or the box face edit, undo/redo, save and export GLB.
+Open/New project controls save the current project before switching directories.
+The command panel accepts an array of typed operations. The CLI also exposes
+JSON-line stdio for agents:
+
+```sh
+npm run authoring -- stdio --project /absolute/path/to/my-project
+```
+
+The Authoring host requires the pinned Engine package. It never uses the Editor's
+legacy fallback runtime. The optional WebGPU implementations live in
+[NexusEngine-Kits](https://github.com/LuminaryLabs-Dev/NexusEngine-Kits); Authoring
+source has no renderer, filesystem, PNG codec, browser object or GPU handle.
+
+## Edit directly with portable JavaScript
+
+```js
+import { createEngine } from "nexusengine";
+import { createAuthoringDomain } from "nexusengine/domains/authoring";
+
+const engine = createEngine({ kits: createAuthoringDomain() });
+const project = engine.n.authoringProject;
+const command = (requestId, operations) => project.execute({
+  requestId,
+  epoch: project.context().epoch,
+  operations,
+});
+
+command("create-box", [{ id: "mesh.cube", args: { id: "box", size: 2 } }]);
+const box = project.getDocument("box");
+const preview = project.preview({
+  requestId: "raise-top",
+  epoch: project.context().epoch,
+  operations: [{
+    id: "mesh.transform",
+    args: {
+      id: box.id,
+      expectedRevision: box.revision,
+      selection: { mode: "face", ids: ["f4"] },
+      translation: [0, 0.25, 0],
+    },
+  }],
+});
+project.acceptPreview(preview);
+project.undo({ requestId: "undo-top", epoch: project.context().epoch });
+project.redo({ requestId: "redo-top", epoch: project.context().epoch });
+const savedSource = project.getSnapshot();
+```
+
+The same workflow is executable in `examples/authoring/first-edit.mjs`. Pure Core
+scripts need no window or background process. An application host is needed for
+persistence, transport, background jobs and preview. Documents do not start a
+second runtime.
+
+## Discover paths, kits and commands
+
+```js
+engine.n.ownerOf("n:authoring:mesh"); // authoring-mesh-document-kit
+engine.n.api("authoringMesh");       // installed API metadata and owner
+project.kinds();                     // installed source schemas
+project.tools();                     // commands, paths, inputs, effects and limits
+project.tools().filter(tool => tool.domainPath === "n:authoring:mesh");
+```
+
+Commands are addressed by their discovered operation ID and carry their owning
+Domain path. API aliases such as `engine.n.authoringMesh` are registered by the
+same manifests. Do not turn a path into a private filesystem import. All public
+factory subpaths are under `nexusengine/domains/authoring`; the generated catalog
+contains their exact mappings.
+
+`tools()` includes an input schema, accepted field list, profile, document reads
+and writes, cancellation boundary, common errors and receipt schema. Complex
+source schemas and geometric preconditions also require `project.preview()`;
+a JSON-schema check alone does not validate prospective topology or references.
+Kit installation is trusted application code. Project files never deserialize
+functions or authorize remote registry execution.
+
+## Document and transaction rules
+
+- A document has `id`, `kind`, `schemaVersion`, monotonic `revision`, immutable
+  `content`, typed `dependencies` and a canonical SHA-256 content hash.
+- A request has a nonempty `requestId`, current `epoch` and 1–256 operations.
+  Edits and deletions require the target revision from before the transaction.
+  `expectedRevision: 0` is only for editing a document created earlier in that
+  same staged transaction.
+- Repeating a retained request with identical content returns its original
+  receipt. Reusing the ID with different content fails. A stale revision or
+  unknown old epoch fails before commit.
+- Operations stage together. Schema, dependency kinds, reference cycles, element
+  references and cross-document invariants are checked against the complete
+  prospective state. Failure changes neither source nor receipts/history.
+- Built-in source dependencies use `latest` references. Exact revision references
+  in extension schemas require an explicit typed rebase; restoring a snapshot
+  must not silently rewrite such references.
+- Undo/redo retains changed document versions and shares unchanged immutable
+  mesh elements. A new edit clears redo; a no-op preserves redo. Snapshots copy
+  portable source by default; `getSnapshot({immutable:true})` shares validated
+  read-only document versions for serialization. Default history retention is 128 entries.
+- Reset destroys source and starts a new epoch. Restore validates the full
+  snapshot and history, allocates fresh current revisions/epoch, and retains
+  historical receipts. Default receipt capacity is 10,000; overflow is explicit.
+- Restored source requires its kind implementations to be installed. Unknown
+  schema versions fail explicitly. There is no earlier published Authoring
+  format that is silently migrated into this format.
+
+Child service snapshots identify their installed registration; reset disposes
+transient evaluation caches or Runtime executions and preserves source.
+Project alone snapshots/restores/resets editable documents and history.
+
+A receipt distinguishes the committed mutation from subsequent export or visual
+review. It contains request identity, before/after clocks, changed document
+identities, operation results, validation and recovery information. Successful
+transport delivery alone does not establish valid geometry or visual quality.
+
+## Capability profiles
+
+Every row below names implemented behavior. Algorithm limits are intentional,
+and unsupported inputs fail before replacing source. This is a source editing
+system with a minimal client; it does not claim Blender feature parity.
+
+| Child path under `n:authoring` | Source and supported operations | Boundary |
+| --- | --- | --- |
+| Root / Project | Contract, schema registration, documents, discovery, transactions, previews, receipts, history, snapshots, recovery | One Project writer; portable source only |
+| `workspace` | Open document references, active document, named view references, mode and tool; open/close/set/delete | Closing a view never deletes its source; no new root Workspace domain |
+| `editing` | Vertex/edge/face selection; assembly-instance selection; add/remove/toggle, expand/contract, connected, quad loops/rings | Selected elements and objects must remain valid after a transaction |
+| `mesh` | Box, plane/grid, circle/disc, cylinder/cone, sphere, torus; translation, quaternion rotation, scale, pivot, coordinate frame, proportional falloff | 100,000 vertices / 200,000 faces; finite coordinates within ±1e12; Y-up source |
+| `mesh` topology | Delete, extract, duplicate, split, triangulate, explicit weld, fill, extrude, inset, edge subdivision, bridge, loop cut, knife chord, dissolve, convex bevel | Details below; attribute preservation or explicit rejection |
+| `curve` | Polyline/cubic Bézier points, adaptive evaluation, parallel-transport tube sweep, caps and closed sweeps | Up to 10,000 controls / 100,000 evaluated samples; 180-degree cusps reject |
+| `modifier` | Ordered enabled stacks; mirror, array, Catmull–Clark subdivision, solidify, smooth, shrinkwrap, twist/taper/bend, Boolean, decimation, remesh; reorder/remove/apply | Evaluated output is separate until an atomic Apply |
+| `brush` | Distance-based sampling, pressure, constant/linear/smooth falloff, axis symmetry | Finite explicit stroke and sample budgets |
+| `sculpt` | Grab, inflate, smooth, flatten, mask and layer strength; preview and history | Fixed topology; no dynamic-topology sculpting |
+| `uv` | Planar, cylindrical, spherical, toroidal and face projections; seam flags; per-face unwrap, island detection, packing and transforms | Per-face unwrap is not LSCM; padding must fit the requested resolution |
+| `uv` diagnostics | Degenerate/mirrored triangles, area ratios, conformal stretch and positive-area overlap | Bounded overlap candidate checks; boundary contacts are excluded |
+| `material` | Metallic-roughness PBR, five texture roles, samplers, alpha/cutoff, double sided, emissive; constant/checker/noise/multiply/mix graphs | Unsupported shader nodes reject; procedural color must bake before delivery |
+| `paint` | RGBA8 tiled layers, linear-space compositing, fill, brush strokes, clone offsets, vertex colors, procedural color and normal baking | 64×64 tiles; 1–4096 image dimensions, 1–16 layers; synchronous bake ≤1M pixels |
+| `rig` | Bone hierarchy, rest transforms, parent/cycle validation, add/update/remove; pose limits, copy, look-at and CCD IK evaluation | ≤512 bones; bounded IK; look-at/IK require positive uniform scales |
+| `skin` | Explicit bind matrices, inverse-distance-to-segment binding and diffusion; normalized weights, locked influences, brush painting, smoothing, mirroring and LBS evaluation | 1–32 source influences; topology/rest changes require a same-transaction rebind/remap |
+| `animation` | Seconds-based clips, STEP/LINEAR/CUBICSPLINE TRS tracks, quaternion interpolation, key editing, poses, relative shape keys, clip arrangements | Later arrangement entries override the same property; no implicit timeline clock |
+| `animation` conversion | Explicit one-to-one rest-aligned retarget; constraint bake; common-timeline morph bake | Checks interval quarter/midpoints against 0.001 source-unit, 0.1-degree and 0.0001 scale tolerances; this is sampled evidence, not a continuous mathematical bound |
+| `assembly` | Shared assets, nested transforms, collections, visibility/export flags, variants, cameras/lights, instance duplicate/remove/update, surface scatter | Static scatter prototypes, area-weighted seeded placement, density mask, normal alignment, spacing, scale/orientation variation |
+| `domain-composition` | Discover trusted Core registry, author/validate trees, add/remove nodes, plan composition | Reuses public Composition contracts; no remote code execution |
+| `sequence` | Source definitions with Before/During/After, bounded steps and named operation arrays; current Runtime execution integration | Finite Linear manual advancement; no automatic agent planning loop |
+| `publishing` | Immutable evaluated packet, source hashes/revisions, object/asset/presentation descriptors, geometry, PBR images, rigs/skins/clips/shapes, dependency closure, bounded cache | External adapters encode files; four influences by default, explicit measured reduction if requested |
+
+### Mesh topology and attributes
+
+Vertices, faces, corners and deterministic edges have stable identities. The
+mesh validator rejects nonmanifold edges, disconnected vertex fans, degenerate
+edges, self-intersecting polygon boundaries and invalid references. Concave
+planar polygons use ear clipping. Nonplanar quads have deterministic projected
+triangulation; nonplanar polygons with more than four corners must be explicitly
+triangulated before deformation. Global triangle-to-triangle self-intersection
+is not a general validity claim.
+
+Numeric vertex/corner attributes interpolate through declared remapping. Parent
+face values copy. Unparented new edges have no invented seam/crease values.
+Reserved attributes are `uv0` (corner/2), `color` (vertex/4), `mask` (vertex/1),
+`material` (face/1), and `seam`, `sharp`, `crease` (edge/1). Bound skin and shape
+source reject incompatible topology changes until explicitly rebuilt together.
+
+- Inset: one strictly convex face. Extrude: selected face region and boundary walls.
+- Weld: explicit removed/retained pairs within tolerance; no silent face collapse.
+- Bridge: two matching ordered loops. Loop cut: a noncrossing quad strip, 2–32 segments.
+- Knife: chord between two existing nonadjacent vertices of one face.
+- Dissolve: one interior edge with compatible face/corner attributes; discontinuities reject.
+- Bevel: flat chamfer on selected edges of a closed convex solid, at most 64
+  original/chamfer planes. Run before attribute authoring; this profile rejects
+  meshes with authored attributes rather than inventing UV/weight transfer.
+
+Evaluated geometry splits source corners as needed, generates smooth/hard-edge
+normals, UVs, tangent handedness, colors and material groups. These arrays are
+portable; they are not renderer-owned buffers.
+
+### Modifier limits
+
+Mirror seam merging requires a half-space source. Subdivision uses binary crease
+and boundary rules, up to four levels within the mesh budget. Shrinkwrap uses an
+AABB tree with exact triangle-distance leaves and a 10M test budget. Boolean is
+BSP CSG on closed outward manifolds, ≤4,000 faces per operand, bounded depth and
+edge conformity. Decimation uses validated edge collapse on ≤5,000 vertices and
+protects supported boundaries/seams/creases. Remesh is subdivision, triangulation
+and relaxation; it is not a voxel remesher.
+
+### Animation and delivery
+
+Retargeting requires explicit bone mappings. Constraint-bearing rigs require
+clips baked against the current rig identity before publishing. Editing a baked
+key invalidates that bake receipt. Morph tracks must share key times and
+interpolation for GLB; continuous tracks can be baked to a common timeline.
+STEP discontinuities are preserved or explicitly rejected by conversion profiles.
+
+The Editor GLB adapter writes actual glTF 2.0 binary buffers, PBR material/texture
+bindings, embedded PNGs, standalone PNGs, hierarchy, joints, inverse bind matrices,
+weights, clips, shape position/normal deltas, cameras and punctual lights. It
+validates with Khronos before atomically publishing a content-addressed directory.
+An independent Three GLTFLoader renders the resulting bytes and samples animation.
+A validator warning remains visible in the receipt; it is not discarded.
+
+The packet/source revision check runs again at publication. Stale output is not
+committed as current output. Cancellation cleans staging directories. FBX and
+arbitrary Blender node compatibility are not implemented format profiles.
+
+## Sequences and durable hosts
+
+`engine.n.authoringSequence.start(id, { runId })` creates a finite execution owned
+by existing `n:runtime:sequence`. `request(stepId)` prepares the active Project
+request; `acknowledge(stepId, receipt)` requires the actual retained Project
+receipt. The Editor host executes and journals that request before acknowledging
+it. `advance(stepId)` is the direct synchronous Core convenience path.
+
+Ticks do not advance manually driven Authoring leaves. Wrong-step targeting,
+changed request content and invalid operations fail. Successful or failed runs
+release Runtime nodes; receipts remain available. Cancellation stops the bounded
+run. A caller or agent inspects results and plans a later run. The declared
+attempt budget is source metadata, not an automatic retry/replanning controller.
+
+## Persistence and background work
+
+Filesystem projects contain `project.json`, content-addressed `documents/`,
+`blobs/`, `checkpoints/`, and an ordered hash-chained `journal.jsonl`. Checkpoints
+include source/history and reference image tiles as blobs. An exclusive local
+writer session and generation checks prevent accidental competing saves. Files
+and parent directories are synced before manifest replacement. A failed manifest
+write preserves the previous checkpoint. Missing/corrupt records fail explicitly.
+
+Browser IndexedDB storage is a separate explicit-save profile with atomic
+transactions and generation checks. It does not claim the Node journal/lease
+profile or cross-device collaboration.
+
+The Editor worker adapter bounds concurrency, queued work, time, V8 heap and
+transfer size. It reports stages, supports cancellation/termination/restart, and
+checks source revisions before committing a derived mesh or image. Large derived
+image edits checkpoint directly when they exceed the journal frame profile.
+Closing a host cancels its workers. These are resource budgets, not an operating
+system security sandbox.
+
+## Proofs and reproducible examples
+
+Core tests run normally through `npm test`:
+
+- `tests/core-domains/core-authoring-public.mjs`
+- `tests/core-domains/core-authoring-foundation.mjs`
+- `tests/core-domains/core-authoring-geometry.mjs`
+- `tests/core-domains/core-authoring-surfaces-rig.mjs`
+- `tests/core-domains/core-authoring-integration.mjs`
+- `tests/core-domains/core-authoring-modeling.mjs`
+
+Editor recipes and tests exercise the actual packed Engine dependency. The donut
+recipe creates geometry, icing, UVs, color/normal maps and seeded sprinkles through
+installed commands. Mechanical and organic recipes cover bevels, shared parts,
+rigging, weights, clips and shape keys. The headless development harness records
+source hashes, bounded commands, failures and all nine verification stages.
+
+The Engine capability/command inventory and Editor evidence record distinguish
+contract proof, rendered output and measured workload limits. Batch checks at
+1, 10 and 100 jobs establish bounded isolation/retry/resume behavior. They do not
+establish throughput or quality at hundreds of thousands of scenes. Multiple
+users, distributed asset services, larger meshes, 8K images, full Blender workspaces
+and production-scale deployment require additional measured profiles.
 
 ---
 
@@ -1037,7 +1323,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -1045,6 +1331,25 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
+- `n:authoring`: Own editable source documents and typed editing operations.
+- `n:authoring:modifier`: Own modifier authoring contracts and operations.
+- `n:authoring:publishing`: Own publishing authoring contracts and operations.
+- `n:authoring:sequence`: Own sequence authoring contracts and operations.
+- `n:authoring:domain-composition`: Own domain-composition authoring contracts and operations.
+- `n:authoring:assembly`: Own assembly authoring contracts and operations.
+- `n:authoring:animation`: Own animation authoring contracts and operations.
+- `n:authoring:skin`: Own skin authoring contracts and operations.
+- `n:authoring:rig`: Own rig authoring contracts and operations.
+- `n:authoring:paint`: Own paint authoring contracts and operations.
+- `n:authoring:material`: Own material authoring contracts and operations.
+- `n:authoring:uv`: Own uv authoring contracts and operations.
+- `n:authoring:curve`: Own curve authoring contracts and operations.
+- `n:authoring:sculpt`: Own sculpt authoring contracts and operations.
+- `n:authoring:brush`: Own brush authoring contracts and operations.
+- `n:authoring:workspace`: Own workspace authoring contracts and operations.
+- `n:authoring:project`: Own editable project contracts and operations.
+- `n:authoring:mesh`: Own editable mesh contracts and operations.
+- `n:authoring:editing`: Own editable editing contracts and operations.
 - `n:build`: Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.
 - `n:build:source`: Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.
 - `n:build:analysis`: Own real syntax, type, effect, and dependency analysis for build inputs.
@@ -1062,10 +1367,44 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 - `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
 - `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
-- `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
-- `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.
+- `n:compute`: Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.
+- `n:compute:graph`: Own portable compute topology, dependencies, and deterministic plans.
+- `n:compute:graph:node`: Own portable node identity, ports, operations, and requirements.
+- `n:compute:graph:dependency`: Own data, control, and barrier dependencies.
+- `n:compute:graph:plan`: Own deterministic validation, ordering, partitioning, and batching.
+- `n:compute:resource`: Own portable compute resource requirements, access intent, and receipts.
+- `n:compute:resource:buffer`: Own portable compute buffer size, usage, and access semantics.
+- `n:compute:resource:image`: Own portable compute image format, view, and access semantics.
+- `n:compute:resource:binding`: Own portable compute binding slots, layouts, and sets.
+- `n:compute:dispatch`: Own provider-neutral execution intent, workgroups, submissions, and receipts.
+- `n:compute:dispatch:workgroup`: Own portable workgroup shape and count semantics.
+- `n:compute:host`: Own compute executor compatibility, deterministic selection, and lifecycle.
+- `n:compute:host:capability`: Own compute-specific features, limits, requirements, and profiles.
+- `n:compute:host:selection`: Own deterministic compatibility, preferences, and executor selection.
+- `n:compute:host:lifecycle`: Own acquisition, readiness, recovery, and release contracts for compute executors.
+- `n:compute:host:execution`: Own execution-family classification and realization of portable compute work.
+- `n:compute:host:execution:gpu`: Own GPU-class compute execution semantics over Host GPU resources.
+- `n:compute:host:execution:gpu:vulkan`: Own portable Vulkan compute contracts over a Host GPU environment without pretending a browser runtime exists.
+- `n:compute:host:execution:gpu:opengl`: Own portable OpenGL compute contracts over a Host GPU environment without pretending a browser runtime exists.
+- `n:compute:host:execution:cpu`: Own processor-class compute execution and deterministic CPU fallback.
+- `n:compute:host:execution:cpu:javascript`: Own JavaScript and Worker execution of portable Compute graphs.
+- `n:compute:host:execution:cpu:wasm`: Own WebAssembly compute execution, memory, SIMD, and threading contracts.
+- `n:compute:host:execution:cpu:native`: Own native CPU extension contracts for threads, vector execution, and synchronization.
+- `n:compute:model`: Own model descriptors, registries, inference requests/results, and provider contracts.
+- `n:compute:model:inference`: Own provider-neutral inference requests, results, and compute requirements.
+- `n:compute:model:inference:provider`: Own inference provider capability and contract semantics without owning runtimes.
 - `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
-- `n:host`: Own host capability descriptors and fallback contracts without platform implementation.
+- `n:host`: Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private.
+- `n:host:gpu`: Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render.
+- `n:host:gpu:capability`: Own backend-neutral GPU features, limits, profiles, and compatibility requirements.
+- `n:host:gpu:device`: Own portable logical GPU device identity and the device lifecycle shared by GPU consumers.
+- `n:host:gpu:device:adapter`: Own portable adapter discovery and selection semantics.
+- `n:host:gpu:device:logical-device`: Own logical-device acquisition, identity, generation, and state.
+- `n:host:gpu:device:queue`: Own portable shared-queue submission ordering and completion receipts.
+- `n:host:gpu:device:lifecycle`: Own readiness, loss, release, and generation transitions for the shared logical GPU device.
+- `n:host:gpu:resource`: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.
+- `n:host:gpu:synchronization`: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.
+- `n:host:gpu:recovery`: Own shared device-loss records, resource invalidation, and restoration coordination.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
 - `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
@@ -1075,7 +1414,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 - `n:interaction:request:fulfillment`: Own spatial request destination, deadline, completion, expiry, and reward state.
 - `n:interaction:transfer-zone`: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.
 - `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
-- `n:network`: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.
+- `n:network`: Own portable transport, session, authority, synchronization, and replication contracts.
+- `n:network:transport`: Own provider-neutral transport capabilities and portable message channels.
+- `n:network:multiplayer`: Own the portable multiplayer protocol boundary and deterministic inbound queue contract.
+- `n:network:multiplayer:session`: Own match identity, peer readiness, and connection phases.
+- `n:network:multiplayer:authority`: Own host and client roles plus state ownership declarations.
+- `n:network:multiplayer:tick-sync`: Own deterministic RTT, clock-offset, drift, and remote-tick mapping records.
+- `n:network:multiplayer:replication`: Own sequence numbers, acknowledgements, input frames, and snapshot envelopes.
 - `n:object`: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.
 - `n:object:shape`: Own source and derived geometric shapes, provider jobs, qualification, and fallback.
 - `n:object:fidelity`: Own valid object forms, fidelity packages, readiness, and contextual adaptation.
@@ -1087,7 +1432,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 - `n:physics`: Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains.
 - `n:physics:contracts`: Own portable Physics provider, state, command, event, and query boundary schemas.
 - `n:physics:lifecycle`: Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts.
+- `n:physics:body`: Own portable provider-neutral body identity, state, mass properties, sleep state, lifecycle, and exact-once registry mutations.
+- `n:physics:shape`: Own portable provider-neutral collision-shape identity, geometry descriptors, validation, and exact-once registration.
 - `n:physics:material`: Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy.
+- `n:physics:collider`: Own portable collider identity, attachment, filtering, sensor semantics, lifecycle, and exact-once records.
+- `n:physics:detection`: Own provider-neutral broad-phase and narrow-phase collision classification without contact or solver behavior.
+- `n:physics:constraints`: Own portable constraint descriptors, exact records, lifecycle status, revisions, and break policy semantics.
 - `n:physics:world`: Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions.
 - `n:policy`: Own product-neutral permission, guard, sandbox, and runtime safety decisions.
 - `n:presentation`: Own renderer-neutral presentation descriptors and output policy contracts.
@@ -1105,11 +1455,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 - `n:render:contracts`: Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas.
 - `n:render:lifecycle`: Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state.
 - `n:render:device`: Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics.
+- `n:render:surface`: Own portable output-surface descriptors, logical regions, format choices, and deterministic transition intents.
 - `n:render:resource`: Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state.
 - `n:render:buffer`: Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts.
 - `n:render:texture`: Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency.
 - `n:render:shader`: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.
 - `n:render:material`: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.
+- `n:render:camera`: Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.
+- `n:render:execution`: Own realization-family semantics for portable Render work.
+- `n:render:execution:gpu`: Own semantics common to GPU-class rendering over Host GPU resources.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.
@@ -1166,7 +1520,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 
 # Core Dependency Table
 
-Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -1176,6 +1530,25 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
 | `n:asset` | - | - |
+| `n:authoring` | `n:runtime` | - |
+| `n:authoring:modifier` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:publishing` | `n:authoring:assembly`, `n:authoring:project` | - |
+| `n:authoring:sequence` | `n:authoring:project` | - |
+| `n:authoring:domain-composition` | `n:authoring:project` | - |
+| `n:authoring:assembly` | `n:authoring:animation`, `n:authoring:material`, `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig`, `n:authoring:skin` | - |
+| `n:authoring:animation` | `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig`, `n:authoring:skin` | - |
+| `n:authoring:skin` | `n:authoring:brush`, `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig` | - |
+| `n:authoring:rig` | `n:authoring:project` | - |
+| `n:authoring:paint` | `n:authoring:brush`, `n:authoring:material`, `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:material` | `n:authoring:project` | - |
+| `n:authoring:uv` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:curve` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:sculpt` | `n:authoring:brush`, `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:brush` | `n:authoring:project` | - |
+| `n:authoring:workspace` | `n:authoring:project` | - |
+| `n:authoring:project` | `n:authoring` | - |
+| `n:authoring:mesh` | `n:authoring:project` | - |
+| `n:authoring:editing` | `n:authoring:mesh`, `n:authoring:project` | - |
 | `n:build` | - | - |
 | `n:build:source` | `n:build` | - |
 | `n:build:analysis` | `n:build` | - |
@@ -1194,9 +1567,43 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:build:target:pcvr` | `n:build:target` | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
+| `n:compute:graph` | `n:compute` | - |
+| `n:compute:graph:node` | `n:compute:graph` | - |
+| `n:compute:graph:dependency` | `n:compute:graph` | - |
+| `n:compute:graph:plan` | `n:compute:graph` | - |
+| `n:compute:resource` | `n:compute` | - |
+| `n:compute:resource:buffer` | `n:compute:resource` | - |
+| `n:compute:resource:image` | `n:compute:resource` | - |
+| `n:compute:resource:binding` | `n:compute:resource` | - |
+| `n:compute:dispatch` | `n:compute` | - |
+| `n:compute:dispatch:workgroup` | `n:compute:dispatch` | - |
+| `n:compute:host` | `n:compute`, `n:host` | - |
+| `n:compute:host:capability` | `n:compute:host` | - |
+| `n:compute:host:selection` | `n:compute:host` | - |
+| `n:compute:host:lifecycle` | `n:compute:host` | - |
+| `n:compute:host:execution` | `n:compute:host` | - |
+| `n:compute:host:execution:gpu` | `n:compute:host:execution`, `n:host:gpu` | - |
+| `n:compute:host:execution:gpu:vulkan` | `n:compute:host:execution:gpu`, `n:host:gpu` | - |
+| `n:compute:host:execution:gpu:opengl` | `n:compute:host:execution:gpu`, `n:host:gpu` | - |
+| `n:compute:host:execution:cpu` | `n:compute:host:execution` | - |
+| `n:compute:host:execution:cpu:javascript` | `n:compute:host:execution:cpu` | - |
+| `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | - |
+| `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | - |
 | `n:compute:model` | `n:compute` | - |
+| `n:compute:model:inference` | `n:compute:model` | - |
+| `n:compute:model:inference:provider` | `n:compute:model:inference` | - |
 | `n:diagnostics` | - | - |
 | `n:host` | - | - |
+| `n:host:gpu` | `n:host` | - |
+| `n:host:gpu:capability` | `n:host:gpu` | - |
+| `n:host:gpu:device` | `n:host:gpu` | - |
+| `n:host:gpu:device:adapter` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:logical-device` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:queue` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:lifecycle` | `n:host:gpu:device` | - |
+| `n:host:gpu:resource` | `n:host:gpu` | - |
+| `n:host:gpu:synchronization` | `n:host:gpu` | - |
+| `n:host:gpu:recovery` | `n:host:gpu` | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
 | `n:interaction:assistance-target` | `n:interaction` | - |
@@ -1207,6 +1614,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:interaction:transfer-zone` | `n:interaction` | - |
 | `n:mcp` | - | `n:composition` |
 | `n:network` | - | - |
+| `n:network:transport` | `n:network` | - |
+| `n:network:multiplayer` | `n:network`, `n:network:transport` | - |
+| `n:network:multiplayer:session` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:authority` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:tick-sync` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:replication` | `n:network:multiplayer` | - |
 | `n:object` | - | `n:asset`, `n:simulation:physics` |
 | `n:object:shape` | `object:descriptor-contract` | - |
 | `n:object:fidelity` | `object:descriptor-contract` | - |
@@ -1218,7 +1631,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:physics` | `n:runtime` | - |
 | `n:physics:contracts` | `n:physics` | - |
 | `n:physics:lifecycle` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:provider-contract`, `physics:state-schema` | - |
+| `n:physics:body` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
+| `n:physics:shape` | `n:physics`, `physics:command-schema`, `physics:state-schema` | - |
 | `n:physics:material` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
+| `n:physics:collider` | `n:physics`, `physics:body-registry`, `physics:command-schema`, `physics:event-schema`, `physics:material-registry`, `physics:shape-registry`, `physics:state-schema` | - |
+| `n:physics:detection` | `n:physics`, `n:physics:collider`, `n:physics:shape` | - |
+| `n:physics:constraints` | `n:physics`, `physics:body-registry`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
 | `n:physics:world` | `n:physics`, `physics:command-schema`, `physics:event-schema`, `physics:state-schema` | - |
 | `n:policy` | - | - |
 | `n:presentation` | - | - |
@@ -1236,11 +1654,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:render:contracts` | `n:render` | - |
 | `n:render:lifecycle` | `n:render`, `render:provider-contract` | - |
 | `n:render:device` | `n:render`, `render:installation`, `render:provider-contract` | - |
+| `n:render:surface` | `n:render`, `render:device-contract`, `render:device-lifecycle`, `render:provider-contract` | - |
 | `n:render:resource` | `n:render`, `render:device-contract`, `render:device-lifecycle`, `render:device-memory`, `render:device-queue`, `render:resource-schema` | - |
 | `n:render:buffer` | `n:render`, `n:render:resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
 | `n:render:texture` | `n:render`, `n:render:buffer`, `n:render:resource`, `render:buffer-resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
 | `n:render:shader` | `n:render`, `n:render:contracts`, `n:render:device`, `n:render:resource`, `render:device-capability`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-schema` | - |
 | `n:render:material` | `n:render`, `n:render:resource`, `n:render:shader`, `n:render:texture`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-compile`, `render:shader-program`, `render:shader-reflection`, `render:shader-variant`, `render:texture-residency`, `render:texture-resource` | - |
+| `n:render:camera` | `n:render`, `render:provider-contract` | - |
+| `n:render:execution` | `n:render` | - |
+| `n:render:execution:gpu` | `n:host:gpu`, `n:render:execution` | - |
 | `n:runtime` | - | - |
 | `n:runtime:realtime` | `n:runtime` | - |
 | `n:runtime:data` | `n:runtime` | - |
@@ -1299,7 +1721,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 ## Domains
 
@@ -1311,6 +1733,25 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
+| `n:authoring` | - | Own editable source documents and typed editing operations. | stable-candidate |
+| `n:authoring:modifier` | `n:authoring` | Own modifier authoring contracts and operations. | stable-candidate |
+| `n:authoring:publishing` | `n:authoring` | Own publishing authoring contracts and operations. | stable-candidate |
+| `n:authoring:sequence` | `n:authoring` | Own sequence authoring contracts and operations. | stable-candidate |
+| `n:authoring:domain-composition` | `n:authoring` | Own domain-composition authoring contracts and operations. | stable-candidate |
+| `n:authoring:assembly` | `n:authoring` | Own assembly authoring contracts and operations. | stable-candidate |
+| `n:authoring:animation` | `n:authoring` | Own animation authoring contracts and operations. | stable-candidate |
+| `n:authoring:skin` | `n:authoring` | Own skin authoring contracts and operations. | stable-candidate |
+| `n:authoring:rig` | `n:authoring` | Own rig authoring contracts and operations. | stable-candidate |
+| `n:authoring:paint` | `n:authoring` | Own paint authoring contracts and operations. | stable-candidate |
+| `n:authoring:material` | `n:authoring` | Own material authoring contracts and operations. | stable-candidate |
+| `n:authoring:uv` | `n:authoring` | Own uv authoring contracts and operations. | stable-candidate |
+| `n:authoring:curve` | `n:authoring` | Own curve authoring contracts and operations. | stable-candidate |
+| `n:authoring:sculpt` | `n:authoring` | Own sculpt authoring contracts and operations. | stable-candidate |
+| `n:authoring:brush` | `n:authoring` | Own brush authoring contracts and operations. | stable-candidate |
+| `n:authoring:workspace` | `n:authoring` | Own workspace authoring contracts and operations. | stable-candidate |
+| `n:authoring:project` | `n:authoring` | Own editable project contracts and operations. | stable-candidate |
+| `n:authoring:mesh` | `n:authoring` | Own editable mesh contracts and operations. | stable-candidate |
+| `n:authoring:editing` | `n:authoring` | Own editable editing contracts and operations. | stable-candidate |
 | `n:build` | - | Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition. | stable-candidate |
 | `n:build:source` | `n:build` | Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs. | stable-candidate |
 | `n:build:analysis` | `n:build` | Own real syntax, type, effect, and dependency analysis for build inputs. | stable-candidate |
@@ -1328,10 +1769,44 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
 | `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
-| `n:compute` | - | Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts. | stable-candidate |
-| `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and model provider contracts. | stable-candidate |
+| `n:compute` | - | Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts. | stable-candidate |
+| `n:compute:graph` | `n:compute` | Own portable compute topology, dependencies, and deterministic plans. | stable-candidate |
+| `n:compute:graph:node` | `n:compute:graph` | Own portable node identity, ports, operations, and requirements. | stable-candidate |
+| `n:compute:graph:dependency` | `n:compute:graph` | Own data, control, and barrier dependencies. | stable-candidate |
+| `n:compute:graph:plan` | `n:compute:graph` | Own deterministic validation, ordering, partitioning, and batching. | stable-candidate |
+| `n:compute:resource` | `n:compute` | Own portable compute resource requirements, access intent, and receipts. | stable-candidate |
+| `n:compute:resource:buffer` | `n:compute:resource` | Own portable compute buffer size, usage, and access semantics. | stable-candidate |
+| `n:compute:resource:image` | `n:compute:resource` | Own portable compute image format, view, and access semantics. | stable-candidate |
+| `n:compute:resource:binding` | `n:compute:resource` | Own portable compute binding slots, layouts, and sets. | stable-candidate |
+| `n:compute:dispatch` | `n:compute` | Own provider-neutral execution intent, workgroups, submissions, and receipts. | stable-candidate |
+| `n:compute:dispatch:workgroup` | `n:compute:dispatch` | Own portable workgroup shape and count semantics. | stable-candidate |
+| `n:compute:host` | `n:compute` | Own compute executor compatibility, deterministic selection, and lifecycle. | stable-candidate |
+| `n:compute:host:capability` | `n:compute:host` | Own compute-specific features, limits, requirements, and profiles. | stable-candidate |
+| `n:compute:host:selection` | `n:compute:host` | Own deterministic compatibility, preferences, and executor selection. | stable-candidate |
+| `n:compute:host:lifecycle` | `n:compute:host` | Own acquisition, readiness, recovery, and release contracts for compute executors. | stable-candidate |
+| `n:compute:host:execution` | `n:compute:host` | Own execution-family classification and realization of portable compute work. | stable-candidate |
+| `n:compute:host:execution:gpu` | `n:compute:host:execution` | Own GPU-class compute execution semantics over Host GPU resources. | stable-candidate |
+| `n:compute:host:execution:gpu:vulkan` | `n:compute:host:execution:gpu` | Own portable Vulkan compute contracts over a Host GPU environment without pretending a browser runtime exists. | stable-candidate |
+| `n:compute:host:execution:gpu:opengl` | `n:compute:host:execution:gpu` | Own portable OpenGL compute contracts over a Host GPU environment without pretending a browser runtime exists. | stable-candidate |
+| `n:compute:host:execution:cpu` | `n:compute:host:execution` | Own processor-class compute execution and deterministic CPU fallback. | stable-candidate |
+| `n:compute:host:execution:cpu:javascript` | `n:compute:host:execution:cpu` | Own JavaScript and Worker execution of portable Compute graphs. | stable-candidate |
+| `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | Own WebAssembly compute execution, memory, SIMD, and threading contracts. | stable-candidate |
+| `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | Own native CPU extension contracts for threads, vector execution, and synchronization. | stable-candidate |
+| `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and provider contracts. | stable-candidate |
+| `n:compute:model:inference` | `n:compute:model` | Own provider-neutral inference requests, results, and compute requirements. | stable-candidate |
+| `n:compute:model:inference:provider` | `n:compute:model:inference` | Own inference provider capability and contract semantics without owning runtimes. | stable-candidate |
 | `n:diagnostics` | - | Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors. | stable-candidate |
-| `n:host` | - | Own host capability descriptors and fallback contracts without platform implementation. | stable-candidate |
+| `n:host` | - | Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private. | stable-candidate |
+| `n:host:gpu` | `n:host` | Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render. | stable-candidate |
+| `n:host:gpu:capability` | `n:host:gpu` | Own backend-neutral GPU features, limits, profiles, and compatibility requirements. | stable-candidate |
+| `n:host:gpu:device` | `n:host:gpu` | Own portable logical GPU device identity and the device lifecycle shared by GPU consumers. | stable-candidate |
+| `n:host:gpu:device:adapter` | `n:host:gpu:device` | Own portable adapter discovery and selection semantics. | stable-candidate |
+| `n:host:gpu:device:logical-device` | `n:host:gpu:device` | Own logical-device acquisition, identity, generation, and state. | stable-candidate |
+| `n:host:gpu:device:queue` | `n:host:gpu:device` | Own portable shared-queue submission ordering and completion receipts. | stable-candidate |
+| `n:host:gpu:device:lifecycle` | `n:host:gpu:device` | Own readiness, loss, release, and generation transitions for the shared logical GPU device. | stable-candidate |
+| `n:host:gpu:resource` | `n:host:gpu` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. | stable-candidate |
+| `n:host:gpu:synchronization` | `n:host:gpu` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. | stable-candidate |
+| `n:host:gpu:recovery` | `n:host:gpu` | Own shared device-loss records, resource invalidation, and restoration coordination. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
 | `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
@@ -1341,7 +1816,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:interaction:request:fulfillment` | `n:interaction:request` | Own spatial request destination, deadline, completion, expiry, and reward state. | stable-candidate |
 | `n:interaction:transfer-zone` | `n:interaction` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. | stable-candidate |
 | `n:mcp` | - | Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch. | stable-candidate |
-| `n:network` | - | Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts. | stable-candidate |
+| `n:network` | - | Own portable transport, session, authority, synchronization, and replication contracts. | stable-candidate |
+| `n:network:transport` | `n:network` | Own provider-neutral transport capabilities and portable message channels. | stable-candidate |
+| `n:network:multiplayer` | `n:network` | Own the portable multiplayer protocol boundary and deterministic inbound queue contract. | stable-candidate |
+| `n:network:multiplayer:session` | `n:network:multiplayer` | Own match identity, peer readiness, and connection phases. | stable-candidate |
+| `n:network:multiplayer:authority` | `n:network:multiplayer` | Own host and client roles plus state ownership declarations. | stable-candidate |
+| `n:network:multiplayer:tick-sync` | `n:network:multiplayer` | Own deterministic RTT, clock-offset, drift, and remote-tick mapping records. | stable-candidate |
+| `n:network:multiplayer:replication` | `n:network:multiplayer` | Own sequence numbers, acknowledgements, input frames, and snapshot envelopes. | stable-candidate |
 | `n:object` | - | Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement. | stable-candidate |
 | `n:object:shape` | `n:object` | Own source and derived geometric shapes, provider jobs, qualification, and fallback. | stable-candidate |
 | `n:object:fidelity` | `n:object` | Own valid object forms, fidelity packages, readiness, and contextual adaptation. | stable-candidate |
@@ -1353,7 +1834,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:physics` | - | Own the canonical backend-neutral Physics boundary and compose its atomic capability subdomains. | stable-candidate |
 | `n:physics:contracts` | `n:physics` | Own portable Physics provider, state, command, event, and query boundary schemas. | stable-candidate |
 | `n:physics:lifecycle` | `n:physics` | Own deterministic installation, startup, stepping, shutdown, reset, and snapshot orchestration contracts. | stable-candidate |
+| `n:physics:body` | `n:physics` | Own portable provider-neutral body identity, state, mass properties, sleep state, lifecycle, and exact-once registry mutations. | stable-candidate |
+| `n:physics:shape` | `n:physics` | Own portable provider-neutral collision-shape identity, geometry descriptors, validation, and exact-once registration. | stable-candidate |
 | `n:physics:material` | `n:physics` | Own portable physical material identity, coefficients, surface classification, and deterministic pair-combine policy. | stable-candidate |
+| `n:physics:collider` | `n:physics` | Own portable collider identity, attachment, filtering, sensor semantics, lifecycle, and exact-once records. | stable-candidate |
+| `n:physics:detection` | `n:physics` | Own provider-neutral broad-phase and narrow-phase collision classification without contact or solver behavior. | stable-candidate |
+| `n:physics:constraints` | `n:physics` | Own portable constraint descriptors, exact records, lifecycle status, revisions, and break policy semantics. | stable-candidate |
 | `n:physics:world` | `n:physics` | Own portable solver-facing Physics world records, physical fields, Physics time scales, and physical simulation regions. | stable-candidate |
 | `n:policy` | - | Own product-neutral permission, guard, sandbox, and runtime safety decisions. | stable-candidate |
 | `n:presentation` | - | Own renderer-neutral presentation descriptors and output policy contracts. | stable-candidate |
@@ -1371,11 +1857,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `n:render:contracts` | `n:render` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. | stable-candidate |
 | `n:render:lifecycle` | `n:render` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. | stable-candidate |
 | `n:render:device` | `n:render` | Own portable Render device contracts, capability negotiation, semantic accounting, lifecycle, loss, and diagnostics. | stable-candidate |
+| `n:render:surface` | `n:render` | Own portable output-surface descriptors, logical regions, format choices, and deterministic transition intents. | stable-candidate |
 | `n:render:resource` | `n:render` | Own portable Render execution-resource identity, references, semantic residency, accounting, operation receipts, and lifecycle state. | stable-candidate |
 | `n:render:buffer` | `n:render` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. | stable-candidate |
 | `n:render:texture` | `n:render` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. | stable-candidate |
 | `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
 | `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
+| `n:render:camera` | `n:render` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. | stable-candidate |
+| `n:render:execution` | `n:render` | Own realization-family semantics for portable Render work. | stable-candidate |
+| `n:render:execution:gpu` | `n:render:execution` | Own semantics common to GPU-class rendering over Host GPU resources. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -1436,6 +1926,25 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
+| `authoring-modifier-service-kit` | `n:authoring:modifier` | `nexusengine/domains/authoring/modifier` | Own modifier source operations. |
+| `authoring-publishing-service-kit` | `n:authoring:publishing` | `nexusengine/domains/authoring/publishing` | Own publishing source operations. |
+| `authoring-sequence-service-kit` | `n:authoring:sequence` | `nexusengine/domains/authoring/sequence` | Own sequence source operations. |
+| `authoring-domain-composition-service-kit` | `n:authoring:domain-composition` | `nexusengine/domains/authoring/domain-composition` | Own domain-composition source operations. |
+| `authoring-assembly-service-kit` | `n:authoring:assembly` | `nexusengine/domains/authoring/assembly` | Own assembly source operations. |
+| `authoring-animation-service-kit` | `n:authoring:animation` | `nexusengine/domains/authoring/animation` | Own animation source operations. |
+| `authoring-skin-service-kit` | `n:authoring:skin` | `nexusengine/domains/authoring/skin` | Own skin source operations. |
+| `authoring-rig-service-kit` | `n:authoring:rig` | `nexusengine/domains/authoring/rig` | Own rig source operations. |
+| `authoring-paint-service-kit` | `n:authoring:paint` | `nexusengine/domains/authoring/paint` | Own paint source operations. |
+| `authoring-material-service-kit` | `n:authoring:material` | `nexusengine/domains/authoring/material` | Own material source operations. |
+| `authoring-uv-service-kit` | `n:authoring:uv` | `nexusengine/domains/authoring/uv` | Own uv source operations. |
+| `authoring-curve-service-kit` | `n:authoring:curve` | `nexusengine/domains/authoring/curve` | Own curve source operations. |
+| `authoring-sculpt-service-kit` | `n:authoring:sculpt` | `nexusengine/domains/authoring/sculpt` | Own sculpt source operations. |
+| `authoring-brush-service-kit` | `n:authoring:brush` | `nexusengine/domains/authoring/brush` | Own brush source operations. |
+| `authoring-workspace-service-kit` | `n:authoring:workspace` | `nexusengine/domains/authoring/workspace` | Own workspace source operations. |
+| `authoring-domain-contract-kit` | `n:authoring` | `nexusengine/domains/authoring/contract` | Own contract Authoring contracts and operations. |
+| `authoring-project-document-kit` | `n:authoring:project` | `nexusengine/domains/authoring/project` | Own project Authoring contracts and operations. |
+| `authoring-mesh-document-kit` | `n:authoring:mesh` | `nexusengine/domains/authoring/mesh` | Own mesh Authoring contracts and operations. |
+| `authoring-editing-session-kit` | `n:authoring:editing` | `nexusengine/domains/authoring/editing` | Own editing Authoring contracts and operations. |
 | `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |
 | `dependency-source-kit` | `n:build:source` | `nexusengine/domains/build/source/dependency-source` | Resolve exact dependency source identities and recursive lockfile closure. |
@@ -1484,7 +1993,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
 | `web-module-linker-kit` | `n:build:compile` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
-| `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors and create deterministic dependency-ordered dispatch plans. |
+| `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
 | `diagnostics-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/runtime` | Collect serializable telemetry, runtime health, determinism, and performance evidence. |
 | `debug-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug` | Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics. |
@@ -1501,7 +2010,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `transport-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/transport-request` | Translate Transport Route arrivals into exact-once Request Queue fulfillment commands. |
 | `request-economy-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/request-economy` | Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions. |
 | `mcp-registry-kit` | `n:mcp` | `nexusengine/domains/mcp/registry` | Register and dispatch schema-valid MCP providers through an explicit authorization boundary. |
-| `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe network sessions, messages, authority, and synchronization without owning transport. |
+| `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe portable network messages and synchronization without implementing transport. |
+| `network-transport-contract-kit` | `n:network:transport` | `nexusengine/domains/network/transport` | Validate provider-neutral transport capabilities and portable channel messages. |
+| `multiplayer-contract-kit` | `n:network:multiplayer` | `nexusengine/domains/network/multiplayer` | Own the protocol version and deterministic inbound queue contract. |
+| `multiplayer-session-kit` | `n:network:multiplayer:session` | `nexusengine/domains/network/multiplayer/session` | Manage portable session phases, peer readiness, and disconnect state. |
+| `multiplayer-authority-kit` | `n:network:multiplayer:authority` | `nexusengine/domains/network/multiplayer/authority` | Enforce one authoritative host and portable state ownership declarations. |
+| `multiplayer-tick-sync-kit` | `n:network:multiplayer:tick-sync` | `nexusengine/domains/network/multiplayer/tick-sync` | Map explicit remote timing samples onto deterministic local ticks. |
+| `multiplayer-replication-kit` | `n:network:multiplayer:replication` | `nexusengine/domains/network/multiplayer/replication` | Create sequence-numbered input and snapshot envelopes and reject stale packets. |
 | `object-registry-kit` | `n:object` | `nexusengine/domains/object/registry` | Own object identity and renderer-neutral lifecycle records. |
 | `object-shape-kit` | `n:object:shape` | `nexusengine/domains/object/shape` | Derive and qualify renderer-neutral geometric shape candidates. |
 | `object-fidelity-kit` | `n:object:fidelity` | `nexusengine/domains/object/fidelity` | Package and select valid object fidelity forms. |
@@ -1525,12 +2040,74 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `physics-shutdown-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
 | `physics-reset-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/reset` | Reset composed Physics lifecycle state atomically through public capability APIs. |
 | `physics-snapshot-kit` | `n:physics:lifecycle` | `nexusengine/domains/physics/lifecycle/snapshot` | Capture and atomically restore portable snapshots of composed Physics lifecycle state. |
+| `body-identity-kit` | `n:physics:body` | `nexusengine/domains/physics/body/identity` | Normalize stable portable Physics body identity, tags, and metadata. |
+| `body-type-kit` | `n:physics:body` | `nexusengine/domains/physics/body/type` | Normalize static, dynamic, and kinematic Physics body modes. |
+| `body-pose-kit` | `n:physics:body` | `nexusengine/domains/physics/body/pose` | Normalize body position and canonical quaternion orientation. |
+| `body-velocity-kit` | `n:physics:body` | `nexusengine/domains/physics/body/velocity` | Normalize finite linear and angular Physics body velocity descriptors. |
+| `body-force-kit` | `n:physics:body` | `nexusengine/domains/physics/body/force` | Normalize portable force, torque, and impulse accumulator descriptors. |
+| `body-mass-kit` | `n:physics:body` | `nexusengine/domains/physics/body/mass` | Normalize body mass, inverse mass, and center-of-mass descriptors. |
+| `body-inertia-kit` | `n:physics:body` | `nexusengine/domains/physics/body/inertia` | Normalize principal inertia, inverse inertia, and local inertia orientation. |
+| `body-damping-kit` | `n:physics:body` | `nexusengine/domains/physics/body/damping` | Normalize finite nonnegative linear and angular damping descriptors. |
+| `body-sleep-kit` | `n:physics:body` | `nexusengine/domains/physics/body/sleep` | Normalize body sleep state and explicit exact-once sleep commands. |
+| `body-wake-kit` | `n:physics:body` | `nexusengine/domains/physics/body/wake` | Normalize explicit exact-once Physics body wake commands. |
+| `body-lifecycle-kit` | `n:physics:body` | `nexusengine/domains/physics/body/lifecycle` | Normalize active and disabled body lifecycle state and exact transition commands. |
+| `body-state-kit` | `n:physics:body` | `nexusengine/domains/physics/body/state` | Compose atomic portable body descriptors into one coherent provider-neutral body state. |
+| `body-registry-kit` | `n:physics:body` | `nexusengine/domains/physics/body/registry` | Own portable Physics body records and exact-once lifecycle transitions without solver execution. |
+| `shape-identity-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/identity` | Normalize stable portable Physics shape identity, type, and metadata. |
+| `shape-validation-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/validation` | Validate any canonical portable Physics shape descriptor without mutation. |
+| `sphere-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/sphere` | Normalize portable sphere collision geometry. |
+| `box-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/box` | Normalize portable box collision geometry. |
+| `capsule-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/capsule` | Normalize portable capsule collision geometry. |
+| `cylinder-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/cylinder` | Normalize portable cylinder collision geometry. |
+| `cone-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/cone` | Normalize portable cone collision geometry. |
+| `plane-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/plane` | Normalize portable infinite-plane collision geometry. |
+| `convex-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/convex` | Normalize portable convex-hull collision geometry. |
+| `triangle-mesh-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/triangle-mesh` | Normalize indexed portable triangle-mesh collision geometry. |
+| `heightfield-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/heightfield` | Normalize sampled portable heightfield collision geometry. |
+| `compound-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/compound` | Normalize portable compound collision-shape references and local poses. |
+| `scaled-shape-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/scaled` | Normalize portable positive nonuniform scaling of a referenced collision shape. |
+| `shape-registry-kit` | `n:physics:shape` | `nexusengine/domains/physics/shape/registry` | Own exact-once deterministic registration and lookup of portable Physics shapes. |
 | `friction-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/friction` | Normalize portable isotropic and anisotropic physical friction descriptors. |
 | `restitution-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/restitution` | Normalize physical restitution coefficient and activation-threshold descriptors. |
 | `density-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/density` | Normalize positive SI physical mass-density descriptors. |
 | `surface-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/surface` | Normalize renderer-neutral physical surface classification and tags. |
 | `material-combine-policy-kit` | `n:physics:material` | `nexusengine/domains/physics/material/combine-policy` | Resolve physical material pairs with deterministic symmetric coefficient-combine policy. |
 | `physics-material-kit` | `n:physics:material` | `nexusengine/domains/physics/material/registry` | Own immutable portable physical material records and exact-once registry mutations. |
+| `collider-identity-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/identity` | Normalize stable portable Physics collider identity, tags, and metadata. |
+| `collider-attachment-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/attachment` | Normalize a collider attachment to public Body and Shape registry identities. |
+| `collider-pose-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/pose` | Normalize provider-neutral collider-local position and orientation descriptors. |
+| `collider-material-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/material` | Normalize a collider reference to one public Physics material identity. |
+| `collision-layer-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/layer` | Normalize one bounded provider-neutral collision layer. |
+| `collision-mask-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/mask` | Normalize a deterministic bounded collision-layer set and its portable bit value. |
+| `collision-group-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/group` | Normalize a named collision layer-and-mask policy descriptor. |
+| `collider-filter-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/filter` | Normalize provider-neutral collider layer, mask, group, and exclusion descriptors. |
+| `sensor-collider-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/sensor` | Normalize non-solving sensor semantics independently from collision detection and event dispatch. |
+| `trigger-collider-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/trigger` | Normalize event-selection semantics for a sensor-backed trigger collider. |
+| `collider-lifecycle-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/lifecycle` | Normalize provider-neutral enabled and disabled collider lifecycle state and commands. |
+| `collider-registry-kit` | `n:physics:collider` | `nexusengine/domains/physics/collider/registry` | Own portable collider records, revisions, reference validation, and exact-once mutations. |
+| `collision-detection-result-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/result` | Normalize finite portable collision results and stable result ordering. |
+| `broad-phase-pair-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/broad-phase-pair` | Normalize, filter, deduplicate, and stably order broad-phase pairs. |
+| `spatial-partition-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/spatial-partition` | Own exact-once portable broad-phase proxy records and deterministic bounds queries. |
+| `dynamic-tree-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/dynamic-tree` | Build and query deterministic immutable AABB trees from portable proxies. |
+| `sweep-and-prune-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/sweep-and-prune` | Generate deterministic broad-phase pairs by sorted-axis interval sweeping. |
+| `shape-intersection-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/shape-intersection` | Resolve exact analytic primitive and convex-plane shape intersections. |
+| `gjk-detection-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/gjk` | Determine convex support-shape separation or intersection with deterministic GJK simplex evolution. |
+| `epa-penetration-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/epa` | Expand an intersecting GJK simplex into deterministic convex penetration witnesses. |
+| `continuous-collision-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/continuous-collision` | Compute exact linear sphere-sphere time of impact and reject unsupported sweep pairs. |
+| `narrow-phase-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/narrow-phase` | Dispatch supported analytic and convex algorithms into one portable collision result. |
+| `broad-phase-kit` | `n:physics:detection` | `nexusengine/domains/physics/detection/broad-phase` | Own canonical Detection discovery and deterministic broad-phase strategy selection. |
+| `ball-socket-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/ball-socket` | Normalize portable ball-socket constraint descriptors without provider or solver execution. |
+| `cone-twist-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/cone-twist` | Normalize portable cone-twist constraint descriptors without provider or solver execution. |
+| `distance-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/distance` | Normalize portable bounded-distance constraint descriptors without provider or solver execution. |
+| `drive-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/drive` | Normalize portable positional and velocity drive constraint descriptors. |
+| `fixed-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/fixed` | Normalize portable fixed constraint descriptors without provider or solver execution. |
+| `hinge-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/hinge` | Normalize portable local-axis hinge constraint descriptors. |
+| `limit-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/limit` | Normalize portable linear and angular limit constraint descriptors. |
+| `motor-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/motor` | Normalize portable bounded motor constraint descriptors. |
+| `slider-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/slider` | Normalize portable local-axis slider constraint descriptors. |
+| `spring-constraint-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/spring` | Normalize portable linear and angular spring constraint descriptors. |
+| `constraint-break-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/break` | Normalize and purely evaluate portable constraint break thresholds. |
+| `constraint-registry-kit` | `n:physics:constraints` | `nexusengine/domains/physics/constraints/registry` | Own deterministic portable constraint records, terminal break state, and exact-once mutations. |
 | `physics-world-settings-kit` | `n:physics:world` | `nexusengine/domains/physics/world/settings` | Normalize portable Physics coordinate, unit, bounds, and out-of-bounds settings. |
 | `gravity-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/gravity-field` | Own portable deterministic uniform and point-gravity field records and sampling. |
 | `force-field-kit` | `n:physics:world` | `nexusengine/domains/physics/world/force-field` | Own portable deterministic non-gravity force and acceleration field records and sampling. |
@@ -1579,6 +2156,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `device-lifecycle-kit` | `n:render:device` | `nexusengine/domains/render/device/lifecycle` | Own portable acquisition, readiness, loss, failure, recovery, and release state for one selected Render device. |
 | `device-loss-kit` | `n:render:device` | `nexusengine/domains/render/device/loss` | Own exact-once Render device loss incidents and externally proven resolution records. |
 | `device-diagnostics-kit` | `n:render:device` | `nexusengine/domains/render/device/diagnostics` | Project deterministic read-only diagnostics from public Render device capabilities. |
+| `render-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/render-surface` | Own portable base Render surface descriptors and exact-once lifecycle records. |
+| `surface-format-kit` | `n:render:surface` | `nexusengine/domains/render/surface/format` | Own portable color, depth, alpha, sample, and HDR surface format selections. |
+| `window-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/window` | Own portable window-surface descriptors without host window handles or platform transitions. |
+| `offscreen-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/offscreen` | Own portable offscreen layer, sample, and usage policy while base Surface owns dimensions. |
+| `swapchain-surface-kit` | `n:render:surface` | `nexusengine/domains/render/surface/swapchain` | Own portable swapchain requests without creating GPU swapchains or provider handles. |
+| `viewport-kit` | `n:render:surface` | `nexusengine/domains/render/surface/viewport` | Own bounded portable viewport regions and depth ranges. |
+| `scissor-kit` | `n:render:surface` | `nexusengine/domains/render/surface/scissor` | Own bounded portable scissor regions without issuing provider commands. |
+| `resize-kit` | `n:render:surface` | `nexusengine/domains/render/surface/resize` | Own portable resize intents without mutating host or provider surfaces. |
+| `fullscreen-kit` | `n:render:surface` | `nexusengine/domains/render/surface/fullscreen` | Own portable fullscreen enter and exit intents without platform execution. |
 | `render-resource-contract-kit` | `n:render:resource` | `nexusengine/domains/render/resource/contract` | Define portable Render execution-resource identity, lifecycle, operation, and provider receipt contracts. |
 | `resource-identity-kit` | `n:render:resource` | `nexusengine/domains/render/resource/identity` | Own deterministic Render execution-resource identities, revisions, and dependency lineage. |
 | `resource-state-kit` | `n:render:resource` | `nexusengine/domains/render/resource/state` | Define portable Render resource phases and legal lifecycle transitions. |
@@ -1629,6 +2215,14 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `material-variant-kit` | `n:render:material` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
 | `material-validation-kit` | `n:render:material` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
 | `material-cache-kit` | `n:render:material` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
+| `camera-binding-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-binding` | Own portable camera binding semantics and deterministic state. |
+| `camera-jitter-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
+| `camera-projection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-projection` | Own portable camera projection semantics and deterministic state. |
+| `camera-reprojection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
+| `camera-view-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-view` | Own portable camera view semantics and deterministic state. |
+| `camera-viewport-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
+| `multiview-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
+| `stereo-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |
@@ -1695,26 +2289,26 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
-- Source modules: 1180
-- Manifest-proven public atoms: 256
-- Manifest-owned internal modules: 899
+- Source modules: 1604
+- Manifest-proven public atoms: 360
+- Manifest-owned internal modules: 1219
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
-| `src/core-domains/actor/domain.manifest.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/actor/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/actor/kits/actor-registry-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/actor/creature/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/creature/kits/creature-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/creature/kits/creature-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/actor/domain.manifest.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/actor/kits/actor-registry-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/actor/player/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/player/kits/player-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
@@ -1733,14 +2327,120 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/asset/kits/asset-kit/descriptors.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/index.js` | `n:asset` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/animation/kits/authoring-animation-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/scatter.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/brush/kits/authoring-brush-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/service-lifecycle.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/tool-schema.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/transforms.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/value.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/curve/kits/authoring-curve-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/editing/kits/authoring-editing-session-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/selection.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/kits/authoring-domain-contract-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/kits/authoring-material-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/material/kits/authoring-material-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/bevel.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/evaluate.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/geometry.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/primitives.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/surface-query.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/topology.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/boolean.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/decimation.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/evaluate.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/subdivision.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/image.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/kits/authoring-paint-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/paint/kits/authoring-paint-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/project/kits/authoring-project-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/store.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/kits/authoring-rig-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/rig/kits/authoring-rig-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/kits/authoring-skin-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/skin/kits/authoring-skin-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/diagnostics.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/kits/authoring-uv-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/uv/kits/authoring-uv-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/adapters/mcp/build-mcp-provider.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/atomic-kit.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/domain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/kit-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/manifest-input.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/subdomain-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/analysis/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/analysis/kits/dependency-analysis-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/analysis/kits/dependency-analysis-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1785,6 +2485,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/artifact/kits/artifact-output-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/artifact/kits/artifact-output-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/artifact/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/atomic-kit.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/capability-resolution-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/capability-resolution-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1829,6 +2530,9 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/compile/kits/web-module-linker-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/compile/kits/web-module-linker-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/compile/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/domain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/ir/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/ir/kits/execution-ir-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/ir/kits/execution-ir-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1851,6 +2555,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/ir/kits/source-map-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/ir/kits/source-map-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/ir/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/kit-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/manifest-input.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/orchestration/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/orchestration/kits/build-approval-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/orchestration/kits/build-approval-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1927,14 +2633,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/source/kits/source-fingerprint-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/source/kits/source-fingerprint-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/source/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/kits/target-registry-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/kits/target-registry-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/build/target/kits/target-registry-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/kits/target-registry-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/kits/target-registry-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/native-target-helpers.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/build/target/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/subdomain-manifests.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1942,6 +2641,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/kits/target-registry-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/kits/target-registry-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/target/kits/target-registry-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/kits/target-registry-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/kits/target-registry-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/native-target-helpers.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/openxr/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/openxr/kits/openxr-input-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -1966,6 +2672,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/build/target/pcvr/kits/pcvr-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/pcvr/kits/pcvr-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/pcvr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/web-live/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/web-live/kits/web-live-target-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/web-live/kits/web-live-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -2019,7 +2726,15 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/composition/kits/composition-registry-kit/services.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/recipes/restored-behavior-recipes.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/services/composition-apply-controller.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/dispatch/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/domain.manifest.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/graph/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/javascript/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/native/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/wasm/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/gpu/opengl/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/gpu/vulkan/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
@@ -2030,6 +2745,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/compute/model/kits/model-kit/inference-result.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-registry.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/portable.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/resource/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/domain.manifest.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/index.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/kits/debug-descriptor-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
@@ -2038,6 +2755,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/domain-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/domain-manifest.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/host/domain.manifest.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/host/gpu/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
@@ -2056,15 +2774,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/interaction/adapters/transport-request-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/adapters/transport-request-adapter-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/adapters/transport-request-adapter-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/domain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/activation.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/affordances.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/prompts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/results.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/kits/interaction-kit/targets.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/restored-behavior-manifests.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/assistance-target/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/assistance-target/kits/assistance-target-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/assistance-target/kits/assistance-target-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
@@ -2072,6 +2781,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/interaction/assistance-target/kits/assistance-target-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/assistance-target/kits/assistance-target-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/assistance-target/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/domain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/environmental-affordance/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/environmental-affordance/kits/environmental-affordance-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/environmental-affordance/kits/environmental-affordance-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
@@ -2079,14 +2789,19 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/interaction/environmental-affordance/kits/environmental-affordance-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/environmental-affordance/kits/environmental-affordance-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/environmental-affordance/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/actions.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/adapters.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/bindings.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/contexts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/input/kits/input-kit/intent.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/request/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/interaction/request/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/activation.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/affordances.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/prompts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/results.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/targets.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/fulfillment/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/fulfillment/kits/request-fulfillment-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/fulfillment/kits/request-fulfillment-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
@@ -2094,6 +2809,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/interaction/request/fulfillment/kits/request-fulfillment-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/fulfillment/kits/request-fulfillment-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/fulfillment/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/request/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/queue/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/queue/kits/request-queue-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/queue/kits/request-queue-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
@@ -2101,6 +2817,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/interaction/request/queue/kits/request-queue-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/queue/kits/request-queue-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/request/queue/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/request/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/interaction/restored-behavior-manifests.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/transfer-zone/index.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/transfer-zone/kits/transfer-zone-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/transfer-zone/kits/transfer-zone-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
@@ -2127,15 +2845,39 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/network/domain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/network/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/network/kits/network-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/kits/multiplayer-authority-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/kits/multiplayer-contract-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/kits/multiplayer-replication-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/kits/multiplayer-session-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/kits/multiplayer-tick-sync-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/portable.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/kits/network-transport-contract-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/transport/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/adapters/object-shape-fidelity-adapter-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/contracts/object-descriptor.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/domain.manifest.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/object/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/object/kits/object-registry-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/object/state/object-registry-state.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/fidelity/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/fidelity/kits/object-fidelity-kit/descriptors.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/fidelity/kits/object-fidelity-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/kits/object-registry-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/placement/contracts/placement-descriptor.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/placement/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/placement/kits/object-placement-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
@@ -2152,15 +2894,140 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/object/shape/providers/meshoptimizer-shape-provider-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/shape/providers/meshoptimizer-shape-provider-kit/meshoptimizer-provider.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/shape/providers/meshoptimizer-shape-provider-kit/reference-provider.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/object/state/object-registry-state.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/vegetation/adapters/vegetation-object-bridge-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/vegetation/ecology-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/object/vegetation/foliage-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/vegetation/index.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/vegetation/kits/object-vegetation-kit/contracts.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/vegetation/kits/object-vegetation-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/object/vegetation/ecology-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/object/vegetation/foliage-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/vegetation/tree-domain/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/physics/domain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/physics/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/atomic-body-kit.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/body-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/body-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-damping-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-damping-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-damping-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-force-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-force-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-force-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-identity-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-identity-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-identity-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-inertia-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-inertia-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-inertia-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-lifecycle-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-lifecycle-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-lifecycle-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-mass-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-mass-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-mass-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-pose-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-pose-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-pose-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-registry-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-registry-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-registry-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-sleep-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-sleep-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-sleep-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-state-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-state-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-state-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-type-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-type-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-type-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-velocity-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-velocity-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-velocity-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-wake-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-wake-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-wake-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/atomic-collider-kit.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/collider-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/collider-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-attachment-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-attachment-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-attachment-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-filter-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-filter-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-filter-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-identity-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-identity-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-identity-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-lifecycle-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-lifecycle-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-lifecycle-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-material-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-material-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-material-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-pose-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-pose-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-pose-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-registry-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-registry-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collider-registry-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-group-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-group-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-group-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-layer-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-layer-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-layer-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-mask-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-mask-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/collision-mask-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/sensor-collider-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/sensor-collider-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/sensor-collider-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/trigger-collider-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/trigger-collider-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/collider/kits/trigger-collider-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/collider/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/atomic-constraint-kit.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/constraints-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/constraints-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/ball-socket-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/ball-socket-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/ball-socket-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/cone-twist-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/cone-twist-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/cone-twist-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-break-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-break-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-break-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-registry-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-registry-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/constraint-registry-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/distance-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/distance-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/distance-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/drive-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/drive-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/drive-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/fixed-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/fixed-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/fixed-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/hinge-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/hinge-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/hinge-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/limit-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/limit-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/limit-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/motor-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/motor-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/motor-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/slider-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/slider-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/slider-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/spring-constraint-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/spring-constraint-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/constraints/kits/spring-constraint-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/constraints/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/contracts/contract-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/contracts/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/contracts/kits/physics-command-schema-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
@@ -2183,6 +3050,48 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/physics/contracts/kits/physics-state-schema-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/contracts/portable-value.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/contracts/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/detection-algorithms.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/detection-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/detection-kit.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/detection-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/detection-math.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-pair-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-pair-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/broad-phase-pair-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/collision-detection-result-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/collision-detection-result-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/collision-detection-result-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/continuous-collision-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/continuous-collision-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/continuous-collision-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/dynamic-tree-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/dynamic-tree-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/dynamic-tree-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/epa-penetration-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/epa-penetration-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/epa-penetration-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/gjk-detection-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/gjk-detection-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/gjk-detection-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/narrow-phase-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/narrow-phase-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/narrow-phase-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/shape-intersection-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/shape-intersection-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/shape-intersection-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/spatial-partition-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/spatial-partition-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/spatial-partition-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/sweep-and-prune-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/sweep-and-prune-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/detection/kits/sweep-and-prune-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/detection/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/domain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/lifecycle/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/lifecycle/kits/physics-installation-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/lifecycle/kits/physics-installation-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
@@ -2227,6 +3136,52 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/physics/material/material-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/material/material-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/material/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/box-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/box-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/box-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/capsule-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/capsule-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/capsule-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/compound-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/compound-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/compound-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cone-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cone-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cone-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/convex-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/convex-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/convex-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cylinder-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cylinder-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/cylinder-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/heightfield-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/heightfield-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/heightfield-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/plane-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/plane-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/plane-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/scaled-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/scaled-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/scaled-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-identity/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-identity/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-identity/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-registry/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-registry/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-registry/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-validation/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-validation/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/shape-validation/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/sphere-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/sphere-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/sphere-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/triangle-mesh-shape/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/triangle-mesh-shape/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/physics/shape/kits/triangle-mesh-shape/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/shape-contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/shape-manifests.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/shape/subdomain.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/world/index.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/world/kits/force-field-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/world/kits/force-field-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
@@ -2261,10 +3216,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/domain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/kits/presentation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/animation/kits/animation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/animation/kits/rig-transform-kit.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/audio/kits/audio-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2285,6 +3236,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/presentation/capture/kits/capture-kit/descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/capture/kits/capture-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/capture/kits/capture-kit/provider.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/domain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/graphics/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/adapters.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2300,6 +3253,9 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/terrain-lod-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/vfx-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/kits/presentation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/output/kits/output-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/output/kits/output-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/sky/kits/sky-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2308,8 +3264,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/presentation/ui/kits/ui-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/domain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
@@ -2339,6 +3293,35 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/render/buffer/kits/vertex-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/render/buffer/kits/vertex-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/camera-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/camera-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/camera-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-jitter-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-jitter-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-jitter-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-projection-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-projection-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-projection-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-reprojection-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-reprojection-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-reprojection-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-view-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-view-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-view-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-viewport-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-viewport-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/camera-viewport-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/multiview-camera-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/multiview-camera-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/multiview-camera-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/stereo-camera-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/kits/stereo-camera-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/camera/kits/stereo-camera-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/camera/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/contract-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/kits/render-domain-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
@@ -2395,6 +3378,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/render/device/kits/render-device-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/render/device/kits/render-device-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/device/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/domain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/lifecycle/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/lifecycle/kits/render-installation-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/lifecycle/kits/render-installation-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
@@ -2524,6 +3509,39 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/render/shader/shader-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/shader/shader-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/shader/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/fullscreen-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/fullscreen-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/fullscreen-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/offscreen-surface-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/offscreen-surface-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/offscreen-surface-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/render-surface-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/render-surface-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/render-surface-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/resize-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/resize-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/resize-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/scissor-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/scissor-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/scissor-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/surface-format-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/surface-format-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/surface-format-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/swapchain-surface-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/swapchain-surface-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/swapchain-surface-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/viewport-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/viewport-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/viewport-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/window-surface-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/kits/window-surface-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/surface/kits/window-surface-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/surface-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/surface-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/surface/surface-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/texture/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/texture/kits/depth-texture-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/texture/kits/depth-texture-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
@@ -2562,9 +3580,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/render/texture/texture-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/texture/texture-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/texture/texture-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/runtime/domain.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/runtime/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/runtime/data/kits/data-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/runtime/data/kits/data-kit/ledger.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/data/kits/data-kit/migration.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
@@ -2573,6 +3588,9 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/runtime/data/kits/data-kit/selectors.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/data/kits/data-kit/services.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/data/kits/data-kit/snapshot.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/domain.manifest.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/index.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/runtime/persistence/kits/persistence-kit/index.js` | `n:runtime` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/runtime/realtime/contracts/surfaces.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/runtime/realtime/contracts/tick-context-scheduler.js` | `n:runtime` | manifest-owned-internal | NexusEngine Core |
@@ -2619,19 +3637,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/adapters/vehicle-water-response-adapter-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/domain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/checkpoints.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/hazards.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/objectives.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/pressure.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/resolution.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/resources.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/kits/simulation-kit/timers.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/restored-behavior-manifests.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/economy/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/economy/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/economy/accounts/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/economy/accounts/kits/economy-account-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/economy/accounts/kits/economy-account-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2646,6 +3651,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/economy/cargo/kits/cargo-manifest-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/economy/cargo/kits/cargo-manifest-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/economy/cargo/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/economy/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/economy/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/hazard-field/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/hazard-field/kits/hazard-field-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/hazard-field/kits/hazard-field-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2653,12 +3660,22 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/hazard-field/kits/hazard-field-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/hazard-field/kits/hazard-field-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/hazard-field/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/checkpoints.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/hazards.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/objectives.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/pressure.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/resolution.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/resources.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/kits/simulation-kit/timers.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/motion/articulated-motion-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/motion/articulated-motion-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/motion/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/kits/motion-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/kits/motion-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/motion/kits/two-bone-ik-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/simulation/motion/articulated-motion-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/motion/articulated-motion-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/motion/locomotion/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/locomotion/kits/action-locomotion-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/locomotion/kits/action-locomotion-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2673,8 +3690,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/motion/vehicle/kits/vehicle-dynamics-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/vehicle/kits/vehicle-dynamics-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/motion/vehicle/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/operations/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/operations/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/facility/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/facility/kits/facility-operations-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/facility/kits/facility-operations-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2682,6 +3697,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/operations/facility/kits/facility-operations-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/facility/kits/facility-operations-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/facility/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/operations/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/occupant-flow/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/occupant-flow/kits/occupant-flow-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/occupant-flow/kits/occupant-flow-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2689,6 +3705,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/operations/occupant-flow/kits/occupant-flow-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/occupant-flow/kits/occupant-flow-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/occupant-flow/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/operations/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/transport-route/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/transport-route/kits/transport-route-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/transport-route/kits/transport-route-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2697,12 +3714,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/operations/transport-route/kits/transport-route-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/operations/transport-route/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/adapters/articulated-motion-drive-adapter/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/simulation/physics/articulated-dynamics-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/physics/articulated-dynamics-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/physics/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/kits/physics-kit/catalog-factory.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/physics/kits/physics-kit/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/kits/physics-kit/provider.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/physics/articulated-dynamics-domain/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/physics/articulated-dynamics-domain/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/simulation/physics/world-contact/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/world-contact/kits/world-contact-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/world-contact/kits/world-contact-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2711,7 +3728,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/physics/world-contact/kits/world-contact-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/physics/world-contact/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/progression/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/lifecycle/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/lifecycle/kits/lifecycle-progression-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/lifecycle/kits/lifecycle-progression-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2719,6 +3735,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/progression/lifecycle/kits/lifecycle-progression-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/lifecycle/kits/lifecycle-progression-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/progression/lifecycle/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/progression/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/pursuit-pressure/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/pursuit-pressure/kits/pursuit-pressure-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/pursuit-pressure/kits/pursuit-pressure-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2727,7 +3744,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/pursuit-pressure/kits/pursuit-pressure-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/pursuit-pressure/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/simulation/recovery/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/soft-respawn/index.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/soft-respawn/kits/soft-respawn-kit/contracts.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/soft-respawn/kits/soft-respawn-kit/index.js` | `n:simulation` | manifest-proven-public-atom | NexusEngine Core |
@@ -2735,6 +3751,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/simulation/recovery/soft-respawn/kits/soft-respawn-kit/services.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/soft-respawn/kits/soft-respawn-kit/state.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/simulation/recovery/soft-respawn/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/recovery/subdomain.manifest.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/simulation/restored-behavior-manifests.js` | `n:simulation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/domain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/kits/angle-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
@@ -2751,19 +3769,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/spatial/scale/subdomain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/adapters/terrain-provider-adapter/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/domain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/kits/world-builder-runtime-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/kits/world-cell-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/kits/world-effect-provider-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/kits/world-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/kits/world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/partitions/quadtree-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/partitions/uniform-grid-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/portable.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/preparation/world-patch-preparation-controller.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/restored-behavior-manifests.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/generation/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/generation/kits/procedural-generation-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/generation/kits/procedural-generation-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
@@ -2771,8 +3776,13 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/generation/kits/procedural-generation-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/generation/kits/procedural-generation-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/generation/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-builder-runtime-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-cell-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-effect-provider-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/kits/world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/navigation/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/landmark-guidance/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/landmark-guidance/kits/landmark-guidance-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/landmark-guidance/kits/landmark-guidance-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
@@ -2801,6 +3811,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/navigation/route-field/kits/route-field-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/route-field/kits/route-field-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/navigation/route-field/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/navigation/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/partitions/quadtree-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/partitions/uniform-grid-partition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/portable.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/preparation/world-patch-preparation-controller.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/restored-behavior-manifests.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/scene/kits/scene-kit/constants.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/scene/kits/scene-kit/descriptors.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/scene/kits/scene-kit/host-contract.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -2811,6 +3827,10 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/scene/kits/scene-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/scene/kits/scene-kit/transitions.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/scene/kits/scene-kit/utils.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/surfaces/curved-horizon-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/surfaces/flat-world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/kits/terrain-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/kits/terrain-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
@@ -2818,6 +3838,7 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/terrain/kits/terrain-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/kits/terrain-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/water-surface/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/water-surface/kits/water-surface-kit/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/water-surface/kits/water-surface-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
@@ -2829,7 +3850,12 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/weather/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/weather/layered-weather-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/weather/weather-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/world-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/atmosphere-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/ecology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/feature-family-domain-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/hydrology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/kits/feature-composition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/kits/feature-definition-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -2837,12 +3863,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/world-feature-domain/kits/feature-query-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/kits/feature-registry-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/kits/semantic-feature-kit/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/atmosphere-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/ecology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/feature-family-domain-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/world-feature-domain/hydrology-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/landform-feature-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/landform-feature-domain/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/landform-feature-domain/kits/canyon-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -2852,6 +3872,8 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/world-feature-domain/landform-feature-domain/kits/plateau-feature-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/landform-feature-domain/landform-feature-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/settlement-feature-domain/index.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/snapshot.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/world-feature-domain/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-feature-domain/world-feature-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/world/world-foundation-domain/contracts.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
@@ -2864,10 +3886,6 @@ Registry SHA-256: `8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83c
 | `src/core-domains/world/world-foundation-domain/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-foundation-domain/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/world-foundation-domain/world-foundation-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/world/surfaces/curved-horizon-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/surfaces/flat-world-surface-kit/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/world/world-domain.js` | `n:world` | manifest-proven-public-atom | NexusEngine Core |
 | `src/domain-api.js` | `engine-root` | root-contract | NexusEngine minimal root |
 | `src/domain-path.js` | `engine-root` | root-contract | NexusEngine minimal root |
 | `src/domain-service-kit.js` | `engine-root` | root-contract | NexusEngine minimal root |
@@ -4105,12 +5123,12 @@ This is a hard cutover. Removed modules are not forwarded. Sources marked core-r
 | `src/hosts/browser/browser-startup-presentation-adapter.js` | external-kit | NexusEngine-Editor adapters | `n:asset`, `n:host`, `n:presentation` |
 | `src/landmark-guidance-kit.js` | core-restored | NexusEngine manifests: n:world:navigation:landmark-guidance | `landmark-guidance-kit` |
 | `src/lifecycle-progression-kit.js` | core-restored | NexusEngine manifests: n:simulation:progression:lifecycle | `lifecycle-progression-kit` |
-| `src/modules/nexus-diffusion/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
-| `src/modules/nexus-diffusion/nexus-diffusion-domain.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/backend/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/checkpoint/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/dataset/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
+| `src/modules/nexus-diffusion/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/model/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
+| `src/modules/nexus-diffusion/nexus-diffusion-domain.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/noise/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/preview/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |
 | `src/modules/nexus-diffusion/sampling/index.js` | external-kit | NexusEngine-Kits | `n:compute`, `n:compute:model`, `n:runtime:data` |

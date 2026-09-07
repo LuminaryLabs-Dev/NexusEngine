@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-authoring-public.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Authoring public surface: all 19 factory imports, domain/API ownership, repeated installation and immutable/mutable snapshot isolation passed.\n"
+}

@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-authoring-geometry.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Authoring geometry: primitive orientation, concave triangulation, mapped topology, dependency rollback, curves, workspaces, sculpt, UVs and evaluated corners passed.\n"
+}

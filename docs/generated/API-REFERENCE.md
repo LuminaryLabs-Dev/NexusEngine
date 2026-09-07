@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 ## Domains
 
@@ -14,6 +14,25 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
+| `n:authoring` | - | Own editable source documents and typed editing operations. | stable-candidate |
+| `n:authoring:modifier` | `n:authoring` | Own modifier authoring contracts and operations. | stable-candidate |
+| `n:authoring:publishing` | `n:authoring` | Own publishing authoring contracts and operations. | stable-candidate |
+| `n:authoring:sequence` | `n:authoring` | Own sequence authoring contracts and operations. | stable-candidate |
+| `n:authoring:domain-composition` | `n:authoring` | Own domain-composition authoring contracts and operations. | stable-candidate |
+| `n:authoring:assembly` | `n:authoring` | Own assembly authoring contracts and operations. | stable-candidate |
+| `n:authoring:animation` | `n:authoring` | Own animation authoring contracts and operations. | stable-candidate |
+| `n:authoring:skin` | `n:authoring` | Own skin authoring contracts and operations. | stable-candidate |
+| `n:authoring:rig` | `n:authoring` | Own rig authoring contracts and operations. | stable-candidate |
+| `n:authoring:paint` | `n:authoring` | Own paint authoring contracts and operations. | stable-candidate |
+| `n:authoring:material` | `n:authoring` | Own material authoring contracts and operations. | stable-candidate |
+| `n:authoring:uv` | `n:authoring` | Own uv authoring contracts and operations. | stable-candidate |
+| `n:authoring:curve` | `n:authoring` | Own curve authoring contracts and operations. | stable-candidate |
+| `n:authoring:sculpt` | `n:authoring` | Own sculpt authoring contracts and operations. | stable-candidate |
+| `n:authoring:brush` | `n:authoring` | Own brush authoring contracts and operations. | stable-candidate |
+| `n:authoring:workspace` | `n:authoring` | Own workspace authoring contracts and operations. | stable-candidate |
+| `n:authoring:project` | `n:authoring` | Own editable project contracts and operations. | stable-candidate |
+| `n:authoring:mesh` | `n:authoring` | Own editable mesh contracts and operations. | stable-candidate |
+| `n:authoring:editing` | `n:authoring` | Own editable editing contracts and operations. | stable-candidate |
 | `n:build` | - | Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition. | stable-candidate |
 | `n:build:source` | `n:build` | Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs. | stable-candidate |
 | `n:build:analysis` | `n:build` | Own real syntax, type, effect, and dependency analysis for build inputs. | stable-candidate |
@@ -31,10 +50,44 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
 | `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
-| `n:compute` | - | Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts. | stable-candidate |
-| `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and model provider contracts. | stable-candidate |
+| `n:compute` | - | Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts. | stable-candidate |
+| `n:compute:graph` | `n:compute` | Own portable compute topology, dependencies, and deterministic plans. | stable-candidate |
+| `n:compute:graph:node` | `n:compute:graph` | Own portable node identity, ports, operations, and requirements. | stable-candidate |
+| `n:compute:graph:dependency` | `n:compute:graph` | Own data, control, and barrier dependencies. | stable-candidate |
+| `n:compute:graph:plan` | `n:compute:graph` | Own deterministic validation, ordering, partitioning, and batching. | stable-candidate |
+| `n:compute:resource` | `n:compute` | Own portable compute resource requirements, access intent, and receipts. | stable-candidate |
+| `n:compute:resource:buffer` | `n:compute:resource` | Own portable compute buffer size, usage, and access semantics. | stable-candidate |
+| `n:compute:resource:image` | `n:compute:resource` | Own portable compute image format, view, and access semantics. | stable-candidate |
+| `n:compute:resource:binding` | `n:compute:resource` | Own portable compute binding slots, layouts, and sets. | stable-candidate |
+| `n:compute:dispatch` | `n:compute` | Own provider-neutral execution intent, workgroups, submissions, and receipts. | stable-candidate |
+| `n:compute:dispatch:workgroup` | `n:compute:dispatch` | Own portable workgroup shape and count semantics. | stable-candidate |
+| `n:compute:host` | `n:compute` | Own compute executor compatibility, deterministic selection, and lifecycle. | stable-candidate |
+| `n:compute:host:capability` | `n:compute:host` | Own compute-specific features, limits, requirements, and profiles. | stable-candidate |
+| `n:compute:host:selection` | `n:compute:host` | Own deterministic compatibility, preferences, and executor selection. | stable-candidate |
+| `n:compute:host:lifecycle` | `n:compute:host` | Own acquisition, readiness, recovery, and release contracts for compute executors. | stable-candidate |
+| `n:compute:host:execution` | `n:compute:host` | Own execution-family classification and realization of portable compute work. | stable-candidate |
+| `n:compute:host:execution:gpu` | `n:compute:host:execution` | Own GPU-class compute execution semantics over Host GPU resources. | stable-candidate |
+| `n:compute:host:execution:gpu:vulkan` | `n:compute:host:execution:gpu` | Own portable Vulkan compute contracts over a Host GPU environment without pretending a browser runtime exists. | stable-candidate |
+| `n:compute:host:execution:gpu:opengl` | `n:compute:host:execution:gpu` | Own portable OpenGL compute contracts over a Host GPU environment without pretending a browser runtime exists. | stable-candidate |
+| `n:compute:host:execution:cpu` | `n:compute:host:execution` | Own processor-class compute execution and deterministic CPU fallback. | stable-candidate |
+| `n:compute:host:execution:cpu:javascript` | `n:compute:host:execution:cpu` | Own JavaScript and Worker execution of portable Compute graphs. | stable-candidate |
+| `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | Own WebAssembly compute execution, memory, SIMD, and threading contracts. | stable-candidate |
+| `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | Own native CPU extension contracts for threads, vector execution, and synchronization. | stable-candidate |
+| `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and provider contracts. | stable-candidate |
+| `n:compute:model:inference` | `n:compute:model` | Own provider-neutral inference requests, results, and compute requirements. | stable-candidate |
+| `n:compute:model:inference:provider` | `n:compute:model:inference` | Own inference provider capability and contract semantics without owning runtimes. | stable-candidate |
 | `n:diagnostics` | - | Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors. | stable-candidate |
-| `n:host` | - | Own host capability descriptors and fallback contracts without platform implementation. | stable-candidate |
+| `n:host` | - | Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private. | stable-candidate |
+| `n:host:gpu` | `n:host` | Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render. | stable-candidate |
+| `n:host:gpu:capability` | `n:host:gpu` | Own backend-neutral GPU features, limits, profiles, and compatibility requirements. | stable-candidate |
+| `n:host:gpu:device` | `n:host:gpu` | Own portable logical GPU device identity and the device lifecycle shared by GPU consumers. | stable-candidate |
+| `n:host:gpu:device:adapter` | `n:host:gpu:device` | Own portable adapter discovery and selection semantics. | stable-candidate |
+| `n:host:gpu:device:logical-device` | `n:host:gpu:device` | Own logical-device acquisition, identity, generation, and state. | stable-candidate |
+| `n:host:gpu:device:queue` | `n:host:gpu:device` | Own portable shared-queue submission ordering and completion receipts. | stable-candidate |
+| `n:host:gpu:device:lifecycle` | `n:host:gpu:device` | Own readiness, loss, release, and generation transitions for the shared logical GPU device. | stable-candidate |
+| `n:host:gpu:resource` | `n:host:gpu` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. | stable-candidate |
+| `n:host:gpu:synchronization` | `n:host:gpu` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. | stable-candidate |
+| `n:host:gpu:recovery` | `n:host:gpu` | Own shared device-loss records, resource invalidation, and restoration coordination. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
 | `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
@@ -44,7 +97,13 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:interaction:request:fulfillment` | `n:interaction:request` | Own spatial request destination, deadline, completion, expiry, and reward state. | stable-candidate |
 | `n:interaction:transfer-zone` | `n:interaction` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. | stable-candidate |
 | `n:mcp` | - | Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch. | stable-candidate |
-| `n:network` | - | Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts. | stable-candidate |
+| `n:network` | - | Own portable transport, session, authority, synchronization, and replication contracts. | stable-candidate |
+| `n:network:transport` | `n:network` | Own provider-neutral transport capabilities and portable message channels. | stable-candidate |
+| `n:network:multiplayer` | `n:network` | Own the portable multiplayer protocol boundary and deterministic inbound queue contract. | stable-candidate |
+| `n:network:multiplayer:session` | `n:network:multiplayer` | Own match identity, peer readiness, and connection phases. | stable-candidate |
+| `n:network:multiplayer:authority` | `n:network:multiplayer` | Own host and client roles plus state ownership declarations. | stable-candidate |
+| `n:network:multiplayer:tick-sync` | `n:network:multiplayer` | Own deterministic RTT, clock-offset, drift, and remote-tick mapping records. | stable-candidate |
+| `n:network:multiplayer:replication` | `n:network:multiplayer` | Own sequence numbers, acknowledgements, input frames, and snapshot envelopes. | stable-candidate |
 | `n:object` | - | Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement. | stable-candidate |
 | `n:object:shape` | `n:object` | Own source and derived geometric shapes, provider jobs, qualification, and fallback. | stable-candidate |
 | `n:object:fidelity` | `n:object` | Own valid object forms, fidelity packages, readiness, and contextual adaptation. | stable-candidate |
@@ -86,6 +145,8 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
 | `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
 | `n:render:camera` | `n:render` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. | stable-candidate |
+| `n:render:execution` | `n:render` | Own realization-family semantics for portable Render work. | stable-candidate |
+| `n:render:execution:gpu` | `n:render:execution` | Own semantics common to GPU-class rendering over Host GPU resources. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
 | `n:runtime:realtime` | `n:runtime` | Own deterministic frame context and realtime phase execution. | stable-candidate |
 | `n:runtime:data` | `n:runtime` | Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes. | stable-candidate |
@@ -146,6 +207,25 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
+| `authoring-modifier-service-kit` | `n:authoring:modifier` | `nexusengine/domains/authoring/modifier` | Own modifier source operations. |
+| `authoring-publishing-service-kit` | `n:authoring:publishing` | `nexusengine/domains/authoring/publishing` | Own publishing source operations. |
+| `authoring-sequence-service-kit` | `n:authoring:sequence` | `nexusengine/domains/authoring/sequence` | Own sequence source operations. |
+| `authoring-domain-composition-service-kit` | `n:authoring:domain-composition` | `nexusengine/domains/authoring/domain-composition` | Own domain-composition source operations. |
+| `authoring-assembly-service-kit` | `n:authoring:assembly` | `nexusengine/domains/authoring/assembly` | Own assembly source operations. |
+| `authoring-animation-service-kit` | `n:authoring:animation` | `nexusengine/domains/authoring/animation` | Own animation source operations. |
+| `authoring-skin-service-kit` | `n:authoring:skin` | `nexusengine/domains/authoring/skin` | Own skin source operations. |
+| `authoring-rig-service-kit` | `n:authoring:rig` | `nexusengine/domains/authoring/rig` | Own rig source operations. |
+| `authoring-paint-service-kit` | `n:authoring:paint` | `nexusengine/domains/authoring/paint` | Own paint source operations. |
+| `authoring-material-service-kit` | `n:authoring:material` | `nexusengine/domains/authoring/material` | Own material source operations. |
+| `authoring-uv-service-kit` | `n:authoring:uv` | `nexusengine/domains/authoring/uv` | Own uv source operations. |
+| `authoring-curve-service-kit` | `n:authoring:curve` | `nexusengine/domains/authoring/curve` | Own curve source operations. |
+| `authoring-sculpt-service-kit` | `n:authoring:sculpt` | `nexusengine/domains/authoring/sculpt` | Own sculpt source operations. |
+| `authoring-brush-service-kit` | `n:authoring:brush` | `nexusengine/domains/authoring/brush` | Own brush source operations. |
+| `authoring-workspace-service-kit` | `n:authoring:workspace` | `nexusengine/domains/authoring/workspace` | Own workspace source operations. |
+| `authoring-domain-contract-kit` | `n:authoring` | `nexusengine/domains/authoring/contract` | Own contract Authoring contracts and operations. |
+| `authoring-project-document-kit` | `n:authoring:project` | `nexusengine/domains/authoring/project` | Own project Authoring contracts and operations. |
+| `authoring-mesh-document-kit` | `n:authoring:mesh` | `nexusengine/domains/authoring/mesh` | Own mesh Authoring contracts and operations. |
+| `authoring-editing-session-kit` | `n:authoring:editing` | `nexusengine/domains/authoring/editing` | Own editing Authoring contracts and operations. |
 | `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |
 | `dependency-source-kit` | `n:build:source` | `nexusengine/domains/build/source/dependency-source` | Resolve exact dependency source identities and recursive lockfile closure. |
@@ -194,7 +274,7 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
 | `web-module-linker-kit` | `n:build:compile` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
-| `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors and create deterministic dependency-ordered dispatch plans. |
+| `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
 | `diagnostics-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/runtime` | Collect serializable telemetry, runtime health, determinism, and performance evidence. |
 | `debug-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug` | Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics. |
@@ -211,7 +291,13 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `transport-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/transport-request` | Translate Transport Route arrivals into exact-once Request Queue fulfillment commands. |
 | `request-economy-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/request-economy` | Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions. |
 | `mcp-registry-kit` | `n:mcp` | `nexusengine/domains/mcp/registry` | Register and dispatch schema-valid MCP providers through an explicit authorization boundary. |
-| `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe network sessions, messages, authority, and synchronization without owning transport. |
+| `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe portable network messages and synchronization without implementing transport. |
+| `network-transport-contract-kit` | `n:network:transport` | `nexusengine/domains/network/transport` | Validate provider-neutral transport capabilities and portable channel messages. |
+| `multiplayer-contract-kit` | `n:network:multiplayer` | `nexusengine/domains/network/multiplayer` | Own the protocol version and deterministic inbound queue contract. |
+| `multiplayer-session-kit` | `n:network:multiplayer:session` | `nexusengine/domains/network/multiplayer/session` | Manage portable session phases, peer readiness, and disconnect state. |
+| `multiplayer-authority-kit` | `n:network:multiplayer:authority` | `nexusengine/domains/network/multiplayer/authority` | Enforce one authoritative host and portable state ownership declarations. |
+| `multiplayer-tick-sync-kit` | `n:network:multiplayer:tick-sync` | `nexusengine/domains/network/multiplayer/tick-sync` | Map explicit remote timing samples onto deterministic local ticks. |
+| `multiplayer-replication-kit` | `n:network:multiplayer:replication` | `nexusengine/domains/network/multiplayer/replication` | Create sequence-numbered input and snapshot envelopes and reject stale packets. |
 | `object-registry-kit` | `n:object` | `nexusengine/domains/object/registry` | Own object identity and renderer-neutral lifecycle records. |
 | `object-shape-kit` | `n:object:shape` | `nexusengine/domains/object/shape` | Derive and qualify renderer-neutral geometric shape candidates. |
 | `object-fidelity-kit` | `n:object:fidelity` | `nexusengine/domains/object/fidelity` | Package and select valid object fidelity forms. |

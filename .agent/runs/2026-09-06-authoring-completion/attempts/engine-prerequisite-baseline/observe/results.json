@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "runId": "engine-prerequisite-baseline",
+  "status": "completed",
+  "results": [
+    {
+      "id": "check-0",
+      "ok": false,
+      "evidence": [
+        "commands/check-0.json"
+      ]
+    }
+  ]
+}

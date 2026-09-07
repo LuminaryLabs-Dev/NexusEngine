@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-physics-constraints-registry.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Constraints registry: atomic failures, prototype-safe IDs, retries, revisions, terminal breaks, guards, snapshot recovery and deterministic replay passed\n"
+}

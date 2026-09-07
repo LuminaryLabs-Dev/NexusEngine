@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { createSnapshotEnvelope } from "nexusengine/foundation";
 import path from "node:path";
 import { pathToFileURL } from "node:url";
 import {
@@ -6,8 +7,7 @@ import {
   createCompletionLedger,
   createEngine,
   createProgressTimer,
-  createSeededRandom,
-  createSnapshotEnvelope
+  createSeededRandom
 } from "./helpers/public-package-surface.mjs";
 
 const repositoryRoot = process.cwd();

@@ -4,30 +4,42 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:host`
 - Status: `stable-candidate`
-- Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+- Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 - Public entry: `nexusengine/domains/host`
 
 ## Responsibility
 
-Own host capability descriptors and fallback contracts without platform implementation.
+Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private.
 
 ## Owns
 
 - fallback selection contracts
 - host capability descriptors
 - host requirement contracts
+- shared execution-environment identity
 
 ## Does Not Own
 
-- Node process lifecycle
-- browser implementation
-- native host implementation
+- application process lifecycle
+- compute algorithms
+- raw platform handles in portable state
 - renderer implementation
 - storage implementation
 
 ## Subdomains
 
-None.
+| Path | Responsibility |
+| --- | --- |
+| `n:host:gpu` | Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render. |
+| `n:host:gpu:capability` | Own backend-neutral GPU features, limits, profiles, and compatibility requirements. |
+| `n:host:gpu:device` | Own portable logical GPU device identity and the device lifecycle shared by GPU consumers. |
+| `n:host:gpu:device:adapter` | Own portable adapter discovery and selection semantics. |
+| `n:host:gpu:device:logical-device` | Own logical-device acquisition, identity, generation, and state. |
+| `n:host:gpu:device:queue` | Own portable shared-queue submission ordering and completion receipts. |
+| `n:host:gpu:device:lifecycle` | Own readiness, loss, release, and generation transitions for the shared logical GPU device. |
+| `n:host:gpu:resource` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. |
+| `n:host:gpu:synchronization` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. |
+| `n:host:gpu:recovery` | Own shared device-loss records, resource invalidation, and restoration coordination. |
 
 ## Atomic Kits
 

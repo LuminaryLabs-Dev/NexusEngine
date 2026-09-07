@@ -1,0 +1,95 @@
+{
+  "id": "engine-prerequisite-baseline",
+  "goal": "Verify current engine implementation",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "verify",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:43.671Z",
+      "completedAt": "2026-09-06T23:00:43.675Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:43.676Z",
+      "completedAt": "2026-09-06T23:00:43.679Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:43.680Z",
+      "completedAt": "2026-09-06T23:00:43.682Z",
+      "result": {
+        "ok": true,
+        "planId": "engine-prerequisite-baseline-plan",
+        "commandCount": 1
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:43.683Z",
+      "completedAt": "2026-09-06T23:00:43.686Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:43.687Z",
+      "completedAt": "2026-09-06T23:00:47.768Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "engine-prerequisite-baseline"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-09-06T23:00:47.769Z",
+      "completedAt": "2026-09-06T23:00:47.771Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "engine-prerequisite-baseline"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": false,
+      "startedAt": "2026-09-06T23:00:47.772Z",
+      "completedAt": "2026-09-06T23:00:47.776Z",
+      "error": {
+        "name": "Error",
+        "message": "check check-0 did not explicitly pass."
+      }
+    }
+  ],
+  "lastError": {
+    "name": "Error",
+    "message": "check check-0 did not explicitly pass."
+  }
+}

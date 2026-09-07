@@ -1,0 +1,8 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> nexusengine@0.0.4 docs:check
+> node scripts/check-active-docs.mjs && node scripts/generate-guide.mjs --check && node scripts/check-guide-pdf.mjs
+
+Active docs ok: 86 files, 60 kit suggestions reclassified, 26 restored sources reconciled.
+Checked 22 guide chapters (sha256:e7fec9e3fe648891683e0bf874c75b5873a0d05f35ecec565613d61457da3eed).
+NexusEngine Guide PDF ok: 221 nonblank, unclipped US Letter pages.

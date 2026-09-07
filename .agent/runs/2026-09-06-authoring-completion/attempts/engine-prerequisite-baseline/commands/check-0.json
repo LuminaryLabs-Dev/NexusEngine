@@ -1,0 +1,12 @@
+{
+  "ok": false,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/run-all.mjs"
+  ],
+  "code": 1,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "{ discovered: 832, imported: 834, failed: 0 }\ncore domain import smoke ok\nChecked 20 Domain manifests, 180 Domain records, and 341 atomic Kits (a3f7c46905e4849b6500ce9274881653025b8c6d6394de45890cbbd05683fe09).\nValidated executable parity for 341 manifest-backed Core Kits.\nnode:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Runtime Core production modules own concrete renderer or platform behavior:\nsrc/core-domains/host/gpu/webgpu/index.js\nsrc/core-domains/render/execution/gpu/webgpu/frame-executor.js\nsrc/core-domains/render/execution/gpu/webgpu/index.js\n+ actual - expected\n\n+ [\n+   'src/core-domains/host/gpu/webgpu/index.js',\n+   'src/core-domains/render/execution/gpu/webgpu/frame-executor.js',\n+   'src/core-domains/render/execution/gpu/webgpu/index.js'\n+ ]\n- []\n\n    at file:///workspace/scratch/52aac677ed4f/NexusEngine/scripts/check-core-boundaries.mjs:159:8 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: [\n    'src/core-domains/host/gpu/webgpu/index.js',\n    'src/core-domains/render/execution/gpu/webgpu/frame-executor.js',\n    'src/core-domains/render/execution/gpu/webgpu/index.js'\n  ],\n  expected: [],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v24.19.0\n"
+}

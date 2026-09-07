@@ -1,0 +1,11 @@
+{
+  "stage": "observed-differences",
+  "ok": true,
+  "startedAt": "2026-09-07T02:10:05.844Z",
+  "completedAt": "2026-09-07T02:10:05.846Z",
+  "result": {
+    "ok": true,
+    "structuredChanges": 0,
+    "visualChanges": 0
+  }
+}

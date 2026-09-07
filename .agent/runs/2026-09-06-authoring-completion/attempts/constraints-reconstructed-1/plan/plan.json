@@ -1,0 +1,98 @@
+{
+  "id": "constraints-reconstructed-1-plan",
+  "ok": true,
+  "goal": "Verify current constraints implementation",
+  "commands": [
+    {
+      "action": "development.execute",
+      "id": "check-0",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-constraints-descriptors.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-1",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-constraints-registry.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-2",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-constraints-integration.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-3",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-constraints-public.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-4",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-body-smoke.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-5",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-shape-smoke.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-6",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-collider-smoke.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-7",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-detection-smoke.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    },
+    {
+      "action": "development.execute",
+      "id": "check-8",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-physics-domain-smoke.mjs"
+      ],
+      "timeoutMs": 60000,
+      "maxOutputBytes": 1048576
+    }
+  ],
+  "notes": []
+}

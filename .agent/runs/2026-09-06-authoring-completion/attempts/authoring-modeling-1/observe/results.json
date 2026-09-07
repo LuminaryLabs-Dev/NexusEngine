@@ -1,0 +1,42 @@
+{
+  "ok": true,
+  "runId": "authoring-modeling-1",
+  "status": "completed",
+  "results": [
+    {
+      "id": "check-0",
+      "ok": true,
+      "evidence": [
+        "commands/check-0.json"
+      ]
+    },
+    {
+      "id": "check-1",
+      "ok": true,
+      "evidence": [
+        "commands/check-1.json"
+      ]
+    },
+    {
+      "id": "check-2",
+      "ok": true,
+      "evidence": [
+        "commands/check-2.json"
+      ]
+    },
+    {
+      "id": "check-3",
+      "ok": true,
+      "evidence": [
+        "commands/check-3.json"
+      ]
+    },
+    {
+      "id": "check-4",
+      "ok": true,
+      "evidence": [
+        "commands/check-4.json"
+      ]
+    }
+  ]
+}

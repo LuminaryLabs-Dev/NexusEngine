@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -10,6 +10,25 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
 | `n:asset` | - | - |
+| `n:authoring` | `n:runtime` | - |
+| `n:authoring:modifier` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:publishing` | `n:authoring:assembly`, `n:authoring:project` | - |
+| `n:authoring:sequence` | `n:authoring:project` | - |
+| `n:authoring:domain-composition` | `n:authoring:project` | - |
+| `n:authoring:assembly` | `n:authoring:animation`, `n:authoring:material`, `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig`, `n:authoring:skin` | - |
+| `n:authoring:animation` | `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig`, `n:authoring:skin` | - |
+| `n:authoring:skin` | `n:authoring:brush`, `n:authoring:mesh`, `n:authoring:project`, `n:authoring:rig` | - |
+| `n:authoring:rig` | `n:authoring:project` | - |
+| `n:authoring:paint` | `n:authoring:brush`, `n:authoring:material`, `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:material` | `n:authoring:project` | - |
+| `n:authoring:uv` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:curve` | `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:sculpt` | `n:authoring:brush`, `n:authoring:mesh`, `n:authoring:project` | - |
+| `n:authoring:brush` | `n:authoring:project` | - |
+| `n:authoring:workspace` | `n:authoring:project` | - |
+| `n:authoring:project` | `n:authoring` | - |
+| `n:authoring:mesh` | `n:authoring:project` | - |
+| `n:authoring:editing` | `n:authoring:mesh`, `n:authoring:project` | - |
 | `n:build` | - | - |
 | `n:build:source` | `n:build` | - |
 | `n:build:analysis` | `n:build` | - |
@@ -28,9 +47,43 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:build:target:pcvr` | `n:build:target` | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
+| `n:compute:graph` | `n:compute` | - |
+| `n:compute:graph:node` | `n:compute:graph` | - |
+| `n:compute:graph:dependency` | `n:compute:graph` | - |
+| `n:compute:graph:plan` | `n:compute:graph` | - |
+| `n:compute:resource` | `n:compute` | - |
+| `n:compute:resource:buffer` | `n:compute:resource` | - |
+| `n:compute:resource:image` | `n:compute:resource` | - |
+| `n:compute:resource:binding` | `n:compute:resource` | - |
+| `n:compute:dispatch` | `n:compute` | - |
+| `n:compute:dispatch:workgroup` | `n:compute:dispatch` | - |
+| `n:compute:host` | `n:compute`, `n:host` | - |
+| `n:compute:host:capability` | `n:compute:host` | - |
+| `n:compute:host:selection` | `n:compute:host` | - |
+| `n:compute:host:lifecycle` | `n:compute:host` | - |
+| `n:compute:host:execution` | `n:compute:host` | - |
+| `n:compute:host:execution:gpu` | `n:compute:host:execution`, `n:host:gpu` | - |
+| `n:compute:host:execution:gpu:vulkan` | `n:compute:host:execution:gpu`, `n:host:gpu` | - |
+| `n:compute:host:execution:gpu:opengl` | `n:compute:host:execution:gpu`, `n:host:gpu` | - |
+| `n:compute:host:execution:cpu` | `n:compute:host:execution` | - |
+| `n:compute:host:execution:cpu:javascript` | `n:compute:host:execution:cpu` | - |
+| `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | - |
+| `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | - |
 | `n:compute:model` | `n:compute` | - |
+| `n:compute:model:inference` | `n:compute:model` | - |
+| `n:compute:model:inference:provider` | `n:compute:model:inference` | - |
 | `n:diagnostics` | - | - |
 | `n:host` | - | - |
+| `n:host:gpu` | `n:host` | - |
+| `n:host:gpu:capability` | `n:host:gpu` | - |
+| `n:host:gpu:device` | `n:host:gpu` | - |
+| `n:host:gpu:device:adapter` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:logical-device` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:queue` | `n:host:gpu:device` | - |
+| `n:host:gpu:device:lifecycle` | `n:host:gpu:device` | - |
+| `n:host:gpu:resource` | `n:host:gpu` | - |
+| `n:host:gpu:synchronization` | `n:host:gpu` | - |
+| `n:host:gpu:recovery` | `n:host:gpu` | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
 | `n:interaction:assistance-target` | `n:interaction` | - |
@@ -41,6 +94,12 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:interaction:transfer-zone` | `n:interaction` | - |
 | `n:mcp` | - | `n:composition` |
 | `n:network` | - | - |
+| `n:network:transport` | `n:network` | - |
+| `n:network:multiplayer` | `n:network`, `n:network:transport` | - |
+| `n:network:multiplayer:session` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:authority` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:tick-sync` | `n:network:multiplayer` | - |
+| `n:network:multiplayer:replication` | `n:network:multiplayer` | - |
 | `n:object` | - | `n:asset`, `n:simulation:physics` |
 | `n:object:shape` | `object:descriptor-contract` | - |
 | `n:object:fidelity` | `object:descriptor-contract` | - |
@@ -82,6 +141,8 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `n:render:shader` | `n:render`, `n:render:contracts`, `n:render:device`, `n:render:resource`, `render:device-capability`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-schema` | - |
 | `n:render:material` | `n:render`, `n:render:resource`, `n:render:shader`, `n:render:texture`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-compile`, `render:shader-program`, `render:shader-reflection`, `render:shader-variant`, `render:texture-residency`, `render:texture-resource` | - |
 | `n:render:camera` | `n:render`, `render:provider-contract` | - |
+| `n:render:execution` | `n:render` | - |
+| `n:render:execution:gpu` | `n:host:gpu`, `n:render:execution` | - |
 | `n:runtime` | - | - |
 | `n:runtime:realtime` | `n:runtime` | - |
 | `n:runtime:data` | `n:runtime` | - |

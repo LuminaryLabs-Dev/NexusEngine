@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -8,6 +8,25 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
+- `n:authoring`: Own editable source documents and typed editing operations.
+- `n:authoring:modifier`: Own modifier authoring contracts and operations.
+- `n:authoring:publishing`: Own publishing authoring contracts and operations.
+- `n:authoring:sequence`: Own sequence authoring contracts and operations.
+- `n:authoring:domain-composition`: Own domain-composition authoring contracts and operations.
+- `n:authoring:assembly`: Own assembly authoring contracts and operations.
+- `n:authoring:animation`: Own animation authoring contracts and operations.
+- `n:authoring:skin`: Own skin authoring contracts and operations.
+- `n:authoring:rig`: Own rig authoring contracts and operations.
+- `n:authoring:paint`: Own paint authoring contracts and operations.
+- `n:authoring:material`: Own material authoring contracts and operations.
+- `n:authoring:uv`: Own uv authoring contracts and operations.
+- `n:authoring:curve`: Own curve authoring contracts and operations.
+- `n:authoring:sculpt`: Own sculpt authoring contracts and operations.
+- `n:authoring:brush`: Own brush authoring contracts and operations.
+- `n:authoring:workspace`: Own workspace authoring contracts and operations.
+- `n:authoring:project`: Own editable project contracts and operations.
+- `n:authoring:mesh`: Own editable mesh contracts and operations.
+- `n:authoring:editing`: Own editable editing contracts and operations.
 - `n:build`: Own isolated build-time source analysis, compilation, toolchains, targets, artifacts, receipts, and proof without entering application runtime composition.
 - `n:build:source`: Own read-only project source, immutable dependency identities, content caches, fingerprints, and module graphs.
 - `n:build:analysis`: Own real syntax, type, effect, and dependency analysis for build inputs.
@@ -25,10 +44,44 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 - `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
 - `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
-- `n:compute`: Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
-- `n:compute:model`: Own model descriptors, registries, inference requests/results, and model provider contracts.
+- `n:compute`: Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.
+- `n:compute:graph`: Own portable compute topology, dependencies, and deterministic plans.
+- `n:compute:graph:node`: Own portable node identity, ports, operations, and requirements.
+- `n:compute:graph:dependency`: Own data, control, and barrier dependencies.
+- `n:compute:graph:plan`: Own deterministic validation, ordering, partitioning, and batching.
+- `n:compute:resource`: Own portable compute resource requirements, access intent, and receipts.
+- `n:compute:resource:buffer`: Own portable compute buffer size, usage, and access semantics.
+- `n:compute:resource:image`: Own portable compute image format, view, and access semantics.
+- `n:compute:resource:binding`: Own portable compute binding slots, layouts, and sets.
+- `n:compute:dispatch`: Own provider-neutral execution intent, workgroups, submissions, and receipts.
+- `n:compute:dispatch:workgroup`: Own portable workgroup shape and count semantics.
+- `n:compute:host`: Own compute executor compatibility, deterministic selection, and lifecycle.
+- `n:compute:host:capability`: Own compute-specific features, limits, requirements, and profiles.
+- `n:compute:host:selection`: Own deterministic compatibility, preferences, and executor selection.
+- `n:compute:host:lifecycle`: Own acquisition, readiness, recovery, and release contracts for compute executors.
+- `n:compute:host:execution`: Own execution-family classification and realization of portable compute work.
+- `n:compute:host:execution:gpu`: Own GPU-class compute execution semantics over Host GPU resources.
+- `n:compute:host:execution:gpu:vulkan`: Own portable Vulkan compute contracts over a Host GPU environment without pretending a browser runtime exists.
+- `n:compute:host:execution:gpu:opengl`: Own portable OpenGL compute contracts over a Host GPU environment without pretending a browser runtime exists.
+- `n:compute:host:execution:cpu`: Own processor-class compute execution and deterministic CPU fallback.
+- `n:compute:host:execution:cpu:javascript`: Own JavaScript and Worker execution of portable Compute graphs.
+- `n:compute:host:execution:cpu:wasm`: Own WebAssembly compute execution, memory, SIMD, and threading contracts.
+- `n:compute:host:execution:cpu:native`: Own native CPU extension contracts for threads, vector execution, and synchronization.
+- `n:compute:model`: Own model descriptors, registries, inference requests/results, and provider contracts.
+- `n:compute:model:inference`: Own provider-neutral inference requests, results, and compute requirements.
+- `n:compute:model:inference:provider`: Own inference provider capability and contract semantics without owning runtimes.
 - `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
-- `n:host`: Own host capability descriptors and fallback contracts without platform implementation.
+- `n:host`: Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private.
+- `n:host:gpu`: Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render.
+- `n:host:gpu:capability`: Own backend-neutral GPU features, limits, profiles, and compatibility requirements.
+- `n:host:gpu:device`: Own portable logical GPU device identity and the device lifecycle shared by GPU consumers.
+- `n:host:gpu:device:adapter`: Own portable adapter discovery and selection semantics.
+- `n:host:gpu:device:logical-device`: Own logical-device acquisition, identity, generation, and state.
+- `n:host:gpu:device:queue`: Own portable shared-queue submission ordering and completion receipts.
+- `n:host:gpu:device:lifecycle`: Own readiness, loss, release, and generation transitions for the shared logical GPU device.
+- `n:host:gpu:resource`: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.
+- `n:host:gpu:synchronization`: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.
+- `n:host:gpu:recovery`: Own shared device-loss records, resource invalidation, and restoration coordination.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
 - `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
@@ -38,7 +91,13 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 - `n:interaction:request:fulfillment`: Own spatial request destination, deadline, completion, expiry, and reward state.
 - `n:interaction:transfer-zone`: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.
 - `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
-- `n:network`: Own session, peer, message, synchronization, authority, latency, reconnect, and collaboration contracts.
+- `n:network`: Own portable transport, session, authority, synchronization, and replication contracts.
+- `n:network:transport`: Own provider-neutral transport capabilities and portable message channels.
+- `n:network:multiplayer`: Own the portable multiplayer protocol boundary and deterministic inbound queue contract.
+- `n:network:multiplayer:session`: Own match identity, peer readiness, and connection phases.
+- `n:network:multiplayer:authority`: Own host and client roles plus state ownership declarations.
+- `n:network:multiplayer:tick-sync`: Own deterministic RTT, clock-offset, drift, and remote-tick mapping records.
+- `n:network:multiplayer:replication`: Own sequence numbers, acknowledgements, input frames, and snapshot envelopes.
 - `n:object`: Own renderer-neutral object identity, intrinsic geometry meaning, fidelity, vegetation identity, and placement.
 - `n:object:shape`: Own source and derived geometric shapes, provider jobs, qualification, and fallback.
 - `n:object:fidelity`: Own valid object forms, fidelity packages, readiness, and contextual adaptation.
@@ -80,6 +139,8 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 - `n:render:shader`: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.
 - `n:render:material`: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.
 - `n:render:camera`: Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.
+- `n:render:execution`: Own realization-family semantics for portable Render work.
+- `n:render:execution:gpu`: Own semantics common to GPU-class rendering over Host GPU resources.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.
 - `n:runtime:realtime`: Own deterministic frame context and realtime phase execution.
 - `n:runtime:data`: Own schemas, snapshots, selectors, migrations, deterministic random streams, and portable data envelopes.

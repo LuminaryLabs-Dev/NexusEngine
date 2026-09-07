@@ -44,6 +44,6 @@ export default domainNode({
     "physics:constraint",
     "physics:constraint-registry"
   ],
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

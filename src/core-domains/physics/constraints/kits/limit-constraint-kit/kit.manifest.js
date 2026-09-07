@@ -10,6 +10,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/constraints/kits/limit-constraint-kit/index.js",
   exportName: "createLimitConstraintKit",
   publicSubpath: "./domains/physics/constraints/limit",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

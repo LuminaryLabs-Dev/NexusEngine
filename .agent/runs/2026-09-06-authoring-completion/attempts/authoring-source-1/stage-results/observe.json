@@ -1,0 +1,11 @@
+{
+  "stage": "observe",
+  "ok": true,
+  "startedAt": "2026-09-07T00:04:03.489Z",
+  "completedAt": "2026-09-07T00:04:03.490Z",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "runId": "authoring-source-1"
+  }
+}

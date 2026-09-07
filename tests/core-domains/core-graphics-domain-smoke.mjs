@@ -300,7 +300,7 @@ for (const expected of RENDER_CONTRACT_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, expected.domainPath);
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/contracts\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/contracts\/kits\//);
 }
 assert.equal(
   CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === "shader-schema-kit").length,
@@ -313,7 +313,7 @@ for (const expected of RENDER_LIFECYCLE_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:lifecycle");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/lifecycle\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/lifecycle\/kits\//);
 }
 
 for (const expected of RENDER_DEVICE_KITS) {
@@ -321,7 +321,7 @@ for (const expected of RENDER_DEVICE_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:device");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/device\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/device\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -330,7 +330,7 @@ for (const expected of RENDER_RESOURCE_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:resource");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/resource\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/resource\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -339,7 +339,7 @@ for (const expected of RENDER_BUFFER_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:buffer");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/buffer\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/buffer\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -348,7 +348,7 @@ for (const expected of RENDER_TEXTURE_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:texture");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/texture\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/texture\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -357,7 +357,7 @@ for (const expected of RENDER_SHADER_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:shader");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/shader\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/shader\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -366,7 +366,7 @@ for (const expected of RENDER_MATERIAL_KITS) {
   assert.ok(record, `${expected.id} is cataloged`);
   assert.equal(record.domainPath, "n:render:material");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/subdomains\/material\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/render\/material\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 

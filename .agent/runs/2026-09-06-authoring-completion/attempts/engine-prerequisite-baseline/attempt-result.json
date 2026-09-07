@@ -1,0 +1,18 @@
+{
+  "ok": false,
+  "id": "engine-prerequisite-baseline",
+  "status": "failed",
+  "stages": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify"
+  ],
+  "error": {
+    "name": "Error",
+    "message": "check check-0 did not explicitly pass."
+  }
+}

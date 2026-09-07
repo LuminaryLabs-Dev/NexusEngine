@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 
-- Source modules: 1454
-- Manifest-proven public atoms: 335
-- Manifest-owned internal modules: 1094
+- Source modules: 1604
+- Manifest-proven public atoms: 360
+- Manifest-owned internal modules: 1219
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -40,6 +40,119 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/asset/kits/asset-kit/descriptors.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/index.js` | `n:asset` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/animation/kits/authoring-animation-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/animation/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/scatter.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/assembly/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/brush/kits/authoring-brush-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/brush/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/service-lifecycle.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/tool-schema.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/transforms.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/value.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/curve/kits/authoring-curve-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/curve/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain-composition/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/domain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/editing/kits/authoring-editing-session-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/selection.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/editing/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/kits/authoring-domain-contract-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/kits/authoring-material-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/material/kits/authoring-material-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/material/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/bevel.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/evaluate.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/geometry.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/primitives.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/surface-query.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/topology.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/boolean.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/decimation.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/evaluate.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/subdivision.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/modifier/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/image.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/kits/authoring-paint-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/paint/kits/authoring-paint-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/paint/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/project/kits/authoring-project-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/store.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/project/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/publishing/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/kits/authoring-rig-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/rig/kits/authoring-rig-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/rig/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sculpt/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/sequence/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/kits/authoring-skin-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/skin/kits/authoring-skin-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/skin/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/diagnostics.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/kits/authoring-uv-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/uv/kits/authoring-uv-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/uv/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/workspace/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/adapters/mcp/build-mcp-provider.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/analysis/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/analysis/kits/dependency-analysis-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
@@ -326,7 +439,15 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/composition/kits/composition-registry-kit/services.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/recipes/restored-behavior-recipes.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/services/composition-apply-controller.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/dispatch/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/domain.manifest.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/graph/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/javascript/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/native/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/cpu/wasm/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/gpu/opengl/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/execution/gpu/vulkan/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/host/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
@@ -337,6 +458,8 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/compute/model/kits/model-kit/inference-result.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-registry.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/portable.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/compute/resource/index.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/domain.manifest.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/index.js` | `n:diagnostics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/diagnostics/kits/debug-descriptor-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
@@ -345,6 +468,7 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/domain-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/domain-manifest.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/host/domain.manifest.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/host/gpu/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
@@ -434,6 +558,31 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/network/domain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/network/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/network/kits/network-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/kits/multiplayer-authority-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/authority/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/kits/multiplayer-contract-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/kits/multiplayer-replication-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/replication/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/kits/multiplayer-session-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/session/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/kits/multiplayer-tick-sync-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/multiplayer/tick-sync/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/portable.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/contracts.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/index.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/network/transport/kits/network-transport-contract-kit/index.js` | `n:network` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/network/transport/subdomain.manifest.js` | `n:network` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/adapters/object-shape-fidelity-adapter-kit/index.js` | `n:object` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/object/contracts/object-descriptor.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/object/domain.manifest.js` | `n:object` | manifest-owned-internal | NexusEngine Core |
@@ -817,6 +966,7 @@ Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04
 | `src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/terrain-lod-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/graphics/kits/graphics-kit/vfx-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/kits/presentation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/output/kits/output-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |

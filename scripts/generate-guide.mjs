@@ -226,7 +226,10 @@ for (const [target, contents] of outputs) {
 if (render) {
   const htmlPath = path.join(root, "docs", "guide", "generated", "NexusEngine-Guide.html");
   const pdfPath = path.join(root, "docs", "NexusEngine-Guide.pdf");
-  const browser = await chromium.launch({ headless: true });
+  const browser = await chromium.launch({
+    headless: true,
+    executablePath: process.env.NEXUS_CHROMIUM_EXECUTABLE || undefined
+  });
   try {
     const page = await browser.newPage({ viewport: { width: 1224, height: 1584 }, deviceScaleFactor: 1 });
     await page.goto(pathToFileURL(htmlPath).href, { waitUntil: "load" });

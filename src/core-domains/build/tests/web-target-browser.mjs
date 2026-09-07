@@ -103,7 +103,7 @@ async function serve(root) {
   };
 }
 
-const browser = await chromium.launch({ headless: true });
+const browser = await chromium.launch({ headless: true, executablePath: process.env.NEXUS_CHROMIUM_EXECUTABLE });
 try {
   for (const target of ["web-live", "web-static"]) {
     const targetReceipt = targetReceipts.get(target);

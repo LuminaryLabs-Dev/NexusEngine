@@ -10,6 +10,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/constraints/kits/fixed-constraint-kit/index.js",
   exportName: "createFixedConstraintKit",
   publicSubpath: "./domains/physics/constraints/fixed",
-  proofReferences: [],
-  proofStatus: "pending"
+  proofReferences: ["tests/core-domains/core-physics-constraints-descriptors.mjs", "tests/core-domains/core-physics-constraints-registry.mjs", "tests/core-domains/core-physics-constraints-integration.mjs", "tests/core-domains/core-physics-constraints-public.mjs"],
+  proofStatus: "proven"
 });

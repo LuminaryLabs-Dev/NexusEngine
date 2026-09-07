@@ -1,0 +1,20 @@
+{
+  "ok": true,
+  "sourceFiles": {
+    "package.json": "sha256:449213c9bed740ac39adf49df4567dcaf1d0d10ebc3bfcb747232c75ea125575",
+    "src/core-domains/physics/constraints/constraints-contracts.js": "sha256:e4dbc1ca5c977bd32a3e28ba8eafb2b863d4017eab8e518757aefbcf52f022c6",
+    "src/core-domains/physics/constraints/atomic-constraint-kit.js": "sha256:792f30647e6453391535becb66e67bbcede9e532313cba8e82cf4f0934430de0",
+    "src/core-domains/physics/constraints/kits/constraint-registry-kit/index.js": "sha256:93a7390481fa7b766e7be3493c5098864b80098fac7c5c72d4553cfaa4b71d05",
+    "tests/core-domains/core-physics-constraints-descriptors.mjs": "sha256:59b7112ef4deaaa41ff365fe45c0a06aa34b6ee3a3681cc9c1b3d3d0237065dc",
+    "tests/core-domains/core-physics-constraints-registry.mjs": "sha256:35e4d7f44ce7ea08df102319abd604c57bc739d3a9c2543f76c3e766e0c2b33a",
+    "tests/core-domains/core-physics-constraints-integration.mjs": "sha256:2c7cdb9004981534843df4dfc3a3fc8ee2f3c23f3b2bab63fc815b5bc967266f",
+    "tests/core-domains/core-physics-constraints-public.mjs": "sha256:a34032b0c8eb3dcbf97a67120f85b68fc1039a9261fe92b9c53008dd739868ad",
+    "tests/core-domains/core-physics-body-smoke.mjs": "sha256:924a3ccdbf6f553c019c1ab31eee4dbe7736840ebec6dbe7276fe1e0dd0ea5a0",
+    "tests/core-domains/core-physics-shape-smoke.mjs": "sha256:04440f5ea568fb36237725b60d707d7b7a9c56ff10951f46ae4072f654f5c7c9",
+    "tests/core-domains/core-physics-collider-smoke.mjs": "sha256:adc39ee4461b7bc73910fff408ff4f4c53a22579fb2024b45513aa123eceb6cb",
+    "tests/core-domains/core-physics-detection-smoke.mjs": "sha256:6176b1250ef94bca403306eddf660e28b91d59720d8dfd3c829c07082fe448a0",
+    "tests/core-domains/core-physics-domain-smoke.mjs": "sha256:14126d9d6c55dac1134e9e846e2c8dea99ff7f0620d1c5725b38044e5ce33c27"
+  },
+  "sourceHash": "sha256:d53c3b660ef18ab8781f9ba5ef0e5715bcd258a692c492daf87de0885d774120",
+  "phase": "before"
+}

@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "8bb0900127eded3eba62ade325c4b3f488b70b62e78c625be184fa2b2b83cbb8",
-  "contentHash": "sha256:568dd75c66852116b269b6a4d0592ee1417d34e65a5912256f8ba27df4dbf4d4",
+  "registryHash": "d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5",
+  "contentHash": "sha256:e7fec9e3fe648891683e0bf874c75b5873a0d05f35ecec565613d61457da3eed",
   "chapters": [
     {
       "id": "start-here",
@@ -35,6 +35,14 @@
       "googleDocTab": "04 Domains And Atoms",
       "generated": false,
       "contentHash": "sha256:18fa8089f34129095be40f9bc026de72fe27269ae17ecbe7a7f60b1ec4efaa20"
+    },
+    {
+      "id": "authoring",
+      "title": "Author Editable Source",
+      "source": "AUTHORING.md",
+      "googleDocTab": "04 Authoring",
+      "generated": false,
+      "contentHash": "sha256:f273beeab48c99747bcb742d7a940a29e8682a081cd3833332e9ab6913282b31"
     },
     {
       "id": "lifecycle",
@@ -122,7 +130,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:1f8bec55d8881751e6404746cd38934fef95a6e60f19c5a9e72b70881dd8b5ad"
+      "contentHash": "sha256:15a5060de59cc6c0920328724d404751d5877ae3c8f5c632fd0265eec9d888da"
     },
     {
       "id": "dependency-table",
@@ -130,7 +138,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:8abafe917030989dc4c0092d3cf52426e336bca55fe233cf5f12b7c188348b69"
+      "contentHash": "sha256:fdfe0208c17c463c8ea689cee341bab2aeb8d02c00058e51801c958d6d3e9d9b"
     },
     {
       "id": "api-reference",
@@ -138,7 +146,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:e6d77ce628756275a6137dd161640c267f084c92714f38a7dcac6d7baec6d07b"
+      "contentHash": "sha256:4e316eca95907cd5a4ae496e3959ca7d7ce85441d5228b3436697951a6ec2b91"
     },
     {
       "id": "ownership-ledger",
@@ -146,7 +154,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:74990aecd74f8173ef1af0a4341b851afa721e514b01e3ad318219671c79fd61"
+      "contentHash": "sha256:0e02dfa52443d47e6005a8274d8dbea33dfe58d537e286bddd947865ccca2b84"
     },
     {
       "id": "restored-behavior-migration",
@@ -162,7 +170,7 @@
       "source": "docs/migrations/0.0.4-root-module-dispositions.md",
       "googleDocTab": "F Migration Map",
       "generated": true,
-      "contentHash": "sha256:7c3ced70b256429217e02e3131c4eeac088e948bc6df395ac5a45b8b65489224"
+      "contentHash": "sha256:f0e11819bdd2f9968d9f5615749210a8857013152518cbc27da2a2ca0f601531"
     },
     {
       "id": "extraction-summary",

@@ -5,6 +5,8 @@ import {
   assertConstraintSnapshotIdentity,
   canonicalConstraintValue,
   requireConstraintObject,
+  rejectRawConstraintMutation,
+  requireConstraintNonnegativeInteger,
   requireConstraintText,
   sameConstraintValue
 } from "../../constraints-contracts.js";
@@ -88,7 +90,7 @@ export function createConstraintRegistryKit(config = {}) {
     doesNotOwn: ["body records", "body deletion", "solver execution", "provider constraints", "contact impulses", "gameplay effects"],
     initialState: { constraints: {}, order: [], constraintRevision: 0 },
     createApi({ baseApi, engine }) {
-      const bodyRegistry = () => requireApi(engine, "physicsBodyRegistry", "physics:body-registry", "hasBody");
+      const bodyRegistry = () => requireApi(engine, "physicsBodyRegistry", "physics:body-registry", "getRecord");
       const breakApi = () => requireApi(engine, "physicsConstraintBreak", "physics:constraint-break", "evaluate");
 
       function normalizeConstraint(input) {
@@ -105,12 +107,13 @@ export function createConstraintRegistryKit(config = {}) {
       function validateReferences(constraint) {
         const bodies = bodyRegistry();
         for (const bodyId of [constraint.bodyA, constraint.bodyB]) {
-          if (!bodies.hasBody(bodyId)) throw new TypeError(`Unknown Physics body ${bodyId}.`);
+          if (bodies.getRecord(bodyId)?.body?.identity?.id !== bodyId) throw new TypeError(`Unknown Physics body ${bodyId}.`);
         }
       }
 
       function readRecord(constraintId) {
-        return baseApi.getState().constraints[String(constraintId)] ?? null;
+        const records = baseApi.getState().constraints;
+        return Object.hasOwn(records, String(constraintId)) ? records[String(constraintId)] : null;
       }
 
       function commitRecord(state, constraintId, record, changed) {
@@ -120,6 +123,17 @@ export function createConstraintRegistryKit(config = {}) {
           patch: { constraints, order: Object.keys(constraints).sort(), constraintRevision },
           result: { record, changed, constraintRevision }
         };
+      }
+
+      function applyRegistryCommand(request, execute) {
+        return baseApi.applyCommand(request, (state) => {
+          const outcome = execute(state);
+          // Validate counters and the whole prospective registry before the sole writer commits.
+          normalizeConstraintRegistrySnapshot({ ...state, ...outcome.patch,
+            sequence: requireConstraintNonnegativeInteger(state.sequence + 1, "Physics constraint sequence")
+          }, normalizeConstraint);
+          return outcome;
+        });
       }
 
       function createRecord(constraint, status, revision, breakRecord = null) {
@@ -136,6 +150,10 @@ export function createConstraintRegistryKit(config = {}) {
 
       return {
         ...baseApi,
+        update: rejectRawConstraintMutation,
+        applyCommand: rejectRawConstraintMutation,
+        configure: rejectRawConstraintMutation,
+        setDescriptor: rejectRawConstraintMutation,
         getContract: constraintRegistryContract,
         normalize: normalizeConstraint,
         loadSnapshot(snapshot) {
@@ -147,9 +165,9 @@ export function createConstraintRegistryKit(config = {}) {
         defineConstraint(command = {}) {
           const request = normalizeConstraintDefinitionCommand(command, normalizeConstraint);
           const constraintId = request.constraint.id;
-          return baseApi.applyCommand(request, (state) => {
+          return applyRegistryCommand(request, (state) => {
             validateReferences(request.constraint);
-            const existing = state.constraints[constraintId];
+            const existing = Object.hasOwn(state.constraints, constraintId) ? state.constraints[constraintId] : null;
             if (existing) {
               const same = sameConstraintValue(existing.constraint, request.constraint)
                 && existing.status === request.status
@@ -168,8 +186,8 @@ export function createConstraintRegistryKit(config = {}) {
         replaceConstraint(command = {}) {
           const request = normalizeConstraintReplacementCommand(command, normalizeConstraint);
           const constraintId = request.constraint.id;
-          return baseApi.applyCommand(request, (state) => {
-            const existing = state.constraints[constraintId];
+          return applyRegistryCommand(request, (state) => {
+            const existing = Object.hasOwn(state.constraints, constraintId) ? state.constraints[constraintId] : null;
             if (!existing) throw new TypeError(`Unknown Physics constraint ${constraintId}.`);
             assertRevision(existing, request.expectedRevision, `Physics constraint ${constraintId}`);
             if (existing.status === "broken") throw new TypeError(`Broken Physics constraint ${constraintId} cannot be replaced.`);
@@ -183,8 +201,8 @@ export function createConstraintRegistryKit(config = {}) {
         },
         removeConstraint(command = {}) {
           const request = normalizeConstraintRemovalCommand(command);
-          return baseApi.applyCommand(request, (state) => {
-            const existing = state.constraints[request.constraintId];
+          return applyRegistryCommand(request, (state) => {
+            const existing = Object.hasOwn(state.constraints, request.constraintId) ? state.constraints[request.constraintId] : null;
             if (!existing) throw new TypeError(`Unknown Physics constraint ${request.constraintId}.`);
             assertRevision(existing, request.expectedRevision, `Physics constraint ${request.constraintId}`);
             const constraints = { ...state.constraints };
@@ -198,8 +216,8 @@ export function createConstraintRegistryKit(config = {}) {
         },
         transitionConstraint(command = {}) {
           const request = normalizeConstraintStatusCommand(command);
-          return baseApi.applyCommand(request, (state) => {
-            const existing = state.constraints[request.constraintId];
+          return applyRegistryCommand(request, (state) => {
+            const existing = Object.hasOwn(state.constraints, request.constraintId) ? state.constraints[request.constraintId] : null;
             if (!existing) throw new TypeError(`Unknown Physics constraint ${request.constraintId}.`);
             assertRevision(existing, request.expectedRevision, `Physics constraint ${request.constraintId}`);
             if (existing.status === "broken") throw new TypeError(`Broken Physics constraint ${request.constraintId} has terminal status.`);
@@ -212,8 +230,8 @@ export function createConstraintRegistryKit(config = {}) {
         },
         breakConstraint(command = {}) {
           const request = normalizeConstraintBreakCommand(command);
-          return baseApi.applyCommand(request, (state) => {
-            const existing = state.constraints[request.constraintId];
+          return applyRegistryCommand(request, (state) => {
+            const existing = Object.hasOwn(state.constraints, request.constraintId) ? state.constraints[request.constraintId] : null;
             if (!existing) throw new TypeError(`Unknown Physics constraint ${request.constraintId}.`);
             assertRevision(existing, request.expectedRevision, `Physics constraint ${request.constraintId}`);
             if (existing.status === "broken") throw new TypeError(`Physics constraint ${request.constraintId} is already broken.`);
@@ -265,7 +283,7 @@ export function createConstraintRegistryKit(config = {}) {
           for (const id of state.order) {
             const constraint = state.constraints[id].constraint;
             for (const bodyId of [constraint.bodyA, constraint.bodyB]) {
-              if (!bodies.hasBody(bodyId)) missing.push({ constraintId: id, bodyId });
+              if (bodies.getRecord(bodyId)?.body?.identity?.id !== bodyId) missing.push({ constraintId: id, bodyId });
             }
           }
           return canonicalConstraintValue({ valid: missing.length === 0, missing }, "Physics constraint reference validation");

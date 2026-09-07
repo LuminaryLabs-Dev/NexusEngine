@@ -4,38 +4,64 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:compute`
 - Status: `stable-candidate`
-- Registry SHA-256: `a5e0ac2156e86da208c6525d7c611d0245d7d1a57f5e5f186fbe83bac2f04e82`
+- Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
 - Public entry: `nexusengine/domains/compute`
 
 ## Responsibility
 
-Own parallel compute descriptors, dependency graphs, dispatch plans, and provider contracts.
+Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.
 
 ## Owns
 
-- compute descriptors
+- compute execution contracts
+- compute executor hosting
 - compute graphs
-- dispatch plans
-- provider contracts
+- compute resource requirements
+- dispatch intent
 
 ## Does Not Own
 
-- GPU implementation
-- model runtime
+- authored world rules
+- gameplay meaning
+- physics solving
 - renderer passes
-- worker pool implementation
+- shared physical GPU ownership
 
 ## Subdomains
 
 | Path | Responsibility |
 | --- | --- |
-| `n:compute:model` | Own model descriptors, registries, inference requests/results, and model provider contracts. |
+| `n:compute:graph` | Own portable compute topology, dependencies, and deterministic plans. |
+| `n:compute:graph:node` | Own portable node identity, ports, operations, and requirements. |
+| `n:compute:graph:dependency` | Own data, control, and barrier dependencies. |
+| `n:compute:graph:plan` | Own deterministic validation, ordering, partitioning, and batching. |
+| `n:compute:resource` | Own portable compute resource requirements, access intent, and receipts. |
+| `n:compute:resource:buffer` | Own portable compute buffer size, usage, and access semantics. |
+| `n:compute:resource:image` | Own portable compute image format, view, and access semantics. |
+| `n:compute:resource:binding` | Own portable compute binding slots, layouts, and sets. |
+| `n:compute:dispatch` | Own provider-neutral execution intent, workgroups, submissions, and receipts. |
+| `n:compute:dispatch:workgroup` | Own portable workgroup shape and count semantics. |
+| `n:compute:host` | Own compute executor compatibility, deterministic selection, and lifecycle. |
+| `n:compute:host:capability` | Own compute-specific features, limits, requirements, and profiles. |
+| `n:compute:host:selection` | Own deterministic compatibility, preferences, and executor selection. |
+| `n:compute:host:lifecycle` | Own acquisition, readiness, recovery, and release contracts for compute executors. |
+| `n:compute:host:execution` | Own execution-family classification and realization of portable compute work. |
+| `n:compute:host:execution:gpu` | Own GPU-class compute execution semantics over Host GPU resources. |
+| `n:compute:host:execution:gpu:vulkan` | Own portable Vulkan compute contracts over a Host GPU environment without pretending a browser runtime exists. |
+| `n:compute:host:execution:gpu:opengl` | Own portable OpenGL compute contracts over a Host GPU environment without pretending a browser runtime exists. |
+| `n:compute:host:execution:cpu` | Own processor-class compute execution and deterministic CPU fallback. |
+| `n:compute:host:execution:cpu:javascript` | Own JavaScript and Worker execution of portable Compute graphs. |
+| `n:compute:host:execution:cpu:wasm` | Own WebAssembly compute execution, memory, SIMD, and threading contracts. |
+| `n:compute:host:execution:cpu:native` | Own native CPU extension contracts for threads, vector execution, and synchronization. |
+| `n:compute:model` | Own model descriptors, registries, inference requests/results, and provider contracts. |
+| `n:compute:model:inference` | Own provider-neutral inference requests, results, and compute requirements. |
+| `n:compute:model:inference:provider` | Own inference provider capability and contract semantics without owning runtimes. |
 
 ## Atomic Kits
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
-| `compute-graph-kit` | `nexusengine/domains/compute/graph` | Validate compute descriptors and create deterministic dependency-ordered dispatch plans. |
+| `compute-graph-kit` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
 | `model-registry-kit` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
 
 ## Lifecycle

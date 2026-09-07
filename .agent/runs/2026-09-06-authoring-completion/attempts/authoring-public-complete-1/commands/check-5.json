@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "tests/core-domains/core-authoring-modeling.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Authoring modeling: quad loop cuts, knife chords, dissolve, convex bevel, exact BVH distance, deterministic constrained scatter and caller-input preservation passed.\nAuthoring UV overlap/stretch, locked-weight smoothing/mirroring, clip arrangement and measured bake/retarget proof passed.\n"
+}

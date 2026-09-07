@@ -1,0 +1,95 @@
+{
+  "id": "authoring-source-1",
+  "goal": "Verify current authoring implementation",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "verify",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.008Z",
+      "completedAt": "2026-09-07T00:04:03.039Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.041Z",
+      "completedAt": "2026-09-07T00:04:03.086Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.087Z",
+      "completedAt": "2026-09-07T00:04:03.090Z",
+      "result": {
+        "ok": true,
+        "planId": "authoring-source-1-plan",
+        "commandCount": 4
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.091Z",
+      "completedAt": "2026-09-07T00:04:03.127Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.128Z",
+      "completedAt": "2026-09-07T00:04:03.488Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "authoring-source-1"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-09-07T00:04:03.489Z",
+      "completedAt": "2026-09-07T00:04:03.490Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "authoring-source-1"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": false,
+      "startedAt": "2026-09-07T00:04:03.491Z",
+      "completedAt": "2026-09-07T00:04:03.522Z",
+      "error": {
+        "name": "Error",
+        "message": "check check-0 did not explicitly pass."
+      }
+    }
+  ],
+  "lastError": {
+    "name": "Error",
+    "message": "check check-0 did not explicitly pass."
+  }
+}

@@ -361,5 +361,3 @@ export function createGPUHost(config = {}) {
     }
   });
 }
-
-export { createWebGPUHostProvider } from "./webgpu/index.js";

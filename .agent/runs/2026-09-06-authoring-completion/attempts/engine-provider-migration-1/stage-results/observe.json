@@ -1,0 +1,11 @@
+{
+  "stage": "observe",
+  "ok": true,
+  "startedAt": "2026-09-06T23:07:39.687Z",
+  "completedAt": "2026-09-06T23:07:39.688Z",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "runId": "engine-provider-migration-1"
+  }
+}

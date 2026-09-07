@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-09-06T23:07:07.041Z",
+  "completedAt": "2026-09-06T23:07:07.046Z",
+  "result": {
+    "ok": true,
+    "planId": "engine-provider-migration-1-plan",
+    "commandCount": 1
+  }
+}

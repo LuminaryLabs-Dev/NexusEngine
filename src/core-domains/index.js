@@ -20,3 +20,4 @@ export * from "./runtime/index.js";
 export * from "./simulation/index.js";
 export * from "./spatial/index.js";
 export * from "./world/index.js";
+export * from "./authoring/index.js";

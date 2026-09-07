@@ -1,0 +1,62 @@
+[
+  {
+    "action": "development.execute",
+    "id": "check-0",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-public.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  },
+  {
+    "action": "development.execute",
+    "id": "check-1",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-foundation.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  },
+  {
+    "action": "development.execute",
+    "id": "check-2",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-geometry.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  },
+  {
+    "action": "development.execute",
+    "id": "check-3",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-surfaces-rig.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  },
+  {
+    "action": "development.execute",
+    "id": "check-4",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-integration.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  },
+  {
+    "action": "development.execute",
+    "id": "check-5",
+    "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+    "args": [
+      "tests/core-domains/core-authoring-modeling.mjs"
+    ],
+    "timeoutMs": 60000,
+    "maxOutputBytes": 1048576
+  }
+]
