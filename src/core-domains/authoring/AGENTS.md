@@ -6,8 +6,10 @@ Specialized children register typed schemas and operations with Project. They
 must validate prospective changes before commit and publish immutable results.
 Workspace stores references; it must not copy mesh, image, rig or clip content.
 
-Keep platform storage, codecs, rendering, process execution and transports in
-external adapters/providers. Consume sibling domains only through public package
+Canonical authoring codecs and storage providers belong in this NexusEngine package.
+Keep filesystem/IndexedDB access behind environment-specific provider entry points; portable
+source contracts and default imports must not require Editor or experimental kit repositories.
+Keep rendering, process execution and transports behind their existing provider boundaries. Consume sibling domains only through public package
 exports. Authoring edits Sequence source; Runtime executes registered leaves.
 
 Every advertised operation needs a precise supported profile, discoverable input

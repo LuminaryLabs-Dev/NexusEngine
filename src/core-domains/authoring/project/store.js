@@ -254,7 +254,12 @@ export function createAuthoringProjectStore({
     return receipt;
   }
 
+  let publicationLeases = 0;
+  function assertWritable() {
+    if (publicationLeases) throw error("AUTHORING_PUBLICATION_BUSY", "An artifact commit holds a source read lease.");
+  }
   function execute(input, { preview = false } = {}) {
+    if (!preview) assertWritable();
     if (executing)
       throw error(
         "AUTHORING_REENTRANT",
@@ -405,6 +410,7 @@ export function createAuthoringProjectStore({
   }
 
   function travel(input, direction) {
+    assertWritable();
     if (executing)
       throw error(
         "AUTHORING_REENTRANT",
@@ -714,7 +720,24 @@ export function createAuthoringProjectStore({
     getSnapshot({ immutable = false } = {}) {
       return immutable ? freeze(sharedCanonical(state())) : canonical(state());
     },
+    validateSnapshot(input) {
+      validateSnapshot(input);
+      return freeze({ valid: true, context: this.context() });
+    },
+    validate() {
+      validateDocuments(state().documents);
+      return freeze({ valid: true, context: this.context() });
+    },
+    async withSourceGuard(expected, action) {
+      const context = this.context();
+      if (!expected || context.projectId !== expected.projectId || context.epoch !== expected.epoch || context.clock !== expected.clock)
+        throw error("AUTHORING_STALE_SOURCE", "Source changed before publication.");
+      if (typeof action !== "function") throw error("AUTHORING_INVALID_INPUT", "Commit action required.");
+      publicationLeases++;
+      try { return await action(); } finally { publicationLeases--; }
+    },
     loadSnapshot(input) {
+      assertWritable();
       if (executing)
         throw error("AUTHORING_REENTRANT", "Cannot restore during execution.");
       const next = validateSnapshot(input);
@@ -732,6 +755,7 @@ export function createAuthoringProjectStore({
       return this.context();
     },
     recover(checkpoint, journal = []) {
+      assertWritable();
       if (executing || recoveryState)
         throw error("AUTHORING_REENTRANT", "Cannot nest recovery.");
       if (!Array.isArray(journal) || journal.length > maxReceipts)
@@ -761,6 +785,7 @@ export function createAuthoringProjectStore({
       return this.loadSnapshot(recovered);
     },
     reset() {
+      assertWritable();
       if (executing)
         throw error("AUTHORING_REENTRANT", "Cannot reset during execution.");
       const current = state();

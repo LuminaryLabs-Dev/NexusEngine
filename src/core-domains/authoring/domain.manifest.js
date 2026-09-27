@@ -1,3 +1,4 @@
+import { AUTHORING_IO_KIT_MANIFESTS, AUTHORING_IO_DOMAINS } from './io.manifests.js';
 import modifierManifest from "./modifier/kits/authoring-modifier-service-kit/kit.manifest.js";
 import modifierDomain from "./modifier/subdomain.manifest.js";
 import publishingManifest from "./publishing/kits/authoring-publishing-service-kit/kit.manifest.js";
@@ -44,13 +45,13 @@ export default defineCoreDomainManifest(
       domainPath: "n:authoring",
       label: "Authoring",
       responsibility:
-        "Own editable source documents and typed editing operations.",
+        "Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.",
       owns: ["editable source contracts", "source mutation protocols"],
       forbiddenResponsibilities: [
         "runtime playback",
         "renderers",
-        "codecs",
-        "filesystem",
+        "unmediated platform handles in portable source",
+        "Editor-owned source semantics",
       ],
       requires: ["n:runtime"],
       provides: ["n:authoring"],
@@ -65,6 +66,7 @@ export default defineCoreDomainManifest(
       proofStatus: "proven",
     }),
     subdomains: [
+      ...AUTHORING_IO_DOMAINS,
       modifierDomain,
       publishingDomain,
       sequenceDomain,
@@ -89,6 +91,7 @@ export default defineCoreDomainManifest(
       module: "./src/core-domains/authoring/index.js",
     },
     publicKits: [
+      ...AUTHORING_IO_KIT_MANIFESTS,
       modifierManifest,
       publishingManifest,
       sequenceManifest,

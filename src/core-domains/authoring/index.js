@@ -1,3 +1,5 @@
+import { createAuthoringIOKits } from './io-kits.js';
+export * from './io-kits.js';
 import { requireFields } from "./contracts/value.js";
 export { default as authoringDomainManifest } from "./domain.manifest.js";
 import { createAuthoringModifierServiceKit } from "./modifier/index.js";
@@ -64,5 +66,6 @@ export function createAuthoringDomain(config = {}) {
     createAuthoringSequenceServiceKit(),
     createAuthoringPublishingServiceKit(),
     createAuthoringModifierServiceKit(),
+    ...createAuthoringIOKits(),
   ];
 }

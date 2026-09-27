@@ -15,6 +15,7 @@ const tuple = (n) => ({
   ids = { type: "array", uniqueItems: true, items: text },
   object = { type: "object" };
 const requiredByOperation = {
+  "importing.commit": ["documents", "provenance"],
   "mesh.create": ["id", "mesh"],
   "mesh.cube": ["id"],
   "mesh.primitive": ["id", "parameters"],
@@ -233,6 +234,10 @@ export function authoringToolInputSchema(id, fields) {
                       : text,
       ]),
     );
+  if (id === "importing.commit") {
+    properties.documents = { type: "array", minItems: 1, maxItems: 10000, items: { type: "object", required: ["id", "kind", "content"], additionalProperties: false, properties: { id: text, kind: text, content: object } } };
+    properties.provenance = object;
+  }
   if (properties.mode)
     properties.mode = { enum: ["object", "vertex", "edge", "face"] };
   if (properties.action)
@@ -252,6 +257,7 @@ export function authoringToolInputSchema(id, fields) {
 }
 export function authoringToolOwnership(id) {
   const domain = id.split(".")[0];
+  if (id === "importing.commit") return { reads: ["project"], writes: ["mesh", "material", "image", "rig", "skin", "shape", "animation", "assembly"], atomic: true };
   if (id === "curve.sweep")
     return { reads: ["curve"], writes: ["mesh"], atomic: true };
   if (id === "animation.shape")
