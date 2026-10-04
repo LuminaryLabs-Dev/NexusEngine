@@ -3,6 +3,9 @@ import { atomicKit, domainNode, manifestShell } from "../manifest-input.js";
 import schedule from "./sequence/schedule/subdomain.manifest.js";
 import scheduleKit from "./sequence/schedule/kits/schedule-kit/kit.manifest.js";
 
+import observation from "./data/observation/subdomain.manifest.js";
+import observationKit from "./data/observation/kits/observation-history-kit/kit.manifest.js";
+
 const runtimeProof = ["tests/realtime-core-tick-contract-smoke.mjs", "tests/domain-service-kit-smoke.mjs"];
 const dataProof = ["tests/core-kits/core-data-kit-smoke.mjs", "tests/core-domain-kits-smoke.mjs"];
 const transactionProof = ["tests/core-kits/core-transaction-ledger-smoke.mjs"];
@@ -28,7 +31,8 @@ export const runtimeDomainManifest = defineCoreDomainManifest(manifestShell({
     domainNode({ id: "runtime-persistence-domain", domainPath: "n:runtime:persistence", parentDomainPath: "n:runtime", label: "Runtime Persistence", responsibility: "Own save/load targets, save slots, recovery records, and adapter contracts.", owns: ["save targets", "save slots", "recovery records", "persistence adapter contracts"], forbiddenResponsibilities: ["filesystem implementation", "browser storage implementation", "cloud storage implementation"], requires: ["n:runtime:data"], provides: ["n:runtime:persistence", "persistence:save", "persistence:load", "persistence:adapter-contract"], proofReferences: persistenceProof }),
     domainNode({ id: "runtime-sequence-domain", domainPath: "n:runtime:sequence", parentDomainPath: "n:runtime", label: "Runtime Sequence", responsibility: "Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.", owns: ["sequence nodes", "sequence ordering", "sequence state", "sequence receipts"], forbiddenResponsibilities: ["authored story", "game missions", "renderer timelines"], requires: ["n:runtime"], provides: ["n:runtime:sequence", "sequence:nodes", "sequence:execution"], proofReferences: sequenceProof }),
     domainNode({ id: "runtime-startup-domain", domainPath: "n:runtime:startup", parentDomainPath: "n:runtime", label: "Runtime Startup", responsibility: "Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.", owns: ["launch state", "preparation facts", "startup readiness", "startup receipts"], forbiddenResponsibilities: ["application routes", "asset transport", "renderer startup", "platform window lifecycle"], requires: ["n:runtime"], optional: ["n:asset"], provides: ["n:runtime:startup", "startup:preparation", "startup:readiness", "startup:receipt"], proofReferences: startupProof }),
-    schedule
+    schedule,
+    observation
   ],
   publicEntry: { subpath: "./domains/runtime", module: "./src/core-domains/runtime/index.js" },
   publicKits: [
@@ -39,7 +43,8 @@ export const runtimeDomainManifest = defineCoreDomainManifest(manifestShell({
     atomicKit({ id: "persistence-contract-kit", responsibility: "Describe save/load targets, slots, recovery records, and persistence adapter contracts.", domainPath: "n:runtime:persistence", apiName: "persistence", requires: ["n:runtime:data"], provides: ["n:runtime:persistence", "persistence:save", "persistence:load", "persistence:adapter-contract"], module: "./src/core-domains/runtime/persistence/kits/persistence-kit/index.js", exportName: "createPersistenceKit", publicSubpath: "./domains/runtime/persistence", proofReferences: persistenceProof }),
     atomicKit({ id: "runtime-sequence-kit", responsibility: "Install deterministic sequence node definitions and execution state.", domainPath: "n:runtime:sequence", apiName: "sequence", requires: ["n:runtime"], provides: ["n:runtime:sequence", "sequence:nodes", "sequence:execution"], module: "./src/core-domains/runtime/sequence/kits/sequence-kit/index.js", exportName: "createSequenceKit", publicSubpath: "./domains/runtime/sequence", proofReferences: sequenceProof }),
     atomicKit({ id: "runtime-startup-kit", responsibility: "Coordinate deterministic startup preparation and readiness receipts.", domainPath: "n:runtime:startup", apiName: "startup", requires: ["n:runtime"], provides: ["n:runtime:startup", "startup:preparation", "startup:readiness", "startup:receipt"], module: "./src/core-domains/runtime/startup/kits/startup-kit/index.js", exportName: "createStartupKit", publicSubpath: "./domains/runtime/startup", proofReferences: startupProof }),
-    scheduleKit
+    scheduleKit,
+    observationKit
   ]
 }));
 

@@ -1,6 +1,8 @@
 import { spawnSync } from "node:child_process";
 
 const tests = [
+  "tests/core-kits/observation-history-smoke.mjs",
+  "tests/core-kits/observation-commit-smoke.mjs",
   "tests/core-domains/core-domain-import-smoke.mjs",
   ["scripts/generate-core-catalog.mjs", "--check"],
   "scripts/check-manifest-execution-parity.mjs",

@@ -620,10 +620,10 @@
     {
       "domainPath": "n:authoring",
       "forbiddenResponsibilities": [
-        "codecs",
-        "filesystem",
+        "Editor-owned source semantics",
         "renderers",
-        "runtime playback"
+        "runtime playback",
+        "unmediated platform handles in portable source"
       ],
       "id": "authoring-domain",
       "inputs": [
@@ -696,7 +696,7 @@
       "requires": [
         "n:runtime"
       ],
-      "responsibility": "Own editable source documents and typed editing operations.",
+      "responsibility": "Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.",
       "settingsSchema": {
         "additionalProperties": true,
         "type": "object"
@@ -707,6 +707,441 @@
           "description": "Install, validate, snapshot, reset, and replay Authoring behavior.",
           "deterministic": true,
           "id": "n:authoring:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:create",
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "id": "authoring-create-domain",
+      "inputs": [
+        {
+          "description": "Authoring Create required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Create",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Create API without duplicate state or systems.",
+        "install": "Create one Authoring Create state owner and public API.",
+        "replay": "Reapply equivalent Authoring Create inputs deterministically.",
+        "reset": "Restore the configured Authoring Create baseline.",
+        "snapshot": "Serialize Authoring Create state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Create provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:create",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "create contracts and canonical implementations"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Create state and registry records.",
+          "id": "authoring-create-domain-state",
+          "owner": "authoring-create-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Create contract fixture.",
+            "deterministic": true,
+            "id": "authoring-create-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Create composition fixture.",
+            "deterministic": true,
+            "id": "authoring-create-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own canonical create operations, default providers, diagnostics and source-safe lifecycle.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Create behavior.",
+          "deterministic": true,
+          "id": "n:authoring:create:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:importing",
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "id": "authoring-importing-domain",
+      "inputs": [
+        {
+          "description": "Authoring Importing required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Importing",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Importing API without duplicate state or systems.",
+        "install": "Create one Authoring Importing state owner and public API.",
+        "replay": "Reapply equivalent Authoring Importing inputs deterministically.",
+        "reset": "Restore the configured Authoring Importing baseline.",
+        "snapshot": "Serialize Authoring Importing state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Importing provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:importing",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "importing contracts and canonical implementations"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Importing state and registry records.",
+          "id": "authoring-importing-domain-state",
+          "owner": "authoring-importing-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Importing contract fixture.",
+            "deterministic": true,
+            "id": "authoring-importing-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Importing composition fixture.",
+            "deterministic": true,
+            "id": "authoring-importing-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Importing behavior.",
+          "deterministic": true,
+          "id": "n:authoring:importing:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:persistence",
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "id": "authoring-persistence-domain",
+      "inputs": [
+        {
+          "description": "Authoring Persistence required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Persistence",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Persistence API without duplicate state or systems.",
+        "install": "Create one Authoring Persistence state owner and public API.",
+        "replay": "Reapply equivalent Authoring Persistence inputs deterministically.",
+        "reset": "Restore the configured Authoring Persistence baseline.",
+        "snapshot": "Serialize Authoring Persistence state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Persistence provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:persistence",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "persistence contracts and canonical implementations"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Persistence state and registry records.",
+          "id": "authoring-persistence-domain-state",
+          "owner": "authoring-persistence-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Persistence contract fixture.",
+            "deterministic": true,
+            "id": "authoring-persistence-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Persistence composition fixture.",
+            "deterministic": true,
+            "id": "authoring-persistence-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Persistence behavior.",
+          "deterministic": true,
+          "id": "n:authoring:persistence:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:publishing:export",
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "id": "authoring-publishing-export-domain",
+      "inputs": [
+        {
+          "description": "Authoring Publishing Export required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Publishing Export",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Publishing Export API without duplicate state or systems.",
+        "install": "Create one Authoring Publishing Export state owner and public API.",
+        "replay": "Reapply equivalent Authoring Publishing Export inputs deterministically.",
+        "reset": "Restore the configured Authoring Publishing Export baseline.",
+        "snapshot": "Serialize Authoring Publishing Export state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Publishing Export provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:publishing:export",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "publishing export contracts and canonical implementations"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Publishing Export state and registry records.",
+          "id": "authoring-publishing-export-domain-state",
+          "owner": "authoring-publishing-export-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring:publishing",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Publishing Export contract fixture.",
+            "deterministic": true,
+            "id": "authoring-publishing-export-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Publishing Export composition fixture.",
+            "deterministic": true,
+            "id": "authoring-publishing-export-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Publishing Export behavior.",
+          "deterministic": true,
+          "id": "n:authoring:publishing:export:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:validation",
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "id": "authoring-validation-domain",
+      "inputs": [
+        {
+          "description": "Authoring Validation required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Validation",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Validation API without duplicate state or systems.",
+        "install": "Create one Authoring Validation state owner and public API.",
+        "replay": "Reapply equivalent Authoring Validation inputs deterministically.",
+        "reset": "Restore the configured Authoring Validation baseline.",
+        "snapshot": "Serialize Authoring Validation state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Validation provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:validation",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "validation contracts and canonical implementations"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Validation state and registry records.",
+          "id": "authoring-validation-domain-state",
+          "owner": "authoring-validation-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Validation contract fixture.",
+            "deterministic": true,
+            "id": "authoring-validation-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Validation composition fixture.",
+            "deterministic": true,
+            "id": "authoring-validation-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own canonical validation operations, default providers, diagnostics and source-safe lifecycle.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Validation behavior.",
+          "deterministic": true,
+          "id": "n:authoring:validation:lifecycle",
           "schema": null
         }
       ]
@@ -15693,6 +16128,101 @@
       ]
     },
     {
+      "domainPath": "n:runtime:data:observation",
+      "forbiddenResponsibilities": [
+        "binary payload storage",
+        "emulation",
+        "game memory decoding"
+      ],
+      "id": "runtime-data-observation-domain",
+      "inputs": [
+        {
+          "description": "Observation History required capability.",
+          "deterministic": true,
+          "id": "n:runtime:data",
+          "schema": null
+        }
+      ],
+      "label": "Observation History",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Observation History API without duplicate state or systems.",
+        "install": "Create one Observation History state owner and public API.",
+        "replay": "Reapply equivalent Observation History inputs deterministically.",
+        "reset": "Restore the configured Observation History baseline.",
+        "snapshot": "Serialize Observation History state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Observation History provided capability.",
+          "deterministic": true,
+          "id": "n:runtime:data:observation",
+          "schema": null
+        },
+        {
+          "description": "Observation History provided capability.",
+          "deterministic": true,
+          "id": "data:observation-history",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "committed observation history",
+        "history retention",
+        "observation identity"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Observation History state and registry records.",
+          "id": "runtime-data-observation-domain-state",
+          "owner": "runtime-data-observation-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:runtime:data",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Observation History contract fixture.",
+            "deterministic": true,
+            "id": "runtime-data-observation-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Observation History composition fixture.",
+            "deterministic": true,
+            "id": "runtime-data-observation-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/observation-history-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:runtime:data"
+      ],
+      "responsibility": "Own bounded portable committed observation history and provenance.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Observation History behavior.",
+          "deterministic": true,
+          "id": "n:runtime:data:observation:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:simulation",
       "forbiddenResponsibilities": [
         "game balance presets",
@@ -20203,6 +20733,1422 @@
         "exportName": "createAssetRegistryKit",
         "module": "./src/core-domains/asset/kits/asset-kit/index.js",
         "publicSubpath": "./domains/asset/registry"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringCreate",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:create",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-create-service-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-create-service-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-create-service-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:create-service",
+        "n:authoring:create"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Route creation requests to existing typed Project operations without owning duplicate content.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringCreateServiceKit",
+        "module": "./src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
+        "publicSubpath": "./domains/authoring/create/create-service"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringImportRegistry",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:importing",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-import-registry-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-import-registry-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-import-registry-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:import-registry"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Own trusted canonical importer discovery and provider selection.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringImportRegistryKit",
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
+        "publicSubpath": "./domains/authoring/importing/import-registry"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringImportValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:importing",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-import-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-import-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-import-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:import-validation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Validate a complete staged canonical import against the existing Project writer.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringImportValidationKit",
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/importing/import-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringImportCommit",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:importing",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-import-commit-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-import-commit-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-import-commit-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:import-commit"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Commit validated imported documents atomically through Project with source guards.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringImportCommitKit",
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js",
+        "publicSubpath": "./domains/authoring/importing/import-commit"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringImport",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:importing",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-import-service-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-import-service-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-import-service-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:import-service",
+        "n:authoring:importing"
+      ],
+      "requires": [
+        "authoring:import-commit",
+        "authoring:import-registry",
+        "authoring:import-validation"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Decode external bytes into editable documents and orchestrate staged import.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringImportServiceKit",
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
+        "publicSubpath": "./domains/authoring/importing/import-service"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringProjectPackage",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:persistence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-project-package-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-project-package-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-project-package-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:project-package"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Encode and verify content-addressed Project snapshots, historical documents and image tiles.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringProjectPackageKit",
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js",
+        "publicSubpath": "./domains/authoring/persistence/project-package"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringStorageRegistry",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:persistence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-storage-provider-registry-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-storage-provider-registry-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-storage-provider-registry-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:storage-provider-registry"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Own canonical memory, filesystem and IndexedDB storage provider registration.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringStorageProviderRegistryKit",
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js",
+        "publicSubpath": "./domains/authoring/persistence/storage-provider-registry"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringSave",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:persistence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-save-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-save-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-save-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:save"
+      ],
+      "requires": [
+        "authoring:project-package",
+        "authoring:storage-provider-registry"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Persist a captured Project package with generation conflict protection.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringSaveKit",
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js",
+        "publicSubpath": "./domains/authoring/persistence/save"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringLoad",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:persistence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-load-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-load-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-load-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:load"
+      ],
+      "requires": [
+        "authoring:project-package",
+        "authoring:storage-provider-registry"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Verify a stored package before atomically restoring the sole Project source authority.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringLoadKit",
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-load-kit/index.js",
+        "publicSubpath": "./domains/authoring/persistence/load"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringPersistence",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:persistence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-persistence-service-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-persistence-service-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-persistence-service-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:persistence-service",
+        "n:authoring:persistence"
+      ],
+      "requires": [
+        "authoring:load",
+        "authoring:save"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Expose provider-neutral save and load without an Editor dependency.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringPersistenceServiceKit",
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js",
+        "publicSubpath": "./domains/authoring/persistence/persistence-service"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringExportRegistry",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:publishing:export",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-export-registry-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:publishing",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-export-registry-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-export-registry-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:export-registry"
+      ],
+      "requires": [
+        "n:authoring:publishing"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Own canonical GLB, FBX and USDZ exporter selection and availability.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringExportRegistryKit",
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js",
+        "publicSubpath": "./domains/authoring/publishing/export/export-registry"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringExportCapability",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:publishing:export",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-export-capability-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:publishing",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-export-capability-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-export-capability-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:export-capability"
+      ],
+      "requires": [
+        "authoring:export-registry"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Inspect the exact delivery packet against a declared format profile.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringExportCapabilityKit",
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/index.js",
+        "publicSubpath": "./domains/authoring/publishing/export/export-capability"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringExportValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:publishing:export",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-export-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:publishing",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-export-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-export-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:export-validation"
+      ],
+      "requires": [
+        "authoring:export-registry"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Parse encoded artifacts and report native validation separately from external proof.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringExportValidationKit",
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/publishing/export/export-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringExportReceipt",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:publishing:export",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-export-receipt-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:publishing",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-export-receipt-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-export-receipt-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:export-receipt"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Own bounded idempotent export operation receipts; never serialize executable providers.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringExportReceiptKit",
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js",
+        "publicSubpath": "./domains/authoring/publishing/export/export-receipt"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringExport",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:publishing:export",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-export-service-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:publishing",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-export-service-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-export-service-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:export-service",
+        "n:authoring:publishing:export"
+      ],
+      "requires": [
+        "authoring:export-capability",
+        "authoring:export-receipt",
+        "authoring:export-registry",
+        "authoring:export-validation"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Orchestrate encode, native validation, source-guarded publication and export receipts.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringExportServiceKit",
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js",
+        "publicSubpath": "./domains/authoring/publishing/export/export-service"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringDocumentValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:validation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-document-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-document-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-document-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:document-validation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Validate an existing document through canonical Project schemas and reference invariants.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringDocumentValidationKit",
+        "module": "./src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/validation/document-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringProjectValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:validation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-project-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-project-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-project-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:project-validation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Expose read-only validation of the complete current Project.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringProjectValidationKit",
+        "module": "./src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/validation/project-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringDeliveryValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:validation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-delivery-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-delivery-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-delivery-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:delivery-validation"
+      ],
+      "requires": [
+        "n:authoring:publishing"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Expose read-only publishing preparation diagnostics.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringDeliveryValidationKit",
+        "module": "./src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/validation/delivery-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringFormatValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:validation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-format-validation-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-format-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-format-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:format-validation"
+      ],
+      "requires": [
+        "n:authoring:publishing:export"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Expose export compatibility and artifact validation through canonical providers.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringFormatValidationKit",
+        "module": "./src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js",
+        "publicSubpath": "./domains/authoring/validation/format-validation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringValidation",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:validation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-validation-report-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-validation-report-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-validation-report-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-consolidation.mjs"
+        ],
+        "status": "pending"
+      },
+      "provides": [
+        "authoring:validation-report",
+        "n:authoring:validation"
+      ],
+      "requires": [
+        "authoring:delivery-validation",
+        "authoring:document-validation",
+        "authoring:format-validation",
+        "authoring:project-validation"
+      ],
+      "reset": {
+        "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit.",
+        "supported": true
+      },
+      "responsibility": "Provide the public Authoring validation facade and normalized reports.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringValidationReportKit",
+        "module": "./src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js",
+        "publicSubpath": "./domains/authoring/validation/validation-report"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -42359,6 +44305,77 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "observationHistory",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:runtime:data:observation",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "observation-history-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:runtime:data",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "observation-history-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "observation-history-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/observation-history-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "data:observation-history",
+        "n:runtime:data:observation"
+      ],
+      "requires": [
+        "n:runtime:data"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Retain bounded committed portable observations with deterministic identity and replay checks.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createObservationHistoryKit",
+        "module": "./src/core-domains/runtime/data/observation/kits/observation-history-kit/index.js",
+        "publicSubpath": "./domains/runtime/data/observation"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "simulation",
       "atomic": true,
       "composes": [],
@@ -45872,20 +47889,40 @@
     "./domains/authoring/assembly": "./src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js",
     "./domains/authoring/brush": "./src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js",
     "./domains/authoring/contract": "./src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js",
+    "./domains/authoring/create/create-service": "./src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
     "./domains/authoring/curve": "./src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js",
     "./domains/authoring/domain-composition": "./src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js",
     "./domains/authoring/editing": "./src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js",
+    "./domains/authoring/importing/import-commit": "./src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js",
+    "./domains/authoring/importing/import-registry": "./src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
+    "./domains/authoring/importing/import-service": "./src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
+    "./domains/authoring/importing/import-validation": "./src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
     "./domains/authoring/material": "./src/core-domains/authoring/material/kits/authoring-material-service-kit/index.js",
     "./domains/authoring/mesh": "./src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js",
     "./domains/authoring/modifier": "./src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/index.js",
     "./domains/authoring/paint": "./src/core-domains/authoring/paint/kits/authoring-paint-service-kit/index.js",
+    "./domains/authoring/persistence/load": "./src/core-domains/authoring/persistence/kits/authoring-load-kit/index.js",
+    "./domains/authoring/persistence/persistence-service": "./src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js",
+    "./domains/authoring/persistence/project-package": "./src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js",
+    "./domains/authoring/persistence/save": "./src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js",
+    "./domains/authoring/persistence/storage-provider-registry": "./src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js",
     "./domains/authoring/project": "./src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js",
     "./domains/authoring/publishing": "./src/core-domains/authoring/publishing/kits/authoring-publishing-service-kit/index.js",
+    "./domains/authoring/publishing/export/export-capability": "./src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/index.js",
+    "./domains/authoring/publishing/export/export-receipt": "./src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js",
+    "./domains/authoring/publishing/export/export-registry": "./src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js",
+    "./domains/authoring/publishing/export/export-service": "./src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js",
+    "./domains/authoring/publishing/export/export-validation": "./src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js",
     "./domains/authoring/rig": "./src/core-domains/authoring/rig/kits/authoring-rig-service-kit/index.js",
     "./domains/authoring/sculpt": "./src/core-domains/authoring/sculpt/kits/authoring-sculpt-service-kit/index.js",
     "./domains/authoring/sequence": "./src/core-domains/authoring/sequence/kits/authoring-sequence-service-kit/index.js",
     "./domains/authoring/skin": "./src/core-domains/authoring/skin/kits/authoring-skin-service-kit/index.js",
     "./domains/authoring/uv": "./src/core-domains/authoring/uv/kits/authoring-uv-service-kit/index.js",
+    "./domains/authoring/validation/delivery-validation": "./src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/index.js",
+    "./domains/authoring/validation/document-validation": "./src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js",
+    "./domains/authoring/validation/format-validation": "./src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js",
+    "./domains/authoring/validation/project-validation": "./src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js",
+    "./domains/authoring/validation/validation-report": "./src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js",
     "./domains/authoring/workspace": "./src/core-domains/authoring/workspace/kits/authoring-workspace-service-kit/index.js",
     "./domains/build": "./src/core-domains/build/index.js",
     "./domains/build/analysis": "./src/core-domains/build/analysis/index.js",
@@ -46214,6 +48251,7 @@
     "./domains/render/texture/stream": "./src/core-domains/render/texture/kits/texture-stream-kit/index.js",
     "./domains/runtime": "./src/core-domains/runtime/index.js",
     "./domains/runtime/data": "./src/core-domains/runtime/data/kits/data-kit/index.js",
+    "./domains/runtime/data/observation": "./src/core-domains/runtime/data/observation/kits/observation-history-kit/index.js",
     "./domains/runtime/lifecycle": "./src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
     "./domains/runtime/persistence": "./src/core-domains/runtime/persistence/kits/persistence-kit/index.js",
     "./domains/runtime/realtime": "./src/core-domains/runtime/realtime/kits/realtime-kit/index.js",
@@ -46275,7 +48313,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5",
+  "registryHash": "538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -46451,6 +48489,22 @@
       "sha256": "2f6b0b8e3a3851353ad4aab11585228a5d61f059c2e1e6ff4cbc30384938ebaf"
     },
     {
+      "path": "src/core-domains/authoring/contracts/io-kit.js",
+      "sha256": "95dc33be3bec8e9d2783b39f34d6735045cea8c217bfba9918e4a7333c3797fa"
+    },
+    {
+      "path": "src/core-domains/authoring/contracts/io.js",
+      "sha256": "41915b272cc0a552a39d58becba9b3e7a7954d209e0b146e0a66753ddd643d32"
+    },
+    {
+      "path": "src/core-domains/authoring/contracts/ledger.js",
+      "sha256": "a6b0fe8ec40cc421bf03591627abac99e60230c11c73c5aff549d0df0b8cb4a2"
+    },
+    {
+      "path": "src/core-domains/authoring/contracts/provider-registry.js",
+      "sha256": "ffa64036af5d3d140fe24870574a7a61a1e83633292236e5b9652374ac43258c"
+    },
+    {
       "path": "src/core-domains/authoring/contracts/service-lifecycle.js",
       "sha256": "5e344343122550928afbf1ac2045e6f8b6441ff2066c634d2369dd2e44ff0aec"
     },
@@ -46460,7 +48514,7 @@
     },
     {
       "path": "src/core-domains/authoring/contracts/tool-schema.js",
-      "sha256": "960969bc2484646bba2cfb1f21d40bc1358ef4b5f9df8dbf35033087839452e9"
+      "sha256": "9a056e6e8d5fd8cc937245846f5b0b41feb12e0b5190dd2c84a7e2ed85af1708"
     },
     {
       "path": "src/core-domains/authoring/contracts/transforms.js",
@@ -46469,6 +48523,26 @@
     {
       "path": "src/core-domains/authoring/contracts/value.js",
       "sha256": "4c34ca2398af5e6ebf958400c8dc70c165e0fa56af28016d67ba9c546f41f8e0"
+    },
+    {
+      "path": "src/core-domains/authoring/create/index.js",
+      "sha256": "9e0b78a9196b72a15545a79d2ec20f774a31a08c7785125c2ef598e66611cd8d"
+    },
+    {
+      "path": "src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
+      "sha256": "c1dcf1604b12b8fec321ee014820c0744f32004e8fd9c2a4f7d9457329b0aadf"
+    },
+    {
+      "path": "src/core-domains/authoring/create/kits/authoring-create-service-kit/kit.manifest.js",
+      "sha256": "0ec645ca8f4a6710f65b223b98c4ccd8f0a70f88bcf988530c92f6988c639b9b"
+    },
+    {
+      "path": "src/core-domains/authoring/create/services.js",
+      "sha256": "0a42550a52b388cdcfe248ffe348663bb59b428fe38d9664fb9ed51d2041c253"
+    },
+    {
+      "path": "src/core-domains/authoring/create/subdomain.manifest.js",
+      "sha256": "209314ac52228f6948247be9310b8e64e8a3ba353e519cfdd8ae7da0dc6db27c"
     },
     {
       "path": "src/core-domains/authoring/curve/index.js",
@@ -46512,7 +48586,7 @@
     },
     {
       "path": "src/core-domains/authoring/domain.manifest.js",
-      "sha256": "be1917bfbf1492a8b3bc7a9187ac084c53b6eccb0685132c502728850dcc8e77"
+      "sha256": "25ed355f385d8d83269f0dde91a0bd91a217f401fa3ebd0e20f480dff19d45ea"
     },
     {
       "path": "src/core-domains/authoring/editing/index.js",
@@ -46539,8 +48613,100 @@
       "sha256": "d1530dab34d5ba6b259cccee08f8f5fb8d91cee1615640700de55bfcf4067c55"
     },
     {
+      "path": "src/core-domains/authoring/importing/index.js",
+      "sha256": "8c08396cb4e586d6e5c16236e16ec1869ce241f7b607b2c4a4195592b0fd1936"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js",
+      "sha256": "208ddca5e28c128363e399f4d8703908250d2e43c3c94edfe7fa300ebd6f55d0"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-commit-kit/kit.manifest.js",
+      "sha256": "1dd780a33fdbb3485ec7febd103c798d223e8b64ee79d845a55905d4426ed813"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
+      "sha256": "173c52ade62677f8bed1f11d2e83a593194e11ed789f4e7c65caa19f5b6c6d13"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-registry-kit/kit.manifest.js",
+      "sha256": "348de9aa7ce081857dd14d9704ed5e57b0bbd96a584346055479cf4c16a1597e"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
+      "sha256": "53a00f2068dc8c6506869e8714d70379bcb3d6e7bb5c7485dc63fb7b5397ec46"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-service-kit/kit.manifest.js",
+      "sha256": "d79fb3184eda1ffc460d7e20a0994d1ded7a1311673af71d6b68d4d9e9bead50"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
+      "sha256": "6fd3aa9a166e5a3b6f60349a982f29f773c9d3c31f6f42d16aa4818f597d2cac"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/kits/authoring-import-validation-kit/kit.manifest.js",
+      "sha256": "959eaf0572864630dda8eb8b8a23a7606faa7f84cd9bcd23f14f8ec13dd42ded"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/fbx/decode.js",
+      "sha256": "28f8fae422214b2413f79f3773ef7bc3d17b6ba926b2977cc41a7caa2613303c"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/fbx/index.js",
+      "sha256": "e570f26bfe0b18e70be4c2c355c0eedd84e573c2dc9c81b8a825850e84483a38"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/fbx/texture-helpers.js",
+      "sha256": "3d0283065cbd33f6801c4121d940a11b33026f9938704dbd73e2f3e5674ad58e"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/glb/decode.js",
+      "sha256": "4e7d97ca2a3a22e7a88097f560c3c06ac9dc2324c2a5ce5baa07d73eae6f379b"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/glb/index.js",
+      "sha256": "fb0b81b5e88138ea27b7c4e38c2d21ae4ec9f5bc3d9bd806c141ed534caa9272"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/obj/decode.js",
+      "sha256": "40f834a66c93a6799000eb326e29699cc34fb624423b8462580468c023b7771d"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/obj/index.js",
+      "sha256": "3d9903a3a0a156db721cc3df87814711dedc326c0da7674eabb1af20717c9374"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/usdz/decode.js",
+      "sha256": "2c2d2e384324f4aeabcb28d25e61ebd7209560a9af54b33e6d132b7d1296cc6a"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/providers/usdz/index.js",
+      "sha256": "6e88a56e3ec20261d742b0c1e97715b366e22cb338e0fc828ae1f3e60581728e"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/scene-documents.js",
+      "sha256": "ca573f2b5d6b2c3a7ac38b3cd4b2e8739b2dc1a6b5d763e2cffd67ab33332b06"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/services.js",
+      "sha256": "ccc82c9526b5e7819def1a9d401399f0a87ee0947ddfa850a16793b41e8325b7"
+    },
+    {
+      "path": "src/core-domains/authoring/importing/subdomain.manifest.js",
+      "sha256": "93a46d3dd5c1ebdfeaaed8be72472644b0ebe9bced4bc8ac711207d8aec528a6"
+    },
+    {
       "path": "src/core-domains/authoring/index.js",
-      "sha256": "4eb491d65497714ae39d15d52da79fdb614c317536cc85c7cb4f0fe6f6631fba"
+      "sha256": "daee93a871f87405872a36e550499190d3f8ad294d39a8e0a420f23f323a3e3e"
+    },
+    {
+      "path": "src/core-domains/authoring/io-kits.js",
+      "sha256": "c608504c765c84e03198dbe76e64ca5f56fef52fcd5d12a4d7d1b077314c6f2c"
+    },
+    {
+      "path": "src/core-domains/authoring/io.manifests.js",
+      "sha256": "cffdd09ec292b80fe1879e87977a961454b839f92d3e3a16bf3d562769697b82"
     },
     {
       "path": "src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js",
@@ -46675,6 +48841,74 @@
       "sha256": "c75862bd1b06f507031f01e2804c1cfef65f95326e3b83f7ce270dcb1394e1cc"
     },
     {
+      "path": "src/core-domains/authoring/persistence/index.js",
+      "sha256": "d3aa305574e32fa004f3a8ee054b47b4514619da2b03427c4aff6b8dbb699e04"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-load-kit/index.js",
+      "sha256": "53984994f80ef1b5cb521c9c3d1ce211a1e6c4e80e5e22987b66647cfcb5ae2b"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-load-kit/kit.manifest.js",
+      "sha256": "0dfd22e5571d3259e572473ce7a1b47d25a60d8eb6612800b25e3b49a7d6c7a0"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js",
+      "sha256": "7b41c059d1f3f3e2ca3638ec2c5e61e494153c6ae91322e72ecc54b1e155f86b"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/kit.manifest.js",
+      "sha256": "5f0a064c868e460a714fa3685cd6afd19088215694fb1869fcef4ea1da0c656f"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js",
+      "sha256": "b1354195457b53f02f2573b1f2b03db2e491a5af0552c201a2347eafa92b7178"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-project-package-kit/kit.manifest.js",
+      "sha256": "3789fc445609041b8ffffaaf97332483d012b5823ff53204afce445dada6fc5a"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js",
+      "sha256": "feee0fd77f9c6fb5208ab714026761ff031126261f8f520d148446815f10dd91"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-save-kit/kit.manifest.js",
+      "sha256": "58197b4b024f3610aa0d5209efa1e2498a57652acf2f0992dd73ec213e1db070"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js",
+      "sha256": "db1c25a71e6455adea9db70759a1ea9d88228141f9eb00d09c4de01fe3c60742"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/kit.manifest.js",
+      "sha256": "9558e42209a7678e95f4b1b3d42d1313254a261cba378b3756b2b4ac6b50377d"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/project-package.js",
+      "sha256": "69a006a1057eecd53b50512a81ea33c78dec5fed082dcf20a9e216d34fa1540c"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/providers/filesystem/index.js",
+      "sha256": "b504d008618328ad5f7b31c0116ab089b1f4a5d7f1fd5a77dd89a5e771232899"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/providers/indexeddb/index.js",
+      "sha256": "4266ecccd5db95c790d777e77cffdabc333828763f6613d6d6a43df3f0bd8b77"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/providers/memory/index.js",
+      "sha256": "45a6cf7f1450a93316e4f2d59b79b367fbedc4f2ae9e5aee8fd105aaef63a326"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/services.js",
+      "sha256": "4e1aa8f4a1968cbf6b0ae56b315f3a023f1b90a2420414a8cc8035531d41ddb1"
+    },
+    {
+      "path": "src/core-domains/authoring/persistence/subdomain.manifest.js",
+      "sha256": "1cf37236c627c3407b14294cb0d14e008c99c4a85b07180e21f87160a42d4454"
+    },
+    {
       "path": "src/core-domains/authoring/project/index.js",
       "sha256": "c1e85b9d92a726dd455f5c9cbf45dd7099ee47742b5eb227ea9722edff2e21c8"
     },
@@ -46688,11 +48922,111 @@
     },
     {
       "path": "src/core-domains/authoring/project/store.js",
-      "sha256": "336fa844e42775693727502b7ea738b67b208a36785db1ef18df8e206cc50dd5"
+      "sha256": "477630dbc04cf7caedb2c3b77b52311acc61fdb1266699760907329454fe5234"
     },
     {
       "path": "src/core-domains/authoring/project/subdomain.manifest.js",
       "sha256": "fb85787bf01e07a10d1c43652ea3e0333a861123e23cfa06b28bdfd467f32cfc"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/codecs/fbx-binary.js",
+      "sha256": "bac6439a29a07f4ce9f5024bcfe666c1e8c7f8008c8ee96061590899611673eb"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/codecs/png.js",
+      "sha256": "889f1059905d8bcb0f66d1e12c204fa93ddb1e7412d29a7ad1e98a5582aad76e"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/codecs/usda.js",
+      "sha256": "0f739dcb770867d8f2869ae4841510e3291daf61cb9b134f5a09eb55204a9511"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/codecs/zip.js",
+      "sha256": "5b03ae9ed598c48903c3967378affa7b51d3f98284ad1cf1b9536a0d12e07757"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/contracts/packet.js",
+      "sha256": "b8b3871bfb10348103fc40a463ba9b071ab63c6f39bf7aa6afcd80c20a9154ab"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/index.js",
+      "sha256": "bc37a91924ddb8c13f4c84d6c7a1e15aec2f09bc1ee0b15d233ee36ba19b9c6a"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/index.js",
+      "sha256": "53c52ed6e93b3a0423c4d85a696acf5467f13a8dd556a7d376b2d3e5cb570f9c"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/kit.manifest.js",
+      "sha256": "daf005b5f2438766517e8c8f150e82297cc6c288d6455ba62831207648c6c90e"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js",
+      "sha256": "fd17b34f1e8ffd81dede9306345760a56285ac4902d03fa1b97c5b83f4ae1608"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/kit.manifest.js",
+      "sha256": "992aa7954306ae689fa8adb3d51fa65e9a6a96c55de450410c57d8773558dfcc"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js",
+      "sha256": "d6005c7162af13175a1a3fb9b7118705d4b1f24efc7aed2a44a0fb13f0d27fe6"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/kit.manifest.js",
+      "sha256": "1fee53505dd20c85b040d83e021060e96d433956a7c07d1d025f52c5fc526854"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js",
+      "sha256": "59012b389515c8ac88cbb7f40192b75d00b83bcf7d7725fbea489c0869bfa5cd"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/kit.manifest.js",
+      "sha256": "d263ae01e36f76e8456c871ef5d0336d46143c75e077a7cb667867a69b304963"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js",
+      "sha256": "56c55420b058ea2232949fe023bc5b7fff906fc7f355b400960f84b84c231d1b"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/kit.manifest.js",
+      "sha256": "6701cfe85c19243d190c6563dad53dc066e21400155be500dcac47e14bdfb7ec"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/fbx/encode.js",
+      "sha256": "c6dc56079075e99aa70b8732e4e82617795c5ada4c004d18b87a1d34b6c67902"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/fbx/index.js",
+      "sha256": "99191872616940ff8230c784f53a0308a21a2dfc0544532636af7d00bcd0e8b2"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/glb/encode.js",
+      "sha256": "496445c64b3321ade4ac4b27e2ebca4d86e11e1ba09c7933d4dd68297c2edaa0"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/glb/index.js",
+      "sha256": "e4b3d9f947caaf7521b078616e965a59aaa4d3995416d0b50e9db094ebb41fe7"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/usdz/encode.js",
+      "sha256": "b2081cff7935195d2797d862b40b7bd4553a2652794fd0944b617579cd0d9067"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/providers/usdz/index.js",
+      "sha256": "a393ec56ead5de950e387fd0ede4d6d63ba419efcb7c64f6052d1b85dc25b97a"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/publishing/artifact-output.js",
+      "sha256": "75e5947b8fec7e957a8dfb7d7a4dd656b7c28c89081a730fc7a19e1fe46b7980"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/services.js",
+      "sha256": "0a76ab5c633a9a4b3864ea01dc8821bdde6c5485e0164c08f10c8e4b27562a33"
+    },
+    {
+      "path": "src/core-domains/authoring/publishing/export/subdomain.manifest.js",
+      "sha256": "600af9bdfa6a994ecd41a086ba7b3fcf930dce2a9809c31f4f993f1712b208c8"
     },
     {
       "path": "src/core-domains/authoring/publishing/index.js",
@@ -46817,6 +49151,58 @@
     {
       "path": "src/core-domains/authoring/uv/subdomain.manifest.js",
       "sha256": "52aa2621cd56c4929accf0258d5b2555737e41e9183234bb7f2e4a563545aa94"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/index.js",
+      "sha256": "be3a65d1132d5950774560a71ad9390d61b82fecec3a333c9153034041332e66"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/index.js",
+      "sha256": "3f9be59d87dd8ab2c56afccdbc5d2bbd4d817c2fc9363ad4160f0fd73eb77f64"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/kit.manifest.js",
+      "sha256": "f88905daeb351124192509500334c797f221eaf4d0e869dd533ce66edb9b83f3"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js",
+      "sha256": "89371c8069cdb6edbf2aa37a0d4ccc6999e92579ac26ba54df0f6bf4910e2280"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-document-validation-kit/kit.manifest.js",
+      "sha256": "d6400db8d0bc6d5b0618248e4212a3070a371d2b34c9b43f0979f7a350bbc61a"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js",
+      "sha256": "3497482200f64982baa1486095b8cb0126cbd79f6ea7cdb78ce54575ab25f3f3"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-format-validation-kit/kit.manifest.js",
+      "sha256": "96f23189114f85dc4bbaa81c6c0830864be3ec33825746a7c8e24ce52efcf014"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js",
+      "sha256": "b3efa97eddf651f572e6fb69c6dcc832c286a5a3d3d62fbd44d0d86992df075f"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-project-validation-kit/kit.manifest.js",
+      "sha256": "3992382f41da8b091bbc7cd984f2ccff544c9a535b95db5112d10fa7d2c11b70"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js",
+      "sha256": "563e3be3dd8e054e3c8ad2c13d5761dbe547a3624fd076421a8cd5af197b56a5"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/kits/authoring-validation-report-kit/kit.manifest.js",
+      "sha256": "a7df28494852d36c7a5603a4ce2732a6c94b927555adebfccd023c8d344733f0"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/services.js",
+      "sha256": "a592e986ed6ff6dbb2e351f9954cd1b40705d85fdabce9b0bf50528a0493a145"
+    },
+    {
+      "path": "src/core-domains/authoring/validation/subdomain.manifest.js",
+      "sha256": "1c39fd069f0b7ccbef39a219d57edc26ce3403753ccc3177cf3e36e45b4189df"
     },
     {
       "path": "src/core-domains/authoring/workspace/index.js",
@@ -51779,8 +54165,28 @@
       "sha256": "7f58aff2069b672cf0a6131f56e641e1675dd7b34801a5d49dec23ccac62ee5a"
     },
     {
+      "path": "src/core-domains/runtime/data/observation/contracts.js",
+      "sha256": "91275f0d0ee30b1681b3fb24388a5b61640b06c0673ef0f0d6348f193f359a38"
+    },
+    {
+      "path": "src/core-domains/runtime/data/observation/kits/observation-history-kit/index.js",
+      "sha256": "dab6d2a31c5ac7d820f9d8a75402d83d639ac59be603cb9ac49079f57675c951"
+    },
+    {
+      "path": "src/core-domains/runtime/data/observation/kits/observation-history-kit/kit.manifest.js",
+      "sha256": "6088ae496825231f2664d417d151047c70c0afa0ae71f232fd321c17fee78afb"
+    },
+    {
+      "path": "src/core-domains/runtime/data/observation/kits/observation-history-kit/state.js",
+      "sha256": "ca4605e041bbaa103c6ee8b7799b0cadea878efc23543ecb1d755134b368cfa4"
+    },
+    {
+      "path": "src/core-domains/runtime/data/observation/subdomain.manifest.js",
+      "sha256": "6ff8a73e7de49fdd72d7d8fb7f5c75bc65eba1cfb491f91443ef629e900705ca"
+    },
+    {
       "path": "src/core-domains/runtime/domain.manifest.js",
-      "sha256": "b10bbe37554c0f1d84687b8ef3cb3d6a68e74e1b6e547c419f60eb8176e9d651"
+      "sha256": "5fce5b73dcdf4fcce4ee5f7c10ba9018f5ac865e4462b7543173a483e2f5110d"
     },
     {
       "path": "src/core-domains/runtime/index.js",
@@ -52080,7 +54486,7 @@
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/index.js",
-      "sha256": "7bcd6ed63f40c16bfdd26144ed72b3c830be33b9f87c9a7228d4fa481d13e481"
+      "sha256": "bd5b95d5e657a77f5a00f13eb41479ca3cc3bb0e1b173ca959545b2dd24b4118"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/objectives.js",
@@ -52092,7 +54498,7 @@
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/resolution.js",
-      "sha256": "b0724a795896e2e4a686f85a0b580f8f49046b6a23b57e92b2a0e0d099cffc3d"
+      "sha256": "e077e0db9ecaf970ff8cee2ded6db2a27fc8b4dbc5acbbf77b1904bfbd5c447a"
     },
     {
       "path": "src/core-domains/simulation/kits/simulation-kit/resources.js",
@@ -53016,7 +55422,7 @@
     },
     {
       "path": "src/ecs.js",
-      "sha256": "4c4766512e737d4a64cc453de16b406ed62114120e738ff81696224572d1b002"
+      "sha256": "4c2842a50171b56e284c2b5e8ec1f9979862b58ac4b6035c424e76a98645c2f7"
     },
     {
       "path": "src/engine.js",

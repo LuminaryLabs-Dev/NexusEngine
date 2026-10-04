@@ -58,7 +58,7 @@ function createResolutionLedger() {
 
 function ensureRuntime(world) {
   if (!runtimes.has(world)) {
-    runtimes.set(world, { engine: null, policy: null, observationSources: new Map() });
+    runtimes.set(world, { engine: null, policy: null, observationSources: new Map(), commitParticipants: new Map() });
   }
   return runtimes.get(world);
 }
@@ -244,18 +244,44 @@ function resolveSimulationStep(world, tickContext) {
     engine: runtime.engine
   }) ?? {};
 
-  applyStatePatch(world, result.statePatch ?? {});
-  const eventSummaries = emitAcceptedEvents(world, result.events ?? []);
-  const committedFrame = createCommittedFrame({ state, ledger, policy, result, eventSummaries });
-  const committedStepIds = [...ledger.committedStepIds, state.step.stepId].slice(-256);
-
-  world.setResource(SimulationCommittedFrameState, { current: committedFrame });
-  world.setResource(SimulationResolutionLedger, {
-    revision: committedFrame.revision,
-    committedStepIds
+  if (result && typeof result.then === "function") throw new TypeError("Simulation resolution policy must be synchronous.");
+  const participants = [...runtime.commitParticipants.values()].sort((a, b) => a.id.localeCompare(b.id));
+  const prepared = participants.map(participant => {
+    const value = participant.prepare({ result, observations: clone(observations), step: clone(state.step) });
+    if (value && typeof value.then === "function") throw new TypeError("Commit prepare must be synchronous.");
+    return { participant, value };
   });
-  world.setResource(SimulationResolutionState, createResolutionState());
-  world.emit(SimulationStepCommitted, clone(committedFrame));
+  world.atomic(() => {
+    const applied = [];
+    try {
+      applyStatePatch(world, result.statePatch ?? {});
+      for (const entry of prepared) {
+        applied.push(entry);
+        const outcome = entry.participant.apply(entry.value);
+        if (outcome && typeof outcome.then === "function") throw new TypeError("Commit apply must be synchronous.");
+      }
+      const eventSummaries = emitAcceptedEvents(world, result.events ?? []);
+      const committedFrame = createCommittedFrame({ state, ledger, policy, result, eventSummaries });
+      world.setResource(SimulationCommittedFrameState, { current: committedFrame });
+      world.setResource(SimulationResolutionLedger, { revision: committedFrame.revision, committedStepIds: [...ledger.committedStepIds, state.step.stepId].slice(-256) });
+      world.setResource(SimulationResolutionState, createResolutionState());
+      for (const entry of applied) if (entry.participant.afterCommit) {
+        const outcome = entry.participant.afterCommit(entry.value, clone(committedFrame));
+        if (outcome && typeof outcome.then === "function") throw new TypeError("Commit finalization must be synchronous.");
+      }
+      world.emit(SimulationStepCommitted, clone(committedFrame));
+    } catch (error) {
+      const errors = [error];
+      for (const entry of applied.reverse()) {
+        try {
+          const outcome = entry.participant.rollback(entry.value);
+          if (outcome && typeof outcome.then === "function") throw new TypeError("Commit rollback must be synchronous.");
+        } catch (rollbackError) { errors.push(rollbackError); }
+      }
+      if (errors.length > 1) throw new AggregateError(errors, "Commit rollback failed; participant service requires recovery.");
+      throw error;
+    }
+  });
 }
 
 export function createSimulationResolutionExtension(config = {}) {
@@ -286,6 +312,21 @@ export function createSimulationResolutionExtension(config = {}) {
       if (config.policy) runtime.policy = normalizePolicy(config.policy);
 
       return {
+        registerCommitParticipant(participant) {
+          const id = text(participant?.id, null, "Commit participant id");
+          for (const key of ["prepare", "apply", "rollback"]) {
+            if (typeof participant[key] !== "function" || participant[key].constructor?.name === "AsyncFunction") throw new TypeError(`Commit participant requires synchronous ${key}.`);
+          }
+          if (participant.afterCommit && (typeof participant.afterCommit !== "function" || participant.afterCommit.constructor?.name === "AsyncFunction")) throw new TypeError("Commit finalization must be synchronous.");
+          const existing = runtime.commitParticipants.get(id);
+          if (existing) {
+            if (["prepare", "apply", "rollback", "afterCommit"].every(key => existing[key] === participant[key])) return id;
+            throw new Error(`Conflicting commit participant: ${id}.`);
+          }
+          runtime.commitParticipants.set(id, { id, prepare: participant.prepare, apply: participant.apply, rollback: participant.rollback, afterCommit: participant.afterCommit });
+          return id;
+        },
+        unregisterCommitParticipant(id) { return runtime.commitParticipants.delete(String(id)); },
         submitProposal(proposal) {
           return submitEntry(world, engine.getCurrentTickContext?.() ?? world.__nexusTickContext, proposal, "proposal");
         },
@@ -315,6 +356,14 @@ export function createSimulationResolutionExtension(config = {}) {
         },
         getCommittedFrame() {
           return clone(world.getResource(SimulationCommittedFrameState)?.current ?? null);
+        },
+        getResolutionSnapshot() {
+          return { schema: "nexusengine.simulation-resolution/1", state: clone(world.getResource(SimulationResolutionState)), committed: clone(world.getResource(SimulationCommittedFrameState)), ledger: clone(world.getResource(SimulationResolutionLedger)) };
+        },
+        loadResolutionSnapshot(snapshot) {
+          if (snapshot?.schema !== "nexusengine.simulation-resolution/1" || !snapshot.state || !snapshot.committed || !Number.isSafeInteger(snapshot.ledger?.revision) || snapshot.ledger.revision < 0 || !Array.isArray(snapshot.ledger.committedStepIds)) throw new TypeError("Invalid resolution snapshot.");
+          const value = clone(snapshot);
+          world.setResource(SimulationResolutionState, value.state); world.setResource(SimulationCommittedFrameState, value.committed); world.setResource(SimulationResolutionLedger, value.ledger);
         },
         resetResolution() {
           world.setResource(SimulationResolutionState, createResolutionState());

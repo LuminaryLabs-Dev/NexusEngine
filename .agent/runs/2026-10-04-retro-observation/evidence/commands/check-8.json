@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "scripts/check-manifest-execution-parity.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Validated executable parity for 381 manifest-backed Core Kits.\n"
+}

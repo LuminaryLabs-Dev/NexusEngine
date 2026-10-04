@@ -1,0 +1,77 @@
+{
+  "ok": true,
+  "runId": "retro-observation-core",
+  "status": "completed",
+  "results": [
+    {
+      "id": "check-0",
+      "ok": true,
+      "evidence": [
+        "commands/check-0.json"
+      ]
+    },
+    {
+      "id": "check-1",
+      "ok": true,
+      "evidence": [
+        "commands/check-1.json"
+      ]
+    },
+    {
+      "id": "check-2",
+      "ok": true,
+      "evidence": [
+        "commands/check-2.json"
+      ]
+    },
+    {
+      "id": "check-3",
+      "ok": true,
+      "evidence": [
+        "commands/check-3.json"
+      ]
+    },
+    {
+      "id": "check-4",
+      "ok": true,
+      "evidence": [
+        "commands/check-4.json"
+      ]
+    },
+    {
+      "id": "check-5",
+      "ok": true,
+      "evidence": [
+        "commands/check-5.json"
+      ]
+    },
+    {
+      "id": "check-6",
+      "ok": true,
+      "evidence": [
+        "commands/check-6.json"
+      ]
+    },
+    {
+      "id": "check-7",
+      "ok": true,
+      "evidence": [
+        "commands/check-7.json"
+      ]
+    },
+    {
+      "id": "check-8",
+      "ok": true,
+      "evidence": [
+        "commands/check-8.json"
+      ]
+    },
+    {
+      "id": "check-9",
+      "ok": true,
+      "evidence": [
+        "commands/check-9.json"
+      ]
+    }
+  ]
+}

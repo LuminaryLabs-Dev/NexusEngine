@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5",
-  "compositionRegistryHash": "sha256:e7eb892e40e152bb0168dc7228a5d0e8d0fe3833acf928b0fdc066d2b98627f5",
+  "registryHash": "sha256:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
+  "compositionRegistryHash": "sha256:1dd33b6b12c1345a69f2496535532f3e6c19af7411ecf5c0964f821b7362431a",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5",
-      "integrity": "sha256:d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5",
+      "sourceCommit": "builtin:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
+      "integrity": "sha256:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
       "status": "available",
       "environments": [
         "browser",
@@ -379,6 +379,36 @@
       }
     },
     {
+      "id": "authoring-create-domain",
+      "domainPath": "n:authoring:create",
+      "parentDomainPath": "n:authoring",
+      "label": "Authoring Create",
+      "status": "stable-candidate",
+      "responsibility": "Own canonical create operations, default providers, diagnostics and source-safe lifecycle.",
+      "ownedMeaning": [
+        "create contracts and canonical implementations"
+      ],
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:create"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "authoring-curve-domain",
       "domainPath": "n:authoring:curve",
       "parentDomainPath": "n:authoring",
@@ -414,16 +444,16 @@
       "parentDomainPath": null,
       "label": "Authoring",
       "status": "stable-candidate",
-      "responsibility": "Own editable source documents and typed editing operations.",
+      "responsibility": "Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.",
       "ownedMeaning": [
         "editable source contracts",
         "source mutation protocols"
       ],
       "forbiddenResponsibilities": [
-        "codecs",
-        "filesystem",
+        "Editor-owned source semantics",
         "renderers",
-        "runtime playback"
+        "runtime playback",
+        "unmediated platform handles in portable source"
       ],
       "requires": [
         "n:runtime"
@@ -489,6 +519,36 @@
       ],
       "provides": [
         "n:authoring:editing"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "authoring-importing-domain",
+      "domainPath": "n:authoring:importing",
+      "parentDomainPath": "n:authoring",
+      "label": "Authoring Importing",
+      "status": "stable-candidate",
+      "responsibility": "Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.",
+      "ownedMeaning": [
+        "importing contracts and canonical implementations"
+      ],
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:importing"
       ],
       "settingsSchema": {
         "type": "object",
@@ -620,6 +680,36 @@
       }
     },
     {
+      "id": "authoring-persistence-domain",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "label": "Authoring Persistence",
+      "status": "stable-candidate",
+      "responsibility": "Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.",
+      "ownedMeaning": [
+        "persistence contracts and canonical implementations"
+      ],
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:persistence"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "authoring-project-domain",
       "domainPath": "n:authoring:project",
       "parentDomainPath": "n:authoring",
@@ -668,6 +758,36 @@
       ],
       "provides": [
         "n:authoring:publishing"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "authoring-publishing-export-domain",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "label": "Authoring Publishing Export",
+      "status": "stable-candidate",
+      "responsibility": "Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle.",
+      "ownedMeaning": [
+        "publishing export contracts and canonical implementations"
+      ],
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:publishing:export"
       ],
       "settingsSchema": {
         "type": "object",
@@ -819,6 +939,36 @@
       ],
       "provides": [
         "n:authoring:uv"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "authoring-validation-domain",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "label": "Authoring Validation",
+      "status": "stable-candidate",
+      "responsibility": "Own canonical validation operations, default providers, diagnostics and source-safe lifecycle.",
+      "ownedMeaning": [
+        "validation contracts and canonical implementations"
+      ],
+      "forbiddenResponsibilities": [
+        "Editor-specific presentation",
+        "duplicate editable source authority",
+        "runtime simulation"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:validation"
       ],
       "settingsSchema": {
         "type": "object",
@@ -4458,6 +4608,38 @@
       }
     },
     {
+      "id": "runtime-data-observation-domain",
+      "domainPath": "n:runtime:data:observation",
+      "parentDomainPath": "n:runtime:data",
+      "label": "Observation History",
+      "status": "stable-candidate",
+      "responsibility": "Own bounded portable committed observation history and provenance.",
+      "ownedMeaning": [
+        "committed observation history",
+        "history retention",
+        "observation identity"
+      ],
+      "forbiddenResponsibilities": [
+        "binary payload storage",
+        "emulation",
+        "game memory decoding"
+      ],
+      "requires": [
+        "n:runtime:data"
+      ],
+      "provides": [
+        "n:runtime:data:observation"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "runtime-domain",
       "domainPath": "n:runtime",
       "parentDomainPath": null,
@@ -7750,6 +7932,81 @@
       }
     },
     {
+      "id": "authoring-create-service-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Route creation requests to existing typed Project operations without owning duplicate content.",
+      "domainPath": "n:authoring:create",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringCreate",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:create-service",
+        "n:authoring:create"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/create/create-service",
+        "exportName": "createAuthoringCreateServiceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-create-service-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-create-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "authoring-curve-service-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -7829,6 +8086,154 @@
             },
             {
               "id": "authoring-curve-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-delivery-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Expose read-only publishing preparation diagnostics.",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringDeliveryValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:publishing"
+      ],
+      "provides": [
+        "authoring:delivery-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/validation/delivery-validation",
+        "exportName": "createAuthoringDeliveryValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-delivery-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-delivery-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-document-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Validate an existing document through canonical Project schemas and reference invariants.",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringDocumentValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:document-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/validation/document-validation",
+        "exportName": "createAuthoringDocumentValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-document-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-document-validation-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8096,6 +8501,828 @@
             },
             {
               "id": "authoring-editing-session-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-export-capability-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Inspect the exact delivery packet against a declared format profile.",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "apiName": "authoringExportCapability",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:export-registry"
+      ],
+      "provides": [
+        "authoring:export-capability"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/publishing/export/export-capability",
+        "exportName": "createAuthoringExportCapabilityKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-export-capability-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-export-capability-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-export-receipt-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own bounded idempotent export operation receipts; never serialize executable providers.",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "apiName": "authoringExportReceipt",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:export-receipt"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/publishing/export/export-receipt",
+        "exportName": "createAuthoringExportReceiptKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-export-receipt-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-export-receipt-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-export-registry-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own canonical GLB, FBX and USDZ exporter selection and availability.",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "apiName": "authoringExportRegistry",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:publishing"
+      ],
+      "provides": [
+        "authoring:export-registry"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/publishing/export/export-registry",
+        "exportName": "createAuthoringExportRegistryKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-export-registry-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-export-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-export-service-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Orchestrate encode, native validation, source-guarded publication and export receipts.",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "apiName": "authoringExport",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:export-capability",
+        "authoring:export-receipt",
+        "authoring:export-registry",
+        "authoring:export-validation"
+      ],
+      "provides": [
+        "authoring:export-service",
+        "n:authoring:publishing:export"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/publishing/export/export-service",
+        "exportName": "createAuthoringExportServiceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-export-service-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-export-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-export-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Parse encoded artifacts and report native validation separately from external proof.",
+      "domainPath": "n:authoring:publishing:export",
+      "parentDomainPath": "n:authoring:publishing",
+      "apiName": "authoringExportValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:export-registry"
+      ],
+      "provides": [
+        "authoring:export-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/publishing/export/export-validation",
+        "exportName": "createAuthoringExportValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-export-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-export-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-format-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Expose export compatibility and artifact validation through canonical providers.",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringFormatValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:publishing:export"
+      ],
+      "provides": [
+        "authoring:format-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/validation/format-validation",
+        "exportName": "createAuthoringFormatValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-format-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-format-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-import-commit-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Commit validated imported documents atomically through Project with source guards.",
+      "domainPath": "n:authoring:importing",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringImportCommit",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:import-commit"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/importing/import-commit",
+        "exportName": "createAuthoringImportCommitKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-import-commit-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-import-commit-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-import-registry-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own trusted canonical importer discovery and provider selection.",
+      "domainPath": "n:authoring:importing",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringImportRegistry",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:import-registry"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/importing/import-registry",
+        "exportName": "createAuthoringImportRegistryKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-import-registry-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-import-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-import-service-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Decode external bytes into editable documents and orchestrate staged import.",
+      "domainPath": "n:authoring:importing",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringImport",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:import-commit",
+        "authoring:import-registry",
+        "authoring:import-validation"
+      ],
+      "provides": [
+        "authoring:import-service",
+        "n:authoring:importing"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/importing/import-service",
+        "exportName": "createAuthoringImportServiceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-import-service-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-import-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-import-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Validate a complete staged canonical import against the existing Project writer.",
+      "domainPath": "n:authoring:importing",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringImportValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:import-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/importing/import-validation",
+        "exportName": "createAuthoringImportValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-import-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-import-validation-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-load-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Verify a stored package before atomically restoring the sole Project source authority.",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringLoad",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:project-package",
+        "authoring:storage-provider-registry"
+      ],
+      "provides": [
+        "authoring:load"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/persistence/load",
+        "exportName": "createAuthoringLoadKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-load-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-load-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8457,6 +9684,82 @@
       }
     },
     {
+      "id": "authoring-persistence-service-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Expose provider-neutral save and load without an Editor dependency.",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringPersistence",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:load",
+        "authoring:save"
+      ],
+      "provides": [
+        "authoring:persistence-service",
+        "n:authoring:persistence"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/persistence/persistence-service",
+        "exportName": "createAuthoringPersistenceServiceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-persistence-service-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-persistence-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "authoring-project-document-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -8522,6 +9825,154 @@
             },
             {
               "id": "authoring-project-document-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-project-package-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Encode and verify content-addressed Project snapshots, historical documents and image tiles.",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringProjectPackage",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:project-package"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/persistence/project-package",
+        "exportName": "createAuthoringProjectPackageKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-project-package-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-project-package-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-project-validation-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Expose read-only validation of the complete current Project.",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringProjectValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:project-validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/validation/project-validation",
+        "exportName": "createAuthoringProjectValidationKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-project-validation-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-project-validation-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8697,6 +10148,81 @@
             },
             {
               "id": "authoring-rig-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-save-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Persist a captured Project package with generation conflict protection.",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringSave",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:project-package",
+        "authoring:storage-provider-registry"
+      ],
+      "provides": [
+        "authoring:save"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/persistence/save",
+        "exportName": "createAuthoringSaveKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-save-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-save-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -8972,6 +10498,80 @@
       }
     },
     {
+      "id": "authoring-storage-provider-registry-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own canonical memory, filesystem and IndexedDB storage provider registration.",
+      "domainPath": "n:authoring:persistence",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringStorageRegistry",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:storage-provider-registry"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/persistence/storage-provider-registry",
+        "exportName": "createAuthoringStorageProviderRegistryKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-storage-provider-registry-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-storage-provider-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "authoring-uv-service-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -9051,6 +10651,84 @@
             },
             {
               "id": "authoring-uv-service-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "authoring-validation-report-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Provide the public Authoring validation facade and normalized reports.",
+      "domainPath": "n:authoring:validation",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringValidation",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:delivery-validation",
+        "authoring:document-validation",
+        "authoring:format-validation",
+        "authoring:project-validation"
+      ],
+      "provides": [
+        "authoring:validation-report",
+        "n:authoring:validation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/validation/validation-report",
+        "exportName": "createAuthoringValidationReportKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Reset owned transient/runtime service state only; Project source and history are never reset by this kit."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "pending",
+          "references": [
+            "tests/core-domains/core-authoring-consolidation.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "authoring-validation-report-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "authoring-validation-report-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -20940,6 +22618,81 @@
             {
               "id": "object-vegetation-kit-installed-consumer",
               "description": "Installed Object composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "observation-history-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Retain bounded committed portable observations with deterministic identity and replay checks.",
+      "domainPath": "n:runtime:data:observation",
+      "parentDomainPath": "n:runtime:data",
+      "apiName": "observationHistory",
+      "apiVisibility": "public",
+      "requires": [
+        "n:runtime:data"
+      ],
+      "provides": [
+        "data:observation-history",
+        "n:runtime:data:observation"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/runtime/data/observation",
+        "exportName": "createObservationHistoryKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/observation-history-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "observation-history-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "observation-history-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
             }

@@ -4,12 +4,12 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:authoring`
 - Status: `stable-candidate`
-- Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
+- Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738`
 - Public entry: `nexusengine/domains/authoring`
 
 ## Responsibility
 
-Own editable source documents and typed editing operations.
+Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
 
 ## Owns
 
@@ -18,15 +18,20 @@ Own editable source documents and typed editing operations.
 
 ## Does Not Own
 
-- codecs
-- filesystem
+- Editor-owned source semantics
 - renderers
 - runtime playback
+- unmediated platform handles in portable source
 
 ## Subdomains
 
 | Path | Responsibility |
 | --- | --- |
+| `n:authoring:create` | Own canonical create operations, default providers, diagnostics and source-safe lifecycle. |
+| `n:authoring:importing` | Own canonical importing operations, default providers, diagnostics and source-safe lifecycle. |
+| `n:authoring:persistence` | Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle. |
+| `n:authoring:publishing:export` | Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle. |
+| `n:authoring:validation` | Own canonical validation operations, default providers, diagnostics and source-safe lifecycle. |
 | `n:authoring:modifier` | Own modifier authoring contracts and operations. |
 | `n:authoring:publishing` | Own publishing authoring contracts and operations. |
 | `n:authoring:sequence` | Own sequence authoring contracts and operations. |
@@ -50,6 +55,26 @@ Own editable source documents and typed editing operations.
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
+| `authoring-create-service-kit` | `nexusengine/domains/authoring/create/create-service` | Route creation requests to existing typed Project operations without owning duplicate content. |
+| `authoring-import-registry-kit` | `nexusengine/domains/authoring/importing/import-registry` | Own trusted canonical importer discovery and provider selection. |
+| `authoring-import-validation-kit` | `nexusengine/domains/authoring/importing/import-validation` | Validate a complete staged canonical import against the existing Project writer. |
+| `authoring-import-commit-kit` | `nexusengine/domains/authoring/importing/import-commit` | Commit validated imported documents atomically through Project with source guards. |
+| `authoring-import-service-kit` | `nexusengine/domains/authoring/importing/import-service` | Decode external bytes into editable documents and orchestrate staged import. |
+| `authoring-project-package-kit` | `nexusengine/domains/authoring/persistence/project-package` | Encode and verify content-addressed Project snapshots, historical documents and image tiles. |
+| `authoring-storage-provider-registry-kit` | `nexusengine/domains/authoring/persistence/storage-provider-registry` | Own canonical memory, filesystem and IndexedDB storage provider registration. |
+| `authoring-save-kit` | `nexusengine/domains/authoring/persistence/save` | Persist a captured Project package with generation conflict protection. |
+| `authoring-load-kit` | `nexusengine/domains/authoring/persistence/load` | Verify a stored package before atomically restoring the sole Project source authority. |
+| `authoring-persistence-service-kit` | `nexusengine/domains/authoring/persistence/persistence-service` | Expose provider-neutral save and load without an Editor dependency. |
+| `authoring-export-registry-kit` | `nexusengine/domains/authoring/publishing/export/export-registry` | Own canonical GLB, FBX and USDZ exporter selection and availability. |
+| `authoring-export-capability-kit` | `nexusengine/domains/authoring/publishing/export/export-capability` | Inspect the exact delivery packet against a declared format profile. |
+| `authoring-export-validation-kit` | `nexusengine/domains/authoring/publishing/export/export-validation` | Parse encoded artifacts and report native validation separately from external proof. |
+| `authoring-export-receipt-kit` | `nexusengine/domains/authoring/publishing/export/export-receipt` | Own bounded idempotent export operation receipts; never serialize executable providers. |
+| `authoring-export-service-kit` | `nexusengine/domains/authoring/publishing/export/export-service` | Orchestrate encode, native validation, source-guarded publication and export receipts. |
+| `authoring-document-validation-kit` | `nexusengine/domains/authoring/validation/document-validation` | Validate an existing document through canonical Project schemas and reference invariants. |
+| `authoring-project-validation-kit` | `nexusengine/domains/authoring/validation/project-validation` | Expose read-only validation of the complete current Project. |
+| `authoring-delivery-validation-kit` | `nexusengine/domains/authoring/validation/delivery-validation` | Expose read-only publishing preparation diagnostics. |
+| `authoring-format-validation-kit` | `nexusengine/domains/authoring/validation/format-validation` | Expose export compatibility and artifact validation through canonical providers. |
+| `authoring-validation-report-kit` | `nexusengine/domains/authoring/validation/validation-report` | Provide the public Authoring validation facade and normalized reports. |
 | `authoring-modifier-service-kit` | `nexusengine/domains/authoring/modifier` | Own modifier source operations. |
 | `authoring-publishing-service-kit` | `nexusengine/domains/authoring/publishing` | Own publishing source operations. |
 | `authoring-sequence-service-kit` | `nexusengine/domains/authoring/sequence` | Own sequence source operations. |

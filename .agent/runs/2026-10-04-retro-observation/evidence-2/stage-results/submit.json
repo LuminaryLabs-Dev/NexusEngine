@@ -1,0 +1,11 @@
+{
+  "stage": "submit",
+  "ok": true,
+  "startedAt": "2026-10-04T00:47:07.681Z",
+  "completedAt": "2026-10-04T00:47:14.976Z",
+  "result": {
+    "ok": true,
+    "submitted": true,
+    "runId": "retro-observation-core-2"
+  }
+}

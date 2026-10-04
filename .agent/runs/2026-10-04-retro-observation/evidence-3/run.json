@@ -1,0 +1,112 @@
+{
+  "id": "retro-observation-core-3",
+  "goal": "Verify committed observation history and synchronous rollback without changing existing authoring qualification.",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "complete",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-10-04T00:52:59.145Z",
+      "completedAt": "2026-10-04T00:52:59.150Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-10-04T00:52:59.151Z",
+      "completedAt": "2026-10-04T00:52:59.154Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-10-04T00:52:59.154Z",
+      "completedAt": "2026-10-04T00:52:59.156Z",
+      "result": {
+        "ok": true,
+        "planId": "retro-observation-core-3-plan",
+        "commandCount": 10
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-10-04T00:52:59.157Z",
+      "completedAt": "2026-10-04T00:52:59.159Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-10-04T00:52:59.160Z",
+      "completedAt": "2026-10-04T00:53:07.066Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "retro-observation-core-3"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-10-04T00:53:07.067Z",
+      "completedAt": "2026-10-04T00:53:07.070Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "retro-observation-core-3"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": true,
+      "startedAt": "2026-10-04T00:53:07.070Z",
+      "completedAt": "2026-10-04T00:53:07.078Z",
+      "result": {
+        "ok": true,
+        "checkCount": 10
+      }
+    },
+    {
+      "stage": "capture-after",
+      "ok": true,
+      "startedAt": "2026-10-04T00:53:07.079Z",
+      "completedAt": "2026-10-04T00:53:07.081Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "observed-differences",
+      "ok": true,
+      "startedAt": "2026-10-04T00:53:07.082Z",
+      "completedAt": "2026-10-04T00:53:07.084Z",
+      "result": {
+        "ok": true,
+        "structuredChanges": 0,
+        "visualChanges": 0
+      }
+    }
+  ],
+  "completedAt": "2026-10-04T00:53:07.085Z"
+}

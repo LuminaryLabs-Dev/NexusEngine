@@ -1,0 +1,98 @@
+{
+  "id": "retro-observation-core-plan",
+  "ok": true,
+  "goal": "Verify committed observation history and synchronous rollback without changing existing authoring qualification.",
+  "commands": [
+    {
+      "action": "development.execute",
+      "id": "check-0",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/observation-history-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-1",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/observation-commit-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-2",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/core-simulation-resolution-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-3",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/core-simulation-kit-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-4",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/core-data-kit-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-5",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-kits/core-input-kit-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-6",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/core-domains/core-creature-character-player-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-7",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "tests/realtime-core-tick-contract-smoke.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-8",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "scripts/check-manifest-execution-parity.mjs"
+      ],
+      "timeoutMs": 60000
+    },
+    {
+      "action": "development.execute",
+      "id": "check-9",
+      "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+      "args": [
+        "scripts/check-active-docs.mjs"
+      ],
+      "timeoutMs": 60000
+    }
+  ],
+  "notes": []
+}

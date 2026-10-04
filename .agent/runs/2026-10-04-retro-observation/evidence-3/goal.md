@@ -1,0 +1,1 @@
+Verify committed observation history and synchronous rollback without changing existing authoring qualification.

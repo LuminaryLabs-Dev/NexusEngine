@@ -98,8 +98,9 @@ export function createSimulationKit(config = {}) {
         resources,
         pressure,
         windows,
-        getSnapshot() { return { ...context.baseApi.getSnapshot(), services: serviceSnapshot() }; },
+        getSnapshot() { return { ...context.baseApi.getSnapshot(), services: serviceSnapshot(), ...(resolutionApi.getResolutionSnapshot ? { resolution: resolutionApi.getResolutionSnapshot() } : {}) }; },
         loadSnapshot(snapshot = {}) {
+          if (snapshot.resolution) resolutionApi.loadResolutionSnapshot?.(snapshot.resolution);
           const base = context.baseApi.loadSnapshot(snapshot);
           if (snapshot.services?.resources) resources.loadSnapshot(snapshot.services.resources);
           if (snapshot.services?.pressure) pressure.loadSnapshot(snapshot.services.pressure);
@@ -111,7 +112,7 @@ export function createSimulationKit(config = {}) {
           resources.reset(payload.resources ?? {});
           pressure.reset(payload.pressure ?? {});
           windows.reset(payload.windows ?? {});
-          resolutionApi.reset?.(payload.resolution);
+          resolutionApi.resetResolution?.(payload.resolution);
           return { ...base, services: serviceSnapshot() };
         }
       };

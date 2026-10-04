@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:runtime`
 - Status: `stable-candidate`
-- Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
+- Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738`
 - Public entry: `nexusengine/domains/runtime`
 
 ## Responsibility
@@ -36,6 +36,7 @@ Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime
 | `n:runtime:sequence` | Own deterministic sequence nodes, ordered execution, and frame-driven sequence state. |
 | `n:runtime:startup` | Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts. |
 | `n:runtime:sequence:schedule` | Own deterministic elapsed-time schedules and occurrence records. |
+| `n:runtime:data:observation` | Own bounded portable committed observation history and provenance. |
 
 ## Atomic Kits
 
@@ -49,6 +50,7 @@ Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime
 | `runtime-sequence-kit` | `nexusengine/domains/runtime/sequence` | Install deterministic sequence node definitions and execution state. |
 | `runtime-startup-kit` | `nexusengine/domains/runtime/startup` | Coordinate deterministic startup preparation and readiness receipts. |
 | `schedule-kit` | `nexusengine/domains/runtime/sequence/schedule` | Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time. |
+| `observation-history-kit` | `nexusengine/domains/runtime/data/observation` | Retain bounded committed portable observations with deterministic identity and replay checks. |
 
 ## Lifecycle
 

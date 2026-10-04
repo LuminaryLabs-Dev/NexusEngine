@@ -84,6 +84,8 @@ function createJournal() {
   let sequence = 0;
 
   return {
+    snapshot() { return { records: records.slice(), sequence }; },
+    restore(snapshot) { records.splice(0, records.length, ...snapshot.records); sequence = snapshot.sequence; },
     push(record) {
       records.push({ sequence: ++sequence, ...record });
     },
@@ -132,6 +134,29 @@ export function createWorld() {
   }
 
   return {
+    // Transactions cover setter-based mutations, entity membership, queues and journals.
+    // Existing stored values are read-only during a transaction; closure services need participants.
+    atomic(operation) {
+      if (typeof operation !== "function" || operation.constructor?.name === "AsyncFunction") throw new TypeError("World atomic operation must be synchronous.");
+      const before = {
+        entities: new Set(entities), components: new Map([...componentStores].map(([key, store]) => [key, new Map(store)])),
+        resources: new Map(resourceValues), events: new Map([...eventQueues].map(([key, queue]) => [key, queue.slice()])),
+        journal: journal.snapshot(), nextEntityId
+      };
+      try {
+        const result = operation();
+        if (result && typeof result.then === "function") throw new TypeError("World atomic operation cannot return a promise.");
+        return result;
+      } catch (error) {
+        entities.clear(); for (const entity of before.entities) entities.add(entity);
+        componentStores.clear(); for (const [key, store] of before.components) componentStores.set(key, store);
+        resourceValues.clear(); for (const [key, value] of before.resources) resourceValues.set(key, value);
+        eventQueues.clear(); for (const [key, queue] of before.events) eventQueues.set(key, queue);
+        journal.restore(before.journal); nextEntityId = before.nextEntityId;
+        throw error;
+      }
+    },
+
     addEntity() {
       const entity = nextEntityId++;
       entities.add(entity);

@@ -1,0 +1,10 @@
+{
+  "stage": "validate",
+  "ok": true,
+  "startedAt": "2026-10-04T00:40:01.480Z",
+  "completedAt": "2026-10-04T00:40:01.483Z",
+  "result": {
+    "ok": true,
+    "issueCount": 0
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "id": "retro-observation-core-2",
+  "stages": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "status": "verified"
+}

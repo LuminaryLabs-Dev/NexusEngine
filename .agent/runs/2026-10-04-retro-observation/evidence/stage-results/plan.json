@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-10-04T00:40:01.477Z",
+  "completedAt": "2026-10-04T00:40:01.479Z",
+  "result": {
+    "ok": true,
+    "planId": "retro-observation-core-plan",
+    "commandCount": 10
+  }
+}

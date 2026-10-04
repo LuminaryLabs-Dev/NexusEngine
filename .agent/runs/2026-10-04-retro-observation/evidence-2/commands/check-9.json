@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/codex/runtimes/codex-primary-runtime/dependencies/node/bin/node",
+  "args": [
+    "scripts/check-active-docs.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Active docs ok: 86 files, 60 kit suggestions reclassified, 26 restored sources reconciled.\n"
+}

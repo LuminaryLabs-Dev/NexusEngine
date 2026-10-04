@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
+Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -11,6 +11,11 @@ Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a
 | `n:agent` | - | - |
 | `n:asset` | - | - |
 | `n:authoring` | `n:runtime` | - |
+| `n:authoring:create` | `n:authoring:project` | - |
+| `n:authoring:importing` | `n:authoring:project` | - |
+| `n:authoring:persistence` | `n:authoring:project` | - |
+| `n:authoring:publishing:export` | `n:authoring:project` | - |
+| `n:authoring:validation` | `n:authoring:project` | - |
 | `n:authoring:modifier` | `n:authoring:mesh`, `n:authoring:project` | - |
 | `n:authoring:publishing` | `n:authoring:assembly`, `n:authoring:project` | - |
 | `n:authoring:sequence` | `n:authoring:project` | - |
@@ -151,6 +156,7 @@ Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a
 | `n:runtime:sequence` | `n:runtime` | - |
 | `n:runtime:startup` | `n:runtime` | `n:asset` |
 | `n:runtime:sequence:schedule` | `n:runtime:sequence` | - |
+| `n:runtime:data:observation` | `n:runtime:data` | - |
 | `n:simulation` | `n:runtime:realtime` | - |
 | `n:simulation:physics` | `n:simulation` | - |
 | `n:simulation:physics:articulated` | `n:simulation:physics` | - |

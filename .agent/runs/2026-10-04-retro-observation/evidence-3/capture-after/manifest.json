@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "sourceFiles": {
+    "src/ecs.js": "sha256:4c2842a50171b56e284c2b5e8ec1f9979862b58ac4b6035c424e76a98645c2f7",
+    "src/core-domains/simulation/kits/simulation-kit/resolution.js": "sha256:e077e0db9ecaf970ff8cee2ded6db2a27fc8b4dbc5acbbf77b1904bfbd5c447a",
+    "src/core-domains/simulation/kits/simulation-kit/index.js": "sha256:bd5b95d5e657a77f5a00f13eb41479ca3cc3bb0e1b173ca959545b2dd24b4118",
+    "src/core-domains/runtime/data/observation/contracts.js": "sha256:91275f0d0ee30b1681b3fb24388a5b61640b06c0673ef0f0d6348f193f359a38",
+    "src/core-domains/runtime/data/observation/kits/observation-history-kit/index.js": "sha256:dab6d2a31c5ac7d820f9d8a75402d83d639ac59be603cb9ac49079f57675c951",
+    "src/core-domains/runtime/data/observation/kits/observation-history-kit/state.js": "sha256:ca4605e041bbaa103c6ee8b7799b0cadea878efc23543ecb1d755134b368cfa4"
+  },
+  "sourceHash": "sha256:21df8c350179d532b02cd79904899002d35e499b6f46806486d9c5c1c4e85a55",
+  "phase": "after"
+}

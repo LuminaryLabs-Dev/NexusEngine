@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5`
+Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -8,7 +8,12 @@ Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
-- `n:authoring`: Own editable source documents and typed editing operations.
+- `n:authoring`: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
+- `n:authoring:create`: Own canonical create operations, default providers, diagnostics and source-safe lifecycle.
+- `n:authoring:importing`: Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.
+- `n:authoring:persistence`: Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.
+- `n:authoring:publishing:export`: Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle.
+- `n:authoring:validation`: Own canonical validation operations, default providers, diagnostics and source-safe lifecycle.
 - `n:authoring:modifier`: Own modifier authoring contracts and operations.
 - `n:authoring:publishing`: Own publishing authoring contracts and operations.
 - `n:authoring:sequence`: Own sequence authoring contracts and operations.
@@ -149,6 +154,7 @@ Registry SHA-256: `d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a
 - `n:runtime:sequence`: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.
 - `n:runtime:startup`: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.
 - `n:runtime:sequence:schedule`: Own deterministic elapsed-time schedules and occurrence records.
+- `n:runtime:data:observation`: Own bounded portable committed observation history and provenance.
 - `n:simulation`: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.
 - `n:simulation:physics`: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.
 - `n:simulation:physics:articulated`: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.
