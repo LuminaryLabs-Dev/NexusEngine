@@ -1,10 +1,10 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1290,
+    "manifestOwnedInternalModules": 1291,
     "manifestProvenPublicAtoms": 381,
     "rootContractModules": 25,
-    "sourceModules": 1696,
+    "sourceModules": 1697,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -17395,7 +17395,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -17418,6 +17419,24 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:physics",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/physics/body/kits/body-registry-kit/step-commit.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "commitBodyStep"
+      ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -17475,7 +17494,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -22339,7 +22359,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -43289,7 +43310,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
+  "registrySha256": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

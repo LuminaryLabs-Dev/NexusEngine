@@ -10,6 +10,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/body/kits/body-sleep-kit/index.js",
   exportName: "createBodySleepKit",
   publicSubpath: "./domains/physics/body/sleep",
-  proofReferences: ["tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
+  proofReferences: ["tests/core-domains/core-physics-streaming-smoke.mjs", "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
 });
 

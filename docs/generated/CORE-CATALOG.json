@@ -30230,7 +30230,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -31090,7 +31091,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -31384,7 +31386,8 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+          "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+          "tests/core-domains/core-physics-streaming-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -48313,7 +48316,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
+  "registryHash": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -51414,7 +51417,7 @@
     },
     {
       "path": "src/core-domains/physics/body/body-contracts.js",
-      "sha256": "c2aa2d9d2090d3b0c5a85afc3b760f9d86b2decb547c4af8f5c0334122634e6f"
+      "sha256": "2110d8bfd516cacc98f97ec29639db70f890cd945d23c01450470610f4c5d87e"
     },
     {
       "path": "src/core-domains/physics/body/body-manifests.js",
@@ -51510,15 +51513,19 @@
     },
     {
       "path": "src/core-domains/physics/body/kits/body-registry-kit/contracts.js",
-      "sha256": "0b408ff0bac826e1c14964cf90c6194c70962e228c2bf119e6a6b816cd602184"
+      "sha256": "59e8df365137374c77cbfb2e8e6422200539c71e7ff77a9f3e194416216e4e2a"
     },
     {
       "path": "src/core-domains/physics/body/kits/body-registry-kit/index.js",
-      "sha256": "bd94858a26123061f43498710995ee3e3a8cb2c85a34c957cb11eaff9913d517"
+      "sha256": "9d2cff38a61f56b8620bb12a818e3fee1275aadef0222c1993f8a788b7e62ed0"
     },
     {
       "path": "src/core-domains/physics/body/kits/body-registry-kit/kit.manifest.js",
-      "sha256": "25532b67cc3293ed1dfa366db128b239a6b4ec4cd49e958103a7ad94cc768b96"
+      "sha256": "c78fc256494ced440e9cc3f2b58c4abfcbf437f0a9410cae58bbb13c9fa933e4"
+    },
+    {
+      "path": "src/core-domains/physics/body/kits/body-registry-kit/step-commit.js",
+      "sha256": "37de03ed522c63eab19368b465f57bc4033dc4092717f7d6f4b1df4ab38fa017"
     },
     {
       "path": "src/core-domains/physics/body/kits/body-sleep-kit/contracts.js",
@@ -51530,7 +51537,7 @@
     },
     {
       "path": "src/core-domains/physics/body/kits/body-sleep-kit/kit.manifest.js",
-      "sha256": "5ff81feb031c058a1df0493f57aa0e8d4352fd7650592c0b1c10227d633231f7"
+      "sha256": "4771d83ef0be78b95d9214f0251075d0b058b95429632344f29df903f8dd4444"
     },
     {
       "path": "src/core-domains/physics/body/kits/body-state-kit/contracts.js",
@@ -52234,15 +52241,15 @@
     },
     {
       "path": "src/core-domains/physics/lifecycle/kits/physics-step-kit/contracts.js",
-      "sha256": "58fa8dd89ccdab9fcbe2cf06c7e90b5e7ff580b3e4eeef3549f4673cb043d34e"
+      "sha256": "43c68dac1260c6786c65f2d752e556d55223d5bec2f8b31ceda4976d8dfbae71"
     },
     {
       "path": "src/core-domains/physics/lifecycle/kits/physics-step-kit/index.js",
-      "sha256": "f60e6c1508bf368a9ff6bbad7539a1f8b675b39f171ef36567c12f1ebd12ff56"
+      "sha256": "c0145254e7bc33992e139ac957a69462c787197ac5756f1b1eb7b96ec021be31"
     },
     {
       "path": "src/core-domains/physics/lifecycle/kits/physics-step-kit/kit.manifest.js",
-      "sha256": "8a6185ff694e7f8eee84a56c60ce2b91650438fa3f8d055635d9c1cb4d9de836"
+      "sha256": "8f54780b8912c6e773a88f2d629cad94539cb1ca42f2e849658b501e40836e7e"
     },
     {
       "path": "src/core-domains/physics/lifecycle/lifecycle-contracts.js",
@@ -54210,7 +54217,7 @@
     },
     {
       "path": "src/core-domains/runtime/realtime/kits/realtime-kit/index.js",
-      "sha256": "594127eb0d02c5d7d15b269acc3a68b97e6a14ba649b0b9b8458e49f19e0498d"
+      "sha256": "0cda44b96646deb5fdf14bac4f3a68c5c3403b341197a20d645d2c39ccfc55a5"
     },
     {
       "path": "src/core-domains/runtime/sequence/kits/sequence-kit/index.js",
@@ -55422,11 +55429,11 @@
     },
     {
       "path": "src/ecs.js",
-      "sha256": "4c2842a50171b56e284c2b5e8ec1f9979862b58ac4b6035c424e76a98645c2f7"
+      "sha256": "e5aad6de67cba4051d886bbf91f2500cf6dab462787320fd3fa20cfab2688782"
     },
     {
       "path": "src/engine.js",
-      "sha256": "2e7fd92a74ce1bed2d8b86c8eb8365b6a338d51da45477c0587da3a355569f2c"
+      "sha256": "26c8664c1132bb31f3756f91cb285c739a46fcdb3543eea352c1ff7e120052ff"
     },
     {
       "path": "src/foundation/completion-ledger.js",

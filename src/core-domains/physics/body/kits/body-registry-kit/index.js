@@ -1,3 +1,4 @@
+import { commitBodyStep } from "./step-commit.js";
 import { createDomainKit } from "../../../../domain-kit.js";
 import { canonicalBodyValue, sameBodyValue } from "../../body-contracts.js";
 import {
@@ -44,7 +45,7 @@ export function createBodyRegistryKit(config = {}) {
     purpose: "Own portable Physics body records and exact-once lifecycle transitions without executing a solver.",
     owns: ["body registry", "body record revisions", "exact-once body state transitions"],
     doesNotOwn: ["solver integration", "colliders", "contacts", "provider body objects", "gameplay actors"],
-    initialState: { bodies: {}, order: [], bodyRevision: 0 },
+    initialState: { bodies: {}, order: [], bodyRevision: 0, lastStep: null },
     createApi({ baseApi, engine }) {
       const normalizeBody = (input) => engine.n.physicsBodyState.normalize(input);
       const readRecord = (bodyId) => baseApi.getState().bodies[String(bodyId)] ?? null;
@@ -68,6 +69,7 @@ export function createBodyRegistryKit(config = {}) {
       return {
         ...baseApi,
         getContract: bodyRegistryContract,
+        commitStep(command) { return commitBodyStep(baseApi, command); },
         loadSnapshot(snapshot) {
           return baseApi.loadSnapshot(normalizeBodyRegistrySnapshot(snapshot, normalizeBody));
         },

@@ -493,7 +493,8 @@
     "authoring:example": "node examples/authoring/first-edit.mjs",
     "authoring:generate": "node scripts/generate-authoring-capabilities.mjs",
     "authoring:check": "node scripts/generate-authoring-capabilities.mjs --check",
-    "test:authoring:consolidation": "node --test tests/core-domains/core-authoring-consolidation.mjs tests/core-domains/core-authoring-roundtrip.mjs tests/core-domains/core-authoring-io-safety.mjs"
+    "test:authoring:consolidation": "node --test tests/core-domains/core-authoring-consolidation.mjs tests/core-domains/core-authoring-roundtrip.mjs tests/core-domains/core-authoring-io-safety.mjs",
+    "test:physics:streaming": "node --test tests/core-domains/core-physics-streaming-smoke.mjs tests/core-kits/ecs-transactional-movement-smoke.mjs"
   },
   "files": [
     "bin",

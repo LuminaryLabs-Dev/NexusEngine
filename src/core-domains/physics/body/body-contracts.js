@@ -272,7 +272,7 @@ export function normalizeBodySleep(input = {}, options = {}) {
   }
   const allowSleep = dynamic ? requireBodyBoolean(value.allowSleep ?? true, "Physics body sleep.allowSleep") : false;
   const sleeping = dynamic ? requireBodyBoolean(value.sleeping ?? false, "Physics body sleep.sleeping") : expectedSleeping;
-  if (!allowSleep && sleeping) throw new TypeError("Physics dynamic body cannot be sleeping when allowSleep is false.");
+  if (dynamic && !allowSleep && sleeping) throw new TypeError("Physics dynamic body cannot be sleeping when allowSleep is false.");
   return {
     schema: normalizeSchema(value.schema, BODY_SLEEP_SCHEMA, "Physics body sleep state"),
     allowSleep,
@@ -446,7 +446,7 @@ export function normalizeAtomicBodySnapshot(snapshot, domain) {
 export function normalizeBodyRegistrySnapshot(snapshot, normalize = normalizeBodyState) {
   return normalizeBodyStateSnapshot(snapshot, {
     domain: "physics-body-registry",
-    fields: ["bodies", "order", "bodyRevision"],
+    fields: ["bodies", "order", "bodyRevision", "lastStep"],
     validate(value) {
       requireBodyObject(value.bodies, "Physics body registry snapshot.bodies");
       const bodies = {};
@@ -464,6 +464,24 @@ export function normalizeBodyRegistrySnapshot(snapshot, normalize = normalizeBod
       }
       value.order = order;
       value.bodyRevision = requireBodyNonnegativeInteger(value.bodyRevision, "Physics body registry snapshot.bodyRevision");
+      if (value.lastStep != null) {
+        requireBodyObject(value.lastStep, "Physics body registry snapshot.lastStep");
+        requireBodyNonnegativeInteger(value.lastStep.stepId, "Physics body registry snapshot.lastStep.stepId");
+        rejectBodyFields(value.lastStep, ["stepId", "request", "receipt"], "Physics body streaming receipt");
+        requireBodyObject(value.lastStep.request, "Physics body streaming request");
+        requireBodyObject(value.lastStep.receipt, "Physics body streaming receipt");
+        rejectBodyFields(value.lastStep.request, ["stepId", "updates"], "Physics body streaming request");
+        rejectBodyFields(value.lastStep.receipt, ["stepId", "changedBodyIds", "bodyRevision"], "Physics body streaming receipt");
+        requireBodyNonnegativeInteger(value.lastStep.receipt.bodyRevision, "Physics body streaming bodyRevision");
+        const changed = value.lastStep.receipt.changedBodyIds;
+        if (!Array.isArray(changed) || new Set(changed).size !== changed.length || value.lastStep.receipt.bodyRevision > value.bodyRevision) throw new TypeError("Invalid Physics streaming identities or revision.");
+        for (const id of changed) requireBodyText(id, "Physics changed body identity");
+        if (!Array.isArray(value.lastStep.request?.updates) || value.lastStep.request.stepId !== value.lastStep.stepId
+          || value.lastStep.receipt?.stepId !== value.lastStep.stepId) {
+          throw new TypeError("Invalid Physics body step receipt.");
+        }
+      }
+      value.lastStep ??= null;
     }
   });
 }

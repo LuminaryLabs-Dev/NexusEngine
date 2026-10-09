@@ -1,79 +1,47 @@
 # Development Target
 
-## Goal
+## Current milestone: one complete Physics-to-render path
 
-Deliver a production-ready `0.0.5` candidate on `main` with canonical `n:physics`
-and `n:render` Core domains, evidence-backed atomic Kits and providers,
-deterministic physics, real frame rendering, clean public composition, and The
-Open Above proving visible physics-driven gameplay from a committed install.
+Continue on `main` without creating development, testing, staging, or numeric
+release branches. Preserve `origin/0.0.4`. The user explicitly authorized
+implementation and pushing the validated first slice to `main` on 2026-10-09.
+This replaces the old numeric-branch/freeze and one-atomic-package-per-turn
+execution policy; it does not remove any remaining 0.0.5 feature requirements.
 
-The frozen `0.0.4` ref must remain unchanged. The approved release commit must
-be published as immutable `origin/0.0.5`; `main` then remains the mutable
-default line for progress toward `0.0.6`.
+Use the existing Core owners, one external Rapier provider and one Three.js
+view to prove actual `engine.tick(1/60)` execution: falling, ground response,
+friction, bounce, a sensor, a raycast, and a hinge. Then prove reset,
+snapshot/load, deterministic replay, invalid-input rejection, and rollback
+when a participant or later tick phase fails. Concrete providers belong in
+`LuminaryLabs-Dev/NexusEngine-Kits`; authored scene and camera settings remain
+host-owned. Do not recreate existing Kits or add another body state owner.
 
-The repository-local control planes are:
+The first slice may be committed as development work with explicit evidence
+and recorded baseline failures. Do not call it the whole 0.0.5 release or bump
+the version simply to match the target. Advanced Physics, all remaining Render
+packages, additional providers, The Open Above, MCP and full release gates
+remain required under `.agent/versions/0.0.5/`.
 
-- Version packet: `.agent/versions/0.0.5/README.md`
-- Master execution matrix: `.agent/versions/0.0.5/master-matrix.jsonl`
-- Detailed evidence matrix: `.agent/versions/0.0.5/feature-matrix.jsonl`
-- Detailed checklist: `.agent/versions/0.0.5/checklist.md`
-- Current readiness: `.agent/versions/0.0.5/readiness.json`
+## Evidence and boundaries
 
-## Required Outcomes
+Read `docs/PHYSICS-FIRST-SLICE.md` for the new public methods, proof commands,
+and limits. Source and tests decide behavior; older matrix counts and readiness
+summaries are historical projections until individually reconciled. No detailed
+node is promoted merely because one first-slice test passes.
 
-- Validate both matrices before execution and select exactly one
-  dependency-ready master package per cycle. Reconcile every referenced
-  detailed node independently; never promote a node from a plan, manifest, or
-  aggregate count alone.
-- Establish canonical `n:physics` ownership for bodies, colliders, detection,
-  queries, constraints, deterministic stepping, recovery, snapshots, reset,
-  replay, and provider contracts.
-- Establish canonical `n:render` ownership for devices, resources, shaders,
-  materials, pipelines, frames, descriptor bridges, provider selection, and
-  diagnostics.
-- Keep concrete runtime providers in NexusEngine-Kits; keep project-specific
-  behavior out of Core; preserve atomic, idempotent, deterministic boundaries.
-- Prove direct APIs, installed composition, duplicate installation, reset,
-  snapshot/load, deterministic replay, conflict-before-mutation, and rollback.
-- Prove headless and browser providers, real physics bodies/collisions/queries,
-  render resources/shaders/materials/frames, and recovery behavior.
-- Update The Open Above to an exact committed Engine dependency and prove visible
-  physics-driven gameplay, MCP inspection/planning/approval/application, repeated
-  no-op application, restart restoration, and continued operation after agent
-  disconnection.
-- After the release freeze, make The Open Above track NexusEngine through HTTPS
-  `#main` while its lockfile and every validation receipt record the exact
-  resolved SHA. Cover every released Physics and Render capability and prove
-  two repeatable clean validation cycles at one SHA.
-- Keep package exports, manifests, catalogs, MCP resources, documentation, and
-  evidence aligned with the same committed source.
-- Complete the matrix gates before considering the mission achieved.
+The reviewed Editor commit supplies a finite nine-stage evidence harness, not
+the historical `nexus-editor` persistent controller CLI. Use that finite harness
+for this bounded attempt and record the unavailable persistent-controller path.
+Do not manually edit `.agent/tracker.md` or fabricate its state.
 
-## End State
+WebGL2, GPU hardware, XR, and The Open Above proof are separate from software
+Three.js SVG frame proof. Never present software-frame evidence as GPU proof.
+Existing strict Authoring and IndexedDB ownership failures must stay visible;
+`--allow-pending` catalog generation is not a strict release-check pass.
 
-```txt
-origin/0.0.4  -> unchanged frozen commit B
-origin/0.0.5  -> immutable approved release commit A
-origin/main   -> default mutable line, at A on release and ready for 0.0.6 work
-The Open Above -> HTTPS #main dependency with exact lock-resolved SHA receipts
-```
+## Push policy
 
-At completion, immutable `0.0.5` contains the validated release, while `main`
-remains available for subsequent `0.0.6` development. The Open Above is the
-continuous main consumer and rebuild proof, not only a one-time release sample.
-
-## Safety And Release Gates
-
-- Preserve current work and existing worktrees; never stash, reset, rebase,
-  force-clean, or absorb unrelated changes.
-- Work in an isolated feature branch/worktree and integrate to `main` only after
-  committed-SHA proof and explicit push approval.
-- Create immutable `origin/0.0.5` only after separate exact-SHA release
-  approval. Prove fresh Git HTTPS and jsDelivr `@0.0.5` imports. Never
-  force-update, merge into, or delete the frozen branch.
-- Do not push, deploy, publish, mutate Google Drive, archive repositories,
-  install to hardware, create tags/releases, or update `0.0.4` without separate
-  explicit approval.
-- Record each selected package's actions, owners, detailed evidence, acceptance
-  results, failures, repairs, and next action in the active run and matrix
-  history.
+Only the existing `main` refs may advance. Before a remote write, name the exact
+repository and action. Use expected-head checks and non-forced fast-forwards;
+reconcile concurrent work instead of overwriting it. No npm publication, tags,
+releases, deployment, Drive mutation, or hardware installation is authorized.

@@ -1,0 +1,16 @@
+{
+  "ok": true,
+  "id": "2026-10-09-physics-first-slice-final",
+  "stages": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "status": "verified"
+}

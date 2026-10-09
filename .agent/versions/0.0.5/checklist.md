@@ -1,5 +1,11 @@
 # NexusEngine 0.0.5 Physics and Render Completion Checklist
 
+> Current policy (2026-10-09): `.agent/target.md` and `contract.json` override
+> the older numeric-branch and source-first execution instructions below.
+> Develop and push the authorized first slice on `main`; create no `0.0.5`
+> branch. The full feature inventory stays open. Older rollups are not a new
+> completion claim. See `docs/PHYSICS-FIRST-SLICE.md`.
+
 ## 1. Master Goal Contract
 
 Master goal: Add canonical Core domains n:physics and n:render, implement and prove the supplied Kit inventory, validate the complete path in The Open Above, publish an immutable 0.0.5 branch from the approved release commit, and leave main as the active line for progress toward 0.0.6.

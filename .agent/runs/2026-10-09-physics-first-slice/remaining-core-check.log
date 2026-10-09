@@ -1,0 +1,14 @@
+
+> nexusengine@0.0.4 core:check
+> node scripts/generate-core-catalog.mjs --check
+
+file://repo://NexusEngine/scripts/generate-core-catalog.mjs:76
+    throw new Error(`${label} is not proven.`);
+          ^
+
+Error: n:authoring:create is not proven.
+    at validateProof (file://repo://NexusEngine/scripts/generate-core-catalog.mjs:76:11)
+    at validateManifest (file://repo://NexusEngine/scripts/generate-core-catalog.mjs:91:48)
+    at file://repo://NexusEngine/scripts/generate-core-catalog.mjs:297:3
+
+Node.js v22.16.0

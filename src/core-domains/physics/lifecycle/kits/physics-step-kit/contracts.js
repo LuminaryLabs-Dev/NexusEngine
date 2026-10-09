@@ -14,7 +14,7 @@ export const PHYSICS_STEP_SCHEMA = "nexusengine.physics-step/1";
 export function stepContract() {
   return Object.freeze({
     schema: PHYSICS_STEP_SCHEMA,
-    operations: Object.freeze(["request", "complete", "fail"]),
+    operations: Object.freeze(["request", "complete", "fail", "commitFrame"]),
     sequencing: "strict-monotonic-step-id",
     providerExecutionOwnedExternally: true
   });

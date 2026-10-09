@@ -10,8 +10,18 @@
     "preservedReleaseBranch": "0.0.4"
   },
   "scope": {
-    "requiredDomains": ["n:physics", "n:render"],
-    "requiredAreas": ["providers", "composition", "mcp", "documentation", "consumers", "release"],
+    "requiredDomains": [
+      "n:physics",
+      "n:render"
+    ],
+    "requiredAreas": [
+      "providers",
+      "composition",
+      "mcp",
+      "documentation",
+      "consumers",
+      "release"
+    ],
     "showcase": "repo://TheOpenAbove"
   },
   "controlPlane": {
@@ -24,10 +34,11 @@
   },
   "branchPolicy": {
     "origin004Immutable": true,
-    "origin005CreatedOnlyAfterExactShaApproval": true,
-    "mainPushRequiresExactShaApproval": true,
-    "forcePushAllowed": false,
-    "developmentBranch": "codex/nexusengine-physics-render"
+    "developmentBranch": "main",
+    "createNumericVersionBranch": false,
+    "createDevelopmentBranch": false,
+    "mainPushRequiresUserAuthorization": true,
+    "forcePushAllowed": false
   },
   "completion": {
     "allMasterPackagesProven": true,
@@ -35,5 +46,11 @@
     "cleanPackageAndConsumerProofRequired": true,
     "theOpenAboveProofRequired": true,
     "hostedChecksRequired": true
+  },
+  "currentMilestone": {
+    "id": "physics-first-slice",
+    "execution": "coherent-existing-kit-composition",
+    "policySource": ".agent/target.md",
+    "fullVersionCompletion": false
   }
 }

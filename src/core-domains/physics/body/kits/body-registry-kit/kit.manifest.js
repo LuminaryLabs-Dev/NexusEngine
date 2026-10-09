@@ -19,6 +19,6 @@ export default atomicKit({
   module: "./src/core-domains/physics/body/kits/body-registry-kit/index.js",
   exportName: "createBodyRegistryKit",
   publicSubpath: "./domains/physics/body/registry",
-  proofReferences: ["tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
+  proofReferences: ["tests/core-domains/core-physics-streaming-smoke.mjs", "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
 });
 

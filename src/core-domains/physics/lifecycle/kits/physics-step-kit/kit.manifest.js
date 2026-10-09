@@ -10,5 +10,5 @@ export default atomicKit({
   module: "./src/core-domains/physics/lifecycle/kits/physics-step-kit/index.js",
   exportName: "createPhysicsStepKit",
   publicSubpath: "./domains/physics/lifecycle/step",
-  proofReferences: ["tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
+  proofReferences: ["tests/core-domains/core-physics-streaming-smoke.mjs", "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"]
 });

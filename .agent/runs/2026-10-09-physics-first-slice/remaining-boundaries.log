@@ -1,0 +1,28 @@
+
+> nexusengine@0.0.4 boundaries:check
+> node scripts/check-core-boundaries.mjs
+
+node:internal/modules/run_main:123
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: Runtime Core production modules own concrete renderer or platform behavior:
+src/core-domains/authoring/persistence/providers/indexeddb/index.js
++ actual - expected
+
++ [
++   'src/core-domains/authoring/persistence/providers/indexeddb/index.js'
++ ]
+- []
+
+    at file://repo://NexusEngine/scripts/check-core-boundaries.mjs:159:8 {
+  generatedMessage: false,
+  code: 'ERR_ASSERTION',
+  actual: [
+    'src/core-domains/authoring/persistence/providers/indexeddb/index.js'
+  ],
+  expected: [],
+  operator: 'deepStrictEqual'
+}
+
+Node.js v22.16.0

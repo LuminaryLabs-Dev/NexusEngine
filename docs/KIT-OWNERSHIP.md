@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738`
+Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
 
-- Source modules: 1696
+- Source modules: 1697
 - Manifest-proven public atoms: 381
-- Manifest-owned internal modules: 1290
+- Manifest-owned internal modules: 1291
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -730,6 +730,7 @@ Registry SHA-256: `538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2
 | `src/core-domains/physics/body/kits/body-registry-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/body/kits/body-registry-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/physics/body/kits/body-registry-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/physics/body/kits/body-registry-kit/step-commit.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/body/kits/body-sleep-kit/contracts.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/physics/body/kits/body-sleep-kit/index.js` | `n:physics` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/physics/body/kits/body-sleep-kit/kit.manifest.js` | `n:physics` | manifest-owned-internal | NexusEngine Core |

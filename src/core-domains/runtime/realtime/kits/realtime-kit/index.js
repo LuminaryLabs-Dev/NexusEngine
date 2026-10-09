@@ -63,6 +63,10 @@ export function createRealtimeKit(config = {}) {
         getCurrentTickContext() {
           return engine.getCurrentTickContext?.() ?? null;
         },
+        registerTickCheckpoint: bind(engine.registerTickCheckpoint, engine),
+        unregisterTickCheckpoint: bind(engine.unregisterTickCheckpoint, engine),
+        getTickSnapshot: bind(engine.getTickSnapshot, engine),
+        loadTickSnapshot: bind(engine.loadTickSnapshot, engine),
         getLastTickCommit() {
           return engine.getLastTickCommit?.() ?? null;
         },

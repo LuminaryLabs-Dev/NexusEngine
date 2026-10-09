@@ -1,5 +1,11 @@
 # NexusEngine 0.0.5 Physics And Render Goal
 
+> Current policy (2026-10-09): `.agent/target.md` and `contract.json` override
+> the older numeric-branch and source-first execution instructions below.
+> Develop and push the authorized first slice on `main`; create no `0.0.5`
+> branch. The full feature inventory stays open. Older rollups are not a new
+> completion claim. See `docs/PHYSICS-FIRST-SLICE.md`.
+
 Deliver canonical `n:physics` and `n:render` Core domains, deterministic
 Physics, actual rendered frames, clean provider composition, and The Open Above
 proving visible physics-driven gameplay from exact committed dependencies.

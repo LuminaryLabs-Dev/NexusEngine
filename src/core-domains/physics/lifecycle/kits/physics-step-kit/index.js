@@ -54,6 +54,22 @@ export function createPhysicsStepKit(config = {}) {
       return {
         ...baseApi,
         getContract: stepContract,
+        commitFrame(command) {
+          const request = normalizeStepCompletion(command);
+          assertReady(engine);
+          assertProvider(engine, request.providerId);
+          const state = baseApi.getState();
+          if (state.lastCompleted?.streamingRequest?.stepId === request.stepId) {
+            if (JSON.stringify(state.lastCompleted.streamingRequest) !== JSON.stringify(request)) throw new TypeError("Conflicting Physics frame retry.");
+            return structuredClone(state.lastCompleted);
+          }
+          if (state.pending || request.stepId !== state.nextStepId) throw new TypeError("Out-of-order Physics frame.");
+          const physicsState = request.physicsState === undefined ? null : engine.n.physicsStateSchema.normalizeState(request.physicsState);
+          const completed = { schema: "nexusengine.physics-step-result/1", stepId: request.stepId,
+            providerId: request.providerId, frame: request.frame, physicsState, streamingRequest: request };
+          baseApi.update({ nextStepId: state.nextStepId + 1, lastCompleted: completed, failure: null });
+          return structuredClone(completed);
+        },
         getPending() {
           return baseApi.getState().pending;
         },

@@ -58,16 +58,6 @@ function cloneVector(vector) {
   return { x: Number(vector?.x ?? 0), y: Number(vector?.y ?? 0) };
 }
 
-function applyPosition(position, nextPosition) {
-  position.x = nextPosition.x;
-  position.y = nextPosition.y;
-}
-
-function applyVelocity(velocity, nextVelocity) {
-  velocity.x = nextVelocity.x;
-  velocity.y = nextVelocity.y;
-}
-
 function defaultCollisionIntersection({ aPosition, aCollider, bPosition, bCollider }) {
   const dx = aPosition.x - bPosition.x;
   const dy = aPosition.y - bPosition.y;
@@ -85,7 +75,12 @@ function createJournal() {
 
   return {
     snapshot() { return { records: records.slice(), sequence }; },
-    restore(snapshot) { records.splice(0, records.length, ...snapshot.records); sequence = snapshot.sequence; },
+    restore(snapshot) {
+      // Avoid the engine's function-argument limit for large pending journals.
+      records.length = 0;
+      for (const record of snapshot.records) records.push(record);
+      sequence = snapshot.sequence;
+    },
     push(record) {
       records.push({ sequence: ++sequence, ...record });
     },
@@ -522,8 +517,12 @@ export function createMovementSystem(definitions, policy = {}) {
             }
           : integratedPosition;
 
-      applyVelocity(velocity, cloneVector(nextVelocity));
-      applyPosition(position, cloneVector(clampedPosition));
+      // Stored values are read-only: use setters so the journal and world.atomic()
+      // can restore the previous component records if a later phase fails.
+      const updatedVelocity = { ...velocity, ...cloneVector(nextVelocity) };
+      const updatedPosition = { ...position, ...cloneVector(clampedPosition) };
+      world.setComponent(entity, Velocity, updatedVelocity);
+      world.setComponent(entity, Position, updatedPosition);
     }
   };
 }
@@ -546,10 +545,12 @@ export function createCollisionSystem(definitions, policy = {}) {
 
     for (let index = 0; index < entities.length; index += 1) {
       const aEntity = entities[index];
-      const aPosition = world.getComponent(aEntity, Position);
-      const aCollider = world.getComponent(aEntity, Collider);
 
       for (let otherIndex = index + 1; otherIndex < entities.length; otherIndex += 1) {
+        // A resolver may replace components through setters. Each pair must read
+        // the current records rather than a transform cached before resolution.
+        const aPosition = world.getComponent(aEntity, Position);
+        const aCollider = world.getComponent(aEntity, Collider);
         const bEntity = entities[otherIndex];
         const bPosition = world.getComponent(bEntity, Position);
         const bCollider = world.getComponent(bEntity, Collider);

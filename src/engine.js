@@ -135,6 +135,8 @@ export function createEngine(options = {}) {
     revision: Math.max(0, Math.floor(number(tickOptions.initialRevision, clock.frame ?? 0)))
   };
 
+  const tickCheckpoints = new Map();
+
   function registerSurface(surface) {
     assertSurface(surface);
     if (!registry[surface.kind]) throw new Error(`Unsupported surface kind: ${surface.kind}`);
@@ -174,6 +176,13 @@ export function createEngine(options = {}) {
       return world;
     }
 
+    // Optional checkpoints enlist external closure/provider state alongside ECS
+    // setter transactions. Observers must not assume external side effects roll back.
+    const beforeClock = { delta: clock.delta, elapsed: clock.elapsed, frame: clock.frame };
+    const beforeRevision = tickState.revision;
+    const beforeCommit = tickState.lastCommit;
+    const checkpointValues = [];
+    const queryMembership = registry.query.map(surface => ({surface, members: new Set(surface.members ?? []), initialized: surface.initialized}));
     const requestedDelta = number(delta, clock.delta ?? 1 / 60);
     const nextDelta = Math.min(maxDelta, Math.max(0, requestedDelta));
     clock.delta = nextDelta;
@@ -196,6 +205,12 @@ export function createEngine(options = {}) {
     world.__nexusRenderer = renderer;
 
     try {
+      for (const checkpoint of [...tickCheckpoints.values()].sort((a,b) => a.id < b.id ? -1 : a.id > b.id ? 1 : 0)) {
+        const value = checkpoint.capture();
+        if (value && typeof value.then === "function") throw new TypeError("Tick checkpoints must capture synchronously.");
+        checkpointValues.push({checkpoint, value});
+      }
+      const execute = () => {
       const lifecycleBatch = [{
         kind: "lifecycle",
         topic: "tick",
@@ -320,6 +335,24 @@ export function createEngine(options = {}) {
       });
 
       return world;
+      };
+      return tickCheckpoints.size ? world.atomic(execute) : execute();
+    } catch (error) {
+      const errors = [error];
+      for (const {checkpoint, value} of checkpointValues.reverse()) {
+        try {
+          const result = checkpoint.restore(value);
+          if (result && typeof result.then === "function") throw new TypeError("Tick checkpoints must restore synchronously.");
+        } catch (restoreError) { errors.push(restoreError); }
+      }
+      if (tickCheckpoints.size) {
+        Object.assign(clock, beforeClock);
+        tickState.revision = beforeRevision;
+        tickState.lastCommit = beforeCommit;
+        for (const {surface,members,initialized} of queryMembership) { surface.members = members; surface.initialized = initialized; }
+      }
+      if (errors.length > 1) throw new AggregateError(errors, "Tick checkpoint restoration failed; external state requires recovery.");
+      throw error;
     } finally {
       tickState.current = null;
       tickState.running = false;
@@ -372,6 +405,46 @@ export function createEngine(options = {}) {
     },
     bindSequenceNodeFrameDriver(frameOptions = {}) {
       return engine.sequenceNodeRuntime.bindFrameDriver(frameOptions);
+    },
+    registerTickCheckpoint(checkpoint) {
+      if (tickState.running) throw new Error("Cannot change checkpoints during a tick.");
+      if (!checkpoint || typeof checkpoint.id !== "string" || !checkpoint.id.trim()) throw new TypeError("Tick checkpoint requires an id.");
+      for (const key of ["capture", "restore"]) {
+        if (typeof checkpoint[key] !== "function" || checkpoint[key].constructor?.name === "AsyncFunction") throw new TypeError(`Tick checkpoint requires synchronous ${key}.`);
+      }
+      const old = tickCheckpoints.get(checkpoint.id);
+      if (old && (old.capture !== checkpoint.capture || old.restore !== checkpoint.restore)) throw new TypeError("Conflicting tick checkpoint.");
+      if (!old) tickCheckpoints.set(checkpoint.id, {id:checkpoint.id,capture:checkpoint.capture,restore:checkpoint.restore});
+      return checkpoint.id;
+    },
+    unregisterTickCheckpoint(id) {
+      if (tickState.running) throw new Error("Cannot change checkpoints during a tick.");
+      return tickCheckpoints.delete(id);
+    },
+    getTickSnapshot() {
+      if (tickState.running) throw new Error("Cannot capture clock state during a tick.");
+      return clone({ schema: "nexusengine.tick-snapshot/1",
+        clock: { delta: clock.delta, elapsed: clock.elapsed, frame: clock.frame },
+        revision: tickState.revision, lastCommit: tickState.lastCommit });
+    },
+    loadTickSnapshot(snapshot) {
+      if (tickState.running) throw new Error("Cannot restore clock state during a tick.");
+      if (!snapshot || snapshot.schema !== "nexusengine.tick-snapshot/1"
+        || !snapshot.clock || !Number.isFinite(snapshot.clock.delta) || snapshot.clock.delta < 0
+        || snapshot.clock.delta > maxDelta || !Number.isFinite(snapshot.clock.elapsed) || snapshot.clock.elapsed < 0
+        || !Number.isSafeInteger(snapshot.clock.frame) || snapshot.clock.frame < 0
+        || !Number.isSafeInteger(snapshot.revision) || snapshot.revision < 0
+        || (snapshot.lastCommit !== null && (snapshot.lastCommit?.committed !== true
+          || snapshot.lastCommit.revision !== snapshot.revision || snapshot.lastCommit.frame !== snapshot.clock.frame
+          || snapshot.lastCommit.tickId !== `tick:${snapshot.revision}`
+          || snapshot.lastCommit.delta !== snapshot.clock.delta || snapshot.lastCommit.elapsed !== snapshot.clock.elapsed))) {
+        throw new TypeError("Invalid tick snapshot.");
+      }
+      const value = clone(snapshot);
+      Object.assign(clock, { delta: value.clock.delta, elapsed: value.clock.elapsed, frame: value.clock.frame });
+      tickState.revision = value.revision;
+      tickState.lastCommit = value.lastCommit;
+      return engine.getTickSnapshot();
     },
     getLastTickCommit() {
       return clone(tickState.lastCommit);

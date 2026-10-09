@@ -100,6 +100,16 @@ The canonical mapping is
 Its generated Markdown is included in the Guide and exposed chapter-by-chapter
 through MCP resources.
 
+## Physics first-slice extension
+
+The current main-only development milestone is described in
+[Physics First Slice](PHYSICS-FIRST-SLICE.md). Existing Body and Step owners now
+accept bounded streaming commits; Runtime supplies optional synchronous tick
+checkpoints and idle clock snapshots. An external Simulation participant owns
+provider synchronization and translates outputs through public Core APIs.
+Concrete Rapier and Three implementations remain in NexusEngine-Kits. This
+does not promote the entire remaining Physics/Render inventory to complete.
+
 ## Physics 0.0.5 Foundation
 
 `n:physics` is the canonical Physics identity under active `0.0.5`

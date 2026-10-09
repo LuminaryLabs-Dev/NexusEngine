@@ -1,5 +1,11 @@
 # NexusEngine 0.0.5 Development Handoff
 
+> Current policy (2026-10-09): `.agent/target.md` and `contract.json` override
+> the older numeric-branch and source-first execution instructions below.
+> Develop and push the authorized first slice on `main`; create no `0.0.5`
+> branch. The full feature inventory stays open. Older rollups are not a new
+> completion claim. See `docs/PHYSICS-FIRST-SLICE.md`.
+
 ## Branch policy
 
 `main` is the active development line. It may contain incomplete `0.0.5` work when the tree and introduced history are sanitized and the incomplete proof state is recorded here.

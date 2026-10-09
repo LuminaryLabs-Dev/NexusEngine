@@ -26,8 +26,8 @@
     "plan": "enabled-read-only",
     "source": "complete-unproven",
     "integrate": "disabled-until-plan-reviewed",
-    "sourceFreeze": "required-before-feature-tests",
-    "validate": "disabled-until-source-freeze",
+    "sourceFreeze": "coherent-milestone-before-final-proof",
+    "validate": "targeted-evidence-before-push",
     "repair": "disabled-until-observed-failure",
     "consumerProof": "disabled-until-package-validation",
     "reconcile": "observed-evidence-only",
@@ -56,9 +56,10 @@
   },
   "releaseBoundary": {
     "preserveBranch": "0.0.4",
-    "targetReleaseBranch": "0.0.5",
+    "targetReleaseBranch": "main",
     "createReleaseBranchBeforeApproval": false,
-    "finalMainState": "ready for 0.0.6 development",
-    "theOpenAboveDependency": "approved NexusEngine main commit"
+    "finalMainState": "validated first slice, full 0.0.5 requirements remain open",
+    "theOpenAboveDependency": "approved NexusEngine main commit",
+    "createNumericVersionBranch": false
   }
 }

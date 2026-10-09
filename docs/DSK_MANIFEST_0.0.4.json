@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
-  "compositionRegistryHash": "sha256:1dd33b6b12c1345a69f2496535532f3e6c19af7411ecf5c0964f821b7362431a",
+  "registryHash": "sha256:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+  "compositionRegistryHash": "sha256:d461f410a1d9085357a209175a6337b158d1fc3c596e30d2735f4ea1f46587ef",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
-      "integrity": "sha256:538fdb5fada709cbf7f305e58401c6fd260738cc2642704352fa180021ce2738",
+      "sourceCommit": "builtin:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+      "integrity": "sha256:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
       "status": "available",
       "environments": [
         "browser",
@@ -11491,7 +11491,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+            "tests/core-domains/core-physics-streaming-smoke.mjs"
           ],
           "consumers": [
             {
@@ -11566,7 +11567,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+            "tests/core-domains/core-physics-streaming-smoke.mjs"
           ],
           "consumers": [
             {
@@ -24347,7 +24349,8 @@
         "proof": {
           "status": "proven",
           "references": [
-            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs"
+            "tests/core-domains/core-physics-canonical-domain-contract-smoke.mjs",
+            "tests/core-domains/core-physics-streaming-smoke.mjs"
           ],
           "consumers": [
             {

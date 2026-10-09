@@ -2,6 +2,14 @@
 
 ## Unreleased
 
+- Connected the first external Physics runtime slice through bounded Body/Step
+  commits and opt-in transactional tick checkpoints. Added clock snapshots,
+  static-body sleep validation repair, ECS transactional movement/collision and
+  large-journal repairs, and executable regression tests.
+- Main-only development now supersedes the old numeric 0.0.5 branch policy.
+  This is a partial development milestone, not full 0.0.5 release completion.
+  See `docs/PHYSICS-FIRST-SLICE.md` for exact proof and remaining gates.
+
 - Added `n:authoring`: 19 public kits for typed source documents, mesh/curve/modeling, selection/workspaces, brushes/sculpt, UV/material/paint, rig/skin/animation, assemblies, Composition, finite Runtime sequences and publishing packets. `AUTHORING.md` and the executable first-edit example describe supported profiles.
 - Added atomic revisions, retry receipts, bounded delta history, immutable shared snapshots, dependency validation and recovery proof across Authoring operations. External Editor adapters supply persistence, rendering, jobs and GLB/PNG encoding.
 - Repaired and proved all 12 Physics Constraints kits, including strict descriptor normalization, registry retries, stale revisions, break transitions and atomic restoration. Body detachment remains an explicit guard workflow; no solver was introduced.

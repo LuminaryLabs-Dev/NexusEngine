@@ -1,0 +1,87 @@
+
+> @luminarylabs/nexusengine-kits@0.0.1 test:physics
+> node --test tests/physics/runtime-smoke.mjs
+
+TAP version 13
+# using deprecated parameters for the initialization function; pass a single object instead
+# Subtest: falling box, contact response, bounded penetration, body/Spatial agreement and events
+ok 1 - falling box, contact response, bounded penetration, body/Spatial agreement and events
+  ---
+  duration_ms: 3373.667015
+  type: 'test'
+  ...
+# Subtest: friction reduces sliding relative to zero-friction material
+ok 2 - friction reduces sliding relative to zero-friction material
+  ---
+  duration_ms: 1964.940768
+  type: 'test'
+  ...
+# Subtest: restitution produces upward velocity after impact
+ok 3 - restitution produces upward velocity after impact
+  ---
+  duration_ms: 908.951798
+  type: 'test'
+  ...
+# Subtest: sensor enter/exit does not stop a moving body; raycast returns a Core collider identity
+ok 4 - sensor enter/exit does not stop a moving body; raycast returns a Core collider identity
+  ---
+  duration_ms: 1601.391407
+  type: 'test'
+  ...
+# Subtest: hinge keeps anchors joined while allowing constrained motion
+ok 5 - hinge keeps anchors joined while allowing constrained motion
+  ---
+  duration_ms: 2180.741462
+  type: 'test'
+  ...
+# Subtest: 1200 actual engine ticks reproduce exactly in independent runs; streaming receipts stay bounded
+ok 6 - 1200 actual engine ticks reproduce exactly in independent runs; streaming receipts stay bounded
+  ---
+  duration_ms: 20678.474304
+  type: 'test'
+  ...
+# Subtest: snapshot roundtrip preserves future native trajectory; repeated reset reproduces initial ticks
+ok 7 - snapshot roundtrip preserves future native trajectory; repeated reset reproduces initial ticks
+  ---
+  duration_ms: 2371.395041
+  type: 'test'
+  ...
+# Subtest: late Simulation participant failure rolls back native world, Core state, clock and events; retry matches control
+ok 8 - late Simulation participant failure rolls back native world, Core state, clock and events; retry matches control
+  ---
+  duration_ms: 205.977857
+  type: 'test'
+  ...
+# Subtest: fault after Physics commit in cleanup also restores enrolled state and clock
+ok 9 - fault after Physics commit in cleanup also restores enrolled state and clock
+  ---
+  duration_ms: 107.933443
+  type: 'test'
+  ...
+# Subtest: bad fixed delta, invalid snapshot, duplicate attachment and conflict fail without corrupting state
+ok 10 - bad fixed delta, invalid snapshot, duplicate attachment and conflict fail without corrupting state
+  ---
+  duration_ms: 112.409966
+  type: 'test'
+  ...
+# Subtest: malformed native snapshot bindings fail without changing the provider or Core
+ok 11 - malformed native snapshot bindings fail without changing the provider or Core
+  ---
+  duration_ms: 77.420194
+  type: 'test'
+  ...
+# Subtest: provider contract validates and unsupported friction rejects instead of approximating
+ok 12 - provider contract validates and unsupported friction rejects instead of approximating
+  ---
+  duration_ms: 19.477533
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 34320.625308

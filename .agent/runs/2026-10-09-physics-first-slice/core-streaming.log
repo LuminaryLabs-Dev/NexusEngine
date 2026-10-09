@@ -1,0 +1,158 @@
+
+> nexusengine@0.0.4 test:physics:streaming
+> node --test tests/core-domains/core-physics-streaming-smoke.mjs tests/core-kits/ecs-transactional-movement-smoke.mjs
+
+TAP version 13
+# Subtest: static bodies normalize through direct installed state and registry paths
+ok 1 - static bodies normalize through direct installed state and registry paths
+  ---
+  duration_ms: 33.151758
+  type: 'test'
+  ...
+# Subtest: body batch is atomic, revision checked, retry stable and conflict rejecting
+ok 2 - body batch is atomic, revision checked, retry stable and conflict rejecting
+  ---
+  duration_ms: 16.401191
+  type: 'test'
+  ...
+# Subtest: body snapshot retains latest streaming retry only and restores it
+ok 3 - body snapshot retains latest streaming retry only and restores it
+  ---
+  duration_ms: 233.012372
+  type: 'test'
+  ...
+# Subtest: invalid body output leaves registry unchanged
+ok 4 - invalid body output leaves registry unchanged
+  ---
+  duration_ms: 30.685665
+  type: 'test'
+  ...
+# Subtest: frame commit checks readiness, provider and strict sequence; latest retry is stable
+ok 5 - frame commit checks readiness, provider and strict sequence; latest retry is stable
+  ---
+  duration_ms: 6.412329
+  type: 'test'
+  ...
+# Subtest: tick checkpoints restore external state, ECS setters and clock on error
+ok 6 - tick checkpoints restore external state, ECS setters and clock on error
+  ---
+  duration_ms: 3.065334
+  type: 'test'
+  ...
+# Subtest: tick clock snapshot is isolated and malformed restore is rejected
+ok 7 - tick clock snapshot is isolated and malformed restore is rejected
+  ---
+  duration_ms: 2.805684
+  type: 'test'
+  ...
+# Subtest: movement values remain correct at a fixed simulation delta
+ok 8 - movement values remain correct at a fixed simulation delta
+  ---
+  duration_ms: 2.870654
+  type: 'test'
+  ...
+# Subtest: movement replaces values without mutating previously stored references
+ok 9 - movement replaces values without mutating previously stored references
+  ---
+  duration_ms: 1.439638
+  type: 'test'
+  ...
+# Subtest: movement preserves unrelated component fields
+ok 10 - movement preserves unrelated component fields
+  ---
+  duration_ms: 0.430529
+  type: 'test'
+  ...
+# Subtest: movement can read frozen component snapshots
+ok 11 - movement can read frozen component snapshots
+  ---
+  duration_ms: 0.430298
+  type: 'test'
+  ...
+# Subtest: movement publishes accurate before/after component journal records
+ok 12 - movement publishes accurate before/after component journal records
+  ---
+  duration_ms: 0.506313
+  type: 'test'
+  ...
+# Subtest: a later resolve-phase failure rolls movement and the journal back
+ok 13 - a later resolve-phase failure rolls movement and the journal back
+  ---
+  duration_ms: 1.587161
+  type: 'test'
+  ...
+# Subtest: rollback restores the original stored component identities
+ok 14 - rollback restores the original stored component identities
+  ---
+  duration_ms: 0.458611
+  type: 'test'
+  ...
+# Subtest: a second-entity policy failure also restores the first entity
+ok 15 - a second-entity policy failure also restores the first entity
+  ---
+  duration_ms: 0.505582
+  type: 'test'
+  ...
+# Subtest: world bounds still clamp the completed position
+ok 16 - world bounds still clamp the completed position
+  ---
+  duration_ms: 0.617441
+  type: 'test'
+  ...
+# Subtest: zero delta does not advance position
+ok 17 - zero delta does not advance position
+  ---
+  duration_ms: 0.527835
+  type: 'test'
+  ...
+# Subtest: two independent 600-tick runs have identical per-tick state hashes
+ok 18 - two independent 600-tick runs have identical per-tick state hashes
+  ---
+  duration_ms: 56.087493
+  type: 'test'
+  ...
+# Subtest: retry after a failed tick matches an uninterrupted 600-tick run
+ok 19 - retry after a failed tick matches an uninterrupted 600-tick run
+  ---
+  duration_ms: 30.839047
+  type: 'test'
+  ...
+# Subtest: collision resolution observes replaced transforms on subsequent pairs
+ok 20 - collision resolution observes replaced transforms on subsequent pairs
+  ---
+  duration_ms: 0.461545
+  type: 'test'
+  ...
+# Subtest: collision filtering and event publication retain their existing behavior
+ok 21 - collision filtering and event publication retain their existing behavior
+  ---
+  duration_ms: 0.282596
+  type: 'test'
+  ...
+# Subtest: large pending journals roll back without masking the original exception
+ok 22 - large pending journals roll back without masking the original exception
+  ---
+  duration_ms: 70.453245
+  type: 'test'
+  ...
+# Subtest: collision resolution observes replaced colliders on subsequent pairs
+ok 23 - collision resolution observes replaced colliders on subsequent pairs
+  ---
+  duration_ms: 0.584558
+  type: 'test'
+  ...
+# Subtest: invalid position conversion cannot partially commit velocity
+ok 24 - invalid position conversion cannot partially commit velocity
+  ---
+  duration_ms: 0.43225
+  type: 'test'
+  ...
+1..24
+# tests 24
+# suites 0
+# pass 24
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 842.161666

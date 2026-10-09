@@ -95,6 +95,13 @@ Core catalog.
 
 ## 0.0.5 Development
 
+The [first Physics runtime slice](docs/PHYSICS-FIRST-SLICE.md) connects existing
+Core state owners to an external executable provider and Three.js view. It
+adds bounded Body/Step commits and optional transactional tick checkpoints.
+Development stays on `main` with no numeric 0.0.5 branch. Package version and
+full release readiness are not advanced by this partial milestone.
+
+
 The `0.0.5` work establishes `n:physics` and `n:render` as canonical Core
 domains. Physics currently owns strict portable contracts plus explicit
 installation, startup, step, shutdown, reset, and snapshot lifecycle atoms.

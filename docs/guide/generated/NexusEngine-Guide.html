@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5<br>
-      Guide content SHA-256: e7fec9e3fe648891683e0bf874c75b5873a0d05f35ecec565613d61457da3eed<br><br>
+      Core registry SHA-256: 6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02<br>
+      Guide content SHA-256: e11f92c32ef2a448f9db3f314c3fbc5a6aba3ce54d700e2c91fc1054b85e9c9d<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -1307,7 +1307,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5</code></p>
+<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -1315,7 +1315,12 @@ npm pack --dry-run --json
 <li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
 <li><code>n:asset</code>: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</li>
-<li><code>n:authoring</code>: Own editable source documents and typed editing operations.</li>
+<li><code>n:authoring</code>: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.</li>
+<li><code>n:authoring:create</code>: Own canonical create operations, default providers, diagnostics and source-safe lifecycle.</li>
+<li><code>n:authoring:importing</code>: Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.</li>
+<li><code>n:authoring:persistence</code>: Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.</li>
+<li><code>n:authoring:publishing:export</code>: Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle.</li>
+<li><code>n:authoring:validation</code>: Own canonical validation operations, default providers, diagnostics and source-safe lifecycle.</li>
 <li><code>n:authoring:modifier</code>: Own modifier authoring contracts and operations.</li>
 <li><code>n:authoring:publishing</code>: Own publishing authoring contracts and operations.</li>
 <li><code>n:authoring:sequence</code>: Own sequence authoring contracts and operations.</li>
@@ -1456,6 +1461,7 @@ npm pack --dry-run --json
 <li><code>n:runtime:sequence</code>: Own deterministic sequence nodes, ordered execution, and frame-driven sequence state.</li>
 <li><code>n:runtime:startup</code>: Own launch truth, preparation facts, continuation choice, structured failure, and readiness receipts.</li>
 <li><code>n:runtime:sequence:schedule</code>: Own deterministic elapsed-time schedules and occurrence records.</li>
+<li><code>n:runtime:data:observation</code>: Own bounded portable committed observation history and provenance.</li>
 <li><code>n:simulation</code>: Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</li>
 <li><code>n:simulation:physics</code>: Own backend-neutral physical bodies, colliders, contacts, constraints, queries, and provider contracts.</li>
 <li><code>n:simulation:physics:articulated</code>: Own articulated body topology, joint dynamics inputs, and backend-neutral articulation state.</li>
@@ -1504,7 +1510,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5</code></p>
+<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
 <table>
 <thead>
 <tr>
@@ -1546,6 +1552,31 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:authoring</code></td>
 <td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:create</code></td>
+<td><code>n:authoring:project</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:importing</code></td>
+<td><code>n:authoring:project</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:persistence</code></td>
+<td><code>n:authoring:project</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>n:authoring:project</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:validation</code></td>
+<td><code>n:authoring:project</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2249,6 +2280,11 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:runtime:data:observation</code></td>
+<td><code>n:runtime:data</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:simulation</code></td>
 <td><code>n:runtime:realtime</code></td>
 <td>-</td>
@@ -2461,7 +2497,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5</code></p>
+<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2511,7 +2547,37 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:authoring</code></td>
 <td>-</td>
-<td>Own editable source documents and typed editing operations.</td>
+<td>Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:create</code></td>
+<td><code>n:authoring</code></td>
+<td>Own canonical create operations, default providers, diagnostics and source-safe lifecycle.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:importing</code></td>
+<td><code>n:authoring</code></td>
+<td>Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:persistence</code></td>
+<td><code>n:authoring</code></td>
+<td>Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>n:authoring:publishing</code></td>
+<td>Own canonical publishing export operations, default providers, diagnostics and source-safe lifecycle.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:validation</code></td>
+<td><code>n:authoring</code></td>
+<td>Own canonical validation operations, default providers, diagnostics and source-safe lifecycle.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3355,6 +3421,12 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:runtime:data:observation</code></td>
+<td><code>n:runtime:data</code></td>
+<td>Own bounded portable committed observation history and provenance.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:simulation</code></td>
 <td>-</td>
 <td>Own deterministic simulation objectives, resources, hazards, pressure, checkpoints, timers, and resolution contracts.</td>
@@ -3646,6 +3718,126 @@ npm pack --dry-run --json
 <td><code>n:asset</code></td>
 <td><code>nexusengine/domains/asset/registry</code></td>
 <td>Resolve asset manifests and bundles through content-addressed provider jobs.</td>
+</tr>
+<tr>
+<td><code>authoring-create-service-kit</code></td>
+<td><code>n:authoring:create</code></td>
+<td><code>nexusengine/domains/authoring/create/create-service</code></td>
+<td>Route creation requests to existing typed Project operations without owning duplicate content.</td>
+</tr>
+<tr>
+<td><code>authoring-import-registry-kit</code></td>
+<td><code>n:authoring:importing</code></td>
+<td><code>nexusengine/domains/authoring/importing/import-registry</code></td>
+<td>Own trusted canonical importer discovery and provider selection.</td>
+</tr>
+<tr>
+<td><code>authoring-import-validation-kit</code></td>
+<td><code>n:authoring:importing</code></td>
+<td><code>nexusengine/domains/authoring/importing/import-validation</code></td>
+<td>Validate a complete staged canonical import against the existing Project writer.</td>
+</tr>
+<tr>
+<td><code>authoring-import-commit-kit</code></td>
+<td><code>n:authoring:importing</code></td>
+<td><code>nexusengine/domains/authoring/importing/import-commit</code></td>
+<td>Commit validated imported documents atomically through Project with source guards.</td>
+</tr>
+<tr>
+<td><code>authoring-import-service-kit</code></td>
+<td><code>n:authoring:importing</code></td>
+<td><code>nexusengine/domains/authoring/importing/import-service</code></td>
+<td>Decode external bytes into editable documents and orchestrate staged import.</td>
+</tr>
+<tr>
+<td><code>authoring-project-package-kit</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td><code>nexusengine/domains/authoring/persistence/project-package</code></td>
+<td>Encode and verify content-addressed Project snapshots, historical documents and image tiles.</td>
+</tr>
+<tr>
+<td><code>authoring-storage-provider-registry-kit</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td><code>nexusengine/domains/authoring/persistence/storage-provider-registry</code></td>
+<td>Own canonical memory, filesystem and IndexedDB storage provider registration.</td>
+</tr>
+<tr>
+<td><code>authoring-save-kit</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td><code>nexusengine/domains/authoring/persistence/save</code></td>
+<td>Persist a captured Project package with generation conflict protection.</td>
+</tr>
+<tr>
+<td><code>authoring-load-kit</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td><code>nexusengine/domains/authoring/persistence/load</code></td>
+<td>Verify a stored package before atomically restoring the sole Project source authority.</td>
+</tr>
+<tr>
+<td><code>authoring-persistence-service-kit</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td><code>nexusengine/domains/authoring/persistence/persistence-service</code></td>
+<td>Expose provider-neutral save and load without an Editor dependency.</td>
+</tr>
+<tr>
+<td><code>authoring-export-registry-kit</code></td>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>nexusengine/domains/authoring/publishing/export/export-registry</code></td>
+<td>Own canonical GLB, FBX and USDZ exporter selection and availability.</td>
+</tr>
+<tr>
+<td><code>authoring-export-capability-kit</code></td>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>nexusengine/domains/authoring/publishing/export/export-capability</code></td>
+<td>Inspect the exact delivery packet against a declared format profile.</td>
+</tr>
+<tr>
+<td><code>authoring-export-validation-kit</code></td>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>nexusengine/domains/authoring/publishing/export/export-validation</code></td>
+<td>Parse encoded artifacts and report native validation separately from external proof.</td>
+</tr>
+<tr>
+<td><code>authoring-export-receipt-kit</code></td>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>nexusengine/domains/authoring/publishing/export/export-receipt</code></td>
+<td>Own bounded idempotent export operation receipts; never serialize executable providers.</td>
+</tr>
+<tr>
+<td><code>authoring-export-service-kit</code></td>
+<td><code>n:authoring:publishing:export</code></td>
+<td><code>nexusengine/domains/authoring/publishing/export/export-service</code></td>
+<td>Orchestrate encode, native validation, source-guarded publication and export receipts.</td>
+</tr>
+<tr>
+<td><code>authoring-document-validation-kit</code></td>
+<td><code>n:authoring:validation</code></td>
+<td><code>nexusengine/domains/authoring/validation/document-validation</code></td>
+<td>Validate an existing document through canonical Project schemas and reference invariants.</td>
+</tr>
+<tr>
+<td><code>authoring-project-validation-kit</code></td>
+<td><code>n:authoring:validation</code></td>
+<td><code>nexusengine/domains/authoring/validation/project-validation</code></td>
+<td>Expose read-only validation of the complete current Project.</td>
+</tr>
+<tr>
+<td><code>authoring-delivery-validation-kit</code></td>
+<td><code>n:authoring:validation</code></td>
+<td><code>nexusengine/domains/authoring/validation/delivery-validation</code></td>
+<td>Expose read-only publishing preparation diagnostics.</td>
+</tr>
+<tr>
+<td><code>authoring-format-validation-kit</code></td>
+<td><code>n:authoring:validation</code></td>
+<td><code>nexusengine/domains/authoring/validation/format-validation</code></td>
+<td>Expose export compatibility and artifact validation through canonical providers.</td>
+</tr>
+<tr>
+<td><code>authoring-validation-report-kit</code></td>
+<td><code>n:authoring:validation</code></td>
+<td><code>nexusengine/domains/authoring/validation/validation-report</code></td>
+<td>Provide the public Authoring validation facade and normalized reports.</td>
 </tr>
 <tr>
 <td><code>authoring-modifier-service-kit</code></td>
@@ -5478,6 +5670,12 @@ npm pack --dry-run --json
 <td>Advance deterministic repeatable and one-shot elapsed-time schedules without losing residual time.</td>
 </tr>
 <tr>
+<td><code>observation-history-kit</code></td>
+<td><code>n:runtime:data:observation</code></td>
+<td><code>nexusengine/domains/runtime/data/observation</code></td>
+<td>Retain bounded committed portable observations with deterministic identity and replay checks.</td>
+</tr>
+<tr>
 <td><code>simulation-state-kit</code></td>
 <td><code>n:simulation</code></td>
 <td><code>nexusengine/domains/simulation/runtime</code></td>
@@ -5779,11 +5977,11 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>d2b8af8d1d542bdb125d33b8a4ff5a32de1cf73da399e57e9a29b5ae35d4a8f5</code></p>
+<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
 <ul>
-<li>Source modules: 1604</li>
-<li>Manifest-proven public atoms: 360</li>
-<li>Manifest-owned internal modules: 1219</li>
+<li>Source modules: 1697</li>
+<li>Manifest-proven public atoms: 381</li>
+<li>Manifest-owned internal modules: 1291</li>
 <li>Root contract modules: 25</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
@@ -6056,6 +6254,30 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/authoring/contracts/io-kit.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/contracts/io.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/contracts/ledger.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/contracts/provider-registry.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/authoring/contracts/service-lifecycle.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
@@ -6081,6 +6303,36 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/contracts/value.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/create/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/create/kits/authoring-create-service-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/create/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/create/subdomain.manifest.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6188,7 +6440,145 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/authoring/importing/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-commit-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-registry-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-service-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/kits/authoring-import-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/fbx/decode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/fbx/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/fbx/texture-helpers.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/glb/decode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/glb/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/obj/decode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/obj/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/usdz/decode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/providers/usdz/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/scene-documents.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/importing/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/authoring/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/io-kits.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/io.manifests.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6392,6 +6782,108 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/authoring/persistence/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-load-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-load-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-project-package-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-save-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/project-package.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/providers/filesystem/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/providers/indexeddb/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/providers/memory/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/persistence/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/authoring/project/index.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
@@ -6417,6 +6909,156 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/project/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/codecs/fbx-binary.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/codecs/png.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/codecs/usda.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/codecs/zip.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/contracts/packet.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/fbx/encode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/fbx/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/glb/encode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/glb/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/usdz/encode.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/providers/usdz/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/publishing/artifact-output.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/publishing/export/subdomain.manifest.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6603,6 +7245,84 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/uv/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-document-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-format-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-project-validation-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/kits/authoring-validation-report-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/validation/subdomain.manifest.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -9573,6 +10293,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/physics/body/kits/body-registry-kit/kit.manifest.js</code></td>
+<td><code>n:physics</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/physics/body/kits/body-registry-kit/step-commit.js</code></td>
 <td><code>n:physics</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -13521,6 +14247,36 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/runtime/data/kits/data-kit/snapshot.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/data/observation/contracts.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/data/observation/kits/observation-history-kit/index.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/data/observation/kits/observation-history-kit/kit.manifest.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/data/observation/kits/observation-history-kit/state.js</code></td>
+<td><code>n:runtime</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/runtime/data/observation/subdomain.manifest.js</code></td>
 <td><code>n:runtime</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

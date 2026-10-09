@@ -1,0 +1,20 @@
+{
+  "browser": "144.0.7559.96",
+  "renderer": "Three.js r180 SVGRenderer rasterized by Chromium; WebGL2 context unavailable",
+  "transport": "Offline Blob module graph; localhost server available but browser network policy blocks navigation",
+  "actualEngineTicks": 333,
+  "initialBoxY": 3.4982969760894775,
+  "finalBoxY": 0.4988963007926941,
+  "meshMatchesCore": true,
+  "browserReplayExact": true,
+  "drawCalls": 655,
+  "triangles": 732,
+  "changedPixels": 17526,
+  "pageErrors": [],
+  "console": [
+    {
+      "type": "warning",
+      "text": "using deprecated parameters for the initialization function; pass a single object instead"
+    }
+  ]
+}
