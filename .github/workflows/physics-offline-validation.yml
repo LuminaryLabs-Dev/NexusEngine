@@ -1,0 +1,59 @@
+name: Physics Offline Validation Workspace
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - .github/workflows/physics-offline-validation.yml
+
+permissions:
+  contents: read
+
+jobs:
+  workspace:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout exact engine commit
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          path: NexusEngine
+      - name: Set up Node
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 22
+      - name: Prepare offline sources and dependencies
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p offline-workspace artifacts
+          git -C NexusEngine rev-parse HEAD > offline-workspace/engine.sha
+          git -C NexusEngine archive HEAD | tar -x -C offline-workspace
+          git -C NexusEngine bundle create "$PWD/artifacts/NexusEngine.bundle" HEAD refs/heads/main
+          (cd NexusEngine && npm ci --ignore-scripts --no-audit --no-fund)
+          if [ -d NexusEngine/node_modules ]; then
+            tar -czf artifacts/engine-node-modules.tar.gz -C NexusEngine node_modules
+          fi
+          for repo in NexusEngine-Kits NexusEngine-Editor; do
+            git clone --depth 1 --branch main "https://github.com/LuminaryLabs-Dev/$repo.git" "$repo"
+            git -C "$repo" rev-parse HEAD > "artifacts/$repo.sha"
+            git -C "$repo" archive --prefix="$repo/" HEAD | gzip > "artifacts/$repo-source.tar.gz"
+          done
+          mkdir verification-tools
+          printf '{"name":"nexus-physics-verification","private":true,"type":"module"}\n' > verification-tools/package.json
+          (cd verification-tools && npm install --save-exact --ignore-scripts --no-audit --no-fund three@0.180.0 @dimforge/rapier3d-compat@0.19.0)
+          tar -czf artifacts/verification-tools.tar.gz verification-tools
+          cp offline-workspace/engine.sha artifacts/engine.sha
+          node --version > artifacts/node-version.txt
+          npm --version > artifacts/npm-version.txt
+          (cd artifacts && sha256sum *.bundle *.tar.gz > SHA256SUMS)
+      - name: Upload exact offline workspace
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: physics-offline-workspace
+          path: artifacts/
+          if-no-files-found: error
+          retention-days: 3
