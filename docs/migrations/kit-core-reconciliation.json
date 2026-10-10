@@ -1,0 +1,1906 @@
+{
+  "schema": "nexusengine.kit-core-reconciliation/1",
+  "source": {
+    "repository": "LuminaryLabs-Dev/NexusEngine-Kits",
+    "file": "nexusengine.registry.json",
+    "blobSha": "78474cec67c4ce1d5173fec02056e624b2f78860"
+  },
+  "scope": "Non-executable review register only; no completion or behavioral equivalence claims",
+  "coreTopLevelDomains": [
+    "actor",
+    "agent",
+    "asset",
+    "authoring",
+    "build",
+    "composition",
+    "compute",
+    "diagnostics",
+    "host",
+    "interaction",
+    "mcp",
+    "network",
+    "object",
+    "physics",
+    "policy",
+    "presentation",
+    "render",
+    "runtime",
+    "simulation",
+    "spatial",
+    "world"
+  ],
+  "statusCounts": {
+    "official": 23,
+    "candidate": 27,
+    "scaffolded": 8,
+    "migration-placeholder": 95
+  },
+  "records": [
+    {
+      "id": "aerial-biome-fidelity-kits",
+      "currentPath": "n:simulation:aerial:aerial-biome-fidelity-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-biome-fidelity-kits/index.js"
+    },
+    {
+      "id": "aerial-camera-rig-domain-kit",
+      "currentPath": "n:simulation:aerial:aerial-camera-rig-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-camera-rig-domain-kit/index.js"
+    },
+    {
+      "id": "aerial-canyon-kits",
+      "currentPath": "n:simulation:aerial:aerial-canyon-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-canyon-kits/index.js"
+    },
+    {
+      "id": "aerial-cel-flight-feel-kits",
+      "currentPath": "n:simulation:aerial:aerial-cel-flight-feel-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-cel-flight-feel-kits/index.js"
+    },
+    {
+      "id": "aerial-combat-domain-kit",
+      "currentPath": "n:simulation:aerial:aerial-combat-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-combat-domain-kit/index.js"
+    },
+    {
+      "id": "aerial-encounter-director-kit",
+      "currentPath": "n:simulation:aerial:aerial-encounter-director",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-encounter-director-kit/index.js"
+    },
+    {
+      "id": "aerial-mission-sequence-kit",
+      "currentPath": "n:simulation:aerial:aerial-mission-sequence",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-mission-sequence-kit/index.js"
+    },
+    {
+      "id": "aerial-patch-window-domain-kit",
+      "currentPath": "n:simulation:aerial:aerial-patch-window-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-patch-window-domain-kit/index.js"
+    },
+    {
+      "id": "aerial-procedural-object-domain-kit",
+      "currentPath": "n:simulation:aerial:aerial-procedural-object-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-procedural-object-domain-kit/index.js"
+    },
+    {
+      "id": "aerial-projectile-system-kit",
+      "currentPath": "n:simulation:aerial:aerial-projectile-system",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-projectile-system-kit/index.js"
+    },
+    {
+      "id": "aerial-render-bundle-kits",
+      "currentPath": "n:simulation:aerial:aerial-render-bundle-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-render-bundle-kits/index.js"
+    },
+    {
+      "id": "aerial-ui-interaction-kits",
+      "currentPath": "n:simulation:aerial:aerial-ui-interaction-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-ui-interaction-kits/index.js"
+    },
+    {
+      "id": "aerial-vegetation-placement-domain-kit",
+      "currentPath": "n:simulation:aerial:aerial-vegetation-placement-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/aerial-vegetation-placement-domain-kit/index.js"
+    },
+    {
+      "id": "agriculture-domain-kit",
+      "currentPath": "n:simulation:production:agriculture",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/production/agriculture-domain-kit/index.js"
+    },
+    {
+      "id": "ar-experience-kit",
+      "currentPath": "n:interaction:xr:ar-experience",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "ar-kit",
+      "currentPath": "n:interaction:xr:ar-runtime",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "build-placement-kit",
+      "currentPath": "n:world:building:build-placement",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:world"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/building/build-placement-kit/index.js"
+    },
+    {
+      "id": "camera-collision-kit",
+      "currentPath": "n:presentation:camera:feedback:camera-collision",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "camera-comfort-kit",
+      "currentPath": "n:presentation:camera:feedback:camera-comfort",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/camera-feedback/camera-comfort-kit/index.js"
+    },
+    {
+      "id": "camera-mode-kit",
+      "currentPath": "n:presentation:camera:feedback:camera-mode",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/camera-feedback/camera-mode-kit/index.js"
+    },
+    {
+      "id": "camera-sequence-kit",
+      "currentPath": "n:presentation:camera:feedback:camera-sequence",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/camera-feedback/camera-sequence-kit/index.js"
+    },
+    {
+      "id": "camera-smooth-follow-kit",
+      "currentPath": "n:presentation:camera:feedback:smooth-follow",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/camera-feedback/camera-smooth-follow-kit/index.js"
+    },
+    {
+      "id": "camera-state-kit",
+      "currentPath": "n:presentation:camera:feedback:camera-state",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/camera-feedback/camera-state-kit/index.js"
+    },
+    {
+      "id": "canyon-terrain-domain-kit",
+      "currentPath": "n:simulation:aerial:canyon-terrain-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/canyon-terrain-domain-kit/index.js"
+    },
+    {
+      "id": "cargo-kit",
+      "currentPath": "n:simulation:economy:extensions:cargo",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/cargo-kit/index.js"
+    },
+    {
+      "id": "cargo-transfer-kit",
+      "currentPath": "n:simulation:economy:extensions:cargo-transfer",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/cargo-transfer-kit/index.js"
+    },
+    {
+      "id": "character-ragdoll-kit",
+      "currentPath": "n:simulation:combat:character-ragdoll",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "clock-kit",
+      "currentPath": "n:policy:extensions:clock",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/foundation/clock-kit/index.js"
+    },
+    {
+      "id": "collectible-kit",
+      "currentPath": "n:simulation:progression:extensions:collectible",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "companion-command-kit",
+      "currentPath": "n:simulation:rpg-social:companion-command",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "console-input-adapter-kit",
+      "currentPath": "n:interaction:input:extensions:console-input-adapter",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/input/console-input-adapter-kit/index.js"
+    },
+    {
+      "id": "currency-kit",
+      "currentPath": "n:simulation:economy:extensions:currency",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/currency-kit/index.js"
+    },
+    {
+      "id": "damage-health-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:damage-health-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/damage-health-domain-kit/index.js"
+    },
+    {
+      "id": "damage-health-kit",
+      "currentPath": "n:simulation:combat:damage-health",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/hazard-combat/damage-health-kit/index.js"
+    },
+    {
+      "id": "dialogue-line-domain-kit",
+      "currentPath": "n:simulation:rpg-social:dialogue-line-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-social/dialogue-line-domain-kit/index.js"
+    },
+    {
+      "id": "diegetic-feedback-signal-kit",
+      "currentPath": "n:presentation:camera:feedback:diegetic-feedback-signal",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/camera-feedback/diegetic-feedback-signal-kit/index.js"
+    },
+    {
+      "id": "emulator-memory-observer-kit",
+      "currentPath": "n:host:extensions:emulator-memory",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host",
+        "n:runtime"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/emulation/emulator-memory-observer-kit/index.js"
+    },
+    {
+      "id": "encounter-director-kit",
+      "currentPath": "n:simulation:combat:encounter-director",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/hazard-combat/encounter-director-kit/index.js"
+    },
+    {
+      "id": "enemy-agent-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:enemy-agent-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/enemy-agent-domain-kit/index.js"
+    },
+    {
+      "id": "enemy-object-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:enemy-object-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/enemy-object-domain-kit/index.js"
+    },
+    {
+      "id": "environment-kits",
+      "currentPath": "n:simulation:aerial:environment-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/environment-kits/index.js"
+    },
+    {
+      "id": "fail-state-kit",
+      "currentPath": "n:simulation:progression:extensions:fail-state",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/progression/fail-state-kit/index.js"
+    },
+    {
+      "id": "filesystem-snapshot-adapter-kit",
+      "currentPath": "n:runtime:persistence:extensions:filesystem-snapshot",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:runtime"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/persistence/filesystem-snapshot-adapter-kit/index.js"
+    },
+    {
+      "id": "fishing-kit",
+      "currentPath": "n:simulation:aquatic:fishing",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/aquatic/fishing-kit/index.js"
+    },
+    {
+      "id": "flight-corridor-domain-kit",
+      "currentPath": "n:simulation:aerial:flight-corridor-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/flight-corridor-domain-kit/index.js"
+    },
+    {
+      "id": "forest-placement-kit",
+      "currentPath": "n:object:procedural:forest-placement",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:object"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "gameplay-interaction-kit",
+      "currentPath": "n:spatial:extensions:gameplay-interaction",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "generic-affordance-descriptor-kit",
+      "currentPath": "n:simulation:extensions:generic-affordance-descriptor",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation",
+        "n:world"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/simulation/generic-affordance-descriptor-kit/index.js"
+    },
+    {
+      "id": "generic-defense-aaa-dsk-bridge",
+      "currentPath": "n:simulation:defense:generic-defense-aaa-dsk-bridge",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-aaa-dsk-bridge/index.js"
+    },
+    {
+      "id": "generic-defense-build-placement-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-build-placement-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-build-placement-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-combat-resolver-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-combat-resolver-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-combat-resolver-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-dsk-boundaries",
+      "currentPath": "n:simulation:defense:generic-defense-dsk-boundaries",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-dsk-boundaries/index.js"
+    },
+    {
+      "id": "generic-defense-economy-wallet-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-economy-wallet-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-economy-wallet-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-map-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-map-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-map-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-project-bridge",
+      "currentPath": "n:simulation:defense:generic-defense-project-bridge",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-project-bridge/index.js"
+    },
+    {
+      "id": "generic-defense-project-kits",
+      "currentPath": "n:simulation:defense:generic-defense-project-kits",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-project-kits/index.js"
+    },
+    {
+      "id": "generic-defense-render-descriptor-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-render-descriptor-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-render-descriptor-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-session-command-kit",
+      "currentPath": "n:simulation:defense:generic-defense-session-command",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-session-command-kit/index.js"
+    },
+    {
+      "id": "generic-defense-session-facade-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-session-facade-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-session-facade-dsk/index.js"
+    },
+    {
+      "id": "generic-defense-wave-agent-director-dsk",
+      "currentPath": "n:simulation:defense:generic-defense-wave-agent-director-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/generic-defense/generic-defense-wave-agent-director-dsk/index.js"
+    },
+    {
+      "id": "generic-route-cargo-extraction-kit",
+      "currentPath": "n:world:route-extraction:generic-route-cargo-extraction",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:world"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/route-extraction/generic-route-cargo-extraction-kit/index.js"
+    },
+    {
+      "id": "greybox-building-kit",
+      "currentPath": "n:world:building:greybox",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:world"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "guard-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:guard-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/guard-domain-kit/index.js"
+    },
+    {
+      "id": "hand-gesture-dsk",
+      "currentPath": "n:interaction:xr:hand-gesture-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/hand-gesture-dsk/index.js"
+    },
+    {
+      "id": "hand-input-adapter-kit",
+      "currentPath": "n:interaction:xr:hand-input-adapter",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/hand-input-adapter-kit/index.js"
+    },
+    {
+      "id": "hazard-director-kit",
+      "currentPath": "n:simulation:combat:hazard-director",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/hazard-combat/hazard-director-kit/index.js"
+    },
+    {
+      "id": "health-report-kit",
+      "currentPath": "n:policy:extensions:health-report",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/foundation/health-report-kit/index.js"
+    },
+    {
+      "id": "hold-action-kit",
+      "currentPath": "n:spatial:extensions:hold-action",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/spatial/hold-action-kit/index.js"
+    },
+    {
+      "id": "input-buffer-kit",
+      "currentPath": "n:interaction:input:extensions:input-buffer",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/input/input-buffer-kit/index.js"
+    },
+    {
+      "id": "input-context-kit",
+      "currentPath": "n:interaction:input:extensions:input-context",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/input/input-context-kit/index.js"
+    },
+    {
+      "id": "instanced-render-batch-kit",
+      "currentPath": "n:presentation:graphics:descriptors:instanced-render-batch",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/render-descriptors/instanced-render-batch-kit/index.js"
+    },
+    {
+      "id": "interactable-registry-kit",
+      "currentPath": "n:spatial:extensions:interactable-registry",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/spatial/interactable-registry-kit/index.js"
+    },
+    {
+      "id": "interaction-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:interaction-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/interaction-domain-kit/index.js"
+    },
+    {
+      "id": "interaction-domain-service-kit",
+      "currentPath": "n:interaction:xr:interaction-domain-service",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/interaction-domain-service-kit/index.js"
+    },
+    {
+      "id": "interaction-dsk",
+      "currentPath": "n:interaction:xr:interaction-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/interaction-dsk/index.js"
+    },
+    {
+      "id": "interaction-target-kit",
+      "currentPath": "n:spatial:extensions:interaction-target",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "inventory-kit",
+      "currentPath": "n:simulation:economy:extensions:inventory",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/inventory-kit/index.js"
+    },
+    {
+      "id": "libretro-provider-kit",
+      "currentPath": "n:host:extensions:libretro",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host",
+        "n:runtime"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/emulation/libretro-provider-kit/index.js"
+    },
+    {
+      "id": "light-combat-kit",
+      "currentPath": "n:simulation:combat:light-combat",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "lighting-descriptor-kit",
+      "currentPath": "n:presentation:graphics:descriptors:lighting-descriptor",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/render-descriptors/lighting-descriptor-kit/index.js"
+    },
+    {
+      "id": "lock-and-socket-kit",
+      "currentPath": "n:simulation:progression:extensions:lock-and-socket",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "lock-group-kit",
+      "currentPath": "n:simulation:progression:extensions:lock-group",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/progression/lock-group-kit/index.js"
+    },
+    {
+      "id": "mana-meter-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:mana-meter-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/mana-meter-domain-kit/index.js"
+    },
+    {
+      "id": "market-kit",
+      "currentPath": "n:simulation:economy:extensions:market",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/market-kit/index.js"
+    },
+    {
+      "id": "material-palette-kit",
+      "currentPath": "n:presentation:graphics:descriptors:material-palette",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/render-descriptors/material-palette-kit/index.js"
+    },
+    {
+      "id": "mission-phase-kit",
+      "currentPath": "n:simulation:progression:extensions:mission-phase",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/progression/mission-phase-kit/index.js"
+    },
+    {
+      "id": "moving-target-kit",
+      "currentPath": "n:simulation:combat:moving-target",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "multiplayer-host-kit",
+      "currentPath": "n:network:extensions:multiplayer-host",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:network"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/network/multiplayer-host-kit/index.js"
+    },
+    {
+      "id": "native-emulator-worker-kit",
+      "currentPath": "n:host:extensions:emulator-worker",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host",
+        "n:runtime"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/host/native-emulator-worker-kit/index.js"
+    },
+    {
+      "id": "nintendo-content-loader-kit",
+      "currentPath": "n:asset:extensions:nintendo-content",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:asset",
+        "n:host"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/asset/nintendo-content-loader-kit/index.js"
+    },
+    {
+      "id": "npc-schedule-domain-kit",
+      "currentPath": "n:simulation:rpg-social:npc-schedule-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-social/npc-schedule-domain-kit/index.js"
+    },
+    {
+      "id": "objective-bridge-kit",
+      "currentPath": "n:simulation:progression:extensions:objective-bridge",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/progression/objective-bridge-kit/index.js"
+    },
+    {
+      "id": "objective-kit",
+      "currentPath": "n:simulation:progression:extensions:objective",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "observed-game-state-adapter-kit",
+      "currentPath": "n:simulation:extensions:extensions:observed-game-state",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation",
+        "n:runtime"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/simulation/observed-game-state-adapter-kit/index.js"
+    },
+    {
+      "id": "openxr-hand-adapter-dsk",
+      "currentPath": "n:interaction:xr:openxr-hand-adapter-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/openxr-hand-adapter-dsk/index.js"
+    },
+    {
+      "id": "parry-window-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:parry-window-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/parry-window-domain-kit/index.js"
+    },
+    {
+      "id": "pcm-audio-provider-kit",
+      "currentPath": "n:presentation:extensions:pcm-audio",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation",
+        "n:render"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/presentation/pcm-audio-provider-kit/index.js"
+    },
+    {
+      "id": "peerjs-transport-provider-kit",
+      "currentPath": "n:network:extensions:peerjs-transport",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:network"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/network/peerjs-transport-provider-kit/index.js"
+    },
+    {
+      "id": "performance-budget-kit",
+      "currentPath": "n:policy:extensions:performance-budget",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/foundation/performance-budget-kit/index.js"
+    },
+    {
+      "id": "physics-runtime-adapter-kit",
+      "currentPath": "n:physics:extensions:runtime",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:physics",
+        "n:runtime"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/physics/physics-runtime-adapter-kit/index.js"
+    },
+    {
+      "id": "powered-aerial-flight-domain-kit",
+      "currentPath": "n:simulation:aerial:powered-aerial-flight-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/aerial/powered-aerial-flight-domain-kit/index.js"
+    },
+    {
+      "id": "procedural-creature-body-kit",
+      "currentPath": "n:actor:creature:procedural:body",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:actor"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/procedural-creatures/procedural-creature-body-kit/index.js"
+    },
+    {
+      "id": "procedural-object-body-kit",
+      "currentPath": "n:object:procedural:body",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:object"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/procedural-objects/procedural-object-body-kit/index.js"
+    },
+    {
+      "id": "procedural-object-capture-profile-kit",
+      "currentPath": "n:object:procedural:capture-profile",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:object"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/procedural-objects/procedural-object-capture-profile-kit/index.js"
+    },
+    {
+      "id": "procedural-object-lod-kit",
+      "currentPath": "n:object:procedural:lod",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:object"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/procedural-objects/procedural-object-lod-kit/index.js"
+    },
+    {
+      "id": "procedural-object-material-kit",
+      "currentPath": "n:object:procedural:material",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:object"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/procedural-objects/procedural-object-material-kit/index.js"
+    },
+    {
+      "id": "project-batch-deploy-bridge",
+      "currentPath": "n:host:project-deployment:project-batch-deploy-bridge",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/project-deployment/project-batch-deploy-bridge/index.js"
+    },
+    {
+      "id": "quest-thread-domain-kit",
+      "currentPath": "n:simulation:rpg-social:quest-thread-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-social/quest-thread-domain-kit/index.js"
+    },
+    {
+      "id": "rapier-physics-provider-kit",
+      "currentPath": "n:physics:extensions:rapier",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:physics",
+        "n:runtime"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/physics/rapier-physics-provider-kit/index.js"
+    },
+    {
+      "id": "raster-frame-provider-kit",
+      "currentPath": "n:presentation:extensions:raster-frame",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation",
+        "n:render"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/presentation/raster-frame-provider-kit/index.js"
+    },
+    {
+      "id": "recovery-site-kit",
+      "currentPath": "n:simulation:economy:extensions:recovery-site",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/recovery-site-kit/index.js"
+    },
+    {
+      "id": "relationship-state-domain-kit",
+      "currentPath": "n:simulation:rpg-social:relationship-state-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-social/relationship-state-domain-kit/index.js"
+    },
+    {
+      "id": "render-descriptor-kit",
+      "currentPath": "n:presentation:graphics:descriptors:render-descriptor",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "render-layer-kit",
+      "currentPath": "n:presentation:graphics:descriptors:render-layer",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/render-descriptors/render-layer-kit/index.js"
+    },
+    {
+      "id": "replay-test-kit",
+      "currentPath": "n:policy:extensions:replay-test",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/foundation/replay-test-kit/index.js"
+    },
+    {
+      "id": "resource-node-kit",
+      "currentPath": "n:simulation:economy:extensions:resource-node",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/economy-resources/resource-node-kit/index.js"
+    },
+    {
+      "id": "reveal-light-kit",
+      "currentPath": "n:simulation:progression:extensions:reveal-light",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "rom-test-runner-kit",
+      "currentPath": "n:diagnostics:extensions:rom-tests",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:diagnostics"
+      ],
+      "nextAction": "review-build-or-diagnostics",
+      "sourcePath": "./kits/diagnostics/rom-test-runner-kit/index.js"
+    },
+    {
+      "id": "route-clearance-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:route-clearance-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/route-clearance-domain-kit/index.js"
+    },
+    {
+      "id": "score-summary-kit",
+      "currentPath": "n:simulation:progression:extensions:score-summary",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/progression/score-summary-kit/index.js"
+    },
+    {
+      "id": "seed-kit",
+      "currentPath": "n:policy:extensions:seed-stream",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/foundation/seed-kit/index.js"
+    },
+    {
+      "id": "seeded-world-patch-controller-kit",
+      "currentPath": "n:simulation:extensions:seeded-world-patch-controller",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation",
+        "n:world"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/simulation/seeded-world-patch-controller-kit/index.js"
+    },
+    {
+      "id": "selection-domain-service-kit",
+      "currentPath": "n:interaction:xr:selection-domain-service",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/selection-domain-service-kit/index.js"
+    },
+    {
+      "id": "selection-dsk",
+      "currentPath": "n:interaction:xr:selection-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/selection-dsk/index.js"
+    },
+    {
+      "id": "shop-inventory-domain-kit",
+      "currentPath": "n:simulation:rpg-social:shop-inventory-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-social/shop-inventory-domain-kit/index.js"
+    },
+    {
+      "id": "sky-atmosphere-kit",
+      "currentPath": "n:presentation:graphics:descriptors:sky-atmosphere",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/render-descriptors/sky-atmosphere-kit/index.js"
+    },
+    {
+      "id": "sorting-kit",
+      "currentPath": "n:simulation:progression:extensions:sorting",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "spatial-index-kit",
+      "currentPath": "n:spatial:extensions:spatial-index",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/spatial/spatial-index-kit/index.js"
+    },
+    {
+      "id": "spatial-interaction-kit",
+      "currentPath": "n:spatial:extensions:spatial-interaction",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/spatial/spatial-interaction-kit/index.js"
+    },
+    {
+      "id": "spatial-room-kit",
+      "currentPath": "n:spatial:extensions:room",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction",
+        "n:spatial"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "state-digest-kit",
+      "currentPath": "n:policy:extensions:state-digest",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:policy",
+        "n:runtime",
+        "n:diagnostics"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/foundation/state-digest-kit/index.js"
+    },
+    {
+      "id": "station-interaction-kit",
+      "currentPath": "n:world:building:station-interaction",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:world"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/building/station-interaction-kit/index.js"
+    },
+    {
+      "id": "status-effect-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:status-effect-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/status-effect-domain-kit/index.js"
+    },
+    {
+      "id": "stereoscopic-render-domain-kit",
+      "currentPath": "n:interaction:xr:stereoscopic-render-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/stereoscopic-render-domain-kit/index.js"
+    },
+    {
+      "id": "structure-runtime-kit",
+      "currentPath": "n:world:building:structure-runtime",
+      "status": "scaffolded",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:world"
+      ],
+      "nextAction": "inspect scaffold; prove capability before promotion",
+      "sourcePath": "./kits/building/structure-runtime-kit/index.js"
+    },
+    {
+      "id": "surface-placement-kit",
+      "currentPath": "n:interaction:xr:surface-placement",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "symbol-alignment-kit",
+      "currentPath": "n:simulation:progression:extensions:symbol-alignment",
+      "status": "official",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "review-for-core-generalization",
+      "sourcePath": "./kits/migrated-gameplay/index.js"
+    },
+    {
+      "id": "terrain-ground-contact-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:terrain-ground-contact-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/terrain-ground-contact-domain-kit/index.js"
+    },
+    {
+      "id": "three-physics-view-kit",
+      "currentPath": "n:render:extensions:physics-view",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:render"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/rendering/three-physics-view-kit/index.js"
+    },
+    {
+      "id": "transform-dsk",
+      "currentPath": "n:interaction:xr:transform-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/transform-dsk/index.js"
+    },
+    {
+      "id": "upgrade-kit",
+      "currentPath": "n:simulation:economy:extensions:upgrade",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/economy-resources/upgrade-kit/index.js"
+    },
+    {
+      "id": "vegetation-placement-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:vegetation-placement-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/vegetation-placement-domain-kit/index.js"
+    },
+    {
+      "id": "view-rig-kit",
+      "currentPath": "n:interaction:input:extensions:view-rig",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/input/view-rig-kit/index.js"
+    },
+    {
+      "id": "visual-pipeline-kit",
+      "currentPath": "n:presentation:graphics:descriptors:visual-pipeline",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:presentation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/render-descriptors/visual-pipeline-kit/index.js"
+    },
+    {
+      "id": "webgpu-compute-provider-kit",
+      "currentPath": "n:host:gpu-providers:compute",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/gpu-providers/webgpu-compute-provider-kit/index.js"
+    },
+    {
+      "id": "webgpu-frame-provider-kit",
+      "currentPath": "n:host:gpu-providers:frame",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/gpu-providers/webgpu-frame-provider-kit/index.js"
+    },
+    {
+      "id": "webgpu-host-provider-kit",
+      "currentPath": "n:host:gpu-providers:host",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/gpu-providers/webgpu-host-provider-kit/index.js"
+    },
+    {
+      "id": "webgpu-render-provider-kit",
+      "currentPath": "n:host:gpu-providers:render",
+      "status": "candidate",
+      "realBehavior": true,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:host"
+      ],
+      "nextAction": "retain-provider",
+      "sourcePath": "./kits/gpu-providers/webgpu-render-provider-kit/index.js"
+    },
+    {
+      "id": "webxr-hand-adapter-dsk",
+      "currentPath": "n:interaction:xr:webxr-hand-adapter-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/webxr-hand-adapter-dsk/index.js"
+    },
+    {
+      "id": "widget-domain-service-kit",
+      "currentPath": "n:interaction:xr:widget-domain-service",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/widget-domain-service-kit/index.js"
+    },
+    {
+      "id": "widget-dsk",
+      "currentPath": "n:interaction:xr:widget-dsk",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/widget-dsk/index.js"
+    },
+    {
+      "id": "world-zone-domain-kit",
+      "currentPath": "n:simulation:rpg-combat:world-zone-domain",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:simulation"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/rpg-combat/world-zone-domain-kit/index.js"
+    },
+    {
+      "id": "xr-ray-interaction-kit",
+      "currentPath": "n:interaction:xr:xr-ray-interaction",
+      "status": "migration-placeholder",
+      "realBehavior": false,
+      "installable": false,
+      "proposedCoreOwners": [
+        "n:interaction"
+      ],
+      "nextAction": "inspect historical source; reconcile or retire; do not implement from metadata",
+      "sourcePath": "./kits/xr/xr-ray-interaction-kit/index.js"
+    }
+  ]
+}
