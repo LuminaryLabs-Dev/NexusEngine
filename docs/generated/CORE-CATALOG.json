@@ -4276,6 +4276,93 @@
       ]
     },
     {
+      "domainPath": "n:build:target:host-native",
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "id": "target-host-native-build-domain",
+      "inputs": [
+        {
+          "description": "Native Host required capability.",
+          "deterministic": true,
+          "id": "n:build:target",
+          "schema": null
+        }
+      ],
+      "label": "Native Host",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Native Host API without duplicate state or systems.",
+        "install": "Create one Native Host state owner and public API.",
+        "replay": "Reapply equivalent Native Host inputs deterministically.",
+        "reset": "Restore the configured Native Host baseline.",
+        "snapshot": "Serialize Native Host state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Native Host provided capability.",
+          "deterministic": true,
+          "id": "n:build:target:host-native",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "host contract proof"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Native Host state and registry records.",
+          "id": "target-host-native-build-domain-state",
+          "owner": "target-host-native-build-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:build:target",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Native Host contract fixture.",
+            "deterministic": true,
+            "id": "target-host-native-build-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Native Host composition fixture.",
+            "deterministic": true,
+            "id": "target-host-native-build-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/build/tests/host-native.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:build:target"
+      ],
+      "responsibility": "Own local native and embedded Node contract proof on the build host.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Native Host behavior.",
+          "deterministic": true,
+          "id": "n:build:target:host-native:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:composition",
       "forbiddenResponsibilities": [
         "application approval",
@@ -23745,6 +23832,79 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "hostNativeTarget",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:build:target:host-native",
+      "environments": [
+        "node"
+      ],
+      "id": "host-native-target-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:build:target",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "host-native-target-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "host-native-target-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/build/tests/host-native.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "build:host-native-target",
+        "n:build:target:host-native"
+      ],
+      "requires": [
+        "build:process-execution",
+        "build:runtime-abi",
+        "build:rust-lowering",
+        "build:toolchain-discovery",
+        "n:build:target"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createHostNativeTargetKit",
+        "module": "./src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
+        "publicSubpath": "./domains/build/target/host-native/host-native-target"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "projectSource",
       "atomic": true,
       "composes": [],
@@ -25189,6 +25349,7 @@
         "build:effect-analysis",
         "build:execution-ir",
         "build:fallback-selection",
+        "build:host-native-target",
         "build:ir-validation",
         "build:isolated-stage",
         "build:javascript-ast",
@@ -47973,6 +48134,8 @@
     "./domains/build/target": "./src/core-domains/build/target/index.js",
     "./domains/build/target/android-xr": "./src/core-domains/build/target/android-xr/index.js",
     "./domains/build/target/android-xr/android-xr-target": "./src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
+    "./domains/build/target/host-native": "./src/core-domains/build/target/host-native/index.js",
+    "./domains/build/target/host-native/host-native-target": "./src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
     "./domains/build/target/openxr": "./src/core-domains/build/target/openxr/index.js",
     "./domains/build/target/openxr/openxr-input": "./src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
     "./domains/build/target/openxr/openxr-render": "./src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
@@ -48316,7 +48479,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+  "registryHash": "c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -49229,7 +49392,7 @@
     },
     {
       "path": "src/core-domains/build/adapters/mcp/build-mcp-provider.js",
-      "sha256": "19a9130baf35bc1476cb9317c9123fd58b281493f24ce5593b59c5529d375a42"
+      "sha256": "bfd6351b2c94b1c62abd3c3b93d51f8391683ee1ec23a935695b5f82635687de"
     },
     {
       "path": "src/core-domains/build/analysis/index.js",
@@ -49273,7 +49436,7 @@
     },
     {
       "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/services.js",
-      "sha256": "fd28abcb189e12a974b790b9680ed829ebb343c3cd45e3a99a8e62c6ffa6f8d5"
+      "sha256": "21c38cdd19854e6273a6a329eb24afaaba033fd7d0b9b84cc8240c6ca62648be"
     },
     {
       "path": "src/core-domains/build/analysis/kits/effect-analysis-kit/sources.json",
@@ -49297,7 +49460,7 @@
     },
     {
       "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/services.js",
-      "sha256": "837665ada4ce4577ee9c9ba67da1a955320b90c0233c5be6cedf842218aa93a7"
+      "sha256": "cc4ff8b3321e07a302e1af787be4722b323630fdadb86cefe27aac813805c416"
     },
     {
       "path": "src/core-domains/build/analysis/kits/javascript-ast-kit/sources.json",
@@ -49484,8 +49647,12 @@
       "sha256": "6cd4d18496292bfb708c0dc6009858c205b6fc9f4353f1f5d46d24cf5499ec3e"
     },
     {
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/resolution.js",
+      "sha256": "ced7bda45a71fe34787c0956421818ade55648ddb056c3a1b782e7152c76a9b5"
+    },
+    {
       "path": "src/core-domains/build/classification/kits/fallback-selection-kit/services.js",
-      "sha256": "b0bacd64c510e965bcc9bcb9619ec912902328d8921e92099817d0a9857b1a3e"
+      "sha256": "8f7c981f085ab118b6968edfb3b3bccae872577bd13689afb413ca69759e583d"
     },
     {
       "path": "src/core-domains/build/classification/kits/fallback-selection-kit/sources.json",
@@ -49509,7 +49676,7 @@
     },
     {
       "path": "src/core-domains/build/classification/kits/portability-classifier-kit/services.js",
-      "sha256": "04d13995f254af450f40d3bc7cbea313c0bf32411b3e8db7167411e115499fe1"
+      "sha256": "d2925c52426887d68bf5a05457419ae30d9b0625b56d3ba3ecc6a29f46de2535"
     },
     {
       "path": "src/core-domains/build/classification/kits/portability-classifier-kit/sources.json",
@@ -49589,7 +49756,7 @@
     },
     {
       "path": "src/core-domains/build/compile/kits/runtime-abi-kit/services.js",
-      "sha256": "67a494aa3ccc6feb569a40cfbf201267960cd8387fe118717c3b2485299f1cc7"
+      "sha256": "3e1cabb44fdc6014f297a12940a39a72c2118364e78803208d445fa45ab21465"
     },
     {
       "path": "src/core-domains/build/compile/kits/runtime-abi-kit/sources.json",
@@ -49613,7 +49780,7 @@
     },
     {
       "path": "src/core-domains/build/compile/kits/rust-lowering-kit/services.js",
-      "sha256": "3b08f004e00eaf44751c724adf03b1c7c4987315393f830d65ba93da6d16f248"
+      "sha256": "81c9c55b120d2d792d5021ef5c6a54b48d9bfd7485248fced085eb210e49a260"
     },
     {
       "path": "src/core-domains/build/compile/kits/rust-lowering-kit/sources.json",
@@ -49653,7 +49820,7 @@
     },
     {
       "path": "src/core-domains/build/contracts.js",
-      "sha256": "57f6b47bbf91f15cd23a7b847797639c8023d272afca93133a0f2759a8841b24"
+      "sha256": "111ae07a8b878e764041e196a605a7494a39940b66250916d428a212f81aac30"
     },
     {
       "path": "src/core-domains/build/domain.manifest.js",
@@ -49661,7 +49828,7 @@
     },
     {
       "path": "src/core-domains/build/index.js",
-      "sha256": "a258ea3e63a5a1eed5a71768d6805a40999718d1da51ddbead821eb92b7391ad"
+      "sha256": "8b92a837aba618b615e01eb17993262dc105077b479d3905a9e0dc27944d2e68"
     },
     {
       "path": "src/core-domains/build/ir/index.js",
@@ -49769,7 +49936,7 @@
     },
     {
       "path": "src/core-domains/build/kit-manifests.js",
-      "sha256": "22e41d52f8cd68a56aaeaa16d80a77ddd913fb32241b318d229ea344ee30c9f0"
+      "sha256": "fc2cc3bda7c0f210b9325796d2346cbf5b836a820d891848225c5c70d322a879"
     },
     {
       "path": "src/core-domains/build/manifest-input.js",
@@ -49809,15 +49976,15 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-execution-kit/index.js",
-      "sha256": "b29811edf878db8c48cfccb8beb05422d09a4cfe4a727232c9da3a5b0c5c7d15"
+      "sha256": "2cdff284a2b7b8e9584dcc5b721ddb4a1b40d90aa48cf57db55fac581ce1f94f"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-execution-kit/kit.manifest.js",
-      "sha256": "f676e89ed7518137ebd5f6bb2a5a9633f2f5f03646bbee8a4fa36031ff8e7a21"
+      "sha256": "1fcde459ce6aa0c00fcaaddb26ddbc01896f6dfc7f33abfa532e83c65b82c91d"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-execution-kit/services.js",
-      "sha256": "660d85ed96c30ead4e51f2c5e15d4a64cb1e474427d5dde081a0bb9fe2f7224e"
+      "sha256": "684ee8196dc838ebb40b898abed24cfbdeecf505fcd1591353e430a7fdf63d72"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-execution-kit/sources.json",
@@ -49841,7 +50008,7 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-plan-kit/services.js",
-      "sha256": "8f147aecbff7c66f3e205b06d193f5ce5d32a6d04951a3e4d16471374c63303a"
+      "sha256": "6aa1b1ed5eaf0a5fc9e68d64a986f9f4aca9cab3313ce612f8140288987cda83"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-plan-kit/sources.json",
@@ -49865,7 +50032,7 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/services.js",
-      "sha256": "407568378835506846a875762335d529b8d6cb77b3b5778f250749186e741f6c"
+      "sha256": "d2afa717be81469b1774ddd9d79cbfba22634f8e3484d205475488d25fe5826e"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/build-receipt-kit/sources.json",
@@ -49913,7 +50080,7 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/services.js",
-      "sha256": "eb9a8ada860012507b780787c1481060fbe23f35dc31deaeaa1f5c17685bb987"
+      "sha256": "400389865b41200b2684e790091bb0c68c53fee75b3edcf6a19aabbdc481d266"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/sources.json",
@@ -50049,7 +50216,7 @@
     },
     {
       "path": "src/core-domains/build/source/kits/module-graph-kit/services.js",
-      "sha256": "1a630ad1daedafa415c1321ce68483887be511ad63ef24f19bcc899c7428f844"
+      "sha256": "e47936c7e6cf37f4546800cc39f5445a059070b122f4041f89d996e355840c4b"
     },
     {
       "path": "src/core-domains/build/source/kits/module-graph-kit/sources.json",
@@ -50073,7 +50240,7 @@
     },
     {
       "path": "src/core-domains/build/source/kits/project-source-kit/services.js",
-      "sha256": "414f11d9f7c2049be7f5b2754f516e95df3b0fe955969b0c8642c5c28e731e90"
+      "sha256": "c4222e854910a23cb4f8891f4dd874e48c7ac578424590dc330e70b418df6e59"
     },
     {
       "path": "src/core-domains/build/source/kits/project-source-kit/sources.json",
@@ -50137,7 +50304,7 @@
     },
     {
       "path": "src/core-domains/build/subdomain-manifests.js",
-      "sha256": "fa147578fb90afb6f4a69bd652992d2e4a74ff8b9965fb71676527e1205bb1d1"
+      "sha256": "7644bd03e3fcb019c9360a263ee59f8657019bded134e79d4acd180c74ba5d04"
     },
     {
       "path": "src/core-domains/build/target/android-xr/index.js",
@@ -50172,8 +50339,36 @@
       "sha256": "6144c0119a403f2e8cb741d50330a7f07c4e33848c27e37d24fba0576a538170"
     },
     {
+      "path": "src/core-domains/build/target/host-native/index.js",
+      "sha256": "ef13da6ed4a810b359ea59239e54cf58803e19830ad3c4c80f2e9a3d39f5e8ab"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/bindings.js",
+      "sha256": "f39bb1a49a162472ca9c44b77c6ae08f31228cef2e9c5ac4a6440d2af932ed3b"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
+      "sha256": "a7932163505bb0e4b3188c4e9f4002517be180f0bd3fdf4c4743bdc5af124eb0"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/kit.manifest.js",
+      "sha256": "98685e01f1cd62876079ea7edd9569ec3a6a83cc5a2263a3c4824bd7ac4ff76c"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/native/host.cc",
+      "sha256": "d579404801e85256cce63472e5129814ce29c76cbd27b425fe26633bf70c22bf"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/services.js",
+      "sha256": "43b4473076b91e1da8b3ba53510e6fc37713fe37d03ff97390b97488901ad1f7"
+    },
+    {
+      "path": "src/core-domains/build/target/host-native/subdomain.manifest.js",
+      "sha256": "0ab69e0087b2565b44dbf0df5a249076be4ed280b33d2e771acaad7c1c5c1410"
+    },
+    {
       "path": "src/core-domains/build/target/index.js",
-      "sha256": "5a48ffb4ab3756a7886d443077e31e8486651f40e023fe7d8bc0311d1f452303"
+      "sha256": "497759975c2c91897d94797cfed74b54abc14d491525f79d0c68c964fd680b37"
     },
     {
       "path": "src/core-domains/build/target/kits/target-registry-kit/contracts.js",
@@ -50413,7 +50608,7 @@
     },
     {
       "path": "src/core-domains/build/tests/domain-tree.mjs",
-      "sha256": "b19a8a8ad9ee0c09430ae2922a69d38b98bf7336a599246670ce7b6fd8ed8ecb"
+      "sha256": "727da2e95fdbb80fdfdd1b80fc64a5f709dc0280358d7f6c0cfe1caaf325c447"
     },
     {
       "path": "src/core-domains/build/tests/fixtures/external-project/package-lock.json",
@@ -50465,15 +50660,19 @@
     },
     {
       "path": "src/core-domains/build/tests/fixtures/native-project/src/index.js",
-      "sha256": "4bba0e3c9b8acc6aa65113c4042e6e8702ccd88f36c1b2a6299f4b7e790f8685"
+      "sha256": "22816acbcab2a5ce4fc41a93c3a03095c4264e77656db18099ca778aef9879df"
     },
     {
       "path": "src/core-domains/build/tests/full-build-loop.mjs",
       "sha256": "2c973974526bfeb2c68c6927bca477af21559ff8716b6ee973e934a3f9fcb00f"
     },
     {
+      "path": "src/core-domains/build/tests/host-native.mjs",
+      "sha256": "47c1ccad95aaededbf38eb697b9abbbace97bcdceedfbe59600215a0fb283a05"
+    },
+    {
       "path": "src/core-domains/build/tests/mcp-build.mjs",
-      "sha256": "370e7d2b4049cd90f88ce4c4bfdff424c3c4d03f7cf09d68eebf5a157729b17a"
+      "sha256": "9640005b2492a344aabeee826e9dc8bd6a3d898214e8db9bb02f8f4d49f654cf"
     },
     {
       "path": "src/core-domains/build/tests/multi-target.mjs",
@@ -50481,7 +50680,7 @@
     },
     {
       "path": "src/core-domains/build/tests/native-lowering.mjs",
-      "sha256": "712a7958c39d1e36518781b7725805c7d27b1dcead41889f95c68a92237e4ef2"
+      "sha256": "355363b659eec9d419ab06249ad142473aa2de72cb2b2de5e28752eb7f70f0dc"
     },
     {
       "path": "src/core-domains/build/tests/openxr-package-source.mjs",
@@ -50541,7 +50740,7 @@
     },
     {
       "path": "src/core-domains/build/toolchain/kits/process-execution-kit/services.js",
-      "sha256": "989d0cc6b79ffa9067c086716f75f6fed0f106346628e4adeebac519c690493c"
+      "sha256": "9012fbae689cc46c835e2b5a6abbb831db91ed1121cb2616ecd51b211230f919"
     },
     {
       "path": "src/core-domains/build/toolchain/kits/process-execution-kit/sources.json",
@@ -50565,7 +50764,7 @@
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/services.js",
-      "sha256": "a81e0fe261ffb8f3f288dac692f6dcee3bcb43c874f98032f46ba352ace08103"
+      "sha256": "79b76b4f3b5f716f44d3a2e5496adb0eac3631818b81c4f141129e40eae19a3b"
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/sources.json",
@@ -50957,7 +51156,11 @@
     },
     {
       "path": "src/core-domains/interaction/kits/interaction-kit/index.js",
-      "sha256": "734deb4646cdad1f7a2e8473eb684fd6246ccd5d70b02d088bf411d7565b7d94"
+      "sha256": "b54072dd5585cd3eea723ed35d4f3712e7d97b18fc6e1c156b40c890a337eb8f"
+    },
+    {
+      "path": "src/core-domains/interaction/kits/interaction-kit/interactors.js",
+      "sha256": "04bb755c6dd5f0292786bb192b5c347ff64aefd6347fffe8d665e3a8dde87d51"
     },
     {
       "path": "src/core-domains/interaction/kits/interaction-kit/prompts.js",
@@ -51417,7 +51620,7 @@
     },
     {
       "path": "src/core-domains/physics/body/body-contracts.js",
-      "sha256": "2110d8bfd516cacc98f97ec29639db70f890cd945d23c01450470610f4c5d87e"
+      "sha256": "954e95deed0d9c58d7e4fa858866ac14ce90acaa0cd57742fd5a5dd59915684c"
     },
     {
       "path": "src/core-domains/physics/body/body-manifests.js",
@@ -52865,7 +53068,11 @@
     },
     {
       "path": "src/core-domains/presentation/ui/kits/ui-kit/index.js",
-      "sha256": "c9601e321d34611b72295abb64fff3b4a14f8d0dab3ce56a8c64d1840e1d7fd0"
+      "sha256": "684477f3dfdefa4764b79b41ab366580a37075e1511bea0e7335108bc0051a36"
+    },
+    {
+      "path": "src/core-domains/presentation/ui/kits/ui-kit/spatial-panel.js",
+      "sha256": "ae93a5dfe71efcd7d3f5c2f498cd8acc6733d3207586018788224c7f01554bce"
     },
     {
       "path": "src/core-domains/presentation/ui/kits/ui-scale-kit/index.js",

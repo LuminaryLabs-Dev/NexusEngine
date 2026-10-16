@@ -1,4 +1,5 @@
 import ts from "@typescript/typescript6";
+import { isBuiltin } from 'node:module';
 
 const GLOBAL_EFFECTS = Object.freeze({
   document: "browser:document",
@@ -31,13 +32,22 @@ export function createEffectAnalysisService() {
   function analyze(parsed) {
     const effects = new Set();
     const unsupported = [];
+    // Resolve lexical bindings before classifying ambient APIs. An authoring
+    // document variable is not the browser's global document object.
+    const source=parsed.sourceFile;
+    const host={getSourceFile:name=>name===source.fileName?source:undefined,getDefaultLibFileName:()=>'',writeFile:()=>{},getCurrentDirectory:()=>'',getDirectories:()=>[],fileExists:name=>name===source.fileName,readFile:()=>undefined,getCanonicalFileName:name=>name,useCaseSensitiveFileNames:()=>true,getNewLine:()=> '\n'};
+    const checker=ts.createProgram([source.fileName],{allowJs:true,noLib:true,noResolve:true,types:[]},host).getTypeChecker();
+    const isAmbient=node=>!(ts.isShorthandPropertyAssignment(node.parent)?checker.getShorthandAssignmentValueSymbol(node.parent):checker.getSymbolAtLocation(node));
 
     function visit(node) {
-      if (ts.isIdentifier(node) && isReferenceIdentifier(node) && GLOBAL_EFFECTS[node.text]) {
+      if ((ts.isImportDeclaration(node) || ts.isExportDeclaration(node)) && node.moduleSpecifier && ts.isStringLiteralLike(node.moduleSpecifier) && isBuiltin(node.moduleSpecifier.text)) effects.add(`node:${node.moduleSpecifier.text.replace(/^node:/,'')}`);
+      if (ts.isIdentifier(node) && isReferenceIdentifier(node) && GLOBAL_EFFECTS[node.text] && isAmbient(node)) {
         effects.add(GLOBAL_EFFECTS[node.text]);
       }
       if (ts.isCallExpression(node)) {
-        if (ts.isIdentifier(node.expression) && FORBIDDEN_CALLS.has(node.expression.text)) {
+        if((node.expression.kind===ts.SyntaxKind.ImportKeyword||(ts.isIdentifier(node.expression)&&node.expression.text==='require'))&&node.arguments[0]&&ts.isStringLiteralLike(node.arguments[0])&&isBuiltin(node.arguments[0].text))effects.add(`node:${node.arguments[0].text.replace(/^node:/,'')}`);
+        if (ts.isIdentifier(node.expression) && node.expression.text === 'require' && (!node.arguments[0] || !ts.isStringLiteralLike(node.arguments[0]))) unsupported.push({code:'dynamic-require-nonliteral',position:node.pos});
+        if (ts.isIdentifier(node.expression) && FORBIDDEN_CALLS.has(node.expression.text) && isAmbient(node.expression)) {
           unsupported.push({ code: "ambient-code-evaluation", expression: node.expression.text, position: node.pos });
         }
         if (node.expression.kind === ts.SyntaxKind.ImportKeyword) {

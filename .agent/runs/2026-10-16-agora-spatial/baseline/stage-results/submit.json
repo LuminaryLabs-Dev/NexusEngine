@@ -1,0 +1,11 @@
+{
+  "stage": "submit",
+  "ok": true,
+  "startedAt": "2026-10-16T22:38:09.249Z",
+  "completedAt": "2026-10-16T22:38:10.898Z",
+  "result": {
+    "ok": true,
+    "submitted": true,
+    "runId": "agora-spatial-baseline"
+  }
+}

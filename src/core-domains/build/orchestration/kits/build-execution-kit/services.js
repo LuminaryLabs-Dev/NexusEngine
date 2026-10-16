@@ -51,6 +51,7 @@ function publicInspection(inspection) {
     irValidation: inspection.irValidation,
     sourceMap: inspection.sourceMap,
     classification: inspection.classification,
+    executionResolution: inspection.executionResolution,
     javascriptFallback: inspection.javascriptFallback,
     rustLowering: Object.freeze(Object.fromEntries(Object.entries(inspection.rustLowering).filter(([key]) => key !== "source")))
   });
@@ -59,6 +60,7 @@ function publicInspection(inspection) {
 export function createBuildExecutionService(services, config = {}) {
   const plans = new Map();
   const inMemoryReceipts = new Map();
+  const activeBuilds = new Map();
   const initialSnapshot = config.initialSnapshot ?? null;
 
   async function inspectInternal(project) {
@@ -82,6 +84,7 @@ export function createBuildExecutionService(services, config = {}) {
     const irValidation = services.irValidation.validate(kitIr, executionIr);
     const sourceMap = services.sourceMap.create(kitIr, executionIr);
     const classification = services.portabilityClassifier.classify(kitIr);
+    const executionResolution = services.fallbackSelection.resolve({classification,moduleGraph,target:'host-native',profile:'native-preferred'});
     const rustLowering = services.rustLowering.lower(executionIr, classification);
     const javascriptFallback = services.javascriptFallback.describe(classification);
     return Object.freeze({
@@ -99,6 +102,7 @@ export function createBuildExecutionService(services, config = {}) {
       irValidation,
       sourceMap,
       classification,
+      executionResolution,
       javascriptFallback,
       rustLowering
     });
@@ -164,7 +168,8 @@ export function createBuildExecutionService(services, config = {}) {
       const entry = services.projectSource.targetEntry(inspection.projectSource, target);
       const targetInspection = inspectTarget(inspection, entry);
       const capabilityResolution = services.capabilityResolution.resolve(targetInspection.classification, target);
-      const executionSelection = services.fallbackSelection.select(
+      const executionResolution = services.fallbackSelection.resolve({classification:targetInspection.classification,moduleGraph:targetInspection.moduleGraph,target,profile:request.profile,dependencyAnalysis:targetInspection.dependencyAnalysis});
+      const executionSelection = target === 'host-native' ? {mode:executionResolution.mode,reason:'explicit-dependency-resolution'} : services.fallbackSelection.select(
         targetInspection.classification,
         target,
         capabilityResolution,
@@ -175,6 +180,7 @@ export function createBuildExecutionService(services, config = {}) {
         request,
         capabilityResolution,
         executionSelection,
+        executionResolution,
         toolchains,
         toolchainSources
       });
@@ -191,6 +197,7 @@ export function createBuildExecutionService(services, config = {}) {
         }),
         capabilityResolution,
         executionSelection,
+        executionResolution,
         ...clone(targetPlan)
       });
       targets.push(targetRecord);
@@ -199,6 +206,7 @@ export function createBuildExecutionService(services, config = {}) {
         request,
         capabilityResolution,
         executionSelection,
+        executionResolution,
         toolchains,
         toolchainSources,
         targetPlan: targetRecord
@@ -223,6 +231,7 @@ export function createBuildExecutionService(services, config = {}) {
       inspection,
       targetContexts
     }));
+    await services.buildReceipt.putPlan(publicPlan);
     return publicPlan;
   }
 
@@ -233,22 +242,29 @@ export function createBuildExecutionService(services, config = {}) {
     return clone(receipt);
   }
 
-  async function apply(planId, approval, options = {}) {
+  async function executeApply(planId, approval, options = {}) {
+    if(!plans.has(String(planId))) {
+      const stored=await services.buildReceipt.getPlan(planId);
+      if(stored) {
+        const rebuilt=await plan(stored.request);
+        if(rebuilt.id!==planId)throw new Error('Build plan changed after review; review the reconstructed plan.');
+      }
+    }
     const prepared = plans.get(String(planId));
     if (!prepared) throw new RangeError(`Unknown Build plan: ${planId}. Run plan() in the current process first.`);
     if (!prepared.inspection || !prepared.targetContexts) {
       throw new Error(`Build plan ${planId} was restored for inspection only; recompute it before apply.`);
     }
     services.buildApproval.requireApproval(prepared.publicPlan.id, approval);
-    const existing = await getReceipt(prepared.publicPlan.id);
-    if (existing?.status === "succeeded") {
-      return Object.freeze({ ...existing, noOp: true });
-    }
-
     const beforeSource = await services.projectSource.read(prepared.request.project);
     const before = services.sourceFingerprint.fingerprint(beforeSource);
     if (before.contentHash !== prepared.publicPlan.projectFingerprint) {
       throw new Error(`Project changed after Build plan review: expected ${prepared.publicPlan.projectFingerprint}, received ${before.contentHash}.`);
+    }
+    const existing = await getReceipt(prepared.publicPlan.id);
+    if (existing?.status === "succeeded") {
+      for(const target of existing.targets)if(!(await services.artifactIntegrity.verify(target.destination,target.artifact)).ok)throw new Error('Previously built artifact failed integrity validation.');
+      return Object.freeze({ ...existing, noOp: true });
     }
 
     const outputRoot = options.out
@@ -257,11 +273,15 @@ export function createBuildExecutionService(services, config = {}) {
     const targetReceipts = [];
 
     for (const target of prepared.publicPlan.targets) {
+      if(options.signal?.aborted) {
+        targetReceipts.push({schema:'nexusengine.build-target-receipt/1',planId,target:target.id,status:'cancelled',cached:false});continue;
+      }
       const provider = services.targetRegistry.get(target.id);
       const context = prepared.targetContexts.get(target.id);
       const stage = await services.isolatedStage.create(prepared.request.project, prepared.publicPlan.id, target.id);
       const cached = await services.artifactCache.read(stage);
       if (cached?.status === "succeeded" && cached.planId === prepared.publicPlan.id) {
+        if(!(await services.artifactIntegrity.verify(cached.destination,cached.artifact)).ok)throw new Error('Cached artifact failed integrity validation.');
         targetReceipts.push(Object.freeze({ ...cached, cached: true }));
         continue;
       }
@@ -281,6 +301,7 @@ export function createBuildExecutionService(services, config = {}) {
           ...context,
           plan: prepared.publicPlan,
           stage
+          ,signal:options.signal
         });
         if (!result?.ok) throw new Error(result?.error ?? `${target.id} target execution failed.`);
         const manifest = await services.artifactManifest.create({
@@ -314,6 +335,7 @@ export function createBuildExecutionService(services, config = {}) {
           status: "succeeded",
           cached: false,
           executionMode: result.executionMode ?? target.executionSelection.mode,
+          executionResolution: result.executionResolution ?? target.executionResolution,
           proof: result.proof ?? null,
           sourceRecords: Object.freeze(clone(result.sourceRecords ?? prepared.inspection.sourceRecords)),
           toolchain: sourceRecord(result.toolchain),
@@ -331,7 +353,7 @@ export function createBuildExecutionService(services, config = {}) {
           schema: "nexusengine.build-target-receipt/1",
           planId: prepared.publicPlan.id,
           target: target.id,
-          status: "failed",
+          status: options.signal?.aborted ? 'cancelled' : "failed",
           cached: false,
           error: errorRecord(error, `target:${target.id}`)
         }));
@@ -349,7 +371,7 @@ export function createBuildExecutionService(services, config = {}) {
     const receipt = Object.freeze({
       schema: BUILD_RECEIPT_SCHEMA,
       planId: prepared.publicPlan.id,
-      status: succeeded ? "succeeded" : "failed",
+      status: options.signal?.aborted ? 'cancelled' : succeeded ? "succeeded" : "failed",
       noOp: false,
       project: prepared.request.project,
       projectFingerprint: before.contentHash,
@@ -368,6 +390,32 @@ export function createBuildExecutionService(services, config = {}) {
     await services.buildReceipt.put(receipt);
     inMemoryReceipts.set(receipt.planId, receipt);
     return receipt;
+  }
+
+  async function apply(planId,approval,options={}) {
+    services.buildApproval.requireApproval(planId,approval);
+    if(activeBuilds.has(planId))return activeBuilds.get(planId).promise;
+    const controller=new AbortController();
+    const promise=(async()=>{
+      await services.buildReceipt.putJob({planId,status:'running'});
+      try {
+        const receipt=await executeApply(planId,approval,{...options,signal:controller.signal});
+        await services.buildReceipt.putJob({planId,status:controller.signal.aborted?'cancelled':receipt.status});
+        return receipt;
+      } catch(error) {
+        await services.buildReceipt.putJob({planId,status:controller.signal.aborted?'cancelled':'failed',error:errorRecord(error,'apply')});throw error;
+      } finally { activeBuilds.delete(planId); }
+    })();
+    activeBuilds.set(planId,{controller,promise});return promise;
+  }
+  async function getJob(planId) {
+    const job=await services.buildReceipt.getJob(planId);
+    return job?.status==='running'&&!activeBuilds.has(planId)?{...job,status:'interrupted',canResume:true}:job;
+  }
+  async function cancel(planId) {
+    const active=activeBuilds.get(planId);
+    if(!active)return {planId,cancelled:false,job:await getJob(planId)};
+    active.controller.abort();return {planId,cancelled:true};
   }
 
   function snapshot() {
@@ -396,6 +444,12 @@ export function createBuildExecutionService(services, config = {}) {
     inspect,
     plan,
     apply,
+    getJob,
+    cancel,
+    async shutdown() {
+      const running=[...activeBuilds.values()];running.forEach(job=>job.controller.abort());
+      await Promise.allSettled(running.map(job=>job.promise));
+    },
     getReceipt,
     snapshot,
     loadSnapshot,

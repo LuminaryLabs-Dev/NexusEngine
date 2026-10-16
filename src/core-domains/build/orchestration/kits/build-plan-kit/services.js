@@ -6,6 +6,10 @@ import {
 } from "../../../contracts.js";
 
 export function createBuildPlanService() {
+  function freeze(value) {
+    if(value&&typeof value==='object'){Object.values(value).forEach(freeze);Object.freeze(value);}
+    return value;
+  }
   function create(input = {}) {
     const payload = stableValue({
       schema: BUILD_PLAN_SCHEMA,
@@ -20,7 +24,7 @@ export function createBuildPlanService() {
       sharedStages: input.sharedStages,
       targets: input.targets
     });
-    return Object.freeze({
+    return freeze({
       id: contentIntegrity(stableJson(payload)),
       ...payload
     });

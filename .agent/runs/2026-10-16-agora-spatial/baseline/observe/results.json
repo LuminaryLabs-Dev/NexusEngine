@@ -1,0 +1,21 @@
+{
+  "ok": true,
+  "runId": "agora-spatial-baseline",
+  "status": "completed",
+  "results": [
+    {
+      "id": "authoring-first-edit",
+      "ok": true,
+      "evidence": [
+        "commands/authoring-first-edit.json"
+      ]
+    },
+    {
+      "id": "interaction-baseline",
+      "ok": true,
+      "evidence": [
+        "commands/interaction-baseline.json"
+      ]
+    }
+  ]
+}

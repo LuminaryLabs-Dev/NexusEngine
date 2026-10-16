@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "node",
+  "args": [
+    "src/core-domains/build/tests/host-native.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "{\"ok\":true,\"proof\":\"compiled Rust + embedded Node through generated API\",\"planId\":\"sha256:e9121ef1cc1282e58758582f951c2094e772d02317e7946ad44bb74a74fcf7a3\",\"artifact\":\"/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-host-proof-UWKO9V/build-state/artifacts/project/host-native/e9121ef1cc1282e58758582f951c2094e772d02317e7946ad44bb74a74fcf7a3\",\"deviceValidated\":false}\n"
+}

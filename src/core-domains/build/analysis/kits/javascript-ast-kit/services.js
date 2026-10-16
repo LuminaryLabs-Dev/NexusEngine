@@ -93,7 +93,7 @@ function nativeExpression(node, parameters) {
   throw new TypeError(`Unsupported native expression kind: ${ts.SyntaxKind[node.kind] ?? node.kind}.`);
 }
 
-function nativeSurface(sourceFile, mode) {
+function nativeSurface(sourceFile, mode, requireTypes = false) {
   if (mode !== "native") return Object.freeze({ functions: Object.freeze([]), diagnostics: Object.freeze([]) });
   const functions = [];
   const diagnostics = [];
@@ -121,6 +121,10 @@ function nativeSurface(sourceFile, mode) {
     }
     if (statement.asteriskToken || modifiers.some((modifier) => modifier.kind === ts.SyntaxKind.AsyncKeyword)) {
       addDiagnostic("native-function-control-flow", statement, `Native function ${statement.name.text} cannot be async or a generator.`);
+      continue;
+    }
+    if(requireTypes && ((statement.type??ts.getJSDocReturnType(statement))?.kind!==ts.SyntaxKind.NumberKeyword || statement.parameters.some(parameter=>(parameter.type??ts.getJSDocType(parameter))?.kind!==ts.SyntaxKind.NumberKeyword))) {
+      addDiagnostic('native-type-contract-required',statement,`Automatic native lowering requires explicit numeric parameter and return types for ${statement.name.text}.`);
       continue;
     }
     const parameters = [];
@@ -176,7 +180,7 @@ export function createJavascriptAstService() {
     );
     const diagnostics = sourceFile.parseDiagnostics.map((diagnostic) => diagnosticRecord(diagnostic, sourceFile));
     const buildMode = explicitBuildMode(sourceFile);
-    const native = nativeSurface(sourceFile, buildMode);
+    const native = nativeSurface(sourceFile, buildMode ?? 'native', buildMode === null);
     const record = Object.freeze({
       path: file.path,
       language: [".ts", ".tsx", ".mts", ".cts"].includes(extension) ? "typescript" : "javascript",

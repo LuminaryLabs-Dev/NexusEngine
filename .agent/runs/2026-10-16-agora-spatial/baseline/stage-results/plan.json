@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-10-16T22:38:09.246Z",
+  "completedAt": "2026-10-16T22:38:09.247Z",
+  "result": {
+    "ok": true,
+    "planId": "agora-spatial-baseline-plan",
+    "commandCount": 2
+  }
+}

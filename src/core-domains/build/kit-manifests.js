@@ -1,3 +1,4 @@
+import hostNative from "./target/host-native/kits/host-native-target-kit/kit.manifest.js";
 import kit0 from "./source/kits/project-source-kit/kit.manifest.js";
 import kit1 from "./source/kits/source-fingerprint-kit/kit.manifest.js";
 import kit2 from "./source/kits/dependency-source-kit/kit.manifest.js";
@@ -47,6 +48,7 @@ import kit45 from "./proof/kits/target-validation-kit/kit.manifest.js";
 import kit46 from "./compile/kits/web-module-linker-kit/kit.manifest.js";
 
 export const BUILD_ATOMIC_KIT_MANIFESTS = Object.freeze([
+  hostNative,
   kit0,
   kit1,
   kit2,

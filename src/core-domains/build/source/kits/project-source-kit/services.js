@@ -81,7 +81,8 @@ export function createProjectSourceService(config = {}) {
   const ignores = new Set([...(config.ignores ?? DEFAULT_IGNORES)]);
 
   function targetEntry(projectSource, target) {
-    const configured = projectSource.buildConfig.entries[String(target)] ?? null;
+    const packageFile=projectSource.files.find(file=>file.path==='package.json');
+    const configured = projectSource.buildConfig.entries[String(target)] ?? (target==='host-native' && packageFile ? JSON.parse(packageFile.bytes.toString('utf8')).module ?? null : null);
     if (!configured) return null;
     const file = projectSource.files.find((candidate) => candidate.path === configured);
     if (!file?.source) throw new Error(`Configured Build target entry is not an included source file: ${target} -> ${configured}.`);

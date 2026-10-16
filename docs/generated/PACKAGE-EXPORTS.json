@@ -100,6 +100,8 @@
     "./domains/build/target": "./src/core-domains/build/target/index.js",
     "./domains/build/target/android-xr": "./src/core-domains/build/target/android-xr/index.js",
     "./domains/build/target/android-xr/android-xr-target": "./src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
+    "./domains/build/target/host-native": "./src/core-domains/build/target/host-native/index.js",
+    "./domains/build/target/host-native/host-native-target": "./src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
     "./domains/build/target/openxr": "./src/core-domains/build/target/openxr/index.js",
     "./domains/build/target/openxr/openxr-input": "./src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
     "./domains/build/target/openxr/openxr-render": "./src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
@@ -450,6 +452,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+  "registryHash": "c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc",
   "schema": "nexusengine.package-exports/1"
 }

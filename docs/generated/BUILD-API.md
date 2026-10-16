@@ -2,7 +2,7 @@
 
 This file is generated from Build Domain and atomic Kit manifests.
 
-Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc`
 
 ## Domain Service
 
@@ -20,6 +20,7 @@ reset()
 
 | Kit | Domain | Import | Responsibility |
 | --- | --- | --- | --- |
+| `host-native-target-kit` | `n:build:target:host-native` | `nexusengine/domains/build/target/host-native/host-native-target` | Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim. |
 | `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |
 | `dependency-source-kit` | `n:build:source` | `nexusengine/domains/build/source/dependency-source` | Resolve exact dependency source identities and recursive lockfile closure. |

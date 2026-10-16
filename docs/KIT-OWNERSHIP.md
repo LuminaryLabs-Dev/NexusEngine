@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc`
 
-- Source modules: 1697
-- Manifest-proven public atoms: 381
-- Manifest-owned internal modules: 1291
+- Source modules: 1706
+- Manifest-proven public atoms: 382
+- Manifest-owned internal modules: 1299
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -295,6 +295,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `src/core-domains/build/classification/kits/fallback-selection-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/fallback-selection-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/build/classification/kits/fallback-selection-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/classification/kits/fallback-selection-kit/resolution.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/fallback-selection-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/fallback-selection-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/kits/portability-classifier-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
@@ -441,6 +442,12 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/kits/android-xr-target-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/android-xr/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/host-native/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/host-native/kits/host-native-target-kit/bindings.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/target/host-native/kits/host-native-target-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/host-native/kits/host-native-target-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/target/host-native/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/kits/target-registry-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/target/kits/target-registry-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
@@ -599,6 +606,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `src/core-domains/interaction/kits/interaction-kit/activation.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/affordances.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/interaction/kits/interaction-kit/interactors.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/prompts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/results.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/kits/interaction-kit/targets.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
@@ -1063,6 +1071,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `src/core-domains/presentation/speech/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/speech/kits/speech-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/presentation/ui/kits/ui-kit/spatial-panel.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |

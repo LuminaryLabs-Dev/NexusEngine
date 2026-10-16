@@ -44,6 +44,7 @@ import { createPcvrTargetProvider } from "./target/pcvr/kits/pcvr-target-kit/ser
 import { createWebLiveTargetProvider } from "./target/web-live/kits/web-live-target-kit/services.js";
 import { createWebStaticTargetProvider } from "./target/web-static/kits/web-static-target-kit/services.js";
 import { createTargetRegistryService } from "./target/kits/target-registry-kit/services.js";
+import { createHostNativeTargetProvider } from './target/host-native/kits/host-native-target-kit/services.js';
 import { createIsolatedStageService } from "./toolchain/kits/isolated-stage-kit/services.js";
 import { createProcessExecutionService } from "./toolchain/kits/process-execution-kit/services.js";
 import { createToolchainDiscoveryService } from "./toolchain/kits/toolchain-discovery-kit/services.js";
@@ -72,6 +73,7 @@ export function createBuildDomain(config = {}) {
   const openxrInput = createOpenXrInputService();
   const openxrRender = createOpenXrRenderService();
   const rustLowering = createRustLoweringService();
+  const toolchainDiscovery = createToolchainDiscoveryService(config.toolchainDiscovery);
   const javascriptFallback = createJavascriptFallbackService({
     available: config.quickJsAvailable !== false,
     sourceRecord: toolchainSource.get("git:quickjs-ng@v0.15.0"),
@@ -85,6 +87,7 @@ export function createBuildDomain(config = {}) {
   });
   const targetRegistry = createTargetRegistryService({
     providers: [
+      createHostNativeTargetProvider({...config.targets?.hostNative,processExecution,rustLowering,runtimeAbi,toolchainDiscovery}),
       createWebLiveTargetProvider({ ...config.targets?.webLive, linker: webModuleLinker }),
       createWebStaticTargetProvider({ ...config.targets?.webStatic, linker: webModuleLinker }),
       createAndroidXrTargetProvider({
@@ -143,7 +146,7 @@ export function createBuildDomain(config = {}) {
     runtimeAbi,
     nativeRuntimeLink: createNativeRuntimeLinkService(),
     toolchainSource,
-    toolchainDiscovery: createToolchainDiscoveryService(config.toolchainDiscovery),
+    toolchainDiscovery,
     toolchainProvision,
     isolatedStage: createIsolatedStageService({ root: path.join(stateRoot, "builds") }),
     processExecution,

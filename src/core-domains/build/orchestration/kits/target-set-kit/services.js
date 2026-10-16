@@ -2,6 +2,7 @@ import { sortedUnique } from "../../../contracts.js";
 
 export const BUILD_TARGET_IDS = Object.freeze([
   "android-xr",
+  "host-native",
   "pcvr",
   "web-live",
   "web-static"

@@ -1,0 +1,112 @@
+{
+  "id": "agora-spatial-baseline",
+  "goal": "Connect real Nexus authoring, existing Interaction/Input and Presentation to Agora with focused additive contracts; preserve frozen Agora and existing engine owners. Native Vulkan, strict-native compilation, physical XR, MDM services and package proofs remain required before overall completion.",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "complete",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:09.239Z",
+      "completedAt": "2026-10-16T22:38:09.242Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:09.243Z",
+      "completedAt": "2026-10-16T22:38:09.245Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:09.246Z",
+      "completedAt": "2026-10-16T22:38:09.247Z",
+      "result": {
+        "ok": true,
+        "planId": "agora-spatial-baseline-plan",
+        "commandCount": 2
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:09.247Z",
+      "completedAt": "2026-10-16T22:38:09.249Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:09.249Z",
+      "completedAt": "2026-10-16T22:38:10.898Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "agora-spatial-baseline"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:10.898Z",
+      "completedAt": "2026-10-16T22:38:10.899Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "agora-spatial-baseline"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:10.899Z",
+      "completedAt": "2026-10-16T22:38:10.901Z",
+      "result": {
+        "ok": true,
+        "checkCount": 2
+      }
+    },
+    {
+      "stage": "capture-after",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:10.901Z",
+      "completedAt": "2026-10-16T22:38:10.902Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "observed-differences",
+      "ok": true,
+      "startedAt": "2026-10-16T22:38:10.902Z",
+      "completedAt": "2026-10-16T22:38:10.903Z",
+      "result": {
+        "ok": true,
+        "structuredChanges": 0,
+        "visualChanges": 0
+      }
+    }
+  ],
+  "completedAt": "2026-10-16T22:38:10.903Z"
+}

@@ -1,0 +1,11 @@
+{
+  "stage": "observe",
+  "ok": true,
+  "startedAt": "2026-10-16T23:37:36.213Z",
+  "completedAt": "2026-10-16T23:37:36.216Z",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "runId": "hybrid-host-verification"
+  }
+}

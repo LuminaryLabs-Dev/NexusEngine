@@ -19,6 +19,16 @@ export function createBuildMcpProvider(options = {}) {
     },
     tools: [
       {
+        name:'build_job_get',description:'Read durable job status; interrupted jobs require source revalidation before retry.',
+        inputSchema:{type:'object',required:['planId'],properties:{planId:{type:'string'}},additionalProperties:false},outputSchema:OPEN_OBJECT,
+        annotations:{readOnlyHint:true,idempotentHint:true,openWorldHint:false},async handler({planId}){return {job:await build.getJob(planId)};}
+      },
+      {
+        name:'build_cancel',description:'Cancel an active local build without deleting source or artifacts.',approval:'required',
+        inputSchema:{type:'object',required:['planId'],properties:{planId:{type:'string'}},additionalProperties:false},outputSchema:OPEN_OBJECT,
+        annotations:{readOnlyHint:false,destructiveHint:false,idempotentHint:true,openWorldHint:false},handler({planId}){return build.cancel(planId);}
+      },
+      {
         name: "build_targets_list",
         description: "List explicit NexusEngine Build target providers and required environments.",
         inputSchema: { type: "object", additionalProperties: false },

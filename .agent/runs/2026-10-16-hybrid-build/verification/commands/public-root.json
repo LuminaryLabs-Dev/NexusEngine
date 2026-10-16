@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "node",
+  "args": [
+    "tests/public-api-freeze.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "public-api-freeze ok\n"
+}

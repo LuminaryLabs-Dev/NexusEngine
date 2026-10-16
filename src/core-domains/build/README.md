@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:build`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc`
 - Public entry: `nexusengine/domains/build`
 
 ## Responsibility
@@ -46,11 +46,13 @@ Own isolated build-time source analysis, compilation, toolchains, targets, artif
 | `n:build:target:openxr` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. |
 | `n:build:target:android-xr` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. |
 | `n:build:target:pcvr` | Own Windows x64 OpenXR host generation, executable packaging, and validation. |
+| `n:build:target:host-native` | Own local native and embedded Node contract proof on the build host. |
 
 ## Atomic Kits
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
+| `host-native-target-kit` | `nexusengine/domains/build/target/host-native/host-native-target` | Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim. |
 | `project-source-kit` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |
 | `dependency-source-kit` | `nexusengine/domains/build/source/dependency-source` | Resolve exact dependency source identities and recursive lockfile closure. |

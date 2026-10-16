@@ -1,0 +1,151 @@
+{
+  "id": "hybrid-host-verification-plan",
+  "ok": true,
+  "goal": "Verify the supported native/hybrid Mac host and MCP checkpoint. The parent Agora APK/Flatpak/XR target remains incomplete; baseline Authoring proof and IndexedDB ownership failures are recorded separately.",
+  "commands": [
+    {
+      "action": "development.execute",
+      "id": "contract-parity",
+      "executable": "node",
+      "args": [
+        "scripts/check-manifest-execution-parity.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "catalog-pending-baseline",
+      "executable": "node",
+      "args": [
+        "scripts/generate-core-catalog.mjs",
+        "--check",
+        "--allow-pending"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "ownership",
+      "executable": "node",
+      "args": [
+        "scripts/generate-kit-ownership-ledger.mjs",
+        "--check"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "public-root",
+      "executable": "node",
+      "args": [
+        "tests/public-api-freeze.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "active-docs",
+      "executable": "node",
+      "args": [
+        "scripts/check-active-docs.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "interaction",
+      "executable": "node",
+      "args": [
+        "tests/core-kits/core-interaction-kit-smoke.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "presentation",
+      "executable": "node",
+      "args": [
+        "tests/core-kits/core-presentation-domain-smoke.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "build-domain",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/domain-tree.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "native-lowering",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/native-lowering.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "host-native",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/host-native.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "build-loop",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/full-build-loop.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "multi-target",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/multi-target.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "mcp-build",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/mcp-build.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    },
+    {
+      "action": "development.execute",
+      "id": "quickjs",
+      "executable": "node",
+      "args": [
+        "src/core-domains/build/tests/quickjs-sandbox.mjs"
+      ],
+      "timeoutMs": 240000,
+      "maxOutputBytes": 2097152
+    }
+  ],
+  "notes": []
+}

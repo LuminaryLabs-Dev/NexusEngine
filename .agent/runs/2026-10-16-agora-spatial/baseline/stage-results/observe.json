@@ -1,0 +1,11 @@
+{
+  "stage": "observe",
+  "ok": true,
+  "startedAt": "2026-10-16T22:38:10.898Z",
+  "completedAt": "2026-10-16T22:38:10.899Z",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "runId": "agora-spatial-baseline"
+  }
+}

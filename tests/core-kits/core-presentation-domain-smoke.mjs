@@ -59,3 +59,19 @@ const second = framing.update({
 assert.equal(second.status, "damping");
 
 console.log("core presentation domain smoke ok");
+
+{
+  const { createUIKit } = await import('nexusengine/domains/presentation/ui');
+  const uiEngine = createEngine({ kits: [...createPresentationDomain(), createUIKit()] });
+  const ui = uiEngine.n.ui;
+  const panel = ui.setSpatialPanel({ id: 'controls', objectId: 'box', width: 0.6, height: 0.2, translation: [0, 1, 0] });
+  assert.equal(panel.scaleMode, 'fixed');
+  const snapshot = ui.getSnapshot();
+  ui.reset();
+  assert.deepEqual(ui.getDescriptors('spatialPanels'), {});
+  ui.loadSnapshot(snapshot);
+  assert.deepEqual(ui.getDescriptors('spatialPanels').controls, panel);
+  assert.throws(() => ui.setSpatialPanel({ id: 'bad', objectId: 'box', width: NaN }), /dimensions/);
+  assert.throws(() => ui.setSpatialPanel({ id: 'bad', objectId: 'box', rotation: [0, 0, 0, 0] }), /quaternion/);
+  assert.deepEqual(ui.getSnapshot(), snapshot, 'rejected panels cannot change UI state');
+}

@@ -9,6 +9,7 @@ export function createFallbackSelectionService(config = {}) {
       return Object.freeze({ mode: "unsupported", reason: "missing-capabilities", missing: capabilityResolution.missing });
     }
     if (["web-live", "web-static"].includes(target)) {
+      if(profile==='strict-native')return Object.freeze({mode:'unsupported',reason:'strict-native-rejects-web-javascript'});
       return Object.freeze({ mode: "javascript", reason: "web-target-native-module-execution-is-not-required" });
     }
     if (classification.mode === "native") return Object.freeze({ mode: "native", reason: "all-modules-declare-portable-native-ir" });
@@ -24,7 +25,8 @@ export function createFallbackSelectionService(config = {}) {
     return Object.freeze({ mode: "javascript", reason: "whole-kit-quickjs-ng-fallback" });
   }
 
-  return Object.freeze({ select });
+  return Object.freeze({ select, resolve: resolveExecution });
 }
 
 export default createFallbackSelectionService;
+import { resolveExecution } from './resolution.js';

@@ -319,3 +319,5 @@ See [Operations](docs/OPERATIONS.md) for expected evidence.
 
 See [CHANGELOG.md](CHANGELOG.md), [RELEASE_0.0.4.md](RELEASE_0.0.4.md), and
 [Security](SECURITY.md) for current boundaries.
+
+Native and hybrid host builds: [Build host guide](docs/BUILD-NATIVE-HOST.md).

@@ -1,10 +1,10 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1291,
-    "manifestProvenPublicAtoms": 381,
+    "manifestOwnedInternalModules": 1299,
+    "manifestProvenPublicAtoms": 382,
     "rootContractModules": 25,
-    "sourceModules": 1697,
+    "sourceModules": 1706,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -6776,6 +6776,25 @@
       "owner": "n:build",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
+      "path": "src/core-domains/build/classification/kits/fallback-selection-kit/resolution.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "dependencyGroups",
+        "resolveExecution"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
       "path": "src/core-domains/build/classification/kits/fallback-selection-kit/services.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -10229,6 +10248,144 @@
       "publicExports": [
         "subdomainManifest"
       ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/build/target/host-native"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/build/target/host-native"
+      ],
+      "path": "src/core-domains/build/target/host-native/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/bindings.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "$",
+        "moduleFacade",
+        "nativeBindings"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/build/target/host-native/host-native-target"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:build",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/build/target/host-native/host-native-target"
+      ],
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "host-native-target-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "host-native-target-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/build/tests/host-native.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createHostNativeTargetKit",
+        "kitManifest"
+      ],
+      "responsibility": "Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/target/host-native/kits/host-native-target-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createHostNativeTargetProvider"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/target/host-native/subdomain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -13967,10 +14124,29 @@
       },
       "publicExports": [
         "*",
+        "advanceInteractor",
         "createInteractionKit"
       ],
       "responsibility": "Manage interaction targets, affordances, activation, and results.",
       "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:interaction",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/interaction/kits/interaction-kit/interactors.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "advanceInteractor"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
     },
     {
       "atomic": null,
@@ -26535,10 +26711,29 @@
         "status": "proven"
       },
       "publicExports": [
+        "createSpatialPanelDescriptor",
         "createUIKit"
       ],
       "responsibility": "Manage renderer-neutral UI, focus, selection, prompt, notification, and accessibility descriptors.",
       "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:presentation",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/presentation/ui/kits/ui-kit/spatial-panel.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createSpatialPanelDescriptor"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
     },
     {
       "atomic": true,
@@ -43310,7 +43505,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+  "registrySha256": "c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

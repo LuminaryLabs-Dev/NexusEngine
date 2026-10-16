@@ -6,6 +6,7 @@ export const kitManifest = defineBuildAtomicKitManifest({
   domainPath: "n:build:orchestration",
   apiName: "buildExecution",
   requires: [
+    "build:host-native-target",
     "build:project-source",
     "build:source-fingerprint",
     "build:dependency-source",

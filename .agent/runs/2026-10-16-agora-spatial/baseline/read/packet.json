@@ -1,0 +1,8 @@
+{
+  "ok": true,
+  "sourceFiles": {
+    "src/core-domains/interaction/kits/interaction-kit/index.js": "sha256:734deb4646cdad1f7a2e8473eb684fd6246ccd5d70b02d088bf411d7565b7d94",
+    "src/core-domains/presentation/ui/kits/ui-kit/index.js": "sha256:c9601e321d34611b72295abb64fff3b4a14f8d0dab3ce56a8c64d1840e1d7fd0"
+  },
+  "sourceHash": "sha256:7626d29dd91e4d59af687edf8a658e6897cad771c7e4035ac92e922570643dd3"
+}

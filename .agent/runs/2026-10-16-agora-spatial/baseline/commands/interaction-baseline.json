@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/homebrew/Cellar/node/25.8.1_1/bin/node",
+  "args": [
+    "tests/core-domain-kits-smoke.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "core-domain-kits-smoke ok\n"
+}

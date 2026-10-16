@@ -1,0 +1,11 @@
+{
+  "stage": "plan",
+  "ok": true,
+  "startedAt": "2026-10-16T23:36:38.830Z",
+  "completedAt": "2026-10-16T23:36:38.833Z",
+  "result": {
+    "ok": true,
+    "planId": "hybrid-host-verification-plan",
+    "commandCount": 14
+  }
+}

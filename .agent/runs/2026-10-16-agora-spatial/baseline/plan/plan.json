@@ -1,0 +1,24 @@
+{
+  "id": "agora-spatial-baseline-plan",
+  "ok": true,
+  "goal": "Connect real Nexus authoring, existing Interaction/Input and Presentation to Agora with focused additive contracts; preserve frozen Agora and existing engine owners. Native Vulkan, strict-native compilation, physical XR, MDM services and package proofs remain required before overall completion.",
+  "commands": [
+    {
+      "action": "development.execute",
+      "id": "authoring-first-edit",
+      "executable": "/opt/homebrew/Cellar/node/25.8.1_1/bin/node",
+      "args": [
+        "examples/authoring/first-edit.mjs"
+      ]
+    },
+    {
+      "action": "development.execute",
+      "id": "interaction-baseline",
+      "executable": "/opt/homebrew/Cellar/node/25.8.1_1/bin/node",
+      "args": [
+        "tests/core-domain-kits-smoke.mjs"
+      ]
+    }
+  ],
+  "notes": []
+}

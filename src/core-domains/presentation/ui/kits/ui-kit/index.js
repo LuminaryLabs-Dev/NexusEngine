@@ -1,6 +1,9 @@
 import { createDomainKit } from "../../../../domain-kit.js";
+import { createSpatialPanelDescriptor } from './spatial-panel.js';
+export { createSpatialPanelDescriptor } from './spatial-panel.js';
 
 export function createUIKit(config = {}) {
+  const extendApi = config.createApi;
   return createDomainKit({
     ...config,
 
@@ -16,6 +19,16 @@ export function createUIKit(config = {}) {
     purpose: "UI descriptors for HUDs, menus, prompts, notifications, panels, focus, selection, and accessibility.",
     owns: ["HUD descriptors", "menu descriptors", "prompt descriptors", "notifications", "focus state", "selection state"],
     doesNotOwn: ["DOM rendering", "React components", "native UI implementation"],
+    createApi(context) {
+      return {
+        setSpatialPanel(input) {
+          const panel = createSpatialPanelDescriptor(input);
+          context.baseApi.setDescriptor('spatialPanels', panel.id, panel);
+          return panel;
+        },
+        ...(typeof extendApi === 'function' ? extendApi(context) : {})
+      };
+    },
     metadata: { ...(config.metadata ?? {}), piecesFirst: true }
   });
 }

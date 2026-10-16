@@ -1,0 +1,11 @@
+{
+  "stage": "submit",
+  "ok": true,
+  "startedAt": "2026-10-16T23:36:38.855Z",
+  "completedAt": "2026-10-16T23:37:36.202Z",
+  "result": {
+    "ok": true,
+    "submitted": true,
+    "runId": "hybrid-host-verification"
+  }
+}

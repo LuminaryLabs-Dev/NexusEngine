@@ -1,0 +1,112 @@
+{
+  "id": "hybrid-host-verification",
+  "goal": "Verify the supported native/hybrid Mac host and MCP checkpoint. The parent Agora APK/Flatpak/XR target remains incomplete; baseline Authoring proof and IndexedDB ownership failures are recorded separately.",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "complete",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-10-16T23:36:38.782Z",
+      "completedAt": "2026-10-16T23:36:38.812Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-10-16T23:36:38.813Z",
+      "completedAt": "2026-10-16T23:36:38.829Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-10-16T23:36:38.830Z",
+      "completedAt": "2026-10-16T23:36:38.833Z",
+      "result": {
+        "ok": true,
+        "planId": "hybrid-host-verification-plan",
+        "commandCount": 14
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-10-16T23:36:38.833Z",
+      "completedAt": "2026-10-16T23:36:38.854Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-10-16T23:36:38.855Z",
+      "completedAt": "2026-10-16T23:37:36.202Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "hybrid-host-verification"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-10-16T23:37:36.213Z",
+      "completedAt": "2026-10-16T23:37:36.216Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "hybrid-host-verification"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": true,
+      "startedAt": "2026-10-16T23:37:36.217Z",
+      "completedAt": "2026-10-16T23:37:36.401Z",
+      "result": {
+        "ok": true,
+        "checkCount": 14
+      }
+    },
+    {
+      "stage": "capture-after",
+      "ok": true,
+      "startedAt": "2026-10-16T23:37:36.401Z",
+      "completedAt": "2026-10-16T23:37:36.418Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "observed-differences",
+      "ok": true,
+      "startedAt": "2026-10-16T23:37:36.419Z",
+      "completedAt": "2026-10-16T23:37:36.423Z",
+      "result": {
+        "ok": true,
+        "structuredChanges": 0,
+        "visualChanges": 0
+      }
+    }
+  ],
+  "completedAt": "2026-10-16T23:37:36.423Z"
+}

@@ -20,6 +20,8 @@ export const BUILD_PROFILES = Object.freeze([
 ]);
 
 export const BUILD_EXECUTION_MODES = Object.freeze([
+  "hybrid",
+  "node",
   "javascript",
   "native",
   "native-adapter",

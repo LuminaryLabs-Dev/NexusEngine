@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "/opt/homebrew/Cellar/node/25.8.1_1/bin/node",
+  "args": [
+    "examples/authoring/first-edit.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Authoring first edit: installed source, preview, undo/redo and reload passed.\n"
+}

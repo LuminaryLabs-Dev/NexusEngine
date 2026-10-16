@@ -1,6 +1,7 @@
 import { access } from "node:fs/promises";
 import path from "node:path";
 import ts from "@typescript/typescript6";
+import { isBuiltin } from 'node:module';
 
 import { contentIntegrity, posixPath, stableJson } from "../../../contracts.js";
 
@@ -62,11 +63,12 @@ export function createModuleGraphService() {
         if (record.specifier.startsWith(".") || record.specifier.startsWith("/")) {
           const resolved = await resolveRelative(projectSource.root, modulePath, record.specifier);
           imports.push({ ...record, resolved, external: false });
-          if (!resolved) missing.push({ from: modulePath, specifier: record.specifier });
+          if (!resolved || !projectSource.files.some(file => file.path === resolved)) missing.push({ from: modulePath, specifier: record.specifier });
         } else {
           const packageId = packageName(record.specifier);
-          externalPackages.add(packageId);
-          imports.push({ ...record, resolved: null, external: true, package: packageId });
+          const builtin = isBuiltin(record.specifier);
+          if (!builtin) externalPackages.add(packageId);
+          imports.push({ ...record, resolved: null, external: true, builtin, package: packageId });
         }
       }
       modules.push(Object.freeze({ path: modulePath, imports: Object.freeze(imports) }));
@@ -96,7 +98,7 @@ export function createModuleGraphService() {
       }
     }
     const modules = graph.modules.filter((module) => reachable.has(module.path));
-    const externalPackages = [...new Set(modules.flatMap((module) => module.imports.filter((entry) => entry.external).map((entry) => entry.package)))].sort();
+    const externalPackages = [...new Set(modules.flatMap((module) => module.imports.filter((entry) => entry.external && !entry.builtin).map((entry) => entry.package)))].sort();
     const missing = graph.missing.filter((record) => reachable.has(record.from));
     const identity = { entry, modules, externalPackages, missing };
     return Object.freeze({

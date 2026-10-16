@@ -1,0 +1,105 @@
+{
+  "ok": true,
+  "runId": "hybrid-host-verification",
+  "status": "completed",
+  "results": [
+    {
+      "id": "contract-parity",
+      "ok": true,
+      "evidence": [
+        "commands/contract-parity.json"
+      ]
+    },
+    {
+      "id": "catalog-pending-baseline",
+      "ok": true,
+      "evidence": [
+        "commands/catalog-pending-baseline.json"
+      ]
+    },
+    {
+      "id": "ownership",
+      "ok": true,
+      "evidence": [
+        "commands/ownership.json"
+      ]
+    },
+    {
+      "id": "public-root",
+      "ok": true,
+      "evidence": [
+        "commands/public-root.json"
+      ]
+    },
+    {
+      "id": "active-docs",
+      "ok": true,
+      "evidence": [
+        "commands/active-docs.json"
+      ]
+    },
+    {
+      "id": "interaction",
+      "ok": true,
+      "evidence": [
+        "commands/interaction.json"
+      ]
+    },
+    {
+      "id": "presentation",
+      "ok": true,
+      "evidence": [
+        "commands/presentation.json"
+      ]
+    },
+    {
+      "id": "build-domain",
+      "ok": true,
+      "evidence": [
+        "commands/build-domain.json"
+      ]
+    },
+    {
+      "id": "native-lowering",
+      "ok": true,
+      "evidence": [
+        "commands/native-lowering.json"
+      ]
+    },
+    {
+      "id": "host-native",
+      "ok": true,
+      "evidence": [
+        "commands/host-native.json"
+      ]
+    },
+    {
+      "id": "build-loop",
+      "ok": true,
+      "evidence": [
+        "commands/build-loop.json"
+      ]
+    },
+    {
+      "id": "multi-target",
+      "ok": true,
+      "evidence": [
+        "commands/multi-target.json"
+      ]
+    },
+    {
+      "id": "mcp-build",
+      "ok": true,
+      "evidence": [
+        "commands/mcp-build.json"
+      ]
+    },
+    {
+      "id": "quickjs",
+      "ok": true,
+      "evidence": [
+        "commands/quickjs.json"
+      ]
+    }
+  ]
+}

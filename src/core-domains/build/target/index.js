@@ -4,3 +4,4 @@ export * from "./web-static/index.js";
 export * from "./openxr/index.js";
 export * from "./android-xr/index.js";
 export * from "./pcvr/index.js";
+export * from "./host-native/index.js";

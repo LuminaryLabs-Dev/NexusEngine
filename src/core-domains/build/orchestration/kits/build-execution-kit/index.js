@@ -21,6 +21,7 @@ function createAtomicBuildExecutionService(config = {}, context = {}) {
       installed.webStaticTarget,
       installed.androidXrTarget,
       installed.pcvrTarget
+      ,installed.hostNativeTarget
     ]
   });
   return createBuildExecutionService({ ...installed, targetRegistry }, executionConfig);

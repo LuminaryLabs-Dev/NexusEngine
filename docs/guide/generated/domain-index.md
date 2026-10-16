@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -48,6 +48,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 - `n:build:target:openxr`: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.
 - `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
 - `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
+- `n:build:target:host-native`: Own local native and embedded Node contract proof on the build host.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.
 - `n:compute:graph`: Own portable compute topology, dependencies, and deterministic plans.

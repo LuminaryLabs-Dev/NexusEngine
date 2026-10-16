@@ -16,13 +16,15 @@ const engine = createEngine({ kits: createMcpDomain({ providers: [provider] }) }
 
 assert.deepEqual(engine.n.mcp.listTools().filter((tool) => tool.name.startsWith("build_")).map((tool) => tool.name), [
   "build_apply",
+  "build_cancel",
   "build_inspect",
+  "build_job_get",
   "build_plan",
   "build_receipt_get",
   "build_targets_list"
 ]);
 const targets = await engine.n.mcp.callTool("build_targets_list", {});
-assert.equal(targets.structuredContent.targets.length, 4);
+assert.equal(targets.structuredContent.targets.length, 5);
 const planned = await engine.n.mcp.callTool("build_plan", {
   project: fixture,
   targets: ["web-static"]

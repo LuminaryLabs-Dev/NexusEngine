@@ -1,0 +1,13 @@
+{
+  "ok": true,
+  "executable": "node",
+  "args": [
+    "scripts/generate-kit-ownership-ledger.mjs",
+    "--check"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Checked ownership ledger v2 {\n  sourceModules: 1706,\n  manifestProvenPublicAtoms: 382,\n  manifestOwnedInternalModules: 1299,\n  rootContractModules: 25,\n  unreviewedModules: 0,\n  violations: 0\n}\n"
+}

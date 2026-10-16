@@ -109,6 +109,8 @@
     "./domains/build/target": "./src/core-domains/build/target/index.js",
     "./domains/build/target/android-xr": "./src/core-domains/build/target/android-xr/index.js",
     "./domains/build/target/android-xr/android-xr-target": "./src/core-domains/build/target/android-xr/kits/android-xr-target-kit/index.js",
+    "./domains/build/target/host-native": "./src/core-domains/build/target/host-native/index.js",
+    "./domains/build/target/host-native/host-native-target": "./src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js",
     "./domains/build/target/openxr": "./src/core-domains/build/target/openxr/index.js",
     "./domains/build/target/openxr/openxr-input": "./src/core-domains/build/target/openxr/kits/openxr-input-kit/index.js",
     "./domains/build/target/openxr/openxr-render": "./src/core-domains/build/target/openxr/kits/openxr-render-kit/index.js",
@@ -494,7 +496,8 @@
     "authoring:generate": "node scripts/generate-authoring-capabilities.mjs",
     "authoring:check": "node scripts/generate-authoring-capabilities.mjs --check",
     "test:authoring:consolidation": "node --test tests/core-domains/core-authoring-consolidation.mjs tests/core-domains/core-authoring-roundtrip.mjs tests/core-domains/core-authoring-io-safety.mjs",
-    "test:physics:streaming": "node --test tests/core-domains/core-physics-streaming-smoke.mjs tests/core-kits/ecs-transactional-movement-smoke.mjs"
+    "test:physics:streaming": "node --test tests/core-domains/core-physics-streaming-smoke.mjs tests/core-kits/ecs-transactional-movement-smoke.mjs",
+    "test:build:host-native": "node src/core-domains/build/tests/host-native.mjs"
   },
   "files": [
     "bin",
@@ -518,7 +521,8 @@
     "CHANGELOG.md",
     "RELEASE_0.0.4.md",
     "AUTHORING.md",
-    "examples/authoring"
+    "examples/authoring",
+    "docs/BUILD-NATIVE-HOST.md"
   ],
   "license": "MIT",
   "engines": {

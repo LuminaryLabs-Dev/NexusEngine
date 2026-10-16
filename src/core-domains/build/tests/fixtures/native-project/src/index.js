@@ -11,3 +11,7 @@ export function scaledOffset(value, scale) {
 export function identifierCollision($value, _value) {
   return $value + _value;
 }
+
+export function numericSigns(value) {
+  return +value + -0 + (1e21 - 1e21);
+}

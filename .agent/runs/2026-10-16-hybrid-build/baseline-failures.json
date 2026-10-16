@@ -1,0 +1,15 @@
+{
+  "baseline": "3efccc20f127380452cd1fb25fdba9d5164f7341",
+  "confirmedUntouched": true,
+  "failures": [
+    {
+      "check": "core:check / public-entrypoint-relative-targets",
+      "reason": "n:authoring:create proof pending"
+    },
+    {
+      "check": "boundaries:check",
+      "reason": "src/core-domains/authoring/persistence/providers/indexeddb/index.js owns concrete browser behavior"
+    }
+  ],
+  "overallStatus": "partial"
+}

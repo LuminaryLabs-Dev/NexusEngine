@@ -14,6 +14,8 @@ import subdomain12 from "./target/openxr/subdomain.manifest.js";
 import subdomain13 from "./target/android-xr/subdomain.manifest.js";
 import subdomain14 from "./target/pcvr/subdomain.manifest.js";
 
+import hostNative from "./target/host-native/subdomain.manifest.js";
+
 export const BUILD_SUBDOMAIN_MANIFESTS = Object.freeze([
   subdomain0,
   subdomain1,
@@ -29,10 +31,12 @@ export const BUILD_SUBDOMAIN_MANIFESTS = Object.freeze([
   subdomain11,
   subdomain12,
   subdomain13,
-  subdomain14
+  subdomain14,
+  hostNative
 ]);
 
 export const BUILD_SUBDOMAIN_PUBLIC_ENTRIES = Object.freeze([
+  {domainPath:"n:build:target:host-native",subpath:"./domains/build/target/host-native",module:"./src/core-domains/build/target/host-native/index.js"},
   { domainPath: "n:build:source", subpath: "./domains/build/source", module: "./src/core-domains/build/source/index.js" },
   { domainPath: "n:build:analysis", subpath: "./domains/build/analysis", module: "./src/core-domains/build/analysis/index.js" },
   { domainPath: "n:build:ir", subpath: "./domains/build/ir", module: "./src/core-domains/build/ir/index.js" },

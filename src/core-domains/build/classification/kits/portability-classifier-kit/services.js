@@ -11,7 +11,7 @@ function classifyModule(module, typeErrors) {
   if (module.diagnostics.some((diagnostic) => diagnostic.category === "error") || errors.length || module.unsupported.length) {
     mode = "unsupported";
     reasons.push("source-or-effect-errors");
-  } else if (module.explicitBuildMode === "native") {
+  } else if (module.explicitBuildMode === "native" || (module.explicitBuildMode === null && module.nativeDiagnostics.length === 0 && module.nativeFunctions.length > 0)) {
     if (module.nativeDiagnostics.length || module.nativeFunctions.length === 0) {
       mode = "unsupported";
       reasons.push("native-lowering-surface-unsupported");
