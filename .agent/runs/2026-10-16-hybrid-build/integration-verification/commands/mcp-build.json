@@ -1,0 +1,12 @@
+{
+  "ok": true,
+  "executable": "node",
+  "args": [
+    "src/core-domains/build/tests/mcp-build.mjs"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Build MCP inspect, plan, exact approval, apply, and receipt tools ok\n"
+}

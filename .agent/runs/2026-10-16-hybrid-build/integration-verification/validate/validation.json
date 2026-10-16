@@ -1,0 +1,10 @@
+{
+  "ok": true,
+  "planId": "combined-main-verification-plan",
+  "issueCount": 0,
+  "issues": [],
+  "adapter": {
+    "ok": true,
+    "issues": []
+  }
+}

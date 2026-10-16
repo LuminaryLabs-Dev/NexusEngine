@@ -1,0 +1,11 @@
+{
+  "stage": "observe",
+  "ok": true,
+  "startedAt": "2026-10-16T23:43:44.155Z",
+  "completedAt": "2026-10-16T23:43:44.156Z",
+  "result": {
+    "ok": true,
+    "status": "completed",
+    "runId": "combined-main-verification"
+  }
+}

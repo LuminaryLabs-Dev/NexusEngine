@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc`
+Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac`
 
-- Source modules: 1706
-- Manifest-proven public atoms: 382
-- Manifest-owned internal modules: 1299
+- Source modules: 1712
+- Manifest-proven public atoms: 383
+- Manifest-owned internal modules: 1304
 - Root contract modules: 25
 - Unreviewed modules: 0
 - Violations: 0
@@ -522,6 +522,12 @@ Registry SHA-256: `c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37d
 | `src/core-domains/build/toolchain/kits/toolchain-source-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-source-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/domain.manifest.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/execution/runtime.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/index.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/kits/runtime-kit/index.js` | `n:camel` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camel/nexus-api/binding.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/runtime/native.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/catalog.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/composition-mcp-provider.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/generated-guide-resources.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |

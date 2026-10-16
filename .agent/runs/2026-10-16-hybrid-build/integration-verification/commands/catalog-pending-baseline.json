@@ -1,0 +1,14 @@
+{
+  "ok": true,
+  "executable": "node",
+  "args": [
+    "scripts/generate-core-catalog.mjs",
+    "--check",
+    "--allow-pending"
+  ],
+  "code": 0,
+  "signal": null,
+  "timedOut": false,
+  "exceeded": false,
+  "output": "Checked 22 Domain manifests, 196 Domain records, and 383 atomic Kits (825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac).\n"
+}

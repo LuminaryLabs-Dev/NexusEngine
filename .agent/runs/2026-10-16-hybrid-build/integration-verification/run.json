@@ -1,0 +1,112 @@
+{
+  "id": "combined-main-verification",
+  "goal": "Verify host build and existing spatial changes after preserving the concurrent Camel main commit. APK/Flatpak hardware goals remain incomplete.",
+  "workspaceKind": "file",
+  "adapterId": "repository-verification-adapter",
+  "stageOrder": [
+    "read",
+    "capture-before",
+    "plan",
+    "validate",
+    "submit",
+    "observe",
+    "verify",
+    "capture-after",
+    "observed-differences"
+  ],
+  "currentStage": "complete",
+  "stageResults": [
+    {
+      "stage": "read",
+      "ok": true,
+      "startedAt": "2026-10-16T23:42:13.981Z",
+      "completedAt": "2026-10-16T23:42:14.678Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "capture-before",
+      "ok": true,
+      "startedAt": "2026-10-16T23:42:14.679Z",
+      "completedAt": "2026-10-16T23:42:15.209Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "plan",
+      "ok": true,
+      "startedAt": "2026-10-16T23:42:15.211Z",
+      "completedAt": "2026-10-16T23:42:15.215Z",
+      "result": {
+        "ok": true,
+        "planId": "combined-main-verification-plan",
+        "commandCount": 14
+      }
+    },
+    {
+      "stage": "validate",
+      "ok": true,
+      "startedAt": "2026-10-16T23:42:15.216Z",
+      "completedAt": "2026-10-16T23:42:15.655Z",
+      "result": {
+        "ok": true,
+        "issueCount": 0
+      }
+    },
+    {
+      "stage": "submit",
+      "ok": true,
+      "startedAt": "2026-10-16T23:42:15.655Z",
+      "completedAt": "2026-10-16T23:43:44.154Z",
+      "result": {
+        "ok": true,
+        "submitted": true,
+        "runId": "combined-main-verification"
+      }
+    },
+    {
+      "stage": "observe",
+      "ok": true,
+      "startedAt": "2026-10-16T23:43:44.155Z",
+      "completedAt": "2026-10-16T23:43:44.156Z",
+      "result": {
+        "ok": true,
+        "status": "completed",
+        "runId": "combined-main-verification"
+      }
+    },
+    {
+      "stage": "verify",
+      "ok": true,
+      "startedAt": "2026-10-16T23:43:44.158Z",
+      "completedAt": "2026-10-16T23:43:44.888Z",
+      "result": {
+        "ok": true,
+        "checkCount": 14
+      }
+    },
+    {
+      "stage": "capture-after",
+      "ok": true,
+      "startedAt": "2026-10-16T23:43:44.889Z",
+      "completedAt": "2026-10-16T23:43:45.389Z",
+      "result": {
+        "ok": true
+      }
+    },
+    {
+      "stage": "observed-differences",
+      "ok": true,
+      "startedAt": "2026-10-16T23:43:45.390Z",
+      "completedAt": "2026-10-16T23:43:45.397Z",
+      "result": {
+        "ok": true,
+        "structuredChanges": 0,
+        "visualChanges": 0
+      }
+    }
+  ],
+  "completedAt": "2026-10-16T23:43:45.398Z"
+}

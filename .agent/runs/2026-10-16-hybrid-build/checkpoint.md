@@ -23,3 +23,7 @@ The untouched 3efccc20 revision also fails the default catalog/public-entry gate
 Verified native substitutions, broader typed lowering and native domain implementations, native asynchronous/object bindings, third-party Node package/addon closure, redistributable runtime closure, Android Node validation, real Vulkan/OpenXR rendering, Linux target integration, device delivery and hardware evidence, and the separate management/kiosk product gates remain incomplete. These are not marked as completed or simulated successes.
 
 Confidence: high for the tested Mac host subset; overall completion cannot be claimed. User authorizes pushing this verified checkpoint to main. Agora consumes a permanent exact engine commit after publication; its frozen source locks remain unchanged.
+
+## Concurrent main integration
+
+Remote main advanced to 109f5c53 (experimental Camel). Preserved its source, native artifact and generator policy; regenerated combined catalogs for 22 roots, 196 records and 383 atoms. No Camel implementation was changed. A native arithmetic smoke returned 42. Combined verification is recorded separately in integration-verification, preserving the earlier attempt.

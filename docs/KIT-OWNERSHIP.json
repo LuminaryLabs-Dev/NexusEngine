@@ -1,10 +1,10 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1299,
-    "manifestProvenPublicAtoms": 382,
+    "manifestOwnedInternalModules": 1304,
+    "manifestProvenPublicAtoms": 383,
     "rootContractModules": 25,
-    "sourceModules": 1706,
+    "sourceModules": 1712,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -12118,6 +12118,144 @@
       "proof": null,
       "publicExports": [
         "subdomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/execution/runtime.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCamelRuntime"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/camel"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/camel"
+      ],
+      "path": "src/core-domains/camel/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCamelDomain",
+        "createCamelRuntime",
+        "createCamelRuntimeKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camel/runtime"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camel",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camel/runtime"
+      ],
+      "path": "src/core-domains/camel/kits/runtime-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camel-runtime-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camel-runtime-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/camel/validation/native-evidence.json"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCamelRuntimeKit"
+      ],
+      "responsibility": "Execute a pinned bundled Camel interpreter against shared Nexus instances.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/nexus-api/binding.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createNexusBinding"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/runtime/native.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "loadNativeRuntime"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -43505,7 +43643,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "c81d8eb3d861abf8098814631c8eab623c759d0870168e261efa8bd77c37decc",
+  "registrySha256": "825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

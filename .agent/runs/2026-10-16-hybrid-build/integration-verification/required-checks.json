@@ -1,0 +1,16 @@
+[
+  "contract-parity",
+  "catalog-pending-baseline",
+  "ownership",
+  "public-root",
+  "active-docs",
+  "interaction",
+  "presentation",
+  "build-domain",
+  "native-lowering",
+  "host-native",
+  "build-loop",
+  "multi-target",
+  "mcp-build",
+  "quickjs"
+]

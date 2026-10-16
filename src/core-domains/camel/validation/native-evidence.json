@@ -1,0 +1,61 @@
+{
+  "status": "native-slice-pass",
+  "overall": "PARTIAL",
+  "nexusBase": "3efccc20f127380452cd1fb25fdba9d5164f7341",
+  "upstreamCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+  "native": {
+    "sharedInstance": true,
+    "asyncNexusCalls": true,
+    "eventLoopTicks": 11,
+    "bidirectionalState": true,
+    "cancellation": true
+  },
+  "installed": {
+    "conformanceCases": 8,
+    "actualInstalledDataMutation": true,
+    "permissionDenied": true,
+    "snapshotRoundtrip": true,
+    "result": {
+      "logs": [],
+      "status": "PASS",
+      "value": {
+        "id": "camel-proof",
+        "records": []
+      }
+    }
+  },
+  "lifecycle": {
+    "eventDelivery": true,
+    "subscriptionDisposed": true,
+    "exactLargeInteger": true,
+    "cooperativeCancellation": true
+  },
+  "existingUpstreamTestsPassed": 44,
+  "target": "darwin-arm64",
+  "unsupported": [
+    "browser",
+    "other native targets",
+    "complete orchestration and live-stack checkpoints"
+  ],
+  "note": "Cancellation is specifically proven by lifecycle.cooperativeCancellation, not the earlier native-proof budget-or-cancel case.",
+  "packedConsumer": {
+    "packedConsumer": true,
+    "globalCamelRequired": false,
+    "spaceInInstallPath": true,
+    "arithmetic": 42,
+    "registryDiscovery": true,
+    "sharedDataDomain": true,
+    "permissionDenial": true,
+    "cancellation": true,
+    "snapshot": true,
+    "node": "v25.8.1",
+    "platform": "darwin",
+    "arch": "arm64"
+  },
+  "repositoryChecks": {
+    "manifestExecutionParity": 382,
+    "ownershipViolations": 0,
+    "catalogCheck": "PASS with --allow-pending for existing Authoring records",
+    "fullSuite": "Stopped at pre-existing n:authoring:create pending proof"
+  }
+}

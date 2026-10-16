@@ -1,0 +1,11 @@
+{
+  "stage": "submit",
+  "ok": true,
+  "startedAt": "2026-10-16T23:42:15.655Z",
+  "completedAt": "2026-10-16T23:43:44.154Z",
+  "result": {
+    "ok": true,
+    "submitted": true,
+    "runId": "combined-main-verification"
+  }
+}

@@ -1,0 +1,1 @@
+Verify host build and existing spatial changes after preserving the concurrent Camel main commit. APK/Flatpak hardware goals remain incomplete.

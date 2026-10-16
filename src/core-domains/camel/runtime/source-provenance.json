@@ -1,0 +1,282 @@
+{
+  "nexusBase": "3efccc20f127380452cd1fb25fdba9d5164f7341",
+  "camelCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+  "files": [
+    {
+      "path": "Camel/examples/agent_planner.camel",
+      "upstreamGitBlob": "1beb4633a3100159068ee2819d649141091fe33f",
+      "localSha256": "e8313850681ea4460ab6410a325586da393f6409623be8f63efc5123bf045341",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/audio_note_summarizer.camel",
+      "upstreamGitBlob": "5fd4ee6a68c7618f1cbc84f06d4de528e9f32b09",
+      "localSha256": "45dfb5a105b323b375042e039de0d81250019f0454f8492dd9e497f93eae390e",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/audio_note_summarizer_installed.camel",
+      "upstreamGitBlob": "d82e637bb4313f636456dd6f3612b2baa98458f5",
+      "localSha256": "f59de421a70450876845256ca64729af0478a093055bd9ac9163b0a9f36cee3a",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/modules/integer_math.camel",
+      "upstreamGitBlob": "56c19b00df5139b145bb380c89fb7a073308e272",
+      "localSha256": "2007cc06eb25121a59d87d47d9a579fc76055d2d49bfb9a441dfc97c64a8dba2",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/multi_model_review.camel",
+      "upstreamGitBlob": "b9ac3eed61fde752a79ebb7e25a4bc48a435c3e0",
+      "localSha256": "b0e3e2e319a3fcd56d734e7283cf6308e58bf0c2112552e38bb88f3076a0e5ad",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/orchestration.camel",
+      "upstreamGitBlob": "75a81cd9d656204f790b36dceb43b773fd5fce0f",
+      "localSha256": "d1bde841ae4c4e5352c2065fff7caf2c53b4fd46e78a8a9e1169d7865e67c3aa",
+      "modified": false
+    },
+    {
+      "path": "Camel/examples/programming_core.camel",
+      "upstreamGitBlob": "8cf292d80fd9a64d8e0126684cd3d4dcff476024",
+      "localSha256": "42660045831e230cf6a46cf2a01e8bdcdb605425fcd4408f827fe0bfdee5e7e1",
+      "modified": false
+    },
+    {
+      "path": "LICENSE",
+      "upstreamGitBlob": "b09cd7856d58590578ee1a4f3ad45d1310a97f87",
+      "localSha256": "50e6751797c50dedd75ef1b8a0d9e42f5f8472e9fbce91f34718e9f97b0c780a",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/assignment.camel",
+      "upstreamGitBlob": "976bd2ca234ae6b4a6a2ccefdc7edce93c522544",
+      "localSha256": "8ca1b43c27c4ada6565f525ecec235180ad712daa0aa51bd6e0890e255f51ef5",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/call-argument.camel",
+      "upstreamGitBlob": "b76b0c03cdbbaab83f950815d56f7f9d634ba299",
+      "localSha256": "440002706106e7efa2053baf3458442b90abbc76193c723d127230bba9d87a36",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/condition.camel",
+      "upstreamGitBlob": "8adfd9957bf6b097ec2821dca83b085fe15c300b",
+      "localSha256": "d1e7e402fedea09fb8f21f9c5899faef36a3cf03da2480fc0b256440850c711f",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/default-value.camel",
+      "upstreamGitBlob": "efeac9b2b92d3d622150db4e8cd6373b405fc6aa",
+      "localSha256": "d3e531601d0d34d9837c9fa10c2d45f8b47d27bdec4bb00ea74ccae816c31976",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/return.camel",
+      "upstreamGitBlob": "cf5d2766e09631255f0dbb9cb8b9c1eec2d827bc",
+      "localSha256": "ee343c1f3b6ac2c2581205bcd2c7ef7bc74f9df75058a514a34af5f396b3e4ce",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/fail/version.camel",
+      "upstreamGitBlob": "c614600bc207237cbec31c46c47d0617a98b9da3",
+      "localSha256": "ff17e6103facde7d6bfe6c555242074eac1f9059631d37a14f9aab90914f5f20",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/manifest.json",
+      "upstreamGitBlob": "698ee5945d6598bc252324b3ef890eea713722da",
+      "localSha256": "9633b9ead4887e5ebab12333d6fef0c9c3bab3a0a33a2d8dfb5394d70a7812e2",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/pass/gradual-boundary.camel",
+      "upstreamGitBlob": "e67f978d9f7d7bd4d8265bbe2a5ba4ae0773871f",
+      "localSha256": "d819cb919d62f792044d9bd32e954306de878e91f6c543d8d248c5935d1d5725",
+      "modified": false
+    },
+    {
+      "path": "conformance/0.2/pass/typed-program.camel",
+      "upstreamGitBlob": "ef4b25cb64ee58d2e2d48b221464d11c50f6f49e",
+      "localSha256": "60c43abf1855b069cc629f0657be200fc0e9e87b50513282069b10e02785fe61",
+      "modified": false
+    },
+    {
+      "path": "conformance/README.md",
+      "upstreamGitBlob": "674b12c615736e01de95946072f6c552f36d8af2",
+      "localSha256": "84c32da77a1a67f87b4baa3d3a7e567c8bd52f72962fde9301ddc8ed1fdb9509",
+      "modified": false
+    },
+    {
+      "path": "docs/LANGUAGE_SPEC.md",
+      "upstreamGitBlob": "4b35102f77cbe13939b718dcd6604466c0d8f720",
+      "localSha256": "521ec89d65bae623a972d9ae14ad6dc91a15a93d28f4a2dbde0fa7edbd3a157c",
+      "modified": false
+    },
+    {
+      "path": "libraries/audio/note_summarizer.camel",
+      "upstreamGitBlob": "e44128843da339a6a55a446b88314b6c31757885",
+      "localSha256": "5c5dd58abf7ed75c44d330eee056e49aaae69fe0727a1670aa9350b40f8e338b",
+      "modified": false
+    },
+    {
+      "path": "libraries/index.json",
+      "upstreamGitBlob": "c548a7c2b252fedfb63e9476a6fe8ae3bce8eae5",
+      "localSha256": "5c8d16234d132aa12c7dd9b662575d0b1e1ec7b6df5c3f6c14c5f6df8c96ae2f",
+      "modified": false
+    },
+    {
+      "path": "libraries/standard/core.camel",
+      "upstreamGitBlob": "99aa88c8f9fcceaf7f3eecc1476bb65e904c574e",
+      "localSha256": "7d5a41437e1bcb1a9bce86a037d5c3a076abf8b9b8fd489ec214915ca334be2b",
+      "modified": false
+    },
+    {
+      "path": "packages/camel-library-manager/Cargo.toml",
+      "upstreamGitBlob": "cff3d644891f2d319dfaf1170bc10bd67fc803bf",
+      "localSha256": "52722dd77e6aa93d981f10192b4386a36d119cd1c1c10b0811f55136eca51935",
+      "modified": false
+    },
+    {
+      "path": "packages/camel-library-manager/src/lib.rs",
+      "upstreamGitBlob": "2f0194dfe88670a7cd104a2ea8bb8fcea88eadb6",
+      "localSha256": "0efec769c688134b44be76cfe52296a3c9d3c5474c2b888b373dcd463e235a7e",
+      "modified": false
+    },
+    {
+      "path": "runtime/Cargo.lock",
+      "upstreamGitBlob": "fa490edf7e0fca2a72779a3694ccbf3bda03586c",
+      "localSha256": "ed741673c7bf8e0e7029f9627e4a16b79b542365e9ef173eba55b89334363f42",
+      "modified": false
+    },
+    {
+      "path": "runtime/Cargo.toml",
+      "upstreamGitBlob": "5cbe18bf02de1bed186ac069cc52d691bfb240d8",
+      "localSha256": "ead11d603b6bee19dc15e86b16799a8d2986059ffce836323c3030f20f8b2177",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/agents.rs",
+      "upstreamGitBlob": "51598e1cfa0319a379494827fe789ef3baebd44b",
+      "localSha256": "0032379c5d03bde1e3bf17c4a82382ccc78a4be217cc8e430c09e63271cedfb7",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/analysis.rs",
+      "upstreamGitBlob": "d9848a2c54435614c3706b438eadfc877ea18830",
+      "localSha256": "78014458e4a59fa939c4c51cd8923b44a39fe3a84e5d9a76d205e088014cccd1",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/check.rs",
+      "upstreamGitBlob": "54b91c781da1cce58fc5f80f4a4db93f040adfa5",
+      "localSha256": "c7eeafa9a733a425dd5482ad13c5188ea6b3435b6908107b38c53d9f706ee25d",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/eval.rs",
+      "upstreamGitBlob": "9aba23b3efe82f6b9b586923abe4fd9448721066",
+      "localSha256": "6201d1f81b76ad14c038581fe3b2dab8614a106bd8ef6bbcc4cc83de47e59b9e",
+      "modified": true
+    },
+    {
+      "path": "runtime/src/language/host.rs",
+      "upstreamGitBlob": "018560621ce50a8128b45adac9bdd8e39813e0d1",
+      "localSha256": "51bf0bf764bc10329f39a8ecf9a300fe3b92daf325263804be0103e2a8bd7446",
+      "modified": true
+    },
+    {
+      "path": "runtime/src/language/inspect.rs",
+      "upstreamGitBlob": "7b624898d57689e6166aae643c7769fe56186754",
+      "localSha256": "caa5ceb0cb880a71101e0b2893c3b2e570a8764f7cc252a42911a345f4fd83af",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/lexer.rs",
+      "upstreamGitBlob": "585f78316cf74d317d85597c792a8ff8577098cb",
+      "localSha256": "6bdad31e4d0af790cc527f20efbde99bc91ea14f3d3c5e9c7ce68eb6b96ea973",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/lint.rs",
+      "upstreamGitBlob": "6ea7a9b8341bd3c5d3057650d3197c3d315cd7a2",
+      "localSha256": "73608bff35c353c14b3df8ba5251f4d8e8bdaaa069c13962b997392d6acf4659",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/mod.rs",
+      "upstreamGitBlob": "3d24ef791031f18233ffd3c43fc965c5019c4469",
+      "localSha256": "ec53e7313b26b530c7b4ea99a18d2f5e4c3acb1e0f29b72f5e2c1838dba3fe7f",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/parser.rs",
+      "upstreamGitBlob": "336d1c95b4ca55e8ea92d87ce6df0e14b1fe2dcf",
+      "localSha256": "4df0fae2691b20eab233e024cbf240491b908562f199bab3eae2fb7f31374ffe",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/static_types.rs",
+      "upstreamGitBlob": "db348380b3cd05c5ed895931d78c99f245b8e151",
+      "localSha256": "655421e86c79540dc5561e369859d36207589a73598603dcefd8edd159df0c37",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/syntax.rs",
+      "upstreamGitBlob": "bdad2133f1bad5138d96f5c6cc66c963e52cb2dc",
+      "localSha256": "d9fedb47fd3e4d3b7c84c95c7da1f6bbdd8af770040cffec8402985fc925edf0",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/language/value.rs",
+      "upstreamGitBlob": "eed4b5b55a69c92c5978e8171c17d28f0ce1d24d",
+      "localSha256": "7e4d7346d674d9dfd631ff9beb84d993b4daf83251ca3c648f273eb20f1dbc83",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/lib.rs",
+      "upstreamGitBlob": "8a82bac8bf5540692f3814426ddd82e5913519bb",
+      "localSha256": "87bcdc5c2995e1082282e21a2389b6fd62154b7c698c599112ba021358f24a79",
+      "modified": false
+    },
+    {
+      "path": "runtime/src/main.rs",
+      "upstreamGitBlob": "69ed04d5b533ec03a9db982f5838a00aef068460",
+      "localSha256": "746b2169a1478cf899c7667101eda550c582129248f608c0e1935fc725eb583a",
+      "modified": false
+    },
+    {
+      "path": "runtime/tests/cli.rs",
+      "upstreamGitBlob": "9033a3858d07eb13baa1e5d8824a6162e326598a",
+      "localSha256": "dee2704e91d9b062997c4e907d6ba4c687ca1be6d9367f935433de515e3a7029",
+      "modified": false
+    },
+    {
+      "path": "runtime/tests/conformance.rs",
+      "upstreamGitBlob": "e155fc9cfeff8fefd5da793cda694f7a7e077414",
+      "localSha256": "4722c259af4e32bed6a96955885e541006010242ff6aef619e6e0f68cc8ae009",
+      "modified": false
+    },
+    {
+      "path": "runtime/tests/http_provider.rs",
+      "upstreamGitBlob": "c3a32afae215a361698ee989d5b95989f72f5228",
+      "localSha256": "ed132fd136807e9bfaaa70fa30ef573370e6596668a1230b51b7618d8cc85662",
+      "modified": false
+    },
+    {
+      "path": "runtime/tests/language.rs",
+      "upstreamGitBlob": "f4dd364f34cee603209d93a768d1ac87cd81e33d",
+      "localSha256": "04983bf7ff0c803f18ec16e9e926b97f1d465d184e58805153ee1490d6fb96ef",
+      "modified": false
+    },
+    {
+      "path": "runtime/tests/studio_api.rs",
+      "upstreamGitBlob": "ab44a0ebb518fa2b3707ef41b6fc7b7a4ca95396",
+      "localSha256": "b35e7679e4b5981d4ecfc024469b1c1d45d62ca56ad4c51bdc172ed4e6d90569",
+      "modified": false
+    }
+  ]
+}
