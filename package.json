@@ -126,6 +126,8 @@
     "./domains/build/toolchain/toolchain-discovery": "./src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
     "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js",
+    "./domains/camel": "./src/core-domains/camel/index.js",
+    "./domains/camel/runtime": "./src/core-domains/camel/kits/runtime-kit/index.js",
     "./domains/catalog": "./src/core-domains/catalog.js",
     "./domains/composition": "./src/core-domains/composition/index.js",
     "./domains/composition/registry": "./src/core-domains/composition/kits/composition-registry-kit/index.js",

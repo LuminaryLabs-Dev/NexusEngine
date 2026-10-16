@@ -371,10 +371,14 @@ if (buildDomains.length) {
 }
 
 for (const { manifestPath, manifest } of records) {
-  outputs.set(
-    path.join(path.dirname(manifestPath), "README.md"),
-    renderSourceDomainReadme(manifest, registryHash)
-  );
+  const readmePath = path.join(path.dirname(manifestPath), "README.md");
+  let rendered = renderSourceDomainReadme(manifest, registryHash);
+  const existing = fs.existsSync(readmePath) ? fs.readFileSync(readmePath, "utf8") : null;
+  // The central catalog binds current source integrity. Retain unchanged Domain
+  // documentation and its historical generation stamp during additive registration.
+  const withoutStamp = (text) => text.replace(/^- Registry SHA-256:.*$/m, "");
+  if (existing !== null && withoutStamp(existing) === withoutStamp(rendered)) rendered = existing;
+  outputs.set(readmePath, rendered);
 }
 
 for (const [file, contents] of outputs) writeOrCheck(file, contents);

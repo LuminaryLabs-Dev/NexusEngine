@@ -4276,6 +4276,94 @@
       ]
     },
     {
+      "domainPath": "n:camel",
+      "forbiddenResponsibilities": [
+        "composition dependency planning",
+        "game rules",
+        "model weights",
+        "other domain state"
+      ],
+      "id": "camel-domain",
+      "inputs": [],
+      "label": "Camel",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Camel API without duplicate state or systems.",
+        "install": "Create one Camel state owner and public API.",
+        "replay": "Reapply equivalent Camel inputs deterministically.",
+        "reset": "Restore the configured Camel baseline.",
+        "snapshot": "Serialize Camel state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Camel provided capability.",
+          "deterministic": true,
+          "id": "n:camel",
+          "schema": null
+        },
+        {
+          "description": "Camel provided capability.",
+          "deterministic": true,
+          "id": "camel:execution",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "Camel execution receipts",
+        "Camel invocations",
+        "Camel runtime binding",
+        "Camel source identity"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Camel state and registry records.",
+          "id": "camel-domain-state",
+          "owner": "camel-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": null,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Camel contract fixture.",
+            "deterministic": true,
+            "id": "camel-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Camel composition fixture.",
+            "deterministic": true,
+            "id": "camel-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/camel/validation/native-evidence.json"
+        ],
+        "status": "proven"
+      },
+      "requires": [],
+      "responsibility": "Own bundled Camel execution and native binding to the installed public Nexus API graph.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "experimental",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Camel behavior.",
+          "deterministic": true,
+          "id": "n:camel:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:composition",
       "forbiddenResponsibilities": [
         "application approval",
@@ -27050,6 +27138,73 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "camel",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:camel",
+      "environments": [
+        "node"
+      ],
+      "id": "camel-runtime-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": null,
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camel-runtime-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camel-runtime-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/camel/validation/native-evidence.json"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "camel:execution",
+        "n:camel"
+      ],
+      "requires": [],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Execute a pinned bundled Camel interpreter against shared Nexus instances.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCamelRuntimeKit",
+        "module": "./src/core-domains/camel/kits/runtime-kit/index.js",
+        "publicSubpath": "./domains/camel/runtime"
+      },
+      "status": "experimental",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "composition",
       "atomic": true,
       "composes": [],
@@ -47990,6 +48145,8 @@
     "./domains/build/toolchain/toolchain-discovery": "./src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
     "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js",
+    "./domains/camel": "./src/core-domains/camel/index.js",
+    "./domains/camel/runtime": "./src/core-domains/camel/kits/runtime-kit/index.js",
     "./domains/composition": "./src/core-domains/composition/index.js",
     "./domains/composition/registry": "./src/core-domains/composition/kits/composition-registry-kit/index.js",
     "./domains/compute": "./src/core-domains/compute/index.js",
@@ -48316,7 +48473,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+  "registryHash": "98ee7c35260eb49eb820aac0100c1ba5715212b38175bfc8c0e39cc9864aecf8",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -50628,6 +50785,166 @@
       "sha256": "f2a7977f960cc76b9a6b462544a5bbc12c00be7787212cb1a363c43eec084c4d"
     },
     {
+      "path": "src/core-domains/camel/domain.manifest.js",
+      "sha256": "3279ec2349004527d4de71879a4944170826f7886308f9e8854f8496b49e11c8"
+    },
+    {
+      "path": "src/core-domains/camel/execution/runtime.js",
+      "sha256": "814dfb7cca2a03cc97b9983a761f0456b5e31ab131d0eb4bf0533498c3071c50"
+    },
+    {
+      "path": "src/core-domains/camel/index.js",
+      "sha256": "7d4f0a5631278b7b435200b1639e2f8d2ca36f7e61da2f24f68b6497da990877"
+    },
+    {
+      "path": "src/core-domains/camel/kits/runtime-kit/index.js",
+      "sha256": "b45283cb3d9e687cad45f303437828c9614d6944b0e91067ad8fb03c58f37a67"
+    },
+    {
+      "path": "src/core-domains/camel/nexus-api/binding.js",
+      "sha256": "502a8351117600322d06b8ae80df6bddb40d13403e7f9277de8b28e84b4b585a"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/artifacts/integrity.json",
+      "sha256": "ff34898f258ead85f8f9a1e6e91c1efeaf291ddc4b727151b0810d8c065bdc84"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/bindings/Cargo.lock",
+      "sha256": "2b196c27fc86c1327d14c68827d4a969ff449d7736debc1d24ece30d63b9c898"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/bindings/Cargo.toml",
+      "sha256": "6ab6ab5632c8e8931bfc503ebfadcfe1a1f3d9a0126e32b7931f1789f1c0d628"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/bindings/build.rs",
+      "sha256": "14b20970bfc2cc39c7558b846cb4d744820f6c241e9dceac0e338a543a99127a"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/bindings/src/lib.rs",
+      "sha256": "3fa35f9b124484cd813a805364a2ee6614b1010f6d1b58505bb64e0423454470"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/licenses/index.json",
+      "sha256": "1208c8cc170380fd9ca31d2b5c0a29f89d8b29cee64673bb81f6c049a5e162f9"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/native.js",
+      "sha256": "bfdd29210291952f2e71e20764ff2ec4c476478848ae12ff899f6f63459f6b26"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/source-provenance.json",
+      "sha256": "efefd3c856258091d9522a1134c1e4ec9e0e7f94d84907015caecaa8953ab918"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/conformance/0.2/manifest.json",
+      "sha256": "9633b9ead4887e5ebab12333d6fef0c9c3bab3a0a33a2d8dfb5394d70a7812e2"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/libraries/index.json",
+      "sha256": "5c8d16234d132aa12c7dd9b662575d0b1e1ec7b6df5c3f6c14c5f6df8c96ae2f"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/packages/camel-library-manager/Cargo.toml",
+      "sha256": "52722dd77e6aa93d981f10192b4386a36d119cd1c1c10b0811f55136eca51935"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/packages/camel-library-manager/src/lib.rs",
+      "sha256": "0efec769c688134b44be76cfe52296a3c9d3c5474c2b888b373dcd463e235a7e"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/Cargo.lock",
+      "sha256": "ed741673c7bf8e0e7029f9627e4a16b79b542365e9ef173eba55b89334363f42"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/Cargo.toml",
+      "sha256": "ead11d603b6bee19dc15e86b16799a8d2986059ffce836323c3030f20f8b2177"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/agents.rs",
+      "sha256": "0032379c5d03bde1e3bf17c4a82382ccc78a4be217cc8e430c09e63271cedfb7"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/analysis.rs",
+      "sha256": "78014458e4a59fa939c4c51cd8923b44a39fe3a84e5d9a76d205e088014cccd1"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/check.rs",
+      "sha256": "c7eeafa9a733a425dd5482ad13c5188ea6b3435b6908107b38c53d9f706ee25d"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/eval.rs",
+      "sha256": "6201d1f81b76ad14c038581fe3b2dab8614a106bd8ef6bbcc4cc83de47e59b9e"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/host.rs",
+      "sha256": "51bf0bf764bc10329f39a8ecf9a300fe3b92daf325263804be0103e2a8bd7446"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/inspect.rs",
+      "sha256": "caa5ceb0cb880a71101e0b2893c3b2e570a8764f7cc252a42911a345f4fd83af"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/lexer.rs",
+      "sha256": "6bdad31e4d0af790cc527f20efbde99bc91ea14f3d3c5e9c7ce68eb6b96ea973"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/lint.rs",
+      "sha256": "73608bff35c353c14b3df8ba5251f4d8e8bdaaa069c13962b997392d6acf4659"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/mod.rs",
+      "sha256": "ec53e7313b26b530c7b4ea99a18d2f5e4c3acb1e0f29b72f5e2c1838dba3fe7f"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/parser.rs",
+      "sha256": "4df0fae2691b20eab233e024cbf240491b908562f199bab3eae2fb7f31374ffe"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/static_types.rs",
+      "sha256": "655421e86c79540dc5561e369859d36207589a73598603dcefd8edd159df0c37"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/syntax.rs",
+      "sha256": "d9fedb47fd3e4d3b7c84c95c7da1f6bbdd8af770040cffec8402985fc925edf0"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/language/value.rs",
+      "sha256": "7e4d7346d674d9dfd631ff9beb84d993b4daf83251ca3c648f273eb20f1dbc83"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/lib.rs",
+      "sha256": "87bcdc5c2995e1082282e21a2389b6fd62154b7c698c599112ba021358f24a79"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/src/main.rs",
+      "sha256": "746b2169a1478cf899c7667101eda550c582129248f608c0e1935fc725eb583a"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/tests/cli.rs",
+      "sha256": "dee2704e91d9b062997c4e907d6ba4c687ca1be6d9367f935433de515e3a7029"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/tests/conformance.rs",
+      "sha256": "4722c259af4e32bed6a96955885e541006010242ff6aef619e6e0f68cc8ae009"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/tests/http_provider.rs",
+      "sha256": "ed132fd136807e9bfaaa70fa30ef573370e6596668a1230b51b7618d8cc85662"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/tests/language.rs",
+      "sha256": "04983bf7ff0c803f18ec16e9e926b97f1d465d184e58805153ee1490d6fb96ef"
+    },
+    {
+      "path": "src/core-domains/camel/runtime/upstream/runtime/tests/studio_api.rs",
+      "sha256": "b35e7679e4b5981d4ecfc024469b1c1d45d62ca56ad4c51bdc172ed4e6d90569"
+    },
+    {
+      "path": "src/core-domains/camel/validation/native-evidence.json",
+      "sha256": "4b5f14d43943bdce118adc6822570a831f5cb533f1871abf00aa1549af0ddbfd"
+    },
+    {
       "path": "src/core-domains/composition/adapters/mcp/composition-mcp-provider.js",
       "sha256": "0e945f1d113bb384db21a1b6dad200bd5680c52d94979d96b7ff16dbfbe26979"
     },
@@ -51417,7 +51734,7 @@
     },
     {
       "path": "src/core-domains/physics/body/body-contracts.js",
-      "sha256": "2110d8bfd516cacc98f97ec29639db70f890cd945d23c01450470610f4c5d87e"
+      "sha256": "954e95deed0d9c58d7e4fa858866ac14ce90acaa0cd57742fd5a5dd59915684c"
     },
     {
       "path": "src/core-domains/physics/body/body-manifests.js",

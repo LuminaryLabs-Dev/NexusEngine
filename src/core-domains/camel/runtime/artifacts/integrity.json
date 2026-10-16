@@ -1,0 +1,10 @@
+{
+  "schema": "nexusengine.camel-artifacts/1",
+  "upstreamCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+  "artifacts": {
+    "darwin-arm64": {
+      "sha256": "5a9b849eec77b646e80c7e4fb2b6b96660ed76cfa182824baf6b6d78fa7c71ca",
+      "napi": 8
+    }
+  }
+}

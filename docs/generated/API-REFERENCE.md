@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+Registry SHA-256: `98ee7c35260eb49eb820aac0100c1ba5715212b38175bfc8c0e39cc9864aecf8`
 
 ## Domains
 
@@ -54,6 +54,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `n:build:target:openxr` | `n:build:target` | Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts. | stable-candidate |
 | `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
 | `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
+| `n:camel` | - | Own bundled Camel execution and native binding to the installed public Nexus API graph. | experimental |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
 | `n:compute` | - | Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts. | stable-candidate |
 | `n:compute:graph` | `n:compute` | Own portable compute topology, dependencies, and deterministic plans. | stable-candidate |
@@ -299,6 +300,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `cross-runtime-parity-kit` | `n:build:proof` | `nexusengine/domains/build/proof/cross-runtime-parity` | Compare canonical replay outputs across target runtimes. |
 | `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
 | `web-module-linker-kit` | `n:build:compile` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
+| `camel-runtime-kit` | `n:camel` | `nexusengine/domains/camel/runtime` | Execute a pinned bundled Camel interpreter against shared Nexus instances. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
 | `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |

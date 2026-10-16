@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+Registry SHA-256: `98ee7c35260eb49eb820aac0100c1ba5715212b38175bfc8c0e39cc9864aecf8`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -50,6 +50,7 @@ Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35f
 | `n:build:target:openxr` | `n:build:target` | - |
 | `n:build:target:android-xr` | `n:build:target` | - |
 | `n:build:target:pcvr` | `n:build:target` | - |
+| `n:camel` | - | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
 | `n:compute:graph` | `n:compute` | - |
