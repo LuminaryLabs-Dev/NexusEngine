@@ -1,0 +1,9 @@
+{
+  "schema": "nexusengine.camel-wasm-artifact/1",
+  "sha256": "0fba715a298d006548c109def880e1dedb0add5e002fc763ba55f4209ad6361f",
+  "bytes": 1577530,
+  "upstreamCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+  "rust": "1.90.0",
+  "binaryen": "123.0.0",
+  "target": "wasm32-unknown-unknown"
+}

@@ -1,0 +1,211 @@
+{
+  "schema": "nexusengine.camel-browser-provenance/1",
+  "sourceBaseline": {
+    "nexusMain": "bd06da114b7d41d0dadfa641dd9c77a0292dc739",
+    "camelCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+    "camelVersion": "0.2.0",
+    "upstreamUpgrade": false
+  },
+  "toolchain": {
+    "rust": "1.90.0 (1159e78c4 2025-09-14)",
+    "target": "wasm32-unknown-unknown",
+    "binaryen": "123.0.0",
+    "node": "24.19.0",
+    "npm": "11.9.0",
+    "runtimeAbi": "raw-abi-with-binaryen-asyncify/1"
+  },
+  "artifact": {
+    "schema": "nexusengine.camel-wasm-artifact/1",
+    "sha256": "0fba715a298d006548c109def880e1dedb0add5e002fc763ba55f4209ad6361f",
+    "bytes": 1577530,
+    "upstreamCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+    "rust": "1.90.0",
+    "binaryen": "123.0.0",
+    "target": "wasm32-unknown-unknown"
+  },
+  "buildSourceHash": "0b84d6367aba627a09e728b5217de4ab94860563bda860c092c75ea619017eb2",
+  "buildInputs": [
+    {
+      "path": "runtime/upstream/packages/camel-library-manager/Cargo.toml",
+      "sha256": "52722dd77e6aa93d981f10192b4386a36d119cd1c1c10b0811f55136eca51935"
+    },
+    {
+      "path": "runtime/upstream/packages/camel-library-manager/src/lib.rs",
+      "sha256": "0efec769c688134b44be76cfe52296a3c9d3c5474c2b888b373dcd463e235a7e"
+    },
+    {
+      "path": "runtime/upstream/runtime/Cargo.lock",
+      "sha256": "ed741673c7bf8e0e7029f9627e4a16b79b542365e9ef173eba55b89334363f42"
+    },
+    {
+      "path": "runtime/upstream/runtime/Cargo.toml",
+      "sha256": "d79c2279fa0a83c2d9ec71f79f45930a9d407afeb890647d3f4a40e37eea7f53"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/browser_host.rs",
+      "sha256": "351e8f705f8b40c41d991c4d9b2897b2350d07d89e0e4c38e419a3cd6391ff52"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/agents.rs",
+      "sha256": "0032379c5d03bde1e3bf17c4a82382ccc78a4be217cc8e430c09e63271cedfb7"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/analysis.rs",
+      "sha256": "78014458e4a59fa939c4c51cd8923b44a39fe3a84e5d9a76d205e088014cccd1"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/check.rs",
+      "sha256": "c7eeafa9a733a425dd5482ad13c5188ea6b3435b6908107b38c53d9f706ee25d"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/eval.rs",
+      "sha256": "6ca2e28227fffeb82eaaed17b16f41520b8d0cb7cac770f904fff64ba769552f"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/host.rs",
+      "sha256": "5c7fb7f81362832ffae06c2ef012503880fac38548f5ed7231311ec4d3d35bc9"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/inspect.rs",
+      "sha256": "caa5ceb0cb880a71101e0b2893c3b2e570a8764f7cc252a42911a345f4fd83af"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/lexer.rs",
+      "sha256": "6bdad31e4d0af790cc527f20efbde99bc91ea14f3d3c5e9c7ce68eb6b96ea973"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/lint.rs",
+      "sha256": "73608bff35c353c14b3df8ba5251f4d8e8bdaaa069c13962b997392d6acf4659"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/mod.rs",
+      "sha256": "ed060cb65d9f0cffcb8582dcba11009eb91bc96e5c56516588b0d27702b1bb3c"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/parser.rs",
+      "sha256": "4df0fae2691b20eab233e024cbf240491b908562f199bab3eae2fb7f31374ffe"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/static_types.rs",
+      "sha256": "655421e86c79540dc5561e369859d36207589a73598603dcefd8edd159df0c37"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/syntax.rs",
+      "sha256": "d9fedb47fd3e4d3b7c84c95c7da1f6bbdd8af770040cffec8402985fc925edf0"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/language/value.rs",
+      "sha256": "7e4d7346d674d9dfd631ff9beb84d993b4daf83251ca3c648f273eb20f1dbc83"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/lib.rs",
+      "sha256": "0c21b57e874e4e130a0ec57298667d688b6cc95a076eb988f9c24742b0e18001"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/main.rs",
+      "sha256": "746b2169a1478cf899c7667101eda550c582129248f608c0e1935fc725eb583a"
+    },
+    {
+      "path": "runtime/upstream/runtime/src/native.rs",
+      "sha256": "4e7b7c368f3f672513da189b1c7c77df9691609bc555639b5b672de593454208"
+    },
+    {
+      "path": "runtime/upstream/runtime/tests/cli.rs",
+      "sha256": "dee2704e91d9b062997c4e907d6ba4c687ca1be6d9367f935433de515e3a7029"
+    },
+    {
+      "path": "runtime/upstream/runtime/tests/conformance.rs",
+      "sha256": "4722c259af4e32bed6a96955885e541006010242ff6aef619e6e0f68cc8ae009"
+    },
+    {
+      "path": "runtime/upstream/runtime/tests/http_provider.rs",
+      "sha256": "ed132fd136807e9bfaaa70fa30ef573370e6596668a1230b51b7618d8cc85662"
+    },
+    {
+      "path": "runtime/upstream/runtime/tests/language.rs",
+      "sha256": "04983bf7ff0c803f18ec16e9e926b97f1d465d184e58805153ee1490d6fb96ef"
+    },
+    {
+      "path": "runtime/upstream/runtime/tests/studio_api.rs",
+      "sha256": "b35e7679e4b5981d4ecfc024469b1c1d45d62ca56ad4c51bdc172ed4e6d90569"
+    },
+    {
+      "path": "runtime/wasm/Cargo.lock",
+      "sha256": "48de45aca5f0817a0b34b90864a132189176f8c78eb9c42996dee9c394cc54d0"
+    },
+    {
+      "path": "runtime/wasm/Cargo.toml",
+      "sha256": "a16833c9fb0f6e2c8c14516601e402b3463f81401c8153620bf2dd3c6b4c8f03"
+    },
+    {
+      "path": "runtime/wasm/build.mjs",
+      "sha256": "bf053e42cfc1ee11ab94adc12ec608bc89a8f61a0d0eba26c8edffef80e64851"
+    },
+    {
+      "path": "runtime/wasm/package-lock.json",
+      "sha256": "afb45b071d18f1635016dd54fff7a37df829a09712ba1f87e3ff8f396ac278d2"
+    },
+    {
+      "path": "runtime/wasm/package.json",
+      "sha256": "d5468f73a4bfa583598eba2a647ce47f9fc46928ddc42b7ba89ca0bf526b8015"
+    },
+    {
+      "path": "runtime/wasm/rust-toolchain.toml",
+      "sha256": "ccffa35644e680f8f6db9451a12eb61ba5273d1deed2250ede13edaf37a6c98d"
+    },
+    {
+      "path": "runtime/wasm/src/lib.rs",
+      "sha256": "58ce8caacfb4179b8d39fb97608ce6130a7ca7e417917e87e948c43a1e7c384c"
+    }
+  ],
+  "imports": [
+    "camel.host_request",
+    "camel.log",
+    "camel.now"
+  ],
+  "asyncImports": [
+    "camel.host_request"
+  ],
+  "memory": {
+    "maximumBytes": 134217728,
+    "rustStackBytes": 2097152,
+    "asyncifyStackBytes": 2097152
+  },
+  "runtimeDependencies": [
+    {
+      "crate": "serde",
+      "version": "1.0.229",
+      "licenseDirectory": "runtime/licenses/serde-1.0.229"
+    },
+    {
+      "crate": "serde_core",
+      "version": "1.0.229",
+      "licenseDirectory": "runtime/licenses/serde_core-1.0.229"
+    },
+    {
+      "crate": "serde_json",
+      "version": "1.0.151",
+      "licenseDirectory": "runtime/licenses/serde_json-1.0.151"
+    },
+    {
+      "crate": "itoa",
+      "version": "1.0.18",
+      "licenseDirectory": "runtime/licenses/itoa-1.0.18"
+    },
+    {
+      "crate": "memchr",
+      "version": "2.8.3",
+      "licenseDirectory": "runtime/licenses/memchr-2.8.3"
+    },
+    {
+      "crate": "zmij",
+      "version": "1.0.23",
+      "licenseDirectory": "runtime/licenses/zmij-1.0.23"
+    }
+  ],
+  "rebuildNotes": {
+    "sameCheckoutRepeat": "identical SHA256 on repeated pinned builds",
+    "differentCheckoutPath": "Byte-for-byte reproducibility not claimed; Rust/Cargo crate identity and function layout may vary despite path remapping. Verify any rebuilt artifact and update its integrity record after testing."
+  },
+  "nativeArtifact": "Existing darwin-arm64.node and integrity.json preserved without changes"
+}

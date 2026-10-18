@@ -1,5 +1,7 @@
 use super::{syntax::*, value::Value};
-use crate::{record_microphone, AudioInput, LmStudioClient};
+use crate::{record_microphone, AudioInput};
+#[cfg(not(target_arch = "wasm32"))]
+use crate::LmStudioClient;
 use std::{
     collections::BTreeMap,
     path::{Path, PathBuf},
@@ -11,6 +13,7 @@ pub trait ModelProvider: Send + Sync {
         request: serde_json::Value,
     ) -> std::result::Result<serde_json::Value, String>;
 }
+#[cfg(not(target_arch = "wasm32"))]
 impl ModelProvider for LmStudioClient {
     fn complete(
         &self,
@@ -58,6 +61,8 @@ impl ToolRegistry {
             Ok(Value::String(a[0].to_json(s)?.to_string()))
         })
         .unwrap();
+        #[cfg(not(target_arch = "wasm32"))]
+        {
         r.register("files.read", Capability::FileRead, |a, root, s| {
             count(a, 1, s)?;
             let path = read_path(root, &a[0].text(s)?, s)?;
@@ -128,6 +133,7 @@ impl ToolRegistry {
                 .map_err(|e| Error::at(s, e.to_string()))
         })
         .unwrap();
+        }
         r
     }
     pub fn restrict(&mut self, allowed: &[String]) {
@@ -153,6 +159,7 @@ impl ToolRegistry {
         handler(a, root, s)
     }
 }
+#[cfg(not(target_arch = "wasm32"))]
 fn read_path(root: &Path, requested: &str, s: &Site) -> Result<PathBuf> {
     if Path::new(requested).is_absolute() {
         return Err(Error::at(s, "file path must be relative"));
@@ -210,7 +217,10 @@ pub(crate) fn emit(host: &Host, event: ExecutionEvent) {
 pub(crate) struct Operation {
     host: Host,
     id: u64,
+    #[cfg(not(target_arch = "wasm32"))]
     started: std::time::Instant,
+    #[cfg(target_arch = "wasm32")]
+    started: f64,
     pub success: bool,
 }
 impl Operation {
@@ -230,7 +240,10 @@ impl Operation {
         Self {
             host: host.clone(),
             id,
+            #[cfg(not(target_arch = "wasm32"))]
             started: std::time::Instant::now(),
+            #[cfg(target_arch = "wasm32")]
+            started: crate::browser_now(),
             success: false,
         }
     }
@@ -242,7 +255,10 @@ impl Drop for Operation {
             ExecutionEvent::Finished {
                 id: self.id,
                 success: self.success,
+                #[cfg(not(target_arch = "wasm32"))]
                 elapsed_ms: self.started.elapsed().as_millis().min(u64::MAX as u128) as u64,
+                #[cfg(target_arch = "wasm32")]
+                elapsed_ms: (crate::browser_now() - self.started).max(0.0) as u64,
             },
         );
     }
@@ -270,3 +286,4 @@ impl Default for Host {
         }
     }
 }
+

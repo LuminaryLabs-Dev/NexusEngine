@@ -272,6 +272,9 @@ fn load_module(
                     format!("module '{}' not found beside source", relative.display()),
                 ));
             }
+            #[cfg(target_arch = "wasm32")]
+            return Err(Error::at(site, "Browser filesystem imports unavailable; provide source without imports"));
+            #[cfg(not(target_arch = "wasm32"))]
             crate::libraries::resolve_import(&name)
                 .map_err(|error| Error::at(site, error.to_string()))?
         }
@@ -300,3 +303,4 @@ fn load_module(
     loaded.insert(path.into());
     Ok(())
 }
+

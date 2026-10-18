@@ -1,0 +1,138 @@
+{
+  "schema": "nexusengine.camel-browser-evidence/1",
+  "validatedAt": "2026-10-18",
+  "goal": "Add real Rust WebAssembly Camel execution, async Nexus binding and persistent browser sessions within the Camel domain only",
+  "baseMain": "bd06da114b7d41d0dadfa641dd9c77a0292dc739",
+  "before": {
+    "browser": "CAMEL_TARGET_UNAVAILABLE",
+    "nativePackagedTarget": "darwin-arm64",
+    "upstream": "Camel 0.2.0 e7b770737516558652d38642583c6db184fd3fd4"
+  },
+  "artifact": {
+    "schema": "nexusengine.camel-wasm-artifact/1",
+    "sha256": "0fba715a298d006548c109def880e1dedb0add5e002fc763ba55f4209ad6361f",
+    "bytes": 1577530,
+    "upstreamCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+    "rust": "1.90.0",
+    "binaryen": "123.0.0",
+    "target": "wasm32-unknown-unknown"
+  },
+  "realBrowser": {
+    "passed": [
+      "cancellation drains during a cold runtime download",
+      "actual Rust arithmetic and receipt",
+      "failed artifact integrity resets the shared loader for retry",
+      "source checking and source-located errors",
+      "pinned upstream edition 0.2 conformance cases",
+      "real installed Nexus mutation with same receiver/state",
+      "nested async continuations preserve locals and never replay effects",
+      "async failures resume through catch/finally",
+      "ungranted calls fail before mutation",
+      "exact i64 wire values",
+      "step limits and explicit unsupported threaded spawn",
+      "native services fail closed in the browser",
+      "persistent session locals, inputs, and committed engine ticks",
+      "bounded input queue, coalesced updates, cancellation, and restart",
+      "queued callbacks and completion cleanup",
+      "late host replies cannot resume a cancelled session; late subscribe cleans up",
+      "snapshot/reset/replay and live-session snapshot rejection",
+      "wire guards, scoped references, permissions and callback overflow",
+      "wall-clock timeout discards stalled host continuations",
+      "model-provider promise success and cancellation signal",
+      "browser log flood terminates within bounded message budget",
+      "synchronous worker transport failure tears down its job",
+      "interpreter rejects reentrant exports while its host call is suspended",
+      "teardown cancels sessions and removes tick hooks"
+    ],
+    "total": 24,
+    "browser": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/26.0 Safari/605.1.15",
+    "browserName": "webkit",
+    "browserVersion": "26.0",
+    "example": "start, input button, keyboard input, cancel, restart passed",
+    "nativeRequests": 0,
+    "pageErrors": [],
+    "host": "Debian 13 x86_64 task sandbox",
+    "engine": "Playwright WebKit build 2215 / 26.0",
+    "claim": "Real WebKit engine only, not Apple Safari hardware acceptance",
+    "commands": [
+      "cd src/core-domains/camel/tests && npm ci",
+      "npx playwright install webkit",
+      "npm test"
+    ],
+    "environmentNotes": [
+      "Task-local Playwright browser and official Debian libwoff1/libharfbuzz-icu0/libgles2 runtime libraries were used",
+      "Writable task-local XDG cache/config/runtime directories were supplied",
+      "No browser security protections were disabled for the successful WebKit run",
+      "No Chrome or user computer was used"
+    ]
+  },
+  "nodeTransport": {
+    "passedScenarios": 24,
+    "command": "node src/core-domains/camel/tests/run-node-bridge.mjs",
+    "claim": "Separate Node worker transport regression; not used as real-browser proof"
+  },
+  "nativeRustSource": {
+    "passedTests": 57,
+    "failedTests": 0,
+    "suites": {
+      "library": 6,
+      "binary": 3,
+      "cli": 4,
+      "conformance": 1,
+      "httpProvider": 1,
+      "language": 32,
+      "studioApi": 10
+    },
+    "command": "cargo test --locked --manifest-path src/core-domains/camel/runtime/upstream/runtime/Cargo.toml",
+    "host": "Debian 13 x86_64 with Rust 1.90.0",
+    "environmentNote": "Task-local pkg-config metadata linked the preinstalled libasound.so.2; no microphone capture was performed"
+  },
+  "nativeAddonSource": {
+    "passedChecks": 9,
+    "target": "linux-x64",
+    "command": "cargo build --locked --release --manifest-path src/core-domains/camel/runtime/bindings/Cargo.toml; CAMEL_NATIVE_ARTIFACT=<temporary .node> node src/core-domains/camel/tests/run-native-addon.mjs",
+    "artifactPublished": false,
+    "checks": [
+      "arithmetic",
+      "source check",
+      "shared Nexus mutation",
+      "async host call",
+      "threaded task",
+      "permission denial",
+      "step budget",
+      "host capability denial",
+      "pending-model cancellation"
+    ]
+  },
+  "staticChecks": [
+    "All domain JavaScript/mjs syntax checks passed",
+    "WASM imports are exactly camel.host_request, camel.log and camel.now",
+    "Only camel.host_request is Asyncify-marked; indirect calls remain conservatively instrumented",
+    "No eager native.js or .node browser request observed",
+    "Native body relocation verified byte-for-byte against the original body",
+    "Existing native artifact/integrity/bindings/lockfiles remain unchanged"
+  ],
+  "lifecycle": {
+    "sessions": "One persistent execution stack; input FIFO and latest-frame coalescing",
+    "executionBudgets": "Total cumulative steps and wall-clock timeout per session, never replenished per tick",
+    "stop": "Browser worker termination discards the stack; native cancellation remains cooperative",
+    "snapshots": "Finished receipts only; active stacks and host engine state excluded",
+    "alreadyAcceptedHostEffects": "Not rolled back"
+  },
+  "notProven": [
+    "Firefox runtime acceptance: launch blocked by software framebuffer mapping in the sandbox",
+    "Apple Safari and Chromium acceptance",
+    "Windows or packaged Linux execution",
+    "Fresh execution/rebuild of the checked-in macOS arm64 artifact",
+    "Physical audio, live model service or physical XR",
+    "Repository-wide release/generated-ledger checks and external Editor controller",
+    "Bit-for-bit rebuilding across different checkout paths"
+  ],
+  "domainScopeException": "Explicit user instruction permits commits only under src/core-domains/camel/. External Editor controller and .agent/generated writes were therefore not performed; domain-local evidence is used.",
+  "remainingBrowserCapabilities": [
+    "OS/filesystem imports and installed-library management unavailable",
+    "Native audio/microphone and blocking HTTP unavailable",
+    "Threaded spawn unavailable and rejected explicitly"
+  ],
+  "completion": "Experimental WebKit browser slice validated; cross-platform parity not claimed"
+}

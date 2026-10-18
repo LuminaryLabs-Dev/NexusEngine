@@ -9,10 +9,12 @@ use std::{
     collections::BTreeMap,
     sync::{
         atomic::{AtomicUsize, Ordering},
-        Arc, Condvar, Mutex,
+        Arc, Mutex,
     },
-    thread,
 };
+
+#[cfg(not(target_arch = "wasm32"))]
+use std::{sync::Condvar, thread};
 
 #[derive(Clone, Debug)]
 pub struct Limits {
@@ -215,6 +217,9 @@ impl Context {
                 }
                 Ok(value)
             }
+            #[cfg(target_arch = "wasm32")]
+            ExprKind::Unary(op, _) if op == "spawn" => Err(Error::at(s, "Browser threaded spawn capability unavailable")),
+            #[cfg(not(target_arch = "wasm32"))]
             ExprKind::Unary(op, e) if op == "spawn" => {
                 let task: TaskState = Arc::new((
                     Mutex::new(None),
@@ -665,6 +670,9 @@ impl Context {
             }
             "clock.now" => {
                 count(&args, 0, s)?;
+                #[cfg(target_arch = "wasm32")]
+                return Ok(Value::Int((crate::browser_now() / 1000.0) as i64));
+                #[cfg(not(target_arch = "wasm32"))]
                 Ok(Value::Int(
                     std::time::SystemTime::now()
                         .duration_since(std::time::UNIX_EPOCH)
@@ -907,3 +915,4 @@ fn binary(op: &str, a: Value, b: Value, s: &Site) -> Result<Value> {
         _ => Err(Error::at(s, "invalid numeric operator")),
     }
 }
+

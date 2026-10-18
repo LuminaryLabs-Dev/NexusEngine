@@ -1,42 +1,12 @@
-# Camel Domain
+# Camel domain
 
-This file is generated from the Domain manifest. Do not edit it directly.
+`n:camel` executes the pinned Camel 0.2.0 Rust interpreter against the same installed public Nexus APIs. The runtime kit now supports a bundled, integrity-checked WebAssembly interpreter in browser module workers as well as the existing macOS arm64 native artifact.
 
-- Path: `n:camel`
-- Status: `experimental`
-- Registry SHA-256: `86284ea5467d882727b07751d5742c12275b44da1f867f90f5f3ccae0d56f2ad`
-- Public entry: `nexusengine/domains/camel`
+- One-shot `execute` and `check` retain their receipt API.
+- Browser `start`, `input`, `update`, `wait` and `stop` keep one interpreter stack alive across inputs and committed Nexus ticks.
+- Binaryen Asyncify suspends the real Rust stack for asynchronous host calls. There is no JavaScript language reimplementation or whole-program replay.
+- Exact `allowCalls` grants, bounded messages/queues, execution limits and subscription disposal protect the bridge. Engine objects stay in their owning JavaScript context; workers receive data and scoped reference IDs.
 
-## Responsibility
+The domain remains experimental. WebKit 26.0 browser integration and native Rust/addon-source regressions are recorded in `validation/browser-evidence.json`. Firefox was blocked by the test environment; Safari, Chromium, Windows and the checked-in macOS addon were not rerun here. Browser OS files, microphone, blocking HTTP, installed-library imports and threaded `spawn` fail explicitly. Native concurrency semantics are unchanged.
 
-Own bundled Camel execution and native binding to the installed public Nexus API graph.
-
-## Owns
-
-- Camel execution receipts
-- Camel invocations
-- Camel runtime binding
-- Camel source identity
-
-## Does Not Own
-
-- composition dependency planning
-- game rules
-- model weights
-- other domain state
-
-## Subdomains
-
-None.
-
-## Atomic Kits
-
-| Kit | Import | Responsibility |
-| --- | --- | --- |
-| `camel-runtime-kit` | `nexusengine/domains/camel/runtime` | Execute a pinned bundled Camel interpreter against shared Nexus instances. |
-
-## Lifecycle
-
-- Duplicate install: Return the installed Camel API without duplicate state or systems.
-- Snapshot: Serialize Camel state and descriptors.
-- Reset: Restore the configured Camel baseline.
+See [USAGE.md](./USAGE.md), the [browser example](./examples/browser.html), and [build/provenance notes](./runtime/wasm/README.md).

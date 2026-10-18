@@ -155,8 +155,8 @@
     {
       "path": "runtime/Cargo.toml",
       "upstreamGitBlob": "5cbe18bf02de1bed186ac069cc52d691bfb240d8",
-      "localSha256": "ead11d603b6bee19dc15e86b16799a8d2986059ffce836323c3030f20f8b2177",
-      "modified": false
+      "localSha256": "d79c2279fa0a83c2d9ec71f79f45930a9d407afeb890647d3f4a40e37eea7f53",
+      "modified": true
     },
     {
       "path": "runtime/src/language/agents.rs",
@@ -179,13 +179,13 @@
     {
       "path": "runtime/src/language/eval.rs",
       "upstreamGitBlob": "9aba23b3efe82f6b9b586923abe4fd9448721066",
-      "localSha256": "6201d1f81b76ad14c038581fe3b2dab8614a106bd8ef6bbcc4cc83de47e59b9e",
+      "localSha256": "6ca2e28227fffeb82eaaed17b16f41520b8d0cb7cac770f904fff64ba769552f",
       "modified": true
     },
     {
       "path": "runtime/src/language/host.rs",
       "upstreamGitBlob": "018560621ce50a8128b45adac9bdd8e39813e0d1",
-      "localSha256": "51bf0bf764bc10329f39a8ecf9a300fe3b92daf325263804be0103e2a8bd7446",
+      "localSha256": "5c7fb7f81362832ffae06c2ef012503880fac38548f5ed7231311ec4d3d35bc9",
       "modified": true
     },
     {
@@ -209,8 +209,8 @@
     {
       "path": "runtime/src/language/mod.rs",
       "upstreamGitBlob": "3d24ef791031f18233ffd3c43fc965c5019c4469",
-      "localSha256": "ec53e7313b26b530c7b4ea99a18d2f5e4c3acb1e0f29b72f5e2c1838dba3fe7f",
-      "modified": false
+      "localSha256": "ed060cb65d9f0cffcb8582dcba11009eb91bc96e5c56516588b0d27702b1bb3c",
+      "modified": true
     },
     {
       "path": "runtime/src/language/parser.rs",
@@ -239,8 +239,8 @@
     {
       "path": "runtime/src/lib.rs",
       "upstreamGitBlob": "8a82bac8bf5540692f3814426ddd82e5913519bb",
-      "localSha256": "87bcdc5c2995e1082282e21a2389b6fd62154b7c698c599112ba021358f24a79",
-      "modified": false
+      "localSha256": "0c21b57e874e4e130a0ec57298667d688b6cc95a076eb988f9c24742b0e18001",
+      "modified": true
     },
     {
       "path": "runtime/src/main.rs",
@@ -278,5 +278,30 @@
       "localSha256": "b35e7679e4b5981d4ecfc024469b1c1d45d62ca56ad4c51bdc172ed4e6d90569",
       "modified": false
     }
-  ]
+  ],
+  "browserPort": {
+    "baselineCommit": "e7b770737516558652d38642583c6db184fd3fd4",
+    "baselineVersion": "0.2.0",
+    "upgrade": "none",
+    "localChanges": [
+      "Target-gated native dependencies and OS services; browser shim fails closed",
+      "Original native lib.rs body moved verbatim to src/native.rs and included only for non-WASM",
+      "Target-gated native LmStudioClient and native-only tool handlers",
+      "Browser operation timestamps use imported wall clock instead of unsupported Instant",
+      "Threaded spawn rejected explicitly on wasm32; native implementation preserved",
+      "Browser host ABI and Binaryen Asyncify adapter added outside the upstream subtree"
+    ],
+    "addedFiles": [
+      {
+        "path": "runtime/src/native.rs",
+        "role": "verbatim original native library implementation without shared module declarations",
+        "sha256": "4e7b7c368f3f672513da189b1c7c77df9691609bc555639b5b672de593454208"
+      },
+      {
+        "path": "runtime/src/browser_host.rs",
+        "role": "unavailable browser OS capability stubs and imported time",
+        "sha256": "351e8f705f8b40c41d991c4d9b2897b2350d07d89e0e4c38e419a3cd6391ff52"
+      }
+    ]
+  }
 }
