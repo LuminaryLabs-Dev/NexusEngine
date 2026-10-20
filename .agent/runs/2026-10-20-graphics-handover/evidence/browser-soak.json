@@ -1,0 +1,655 @@
+{
+  "durationMs": 60017,
+  "frames": 1092,
+  "samples": [
+    {
+      "elapsedMs": 2212,
+      "frames": 40,
+      "heap": {
+        "usedSize": 9278400,
+        "totalSize": 10059776,
+        "embedderHeapUsedSize": 3274296,
+        "backingStorageSize": 2657521
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 4442,
+      "frames": 80,
+      "heap": {
+        "usedSize": 11908680,
+        "totalSize": 12419072,
+        "embedderHeapUsedSize": 3355096,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 6638,
+      "frames": 120,
+      "heap": {
+        "usedSize": 13144880,
+        "totalSize": 13729792,
+        "embedderHeapUsedSize": 3165328,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 8878,
+      "frames": 160,
+      "heap": {
+        "usedSize": 13163808,
+        "totalSize": 13729792,
+        "embedderHeapUsedSize": 3339400,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 11128,
+      "frames": 200,
+      "heap": {
+        "usedSize": 13190708,
+        "totalSize": 13729792,
+        "embedderHeapUsedSize": 3351120,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 13419,
+      "frames": 240,
+      "heap": {
+        "usedSize": 13198288,
+        "totalSize": 13729792,
+        "embedderHeapUsedSize": 3168792,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 15741,
+      "frames": 280,
+      "heap": {
+        "usedSize": 13232500,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3326920,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 18005,
+      "frames": 320,
+      "heap": {
+        "usedSize": 13241864,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3171096,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 20236,
+      "frames": 360,
+      "heap": {
+        "usedSize": 13253548,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3172248,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 22385,
+      "frames": 400,
+      "heap": {
+        "usedSize": 13275216,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3173400,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 24536,
+      "frames": 440,
+      "heap": {
+        "usedSize": 13284556,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3174552,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 26687,
+      "frames": 480,
+      "heap": {
+        "usedSize": 13299492,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3175704,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 28836,
+      "frames": 520,
+      "heap": {
+        "usedSize": 13359224,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3176856,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 30985,
+      "frames": 560,
+      "heap": {
+        "usedSize": 13340624,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3179032,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 33136,
+      "frames": 600,
+      "heap": {
+        "usedSize": 13351264,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3179160,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 35303,
+      "frames": 640,
+      "heap": {
+        "usedSize": 13388564,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3180312,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 37469,
+      "frames": 680,
+      "heap": {
+        "usedSize": 13396000,
+        "totalSize": 14254080,
+        "embedderHeapUsedSize": 3181464,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 39633,
+      "frames": 720,
+      "heap": {
+        "usedSize": 13402816,
+        "totalSize": 14254080,
+        "embedderHeapUsedSize": 3182616,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 41803,
+      "frames": 760,
+      "heap": {
+        "usedSize": 13409316,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3183768,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 44000,
+      "frames": 800,
+      "heap": {
+        "usedSize": 13416092,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3184920,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 46201,
+      "frames": 840,
+      "heap": {
+        "usedSize": 13422916,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3186072,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 48369,
+      "frames": 880,
+      "heap": {
+        "usedSize": 13431752,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3187224,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 50552,
+      "frames": 920,
+      "heap": {
+        "usedSize": 13440796,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3189400,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 52751,
+      "frames": 960,
+      "heap": {
+        "usedSize": 13447184,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3190552,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 54951,
+      "frames": 1000,
+      "heap": {
+        "usedSize": 13453832,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3190680,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 57151,
+      "frames": 1040,
+      "heap": {
+        "usedSize": 13462872,
+        "totalSize": 13991936,
+        "embedderHeapUsedSize": 3192856,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    },
+    {
+      "elapsedMs": 59334,
+      "frames": 1080,
+      "heap": {
+        "usedSize": 13469336,
+        "totalSize": 14254080,
+        "embedderHeapUsedSize": 3192984,
+        "backingStorageSize": 2657471
+      },
+      "runtime": {
+        "backend": "wasm",
+        "status": "ready",
+        "resources": 8,
+        "resourceBytes": 5654,
+        "runtimeHeapBytes": 16777216,
+        "resourceRebuilds": 1,
+        "serial": 1,
+        "frameActive": false,
+        "memoryBudgetBytes": 33554432,
+        "maxFragments": 65536,
+        "maxResourceBytes": 1048576,
+        "revision": 8
+      }
+    }
+  ],
+  "errors": []
+}

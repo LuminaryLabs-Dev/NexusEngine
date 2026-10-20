@@ -1,0 +1,1 @@
+Migrate existing rendering ownership to Material, Lighting, Camera and semantic Render services. Preserve algorithms, state/lifecycle behavior and unrelated build work. No new frame/pipeline execution, NexusGL integration, GitHub workflows or publication.

@@ -1,0 +1,16 @@
+{
+  "incomingTextLocationFindings": [],
+  "credentialsDetected": 0,
+  "rawOriginalsPreservedUnder": "build/graphics-raw-evidence",
+  "sanitizedFiles": [
+    ".agent/runs/2026-10-18-render-ownership-migration/document-generation.json",
+    ".agent/runs/2026-10-18-render-ownership-migration/unchanged-head-checks.json",
+    ".agent/runs/2026-10-18-render-ownership-migration/validation.json",
+    ".agent/runs/2026-10-20-graphics-handover/publish-validation.json",
+    ".agent/runs/2026-10-20-graphics-handover/regressions-initial.json"
+  ],
+  "existingBaselineTemporaryPaths": [
+    ".agent/runs/2026-10-16-hybrid-build/integration-verification/commands/host-native.json",
+    ".agent/runs/2026-10-16-hybrid-build/verification/commands/host-native.json"
+  ]
+}

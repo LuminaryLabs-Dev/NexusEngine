@@ -1,0 +1,17 @@
+{
+  "kits/catalog.js": "5f06d8648c854835e4501163d31067b5b358972fdf551bdf197390b009f0c2a1",
+  "kits/render/graphics-language-kit/contracts.js": "ad7db034cfb2dd90bfea4e9c5543c4f4534cea4545f575a0b22e6df31e7a5a26",
+  "kits/render/graphics-language-kit/hosts.js": "ad65868c24bf37c76a95aeffa312342c4d7fe6b1f6561808b13311f4d32ed8a8",
+  "kits/render/graphics-language-kit/index.js": "edf992bfcb0c400376b327ec68ffc43dcf7cbd2329fbcf579d486881af1fddad",
+  "kits/render/graphics-language-kit/manifest.js": "5e13bdd02fff986f259a29b67989a98449f1052b3365ed38d1f0e860e014115a",
+  "kits/render/graphics-language-kit/material.js": "412cbf0c01f845cfdb27aeca315c3b1a6cdb997a107791736facb87c4dee50a5",
+  "kits/render/graphics-language-kit/provider.js": "ef7574ad919e9ae32762176aa65014d04275ffd3ee6729fc57bd474ba9a5df5f",
+  "kits/render/graphics-language-kit/runtime/bridge.cpp": "c1af893a8f9dab29bf91fe218dff90610a396a5a75bbdc6d5fe2956835916d08",
+  "kits/render/graphics-language-kit/runtime/loader.js": "551b810e7602eca3b7ef93d09b57c0c9793101c4b9fba3adf403b5d1c949d328",
+  "kits/render/graphics-language-kit/runtime/window.mm": "9f966d4c86fc1be876a848dea07fc093db77830704c26859879d3c0f64c12f2a",
+  "kits/render/graphics-language-kit/session.js": "1afc3c274f043a2923cda7ed414761ac2ab690cd256876fc60bbcbfb01d2de29",
+  "src/core-domains/render/contracts/kits/render-frame-schema-kit/contracts.js": "107d4317bdd4b2b402d75e4e819628c4dfd9bb64b1e8f87c528226f32c0a2145",
+  "src/core-domains/render/lifecycle/kits/render-installation-kit/contracts.js": "f6c0b5d3ddec0e6922157f86319fc4e87317fab8672dc89e7093899e0baf5001",
+  "src/core-domains/render/lifecycle/kits/render-installation-kit/index.js": "8e81496d55258df971f08da41d7e9e52c8010655c2bfa88ecfc8fff9e2523f53",
+  "src/core-domains/render/lifecycle/kits/render-snapshot-kit/index.js": "2be523687fa01cc3f788ec02654c5f04da281eae273c2999b6e5cb879961591d"
+}

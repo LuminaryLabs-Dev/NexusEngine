@@ -1,0 +1,19 @@
+{
+  "url": "http://127.0.0.1:59485/examples/graphics-language/index.html",
+  "viewport": {
+    "width": 1024,
+    "height": 850
+  },
+  "outcome": {
+    "generation": 6,
+    "revision": 9,
+    "status": "Ready\nBackend: wasm · provider generation: 6 · resource revision: 9"
+  },
+  "surface": {
+    "rejected": true,
+    "replaced": true,
+    "inputs": 1,
+    "unbound": true
+  },
+  "errors": []
+}

@@ -1,10 +1,5 @@
 import assert from "node:assert/strict";
-import {
-  PROCEDURAL_MATERIAL_SCHEMA,
-  createProceduralMaterialDescriptor,
-  resolveProceduralMaterialAssignment,
-  validateProceduralMaterialDescriptor
-} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
+import { PROCEDURAL_MATERIAL_SCHEMA, createProceduralMaterialDescriptor, resolveProceduralMaterialAssignment, validateProceduralMaterialDescriptor } from "./../../src/core-domains/material/procedural.js";
 
 const descriptor = createProceduralMaterialDescriptor({
   id: "clay-library",

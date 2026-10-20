@@ -1,0 +1,3 @@
+import { atomicKit } from "../../../../manifest-input.js";
+
+export default atomicKit({ id: "third-person-camera-kit", responsibility: "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.", domainPath: "n:camera:third-person", apiName: "thirdPersonCamera", requires: ["n:camera", "character:resolution", "motion:velocity"], provides: ["n:camera:third-person", "camera:third-person-descriptor"], module: "./src/core-domains/camera/third-person/kits/third-person-camera-kit/index.js", exportName: "createThirdPersonCameraKit", publicSubpath: "./domains/camera/third-person", proofReferences: ["src/core-domains/presentation/tests/third-person-camera-restoration.mjs"] });

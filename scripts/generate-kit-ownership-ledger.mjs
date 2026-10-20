@@ -91,9 +91,9 @@ for (const kit of CORE_DOMAIN_CATALOG.kits) {
 
 const records = [];
 const violations = [];
-for (const absolutePath of walk(sourceRoot).sort()) {
+for (const absolutePath of [...walk(sourceRoot), ...walk(path.join(root, "kits"))].sort()) {
   const modulePath = relative(absolutePath);
-  if (modulePath.includes("/tests/")) continue;
+  if (modulePath.includes("/tests/") || modulePath.endsWith("/build.mjs")) continue;
   const source = fs.readFileSync(absolutePath, "utf8");
   const packageEntrypoints = [...(packageEntrypointsByModule.get(modulePath) ?? [])].sort();
   const kitContracts = kitsByModule.get(modulePath) ?? [];
@@ -103,7 +103,12 @@ for (const absolutePath of walk(sourceRoot).sort()) {
   let reviewStatus = "unreviewed";
   let ownershipBasis = "none";
 
-  if (modulePath.startsWith("src/foundation/")) {
+  if (modulePath.startsWith("kits/")) {
+    owner = "n:render";
+    destination = "NexusEngine optional Graphics Language Kit";
+    reviewStatus = "optional-provider-kit";
+    ownershipBasis = "kits/render/graphics-language-kit/manifest.js";
+  } else if (modulePath.startsWith("src/foundation/")) {
     owner = "engine-foundation";
     destination = "NexusEngine foundation";
     reviewStatus = "root-contract";
@@ -160,6 +165,7 @@ const counts = {
   manifestProvenPublicAtoms: records.filter((record) => record.reviewStatus === "manifest-proven-public-atom").length,
   manifestOwnedInternalModules: records.filter((record) => record.reviewStatus === "manifest-owned-internal").length,
   rootContractModules: records.filter((record) => ["root-contract", "manifest-infrastructure"].includes(record.reviewStatus)).length,
+  optionalProviderModules: records.filter((record) => record.reviewStatus === "optional-provider-kit").length,
   unreviewedModules: records.filter((record) => record.reviewStatus === "unreviewed").length,
   violations: violations.length
 };
@@ -167,7 +173,7 @@ const counts = {
 const ledger = {
   schema: "nexusengine.kit-ownership-ledger/2",
   registrySha256: registryHash,
-  generatedFrom: ["Domain manifest v2", "generated package exports", "src production inventory"],
+  generatedFrom: ["Domain manifest v2", "generated package exports", "src and optional kits production inventory"],
   coreRule: "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   counts,
   violations,
@@ -185,6 +191,7 @@ const markdown = [
   `- Manifest-proven public atoms: ${counts.manifestProvenPublicAtoms}`,
   `- Manifest-owned internal modules: ${counts.manifestOwnedInternalModules}`,
   `- Root contract modules: ${counts.rootContractModules}`,
+  `- Optional provider modules: ${counts.optionalProviderModules}`,
   `- Unreviewed modules: ${counts.unreviewedModules}`,
   `- Violations: ${counts.violations}`,
   "",

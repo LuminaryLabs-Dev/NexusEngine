@@ -1,0 +1,52 @@
+[
+  {
+    "check": "tests/core-domains/core-graphics-domain-smoke.mjs",
+    "code": 0,
+    "output": "core graphics domain smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-graphics-kit-smoke.mjs",
+    "code": 0,
+    "output": "core-graphics-kit piece smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-graphics-procedural-material-smoke.mjs",
+    "code": 0,
+    "output": "core graphics procedural material smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
+    "code": 0,
+    "output": "core graphics reflection kit smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+    "code": 0,
+    "output": "core graphics render-layer contract test ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
+    "code": 0,
+    "output": "core graphics render-layer graph smoke ok\n"
+  },
+  {
+    "check": "tests/core-domains/core-visual-contribution-smoke.mjs",
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "check": "tests/core-domains/core-render-surface-smoke.mjs",
+    "code": 0,
+    "output": "core render surface smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-presentation-domain-smoke.mjs",
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "check": "tests/core-kits/core-utility-articulation-smoke.mjs",
+    "code": 0,
+    "output": "core utility articulation smoke ok\n"
+  }
+]

@@ -1,0 +1,95 @@
+{
+  "repository": "https://github.com/LuminaryLabs-Dev/NexusGL",
+  "revision": "49c6a7c263f6ab0d72f0b6e7121121833a0cbf10",
+  "note": "Exact local source snapshot; per-file hashes are authoritative because the source checkout contains existing local work. No sibling repository was modified.",
+  "files": [
+    {
+      "path": "include/nexusgl/render3d.hpp",
+      "sha256": "c1cba5e8640bb88ae3e61a10f471a451acbea0044da8bf65744cf3e34912c6f9"
+    },
+    {
+      "path": "include/nexusgl/material.hpp",
+      "sha256": "5cf49184f743a20b38ef68e26036d0033ee9f9177da6b8fdcbbc74d5f99b41a0"
+    },
+    {
+      "path": "include/nexusgl/renderer.hpp",
+      "sha256": "6e11898f1ae9487ab54bf9d276b2bf6b184933ca5e2c6100cce01e3662bd104a"
+    },
+    {
+      "path": "include/nexusgl/graphics.hpp",
+      "sha256": "e2cfc684aac94bde704395772f318e67cf75d4cca8e0990b5845799f3cbbc5dd"
+    },
+    {
+      "path": "include/nexusgl/math.hpp",
+      "sha256": "973c7de23559147ca3eaa6ffff277588662f7852b716d9120ff21648ffff1430"
+    },
+    {
+      "path": "include/nexusgl/gaussian.hpp",
+      "sha256": "cdf6ef243a99c14193e7805d189c2553c226ebecd36dd4bde407e823756638eb"
+    },
+    {
+      "path": "include/nexusgl/lighting.hpp",
+      "sha256": "c7f0c559900062f219bb4df0b56affe8abec98b8766ad9f40c818c08acf1cc11"
+    },
+    {
+      "path": "include/nexusgl/types.hpp",
+      "sha256": "25bc2b2b5a74dbe190fc543823bec6132d364aeb6dd04a39b3d4706fb1de82e2"
+    },
+    {
+      "path": "include/nexusgl/domains/render/cpu_execution_kit.hpp",
+      "sha256": "93b9d1eefbc0c13edee647298407cfe4caf4a5eb262f37bde4a63979a06ddff3"
+    },
+    {
+      "path": "include/nexusgl/domains/render/render_dsk.hpp",
+      "sha256": "778ed738f5a8139fae66039ee873fe3dcebfad2748c076799c98d739c41ca95a"
+    },
+    {
+      "path": "include/nexusgl/domains/scene/scene_dsk.hpp",
+      "sha256": "0eaca48c7552287db508e2970e44a87e837b9a0aecef132970239c00aa6804ea"
+    },
+    {
+      "path": "include/nexusgl/domains/scene/descriptors.hpp",
+      "sha256": "1cb5fe8abd16d5d0ba99f1bd786d869dbd0561c043b5812b6009807821f95457"
+    },
+    {
+      "path": "include/nexusgl/c_api.h",
+      "sha256": "6e665414ca623292cec38de892bb8543ef16a604d120e7a79f8db913f0f76a03"
+    },
+    {
+      "path": "adapters/c_api.cpp",
+      "sha256": "76df9d31019a5f12cd8dc90bc41da0cc471515d448ea38bda6b2f328c816d4a9"
+    },
+    {
+      "path": "src/math.cpp",
+      "sha256": "f73333f0b098455a043d603cc1fe6057933453af12a273539c14224c2e33760c"
+    },
+    {
+      "path": "src/renderer.cpp",
+      "sha256": "8adb790d88bd9fbb36909a4f310a73c3a00b3e00c73c468b36867d99cd693a98"
+    },
+    {
+      "path": "src/render3d.cpp",
+      "sha256": "381a0c2daf4e5a6ec9da42628d2c719fa526b2f4ae68df57ddf4c6dd2d983826"
+    },
+    {
+      "path": "src/lighting.cpp",
+      "sha256": "d93b9abb06fb4d27a2fa8fb1562686d144f01759aed985e6d4343087378e2371"
+    },
+    {
+      "path": "src/gaussian.cpp",
+      "sha256": "b824d29cd47ddb34adb49003953a777f466b3bc3bba7fb36ce76d06e57c071fc"
+    },
+    {
+      "path": "src/domains/scene/scene_dsk.cpp",
+      "sha256": "9305cefab646a00dbfcfb657f24d4cfdc26424e3d9fc30b179834f574298371d"
+    },
+    {
+      "path": "src/domains/render/render_dsk.cpp",
+      "sha256": "a7e0e657e4434702416039219dfa2b29649267e1063ac39b39fe8fcd3f5c7117"
+    },
+    {
+      "path": "src/domains/render/kits/cpu_execution.cpp",
+      "sha256": "1843a753620df7f90d3491885d68f50ca6cca124163f854cd43f894b5756c3f2"
+    }
+  ]
+}

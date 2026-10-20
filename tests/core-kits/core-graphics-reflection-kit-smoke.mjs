@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import {
-  createGraphicsKit,
+  createRenderBatchKit,
   createReflectionKit,
   createGraphicsAdapterBoundary,
   createReflectionDescriptor,
@@ -26,7 +26,7 @@ const policy = createReflectionPolicyDescriptor({
 const engine = createEngine({
   kits: [
     createPresentationKit(),
-    createGraphicsKit(),
+    createRenderBatchKit(),
     createReflectionKit({
       reflections: [environment],
       policy,

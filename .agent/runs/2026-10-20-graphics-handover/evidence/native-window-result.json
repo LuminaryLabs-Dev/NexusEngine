@@ -1,0 +1,29 @@
+{
+  "captures": [
+    {
+      "name": "native-window-displayed",
+      "window": {
+        "width": 640,
+        "height": 380,
+        "windowId": 2041,
+        "closed": false
+      },
+      "captured": true,
+      "error": null
+    },
+    {
+      "name": "wasm-window-displayed",
+      "window": {
+        "width": 640,
+        "height": 380,
+        "windowId": 2041,
+        "closed": false
+      },
+      "captured": true,
+      "error": null
+    }
+  ],
+  "generations": 2,
+  "launchCloseCycles": 5,
+  "closed": true
+}

@@ -24,6 +24,7 @@ export const worldDomainManifest = defineCoreDomainManifest(manifestShell({
   ],
   publicEntry: { subpath: "./domains/world", module: "./src/core-domains/world/index.js" },
   publicEntries: RESTORED_WORLD_PUBLIC_ENTRIES,
+  publicEntries: [{"domainPath": "n:world", "subpath": "./domains/world/terrain/lod", "module": "./src/core-domains/world/terrain/lod-descriptors.js"}],
   publicKits: [
     atomicKit({ id: "world-state-kit", responsibility: "Manage world identity, cells, partitions, surfaces, and deterministic assembly state.", domainPath: "n:world", apiName: "world", requires: ["n:spatial"], provides: ["n:world", "world:cell", "world:partition", "world:surface", "world:assembly"], module: "./src/core-domains/world/world-domain.js", exportName: "createWorldDomain", publicSubpath: "./domains/world/runtime", proofReferences: worldProof }),
     atomicKit({ id: "scene-lifecycle-kit", responsibility: "Manage host-neutral scene identity, lifecycle, transitions, bindings, and snapshots.", domainPath: "n:world:scene", apiName: "scene", requires: ["n:world"], provides: ["n:world:scene", "scene:identity", "scene:transition", "scene:host-contract"], module: "./src/core-domains/world/scene/kits/scene-kit/index.js", exportName: "createSceneKit", publicSubpath: "./domains/world/scene", proofReferences: sceneProof }),

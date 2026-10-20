@@ -1,0 +1,92 @@
+[
+  {
+    "script": "tests/core-domains/core-graphics-domain-smoke.mjs",
+    "code": 0,
+    "output": "core graphics domain smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-kit-smoke.mjs",
+    "code": 0,
+    "output": "core-graphics-kit piece smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-procedural-material-smoke.mjs",
+    "code": 0,
+    "output": "core graphics procedural material smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
+    "code": 0,
+    "output": "core graphics reflection kit smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+    "code": 0,
+    "output": "core graphics render-layer contract test ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
+    "code": 0,
+    "output": "core graphics render-layer graph smoke ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-visual-contribution-smoke.mjs",
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "script": "tests/core-domains/core-render-surface-smoke.mjs",
+    "code": 0,
+    "output": "core render surface smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-presentation-domain-smoke.mjs",
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "script": "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+    "code": 0,
+    "output": "third-person camera restoration: ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-domain-import-smoke.mjs",
+    "code": 0,
+    "output": "{ discovered: 980, imported: 982, failed: 0 }\ncore domain import smoke ok\n"
+  },
+  {
+    "script": "tests/public-api-freeze.mjs",
+    "code": 0,
+    "output": "public-api-freeze ok\n"
+  },
+  {
+    "script": "tests/runtime-kit-idempotency-smoke.mjs",
+    "code": 0,
+    "output": "runtime Kit idempotency smoke: ok\n"
+  },
+  {
+    "script": "tests/core-domain-kits-smoke.mjs",
+    "code": 0,
+    "output": "core-domain-kits-smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-child-capabilities-smoke.mjs",
+    "code": 0,
+    "output": "core child capabilities smoke ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-gpu-host-smoke.mjs",
+    "code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"device\": \"gpu-1\",\n  \"restoredDevice\": \"gpu-2\",\n  \"resources\": 1\n}\n"
+  },
+  {
+    "script": "tests/core-domains/core-gpu-shared-resource-smoke.mjs",
+    "code": 0,
+    "output": "Portable Host shared-resource ownership proof passed; native execution proof lives with external providers\n"
+  },
+  {
+    "script": "tests/core-domains/core-compute-domain-smoke.mjs",
+    "code": 0,
+    "output": "core compute provider-neutral domain smoke ok\n"
+  }
+]

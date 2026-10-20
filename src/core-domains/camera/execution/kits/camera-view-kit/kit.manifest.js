@@ -1,0 +1,2 @@
+import { atomicKit } from "../../../../manifest-input.js";
+export default atomicKit({ id: "camera-view-kit", responsibility: "Own portable camera view semantics and deterministic state.", domainPath: "n:camera", apiName: "renderCameraView", requires: ["n:render", "render:provider-contract"], provides: ["render:camera-view"], module: "./src/core-domains/camera/execution/kits/camera-view-kit/index.js", exportName: "createCameraViewKit", publicSubpath: "./domains/camera/execution/camera-view", proofReferences: ["tests/core-domains/core-graphics-domain-smoke.mjs"] });

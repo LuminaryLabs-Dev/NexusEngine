@@ -1,12 +1,7 @@
 import assert from "node:assert/strict";
-import { createEngine, createGraphicsKit, createPresentationKit } from "../helpers/public-package-surface.mjs";
-import {
-  createRenderPassContract,
-  createRenderLayerGraph,
-  validateRenderLayerGraph,
-  resolveRenderLayerGraph,
-  createRenderLayerGraphKit
-} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
+import { createEngine, createRenderBatchKit, createPresentationKit } from "../helpers/public-package-surface.mjs";
+import { createRenderPassContract, createRenderLayerGraph, validateRenderLayerGraph, resolveRenderLayerGraph } from "./../../src/core-domains/render/pipeline/contract.js";
+import { createRenderLayerGraphKit } from "./../../src/core-domains/render/pipeline/index.js";
 
 const graph = createRenderLayerGraph({
   id: "anime-water-stack",
@@ -84,7 +79,7 @@ assert.equal(invalid.valid, false);
 assert.ok(invalid.issues.includes("transparent-pass-writes-depth:foam"));
 assert.ok(invalid.issues.includes("scene-content-after-final:late-world-content"));
 
-const engine = createEngine({ kits: [createPresentationKit(), createGraphicsKit(), createRenderLayerGraphKit({ graph })] });
+const engine = createEngine({ kits: [createPresentationKit(), createRenderBatchKit(), createRenderLayerGraphKit({ graph })] });
 assert.equal(engine.n.renderLayerGraph.validate().valid, true);
 assert.equal(engine.n.renderLayerGraph.getOrderedPasses().at(-2).id, "foam-overlay");
 assert.doesNotThrow(() => JSON.stringify(engine.n.renderLayerGraph.getSnapshot()));

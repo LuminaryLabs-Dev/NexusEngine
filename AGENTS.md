@@ -95,15 +95,21 @@ runtime Domains cannot import it. Complete games and presets belong in
 experiment or game repositories. The retired ProtoKit workflow is not an
 implementation destination.
 
-`n:presentation` owns renderer-neutral visual meaning. `n:render` owns the
-backend-neutral execution boundary. `n:host` owns platform surface capability
+`n:material` owns appearance and portable material bindings. `n:lighting` owns
+lighting and reflection requirements. `n:camera` owns camera control, framing,
+views and projections. `n:presentation` owns output arrangement and presentation
+requests. `n:render` owns the backend-neutral execution boundary, render graphs
+and instance batches. `n:host` owns platform surface capability
 contracts, and concrete renderer providers remain external. Do not put GPU
 handles, Three.js objects, WebGL calls, shader compilation, or frame submission
-inside Core contracts. Do not make Render reinterpret or own Presentation
-graphs.
+inside Core contracts. Applications compose these services and select their rendering pipeline.
 
-`n:render:lifecycle` owns portable selected-provider composition state and
-receipts, not executable provider lifecycle. Runtime still owns engine ticking
+The requested bundled Graphics Language Kit lives in `kits/render/graphics-language-kit`,
+outside Core production sources. It may contain NexusGL, native/WASM runtime artifacts
+and concrete presentation adapters. Core imports must not initialize this optional kit.
+
+`n:render:lifecycle` owns portable selected-provider composition, generation and
+handover status, not executable provider lifecycle. Runtime still owns engine ticking
 and generic Kit installation. Render recovery must either prove a ready resume
 or return to installed state for a fresh startup; coordinated failure must
 restore every affected lifecycle atom.
@@ -127,7 +133,7 @@ submission, and repair. Do not copy those responsibilities into Buffer.
 records, typed subresource views, explicit mip plans, Buffer-backed stream
 requests, and proven subresource residency. It references public Resource,
 Buffer, and Device queue capabilities. Asset owns source content and decoding;
-Presentation owns material, image, lighting, and authored shadow meaning;
+Material owns surface appearance; Lighting owns illumination and shadow meaning;
 Pipeline and Frame own attachment execution; providers own GPU handles,
 allocation, upload, mip generation, eviction, repair, and backend format
 mapping. Do not hide those responsibilities inside Texture.
@@ -140,15 +146,15 @@ semantic cache links to resident `shader-program` Resources. Reuse the single
 Core may validate explicit compile requests and receipts, but providers own
 preprocessing, parsing, compilation, linking, binary artifacts, GPU program
 handles, backend reflection execution, and repair. Material owns parameter
-binding, Pipeline owns execution state, and Presentation owns visual meaning.
+binding, Pipeline owns execution state, and Material and Lighting own visual meaning.
 
-`n:render:material` owns exact portable Shader-slot association, Material
+`n:material` owns exact portable Shader-slot association, Material
 parameters, Texture and sampler bindings, instances, variants, validation, and
 semantic cache lineage. Material slot visibility must exactly match its Shader
 binding. Current Material resolution must recheck required Texture resource and
 subresource residency; an eviction invalidates dependent Material validation
 and cache use without mutating Material state. Providers still own GPU binding
-objects and execution, while Presentation owns authored visual meaning.
+objects and execution, while Material owns authored surface meaning.
 
 The `0.0.4` restoration ledger is an active ownership contract. Its 26
 historical modules map to 27 corrected atoms, nine optional integration

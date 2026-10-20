@@ -1,22 +1,23 @@
 import assert from "node:assert/strict";
 import {
   createPresentationDomain,
+  createCameraFramingKit,
   createPresentationDescriptor,
   createEngine
 } from "../helpers/public-package-surface.mjs";
 
 const engine = createEngine({
-  kits: createPresentationDomain({
+  kits: [...createPresentationDomain({
     output: { referenceAspect: 16 / 9, frameMode: "contain", maximumPixelRatio: 2 },
     ui: { referenceWidth: 1920, referenceHeight: 1080, mode: "match-shortest-side" },
     framing: { padding: 1.18, smoothTime: 0.18 }
-  })
+  }), createCameraFramingKit({ padding: 1.18, smoothTime: 0.18 })]
 });
 
 assert.equal(engine.n.ownerOf("n:presentation"), "presentation-registry-kit");
 assert.equal(engine.n.ownerOf("n:presentation:output"), "presentation-output-kit");
 assert.ok(engine.n.ownersOf("n:presentation:ui").includes("ui-scale-kit"));
-assert.ok(engine.n.ownersOf("n:presentation:camera").includes("camera-framing-kit"));
+assert.ok(engine.n.ownersOf("n:camera").includes("camera-framing-kit"));
 
 const output = engine.n.presentationOutput;
 const descriptor = output.setSurface({ cssWidth: 1000, cssHeight: 1000, pixelRatio: 3 });

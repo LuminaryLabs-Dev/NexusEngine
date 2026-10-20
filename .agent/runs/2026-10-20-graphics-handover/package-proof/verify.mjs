@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {createEngine} from 'nexusengine';
+import {installOptionalKit} from 'nexusengine/kits';
+import {graphicsResourceDescriptor,graphicsFrameDescriptor} from 'nexusengine/domains/render/graphics-language';
+assert(import.meta.resolve('nexusengine').includes('consumer%20with%20spaces/node_modules/nexusengine/'));
+const graphics=await installOptionalKit(createEngine(),'nexus-graphics-language-kit',{});
+await graphics.createResource(graphicsResourceDescriptor({id:'triangle',kind:'geometry',data:{positions:[-.8,-.8,.5,.8,-.8,.5,0,.8,.5],castsShadow:false}}));
+await graphics.createResource({id:'red',kind:'material',data:{shading:'unlit',tint:[1,0,0]}});
+const frame=graphicsFrameDescriptor({frameId:'packed',width:32,height:32,view:{exposure:1,shadowResolution:16}});
+await graphics.render({frame,draws:[{geometryId:'triangle',materialId:'red'}]});
+const before=graphics.capture().pixels;
+assert.deepEqual(Array.from(before.slice((16*32+16)*4,(16*32+16)*4+4)),[188,0,0,255]);
+await graphics.switchRenderer({operationId:'packed-wasm',backend:'wasm'});
+assert.deepEqual(graphics.capture().pixels,before);assert.equal(graphics.getState().generation,1);
+assert.equal(graphics.getSurfaceState().closed,false);await graphics.dispose();
+console.log('Fresh packed consumer with paths containing spaces: native/default + WASM handover passed; external dependency resolution blocked');

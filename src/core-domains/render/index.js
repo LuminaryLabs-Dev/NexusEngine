@@ -7,8 +7,6 @@ export * from "./resource/index.js";
 export * from "./buffer/index.js";
 export * from "./texture/index.js";
 export * from "./shader/index.js";
-export * from "./material/index.js";
-export * from "./camera/index.js";
 
 
 import { createRenderDomainContractKit } from "./contracts/kits/render-domain-contract-kit/index.js";

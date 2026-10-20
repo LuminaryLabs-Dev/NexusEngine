@@ -1,0 +1,7 @@
+{
+  ".agent/target.md": "081fae0c1fd0b18327d5c23b547334c5f72834d7e0c3a000e8526917bac640d8",
+  ".agent/tracker.md": "66e914e43c178bb5b79d176a837f50ca93e6825ca887337e26500afbd761c31b",
+  "src/core-domains/build/index.js": "151996051d57d2b688c4a7a7ec65e3943f9d7463dc7df51dc27bb7dea0bd7f1f",
+  "src/core-domains/build/orchestration/kits/target-set-kit/services.js": "4b68b06db302cae25482944563d9b9c01cb20aa7f38a6d0f9fb921214d48e653",
+  "src/core-domains/build/target/kits/target-registry-kit/services.js": "94f35aee709ff102233b2b40cd71958bf5a4ff36e6780f2dbb2a5f8e5156ce79"
+}

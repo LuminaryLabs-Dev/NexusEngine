@@ -1,0 +1,22 @@
+{
+  "preservedFileCount": 33,
+  "changed": [],
+  "existingFailureFiles": [
+    {
+      "path": "src/core-domains/authoring/persistence/providers/indexeddb/index.js",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "src/core-domains/camel/tests/run-browser.mjs",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "src/core-domains/authoring/create/subdomain.manifest.js",
+      "unchangedFromHead": true
+    },
+    {
+      "path": "tests/core-domains/core-authoring-public.mjs",
+      "unchangedFromHead": true
+    }
+  ]
+}

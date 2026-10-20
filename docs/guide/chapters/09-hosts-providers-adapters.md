@@ -93,7 +93,7 @@ submission, and compile identity. The existing Shader interface schema remains
 under `n:render:contracts`. Core does not preprocess, parse, compile, link,
 retain binaries or GPU programs, execute backend reflection, or repair source.
 
-`n:render:material` associates exact portable Material slots with Shader
+`n:material` associates exact portable Material slots with Shader
 interfaces, typed parameter values, resident Texture views and subresources,
 sampler descriptors, complete instances, and Shader variants. Validation names
 one completed compile and matching reflection record, while cache records point
@@ -141,3 +141,12 @@ Presentation Core contains renderer-neutral descriptors and policies. Three.js o
 - Motion trajectory: `n:simulation:motion`.
 - Animation clip descriptor: `n:presentation:animation`.
 - Two-bone pose solving: `n:simulation:motion`.
+
+## Bundled Graphics Language Kit
+
+The optional `nexusengine/domains/render/graphics-language` entry composes existing
+Render contracts, resource identity and lifecycle services with NexusGL native/WASM
+execution and platform presentation. Core owns portable installation and handover
+status; the optional kit owns executable provider instances and buffers. Applications
+keep scene state and select their pipeline. See `docs/GRAPHICS-LANGUAGE.md`
+for one-call installation, the shared baseline and failure behavior.

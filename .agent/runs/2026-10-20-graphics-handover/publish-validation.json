@@ -1,0 +1,172 @@
+[
+  {
+    "command": "node tests/core-domains/core-graphics-domain-smoke.mjs",
+    "code": 0,
+    "output": "core graphics domain smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-graphics-kit-smoke.mjs",
+    "code": 0,
+    "output": "core-graphics-kit piece smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-graphics-procedural-material-smoke.mjs",
+    "code": 0,
+    "output": "core graphics procedural material smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
+    "code": 0,
+    "output": "core graphics reflection kit smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+    "code": 0,
+    "output": "core graphics render-layer contract test ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
+    "code": 0,
+    "output": "core graphics render-layer graph smoke ok\n"
+  },
+  {
+    "command": "node tests/core-domains/core-visual-contribution-smoke.mjs",
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "command": "node tests/core-domains/core-render-surface-smoke.mjs",
+    "code": 0,
+    "output": "core render surface smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-presentation-domain-smoke.mjs",
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "command": "node src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+    "code": 0,
+    "output": "third-person camera restoration: ok\n"
+  },
+  {
+    "command": "node tests/core-domains/core-domain-import-smoke.mjs",
+    "code": 0,
+    "output": "{ discovered: 977, imported: 979, failed: 0 }\ncore domain import smoke ok\n"
+  },
+  {
+    "command": "node tests/public-api-freeze.mjs",
+    "code": 0,
+    "output": "public-api-freeze ok\n"
+  },
+  {
+    "command": "node tests/runtime-kit-idempotency-smoke.mjs",
+    "code": 0,
+    "output": "runtime Kit idempotency smoke: ok\n"
+  },
+  {
+    "command": "node tests/core-domain-kits-smoke.mjs",
+    "code": 0,
+    "output": "core-domain-kits-smoke ok\n"
+  },
+  {
+    "command": "node tests/core-kits/core-child-capabilities-smoke.mjs",
+    "code": 0,
+    "output": "core child capabilities smoke ok\n"
+  },
+  {
+    "command": "node tests/core-domains/core-gpu-host-smoke.mjs",
+    "code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"device\": \"gpu-1\",\n  \"restoredDevice\": \"gpu-2\",\n  \"resources\": 1\n}\n"
+  },
+  {
+    "command": "node tests/core-domains/core-gpu-shared-resource-smoke.mjs",
+    "code": 0,
+    "output": "Portable Host shared-resource ownership proof passed; native execution proof lives with external providers\n"
+  },
+  {
+    "command": "node tests/core-domains/core-compute-domain-smoke.mjs",
+    "code": 0,
+    "output": "core compute provider-neutral domain smoke ok\n"
+  },
+  {
+    "command": "node kits/render/graphics-language-kit/tests/run.mjs",
+    "code": 0,
+    "output": "Graphics contract: [{\"backend\":\"native\",\"passed\":true},{\"nativeWasm\":{\"max\":0,\"changed\":0}},{\"backend\":\"wasm\",\"passed\":true}]\nGraphics handover: passed, native/WASM, 17 swaps, retained RSS growth -2473984 bytes\nTransformed normals, mirrored tangent frames and column-major projections: passed\n"
+  },
+  {
+    "command": "node kits/render/graphics-language-kit/tests/browser.mjs",
+    "code": 0,
+    "output": "Browser visible handover, movement, material update, rejection, resize, keyboard and canvas replacement: passed\n"
+  },
+  {
+    "command": "node scripts/generate-core-catalog.mjs --check --allow-pending",
+    "code": 0,
+    "output": "Checked 25 Domain manifests, 197 Domain records, and 385 atomic Kits (147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76).\n"
+  },
+  {
+    "command": "node scripts/check-manifest-execution-parity.mjs",
+    "code": 0,
+    "output": "Validated executable parity for 385 manifest-backed Core Kits.\n"
+  },
+  {
+    "command": "node scripts/generate-public-test-surface.mjs --check",
+    "code": 0,
+    "output": "Test package surface ok: 464 package modules.\n"
+  },
+  {
+    "command": "node scripts/generate-kit-ownership-ledger.mjs --check",
+    "code": 0,
+    "output": "Checked ownership ledger v2 {\n  sourceModules: 1731,\n  manifestProvenPublicAtoms: 385,\n  manifestOwnedInternalModules: 1311,\n  rootContractModules: 25,\n  optionalProviderModules: 10,\n  unreviewedModules: 0,\n  violations: 0\n}\n"
+  },
+  {
+    "command": "node scripts/generate-guide.mjs --check",
+    "code": 0,
+    "output": "Checked 22 guide chapters (sha256:f8b4d4e14038f60791386da2056a6c815fc059362d95c674a8de3c5735f7c462).\n"
+  },
+  {
+    "command": "node scripts/check-guide-pdf.mjs",
+    "code": 0,
+    "output": "NexusEngine Guide PDF ok: 222 nonblank, unclipped US Letter pages.\n"
+  },
+  {
+    "command": "node scripts/check-active-docs.mjs",
+    "code": 0,
+    "output": "Active docs ok: 91 files, 60 kit suggestions reclassified, 26 restored sources reconciled.\n"
+  },
+  {
+    "command": "node scripts/generate-dsk-manifest.mjs --check",
+    "code": 0,
+    "output": "Checked ${REPO_ROOT}/build/graphics-publish-checkout/docs/DSK_MANIFEST_0.0.4.json\n"
+  },
+  {
+    "command": "node scripts/generate-root-module-dispositions.mjs --check",
+    "code": 0,
+    "output": "Root module dispositions ok: 61 retired source records.\n"
+  },
+  {
+    "command": "node scripts/generate-protokit-extraction.mjs --check",
+    "code": 0,
+    "output": "Checked frozen ProtoKit extraction: 530 folders, 3698 classified source items.\n"
+  },
+  {
+    "command": "node scripts/check-core-boundaries.mjs",
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Runtime Core production modules own concrete renderer or platform behavior:\nsrc/core-domains/authoring/persistence/providers/indexeddb/index.js\nsrc/core-domains/camel/tests/run-browser.mjs\n+ actual - expected\n\n+ [\n+   'src/core-domains/authoring/persistence/providers/indexeddb/index.js',\n+   'src/core-domains/camel/tests/run-browser.mjs'\n+ ]\n- []\n\n    at file://${REPO_ROOT}/build/graphics-publish-checkout/scripts/check-core-boundaries.mjs:159:8 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: [\n    'src/core-domains/authoring/persistence/providers/indexeddb/index.js',\n    'src/core-domains/camel/tests/run-browser.mjs'\n  ],\n  expected: [],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": "node tests/public-entrypoint-relative-targets-smoke.mjs",
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js lacks proven manifest evidence\n+ actual - expected\n\n+ 'pending'\n- 'proven'\n\n    at file://${REPO_ROOT}/build/graphics-publish-checkout/tests/public-entrypoint-relative-targets-smoke.mjs:166:12 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'pending',\n  expected: 'proven',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": "node tests/core-domains/core-authoring-public.mjs",
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'authoring-import-registry-kit'\n- 'authoring-import-validation-kit'\n                    ^\n\n    at file://${REPO_ROOT}/build/graphics-publish-checkout/tests/core-domains/core-authoring-public.mjs:23:10 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'authoring-import-registry-kit',\n  expected: 'authoring-import-validation-kit',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": "node tests/run-all.mjs",
+    "code": 1,
+    "output": "Graphics contract: [{\"backend\":\"native\",\"passed\":true},{\"nativeWasm\":{\"max\":0,\"changed\":0}},{\"backend\":\"wasm\",\"passed\":true}]\nGraphics handover: passed, native/WASM, 17 swaps, retained RSS growth -12009472 bytes\nTransformed normals, mirrored tangent frames and column-major projections: passed\n\u2714 static bodies normalize through direct installed state and registry paths (17.342583ms)\n\u2714 body batch is atomic, revision checked, retry stable and conflict rejecting (9.27775ms)\n\u2714 body snapshot retains latest streaming retry only and restores it (178.49625ms)\n\u2714 invalid body output leaves registry unchanged (21.537833ms)\n\u2714 frame commit checks readiness, provider and strict sequence; latest retry is stable (4.896166ms)\n\u2714 tick checkpoints restore external state, ECS setters and clock on error (2.304542ms)\n\u2714 tick clock snapshot is isolated and malformed restore is rejected (1.176875ms)\n\u2139 tests 7\n\u2139 suites 0\n\u2139 pass 7\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 250.326666\n\u2714 movement values remain correct at a fixed simulation delta (1.863084ms)\n\u2714 movement replaces values without mutating previously stored references (0.291666ms)\n\u2714 movement preserves unrelated component fields (0.152875ms)\n\u2714 movement can read frozen component snapshots (0.186083ms)\n\u2714 movement publishes accurate before/after component journal records (0.162208ms)\n\u2714 a later resolve-phase failure rolls movement and the journal back (1.196791ms)\n\u2714 rollback restores the original stored component identities (0.213666ms)\n\u2714 a second-entity policy failure also restores the first entity (0.227791ms)\n\u2714 world bounds still clamp the completed position (0.137333ms)\n\u2714 zero delta does not advance position (0.159042ms)\n\u2714 two independent 600-tick runs have identical per-tick state hashes (27.956459ms)\n\u2714 retry after a failed tick matches an uninterrupted 600-tick run (17.906084ms)\n\u2714 collision resolution observes replaced transforms on subsequent pairs (0.41075ms)\n\u2714 collision filtering and event publication retain their existing behavior (0.143667ms)\n\u2714 large pending journals roll back without masking the original exception (40.137542ms)\n\u2714 collision resolution observes replaced colliders on subsequent pairs (0.371042ms)\n\u2714 invalid position conversion cannot partially commit velocity (0.24ms)\n\u2139 tests 17\n\u2139 suites 0\n\u2139 pass 17\n\u2139 fail 0\n\u2139 cancelled 0\n\u2139 skipped 0\n\u2139 todo 0\n\u2139 duration_ms 98.428875\nobservation history: PASS\nobservation commits: PASS\n{ discovered: 977, imported: 979, failed: 0 }\ncore domain import smoke ok\nfile://${REPO_ROOT}/build/graphics-publish-checkout/scripts/generate-core-catalog.mjs:78\n    throw new Error(`${label} is not proven.`);\n          ^\n\nError: n:authoring:create is not proven.\n    at validateProof (file://${REPO_ROOT}/build/graphics-publish-checkout/scripts/generate-core-catalog.mjs:78:11)\n    at validateManifest (file://${REPO_ROOT}/build/graphics-publish-checkout/scripts/generate-core-catalog.mjs:93:48)\n    at file://${REPO_ROOT}/build/graphics-publish-checkout/scripts/generate-core-catalog.mjs:299:3\n\nNode.js v25.8.1\n"
+  }
+]

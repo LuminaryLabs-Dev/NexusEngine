@@ -1,0 +1,92 @@
+[
+  {
+    "script": "tests/core-domains/core-graphics-domain-smoke.mjs",
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'nexusengine.render-installation/2'\n- 'nexusengine.render-installation/1'\n                                   ^\n\n    at file://${REPO_ROOT}/tests/core-domains/core-graphics-domain-smoke.mjs:629:8\n    at ModuleJob.run (node:internal/modules/esm/module_job:430:25)\n    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:639:26)\n    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:101:5) {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'nexusengine.render-installation/2',\n  expected: 'nexusengine.render-installation/1',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-kit-smoke.mjs",
+    "code": 0,
+    "output": "core-graphics-kit piece smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-procedural-material-smoke.mjs",
+    "code": 0,
+    "output": "core graphics procedural material smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
+    "code": 0,
+    "output": "core graphics reflection kit smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+    "code": 0,
+    "output": "core graphics render-layer contract test ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
+    "code": 0,
+    "output": "core graphics render-layer graph smoke ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-visual-contribution-smoke.mjs",
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "script": "tests/core-domains/core-render-surface-smoke.mjs",
+    "code": 0,
+    "output": "core render surface smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-presentation-domain-smoke.mjs",
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "script": "src/core-domains/presentation/tests/third-person-camera-restoration.mjs",
+    "code": 0,
+    "output": "third-person camera restoration: ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-domain-import-smoke.mjs",
+    "code": 0,
+    "output": "{ discovered: 980, imported: 982, failed: 0 }\ncore domain import smoke ok\n"
+  },
+  {
+    "script": "tests/public-api-freeze.mjs",
+    "code": 0,
+    "output": "public-api-freeze ok\n"
+  },
+  {
+    "script": "tests/runtime-kit-idempotency-smoke.mjs",
+    "code": 0,
+    "output": "runtime Kit idempotency smoke: ok\n"
+  },
+  {
+    "script": "tests/core-domain-kits-smoke.mjs",
+    "code": 0,
+    "output": "core-domain-kits-smoke ok\n"
+  },
+  {
+    "script": "tests/core-kits/core-child-capabilities-smoke.mjs",
+    "code": 0,
+    "output": "core child capabilities smoke ok\n"
+  },
+  {
+    "script": "tests/core-domains/core-gpu-host-smoke.mjs",
+    "code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"device\": \"gpu-1\",\n  \"restoredDevice\": \"gpu-2\",\n  \"resources\": 1\n}\n"
+  },
+  {
+    "script": "tests/core-domains/core-gpu-shared-resource-smoke.mjs",
+    "code": 0,
+    "output": "Portable Host shared-resource ownership proof passed; native execution proof lives with external providers\n"
+  },
+  {
+    "script": "tests/core-domains/core-gpu-unified-frame-smoke.mjs",
+    "code": 1,
+    "output": "node:internal/modules/cjs/loader:1478\n  throw err;\n  ^\n\nError: Cannot find module '${REPO_ROOT}/tests/core-domains/core-gpu-unified-frame-smoke.mjs'\n    at Module._resolveFilename (node:internal/modules/cjs/loader:1475:15)\n    at wrapResolveFilename (node:internal/modules/cjs/loader:1048:27)\n    at defaultResolveImplForCJSLoading (node:internal/modules/cjs/loader:1072:10)\n    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1093:12)\n    at Module._load (node:internal/modules/cjs/loader:1261:25)\n    at wrapModuleLoad (node:internal/modules/cjs/loader:255:19)\n    at Module.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:154:5)\n    at node:internal/main/run_main_module:33:47 {\n  code: 'MODULE_NOT_FOUND',\n  requireStack: []\n}\n\nNode.js v25.8.1\n"
+  }
+]

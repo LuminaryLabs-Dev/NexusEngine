@@ -4,7 +4,7 @@ import {
   createRenderPassContract,
   resolveRenderLayerGraph,
   validateRenderLayerGraph
-} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js";
+} from "../../src/core-domains/render/pipeline/contract.js";
 
 const graph = createRenderLayerGraph({
   id: "contract-only-anime-water-stack",

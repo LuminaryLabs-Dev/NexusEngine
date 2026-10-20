@@ -2,17 +2,28 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac`
+Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
 
-- Source modules: 1712
-- Manifest-proven public atoms: 383
-- Manifest-owned internal modules: 1304
+- Source modules: 1731
+- Manifest-proven public atoms: 385
+- Manifest-owned internal modules: 1311
 - Root contract modules: 25
+- Optional provider modules: 10
 - Unreviewed modules: 0
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
+| `kits/catalog.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/contracts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/hosts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/manifest.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/material.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/provider.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/runtime/loader.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/session.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
@@ -527,7 +538,60 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/camel/index.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/camel/kits/runtime-kit/index.js` | `n:camel` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/camel/nexus-api/binding.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/runtime/asyncify.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/runtime/browser-worker.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/runtime/browser.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/camel/runtime/native.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camel/runtime/wire.js` | `n:camel` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/services.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/state.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/domain.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/camera-contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/camera-kit.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/camera-manifests.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/index.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-binding-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-binding-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-binding-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-jitter-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-jitter-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-jitter-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-projection-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-projection-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-projection-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-reprojection-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-reprojection-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-reprojection-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-view-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-view-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-view-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-viewport-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-viewport-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/camera-viewport-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/multiview-camera-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/multiview-camera-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/multiview-camera-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/stereo-camera-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/stereo-camera-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/execution/kits/stereo-camera-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/index.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/kits/camera-control-kit.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/kits/camera-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/kits/camera-kit/smoothing.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/kits/framing-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/kits/framing-kit/orthographic-fit.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/kits/framing-kit/perspective-fit.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/index.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/kits/third-person-camera-kit/contracts.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/kits/third-person-camera-kit/index.js` | `n:camera` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/camera/third-person/kits/third-person-camera-kit/kit.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/kits/third-person-camera-kit/services.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/kits/third-person-camera-kit/state.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/camera/third-person/subdomain.manifest.js` | `n:camera` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/catalog.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/composition-mcp-provider.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/composition/adapters/mcp/generated-guide-resources.js` | `n:composition` | manifest-owned-internal | NexusEngine Core |
@@ -640,9 +704,51 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/interaction/transfer-zone/kits/transfer-zone-kit/services.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/transfer-zone/kits/transfer-zone-kit/state.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/transfer-zone/subdomain.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/descriptors.js` | `n:lighting` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/domain.manifest.js` | `n:lighting` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/index.js` | `n:lighting` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/kits/lighting-descriptor-kit/index.js` | `n:lighting` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/lighting/reflection/adapters.js` | `n:lighting` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/reflection/contract.js` | `n:lighting` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/lighting/reflection/index.js` | `n:lighting` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/manifest-domain-service-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/manifest-input.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/manifest-kit-contract.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/material/appearance.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/domain.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/index.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-binding-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-binding-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-binding-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-cache-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-cache-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-cache-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-contract-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-contract-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-contract-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-descriptor-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-instance-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-instance-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-instance-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-parameter-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-parameter-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-parameter-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-validation-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-validation-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-validation-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-variant-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/material-variant-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/material-variant-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/sampler-binding-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/sampler-binding-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/sampler-binding-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/texture-binding-kit/contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/kits/texture-binding-kit/index.js` | `n:material` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/material/kits/texture-binding-kit/kit.manifest.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/material-contracts.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/material-manifests.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/material-registry-kit.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/material/procedural.js` | `n:material` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/mcp/adapters/node-mcp-sdk-adapter/index.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/mcp/contracts/contract-utilities.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/mcp/contracts/prompt-contract.js` | `n:mcp` | manifest-owned-internal | NexusEngine Core |
@@ -1026,53 +1132,20 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/policy/domain.manifest.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/index.js` | `n:policy` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/policy/kits/policy-kit/index.js` | `n:policy` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/animation/kits/animation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/animation/kits/rig-transform-kit.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/audio/kits/audio-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/camera-control-kit.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/camera-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/camera-kit/smoothing.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/framing-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/framing-kit/orthographic-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/kits/framing-kit/perspective-fit.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/kit.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/services.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/state.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/camera/third-person/subdomain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/capture/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/capture/kits/capture-kit/descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/capture/kits/capture-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/capture/kits/capture-kit/provider.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/contracts.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/domain.manifest.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/adapters.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/instance-batches.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/lighting-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/material-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/procedural-material-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/quality-profiles.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/contract.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/render-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/terrain-lod-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/vfx-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/kits/presentation-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/output/kits/output-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/output/kits/output-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/presentation/requests/vfx-descriptors.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/sky/kits/sky-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/speech/index.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/speech/kits/speech-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
@@ -1080,6 +1153,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/presentation/ui/kits/ui-kit/spatial-panel.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/index.js` | `n:presentation` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/presentation/ui/kits/ui-scale-kit/math.js` | `n:presentation` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/batch/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/batch/instance-batches.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/buffer-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
@@ -1109,35 +1184,6 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/render/buffer/kits/vertex-buffer-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/render/buffer/kits/vertex-buffer-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/buffer/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/camera-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/camera-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/camera-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-jitter-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-jitter-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-jitter-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-projection-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-projection-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-projection-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-reprojection-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-reprojection-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-reprojection-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-view-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-view-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-view-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-viewport-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-viewport-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/camera-viewport-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/multiview-camera-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/multiview-camera-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/multiview-camera-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/stereo-camera-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/kits/stereo-camera-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/camera/kits/stereo-camera-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/camera/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/contract-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/kits/render-domain-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
@@ -1163,6 +1209,7 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/render/contracts/kits/shader-schema-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/portable-value.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/contracts/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/contracts/visual-contributions.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/device/device-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/device/device-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/device/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
@@ -1218,38 +1265,10 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/render/lifecycle/lifecycle-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/lifecycle/lifecycle-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/lifecycle/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-cache-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-cache-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-cache-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-contract-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-instance-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-instance-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-instance-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-parameter-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-parameter-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-parameter-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-validation-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-validation-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-validation-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-variant-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-variant-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/material-variant-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/sampler-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/sampler-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/sampler-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/texture-binding-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/kits/texture-binding-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/render/material/kits/texture-binding-kit/kit.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/material-contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/material-manifests.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/material-registry-kit.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/render/material/subdomain.manifest.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/pipeline/contract.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/pipeline/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/render/pipeline/quality-profiles.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/render/pipeline/render-descriptors.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/resource/index.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/resource/kits/render-resource-contract-kit/contracts.js` | `n:render` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/render/resource/kits/render-resource-contract-kit/index.js` | `n:render` | manifest-proven-public-atom | NexusEngine Core |
@@ -1658,6 +1677,7 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `src/core-domains/world/terrain/kits/terrain-kit/kit.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/kits/terrain-kit/services.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/kits/terrain-kit/state.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/world/terrain/lod-descriptors.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/terrain/subdomain.manifest.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/validation.js` | `n:world` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/world/water-surface/index.js` | `n:world` | manifest-owned-internal | NexusEngine Core |

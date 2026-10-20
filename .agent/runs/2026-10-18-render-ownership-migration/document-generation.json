@@ -1,0 +1,7 @@
+{
+  "checkout": "${TMPDIR}/nexus-migration-docs-7tbptssx",
+  "command": "node scripts/generate-restored-behavior-migrations.mjs",
+  "code": 0,
+  "output": "Generated 26 restored behavior migrations, 27 behavior atoms, 9 adapters, and 6 recipes.\n",
+  "limitation": "Generated in a source-only copy. Historical Git checksum validation was unavailable; in-repository historical verification remains failing on the recorded missing source path."
+}

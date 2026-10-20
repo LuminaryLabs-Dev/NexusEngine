@@ -88,7 +88,7 @@ export function getRenderPassSchema() {
     required: ["passId", "frameId", "sequence", "kind"],
     optional: FIELDS.filter((field) => !["schema", "passId", "frameId", "sequence", "kind"].includes(field)),
     kinds: [...PASS_KINDS],
-    graphOwnership: "n:presentation:graphics",
+    graphOwnership: "n:render:pipeline",
     inputState: "resolved",
     portable: true,
     unknownFields: "reject"

@@ -3,7 +3,7 @@ import {
   composeVisualContributions,
   defineVisualContribution,
   validateVisualContribution
-} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js";
+} from "../../src/core-domains/render/contracts/visual-contributions.js";
 
 const terrain = defineVisualContribution({
   semanticId: "synthetic:terrain:cell-0",

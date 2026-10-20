@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import {
   createCameraKit,
   createDataKit,
-  createGraphicsKit,
+  createRenderBatchKit,
   createPresentationKit,
   createSimulationKit,
   createTransactionLedgerKit,
@@ -22,7 +22,7 @@ const engine = createEngine({
     }),
     createPresentationKit(),
     createCameraKit(),
-    createGraphicsKit(),
+    createRenderBatchKit(),
     createTransactionLedgerKit()
   ]
 });
@@ -86,7 +86,7 @@ smoothing.loadSnapshot(smoothingSnapshot);
 assert.equal(smoothing.getSnapshot().controllers[0].config.positionSharpness, 3, "camera tuning survives snapshot restore");
 assert.equal(smoothing.getSnapshot().controllers[0].config.teleportThreshold, 80, "camera teleport policy survives snapshot restore");
 
-const batches = engine.n.graphics.instanceBatches;
+const batches = engine.n.renderBatch.instanceBatches;
 batches.createBatch({ id: "trees", assetId: "pine", materialId: "pine-material", capacity: 4, updateMode: "incremental" });
 batches.replaceCell("trees", "0:0", [
   { id: "tree-a", position: [0, 0, 0] },

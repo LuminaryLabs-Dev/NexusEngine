@@ -29,3 +29,5 @@ export function createRenderContractsDomain(config = {}) {
 }
 
 export default createRenderContractsDomain;
+
+export { canonicalizePortableValue } from "./portable-value.js";

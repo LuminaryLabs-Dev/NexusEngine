@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac`
+Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
 
 ## Domains
 
@@ -55,7 +55,9 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:build:target:android-xr` | `n:build:target` | Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation. | stable-candidate |
 | `n:build:target:pcvr` | `n:build:target` | Own Windows x64 OpenXR host generation, executable packaging, and validation. | stable-candidate |
 | `n:build:target:host-native` | `n:build:target` | Own local native and embedded Node contract proof on the build host. | stable-candidate |
-| `n:camel` | - | Own bundled Camel execution and native binding to the installed public Nexus API graph. | experimental |
+| `n:camel` | - | Own bundled Camel execution and browser/native binding to the installed public Nexus API graph. | experimental |
+| `n:camera` | - | Own camera targets, smoothing, framing, views, projections and portable camera execution records. | stable-candidate |
+| `n:camera:third-person` | `n:camera` | Own renderer-neutral third-person camera follow descriptors. | stable-candidate |
 | `n:composition` | - | Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts. | stable-candidate |
 | `n:compute` | - | Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts. | stable-candidate |
 | `n:compute:graph` | `n:compute` | Own portable compute topology, dependencies, and deterministic plans. | stable-candidate |
@@ -103,6 +105,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:interaction:request:queue` | `n:interaction:request` | Own queued request patience, fulfillment, expiry, and effect descriptors. | stable-candidate |
 | `n:interaction:request:fulfillment` | `n:interaction:request` | Own spatial request destination, deadline, completion, expiry, and reward state. | stable-candidate |
 | `n:interaction:transfer-zone` | `n:interaction` | Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state. | stable-candidate |
+| `n:lighting` | - | Own portable light definitions, reflection policy, negotiation and observation records. | stable-candidate |
+| `n:material` | - | Own visual material descriptions, parameters, instances, portable execution bindings and validation. | stable-candidate |
 | `n:mcp` | - | Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch. | stable-candidate |
 | `n:network` | - | Own portable transport, session, authority, synchronization, and replication contracts. | stable-candidate |
 | `n:network:transport` | `n:network` | Own provider-neutral transport capabilities and portable message channels. | stable-candidate |
@@ -132,15 +136,12 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:policy` | - | Own product-neutral permission, guard, sandbox, and runtime safety decisions. | stable-candidate |
 | `n:presentation` | - | Own renderer-neutral presentation descriptors and output policy contracts. | stable-candidate |
 | `n:presentation:output` | `n:presentation` | Own surface, safe-area, viewport, aspect, bar, and render-resolution policy. | stable-candidate |
-| `n:presentation:graphics` | `n:presentation` | Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors. | stable-candidate |
-| `n:presentation:camera` | `n:presentation` | Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy. | stable-candidate |
 | `n:presentation:animation` | `n:presentation` | Own animation, pose, blend, rig, and timeline descriptors. | stable-candidate |
 | `n:presentation:audio` | `n:presentation` | Own audio cue, music, ambience, mix, volume, and spatial audio descriptors. | stable-candidate |
 | `n:presentation:ui` | `n:presentation` | Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors. | stable-candidate |
 | `n:presentation:speech` | `n:presentation` | Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts. | stable-candidate |
 | `n:presentation:capture` | `n:presentation` | Own observation requests, view sets, framing, capture jobs, progress, and result contracts. | stable-candidate |
 | `n:presentation:sky` | `n:presentation` | Own generic sky, atmosphere, cloud, horizon, and celestial descriptors. | stable-candidate |
-| `n:presentation:camera:third-person` | `n:presentation:camera` | Own renderer-neutral third-person camera follow descriptors. | stable-candidate |
 | `n:render` | - | Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains. | stable-candidate |
 | `n:render:contracts` | `n:render` | Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas. | stable-candidate |
 | `n:render:lifecycle` | `n:render` | Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state. | stable-candidate |
@@ -150,8 +151,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:render:buffer` | `n:render` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. | stable-candidate |
 | `n:render:texture` | `n:render` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. | stable-candidate |
 | `n:render:shader` | `n:render` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. | stable-candidate |
-| `n:render:material` | `n:render` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. | stable-candidate |
-| `n:render:camera` | `n:render` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. | stable-candidate |
+| `n:render:pipeline` | `n:render` | Own portable rendering pipeline state and validation. | stable-candidate |
+| `n:render:batch` | `n:render` | Own portable rendering batch state and validation. | stable-candidate |
 | `n:render:execution` | `n:render` | Own realization-family semantics for portable Render work. | stable-candidate |
 | `n:render:execution:gpu` | `n:render:execution` | Own semantics common to GPU-class rendering over Host GPU resources. | stable-candidate |
 | `n:runtime` | - | Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation. | stable-candidate |
@@ -303,6 +304,19 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `target-validation-kit` | `n:build:proof` | `nexusengine/domains/build/proof/target-validation` | Require target-specific executable artifact validation. |
 | `web-module-linker-kit` | `n:build:compile` | `nexusengine/domains/build/compile/web-module-linker` | Materialize a verified, content-addressed browser module closure from immutable project sources. |
 | `camel-runtime-kit` | `n:camel` | `nexusengine/domains/camel/runtime` | Execute a pinned bundled Camel interpreter against shared Nexus instances. |
+| `camera-descriptor-kit` | `n:camera` | `nexusengine/domains/camera/control` | Manage camera targets, modes, smoothing, and renderer-neutral camera policy. |
+| `camera-framing-kit` | `n:camera` | `nexusengine/domains/camera/framing` | Calculate perspective and orthographic subject framing for a viewport. |
+| `camera-control-math-kit` | `n:camera` | `nexusengine/domains/camera/control-math` | Calculate camera-relative yaw, orbit limits, and root handoff state. |
+| `third-person-camera-kit` | `n:camera:third-person` | `nexusengine/domains/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
+| `camera-world-occlusion-adapter-kit` | `n:camera:third-person` | `nexusengine/domains/camera/adapters/camera-world-occlusion` | Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state. |
+| `camera-binding-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-binding` | Own portable camera binding semantics and deterministic state. |
+| `camera-jitter-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
+| `camera-projection-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-projection` | Own portable camera projection semantics and deterministic state. |
+| `camera-reprojection-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
+| `camera-view-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-view` | Own portable camera view semantics and deterministic state. |
+| `camera-viewport-kit` | `n:camera` | `nexusengine/domains/camera/execution/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
+| `multiview-camera-kit` | `n:camera` | `nexusengine/domains/camera/execution/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
+| `stereo-camera-kit` | `n:camera` | `nexusengine/domains/camera/execution/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
 | `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
 | `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
@@ -320,6 +334,18 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `occupant-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/occupant-request` | Translate Occupant Flow need records into exact-once Request Queue entries. |
 | `transport-request-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/transport-request` | Translate Transport Route arrivals into exact-once Request Queue fulfillment commands. |
 | `request-economy-adapter-kit` | `n:interaction:request:queue` | `nexusengine/domains/interaction/adapters/request-economy` | Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions. |
+| `lighting-descriptor-kit` | `n:lighting` | `nexusengine/domains/lighting/descriptions` | Own portable lighting descriptions. |
+| `reflection-descriptor-kit` | `n:lighting` | `nexusengine/domains/lighting/reflection` | Describe renderer-neutral reflection probes, plans, and update policy. |
+| `material-contract-kit` | `n:material` | `nexusengine/domains/material/contract` | Define the canonical backend-neutral Render Material execution boundary. |
+| `material-binding-kit` | `n:material` | `nexusengine/domains/material/binding` | Map portable Material slots to one exact Shader program interface. |
+| `material-parameter-kit` | `n:material` | `nexusengine/domains/material/parameter` | Own typed portable values for exact Material parameter slots. |
+| `texture-binding-kit` | `n:material` | `nexusengine/domains/material/texture-binding` | Bind exact resident Texture views and subresources to Material slots. |
+| `sampler-binding-kit` | `n:material` | `nexusengine/domains/material/sampler-binding` | Own portable sampler state for exact Material sampler slots. |
+| `material-instance-kit` | `n:material` | `nexusengine/domains/material/instance` | Compose one complete portable Material execution instance from exact bindings. |
+| `material-variant-kit` | `n:material` | `nexusengine/domains/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
+| `material-validation-kit` | `n:material` | `nexusengine/domains/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
+| `material-cache-kit` | `n:material` | `nexusengine/domains/material/cache` | Link current Material validation to an exact resident material Render Resource. |
+| `material-descriptor-kit` | `n:material` | `nexusengine/domains/material/descriptions` | Own portable material descriptions. |
 | `mcp-registry-kit` | `n:mcp` | `nexusengine/domains/mcp/registry` | Register and dispatch schema-valid MCP providers through an explicit authorization boundary. |
 | `network-contract-kit` | `n:network` | `nexusengine/domains/network/contracts` | Describe portable network messages and synchronization without implementing transport. |
 | `network-transport-contract-kit` | `n:network:transport` | `nexusengine/domains/network/transport` | Validate provider-neutral transport capabilities and portable channel messages. |
@@ -429,12 +455,6 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `policy-kit` | `n:policy` | `nexusengine/domains/policy/guard` | Evaluate declarative runtime safety and permission rules. |
 | `presentation-registry-kit` | `n:presentation` | `nexusengine/domains/presentation/registry` | Register renderer-neutral presentation capabilities and descriptors. |
 | `presentation-output-kit` | `n:presentation:output` | `nexusengine/domains/presentation/output` | Calculate renderer-neutral surfaces, safe areas, viewports, aspect policy, and render resolution. |
-| `graphics-descriptor-kit` | `n:presentation:graphics` | `nexusengine/domains/presentation/graphics` | Create renderer-neutral material, lighting, VFX, quality, batch, and terrain LOD descriptors. |
-| `render-layer-graph-kit` | `n:presentation:graphics` | `nexusengine/domains/presentation/graphics/render-graph` | Validate renderer-neutral render layers, dependencies, and pass ordering. |
-| `reflection-descriptor-kit` | `n:presentation:graphics` | `nexusengine/domains/presentation/graphics/reflection` | Describe renderer-neutral reflection probes, plans, and update policy. |
-| `camera-descriptor-kit` | `n:presentation:camera` | `nexusengine/domains/presentation/camera` | Manage camera targets, modes, smoothing, and renderer-neutral camera policy. |
-| `camera-framing-kit` | `n:presentation:camera` | `nexusengine/domains/presentation/camera/framing` | Calculate perspective and orthographic subject framing for a viewport. |
-| `camera-control-math-kit` | `n:presentation:camera` | `nexusengine/domains/presentation/camera/control-math` | Calculate camera-relative yaw, orbit limits, and root handoff state. |
 | `animation-descriptor-kit` | `n:presentation:animation` | `nexusengine/domains/presentation/animation` | Manage animation clips, poses, blends, transitions, and timeline descriptors. |
 | `rig-transform-kit` | `n:presentation:animation` | `nexusengine/domains/presentation/animation/rig` | Create neutral joint, limb, and rig transform descriptors. |
 | `audio-descriptor-kit` | `n:presentation:audio` | `nexusengine/domains/presentation/audio` | Manage renderer-neutral audio cues, mix groups, volume policy, and spatial audio descriptors. |
@@ -443,8 +463,6 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `speech-contract-kit` | `n:presentation:speech` | `nexusengine/domains/presentation/speech` | Manage provider-neutral speech requests, voices, utterance lifecycle, and synthesis results. |
 | `capture-contract-kit` | `n:presentation:capture` | `nexusengine/domains/presentation/capture` | Manage observation requests, view sets, framing, capture jobs, progress, and result contracts. |
 | `sky-descriptor-kit` | `n:presentation:sky` | `nexusengine/domains/presentation/sky` | Create generic sky, horizon, atmosphere, cloud, and celestial descriptors. |
-| `third-person-camera-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/camera/third-person` | Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings. |
-| `camera-world-occlusion-adapter-kit` | `n:presentation:camera:third-person` | `nexusengine/domains/presentation/adapters/camera-world-occlusion` | Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state. |
 | `render-domain-contract-kit` | `n:render` | `nexusengine/domains/render/contract` | Expose the canonical backend-neutral Render ownership and execution-contract boundary. |
 | `render-provider-contract-kit` | `n:render:contracts` | `nexusengine/domains/render/provider-contract` | Validate concrete Render providers without executing or retaining provider code or handles. |
 | `render-resource-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/resource-schema` | Validate and normalize portable Render resource records without exposing backend handles. |
@@ -452,7 +470,7 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `render-pass-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/pass-schema` | Validate and normalize resolved provider-facing Render pass records without owning Presentation graph planning. |
 | `shader-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/shader-schema` | Validate and normalize portable shader-interface records shared by Render providers. |
 | `render-event-schema-kit` | `n:render:contracts` | `nexusengine/domains/render/event-schema` | Validate and normalize ordered portable Render lifecycle and execution events. |
-| `render-installation-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Render composition. |
+| `render-installation-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase, provider generation and controlled handover status for one Render composition. |
 | `render-startup-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
 | `render-shutdown-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
 | `render-recovery-kit` | `n:render:lifecycle` | `nexusengine/domains/render/lifecycle/recovery` | Coordinate deterministic recovery from a failed Render provider lifecycle without owning provider repair execution. |
@@ -517,23 +535,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `shader-compile-kit` | `n:render:shader` | `nexusengine/domains/render/shader/compile` | Own exact-once logical Shader compile requests and provider completion or failure receipts. |
 | `shader-reflection-kit` | `n:render:shader` | `nexusengine/domains/render/shader/reflection` | Validate normalized provider reflection against the completed compile and program interface. |
 | `shader-cache-kit` | `n:render:shader` | `nexusengine/domains/render/shader/cache` | Link completed Shader compiles to resident shader-program Render Resources and select deterministic eviction candidates. |
-| `material-contract-kit` | `n:render:material` | `nexusengine/domains/render/material/contract` | Define the canonical backend-neutral Render Material execution boundary. |
-| `material-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/binding` | Map portable Material slots to one exact Shader program interface. |
-| `material-parameter-kit` | `n:render:material` | `nexusengine/domains/render/material/parameter` | Own typed portable values for exact Material parameter slots. |
-| `texture-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/texture-binding` | Bind exact resident Texture views and subresources to Material slots. |
-| `sampler-binding-kit` | `n:render:material` | `nexusengine/domains/render/material/sampler-binding` | Own portable sampler state for exact Material sampler slots. |
-| `material-instance-kit` | `n:render:material` | `nexusengine/domains/render/material/instance` | Compose one complete portable Material execution instance from exact bindings. |
-| `material-variant-kit` | `n:render:material` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
-| `material-validation-kit` | `n:render:material` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
-| `material-cache-kit` | `n:render:material` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
-| `camera-binding-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-binding` | Own portable camera binding semantics and deterministic state. |
-| `camera-jitter-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
-| `camera-projection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-projection` | Own portable camera projection semantics and deterministic state. |
-| `camera-reprojection-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
-| `camera-view-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-view` | Own portable camera view semantics and deterministic state. |
-| `camera-viewport-kit` | `n:render:camera` | `nexusengine/domains/render/camera/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
-| `multiview-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
-| `stereo-camera-kit` | `n:render:camera` | `nexusengine/domains/render/camera/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
+| `render-layer-graph-kit` | `n:render:pipeline` | `nexusengine/domains/render/pipeline` | Validate renderer-neutral render layers, dependencies, and pass ordering. |
+| `render-batch-kit` | `n:render:batch` | `nexusengine/domains/render/batch` | Own portable instance batch state, capacity, cell updates and flush records. |
 | `runtime-lifecycle-kit` | `n:runtime` | `nexusengine/domains/runtime/lifecycle` | Own deterministic runtime lifecycle and Kit installation receipts. |
 | `realtime-runtime-kit` | `n:runtime:realtime` | `nexusengine/domains/runtime/realtime` | Create deterministic realtime frame context and phase execution. |
 | `runtime-data-kit` | `n:runtime:data` | `nexusengine/domains/runtime/data` | Provide deterministic schemas, snapshots, selectors, migrations, and data envelopes. |

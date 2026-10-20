@@ -46,6 +46,9 @@ export function createRenderSnapshotKit(config = {}) {
         },
         capture(command = {}) {
           const request = normalizeCaptureCommand(command);
+          if (["preparing", "prepared"].includes(engine.n.renderInstallation.getState().handover?.status)) {
+            throw new TypeError("Finish or cancel executable renderer handover work before capturing a lifecycle bundle.");
+          }
           const apis = components();
           return baseApi.applyCommand(request, (state) => {
             const snapshot = normalizeLifecycleBundle({
@@ -69,6 +72,10 @@ export function createRenderSnapshotKit(config = {}) {
         },
         restore(command = {}) {
           const request = normalizeRestoreCommand(command);
+          if (["preparing", "prepared"].includes(engine.n.renderInstallation.getState().handover?.status) ||
+              ["preparing", "prepared"].includes(request.snapshot.components.installation.handover?.status)) {
+            throw new TypeError("Lifecycle restore cannot recreate executable renderer handover work; finish or cancel it first.");
+          }
           const apis = components();
           const records = Object.entries(apis).map(([id, api]) => ({ id, api, snapshot: api.getSnapshot() }));
           try {

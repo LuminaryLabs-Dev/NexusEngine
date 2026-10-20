@@ -215,7 +215,7 @@
     {
       "sourcePath": "src/character-camera-kit.js",
       "disposition": "core-restored",
-      "targetOwner": "NexusEngine manifests: n:presentation:camera:third-person",
+      "targetOwner": "NexusEngine manifests: n:camera:third-person",
       "requiredCoreAtoms": [
         "third-person-camera-kit"
       ],
@@ -234,11 +234,11 @@
         "newAtoms": [
           {
             "kitId": "third-person-camera-kit",
-            "domainPath": "n:presentation:camera:third-person",
-            "packageSubpath": "nexusengine/domains/presentation/camera/third-person",
+            "domainPath": "n:camera:third-person",
+            "packageSubpath": "nexusengine/domains/camera/third-person",
             "factory": "createThirdPersonCameraKit",
             "engineApi": "engine.n.thirdPersonCamera",
-            "sourceModule": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/index.js"
+            "sourceModule": "src/core-domains/camera/third-person/kits/third-person-camera-kit/index.js"
           }
         ],
         "requiredAdapters": [
@@ -1524,9 +1524,10 @@
       "targetOwner": "NexusEngine-Kits adapters",
       "requiredCoreAtoms": [
         "n:host",
-        "n:presentation:graphics"
+        "n:render:shader",
+        "n:material"
       ],
-      "reconstructionRecipe": "Keep descriptors in Presentation and compile them only inside an approved renderer adapter.",
+      "reconstructionRecipe": "Keep descriptors with Material and Render and compile them only inside an approved renderer adapter.",
       "semanticBehavior": "WebGL shader compilation and concrete material registry.",
       "stateAndLifecycle": "The target owner must define install, duplicate-install, snapshot, load, and reset behavior before promotion.",
       "proofStatus": "scheduled-external",

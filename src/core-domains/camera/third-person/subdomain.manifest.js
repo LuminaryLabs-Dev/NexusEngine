@@ -1,0 +1,3 @@
+import { domainNode } from "../../manifest-input.js";
+
+export default domainNode({ id: "presentation-camera-third-person-domain", domainPath: "n:camera:third-person", parentDomainPath: "n:camera", label: "Third-Person Camera", responsibility: "Own renderer-neutral third-person camera follow descriptors.", owns: ["third-person camera descriptor", "follow orbit state", "camera smoothing state"], forbiddenResponsibilities: ["world occlusion queries", "renderer camera objects", "character motion", "raw input"], requires: ["n:camera", "character:resolution", "motion:velocity"], provides: ["n:camera:third-person", "camera:third-person-descriptor"], proofReferences: ["src/core-domains/presentation/tests/third-person-camera-restoration.mjs"] });

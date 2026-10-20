@@ -20,7 +20,7 @@ function initialState(config = {}) {
       root: "n:presentation",
       output: "n:presentation:output",
       uiScale: "n:presentation:ui-scale",
-      cameraFraming: "n:presentation:camera-framing"
+      cameraFraming: "n:camera"
     }
   };
 }

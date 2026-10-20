@@ -1,11 +1,9 @@
 import { evaluateAuthoringImage } from "../paint/image.js";
 import { createObjectDescriptor } from "nexusengine/domains/object";
 import { createAssetDescriptor } from "nexusengine/domains/asset/registry";
-import {
-  createRenderDescriptor,
-  createMaterialDescriptor,
-  createLightingDescriptor,
-} from "nexusengine/domains/presentation/graphics";
+import { createRenderDescriptor } from "nexusengine/domains/render/pipeline/descriptors";
+import { createMaterialDescriptor } from "nexusengine/domains/material";
+import { createLightingDescriptor } from "nexusengine/domains/lighting";
 import { registerDocumentService, reference } from "../contracts/services.js";
 import {
   authoringError as error,

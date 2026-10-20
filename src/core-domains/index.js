@@ -21,3 +21,7 @@ export * from "./simulation/index.js";
 export * from "./spatial/index.js";
 export * from "./world/index.js";
 export * from "./authoring/index.js";
+
+export * from "./material/index.js";
+export * from "./lighting/index.js";
+export * from "./camera/index.js";

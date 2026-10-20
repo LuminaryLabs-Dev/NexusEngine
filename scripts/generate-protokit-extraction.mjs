@@ -161,7 +161,7 @@ const coreReuseRules = [
   [/scene-graph-domain|spatial-scene-graph|transform-domain-service|generic-anchor-descriptor/, "spatial-contract-kit", "n:spatial"],
   [/physics-body-lite|physics-body-weight-source/, "physics-contract-kit", "n:simulation:physics"],
   [/render-descriptor-domain|presentation-output/, "presentation-output-kit", "n:presentation:output"],
-  [/camera-mode-domain|camera-framing/, "camera-descriptor-kit", "n:presentation:camera"],
+  [/camera-mode-domain|camera-framing/, "camera-descriptor-kit", "n:camera"],
   [/domain-manifest-registry/, "composition-registry-kit", "n:composition"]
 ];
 
@@ -189,8 +189,11 @@ function requiredAtoms(text) {
     [/agent|director|policy|decision/, "n:agent"],
     [/interaction|affordance|trigger|selection|grab|hold/, "n:interaction"],
     [/input|gesture|command/, "n:interaction:input"],
-    [/render|visual|graphic|material|shader|decal|particle|fog/, "n:presentation:graphics"],
-    [/camera/, "n:presentation:camera"],
+    [/material/, "n:material"],
+    [/lighting|reflection/, "n:lighting"],
+    [/render|graphic|shader/, "n:render"],
+    [/visual|decal|particle|fog/, "n:presentation"],
+    [/camera/, "n:camera"],
     [/audio|speech|chat|dialogue/, "n:presentation:audio"],
     [/ui|widget|overlay/, "n:presentation:ui"],
     [/asset|pack|load|content/, "n:asset"],

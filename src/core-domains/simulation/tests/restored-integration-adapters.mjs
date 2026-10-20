@@ -7,7 +7,7 @@ import { createRequestQueueKit } from "../../interaction/request/queue/kits/requ
 import { createOccupantRequestAdapterKit } from "../../interaction/adapters/occupant-request-adapter-kit/index.js";
 import { createTransportRequestAdapterKit } from "../../interaction/adapters/transport-request-adapter-kit/index.js";
 import { createRequestEconomyAdapterKit } from "../../interaction/adapters/request-economy-adapter-kit/index.js";
-import { constrainCameraDescriptor } from "../../presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js";
+import { constrainCameraDescriptor } from "../../camera/adapters/camera-world-occlusion-adapter-kit/contracts.js";
 import { createSimulationKit } from "../kits/simulation-kit/index.js";
 import { createLocomotionContactResponse } from "../adapters/locomotion-contact-response-adapter-kit/contracts.js";
 import { createLocomotionContactResponseAdapterKit } from "../adapters/locomotion-contact-response-adapter-kit/index.js";

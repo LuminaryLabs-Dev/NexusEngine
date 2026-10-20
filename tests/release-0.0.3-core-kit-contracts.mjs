@@ -5,7 +5,7 @@ import {
   createDomainKit,
   createDataKit,
   createInputKit,
-  createGraphicsKit,
+  createRenderBatchKit,
   createReflectionKit,
   createInteractionKit
 } from "./helpers/public-package-surface.mjs";
@@ -40,7 +40,7 @@ assert.equal(customEngine.n.coreReleaseCustom.getSnapshot().sequence, 0);
 const coreFactories = [
   createDataKit,
   createInputKit,
-  createGraphicsKit,
+  createRenderBatchKit,
   createReflectionKit,
   createInteractionKit
 ];

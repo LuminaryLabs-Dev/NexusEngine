@@ -1,0 +1,314 @@
+[
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-graphics-domain-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics domain smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-graphics-kit-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core-graphics-kit piece smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-graphics-procedural-material-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics procedural material smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-graphics-reflection-kit-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics reflection kit smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-graphics-render-layer-graph-contract.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics render-layer contract test ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics render-layer graph smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-visual-contribution-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-render-surface-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core render surface smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-presentation-domain-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-utility-articulation-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core utility articulation smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-domain-import-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "{ discovered: 977, imported: 979, failed: 0 }\ncore domain import smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/public-api-freeze.mjs"
+    ],
+    "code": 0,
+    "output": "public-api-freeze ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/runtime-kit-idempotency-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "runtime Kit idempotency smoke: ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domain-kits-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core-domain-kits-smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "src/core-domains/tests/domain-manifest-contract.mjs"
+    ],
+    "code": 0,
+    "output": "Core Domain manifest v2 hierarchy and proof contract ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+    ],
+    "code": 0,
+    "output": "third-person camera restoration: ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-child-capabilities-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core child capabilities smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "examples/authoring/first-edit.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring first edit: installed source, preview, undo/redo and reload passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-foundation.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring foundation: installed edits, staged rollback, stable history, restore epochs, retries and isolation passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-public.mjs"
+    ],
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Expected values to be strictly equal:\n+ actual - expected\n\n+ 'authoring-import-registry-kit'\n- 'authoring-import-validation-kit'\n                    ^\n\n    at file://${REPO_ROOT}/tests/core-domains/core-authoring-public.mjs:23:10 {\n  generatedMessage: true,\n  code: 'ERR_ASSERTION',\n  actual: 'authoring-import-registry-kit',\n  expected: 'authoring-import-validation-kit',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-geometry.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring geometry: primitive orientation, concave triangulation, mapped topology, dependency rollback, curves, workspaces, sculpt, UVs and evaluated corners passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-surfaces-rig.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring surfaces and deformation: linear color blending, procedural bake, dependencies, bind pose, analytical bend, quaternion/cubic sampling, IK and source recovery passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-integration.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring integration: ten modifier algorithms, analytical CSG volumes, Runtime Sequence causality/failure/cancel, assemblies, public Object/Asset/Presentation delivery and Composition planning passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-authoring-modeling.mjs"
+    ],
+    "code": 0,
+    "output": "Authoring modeling: quad loop cuts, knife chords, dissolve, convex bevel, exact BVH distance, deterministic constrained scatter and caller-input preservation passed.\nAuthoring UV overlap/stretch, locked-weight smoothing/mirroring, clip arrangement and measured bake/retarget proof passed.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-gpu-host-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "{\n  \"status\": \"PASS\",\n  \"device\": \"gpu-1\",\n  \"restoredDevice\": \"gpu-2\",\n  \"resources\": 1\n}\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-gpu-shared-resource-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "Portable Host shared-resource ownership proof passed; native execution proof lives with external providers\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-capture-shape-visual-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core capture shape visual smoke ok {\n  outputPath: '${TMPDIR}/nexus-object-shape-capture-6Ucudo/source-vs-reduced.svg',\n  minimumSilhouetteIou: 0.9287020109689214,\n  averageSilhouetteIou: 0.9490706471294997,\n  sourceTriangles: 1140,\n  reducedTriangles: 502\n}\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-core-catalog.mjs",
+      "--check",
+      "--allow-pending"
+    ],
+    "code": 0,
+    "output": "Checked 25 Domain manifests, 197 Domain records, and 385 atomic Kits (fd341bf649ed841c4622734a964e22c70c8a5bc116f73d776bb601449d2589f9).\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-manifest-execution-parity.mjs"
+    ],
+    "code": 0,
+    "output": "Validated executable parity for 385 manifest-backed Core Kits.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-core-boundaries.mjs"
+    ],
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Runtime Core production modules own concrete renderer or platform behavior:\nsrc/core-domains/authoring/persistence/providers/indexeddb/index.js\n+ actual - expected\n\n+ [\n+   'src/core-domains/authoring/persistence/providers/indexeddb/index.js'\n+ ]\n- []\n\n    at file://${REPO_ROOT}/scripts/check-core-boundaries.mjs:159:8 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: [\n    'src/core-domains/authoring/persistence/providers/indexeddb/index.js'\n  ],\n  expected: [],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-active-docs.mjs"
+    ],
+    "code": 0,
+    "output": "Active docs ok: 91 files, 60 kit suggestions reclassified, 26 restored sources reconciled.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-kit-ownership-ledger.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked ownership ledger v2 {\n  sourceModules: 1717,\n  manifestProvenPublicAtoms: 385,\n  manifestOwnedInternalModules: 1307,\n  rootContractModules: 25,\n  unreviewedModules: 0,\n  violations: 0\n}\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-public-test-surface.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Test package surface ok: 462 package modules.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-guide.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked 22 guide chapters (sha256:7d365101121ad88a5996381c675b09fa9ed74692a1b53863a4139f38c6ed7ce0).\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-dsk-manifest.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked ${REPO_ROOT}/docs/DSK_MANIFEST_0.0.4.json\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-root-module-dispositions.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Root module dispositions ok: 61 retired source records.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-protokit-extraction.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked frozen ProtoKit extraction: 530 folders, 3698 classified source items.\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/public-entrypoint-relative-targets-smoke.mjs"
+    ],
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js lacks proven manifest evidence\n+ actual - expected\n\n+ 'pending'\n- 'proven'\n\n    at file://${REPO_ROOT}/tests/public-entrypoint-relative-targets-smoke.mjs:166:12 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'pending',\n  expected: 'proven',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  }
+]

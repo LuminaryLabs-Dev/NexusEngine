@@ -7,6 +7,10 @@ for games and simulations. Runtime Core contains only atomic, idempotent,
 product-neutral behavior; `n:build` owns build-time compilers, toolchains,
 targets, artifacts, and proof without entering the application runtime graph.
 
+## Optional NexusGL rendering
+
+Use the bundled [Graphics Language Kit](docs/GRAPHICS-LANGUAGE.md) for native or WASM rendering and controlled renderer handover. It installs through one optional entry; ordinary Core imports stay renderer-neutral.
+
 ## Start Here
 
 To create and edit objects, meshes, materials, rigs and animation, start with

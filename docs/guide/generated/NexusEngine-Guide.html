@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02<br>
-      Guide content SHA-256: e11f92c32ef2a448f9db3f314c3fbc5a6aba3ce54d700e2c91fc1054b85e9c9d<br><br>
+      Core registry SHA-256: 147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76<br>
+      Guide content SHA-256: f8b4d4e14038f60791386da2056a6c815fc059362d95c674a8de3c5735f7c462<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -277,8 +277,16 @@ engine.n.apis();
 <td><code>n:interaction</code>, input</td>
 </tr>
 <tr>
+<td>Visual semantics</td>
+<td><code>n:material</code>, <code>n:lighting</code>, <code>n:camera</code></td>
+</tr>
+<tr>
+<td>Rendering</td>
+<td><code>n:render</code>: resources, contracts, pipelines, batches, provider lifecycle</td>
+</tr>
+<tr>
 <td>Presentation</td>
-<td>output, graphics, camera, animation, audio, UI, speech, capture, sky</td>
+<td>output, animation, audio, UI, speech, capture, sky</td>
 </tr>
 <tr>
 <td>Infrastructure</td>
@@ -968,7 +976,7 @@ completion accepts only an explicit provider receipt for the same device,
 submission, and compile identity. The existing Shader interface schema remains
 under <code>n:render:contracts</code>. Core does not preprocess, parse, compile, link,
 retain binaries or GPU programs, execute backend reflection, or repair source.</p>
-<p><code>n:render:material</code> associates exact portable Material slots with Shader
+<p><code>n:material</code> associates exact portable Material slots with Shader
 interfaces, typed parameter values, resident Texture views and subresources,
 sampler descriptors, complete instances, and Shader variants. Validation names
 one completed compile and matching reflection record, while cache records point
@@ -1010,6 +1018,13 @@ installs another atom and never turns a read-only query into a hidden mutation.<
 <li>Animation clip descriptor: <code>n:presentation:animation</code>.</li>
 <li>Two-bone pose solving: <code>n:simulation:motion</code>.</li>
 </ul>
+<h2>Bundled Graphics Language Kit</h2>
+<p>The optional <code>nexusengine/domains/render/graphics-language</code> entry composes existing
+Render contracts, resource identity and lifecycle services with NexusGL native/WASM
+execution and platform presentation. Core owns portable installation and handover
+status; the optional kit owns executable provider instances and buffers. Applications
+keep scene state and select their pipeline. See <code>docs/GRAPHICS-LANGUAGE.md</code>
+for one-call installation, the shared baseline and failure behavior.</p>
 
     </article>
 
@@ -1186,7 +1201,7 @@ import { createPhysicsKit } from &quot;nexusengine/domains/simulation/physics&qu
 </code></pre>
 <p>Do not use <code>n:core-*</code>, <code>nexusengine/core-kits/*</code>, or private source paths.</p>
 <h2>Runtime Paths</h2>
-<p>Use semantic paths such as <code>n:object</code>, <code>n:runtime:transaction</code>, and <code>n:presentation:graphics</code>. Immediate parent relationships are validated by manifests.</p>
+<p>Use semantic paths such as <code>n:object</code>, <code>n:runtime:transaction</code>, and <code>n:material</code>. Immediate parent relationships are validated by manifests.</p>
 <h2>Removed Implementations</h2>
 <p>Concrete hosts, renderers, shaders, platform storage, model mocks, speech
 engines, authored sky presets, genre rules, and complete games moved outside
@@ -1307,7 +1322,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
+<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -1355,6 +1370,10 @@ npm pack --dry-run --json
 <li><code>n:build:target:openxr</code>: Own shared native OpenXR session, input, frame, view, swapchain, and submission contracts.</li>
 <li><code>n:build:target:android-xr</code>: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.</li>
 <li><code>n:build:target:pcvr</code>: Own Windows x64 OpenXR host generation, executable packaging, and validation.</li>
+<li><code>n:build:target:host-native</code>: Own local native and embedded Node contract proof on the build host.</li>
+<li><code>n:camel</code>: Own bundled Camel execution and browser/native binding to the installed public Nexus API graph.</li>
+<li><code>n:camera</code>: Own camera targets, smoothing, framing, views, projections and portable camera execution records.</li>
+<li><code>n:camera:third-person</code>: Own renderer-neutral third-person camera follow descriptors.</li>
 <li><code>n:composition</code>: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</li>
 <li><code>n:compute</code>: Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.</li>
 <li><code>n:compute:graph</code>: Own portable compute topology, dependencies, and deterministic plans.</li>
@@ -1402,6 +1421,8 @@ npm pack --dry-run --json
 <li><code>n:interaction:request:queue</code>: Own queued request patience, fulfillment, expiry, and effect descriptors.</li>
 <li><code>n:interaction:request:fulfillment</code>: Own spatial request destination, deadline, completion, expiry, and reward state.</li>
 <li><code>n:interaction:transfer-zone</code>: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.</li>
+<li><code>n:lighting</code>: Own portable light definitions, reflection policy, negotiation and observation records.</li>
+<li><code>n:material</code>: Own visual material descriptions, parameters, instances, portable execution bindings and validation.</li>
 <li><code>n:mcp</code>: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</li>
 <li><code>n:network</code>: Own portable transport, session, authority, synchronization, and replication contracts.</li>
 <li><code>n:network:transport</code>: Own provider-neutral transport capabilities and portable message channels.</li>
@@ -1431,15 +1452,12 @@ npm pack --dry-run --json
 <li><code>n:policy</code>: Own product-neutral permission, guard, sandbox, and runtime safety decisions.</li>
 <li><code>n:presentation</code>: Own renderer-neutral presentation descriptors and output policy contracts.</li>
 <li><code>n:presentation:output</code>: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.</li>
-<li><code>n:presentation:graphics</code>: Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.</li>
-<li><code>n:presentation:camera</code>: Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.</li>
 <li><code>n:presentation:animation</code>: Own animation, pose, blend, rig, and timeline descriptors.</li>
 <li><code>n:presentation:audio</code>: Own audio cue, music, ambience, mix, volume, and spatial audio descriptors.</li>
 <li><code>n:presentation:ui</code>: Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.</li>
 <li><code>n:presentation:speech</code>: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.</li>
 <li><code>n:presentation:capture</code>: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.</li>
 <li><code>n:presentation:sky</code>: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.</li>
-<li><code>n:presentation:camera:third-person</code>: Own renderer-neutral third-person camera follow descriptors.</li>
 <li><code>n:render</code>: Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains.</li>
 <li><code>n:render:contracts</code>: Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas.</li>
 <li><code>n:render:lifecycle</code>: Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state.</li>
@@ -1449,8 +1467,8 @@ npm pack --dry-run --json
 <li><code>n:render:buffer</code>: Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts.</li>
 <li><code>n:render:texture</code>: Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency.</li>
 <li><code>n:render:shader</code>: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.</li>
-<li><code>n:render:material</code>: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.</li>
-<li><code>n:render:camera</code>: Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.</li>
+<li><code>n:render:pipeline</code>: Own portable rendering pipeline state and validation.</li>
+<li><code>n:render:batch</code>: Own portable rendering batch state and validation.</li>
 <li><code>n:render:execution</code>: Own realization-family semantics for portable Render work.</li>
 <li><code>n:render:execution:gpu</code>: Own semantics common to GPU-class rendering over Host GPU resources.</li>
 <li><code>n:runtime</code>: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.</li>
@@ -1510,7 +1528,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
+<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
 <table>
 <thead>
 <tr>
@@ -1750,6 +1768,26 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:build:target:host-native</code></td>
+<td><code>n:build:target</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:camel</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:camera</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:camera:third-person</code></td>
+<td><code>character:resolution</code>, <code>motion:velocity</code>, <code>n:camera</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:composition</code></td>
 <td>-</td>
 <td><code>n:mcp</code></td>
@@ -1985,6 +2023,16 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
+<td><code>n:lighting</code></td>
+<td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:material</code></td>
+<td><code>n:render:shader</code>, <code>n:render:texture</code></td>
+<td>-</td>
+</tr>
+<tr>
 <td><code>n:mcp</code></td>
 <td>-</td>
 <td><code>n:composition</code></td>
@@ -2130,16 +2178,6 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
-<td><code>n:presentation:graphics</code></td>
-<td><code>n:presentation</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>n:presentation:camera</code></td>
-<td><code>n:presentation</code></td>
-<td>-</td>
-</tr>
-<tr>
 <td><code>n:presentation:animation</code></td>
 <td><code>n:presentation</code></td>
 <td>-</td>
@@ -2167,11 +2205,6 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:presentation:sky</code></td>
 <td><code>n:presentation</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>n:presentation:camera:third-person</code></td>
-<td><code>character:resolution</code>, <code>motion:velocity</code>, <code>n:presentation:camera</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2220,13 +2253,13 @@ npm pack --dry-run --json
 <td>-</td>
 </tr>
 <tr>
-<td><code>n:render:material</code></td>
-<td><code>n:render</code>, <code>n:render:resource</code>, <code>n:render:shader</code>, <code>n:render:texture</code>, <code>render:resource-identity</code>, <code>render:resource-lifecycle</code>, <code>render:shader-compile</code>, <code>render:shader-program</code>, <code>render:shader-reflection</code>, <code>render:shader-variant</code>, <code>render:texture-residency</code>, <code>render:texture-resource</code></td>
+<td><code>n:render:pipeline</code></td>
+<td><code>n:render</code></td>
 <td>-</td>
 </tr>
 <tr>
-<td><code>n:render:camera</code></td>
-<td><code>n:render</code>, <code>render:provider-contract</code></td>
+<td><code>n:render:batch</code></td>
+<td><code>n:render</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2497,7 +2530,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
+<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2785,6 +2818,30 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:build:target:host-native</code></td>
+<td><code>n:build:target</code></td>
+<td>Own local native and embedded Node contract proof on the build host.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:camel</code></td>
+<td>-</td>
+<td>Own bundled Camel execution and browser/native binding to the installed public Nexus API graph.</td>
+<td>experimental</td>
+</tr>
+<tr>
+<td><code>n:camera</code></td>
+<td>-</td>
+<td>Own camera targets, smoothing, framing, views, projections and portable camera execution records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:camera:third-person</code></td>
+<td><code>n:camera</code></td>
+<td>Own renderer-neutral third-person camera follow descriptors.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:composition</code></td>
 <td>-</td>
 <td>Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.</td>
@@ -3067,6 +3124,18 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
+<td><code>n:lighting</code></td>
+<td>-</td>
+<td>Own portable light definitions, reflection policy, negotiation and observation records.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:material</code></td>
+<td>-</td>
+<td>Own visual material descriptions, parameters, instances, portable execution bindings and validation.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
 <td><code>n:mcp</code></td>
 <td>-</td>
 <td>Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.</td>
@@ -3241,18 +3310,6 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
-<td><code>n:presentation:graphics</code></td>
-<td><code>n:presentation</code></td>
-<td>Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.</td>
-<td>stable-candidate</td>
-</tr>
-<tr>
-<td><code>n:presentation:camera</code></td>
-<td><code>n:presentation</code></td>
-<td>Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.</td>
-<td>stable-candidate</td>
-</tr>
-<tr>
 <td><code>n:presentation:animation</code></td>
 <td><code>n:presentation</code></td>
 <td>Own animation, pose, blend, rig, and timeline descriptors.</td>
@@ -3286,12 +3343,6 @@ npm pack --dry-run --json
 <td><code>n:presentation:sky</code></td>
 <td><code>n:presentation</code></td>
 <td>Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.</td>
-<td>stable-candidate</td>
-</tr>
-<tr>
-<td><code>n:presentation:camera:third-person</code></td>
-<td><code>n:presentation:camera</code></td>
-<td>Own renderer-neutral third-person camera follow descriptors.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3349,15 +3400,15 @@ npm pack --dry-run --json
 <td>stable-candidate</td>
 </tr>
 <tr>
-<td><code>n:render:material</code></td>
+<td><code>n:render:pipeline</code></td>
 <td><code>n:render</code></td>
-<td>Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.</td>
+<td>Own portable rendering pipeline state and validation.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
-<td><code>n:render:camera</code></td>
+<td><code>n:render:batch</code></td>
 <td><code>n:render</code></td>
-<td>Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.</td>
+<td>Own portable rendering batch state and validation.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3954,6 +4005,12 @@ npm pack --dry-run --json
 <td>Own editing Authoring contracts and operations.</td>
 </tr>
 <tr>
+<td><code>host-native-target-kit</code></td>
+<td><code>n:build:target:host-native</code></td>
+<td><code>nexusengine/domains/build/target/host-native/host-native-target</code></td>
+<td>Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim.</td>
+</tr>
+<tr>
 <td><code>project-source-kit</code></td>
 <td><code>n:build:source</code></td>
 <td><code>nexusengine/domains/build/source/project-source</code></td>
@@ -4236,6 +4293,90 @@ npm pack --dry-run --json
 <td>Materialize a verified, content-addressed browser module closure from immutable project sources.</td>
 </tr>
 <tr>
+<td><code>camel-runtime-kit</code></td>
+<td><code>n:camel</code></td>
+<td><code>nexusengine/domains/camel/runtime</code></td>
+<td>Execute a pinned bundled Camel interpreter against shared Nexus instances.</td>
+</tr>
+<tr>
+<td><code>camera-descriptor-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/control</code></td>
+<td>Manage camera targets, modes, smoothing, and renderer-neutral camera policy.</td>
+</tr>
+<tr>
+<td><code>camera-framing-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/framing</code></td>
+<td>Calculate perspective and orthographic subject framing for a viewport.</td>
+</tr>
+<tr>
+<td><code>camera-control-math-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/control-math</code></td>
+<td>Calculate camera-relative yaw, orbit limits, and root handoff state.</td>
+</tr>
+<tr>
+<td><code>third-person-camera-kit</code></td>
+<td><code>n:camera:third-person</code></td>
+<td><code>nexusengine/domains/camera/third-person</code></td>
+<td>Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.</td>
+</tr>
+<tr>
+<td><code>camera-world-occlusion-adapter-kit</code></td>
+<td><code>n:camera:third-person</code></td>
+<td><code>nexusengine/domains/camera/adapters/camera-world-occlusion</code></td>
+<td>Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.</td>
+</tr>
+<tr>
+<td><code>camera-binding-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-binding</code></td>
+<td>Own portable camera binding semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>camera-jitter-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-jitter</code></td>
+<td>Own portable camera jitter semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>camera-projection-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-projection</code></td>
+<td>Own portable camera projection semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>camera-reprojection-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-reprojection</code></td>
+<td>Own portable camera reprojection semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>camera-view-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-view</code></td>
+<td>Own portable camera view semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>camera-viewport-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/camera-viewport</code></td>
+<td>Own portable camera viewport semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>multiview-camera-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/multiview-camera</code></td>
+<td>Own portable multiview camera semantics and deterministic state.</td>
+</tr>
+<tr>
+<td><code>stereo-camera-kit</code></td>
+<td><code>n:camera</code></td>
+<td><code>nexusengine/domains/camera/execution/stereo-camera</code></td>
+<td>Own portable stereo camera semantics and deterministic state.</td>
+</tr>
+<tr>
 <td><code>composition-registry-kit</code></td>
 <td><code>n:composition</code></td>
 <td><code>nexusengine/domains/composition/registry</code></td>
@@ -4336,6 +4477,78 @@ npm pack --dry-run --json
 <td><code>n:interaction:request:queue</code></td>
 <td><code>nexusengine/domains/interaction/adapters/request-economy</code></td>
 <td>Translate fulfilled or expired Request Queue outcomes into exact-once Economy transactions.</td>
+</tr>
+<tr>
+<td><code>lighting-descriptor-kit</code></td>
+<td><code>n:lighting</code></td>
+<td><code>nexusengine/domains/lighting/descriptions</code></td>
+<td>Own portable lighting descriptions.</td>
+</tr>
+<tr>
+<td><code>reflection-descriptor-kit</code></td>
+<td><code>n:lighting</code></td>
+<td><code>nexusengine/domains/lighting/reflection</code></td>
+<td>Describe renderer-neutral reflection probes, plans, and update policy.</td>
+</tr>
+<tr>
+<td><code>material-contract-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/contract</code></td>
+<td>Define the canonical backend-neutral Render Material execution boundary.</td>
+</tr>
+<tr>
+<td><code>material-binding-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/binding</code></td>
+<td>Map portable Material slots to one exact Shader program interface.</td>
+</tr>
+<tr>
+<td><code>material-parameter-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/parameter</code></td>
+<td>Own typed portable values for exact Material parameter slots.</td>
+</tr>
+<tr>
+<td><code>texture-binding-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/texture-binding</code></td>
+<td>Bind exact resident Texture views and subresources to Material slots.</td>
+</tr>
+<tr>
+<td><code>sampler-binding-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/sampler-binding</code></td>
+<td>Own portable sampler state for exact Material sampler slots.</td>
+</tr>
+<tr>
+<td><code>material-instance-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/instance</code></td>
+<td>Compose one complete portable Material execution instance from exact bindings.</td>
+</tr>
+<tr>
+<td><code>material-variant-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/variant</code></td>
+<td>Resolve an exact Shader variant and complete Material binding override set.</td>
+</tr>
+<tr>
+<td><code>material-validation-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/validation</code></td>
+<td>Prove one Material target against exact completed Shader compile and reflection records.</td>
+</tr>
+<tr>
+<td><code>material-cache-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/cache</code></td>
+<td>Link current Material validation to an exact resident material Render Resource.</td>
+</tr>
+<tr>
+<td><code>material-descriptor-kit</code></td>
+<td><code>n:material</code></td>
+<td><code>nexusengine/domains/material/descriptions</code></td>
+<td>Own portable material descriptions.</td>
 </tr>
 <tr>
 <td><code>mcp-registry-kit</code></td>
@@ -4992,42 +5205,6 @@ npm pack --dry-run --json
 <td>Calculate renderer-neutral surfaces, safe areas, viewports, aspect policy, and render resolution.</td>
 </tr>
 <tr>
-<td><code>graphics-descriptor-kit</code></td>
-<td><code>n:presentation:graphics</code></td>
-<td><code>nexusengine/domains/presentation/graphics</code></td>
-<td>Create renderer-neutral material, lighting, VFX, quality, batch, and terrain LOD descriptors.</td>
-</tr>
-<tr>
-<td><code>render-layer-graph-kit</code></td>
-<td><code>n:presentation:graphics</code></td>
-<td><code>nexusengine/domains/presentation/graphics/render-graph</code></td>
-<td>Validate renderer-neutral render layers, dependencies, and pass ordering.</td>
-</tr>
-<tr>
-<td><code>reflection-descriptor-kit</code></td>
-<td><code>n:presentation:graphics</code></td>
-<td><code>nexusengine/domains/presentation/graphics/reflection</code></td>
-<td>Describe renderer-neutral reflection probes, plans, and update policy.</td>
-</tr>
-<tr>
-<td><code>camera-descriptor-kit</code></td>
-<td><code>n:presentation:camera</code></td>
-<td><code>nexusengine/domains/presentation/camera</code></td>
-<td>Manage camera targets, modes, smoothing, and renderer-neutral camera policy.</td>
-</tr>
-<tr>
-<td><code>camera-framing-kit</code></td>
-<td><code>n:presentation:camera</code></td>
-<td><code>nexusengine/domains/presentation/camera/framing</code></td>
-<td>Calculate perspective and orthographic subject framing for a viewport.</td>
-</tr>
-<tr>
-<td><code>camera-control-math-kit</code></td>
-<td><code>n:presentation:camera</code></td>
-<td><code>nexusengine/domains/presentation/camera/control-math</code></td>
-<td>Calculate camera-relative yaw, orbit limits, and root handoff state.</td>
-</tr>
-<tr>
 <td><code>animation-descriptor-kit</code></td>
 <td><code>n:presentation:animation</code></td>
 <td><code>nexusengine/domains/presentation/animation</code></td>
@@ -5076,18 +5253,6 @@ npm pack --dry-run --json
 <td>Create generic sky, horizon, atmosphere, cloud, and celestial descriptors.</td>
 </tr>
 <tr>
-<td><code>third-person-camera-kit</code></td>
-<td><code>n:presentation:camera:third-person</code></td>
-<td><code>nexusengine/domains/presentation/camera/third-person</code></td>
-<td>Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.</td>
-</tr>
-<tr>
-<td><code>camera-world-occlusion-adapter-kit</code></td>
-<td><code>n:presentation:camera:third-person</code></td>
-<td><code>nexusengine/domains/presentation/adapters/camera-world-occlusion</code></td>
-<td>Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.</td>
-</tr>
-<tr>
 <td><code>render-domain-contract-kit</code></td>
 <td><code>n:render</code></td>
 <td><code>nexusengine/domains/render/contract</code></td>
@@ -5133,7 +5298,7 @@ npm pack --dry-run --json
 <td><code>render-installation-kit</code></td>
 <td><code>n:render:lifecycle</code></td>
 <td><code>nexusengine/domains/render/lifecycle/installation</code></td>
-<td>Own the aggregate phase and provider identity for one installed Render composition.</td>
+<td>Own the aggregate phase, provider generation and controlled handover status for one Render composition.</td>
 </tr>
 <tr>
 <td><code>render-startup-kit</code></td>
@@ -5520,106 +5685,16 @@ npm pack --dry-run --json
 <td>Link completed Shader compiles to resident shader-program Render Resources and select deterministic eviction candidates.</td>
 </tr>
 <tr>
-<td><code>material-contract-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/contract</code></td>
-<td>Define the canonical backend-neutral Render Material execution boundary.</td>
+<td><code>render-layer-graph-kit</code></td>
+<td><code>n:render:pipeline</code></td>
+<td><code>nexusengine/domains/render/pipeline</code></td>
+<td>Validate renderer-neutral render layers, dependencies, and pass ordering.</td>
 </tr>
 <tr>
-<td><code>material-binding-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/binding</code></td>
-<td>Map portable Material slots to one exact Shader program interface.</td>
-</tr>
-<tr>
-<td><code>material-parameter-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/parameter</code></td>
-<td>Own typed portable values for exact Material parameter slots.</td>
-</tr>
-<tr>
-<td><code>texture-binding-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/texture-binding</code></td>
-<td>Bind exact resident Texture views and subresources to Material slots.</td>
-</tr>
-<tr>
-<td><code>sampler-binding-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/sampler-binding</code></td>
-<td>Own portable sampler state for exact Material sampler slots.</td>
-</tr>
-<tr>
-<td><code>material-instance-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/instance</code></td>
-<td>Compose one complete portable Material execution instance from exact bindings.</td>
-</tr>
-<tr>
-<td><code>material-variant-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/variant</code></td>
-<td>Resolve an exact Shader variant and complete Material binding override set.</td>
-</tr>
-<tr>
-<td><code>material-validation-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/validation</code></td>
-<td>Prove one Material target against exact completed Shader compile and reflection records.</td>
-</tr>
-<tr>
-<td><code>material-cache-kit</code></td>
-<td><code>n:render:material</code></td>
-<td><code>nexusengine/domains/render/material/cache</code></td>
-<td>Link current Material validation to an exact resident material Render Resource.</td>
-</tr>
-<tr>
-<td><code>camera-binding-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-binding</code></td>
-<td>Own portable camera binding semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>camera-jitter-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-jitter</code></td>
-<td>Own portable camera jitter semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>camera-projection-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-projection</code></td>
-<td>Own portable camera projection semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>camera-reprojection-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-reprojection</code></td>
-<td>Own portable camera reprojection semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>camera-view-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-view</code></td>
-<td>Own portable camera view semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>camera-viewport-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/camera-viewport</code></td>
-<td>Own portable camera viewport semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>multiview-camera-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/multiview-camera</code></td>
-<td>Own portable multiview camera semantics and deterministic state.</td>
-</tr>
-<tr>
-<td><code>stereo-camera-kit</code></td>
-<td><code>n:render:camera</code></td>
-<td><code>nexusengine/domains/render/camera/stereo-camera</code></td>
-<td>Own portable stereo camera semantics and deterministic state.</td>
+<td><code>render-batch-kit</code></td>
+<td><code>n:render:batch</code></td>
+<td><code>nexusengine/domains/render/batch</code></td>
+<td>Own portable instance batch state, capacity, cell updates and flush records.</td>
 </tr>
 <tr>
 <td><code>runtime-lifecycle-kit</code></td>
@@ -5977,12 +6052,13 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02</code></p>
+<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
 <ul>
-<li>Source modules: 1697</li>
-<li>Manifest-proven public atoms: 381</li>
-<li>Manifest-owned internal modules: 1291</li>
+<li>Source modules: 1731</li>
+<li>Manifest-proven public atoms: 385</li>
+<li>Manifest-owned internal modules: 1311</li>
 <li>Root contract modules: 25</li>
+<li>Optional provider modules: 10</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
 </ul>
@@ -5996,6 +6072,66 @@ npm pack --dry-run --json
 </tr>
 </thead>
 <tbody><tr>
+<td><code>kits/catalog.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/contracts.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/hosts.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/index.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/manifest.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/material.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/provider.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/runtime/loader.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/render/graphics-language-kit/session.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
 <td><code>src/core-domains/actor/character/index.js</code></td>
 <td><code>n:actor</code></td>
 <td>manifest-owned-internal</td>
@@ -7688,6 +7824,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/build/classification/kits/fallback-selection-kit/resolution.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/build/classification/kits/fallback-selection-kit/services.js</code></td>
 <td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
@@ -8564,6 +8706,42 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/build/target/host-native/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/target/host-native/kits/host-native-target-kit/bindings.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/target/host-native/kits/host-native-target-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/target/host-native/kits/host-native-target-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/target/host-native/kits/host-native-target-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/target/host-native/subdomain.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/build/target/index.js</code></td>
 <td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
@@ -9004,6 +9182,360 @@ npm pack --dry-run --json
 <tr>
 <td><code>src/core-domains/build/toolchain/subdomain.manifest.js</code></td>
 <td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/domain.manifest.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/execution/runtime.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/index.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/kits/runtime-kit/index.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/nexus-api/binding.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/runtime/asyncify.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/runtime/browser-worker.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/runtime/browser.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/runtime/native.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camel/runtime/wire.js</code></td>
+<td><code>n:camel</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/services.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/state.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/domain.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/camera-contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/camera-kit.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/camera-manifests.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-binding-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-binding-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-binding-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-jitter-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-jitter-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-jitter-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-projection-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-projection-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-projection-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-reprojection-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-reprojection-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-reprojection-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-view-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-view-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-view-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-viewport-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-viewport-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/camera-viewport-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/multiview-camera-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/multiview-camera-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/multiview-camera-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/stereo-camera-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/stereo-camera-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/execution/kits/stereo-camera-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/camera-control-kit.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/camera-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/camera-kit/smoothing.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/framing-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/framing-kit/orthographic-fit.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/kits/framing-kit/perspective-fit.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/kits/third-person-camera-kit/contracts.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/kits/third-person-camera-kit/index.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/kits/third-person-camera-kit/kit.manifest.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/kits/third-person-camera-kit/services.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/kits/third-person-camera-kit/state.js</code></td>
+<td><code>n:camera</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/camera/third-person/subdomain.manifest.js</code></td>
+<td><code>n:camera</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
@@ -9512,6 +10044,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/interaction/kits/interaction-kit/interactors.js</code></td>
+<td><code>n:interaction</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/interaction/kits/interaction-kit/prompts.js</code></td>
 <td><code>n:interaction</code></td>
 <td>manifest-owned-internal</td>
@@ -9674,6 +10212,48 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/lighting/descriptors.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/domain.manifest.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/index.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/kits/lighting-descriptor-kit/index.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/reflection/adapters.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/reflection/contract.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/lighting/reflection/index.js</code></td>
+<td><code>n:lighting</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/manifest-domain-service-kit.js</code></td>
 <td><code>n:composition</code></td>
 <td>manifest-infrastructure</td>
@@ -9689,6 +10269,216 @@ npm pack --dry-run --json
 <td><code>src/core-domains/manifest-kit-contract.js</code></td>
 <td><code>n:composition</code></td>
 <td>manifest-infrastructure</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/appearance.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/domain.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-binding-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-binding-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-binding-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-cache-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-cache-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-cache-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-contract-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-contract-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-contract-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-descriptor-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-instance-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-instance-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-instance-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-parameter-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-parameter-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-parameter-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-validation-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-validation-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-validation-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-variant-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-variant-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/material-variant-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/sampler-binding-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/sampler-binding-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/sampler-binding-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/texture-binding-kit/contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/texture-binding-kit/index.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/kits/texture-binding-kit/kit.manifest.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/material-contracts.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/material-manifests.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/material-registry-kit.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/material/procedural.js</code></td>
+<td><code>n:material</code></td>
+<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -11990,36 +12780,6 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
 <td><code>src/core-domains/presentation/animation/kits/animation-kit/index.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-proven-public-atom</td>
@@ -12035,84 +12795,6 @@ npm pack --dry-run --json
 <td><code>src/core-domains/presentation/audio/kits/audio-kit/index.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/camera-control-kit.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/camera-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/camera-kit/smoothing.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/framing-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/framing-kit/orthographic-fit.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/kits/framing-kit/perspective-fit.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/contracts.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/kit.manifest.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/services.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/state.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/camera/third-person/subdomain.manifest.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -12152,102 +12834,6 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/presentation/graphics/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/adapters.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/instance-batches.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/lighting-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/material-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/procedural-material-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/quality-profiles.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/contract.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/render-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/index.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/terrain-lod-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/vfx-descriptors.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js</code></td>
-<td><code>n:presentation</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
 <td><code>src/core-domains/presentation/index.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-owned-internal</td>
@@ -12267,6 +12853,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/presentation/output/kits/output-kit/math.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/presentation/requests/vfx-descriptors.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -12296,6 +12888,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/presentation/ui/kits/ui-kit/spatial-panel.js</code></td>
+<td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/presentation/ui/kits/ui-scale-kit/index.js</code></td>
 <td><code>n:presentation</code></td>
 <td>manifest-proven-public-atom</td>
@@ -12304,6 +12902,18 @@ npm pack --dry-run --json
 <tr>
 <td><code>src/core-domains/presentation/ui/kits/ui-scale-kit/math.js</code></td>
 <td><code>n:presentation</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/render/batch/index.js</code></td>
+<td><code>n:render</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/render/batch/instance-batches.js</code></td>
+<td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
@@ -12482,180 +13092,6 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/render/camera/camera-contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/camera-kit.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/camera-manifests.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-binding-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-binding-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-binding-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-jitter-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-jitter-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-jitter-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-projection-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-projection-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-projection-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-reprojection-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-reprojection-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-reprojection-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-view-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-view-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-view-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-viewport-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-viewport-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/camera-viewport-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/multiview-camera-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/multiview-camera-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/multiview-camera-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/stereo-camera-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/stereo-camera-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/kits/stereo-camera-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/camera/subdomain.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
 <td><code>src/core-domains/render/contracts/contract-manifests.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
@@ -12801,6 +13237,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/render/contracts/subdomain.manifest.js</code></td>
+<td><code>n:render</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/render/contracts/visual-contributions.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -13136,193 +13578,25 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/render/material/index.js</code></td>
+<td><code>src/core-domains/render/pipeline/contract.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/render/material/kits/material-binding-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-binding-kit/index.js</code></td>
+<td><code>src/core-domains/render/pipeline/index.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-proven-public-atom</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/render/material/kits/material-binding-kit/kit.manifest.js</code></td>
+<td><code>src/core-domains/render/pipeline/quality-profiles.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/render/material/kits/material-cache-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-cache-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-cache-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-contract-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-contract-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-contract-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-instance-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-instance-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-instance-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-parameter-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-parameter-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-parameter-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-validation-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-validation-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-validation-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-variant-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-variant-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/material-variant-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/sampler-binding-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/sampler-binding-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/sampler-binding-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/texture-binding-kit/contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/texture-binding-kit/index.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/kits/texture-binding-kit/kit.manifest.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/material-contracts.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/material-manifests.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/material-registry-kit.js</code></td>
-<td><code>n:render</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/render/material/subdomain.manifest.js</code></td>
+<td><code>src/core-domains/render/pipeline/render-descriptors.js</code></td>
 <td><code>n:render</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -15776,6 +16050,12 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/world/terrain/lod-descriptors.js</code></td>
+<td><code>n:world</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/world/terrain/subdomain.manifest.js</code></td>
 <td><code>n:world</code></td>
 <td>manifest-owned-internal</td>
@@ -16268,7 +16548,7 @@ npm pack --dry-run --json
 <td><code>src/character-camera-kit.js</code></td>
 <td>implemented-and-proven</td>
 <td><code>third-person-camera-kit</code></td>
-<td><code>nexusengine/domains/presentation/camera/third-person</code></td>
+<td><code>nexusengine/domains/camera/third-person</code></td>
 </tr>
 <tr>
 <td><code>src/economy-kit.js</code></td>
@@ -16508,7 +16788,7 @@ Historical engine APIs: None.</p>
 <pre><code class="language-js">import { createCameraKit, createCharacterCameraKit } from &quot;nexusengine&quot;;
 </code></pre>
 <p>After:</p>
-<pre><code class="language-js">import { createThirdPersonCameraKit } from &quot;nexusengine/domains/presentation/camera/third-person&quot;;
+<pre><code class="language-js">import { createThirdPersonCameraKit } from &quot;nexusengine/domains/camera/third-person&quot;;
 
 engine.n.thirdPersonCamera.describe({ operationId: &quot;camera:1&quot;, delta: 1 / 60 })
 </code></pre>
@@ -17222,7 +17502,7 @@ engine.n.worldContact.resolve({ operationId: &quot;contact:1&quot;, body, sample
 </tr>
 <tr>
 <td><code>camera-world-occlusion-adapter-kit</code></td>
-<td><code>nexusengine/domains/presentation/adapters/camera-world-occlusion</code></td>
+<td><code>nexusengine/domains/camera/adapters/camera-world-occlusion</code></td>
 <td><code>camera:third-person-descriptor</code>, <code>world:terrain-sampling</code>, <code>physics:query</code></td>
 <td><code>camera:world-occlusion-response</code></td>
 </tr>
@@ -17360,7 +17640,7 @@ engine.n.worldContact.resolve({ operationId: &quot;contact:1&quot;, body, sample
 <tr>
 <td><code>src/character-camera-kit.js</code></td>
 <td>core-restored</td>
-<td>NexusEngine manifests: n:presentation:camera:third-person</td>
+<td>NexusEngine manifests: n:camera:third-person</td>
 <td><code>third-person-camera-kit</code></td>
 </tr>
 <tr>
@@ -17649,7 +17929,7 @@ engine.n.worldContact.resolve({ operationId: &quot;contact:1&quot;, body, sample
 <td><code>src/shaders.js</code></td>
 <td>external-kit</td>
 <td>NexusEngine-Kits adapters</td>
-<td><code>n:host</code>, <code>n:presentation:graphics</code></td>
+<td><code>n:host</code>, <code>n:render:shader</code>, <code>n:material</code></td>
 </tr>
 <tr>
 <td><code>src/spatial-scale-kit.js</code></td>

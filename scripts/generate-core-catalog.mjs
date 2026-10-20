@@ -28,7 +28,9 @@ const fixedPackageExports = Object.freeze({
   "./domain-api": "./src/domain-api.js",
   "./domains": "./src/core-domains/index.js",
   "./domains/catalog": "./src/core-domains/catalog.js",
-  "./domains/manifest": "./src/core-domains/domain-manifest.js"
+  "./domains/manifest": "./src/core-domains/domain-manifest.js",
+  "./domains/render/graphics-language": "./kits/render/graphics-language-kit/index.js",
+  "./kits": "./kits/catalog.js"
 });
 
 function walk(directory, predicate, output = []) {

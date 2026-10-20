@@ -38,8 +38,8 @@ function frameErrors(frame) {
   errors.push(...requireText(frame.frameId, "$.frameId"));
   errors.push(...nonnegativeInteger(frame.sequence, "$.sequence"));
   errors.push(...optionalText(frame.surfaceId, "$.surfaceId"));
-  errors.push(...nonnegativeFinite(frame.presentationTimeMs, "$.presentationTimeMs", { optional: true }));
-  errors.push(...nonnegativeFinite(frame.deltaSeconds, "$.deltaSeconds", { optional: true }));
+  if (frame.presentationTimeMs !== null) errors.push(...nonnegativeFinite(frame.presentationTimeMs, "$.presentationTimeMs", { optional: true }));
+  if (frame.deltaSeconds !== null) errors.push(...nonnegativeFinite(frame.deltaSeconds, "$.deltaSeconds", { optional: true }));
   errors.push(...stringArray(frame.viewIds, "$.viewIds", { optional: true }));
   errors.push(...stringArray(frame.passIds, "$.passIds", { optional: true }));
   errors.push(...stringArray(frame.resourceIds, "$.resourceIds", { optional: true }));

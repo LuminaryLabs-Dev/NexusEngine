@@ -1,19 +1,14 @@
 import assert from "node:assert/strict";
 import * as RootAPI from "../helpers/public-package-surface.mjs";
 const { createEngine, createPresentationKit } = RootAPI;
-import {
-  createGraphicsKit,
-  createGraphicsAdapterBoundary,
-  createRenderDescriptor,
-  createInstanceDescriptor,
-  createMaterialDescriptor,
-  createLightingDescriptor,
-  createVFXDescriptor,
-  createQualityProfile,
-  createTerrainLodPolicyDescriptor,
-  selectTerrainLodLevel,
-  validateTerrainLodPolicy
-} from "../../src/core-domains/presentation/graphics/kits/graphics-kit/index.js";
+import { createRenderBatchKit } from "nexusengine/domains/render/batch";
+import { createGraphicsAdapterBoundary } from "./../../src/core-domains/lighting/reflection/adapters.js";
+import { createRenderDescriptor, createInstanceDescriptor } from "./../../src/core-domains/render/pipeline/render-descriptors.js";
+import { createMaterialDescriptor } from "./../../src/core-domains/material/appearance.js";
+import { createLightingDescriptor } from "./../../src/core-domains/lighting/descriptors.js";
+import { createVFXDescriptor } from "./../../src/core-domains/presentation/requests/vfx-descriptors.js";
+import { createQualityProfile } from "./../../src/core-domains/render/pipeline/quality-profiles.js";
+import { createTerrainLodPolicyDescriptor, selectTerrainLodLevel, validateTerrainLodPolicy } from "./../../src/core-domains/world/terrain/lod-descriptors.js";
 
 assert.equal(createRenderDescriptor({ id: "cube", kind: "mesh" }).kind, "mesh", "render descriptor stores kind");
 assert.equal(createInstanceDescriptor({ count: 3 }).count, 3, "instance descriptor stores count");
@@ -125,10 +120,10 @@ assert.equal(negotiation.status, "degraded");
 assert.equal(negotiation.acceptedTechnique, "environment-probe");
 assert.equal(adapter.createFrameReceipt({ frameId: "frame-1" }).adapterId, "webgl-adapter");
 
-const engine = createEngine({ kits: [createPresentationKit(), createGraphicsKit()] });
-engine.n.graphics.setDescriptor("objects", "cube", createRenderDescriptor({ id: "cube" }));
-engine.n.graphics.setDescriptor("terrainLodPolicies", terrainLod.id, terrainLod);
-assert.equal(engine.n.graphics.getDescriptors("objects").cube.id, "cube", "core graphics descriptor update works");
-assert.equal(engine.n.graphics.getDescriptors("terrainLodPolicies")[terrainLod.id].sourceResolution, 64);
+const engine = createEngine({ kits: [createPresentationKit(), createRenderBatchKit()] });
+engine.n.renderBatch.setDescriptor("objects", "cube", createRenderDescriptor({ id: "cube" }));
+engine.n.renderBatch.setDescriptor("terrainLodPolicies", terrainLod.id, terrainLod);
+assert.equal(engine.n.renderBatch.getDescriptors("objects").cube.id, "cube", "core graphics descriptor update works");
+assert.equal(engine.n.renderBatch.getDescriptors("terrainLodPolicies")[terrainLod.id].sourceResolution, 64);
 
 console.log("core-graphics-kit piece smoke ok");

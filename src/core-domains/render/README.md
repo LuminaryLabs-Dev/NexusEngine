@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:render`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `79aef150ba9c10c36c9693ba2020b12e5f218f2de60adea6f0b0b7dfed7ed3a5`
 - Public entry: `nexusengine/domains/render`
 
 ## Responsibility
@@ -15,7 +15,7 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 
 - Render domain identity
 - Render execution capability catalog
-- provider-neutral Render contracts, lifecycle, portable device state, Surface state, resource state, Buffer state, Texture state, Shader state, and Material execution state
+- provider-neutral Render contracts, lifecycle, portable device state, Surface state, resource state, Buffer state, Texture state, Shader state
 
 ## Does Not Own
 
@@ -38,8 +38,8 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `n:render:buffer` | Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts. |
 | `n:render:texture` | Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency. |
 | `n:render:shader` | Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links. |
-| `n:render:material` | Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links. |
-| `n:render:camera` | Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics. |
+| `n:render:pipeline` | Own portable rendering pipeline state and validation. |
+| `n:render:batch` | Own portable rendering batch state and validation. |
 | `n:render:execution` | Own realization-family semantics for portable Render work. |
 | `n:render:execution:gpu` | Own semantics common to GPU-class rendering over Host GPU resources. |
 
@@ -54,7 +54,7 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `render-pass-schema-kit` | `nexusengine/domains/render/pass-schema` | Validate and normalize resolved provider-facing Render pass records without owning Presentation graph planning. |
 | `shader-schema-kit` | `nexusengine/domains/render/shader-schema` | Validate and normalize portable shader-interface records shared by Render providers. |
 | `render-event-schema-kit` | `nexusengine/domains/render/event-schema` | Validate and normalize ordered portable Render lifecycle and execution events. |
-| `render-installation-kit` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase and provider identity for one installed Render composition. |
+| `render-installation-kit` | `nexusengine/domains/render/lifecycle/installation` | Own the aggregate phase, provider generation and controlled handover status for one Render composition. |
 | `render-startup-kit` | `nexusengine/domains/render/lifecycle/startup` | Own deterministic startup requests and provider-readiness receipts. |
 | `render-shutdown-kit` | `nexusengine/domains/render/lifecycle/shutdown` | Own deterministic provider shutdown requests and completion receipts. |
 | `render-recovery-kit` | `nexusengine/domains/render/lifecycle/recovery` | Coordinate deterministic recovery from a failed Render provider lifecycle without owning provider repair execution. |
@@ -119,23 +119,8 @@ Own the canonical backend-neutral render-execution boundary and compose its atom
 | `shader-compile-kit` | `nexusengine/domains/render/shader/compile` | Own exact-once logical Shader compile requests and provider completion or failure receipts. |
 | `shader-reflection-kit` | `nexusengine/domains/render/shader/reflection` | Validate normalized provider reflection against the completed compile and program interface. |
 | `shader-cache-kit` | `nexusengine/domains/render/shader/cache` | Link completed Shader compiles to resident shader-program Render Resources and select deterministic eviction candidates. |
-| `material-contract-kit` | `nexusengine/domains/render/material/contract` | Define the canonical backend-neutral Render Material execution boundary. |
-| `material-binding-kit` | `nexusengine/domains/render/material/binding` | Map portable Material slots to one exact Shader program interface. |
-| `material-parameter-kit` | `nexusengine/domains/render/material/parameter` | Own typed portable values for exact Material parameter slots. |
-| `texture-binding-kit` | `nexusengine/domains/render/material/texture-binding` | Bind exact resident Texture views and subresources to Material slots. |
-| `sampler-binding-kit` | `nexusengine/domains/render/material/sampler-binding` | Own portable sampler state for exact Material sampler slots. |
-| `material-instance-kit` | `nexusengine/domains/render/material/instance` | Compose one complete portable Material execution instance from exact bindings. |
-| `material-variant-kit` | `nexusengine/domains/render/material/variant` | Resolve an exact Shader variant and complete Material binding override set. |
-| `material-validation-kit` | `nexusengine/domains/render/material/validation` | Prove one Material target against exact completed Shader compile and reflection records. |
-| `material-cache-kit` | `nexusengine/domains/render/material/cache` | Link current Material validation to an exact resident material Render Resource. |
-| `camera-binding-kit` | `nexusengine/domains/render/camera/camera-binding` | Own portable camera binding semantics and deterministic state. |
-| `camera-jitter-kit` | `nexusengine/domains/render/camera/camera-jitter` | Own portable camera jitter semantics and deterministic state. |
-| `camera-projection-kit` | `nexusengine/domains/render/camera/camera-projection` | Own portable camera projection semantics and deterministic state. |
-| `camera-reprojection-kit` | `nexusengine/domains/render/camera/camera-reprojection` | Own portable camera reprojection semantics and deterministic state. |
-| `camera-view-kit` | `nexusengine/domains/render/camera/camera-view` | Own portable camera view semantics and deterministic state. |
-| `camera-viewport-kit` | `nexusengine/domains/render/camera/camera-viewport` | Own portable camera viewport semantics and deterministic state. |
-| `multiview-camera-kit` | `nexusengine/domains/render/camera/multiview-camera` | Own portable multiview camera semantics and deterministic state. |
-| `stereo-camera-kit` | `nexusengine/domains/render/camera/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
+| `render-layer-graph-kit` | `nexusengine/domains/render/pipeline` | Validate renderer-neutral render layers, dependencies, and pass ordering. |
+| `render-batch-kit` | `nexusengine/domains/render/batch` | Own portable instance batch state, capacity, cell updates and flush records. |
 
 ## Lifecycle
 

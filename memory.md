@@ -157,7 +157,7 @@ hardcoded Core Kit catalog or transitional source tree remains.
   parsing, compilation, linking, binary artifacts, GPU programs, backend
   reflection execution, and repair; Material, Pipeline, and Presentation keep
   their existing semantic ownership.
-- `n:render:material` owns exact portable Shader-slot association, parameter
+- `n:material` owns exact portable Shader-slot association, parameter
   values, Texture and sampler bindings, instances, variants, current validation,
   and semantic cache lineage. Slot visibility exactly matches the Shader
   binding, and every current resolution rechecks required Texture resource and
@@ -230,3 +230,11 @@ blindly reverse-imported.
   The Open Above continuously validates its exact lock-resolved SHA.
 - Historical numeric branches are immutable. No force update, repair merge,
   deletion, or automatic publication is allowed.
+
+## Rendering ownership migration (2026-10-18)
+
+Material, Lighting and Camera are independent semantic owners. Render owns the existing layer graph and instance-batch services. Presentation retains output and visual requests. See `docs/migrations/RENDER-OWNERSHIP.md` for public path changes and retained serialized identities. The optional bundled NexusGL provider and controlled handover are documented in `docs/GRAPHICS-LANGUAGE.md`.
+
+## Graphics Language Kit (2026-10-20)
+
+One optional installation composes Core Render contracts, resource identity and lifecycle with native/WASM NexusGL and offscreen, Canvas or macOS presentation. The application owns scene/gameplay state. Core Installation owns provider generation and handover outcome; executable providers and completed pixel copies remain in the optional kit. Native/WASM and displayed browser/macOS evidence live in `.agent/runs/2026-10-20-graphics-handover/`. No second renderer or Quest/XR compatibility is claimed.

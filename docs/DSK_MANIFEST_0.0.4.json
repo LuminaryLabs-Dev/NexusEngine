@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
-  "compositionRegistryHash": "sha256:d461f410a1d9085357a209175a6337b158d1fc3c596e30d2735f4ea1f46587ef",
+  "registryHash": "sha256:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+  "compositionRegistryHash": "sha256:14afa1ecab9bbdf7c8dc24d1e688327b927c178f61caf2a0fa78d53e82698d97",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
-      "integrity": "sha256:6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
+      "sourceCommit": "builtin:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+      "integrity": "sha256:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
       "status": "available",
       "environments": [
         "browser",
@@ -1032,6 +1032,66 @@
       "requires": [],
       "provides": [
         "n:build"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "camel-domain",
+      "domainPath": "n:camel",
+      "parentDomainPath": null,
+      "label": "Camel",
+      "status": "experimental",
+      "responsibility": "Own bundled Camel execution and browser/native binding to the installed public Nexus API graph.",
+      "ownedMeaning": [
+        "Camel execution receipts",
+        "Camel invocations",
+        "Camel runtime binding",
+        "Camel source identity"
+      ],
+      "forbiddenResponsibilities": [
+        "composition dependency planning",
+        "game rules",
+        "model weights",
+        "other domain state"
+      ],
+      "requires": [],
+      "provides": [
+        "n:camel"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "camera-domain",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
+      "label": "Camera",
+      "status": "stable-candidate",
+      "responsibility": "Own camera targets, smoothing, framing, views, projections and portable camera execution records.",
+      "ownedMeaning": [
+        "Own camera targets, smoothing, framing, views, projections and portable camera execution records."
+      ],
+      "forbiddenResponsibilities": [
+        "application presets",
+        "provider handles",
+        "renderer execution"
+      ],
+      "requires": [],
+      "provides": [
+        "n:camera"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2673,6 +2733,65 @@
       }
     },
     {
+      "id": "lighting-domain",
+      "domainPath": "n:lighting",
+      "parentDomainPath": null,
+      "label": "Lighting",
+      "status": "stable-candidate",
+      "responsibility": "Own portable light definitions, reflection policy, negotiation and observation records.",
+      "ownedMeaning": [
+        "Own portable light definitions, reflection policy, negotiation and observation records."
+      ],
+      "forbiddenResponsibilities": [
+        "application presets",
+        "provider handles",
+        "renderer execution"
+      ],
+      "requires": [],
+      "provides": [
+        "n:lighting"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "material-domain",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
+      "label": "Material",
+      "status": "stable-candidate",
+      "responsibility": "Own visual material descriptions, parameters, instances, portable execution bindings and validation.",
+      "ownedMeaning": [
+        "Own visual material descriptions, parameters, instances, portable execution bindings and validation."
+      ],
+      "forbiddenResponsibilities": [
+        "application presets",
+        "provider handles",
+        "renderer execution"
+      ],
+      "requires": [
+        "n:render:shader",
+        "n:render:texture"
+      ],
+      "provides": [
+        "n:material"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "mcp-domain",
       "domainPath": "n:mcp",
       "parentDomainPath": null,
@@ -3720,42 +3839,9 @@
       }
     },
     {
-      "id": "presentation-camera-domain",
-      "domainPath": "n:presentation:camera",
-      "parentDomainPath": "n:presentation",
-      "label": "Presentation Camera",
-      "status": "stable-candidate",
-      "responsibility": "Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.",
-      "ownedMeaning": [
-        "camera framing policy",
-        "camera modes",
-        "camera smoothing",
-        "camera targets"
-      ],
-      "forbiddenResponsibilities": [
-        "authored shot sequences",
-        "input polling",
-        "renderer camera objects"
-      ],
-      "requires": [
-        "n:presentation"
-      ],
-      "provides": [
-        "n:presentation:camera"
-      ],
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "sourceRegistryId": "nexusengine-core",
-      "metadata": {
-        "core": true
-      }
-    },
-    {
       "id": "presentation-camera-third-person-domain",
-      "domainPath": "n:presentation:camera:third-person",
-      "parentDomainPath": "n:presentation:camera",
+      "domainPath": "n:camera:third-person",
+      "parentDomainPath": "n:camera",
       "label": "Third-Person Camera",
       "status": "stable-candidate",
       "responsibility": "Own renderer-neutral third-person camera follow descriptors.",
@@ -3773,10 +3859,10 @@
       "requires": [
         "character:resolution",
         "motion:velocity",
-        "n:presentation:camera"
+        "n:camera"
       ],
       "provides": [
-        "n:presentation:camera:third-person"
+        "n:camera:third-person"
       ],
       "settingsSchema": {
         "type": "object",
@@ -3841,41 +3927,6 @@
       "requires": [],
       "provides": [
         "n:presentation"
-      ],
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "sourceRegistryId": "nexusengine-core",
-      "metadata": {
-        "core": true
-      }
-    },
-    {
-      "id": "presentation-graphics-domain",
-      "domainPath": "n:presentation:graphics",
-      "parentDomainPath": "n:presentation",
-      "label": "Presentation Graphics",
-      "status": "stable-candidate",
-      "responsibility": "Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.",
-      "ownedMeaning": [
-        "VFX descriptors",
-        "lighting descriptors",
-        "material descriptors",
-        "reflection descriptors",
-        "render graphs"
-      ],
-      "forbiddenResponsibilities": [
-        "GPU resource creation",
-        "authored material packs",
-        "renderer passes",
-        "shader compilation"
-      ],
-      "requires": [
-        "n:presentation"
-      ],
-      "provides": [
-        "n:presentation:graphics"
       ],
       "settingsSchema": {
         "type": "object",
@@ -4051,6 +4102,34 @@
       }
     },
     {
+      "id": "render-batch-domain",
+      "domainPath": "n:render:batch",
+      "parentDomainPath": "n:render",
+      "label": "Render Batch",
+      "status": "stable-candidate",
+      "responsibility": "Own portable rendering batch state and validation.",
+      "ownedMeaning": [
+        "batch state"
+      ],
+      "forbiddenResponsibilities": [
+        "provider execution"
+      ],
+      "requires": [
+        "n:render"
+      ],
+      "provides": [
+        "n:render:batch"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "render-buffer-domain",
       "domainPath": "n:render:buffer",
       "parentDomainPath": "n:render",
@@ -4081,42 +4160,6 @@
       ],
       "provides": [
         "n:render:buffer"
-      ],
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "sourceRegistryId": "nexusengine-core",
-      "metadata": {
-        "core": true
-      }
-    },
-    {
-      "id": "render-camera-domain",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
-      "label": "Render Camera",
-      "status": "stable-candidate",
-      "responsibility": "Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.",
-      "ownedMeaning": [
-        "camera capability tokens",
-        "camera semantic records",
-        "deterministic camera configuration",
-        "stereo and multiview camera semantics"
-      ],
-      "forbiddenResponsibilities": [
-        "GPU handles",
-        "authored game camera policy",
-        "frame submission",
-        "platform camera APIs",
-        "provider execution"
-      ],
-      "requires": [
-        "n:render",
-        "render:provider-contract"
-      ],
-      "provides": [
-        "n:render:camera"
       ],
       "settingsSchema": {
         "type": "object",
@@ -4216,7 +4259,7 @@
       "ownedMeaning": [
         "Render domain identity",
         "Render execution capability catalog",
-        "provider-neutral Render contracts, lifecycle, portable device state, Surface state, resource state, Buffer state, Texture state, Shader state, and Material execution state"
+        "provider-neutral Render contracts, lifecycle, portable device state, Surface state, resource state, Buffer state, Texture state, Shader state"
       ],
       "forbiddenResponsibilities": [
         "Presentation descriptor ownership",
@@ -4344,44 +4387,23 @@
       }
     },
     {
-      "id": "render-material-domain",
-      "domainPath": "n:render:material",
+      "id": "render-pipeline-domain",
+      "domainPath": "n:render:pipeline",
       "parentDomainPath": "n:render",
-      "label": "Render Material",
+      "label": "Render Pipeline",
       "status": "stable-candidate",
-      "responsibility": "Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.",
+      "responsibility": "Own portable rendering pipeline state and validation.",
       "ownedMeaning": [
-        "aggregate Material instances and Shader variants",
-        "exact Texture-view and sampler bindings",
-        "portable Shader binding layouts for Material execution",
-        "provider-observation-backed Material validation records",
-        "semantic links to resident material Render Resources",
-        "typed Material parameter sets"
+        "pipeline state"
       ],
       "forbiddenResponsibilities": [
-        "GPU descriptor sets bind groups samplers handles or commands",
-        "Pipeline pass or draw execution",
-        "Shader source compilation reflection execution or repair",
-        "Texture decoding upload or residency ownership",
-        "authored PBR visual or procedural material meaning",
-        "physical friction density restitution or contact meaning"
+        "provider execution"
       ],
       "requires": [
-        "n:render",
-        "n:render:resource",
-        "n:render:shader",
-        "n:render:texture",
-        "render:resource-identity",
-        "render:resource-lifecycle",
-        "render:shader-compile",
-        "render:shader-program",
-        "render:shader-reflection",
-        "render:shader-variant",
-        "render:texture-residency",
-        "render:texture-resource"
+        "n:render"
       ],
       "provides": [
-        "n:render:material"
+        "n:render:pipeline"
       ],
       "settingsSchema": {
         "type": "object",
@@ -5704,6 +5726,36 @@
       ],
       "provides": [
         "n:build:target"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "target-host-native-build-domain",
+      "domainPath": "n:build:target:host-native",
+      "parentDomainPath": "n:build:target",
+      "label": "Native Host",
+      "status": "stable-candidate",
+      "responsibility": "Own local native and embedded Node contract proof on the build host.",
+      "ownedMeaning": [
+        "host contract proof"
+      ],
+      "forbiddenResponsibilities": [
+        "application runtime ownership",
+        "authored product behavior",
+        "project source mutation"
+      ],
+      "requires": [
+        "n:build:target"
+      ],
+      "provides": [
+        "n:build:target:host-native"
       ],
       "settingsSchema": {
         "type": "object",
@@ -12380,6 +12432,7 @@
         "build:effect-analysis",
         "build:execution-ir",
         "build:fallback-selection",
+        "build:host-native-target",
         "build:ir-validation",
         "build:isolated-stage",
         "build:javascript-ast",
@@ -12683,13 +12736,86 @@
       }
     },
     {
+      "id": "camel-runtime-kit",
+      "version": "0.0.4",
+      "status": "experimental",
+      "kind": "domain-service-kit",
+      "responsibility": "Execute a pinned bundled Camel interpreter against shared Nexus instances.",
+      "domainPath": "n:camel",
+      "parentDomainPath": null,
+      "apiName": "camel",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "camel:execution",
+        "n:camel"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/camel/runtime",
+        "exportName": "createCamelRuntimeKit",
+        "environments": [
+          "browser",
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/camel/validation/browser-evidence.json",
+            "src/core-domains/camel/validation/native-evidence.json"
+          ],
+          "consumers": [
+            {
+              "id": "camel-runtime-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "camel-runtime-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "camera-binding-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera binding semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraBinding",
       "apiVisibility": "public",
       "requires": [
@@ -12707,7 +12833,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-binding",
+        "subpath": "./domains/camera/execution/camera-binding",
         "exportName": "createCameraBindingKit",
         "environments": [
           "browser",
@@ -12763,8 +12889,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Calculate camera-relative yaw, orbit limits, and root handoff state.",
-      "domainPath": "n:presentation:camera",
-      "parentDomainPath": "n:presentation",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "cameraControl",
       "apiVisibility": "public",
       "requires": [],
@@ -12779,7 +12905,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/camera/control-math",
+        "subpath": "./domains/camera/control-math",
         "exportName": "createCameraControlMathKit",
         "environments": [
           "browser",
@@ -12835,16 +12961,14 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Manage camera targets, modes, smoothing, and renderer-neutral camera policy.",
-      "domainPath": "n:presentation:camera",
-      "parentDomainPath": "n:presentation",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "camera",
       "apiVisibility": "public",
-      "requires": [
-        "n:presentation"
-      ],
+      "requires": [],
       "provides": [
         "camera:descriptor",
-        "n:presentation:camera"
+        "n:camera"
       ],
       "composes": [],
       "defaults": {},
@@ -12854,7 +12978,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/camera",
+        "subpath": "./domains/camera/control",
         "exportName": "createCameraKit",
         "environments": [
           "browser",
@@ -12910,8 +13034,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Calculate perspective and orthographic subject framing for a viewport.",
-      "domainPath": "n:presentation:camera",
-      "parentDomainPath": "n:presentation",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "cameraFraming",
       "apiVisibility": "public",
       "requires": [
@@ -12928,7 +13052,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/camera/framing",
+        "subpath": "./domains/camera/framing",
         "exportName": "createCameraFramingKit",
         "environments": [
           "browser",
@@ -12984,8 +13108,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera jitter semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraJitter",
       "apiVisibility": "public",
       "requires": [
@@ -13003,7 +13127,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-jitter",
+        "subpath": "./domains/camera/execution/camera-jitter",
         "exportName": "createCameraJitterKit",
         "environments": [
           "browser",
@@ -13059,8 +13183,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera projection semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraProjection",
       "apiVisibility": "public",
       "requires": [
@@ -13078,7 +13202,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-projection",
+        "subpath": "./domains/camera/execution/camera-projection",
         "exportName": "createCameraProjectionKit",
         "environments": [
           "browser",
@@ -13134,8 +13258,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera reprojection semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraReprojection",
       "apiVisibility": "public",
       "requires": [
@@ -13153,7 +13277,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-reprojection",
+        "subpath": "./domains/camera/execution/camera-reprojection",
         "exportName": "createCameraReprojectionKit",
         "environments": [
           "browser",
@@ -13209,8 +13333,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera view semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraView",
       "apiVisibility": "public",
       "requires": [
@@ -13228,7 +13352,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-view",
+        "subpath": "./domains/camera/execution/camera-view",
         "exportName": "createCameraViewKit",
         "environments": [
           "browser",
@@ -13284,8 +13408,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable camera viewport semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderCameraViewport",
       "apiVisibility": "public",
       "requires": [
@@ -13303,7 +13427,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/camera-viewport",
+        "subpath": "./domains/camera/execution/camera-viewport",
         "exportName": "createCameraViewportKit",
         "environments": [
           "browser",
@@ -13359,8 +13483,8 @@
       "status": "stable-candidate",
       "kind": "adapter-kit",
       "responsibility": "Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.",
-      "domainPath": "n:presentation:camera:third-person",
-      "parentDomainPath": "n:presentation:camera",
+      "domainPath": "n:camera:third-person",
+      "parentDomainPath": "n:camera",
       "apiName": "cameraWorldOcclusion",
       "apiVisibility": "public",
       "requires": [
@@ -13379,7 +13503,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/adapters/camera-world-occlusion",
+        "subpath": "./domains/camera/adapters/camera-world-occlusion",
         "exportName": "createCameraWorldOcclusionAdapterKit",
         "environments": [
           "browser",
@@ -18001,83 +18125,6 @@
       }
     },
     {
-      "id": "graphics-descriptor-kit",
-      "version": "0.0.4",
-      "status": "stable-candidate",
-      "kind": "domain-service-kit",
-      "responsibility": "Create renderer-neutral material, lighting, VFX, quality, batch, and terrain LOD descriptors.",
-      "domainPath": "n:presentation:graphics",
-      "parentDomainPath": "n:presentation",
-      "apiName": "graphics",
-      "apiVisibility": "public",
-      "requires": [
-        "n:presentation"
-      ],
-      "provides": [
-        "graphics:lighting",
-        "graphics:material",
-        "n:presentation:graphics"
-      ],
-      "composes": [],
-      "defaults": {},
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "source": {
-        "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/graphics",
-        "exportName": "createGraphicsKit",
-        "environments": [
-          "browser",
-          "node",
-          "worker"
-        ],
-        "permissions": [],
-        "installable": true
-      },
-      "metadata": {
-        "core": true,
-        "determinism": "deterministic",
-        "idempotency": {
-          "key": "kit-id-and-manifest-content",
-          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
-        },
-        "reset": {
-          "supported": true,
-          "semantics": "Restore the configured baseline without duplicate state or systems."
-        },
-        "snapshot": {
-          "supported": true,
-          "schema": {
-            "type": "object",
-            "additionalProperties": true
-          }
-        },
-        "proof": {
-          "status": "proven",
-          "references": [
-            "tests/core-domains/core-graphics-domain-smoke.mjs",
-            "tests/core-kits/core-graphics-kit-smoke.mjs"
-          ],
-          "consumers": [
-            {
-              "id": "graphics-descriptor-kit-direct-consumer",
-              "description": "Direct API contract fixture.",
-              "schema": null,
-              "deterministic": true
-            },
-            {
-              "id": "graphics-descriptor-kit-installed-consumer",
-              "description": "Installed Domain composition fixture.",
-              "schema": null,
-              "deterministic": true
-            }
-          ]
-        }
-      }
-    },
-    {
       "id": "gravity-field-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -18449,6 +18496,83 @@
             },
             {
               "id": "host-capability-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "host-native-target-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim.",
+      "domainPath": "n:build:target:host-native",
+      "parentDomainPath": "n:build:target",
+      "apiName": "hostNativeTarget",
+      "apiVisibility": "public",
+      "requires": [
+        "build:process-execution",
+        "build:runtime-abi",
+        "build:rust-lowering",
+        "build:toolchain-discovery",
+        "n:build:target"
+      ],
+      "provides": [
+        "build:host-native-target",
+        "n:build:target:host-native"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/target/host-native/host-native-target",
+        "exportName": "createHostNativeTargetKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/build/tests/host-native.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "host-native-target-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "host-native-target-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -19727,6 +19851,79 @@
       }
     },
     {
+      "id": "lighting-descriptor-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own portable lighting descriptions.",
+      "domainPath": "n:lighting",
+      "parentDomainPath": null,
+      "apiName": "lightingDescriptions",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "n:lighting"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/lighting/descriptions",
+        "exportName": "createLightingDescriptorKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-domains/core-graphics-domain-smoke.mjs",
+            "tests/core-kits/core-graphics-kit-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "lighting-descriptor-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "lighting-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "limit-constraint-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -19885,12 +20082,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Map portable Material slots to one exact Shader program interface.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialBindings",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-contract",
         "render:shader-program"
       ],
@@ -19905,7 +20102,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/binding",
+        "subpath": "./domains/material/binding",
         "exportName": "createMaterialBindingKit",
         "environments": [
           "browser",
@@ -19961,12 +20158,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Link current Material validation to an exact resident material Render Resource.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialCache",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-validation",
         "render:resource-identity",
         "render:resource-lifecycle"
@@ -19982,7 +20179,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/cache",
+        "subpath": "./domains/material/cache",
         "exportName": "createMaterialCacheKit",
         "environments": [
           "browser",
@@ -20115,15 +20312,15 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Define the canonical backend-neutral Render Material execution boundary.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialContract",
       "apiVisibility": "public",
       "requires": [
         "n:render"
       ],
       "provides": [
-        "n:render:material",
+        "n:material",
         "render:material-contract"
       ],
       "composes": [],
@@ -20134,7 +20331,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/contract",
+        "subpath": "./domains/material/contract",
         "exportName": "createMaterialContractKit",
         "environments": [
           "browser",
@@ -20185,17 +20382,90 @@
       }
     },
     {
+      "id": "material-descriptor-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own portable material descriptions.",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
+      "apiName": "materialDescriptions",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "n:material"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/material/descriptions",
+        "exportName": "createMaterialDescriptorKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-domains/core-graphics-domain-smoke.mjs",
+            "tests/core-kits/core-graphics-kit-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "material-descriptor-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "material-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "material-instance-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Compose one complete portable Material execution instance from exact bindings.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialInstances",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-binding",
         "render:material-parameter",
         "render:material-sampler-binding",
@@ -20212,7 +20482,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/instance",
+        "subpath": "./domains/material/instance",
         "exportName": "createMaterialInstanceKit",
         "environments": [
           "browser",
@@ -20268,12 +20538,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own typed portable values for exact Material parameter slots.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialParameters",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-binding"
       ],
       "provides": [
@@ -20287,7 +20557,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/parameter",
+        "subpath": "./domains/material/parameter",
         "exportName": "createMaterialParameterKit",
         "environments": [
           "browser",
@@ -20343,12 +20613,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Prove one Material target against exact completed Shader compile and reflection records.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialValidation",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-instance",
         "render:material-variant",
         "render:shader-compile",
@@ -20365,7 +20635,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/validation",
+        "subpath": "./domains/material/validation",
         "exportName": "createMaterialValidationKit",
         "environments": [
           "browser",
@@ -20421,12 +20691,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Resolve an exact Shader variant and complete Material binding override set.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialVariants",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-instance",
         "render:shader-variant"
       ],
@@ -20441,7 +20711,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/variant",
+        "subpath": "./domains/material/variant",
         "exportName": "createMaterialVariantKit",
         "environments": [
           "browser",
@@ -21340,8 +21610,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable multiview camera semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderMultiviewCamera",
       "apiVisibility": "public",
       "requires": [
@@ -21359,7 +21629,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/multiview-camera",
+        "subpath": "./domains/camera/execution/multiview-camera",
         "exportName": "createMultiviewCameraKit",
         "environments": [
           "browser",
@@ -25435,13 +25705,11 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Describe renderer-neutral reflection probes, plans, and update policy.",
-      "domainPath": "n:presentation:graphics",
-      "parentDomainPath": "n:presentation",
+      "domainPath": "n:lighting",
+      "parentDomainPath": null,
       "apiName": "reflection",
       "apiVisibility": "public",
-      "requires": [
-        "n:presentation:graphics"
-      ],
+      "requires": [],
       "provides": [
         "graphics:reflection-descriptor"
       ],
@@ -25453,7 +25721,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/graphics/reflection",
+        "subpath": "./domains/lighting/reflection",
         "exportName": "createReflectionKit",
         "environments": [
           "browser",
@@ -25495,6 +25763,79 @@
             },
             {
               "id": "reflection-descriptor-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "render-batch-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own portable instance batch state, capacity, cell updates and flush records.",
+      "domainPath": "n:render:batch",
+      "parentDomainPath": "n:render",
+      "apiName": "renderBatch",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "n:render:batch"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/render/batch",
+        "exportName": "createRenderBatchKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-domains/core-graphics-domain-smoke.mjs",
+            "tests/core-kits/core-graphics-kit-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "render-batch-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "render-batch-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -25808,7 +26149,7 @@
       "version": "0.0.4",
       "status": "stable-candidate",
       "kind": "domain-service-kit",
-      "responsibility": "Own the aggregate phase and provider identity for one installed Render composition.",
+      "responsibility": "Own the aggregate phase, provider generation and controlled handover status for one Render composition.",
       "domainPath": "n:render:lifecycle",
       "parentDomainPath": "n:render",
       "apiName": "renderInstallation",
@@ -25860,6 +26201,7 @@
         "proof": {
           "status": "proven",
           "references": [
+            "kits/render/graphics-language-kit/tests/handover.mjs",
             "tests/core-domains/core-graphics-domain-smoke.mjs"
           ],
           "consumers": [
@@ -25885,13 +26227,11 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Validate renderer-neutral render layers, dependencies, and pass ordering.",
-      "domainPath": "n:presentation:graphics",
-      "parentDomainPath": "n:presentation",
+      "domainPath": "n:render:pipeline",
+      "parentDomainPath": "n:render",
       "apiName": "renderLayerGraph",
       "apiVisibility": "public",
-      "requires": [
-        "n:presentation:graphics"
-      ],
+      "requires": [],
       "provides": [
         "graphics:render-graph",
         "graphics:render-pass-contract"
@@ -25904,7 +26244,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/graphics/render-graph",
+        "subpath": "./domains/render/pipeline",
         "exportName": "createRenderLayerGraphKit",
         "environments": [
           "browser",
@@ -28459,12 +28799,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable sampler state for exact Material sampler slots.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialSamplerBindings",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-binding"
       ],
       "provides": [
@@ -28478,7 +28818,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/sampler-binding",
+        "subpath": "./domains/material/sampler-binding",
         "exportName": "createSamplerBindingKit",
         "environments": [
           "browser",
@@ -31860,8 +32200,8 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Own portable stereo camera semantics and deterministic state.",
-      "domainPath": "n:render:camera",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:camera",
+      "parentDomainPath": null,
       "apiName": "renderStereoCamera",
       "apiVisibility": "public",
       "requires": [
@@ -31879,7 +32219,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/camera/stereo-camera",
+        "subpath": "./domains/camera/execution/stereo-camera",
         "exportName": "createStereoCameraKit",
         "environments": [
           "browser",
@@ -32761,12 +33101,12 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Bind exact resident Texture views and subresources to Material slots.",
-      "domainPath": "n:render:material",
-      "parentDomainPath": "n:render",
+      "domainPath": "n:material",
+      "parentDomainPath": null,
       "apiName": "renderMaterialTextureBindings",
       "apiVisibility": "public",
       "requires": [
-        "n:render:material",
+        "n:material",
         "render:material-binding",
         "render:resource-lifecycle",
         "render:texture-2d",
@@ -32786,7 +33126,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/render/material/texture-binding",
+        "subpath": "./domains/material/texture-binding",
         "exportName": "createTextureBindingKit",
         "environments": [
           "browser",
@@ -33226,18 +33566,18 @@
       "status": "stable-candidate",
       "kind": "domain-service-kit",
       "responsibility": "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.",
-      "domainPath": "n:presentation:camera:third-person",
-      "parentDomainPath": "n:presentation:camera",
+      "domainPath": "n:camera:third-person",
+      "parentDomainPath": "n:camera",
       "apiName": "thirdPersonCamera",
       "apiVisibility": "public",
       "requires": [
         "character:resolution",
         "motion:velocity",
-        "n:presentation:camera"
+        "n:camera"
       ],
       "provides": [
         "camera:third-person-descriptor",
-        "n:presentation:camera:third-person"
+        "n:camera:third-person"
       ],
       "composes": [],
       "defaults": {},
@@ -33247,7 +33587,7 @@
       },
       "source": {
         "registryId": "nexusengine-core",
-        "subpath": "./domains/presentation/camera/third-person",
+        "subpath": "./domains/camera/third-person",
         "exportName": "createThirdPersonCameraKit",
         "environments": [
           "browser",

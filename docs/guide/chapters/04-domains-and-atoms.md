@@ -27,7 +27,9 @@ Generation fails when a public atom lacks source or proof. Compliance is never i
 | Simulation | `n:simulation`, physics, recovery, motion, economy, operations, hazard, pursuit, progression, `n:compute`, model |
 | Actors | `n:actor`, creature, character, player, `n:agent` |
 | Interaction | `n:interaction`, input |
-| Presentation | output, graphics, camera, animation, audio, UI, speech, capture, sky |
+| Visual semantics | `n:material`, `n:lighting`, `n:camera` |
+| Rendering | `n:render`: resources, contracts, pipelines, batches, provider lifecycle |
+| Presentation | output, animation, audio, UI, speech, capture, sky |
 | Infrastructure | `n:network`, `n:diagnostics`, contract-only `n:host` |
 
 The generated Domain Index appendix contains every active path.

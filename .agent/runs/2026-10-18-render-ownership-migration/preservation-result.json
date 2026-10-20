@@ -1,0 +1,7 @@
+{
+  ".agent/target.md": true,
+  ".agent/tracker.md": true,
+  "src/core-domains/build/index.js": true,
+  "src/core-domains/build/orchestration/kits/target-set-kit/services.js": true,
+  "src/core-domains/build/target/kits/target-registry-kit/services.js": true
+}

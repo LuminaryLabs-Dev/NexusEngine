@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac`
+Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -49,7 +49,9 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 - `n:build:target:android-xr`: Own Android ARM64 OpenXR host generation, Gradle packaging, and APK validation.
 - `n:build:target:pcvr`: Own Windows x64 OpenXR host generation, executable packaging, and validation.
 - `n:build:target:host-native`: Own local native and embedded Node contract proof on the build host.
-- `n:camel`: Own bundled Camel execution and native binding to the installed public Nexus API graph.
+- `n:camel`: Own bundled Camel execution and browser/native binding to the installed public Nexus API graph.
+- `n:camera`: Own camera targets, smoothing, framing, views, projections and portable camera execution records.
+- `n:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
 - `n:composition`: Own deterministic Domain and Kit discovery, dependency planning, plan identity, and exactly-once apply receipts.
 - `n:compute`: Own portable compute graphs, resource requirements, dispatch intent, executor hosting, and execution-family contracts.
 - `n:compute:graph`: Own portable compute topology, dependencies, and deterministic plans.
@@ -97,6 +99,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 - `n:interaction:request:queue`: Own queued request patience, fulfillment, expiry, and effect descriptors.
 - `n:interaction:request:fulfillment`: Own spatial request destination, deadline, completion, expiry, and reward state.
 - `n:interaction:transfer-zone`: Own portable transfer-zone acceptance, dwell, capacity, occupancy, and completion state.
+- `n:lighting`: Own portable light definitions, reflection policy, negotiation and observation records.
+- `n:material`: Own visual material descriptions, parameters, instances, portable execution bindings and validation.
 - `n:mcp`: Own opt-in transport-neutral MCP contracts, provider registration, authorization, and protocol dispatch.
 - `n:network`: Own portable transport, session, authority, synchronization, and replication contracts.
 - `n:network:transport`: Own provider-neutral transport capabilities and portable message channels.
@@ -126,15 +130,12 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 - `n:policy`: Own product-neutral permission, guard, sandbox, and runtime safety decisions.
 - `n:presentation`: Own renderer-neutral presentation descriptors and output policy contracts.
 - `n:presentation:output`: Own surface, safe-area, viewport, aspect, bar, and render-resolution policy.
-- `n:presentation:graphics`: Own renderer-neutral material, lighting, VFX, reflection, quality, batch, and render graph descriptors.
-- `n:presentation:camera`: Own renderer-neutral camera targets, modes, smoothing, framing, and occlusion policy.
 - `n:presentation:animation`: Own animation, pose, blend, rig, and timeline descriptors.
 - `n:presentation:audio`: Own audio cue, music, ambience, mix, volume, and spatial audio descriptors.
 - `n:presentation:ui`: Own renderer-neutral HUD, menu, prompt, notification, focus, selection, accessibility, and scale descriptors.
 - `n:presentation:speech`: Own provider-neutral speech requests, voices, utterance lifecycle, and synthesis result contracts.
 - `n:presentation:capture`: Own observation requests, view sets, framing, capture jobs, progress, and result contracts.
 - `n:presentation:sky`: Own generic sky, atmosphere, cloud, horizon, and celestial descriptors.
-- `n:presentation:camera:third-person`: Own renderer-neutral third-person camera follow descriptors.
 - `n:render`: Own the canonical backend-neutral render-execution boundary and compose its atomic capability subdomains.
 - `n:render:contracts`: Own portable Render provider, resource, frame, resolved-pass, shader-interface, and event boundary schemas.
 - `n:render:lifecycle`: Own provider-neutral Render composition installation, startup, shutdown, reset, snapshot, and recovery state.
@@ -144,8 +145,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 - `n:render:buffer`: Own portable logical Buffer descriptors, explicit layouts, semantic typed views, and bounded provider update receipts.
 - `n:render:texture`: Own portable logical Texture descriptors, typed views, formats, mip plans, streaming records, and proven subresource residency.
 - `n:render:shader`: Own provider-neutral Shader source lineage, module and program composition, variants, compile state, reflection observations, and semantic cache links.
-- `n:render:material`: Own portable backend-neutral Material execution bindings, aggregate validation, and semantic cache links.
-- `n:render:camera`: Own portable camera binding, view, projection, viewport, stereo, multiview, jitter, and reprojection semantics.
+- `n:render:pipeline`: Own portable rendering pipeline state and validation.
+- `n:render:batch`: Own portable rendering batch state and validation.
 - `n:render:execution`: Own realization-family semantics for portable Render work.
 - `n:render:execution:gpu`: Own semantics common to GPU-class rendering over Host GPU resources.
 - `n:runtime`: Own deterministic engine lifecycle, ticks, state mutation contracts, and runtime service installation.

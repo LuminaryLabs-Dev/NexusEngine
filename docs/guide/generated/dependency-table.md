@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac`
+Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -52,6 +52,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:build:target:pcvr` | `n:build:target` | - |
 | `n:build:target:host-native` | `n:build:target` | - |
 | `n:camel` | - | - |
+| `n:camera` | - | - |
+| `n:camera:third-person` | `character:resolution`, `motion:velocity`, `n:camera` | - |
 | `n:composition` | - | `n:mcp` |
 | `n:compute` | - | - |
 | `n:compute:graph` | `n:compute` | - |
@@ -99,6 +101,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:interaction:request:queue` | `n:interaction` | - |
 | `n:interaction:request:fulfillment` | `n:interaction` | - |
 | `n:interaction:transfer-zone` | `n:interaction` | - |
+| `n:lighting` | - | - |
+| `n:material` | `n:render:shader`, `n:render:texture` | - |
 | `n:mcp` | - | `n:composition` |
 | `n:network` | - | - |
 | `n:network:transport` | `n:network` | - |
@@ -128,15 +132,12 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:policy` | - | - |
 | `n:presentation` | - | - |
 | `n:presentation:output` | `n:presentation` | - |
-| `n:presentation:graphics` | `n:presentation` | - |
-| `n:presentation:camera` | `n:presentation` | - |
 | `n:presentation:animation` | `n:presentation` | - |
 | `n:presentation:audio` | `n:presentation` | - |
 | `n:presentation:ui` | `n:presentation` | - |
 | `n:presentation:speech` | `n:presentation` | - |
 | `n:presentation:capture` | `n:presentation` | - |
 | `n:presentation:sky` | `n:presentation` | - |
-| `n:presentation:camera:third-person` | `character:resolution`, `motion:velocity`, `n:presentation:camera` | - |
 | `n:render` | `n:runtime` | - |
 | `n:render:contracts` | `n:render` | - |
 | `n:render:lifecycle` | `n:render`, `render:provider-contract` | - |
@@ -146,8 +147,8 @@ Registry SHA-256: `825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d
 | `n:render:buffer` | `n:render`, `n:render:resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
 | `n:render:texture` | `n:render`, `n:render:buffer`, `n:render:resource`, `render:buffer-resource`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle` | - |
 | `n:render:shader` | `n:render`, `n:render:contracts`, `n:render:device`, `n:render:resource`, `render:device-capability`, `render:device-queue`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-schema` | - |
-| `n:render:material` | `n:render`, `n:render:resource`, `n:render:shader`, `n:render:texture`, `render:resource-identity`, `render:resource-lifecycle`, `render:shader-compile`, `render:shader-program`, `render:shader-reflection`, `render:shader-variant`, `render:texture-residency`, `render:texture-resource` | - |
-| `n:render:camera` | `n:render`, `render:provider-contract` | - |
+| `n:render:pipeline` | `n:render` | - |
+| `n:render:batch` | `n:render` | - |
 | `n:render:execution` | `n:render` | - |
 | `n:render:execution:gpu` | `n:host:gpu`, `n:render:execution` | - |
 | `n:runtime` | - | - |

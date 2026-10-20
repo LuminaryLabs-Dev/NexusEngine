@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02",
-  "contentHash": "sha256:e11f92c32ef2a448f9db3f314c3fbc5a6aba3ce54d700e2c91fc1054b85e9c9d",
+  "registryHash": "147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+  "contentHash": "sha256:f8b4d4e14038f60791386da2056a6c815fc059362d95c674a8de3c5735f7c462",
   "chapters": [
     {
       "id": "start-here",
@@ -34,7 +34,7 @@
       "source": "docs/guide/chapters/04-domains-and-atoms.md",
       "googleDocTab": "04 Domains And Atoms",
       "generated": false,
-      "contentHash": "sha256:18fa8089f34129095be40f9bc026de72fe27269ae17ecbe7a7f60b1ec4efaa20"
+      "contentHash": "sha256:27c18f6a18db96a8670f412ec83f09eccd99008a0153d8f7f687172ab8d2b41c"
     },
     {
       "id": "authoring",
@@ -82,7 +82,7 @@
       "source": "docs/guide/chapters/09-hosts-providers-adapters.md",
       "googleDocTab": "09 Integration",
       "generated": false,
-      "contentHash": "sha256:b8f7509954b199c2241843368bdb8506b4bc434b6bac65316bc50046c760cd23"
+      "contentHash": "sha256:970086c8ac991e403865b44ef4fad5c17049a902de306ded9f45fcf82c549b2b"
     },
     {
       "id": "build-domain",
@@ -106,7 +106,7 @@
       "source": "docs/guide/chapters/11-migration-0.0.4.md",
       "googleDocTab": "11 Migration",
       "generated": false,
-      "contentHash": "sha256:579411227ad3fc07102f97ce02472d445704806a9184e3dd7b73a8850e8c0567"
+      "contentHash": "sha256:ce8261378097a80ef7908a2435db8d716cd4c8bcce9f6b7785a9780ec1f46acb"
     },
     {
       "id": "protokit-extraction",
@@ -130,7 +130,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:8fc2a8abd703d195adcca0bb3deebc6cc8e1b08b9ce5f7fe8962e1a1fc3e506c"
+      "contentHash": "sha256:61b47480f7c242887f977fd4640c19be7596830d3967be70f64f5edd5fb078fe"
     },
     {
       "id": "dependency-table",
@@ -138,7 +138,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:9bf9d7860824978487a6d6c0ce782060bd163b695cde997f23f00ca8ba2e1c1b"
+      "contentHash": "sha256:9b2e096280beec2c24fca77089f97d004853d1588e4bd047ebe750f1c51b2be9"
     },
     {
       "id": "api-reference",
@@ -146,7 +146,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:f131f0b8e127c7f8c7901e7692ce09e7b71362d442134ad23e7c2d419c292b7e"
+      "contentHash": "sha256:704ad8b47e3b63a8ecdc25356dfdb7d80b19a1c5e1c32abb9c4d89117742b131"
     },
     {
       "id": "ownership-ledger",
@@ -154,7 +154,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:cc97bef6ef4f10d68bc6a81fe6e25c9a1c27b782de5abd6bee5b052ef188d705"
+      "contentHash": "sha256:90887b588f1eaa3575f7b0f0e35c71f48698c3205f208e8870b78eaa4993ca00"
     },
     {
       "id": "restored-behavior-migration",
@@ -162,7 +162,7 @@
       "source": "docs/migrations/0.0.4-restored-behaviors.md",
       "googleDocTab": "E Restored Behaviors",
       "generated": true,
-      "contentHash": "sha256:8a1ca256c0542165678c00061321c2b21b5b1b52901811bc9ce4000cd024997a"
+      "contentHash": "sha256:56c7e40467a3d62c33b0a4d6148bdf1c0a3bf9783867358be598fa2268eb48fd"
     },
     {
       "id": "root-migration-map",
@@ -170,7 +170,7 @@
       "source": "docs/migrations/0.0.4-root-module-dispositions.md",
       "googleDocTab": "F Migration Map",
       "generated": true,
-      "contentHash": "sha256:f0e11819bdd2f9968d9f5615749210a8857013152518cbc27da2a2ca0f601531"
+      "contentHash": "sha256:a9ee9b730186d0a6338fd0f01ffb0536ac3304d5dfe3f22d2f0a6631d0dcf06a"
     },
     {
       "id": "extraction-summary",

@@ -1,0 +1,3 @@
+import { atomicKit } from "../../../manifest-input.js";
+
+export default atomicKit({ id: "material-instance-kit", responsibility: "Compose one complete portable Material execution instance from exact bindings.", domainPath: "n:material", apiName: "renderMaterialInstances", requires: ["n:material", "render:material-binding", "render:material-parameter", "render:material-texture-binding", "render:material-sampler-binding"], provides: ["render:material-instance"], module: "./src/core-domains/material/kits/material-instance-kit/index.js", exportName: "createMaterialInstanceKit", publicSubpath: "./domains/material/instance", proofReferences: ["tests/core-domains/core-graphics-domain-smoke.mjs"] });

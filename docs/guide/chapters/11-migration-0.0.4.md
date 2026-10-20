@@ -16,7 +16,7 @@ Do not use `n:core-*`, `nexusengine/core-kits/*`, or private source paths.
 
 ## Runtime Paths
 
-Use semantic paths such as `n:object`, `n:runtime:transaction`, and `n:presentation:graphics`. Immediate parent relationships are validated by manifests.
+Use semantic paths such as `n:object`, `n:runtime:transaction`, and `n:material`. Immediate parent relationships are validated by manifests.
 
 ## Removed Implementations
 

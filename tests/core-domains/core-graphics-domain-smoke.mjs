@@ -13,7 +13,7 @@ import {
   createDeviceLossKit,
   createDeviceMemoryKit,
   createDeviceQueueKit,
-  createGraphicsKit,
+  createRenderBatchKit,
   createIndexBufferKit,
   createIndirectBufferKit,
   createInstanceBufferKit,
@@ -35,7 +35,7 @@ import {
   createRenderFrameSchemaKit,
   createRenderInstallationKit,
   createRenderLifecycleDomain,
-  createRenderMaterialDomain,
+  createMaterialDomain,
   createRenderLayerGraphKit,
   createRenderPassSchemaKit,
   createRenderProviderContractKit,
@@ -174,21 +174,21 @@ const RENDER_SHADER_KITS = Object.freeze([
 ]);
 
 const RENDER_MATERIAL_KITS = Object.freeze([
-  { id: "material-contract-kit", apiName: "renderMaterialContract", factory: createMaterialContractKit, subpath: "./domains/render/material/contract" },
-  { id: "material-binding-kit", apiName: "renderMaterialBindings", factory: createMaterialBindingKit, subpath: "./domains/render/material/binding" },
-  { id: "material-parameter-kit", apiName: "renderMaterialParameters", factory: createMaterialParameterKit, subpath: "./domains/render/material/parameter" },
-  { id: "texture-binding-kit", apiName: "renderMaterialTextureBindings", factory: createTextureBindingKit, subpath: "./domains/render/material/texture-binding" },
-  { id: "sampler-binding-kit", apiName: "renderMaterialSamplerBindings", factory: createSamplerBindingKit, subpath: "./domains/render/material/sampler-binding" },
-  { id: "material-instance-kit", apiName: "renderMaterialInstances", factory: createMaterialInstanceKit, subpath: "./domains/render/material/instance" },
-  { id: "material-variant-kit", apiName: "renderMaterialVariants", factory: createMaterialVariantKit, subpath: "./domains/render/material/variant" },
-  { id: "material-validation-kit", apiName: "renderMaterialValidation", factory: createMaterialValidationKit, subpath: "./domains/render/material/validation" },
-  { id: "material-cache-kit", apiName: "renderMaterialCache", factory: createMaterialCacheKit, subpath: "./domains/render/material/cache" }
+  { id: "material-contract-kit", apiName: "renderMaterialContract", factory: createMaterialContractKit, subpath: "./domains/material/contract" },
+  { id: "material-binding-kit", apiName: "renderMaterialBindings", factory: createMaterialBindingKit, subpath: "./domains/material/binding" },
+  { id: "material-parameter-kit", apiName: "renderMaterialParameters", factory: createMaterialParameterKit, subpath: "./domains/material/parameter" },
+  { id: "texture-binding-kit", apiName: "renderMaterialTextureBindings", factory: createTextureBindingKit, subpath: "./domains/material/texture-binding" },
+  { id: "sampler-binding-kit", apiName: "renderMaterialSamplerBindings", factory: createSamplerBindingKit, subpath: "./domains/material/sampler-binding" },
+  { id: "material-instance-kit", apiName: "renderMaterialInstances", factory: createMaterialInstanceKit, subpath: "./domains/material/instance" },
+  { id: "material-variant-kit", apiName: "renderMaterialVariants", factory: createMaterialVariantKit, subpath: "./domains/material/variant" },
+  { id: "material-validation-kit", apiName: "renderMaterialValidation", factory: createMaterialValidationKit, subpath: "./domains/material/validation" },
+  { id: "material-cache-kit", apiName: "renderMaterialCache", factory: createMaterialCacheKit, subpath: "./domains/material/cache" }
 ]);
 
 const engine = createEngine({
   kits: [
     createPresentationKit(),
-    createGraphicsKit({
+    createRenderBatchKit({
       descriptors: {
         materials: {
           clay: { id: "clay", kind: "physical", roughness: 0.4, clearcoat: 0.7 }
@@ -252,11 +252,11 @@ const engine = createEngine({
   ]
 });
 
-assert.equal(typeof engine.n.graphics.getSnapshot, "function");
+assert.equal(typeof engine.n.renderBatch.getSnapshot, "function");
 assert.equal(typeof engine.n.renderLayerGraph.getSnapshot, "function");
 assert.equal(typeof engine.n.reflection.getSnapshot, "function");
-assert.ok(engine.n.ownersOf("n:presentation:graphics").includes("reflection-descriptor-kit"));
-assert.equal(engine.n.graphics.getDescriptors("materials").clay.id, "clay");
+assert.ok(engine.n.ownersOf("n:lighting").includes("reflection-descriptor-kit"));
+assert.equal(engine.n.renderBatch.getDescriptors("materials").clay.id, "clay");
 assert.deepEqual(engine.n.renderLayerGraph.getOrderedPasses().map(pass => pass.id), [
   "reflection-capture",
   "reflection-filter",
@@ -274,7 +274,7 @@ const renderResourceDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.d
 const renderBufferDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.domainPath === "n:render:buffer");
 const renderTextureDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.domainPath === "n:render:texture");
 const renderShaderDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.domainPath === "n:render:shader");
-const renderMaterialDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.domainPath === "n:render:material");
+const renderMaterialDomain = CORE_DOMAIN_CATALOG.domains.find((entry) => entry.domainPath === "n:material");
 assert.ok(renderRootDomain, "canonical n:render domain is cataloged");
 assert.equal(renderRootDomain.parentDomainPath, null);
 assert.deepEqual(renderRootDomain.outputs.map((entry) => entry.id), ["n:render", "render:domain-contract"]);
@@ -292,8 +292,8 @@ assert.ok(renderTextureDomain, "canonical n:render:texture subdomain is cataloge
 assert.equal(renderTextureDomain.parentDomainPath, "n:render");
 assert.ok(renderShaderDomain, "canonical n:render:shader subdomain is cataloged");
 assert.equal(renderShaderDomain.parentDomainPath, "n:render");
-assert.ok(renderMaterialDomain, "canonical n:render:material subdomain is cataloged");
-assert.equal(renderMaterialDomain.parentDomainPath, "n:render");
+assert.ok(renderMaterialDomain, "canonical n:material subdomain is cataloged");
+assert.equal(renderMaterialDomain.parentDomainPath, null);
 
 for (const expected of RENDER_CONTRACT_KITS) {
   const record = CORE_DOMAIN_CATALOG.kits.find((entry) => entry.id === expected.id);
@@ -364,9 +364,9 @@ for (const expected of RENDER_SHADER_KITS) {
 for (const expected of RENDER_MATERIAL_KITS) {
   const record = CORE_DOMAIN_CATALOG.kits.find((entry) => entry.id === expected.id);
   assert.ok(record, `${expected.id} is cataloged`);
-  assert.equal(record.domainPath, "n:render:material");
+  assert.equal(record.domainPath, "n:material");
   assert.equal(record.source.publicSubpath, expected.subpath);
-  assert.match(record.source.module, /src\/core-domains\/render\/material\/kits\//);
+  assert.match(record.source.module, /src\/core-domains\/material\/kits\//);
   assert.equal(CORE_DOMAIN_CATALOG.kits.filter((entry) => entry.id === expected.id).length, 1);
 }
 
@@ -376,7 +376,7 @@ assert.deepEqual(renderEngine.n.render.getContract(), {
   domainPath: "n:render",
   contractsPath: "n:render:contracts",
   runtimeDependency: "n:runtime",
-  descriptorOwner: "n:presentation",
+  descriptorOwner: "n:render",
   hostCapabilityOwner: "n:host",
   capabilities: [
     "render:event-schema",
@@ -468,7 +468,7 @@ const pass = renderEngine.n.renderPassSchema.normalizePass({
   metadata: { semanticLayer: semanticPass.semanticLayer }
 });
 assert.equal(pass.schema, "nexusengine.render-pass/1");
-assert.equal(renderEngine.n.renderPassSchema.getSchema().graphOwnership, "n:presentation:graphics");
+assert.equal(renderEngine.n.renderPassSchema.getSchema().graphOwnership, "n:render:pipeline");
 assert.equal(renderEngine.n.renderPassSchema.inspectPass({ ...pass, requires: ["other-pass"] }).valid, false);
 assert.equal(renderEngine.n.renderPassSchema.inspectPass({ ...pass, kind: "authored-cutscene" }).valid, false);
 assert.throws(() => renderEngine.n.renderPassSchema.normalizePass({ ...pass, viewport: { width: NaN } }), /Invalid Render pass/);
@@ -626,7 +626,9 @@ const renderRecovery = renderLifecycleEngine.n.renderRecovery;
 const renderReset = renderLifecycleEngine.n.renderReset;
 const renderSnapshot = renderLifecycleEngine.n.renderSnapshot;
 
-assert.equal(renderInstallation.getContract().schema, "nexusengine.render-installation/1");
+assert.equal(renderInstallation.getContract().schema, "nexusengine.render-installation/2");
+assert.equal(renderInstallation.getState().generation, 0);
+assert.equal(renderInstallation.getState().handover, null);
 assert.ok(renderInstallation.getContract().phases.includes("recovering"));
 assert.equal(renderRecovery.getContract().providerExecutionOwnedExternally, true);
 assert.equal(renderRecovery.getContract().nonreadyReceiptRequiresStartup, true);
@@ -3322,7 +3324,7 @@ assert.throws(
 );
 
 function createRenderMaterialEngine() {
-  const materialKits = createRenderMaterialDomain();
+  const materialKits = createMaterialDomain();
   const materialEngine = createEngine({
     kits: [
       ...RENDER_CONTRACT_KITS.map(({ factory }) => factory()),
@@ -3673,3 +3675,30 @@ for (const expected of [...RENDER_MATERIAL_KITS].reverse()) {
 }
 
 console.log("core graphics domain smoke ok");
+
+// New semantic owners retain independent, repeat-safe descriptor lifecycles.
+const { createMaterialDescriptorKit, createLightingDescriptorKit } = await import("../helpers/public-package-surface.mjs");
+for (const [factory, apiName, path] of [
+  [createMaterialDescriptorKit, "materialDescriptions", "n:material"],
+  [createLightingDescriptorKit, "lightingDescriptions", "n:lighting"]
+]) {
+  const kit = factory();
+  const isolated = createEngine({ domainKits: false, kits: [kit] });
+  const api = isolated.n[apiName];
+  const baseline = api.getSnapshot();
+  assert.ok(isolated.n.ownersOf(path).includes(kit.id));
+  assert.equal(isolated.installKit(factory()), kit);
+  assert.equal(isolated.n[apiName], api);
+  api.setDescriptor("definitions", "primary", { id: "primary", value: 0.5 });
+  const snapshot = api.getSnapshot();
+  api.reset();
+  assert.deepEqual(api.getSnapshot(), baseline);
+  api.loadSnapshot(snapshot);
+  assert.deepEqual(api.getSnapshot(), snapshot);
+  const second = createEngine({ domainKits: false, kits: [factory()] });
+  second.n[apiName].loadSnapshot(snapshot);
+  assert.deepEqual(second.n[apiName].getSnapshot(), snapshot);
+}
+for (const oldPath of ["n:presentation:graphics", "n:presentation:camera", "n:render:camera", "n:render:material"]) {
+  assert.equal(CORE_DOMAIN_CATALOG.domains.some(entry => entry.domainPath === oldPath), false);
+}

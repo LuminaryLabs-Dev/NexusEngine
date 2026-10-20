@@ -1,19 +1,237 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1304,
-    "manifestProvenPublicAtoms": 383,
+    "manifestOwnedInternalModules": 1311,
+    "manifestProvenPublicAtoms": 385,
+    "optionalProviderModules": 10,
     "rootContractModules": 25,
-    "sourceModules": 1712,
+    "sourceModules": 1731,
     "unreviewedModules": 0,
     "violations": 0
   },
   "generatedFrom": [
     "Domain manifest v2",
     "generated package exports",
-    "src production inventory"
+    "src and optional kits production inventory"
   ],
   "records": [
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits"
+      ],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits"
+      ],
+      "path": "kits/catalog.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "OPTIONAL_KIT_CATALOG",
+        "installOptionalKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "CAPABILITIES",
+        "GRAPHICS_KIT_ID",
+        "GRAPHICS_LANGUAGE_SCHEMA",
+        "finite",
+        "graphicsFrameDescriptor",
+        "graphicsResourceDescriptor",
+        "integer",
+        "normalizeDraw",
+        "normalizeFrame",
+        "normalizeResource",
+        "normalizeResourceUpdate",
+        "record",
+        "text"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/hosts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCanvasHost",
+        "createFrameHost",
+        "createNativeWindowHost"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/render/graphics-language"
+      ],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [
+        "./domains/render/graphics-language"
+      ],
+      "path": "kits/render/graphics-language-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "CAPABILITIES",
+        "GRAPHICS_LANGUAGE_SCHEMA",
+        "createCanvasHost",
+        "createFrameHost",
+        "createGraphicsLanguageDomain",
+        "createGraphicsLanguageKit",
+        "createNativeWindowHost",
+        "createNexusGLProvider",
+        "graphicsFrameDescriptor",
+        "graphicsLanguageManifest",
+        "graphicsResourceDescriptor",
+        "installGraphicsLanguage",
+        "materialResource",
+        "normalizeDraw",
+        "normalizeFrame",
+        "normalizeResource"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "graphicsLanguageManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/material.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialResource"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/provider.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createNexusGLProvider"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/runtime/loader.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "loadNativeWindow",
+        "loadNexusGLRuntime"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/render/graphics-language-kit/session.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createGraphicsSession"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
     {
       "atomic": null,
       "currentConsumers": [],
@@ -12214,6 +12432,7 @@
           }
         ],
         "references": [
+          "src/core-domains/camel/validation/browser-evidence.json",
           "src/core-domains/camel/validation/native-evidence.json"
         ],
         "status": "proven"
@@ -12251,12 +12470,1351 @@
       "owner": "n:camel",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
+      "path": "src/core-domains/camel/runtime/asyncify.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAsyncifiedInterpreter"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/runtime/browser-worker.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/runtime/browser.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "loadBrowserRuntime"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
       "path": "src/core-domains/camel/runtime/native.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
         "loadNativeRuntime"
       ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camel",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camel/runtime/wire.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "MAX_PACKET_BYTES",
+        "validateWire"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "constrainCameraDescriptor"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/adapters/camera-world-occlusion"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/adapters/camera-world-occlusion"
+      ],
+      "path": "src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-world-occlusion-adapter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-world-occlusion-adapter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "constrainCameraDescriptor",
+        "createCameraWorldOcclusionAdapterKit"
+      ],
+      "responsibility": "Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCameraWorldOcclusionServices"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/adapters/camera-world-occlusion-adapter-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCameraWorldOcclusionState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "CAMERA_PROJECTIONS",
+        "DEFAULT_CAMERA_FRAMING_POLICY"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "cameraDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/camera-contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "CAMERA_CONTRACT_SCHEMA",
+        "CAMERA_STATE_SCHEMA",
+        "CAMERA_UPDATE_COMMAND_SCHEMA",
+        "cameraContract",
+        "cameraKitDefinition",
+        "inspectCameraRecord",
+        "normalizeCameraRecord",
+        "normalizeCameraSnapshot",
+        "normalizeCameraUpdateCommand"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/camera-kit.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCameraKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/camera-manifests.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "RENDER_CAMERA_KIT_MANIFESTS"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/camera/execution"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/camera/execution"
+      ],
+      "path": "src/core-domains/camera/execution/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "RENDER_CAMERA_KIT_MANIFESTS",
+        "createCameraBindingKit",
+        "createCameraExecutionDomain",
+        "createCameraJitterKit",
+        "createCameraProjectionKit",
+        "createCameraReprojectionKit",
+        "createCameraViewKit",
+        "createCameraViewportKit",
+        "createMultiviewCameraKit",
+        "createStereoCameraKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-binding-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraBindingContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-binding"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-binding"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-binding-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-binding-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-binding-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraBindingKit",
+        "renderCameraBindingContract"
+      ],
+      "responsibility": "Own portable camera binding semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-binding-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-jitter-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraJitterContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-jitter"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-jitter"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-jitter-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-jitter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-jitter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraJitterKit",
+        "renderCameraJitterContract"
+      ],
+      "responsibility": "Own portable camera jitter semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-jitter-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-projection-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraProjectionContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-projection"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-projection"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-projection-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-projection-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-projection-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraProjectionKit",
+        "renderCameraProjectionContract"
+      ],
+      "responsibility": "Own portable camera projection semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-projection-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-reprojection-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraReprojectionContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-reprojection"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-reprojection"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-reprojection-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-reprojection-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-reprojection-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraReprojectionKit",
+        "renderCameraReprojectionContract"
+      ],
+      "responsibility": "Own portable camera reprojection semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-reprojection-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-view-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraViewContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-view"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-view"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-view-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-view-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-view-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraViewKit",
+        "renderCameraViewContract"
+      ],
+      "responsibility": "Own portable camera view semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-view-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-viewport-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderCameraViewportContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/camera-viewport"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/camera-viewport"
+      ],
+      "path": "src/core-domains/camera/execution/kits/camera-viewport-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-viewport-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-viewport-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCameraViewportKit",
+        "renderCameraViewportContract"
+      ],
+      "responsibility": "Own portable camera viewport semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/camera-viewport-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/multiview-camera-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderMultiviewCameraContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/multiview-camera"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/multiview-camera"
+      ],
+      "path": "src/core-domains/camera/execution/kits/multiview-camera-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "multiview-camera-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "multiview-camera-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMultiviewCameraKit",
+        "renderMultiviewCameraContract"
+      ],
+      "responsibility": "Own portable multiview camera semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/multiview-camera-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/stereo-camera-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "normalizeCameraRecord",
+        "renderStereoCameraContract"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/execution/stereo-camera"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/execution/stereo-camera"
+      ],
+      "path": "src/core-domains/camera/execution/kits/stereo-camera-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "stereo-camera-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "stereo-camera-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createStereoCameraKit",
+        "renderStereoCameraContract"
+      ],
+      "responsibility": "Own portable stereo camera semantics and deterministic state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/execution/kits/stereo-camera-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/camera"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/camera"
+      ],
+      "path": "src/core-domains/camera/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "cameraDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/control-math"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/control-math"
+      ],
+      "path": "src/core-domains/camera/kits/camera-control-kit.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-control-math-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-control-math-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-utility-articulation-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "applyRootYawHandoff",
+        "cameraYawFromRootAndOrbit",
+        "clampOrbitYaw",
+        "createCameraControlMathKit",
+        "preserveOrbitForCameraYaw"
+      ],
+      "responsibility": "Calculate camera-relative yaw, orbit limits, and root handoff state.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/control"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/control"
+      ],
+      "path": "src/core-domains/camera/kits/camera-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-descriptor-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-descriptor-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domain-kits-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createCameraKit"
+      ],
+      "responsibility": "Manage camera targets, modes, smoothing, and renderer-neutral camera policy.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/kits/camera-kit/smoothing.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCameraSmoothingService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/framing"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/framing"
+      ],
+      "path": "src/core-domains/camera/kits/framing-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "camera-framing-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "camera-framing-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-presentation-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createCameraFramingKit"
+      ],
+      "responsibility": "Calculate perspective and orthographic subject framing for a viewport.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/kits/framing-kit/orthographic-fit.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "calculateOrthographicCameraFit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/kits/framing-kit/perspective-fit.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "add3",
+        "calculatePerspectiveCameraFit",
+        "clamp",
+        "createCameraBasis",
+        "cross3",
+        "dot3",
+        "finite",
+        "length3",
+        "normalizeBounds",
+        "normalizeCameraFramingRequest",
+        "normalizeVector3",
+        "projectHalfExtents",
+        "scale3",
+        "subtract3"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "thirdPersonSubdomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/kits/third-person-camera-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createThirdPersonCameraDescriptor",
+        "createThirdPersonCameraState",
+        "normalizeThirdPersonCameraConfig"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/camera/third-person"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:camera",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/camera/third-person"
+      ],
+      "path": "src/core-domains/camera/third-person/kits/third-person-camera-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "third-person-camera-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "third-person-camera-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createThirdPersonCameraDescriptor",
+        "createThirdPersonCameraKit",
+        "createThirdPersonCameraState",
+        "normalizeThirdPersonCameraConfig"
+      ],
+      "responsibility": "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/kits/third-person-camera-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/kits/third-person-camera-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createThirdPersonCameraServices"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/kits/third-person-camera-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createThirdPersonCameraState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:camera",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/camera/third-person/subdomain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -14871,6 +16429,207 @@
       "destination": "NexusEngine Core",
       "fullyReusable": null,
       "idempotency": null,
+      "owner": "n:lighting",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/lighting/descriptors.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLightingDescriptor"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:lighting",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/lighting/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "lightingDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/lighting"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:lighting",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/lighting"
+      ],
+      "path": "src/core-domains/lighting/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "createLightingDomain",
+        "lightingDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/lighting/descriptions"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:lighting",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/lighting/descriptions"
+      ],
+      "path": "src/core-domains/lighting/kits/lighting-descriptor-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "lighting-descriptor-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "lighting-descriptor-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          "tests/core-kits/core-graphics-kit-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createLightingDescriptorKit"
+      ],
+      "responsibility": "Own portable lighting descriptions.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/lighting/adapter"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:lighting",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/lighting/adapter"
+      ],
+      "path": "src/core-domains/lighting/reflection/adapters.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "GRAPHICS_ADAPTER_RESULT_STATES",
+        "createGraphicsAdapterBoundary",
+        "createGraphicsAdapterResult",
+        "createGraphicsCapabilityProfile",
+        "createGraphicsUpdateCost",
+        "createGraphicsVisibleFrameReceipt",
+        "negotiateGraphicsReflection"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:lighting",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/lighting/reflection/contract.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "REFLECTION_CAPABILITIES",
+        "REFLECTION_TECHNIQUES",
+        "REFLECTION_UPDATE_MODES",
+        "createReflectionDescriptor",
+        "createReflectionPolicyDescriptor",
+        "createReflectionQualityBudget"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/lighting/reflection"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:lighting",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/lighting/reflection"
+      ],
+      "path": "src/core-domains/lighting/reflection/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "reflection-descriptor-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "reflection-descriptor-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-graphics-reflection-kit-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createReflectionKit"
+      ],
+      "responsibility": "Describe renderer-neutral reflection probes, plans, and update policy.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
       "owner": "n:composition",
       "ownershipBasis": "catalog-infrastructure",
       "packageEntrypoints": [],
@@ -14921,6 +16680,981 @@
       ],
       "responsibility": null,
       "reviewStatus": "manifest-infrastructure"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/appearance.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "MATERIAL_TEXTURE_SLOTS",
+        "createMaterialDescriptor",
+        "createTextureReference"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/material"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/material"
+      ],
+      "path": "src/core-domains/material/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "RENDER_MATERIAL_KIT_MANIFESTS",
+        "createMaterialBindingKit",
+        "createMaterialCacheKit",
+        "createMaterialContractKit",
+        "createMaterialDescriptorKit",
+        "createMaterialDomain",
+        "createMaterialInstanceKit",
+        "createMaterialParameterKit",
+        "createMaterialValidationKit",
+        "createMaterialVariantKit",
+        "createSamplerBindingKit",
+        "createTextureBindingKit",
+        "materialDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-binding-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialBindingContract",
+        "normalizeMaterialBinding",
+        "normalizeMaterialBindingCommand",
+        "normalizeMaterialBindingSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/binding"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/binding"
+      ],
+      "path": "src/core-domains/material/kits/material-binding-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-binding-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-binding-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialBindingKit"
+      ],
+      "responsibility": "Map portable Material slots to one exact Shader program interface.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-binding-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-cache-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialCacheContract",
+        "normalizeMaterialCacheCommand",
+        "normalizeMaterialCacheEntry",
+        "normalizeMaterialCacheSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/cache"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/cache"
+      ],
+      "path": "src/core-domains/material/kits/material-cache-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-cache-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-cache-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialCacheKit"
+      ],
+      "responsibility": "Link current Material validation to an exact resident material Render Resource.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-cache-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-contract-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "MATERIAL_BINDING_KINDS",
+        "MATERIAL_PARAMETER_TYPES",
+        "MATERIAL_TEXTURE_VIEW_TYPES",
+        "RENDER_MATERIAL_CONTRACT_SCHEMA",
+        "materialContract",
+        "normalizeMaterialBinding",
+        "normalizeMaterialCacheEntry",
+        "normalizeMaterialContractSnapshot",
+        "normalizeMaterialInstance",
+        "normalizeMaterialParameterSet",
+        "normalizeMaterialSamplerBinding",
+        "normalizeMaterialTextureBinding",
+        "normalizeMaterialValidation",
+        "normalizeMaterialVariant"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/contract"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/contract"
+      ],
+      "path": "src/core-domains/material/kits/material-contract-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-contract-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-contract-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "MATERIAL_BINDING_KINDS",
+        "MATERIAL_PARAMETER_TYPES",
+        "MATERIAL_TEXTURE_VIEW_TYPES",
+        "RENDER_MATERIAL_CONTRACT_SCHEMA",
+        "createMaterialContractKit",
+        "materialContract"
+      ],
+      "responsibility": "Define the canonical backend-neutral Render Material execution boundary.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-contract-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/descriptions"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/descriptions"
+      ],
+      "path": "src/core-domains/material/kits/material-descriptor-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-descriptor-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-descriptor-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          "tests/core-kits/core-graphics-kit-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialDescriptorKit"
+      ],
+      "responsibility": "Own portable material descriptions.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-instance-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialInstanceContract",
+        "normalizeMaterialInstance",
+        "normalizeMaterialInstanceCommand",
+        "normalizeMaterialInstanceSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/instance"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/instance"
+      ],
+      "path": "src/core-domains/material/kits/material-instance-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-instance-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-instance-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialInstanceKit"
+      ],
+      "responsibility": "Compose one complete portable Material execution instance from exact bindings.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-instance-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-parameter-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialParameterContract",
+        "normalizeMaterialParameterCommand",
+        "normalizeMaterialParameterSet",
+        "normalizeMaterialParameterSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/parameter"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/parameter"
+      ],
+      "path": "src/core-domains/material/kits/material-parameter-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-parameter-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-parameter-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialParameterKit"
+      ],
+      "responsibility": "Own typed portable values for exact Material parameter slots.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-parameter-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-validation-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialValidationContract",
+        "normalizeMaterialValidation",
+        "normalizeMaterialValidationSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/validation"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/validation"
+      ],
+      "path": "src/core-domains/material/kits/material-validation-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-validation-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-validation-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialValidationKit"
+      ],
+      "responsibility": "Prove one Material target against exact completed Shader compile and reflection records.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-validation-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-variant-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialVariantContract",
+        "normalizeMaterialVariant",
+        "normalizeMaterialVariantCommand",
+        "normalizeMaterialVariantSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/variant"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/variant"
+      ],
+      "path": "src/core-domains/material/kits/material-variant-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "material-variant-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "material-variant-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createMaterialVariantKit"
+      ],
+      "responsibility": "Resolve an exact Shader variant and complete Material binding override set.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/material-variant-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/sampler-binding-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialSamplerBindingContract",
+        "normalizeMaterialSamplerBinding",
+        "normalizeMaterialSamplerBindingCommand",
+        "normalizeMaterialSamplerBindingSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/sampler-binding"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/sampler-binding"
+      ],
+      "path": "src/core-domains/material/kits/sampler-binding-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "sampler-binding-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "sampler-binding-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createSamplerBindingKit"
+      ],
+      "responsibility": "Own portable sampler state for exact Material sampler slots.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/sampler-binding-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/texture-binding-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "materialTextureBindingContract",
+        "normalizeMaterialTextureBinding",
+        "normalizeMaterialTextureBindingCommand",
+        "normalizeMaterialTextureBindingSnapshot"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/material/texture-binding"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:material",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/material/texture-binding"
+      ],
+      "path": "src/core-domains/material/kits/texture-binding-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "texture-binding-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "texture-binding-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createTextureBindingKit"
+      ],
+      "responsibility": "Bind exact resident Texture views and subresources to Material slots.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/kits/texture-binding-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/material-contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "MATERIAL_BINDING_KINDS",
+        "MATERIAL_PARAMETER_TYPES",
+        "MATERIAL_TEXTURE_VIEW_TYPES",
+        "RENDER_MATERIAL_BINDING_SCHEMA",
+        "RENDER_MATERIAL_CACHE_SCHEMA",
+        "RENDER_MATERIAL_CONTRACT_SCHEMA",
+        "RENDER_MATERIAL_INSTANCE_SCHEMA",
+        "RENDER_MATERIAL_PARAMETER_SET_SCHEMA",
+        "RENDER_MATERIAL_VALIDATION_SCHEMA",
+        "RENDER_MATERIAL_VARIANT_SCHEMA",
+        "RENDER_SAMPLER_BINDING_SCHEMA",
+        "RENDER_TEXTURE_BINDING_SCHEMA",
+        "assertSortedMaterialRecords",
+        "canonicalMaterialValue",
+        "materialCompositionHash",
+        "materialRegistryContract",
+        "normalizeMaterialBinding",
+        "normalizeMaterialCacheEntry",
+        "normalizeMaterialInstance",
+        "normalizeMaterialOperation",
+        "normalizeMaterialParameterSet",
+        "normalizeMaterialParameterValue",
+        "normalizeMaterialRegistrationCommand",
+        "normalizeMaterialRegistrySnapshot",
+        "normalizeMaterialSamplerBinding",
+        "normalizeMaterialState",
+        "normalizeMaterialTextList",
+        "normalizeMaterialTextureBinding",
+        "normalizeMaterialValidation",
+        "normalizeMaterialValidationCommand",
+        "normalizeMaterialVariant",
+        "optionalMaterialText",
+        "rejectMaterialFields",
+        "requireMaterialInteger",
+        "requireMaterialObject",
+        "requireMaterialText"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/material-manifests.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "RENDER_MATERIAL_KIT_MANIFESTS"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/material-registry-kit.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createMaterialRegistryKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:material",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/material/procedural.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "PROCEDURAL_MAPPING_SPACES",
+        "PROCEDURAL_MAPPING_TYPES",
+        "PROCEDURAL_MATERIAL_ASSIGNMENT_SCHEMA",
+        "PROCEDURAL_MATERIAL_SCHEMA",
+        "PROCEDURAL_TEXTURE_CHANNELS",
+        "createProceduralMaterialDescriptor",
+        "resolveProceduralMaterialAssignment",
+        "validateProceduralMaterialDescriptor"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
     },
     {
       "atomic": null,
@@ -25381,121 +28115,6 @@
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "constrainCameraDescriptor"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/adapters/camera-world-occlusion"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/adapters/camera-world-occlusion"
-      ],
-      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-world-occlusion-adapter-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-world-occlusion-adapter-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "src/core-domains/simulation/tests/restored-integration-adapters.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "constrainCameraDescriptor",
-        "createCameraWorldOcclusionAdapterKit"
-      ],
-      "responsibility": "Constrain Third-Person Camera descriptors with public terrain and physics query results without owning camera or world state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/services.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createCameraWorldOcclusionServices"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/adapters/camera-world-occlusion-adapter-kit/state.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createCameraWorldOcclusionState"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
       "atomic": true,
       "currentConsumers": [
         "./domains/presentation/animation"
@@ -25633,365 +28252,6 @@
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/camera/control-math"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/camera/control-math"
-      ],
-      "path": "src/core-domains/presentation/camera/kits/camera-control-kit.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-control-math-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-control-math-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-utility-articulation-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "applyRootYawHandoff",
-        "cameraYawFromRootAndOrbit",
-        "clampOrbitYaw",
-        "createCameraControlMathKit",
-        "preserveOrbitForCameraYaw"
-      ],
-      "responsibility": "Calculate camera-relative yaw, orbit limits, and root handoff state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/camera"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/camera"
-      ],
-      "path": "src/core-domains/presentation/camera/kits/camera-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-descriptor-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-descriptor-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domain-kits-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "*",
-        "createCameraKit"
-      ],
-      "responsibility": "Manage camera targets, modes, smoothing, and renderer-neutral camera policy.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/kits/camera-kit/smoothing.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createCameraSmoothingService"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/camera/framing"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/camera/framing"
-      ],
-      "path": "src/core-domains/presentation/camera/kits/framing-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-framing-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-framing-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-presentation-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "*",
-        "createCameraFramingKit"
-      ],
-      "responsibility": "Calculate perspective and orthographic subject framing for a viewport.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/kits/framing-kit/orthographic-fit.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "calculateOrthographicCameraFit"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/kits/framing-kit/perspective-fit.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "add3",
-        "calculatePerspectiveCameraFit",
-        "clamp",
-        "createCameraBasis",
-        "cross3",
-        "dot3",
-        "finite",
-        "length3",
-        "normalizeBounds",
-        "normalizeCameraFramingRequest",
-        "normalizeVector3",
-        "projectHalfExtents",
-        "scale3",
-        "subtract3"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/index.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "*",
-        "thirdPersonSubdomainManifest"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createThirdPersonCameraDescriptor",
-        "createThirdPersonCameraState",
-        "normalizeThirdPersonCameraConfig"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/camera/third-person"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/camera/third-person"
-      ],
-      "path": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "third-person-camera-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "third-person-camera-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "src/core-domains/presentation/tests/third-person-camera-restoration.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createThirdPersonCameraDescriptor",
-        "createThirdPersonCameraKit",
-        "createThirdPersonCameraState",
-        "normalizeThirdPersonCameraConfig"
-      ],
-      "responsibility": "Produce deterministic renderer-neutral third-person camera descriptors from public Character and Motion bindings.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/services.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createThirdPersonCameraServices"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/kits/third-person-camera-kit/state.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createThirdPersonCameraState"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/camera/third-person/subdomain.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
       "atomic": null,
       "currentConsumers": [],
       "destination": "NexusEngine Core",
@@ -26114,8 +28374,6 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
-        "CAMERA_PROJECTIONS",
-        "DEFAULT_CAMERA_FRAMING_POLICY",
         "DEFAULT_PRESENTATION_OUTPUT_POLICY",
         "DEFAULT_UI_SCALE_POLICY",
         "PRESENTATION_FRAME_MODES",
@@ -26144,413 +28402,6 @@
     },
     {
       "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/index.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "*",
-        "createGraphicsDomain",
-        "createGraphicsKit",
-        "createReflectionKit",
-        "createRenderLayerGraphKit"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/adapters.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "GRAPHICS_ADAPTER_RESULT_STATES",
-        "createGraphicsAdapterBoundary",
-        "createGraphicsAdapterResult",
-        "createGraphicsCapabilityProfile",
-        "createGraphicsUpdateCost",
-        "createGraphicsVisibleFrameReceipt",
-        "negotiateGraphicsReflection"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/graphics"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/graphics"
-      ],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "graphics-descriptor-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "graphics-descriptor-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs",
-          "tests/core-kits/core-graphics-kit-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "*",
-        "createGraphicsKit"
-      ],
-      "responsibility": "Create renderer-neutral material, lighting, VFX, quality, batch, and terrain LOD descriptors.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/instance-batches.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createInstanceBatchService"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/lighting-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createLightingDescriptor"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/material-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "MATERIAL_TEXTURE_SLOTS",
-        "createMaterialDescriptor",
-        "createTextureReference"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/procedural-material-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "PROCEDURAL_MAPPING_SPACES",
-        "PROCEDURAL_MAPPING_TYPES",
-        "PROCEDURAL_MATERIAL_ASSIGNMENT_SCHEMA",
-        "PROCEDURAL_MATERIAL_SCHEMA",
-        "PROCEDURAL_TEXTURE_CHANNELS",
-        "createProceduralMaterialDescriptor",
-        "resolveProceduralMaterialAssignment",
-        "validateProceduralMaterialDescriptor"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/quality-profiles.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createQualityProfile"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/contract.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "REFLECTION_CAPABILITIES",
-        "REFLECTION_TECHNIQUES",
-        "REFLECTION_UPDATE_MODES",
-        "createReflectionDescriptor",
-        "createReflectionPolicyDescriptor",
-        "createReflectionQualityBudget"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/graphics/reflection"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/graphics/reflection"
-      ],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/reflection-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "reflection-descriptor-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "reflection-descriptor-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-graphics-reflection-kit-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "*",
-        "createReflectionKit"
-      ],
-      "responsibility": "Describe renderer-neutral reflection probes, plans, and update policy.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/render-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createInstanceDescriptor",
-        "createRenderDescriptor"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/contract.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "RENDER_LAYER_GRAPH_CAPABILITIES",
-        "assertRenderLayerGraph",
-        "createRenderLayerGraph",
-        "createRenderPassContract",
-        "resolveRenderLayerGraph",
-        "validateRenderLayerGraph"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/presentation/graphics/render-graph"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:presentation",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/presentation/graphics/render-graph"
-      ],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/render-layer-graph-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "render-layer-graph-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "render-layer-graph-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
-          "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "*",
-        "createRenderLayerGraphKit"
-      ],
-      "responsibility": "Validate renderer-neutral render layers, dependencies, and pass ordering.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/terrain-lod-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "TERRAIN_LOD_POLICY_SCHEMA",
-        "TERRAIN_LOD_SELECTION_SCHEMA",
-        "createTerrainLodPolicyDescriptor",
-        "selectTerrainLodLevel",
-        "validateTerrainLodPolicy"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/vfx-descriptors.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createVFXDescriptor"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:presentation",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/presentation/graphics/kits/graphics-kit/visual-contributions.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "composeVisualContributions",
-        "defineVisualContribution",
-        "validateVisualContribution"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
       "currentConsumers": [
         "./domains/presentation"
       ],
@@ -26567,12 +28418,9 @@
       "proof": null,
       "publicExports": [
         "*",
-        "createCameraFramingKit",
-        "createCameraWorldOcclusionAdapterKit",
         "createPresentationDomain",
         "createPresentationKit",
         "createPresentationOutputKit",
-        "createThirdPersonCameraKit",
         "createUIScaleKit",
         "presentationDomainManifest"
       ],
@@ -26689,6 +28537,28 @@
         "intersectRects",
         "normalizePresentationPolicy",
         "normalizePresentationSurface"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/presentation/requests"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:presentation",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/presentation/requests"
+      ],
+      "path": "src/core-domains/presentation/requests/vfx-descriptors.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createVFXDescriptor"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -26934,6 +28804,70 @@
         "createUIScaleDescriptor",
         "normalizeUIScalePolicy",
         "normalizeUIViewport"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/render/batch"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:render",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/render/batch"
+      ],
+      "path": "src/core-domains/render/batch/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "render-batch-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "render-batch-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-graphics-domain-smoke.mjs",
+          "tests/core-kits/core-graphics-kit-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createRenderBatchKit"
+      ],
+      "responsibility": "Own portable instance batch state, capacity, cell updates and flush records.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/render/batch/instance-batches.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createInstanceBatchService"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -27757,757 +29691,6 @@
       "owner": "n:render",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/camera-contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "CAMERA_CONTRACT_SCHEMA",
-        "CAMERA_STATE_SCHEMA",
-        "CAMERA_UPDATE_COMMAND_SCHEMA",
-        "cameraContract",
-        "cameraKitDefinition",
-        "inspectCameraRecord",
-        "normalizeCameraRecord",
-        "normalizeCameraSnapshot",
-        "normalizeCameraUpdateCommand"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/camera-kit.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createCameraKit"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/camera-manifests.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "RENDER_CAMERA_KIT_MANIFESTS"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [
-        "./domains/render/camera"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [
-        "./domains/render/camera"
-      ],
-      "path": "src/core-domains/render/camera/index.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "*",
-        "RENDER_CAMERA_KIT_MANIFESTS",
-        "createCameraBindingKit",
-        "createCameraJitterKit",
-        "createCameraProjectionKit",
-        "createCameraReprojectionKit",
-        "createCameraViewKit",
-        "createCameraViewportKit",
-        "createMultiviewCameraKit",
-        "createRenderCameraDomain",
-        "createStereoCameraKit",
-        "renderCameraSubdomainManifest"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-binding-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraBindingContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-binding"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-binding"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-binding-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-binding-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-binding-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraBindingKit",
-        "renderCameraBindingContract"
-      ],
-      "responsibility": "Own portable camera binding semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-binding-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-jitter-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraJitterContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-jitter"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-jitter"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-jitter-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-jitter-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-jitter-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraJitterKit",
-        "renderCameraJitterContract"
-      ],
-      "responsibility": "Own portable camera jitter semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-jitter-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-projection-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraProjectionContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-projection"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-projection"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-projection-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-projection-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-projection-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraProjectionKit",
-        "renderCameraProjectionContract"
-      ],
-      "responsibility": "Own portable camera projection semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-projection-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-reprojection-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraReprojectionContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-reprojection"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-reprojection"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-reprojection-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-reprojection-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-reprojection-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraReprojectionKit",
-        "renderCameraReprojectionContract"
-      ],
-      "responsibility": "Own portable camera reprojection semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-reprojection-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-view-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraViewContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-view"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-view"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-view-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-view-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-view-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraViewKit",
-        "renderCameraViewContract"
-      ],
-      "responsibility": "Own portable camera view semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-view-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-viewport-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderCameraViewportContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/camera-viewport"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/camera-viewport"
-      ],
-      "path": "src/core-domains/render/camera/kits/camera-viewport-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "camera-viewport-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "camera-viewport-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createCameraViewportKit",
-        "renderCameraViewportContract"
-      ],
-      "responsibility": "Own portable camera viewport semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/camera-viewport-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/multiview-camera-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderMultiviewCameraContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/multiview-camera"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/multiview-camera"
-      ],
-      "path": "src/core-domains/render/camera/kits/multiview-camera-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "multiview-camera-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "multiview-camera-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMultiviewCameraKit",
-        "renderMultiviewCameraContract"
-      ],
-      "responsibility": "Own portable multiview camera semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/multiview-camera-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/stereo-camera-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "normalizeCameraRecord",
-        "renderStereoCameraContract"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/camera/stereo-camera"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/camera/stereo-camera"
-      ],
-      "path": "src/core-domains/render/camera/kits/stereo-camera-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "stereo-camera-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "stereo-camera-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createStereoCameraKit",
-        "renderStereoCameraContract"
-      ],
-      "responsibility": "Own portable stereo camera semantics and deterministic state.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/kits/stereo-camera-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/camera/subdomain.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
       "path": "src/core-domains/render/contracts/contract-manifests.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -28535,6 +29718,7 @@
       "proof": null,
       "publicExports": [
         "RENDER_CONTRACT_KIT_MANIFESTS",
+        "canonicalizePortableValue",
         "createRenderContractsDomain",
         "createRenderDomainContractKit",
         "createRenderEventSchemaKit",
@@ -29205,6 +30389,30 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/render/contribution"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/render/contribution"
+      ],
+      "path": "src/core-domains/render/contracts/visual-contributions.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "composeVisualContributions",
+        "defineVisualContribution",
+        "validateVisualContribution"
+      ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -30168,8 +31376,10 @@
       "publicExports": [
         "RENDER_INSTALLATION_PHASES",
         "RENDER_INSTALLATION_SCHEMA",
+        "assertHandover",
         "installationContract",
         "normalizeFailureCommand",
+        "normalizeHandoverCommand",
         "normalizeInstallCommand",
         "normalizeInstallationRecord",
         "normalizeInstallationSnapshot",
@@ -30214,6 +31424,7 @@
           }
         ],
         "references": [
+          "kits/render/graphics-language-kit/tests/handover.mjs",
           "tests/core-domains/core-graphics-domain-smoke.mjs"
         ],
         "status": "proven"
@@ -30221,7 +31432,7 @@
       "publicExports": [
         "createRenderInstallationKit"
       ],
-      "responsibility": "Own the aggregate phase and provider identity for one installed Render composition.",
+      "responsibility": "Own the aggregate phase, provider generation and controlled handover status for one Render composition.",
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
@@ -30727,39 +31938,6 @@
     },
     {
       "atomic": null,
-      "currentConsumers": [
-        "./domains/render/material"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [
-        "./domains/render/material"
-      ],
-      "path": "src/core-domains/render/material/index.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "RENDER_MATERIAL_KIT_MANIFESTS",
-        "createMaterialBindingKit",
-        "createMaterialCacheKit",
-        "createMaterialContractKit",
-        "createMaterialInstanceKit",
-        "createMaterialParameterKit",
-        "createMaterialValidationKit",
-        "createMaterialVariantKit",
-        "createRenderMaterialDomain",
-        "createSamplerBindingKit",
-        "createTextureBindingKit",
-        "renderMaterialSubdomainManifest"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
       "currentConsumers": [],
       "destination": "NexusEngine Core",
       "fullyReusable": null,
@@ -30767,14 +31945,16 @@
       "owner": "n:render",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-binding-kit/contracts.js",
+      "path": "src/core-domains/render/pipeline/contract.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
-        "materialBindingContract",
-        "normalizeMaterialBinding",
-        "normalizeMaterialBindingCommand",
-        "normalizeMaterialBindingSnapshot"
+        "RENDER_LAYER_GRAPH_CAPABILITIES",
+        "assertRenderLayerGraph",
+        "createRenderLayerGraph",
+        "createRenderPassContract",
+        "resolveRenderLayerGraph",
+        "validateRenderLayerGraph"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -30782,7 +31962,7 @@
     {
       "atomic": true,
       "currentConsumers": [
-        "./domains/render/material/binding"
+        "./domains/render/pipeline"
       ],
       "destination": "NexusEngine Core",
       "fullyReusable": true,
@@ -30793,816 +31973,80 @@
       "owner": "n:render",
       "ownershipBasis": "atomic-kit-manifest-v2",
       "packageEntrypoints": [
-        "./domains/render/material/binding"
+        "./domains/render/pipeline"
       ],
-      "path": "src/core-domains/render/material/kits/material-binding-kit/index.js",
+      "path": "src/core-domains/render/pipeline/index.js",
       "productOrGenreSpecific": false,
       "proof": {
         "consumers": [
           {
             "description": "Direct API contract fixture.",
             "deterministic": true,
-            "id": "material-binding-kit-direct-consumer",
+            "id": "render-layer-graph-kit-direct-consumer",
             "schema": null
           },
           {
             "description": "Installed Domain composition fixture.",
             "deterministic": true,
-            "id": "material-binding-kit-installed-consumer",
+            "id": "render-layer-graph-kit-installed-consumer",
             "schema": null
           }
         ],
         "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
+          "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
+          "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs"
         ],
         "status": "proven"
       },
       "publicExports": [
-        "createMaterialBindingKit"
+        "*",
+        "createRenderLayerGraphKit"
       ],
-      "responsibility": "Map portable Material slots to one exact Shader program interface.",
+      "responsibility": "Validate renderer-neutral render layers, dependencies, and pass ordering.",
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
       "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-binding-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-cache-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialCacheContract",
-        "normalizeMaterialCacheCommand",
-        "normalizeMaterialCacheEntry",
-        "normalizeMaterialCacheSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
       "currentConsumers": [
-        "./domains/render/material/cache"
+        "./domains/render/pipeline/quality"
       ],
       "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
+      "fullyReusable": null,
+      "idempotency": null,
       "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [
-        "./domains/render/material/cache"
+        "./domains/render/pipeline/quality"
       ],
-      "path": "src/core-domains/render/material/kits/material-cache-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-cache-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-cache-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMaterialCacheKit"
-      ],
-      "responsibility": "Link current Material validation to an exact resident material Render Resource.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-cache-kit/kit.manifest.js",
+      "path": "src/core-domains/render/pipeline/quality-profiles.js",
       "productOrGenreSpecific": null,
       "proof": null,
-      "publicExports": [],
+      "publicExports": [
+        "createQualityProfile"
+      ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
     {
       "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-contract-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "MATERIAL_BINDING_KINDS",
-        "MATERIAL_PARAMETER_TYPES",
-        "MATERIAL_TEXTURE_VIEW_TYPES",
-        "RENDER_MATERIAL_CONTRACT_SCHEMA",
-        "materialContract",
-        "normalizeMaterialBinding",
-        "normalizeMaterialCacheEntry",
-        "normalizeMaterialContractSnapshot",
-        "normalizeMaterialInstance",
-        "normalizeMaterialParameterSet",
-        "normalizeMaterialSamplerBinding",
-        "normalizeMaterialTextureBinding",
-        "normalizeMaterialValidation",
-        "normalizeMaterialVariant"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
       "currentConsumers": [
-        "./domains/render/material/contract"
+        "./domains/render/pipeline/descriptors"
       ],
       "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
+      "fullyReusable": null,
+      "idempotency": null,
       "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [
-        "./domains/render/material/contract"
+        "./domains/render/pipeline/descriptors"
       ],
-      "path": "src/core-domains/render/material/kits/material-contract-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-contract-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-contract-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "MATERIAL_BINDING_KINDS",
-        "MATERIAL_PARAMETER_TYPES",
-        "MATERIAL_TEXTURE_VIEW_TYPES",
-        "RENDER_MATERIAL_CONTRACT_SCHEMA",
-        "createMaterialContractKit",
-        "materialContract"
-      ],
-      "responsibility": "Define the canonical backend-neutral Render Material execution boundary.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-contract-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-instance-kit/contracts.js",
+      "path": "src/core-domains/render/pipeline/render-descriptors.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
-        "materialInstanceContract",
-        "normalizeMaterialInstance",
-        "normalizeMaterialInstanceCommand",
-        "normalizeMaterialInstanceSnapshot"
+        "createInstanceDescriptor",
+        "createRenderDescriptor"
       ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/instance"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/instance"
-      ],
-      "path": "src/core-domains/render/material/kits/material-instance-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-instance-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-instance-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMaterialInstanceKit"
-      ],
-      "responsibility": "Compose one complete portable Material execution instance from exact bindings.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-instance-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-parameter-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialParameterContract",
-        "normalizeMaterialParameterCommand",
-        "normalizeMaterialParameterSet",
-        "normalizeMaterialParameterSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/parameter"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/parameter"
-      ],
-      "path": "src/core-domains/render/material/kits/material-parameter-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-parameter-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-parameter-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMaterialParameterKit"
-      ],
-      "responsibility": "Own typed portable values for exact Material parameter slots.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-parameter-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-validation-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialValidationContract",
-        "normalizeMaterialValidation",
-        "normalizeMaterialValidationSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/validation"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/validation"
-      ],
-      "path": "src/core-domains/render/material/kits/material-validation-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-validation-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-validation-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMaterialValidationKit"
-      ],
-      "responsibility": "Prove one Material target against exact completed Shader compile and reflection records.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-validation-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-variant-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialVariantContract",
-        "normalizeMaterialVariant",
-        "normalizeMaterialVariantCommand",
-        "normalizeMaterialVariantSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/variant"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/variant"
-      ],
-      "path": "src/core-domains/render/material/kits/material-variant-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "material-variant-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "material-variant-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createMaterialVariantKit"
-      ],
-      "responsibility": "Resolve an exact Shader variant and complete Material binding override set.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/material-variant-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/sampler-binding-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialSamplerBindingContract",
-        "normalizeMaterialSamplerBinding",
-        "normalizeMaterialSamplerBindingCommand",
-        "normalizeMaterialSamplerBindingSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/sampler-binding"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/sampler-binding"
-      ],
-      "path": "src/core-domains/render/material/kits/sampler-binding-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "sampler-binding-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "sampler-binding-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createSamplerBindingKit"
-      ],
-      "responsibility": "Own portable sampler state for exact Material sampler slots.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/sampler-binding-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/texture-binding-kit/contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "materialTextureBindingContract",
-        "normalizeMaterialTextureBinding",
-        "normalizeMaterialTextureBindingCommand",
-        "normalizeMaterialTextureBindingSnapshot"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": true,
-      "currentConsumers": [
-        "./domains/render/material/texture-binding"
-      ],
-      "destination": "NexusEngine Core",
-      "fullyReusable": true,
-      "idempotency": {
-        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
-        "key": "kit-id-and-manifest-content"
-      },
-      "owner": "n:render",
-      "ownershipBasis": "atomic-kit-manifest-v2",
-      "packageEntrypoints": [
-        "./domains/render/material/texture-binding"
-      ],
-      "path": "src/core-domains/render/material/kits/texture-binding-kit/index.js",
-      "productOrGenreSpecific": false,
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct API contract fixture.",
-            "deterministic": true,
-            "id": "texture-binding-kit-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Domain composition fixture.",
-            "deterministic": true,
-            "id": "texture-binding-kit-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-domains/core-graphics-domain-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "publicExports": [
-        "createTextureBindingKit"
-      ],
-      "responsibility": "Bind exact resident Texture views and subresources to Material slots.",
-      "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/kits/texture-binding-kit/kit.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/material-contracts.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "MATERIAL_BINDING_KINDS",
-        "MATERIAL_PARAMETER_TYPES",
-        "MATERIAL_TEXTURE_VIEW_TYPES",
-        "RENDER_MATERIAL_BINDING_SCHEMA",
-        "RENDER_MATERIAL_CACHE_SCHEMA",
-        "RENDER_MATERIAL_CONTRACT_SCHEMA",
-        "RENDER_MATERIAL_INSTANCE_SCHEMA",
-        "RENDER_MATERIAL_PARAMETER_SET_SCHEMA",
-        "RENDER_MATERIAL_VALIDATION_SCHEMA",
-        "RENDER_MATERIAL_VARIANT_SCHEMA",
-        "RENDER_SAMPLER_BINDING_SCHEMA",
-        "RENDER_TEXTURE_BINDING_SCHEMA",
-        "assertSortedMaterialRecords",
-        "canonicalMaterialValue",
-        "materialCompositionHash",
-        "materialRegistryContract",
-        "normalizeMaterialBinding",
-        "normalizeMaterialCacheEntry",
-        "normalizeMaterialInstance",
-        "normalizeMaterialOperation",
-        "normalizeMaterialParameterSet",
-        "normalizeMaterialParameterValue",
-        "normalizeMaterialRegistrationCommand",
-        "normalizeMaterialRegistrySnapshot",
-        "normalizeMaterialSamplerBinding",
-        "normalizeMaterialState",
-        "normalizeMaterialTextList",
-        "normalizeMaterialTextureBinding",
-        "normalizeMaterialValidation",
-        "normalizeMaterialValidationCommand",
-        "normalizeMaterialVariant",
-        "optionalMaterialText",
-        "rejectMaterialFields",
-        "requireMaterialInteger",
-        "requireMaterialObject",
-        "requireMaterialText"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/material-manifests.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "RENDER_MATERIAL_KIT_MANIFESTS"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/material-registry-kit.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createMaterialRegistryKit"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/render/material/subdomain.manifest.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -40685,17 +41129,13 @@
     },
     {
       "atomic": null,
-      "currentConsumers": [
-        "./domains/world/navigation"
-      ],
+      "currentConsumers": [],
       "destination": "NexusEngine Core",
       "fullyReusable": null,
       "idempotency": null,
       "owner": "n:world",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [
-        "./domains/world/navigation"
-      ],
+      "packageEntrypoints": [],
       "path": "src/core-domains/world/navigation/index.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -41904,6 +42344,32 @@
       "proof": null,
       "publicExports": [
         "createTerrainState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/world/terrain/lod"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:world",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/world/terrain/lod"
+      ],
+      "path": "src/core-domains/world/terrain/lod-descriptors.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "TERRAIN_LOD_POLICY_SCHEMA",
+        "TERRAIN_LOD_SELECTION_SCHEMA",
+        "createTerrainLodPolicyDescriptor",
+        "selectTerrainLodLevel",
+        "validateTerrainLodPolicy"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -43643,7 +44109,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "825588c111db75318e1d4922b5af1b8282f1d0f00887487a66879b420572d0ac",
+  "registrySha256": "147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

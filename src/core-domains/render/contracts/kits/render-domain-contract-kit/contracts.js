@@ -15,7 +15,7 @@ export function createRenderDomainContract() {
     domainPath: "n:render",
     contractsPath: "n:render:contracts",
     runtimeDependency: "n:runtime",
-    descriptorOwner: "n:presentation",
+    descriptorOwner: "n:render",
     hostCapabilityOwner: "n:host",
     capabilities: [...CAPABILITIES],
     executionOwnership: "provider",

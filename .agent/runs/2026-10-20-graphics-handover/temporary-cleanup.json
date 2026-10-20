@@ -1,0 +1,27 @@
+{
+  "path": "build/graphics-runtime",
+  "reason": "Task-created Emscripten/compiler cache removed after verified builds to recover disk space; no system toolchain or user source removed.",
+  "approximateBytes": 1902227456,
+  "artifactsVerified": [
+    {
+      "path": "nexusgl-darwin-arm64.node",
+      "bytes": 184504,
+      "sha256": "1dfbae2dddf47dff6c8606e96add298ca2564168b37d3298a4c15b534c42162b"
+    },
+    {
+      "path": "nexusgl-window-darwin-arm64.node",
+      "bytes": 57536,
+      "sha256": "08fa3d6b6d25f18383658cbcd13020a950c353ac2d68abc25c00c0f81f9bf714"
+    },
+    {
+      "path": "nexusgl.mjs",
+      "bytes": 16557,
+      "sha256": "116777c07199152d477e8bf321663d50d7bd3fa309cef32b4d25148741f716d8"
+    },
+    {
+      "path": "nexusgl.wasm",
+      "bytes": 147783,
+      "sha256": "33913f63bf9f7f4a0fc2654f5985a344968ee6271fdf390a4b1e0ca274ef3c8f"
+    }
+  ]
+}

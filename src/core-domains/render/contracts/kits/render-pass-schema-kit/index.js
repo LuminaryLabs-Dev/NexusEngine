@@ -34,7 +34,7 @@ export function createRenderPassSchemaKit(config = {}) {
         normalizePass: normalizeRenderPass
       };
     },
-    metadata: { jsonPortable: true, resolvedInputOnly: true, presentationGraphOwner: "n:presentation:graphics" }
+    metadata: { jsonPortable: true, resolvedInputOnly: true, presentationGraphOwner: "n:render:pipeline" }
   });
 }
 

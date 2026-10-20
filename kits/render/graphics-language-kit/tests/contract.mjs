@@ -1,0 +1,112 @@
+import assert from 'node:assert/strict';
+import { createEngine } from 'nexusengine';
+import { installGraphicsLanguage, createGraphicsLanguageDomain, createGraphicsLanguageKit, createNexusGLProvider, normalizeDraw, materialResource, graphicsResourceDescriptor, graphicsFrameDescriptor } from 'nexusengine/domains/render/graphics-language';
+import { OPTIONAL_KIT_CATALOG, installOptionalKit } from 'nexusengine/kits';
+import { sceneResources, sceneFrame, identity, transform } from '../../../../examples/graphics-language/scene.js';
+import { fails, compare, save } from './helpers.mjs';
+import { readFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+const runtime=new URL('../runtime/',import.meta.url);
+const artifactManifest=JSON.parse(await readFile(new URL('artifacts/manifest.json',runtime)));
+const provenance=JSON.parse(await readFile(new URL('source/provenance.json',runtime)));
+for(const entry of [...artifactManifest.inputs,...provenance.files.map(f=>({...f,path:'source/'+f.path}))]) {
+  const bytes=await readFile(new URL(entry.path,runtime));
+  assert.equal(createHash('sha256').update(bytes).digest('hex'),entry.sha256,`Runtime source drift: ${entry.path}`);
+}
+const hasNative = process.platform === 'darwin' && process.arch === 'arm64';
+const results = [];
+const e = createEngine();
+assert(!e.n.graphicsLanguage);
+assert.equal(OPTIONAL_KIT_CATALOG[0].optional, true);
+const g = installGraphicsLanguage(e, { backend: 'wasm' });
+assert.equal(installGraphicsLanguage(e, { backend: 'wasm' }), g);
+assert.throws(()=>installGraphicsLanguage(e, { backend: 'native' }), /different options/);
+await fails(()=>g.render(sceneFrame()), /not ready/);
+await g.ready;
+assert.equal(g.getState().status, 'ready');
+const kitCount=e.kits.length;
+e.installKit(createGraphicsLanguageKit({backend:'wasm'}));assert.equal(e.kits.length,kitCount);
+assert.throws(()=>e.installKit(createGraphicsLanguageKit({backend:'native'})),/different content/);
+assert.equal(await installOptionalKit(e, OPTIONAL_KIT_CATALOG[0].id, { backend: 'wasm' }), g);
+await g.createResource({id:'owned-command',kind:'material',data:{shading:'unlit',tint:[1,0,0]}});
+const command={id:'owned-command',kind:'material',data:{shading:'unlit',tint:[0,1,0]}};
+const changing=g.updateResource(command);command.data.tint[1]=0;await changing;
+assert.deepEqual(g.getSnapshot().resources.find(r=>r.id==='owned-command').data.tint,[0,1,0]);
+await fails(()=>g.createResource({ id: 'bad', kind: 'shader', data: {} }), /Unsupported/);
+assert.throws(()=>materialResource({kind:'standard',transmission:.5}), /outside/);
+assert.throws(()=>materialResource({shaderId:'custom'}), /specific shaders/);
+assert.equal(materialResource({id:'m',color:'#ff0000'}).data.tint[0], 1);
+assert.deepEqual(normalizeDraw(normalizeDraw({geometryId:'a'})), normalizeDraw({geometryId:'a'}));
+assert.throws(()=>normalizeDraw({geometryId:'a',transform:Array(16).fill(0)}), /affine|singular/);
+await g.dispose(); await g.dispose();
+assert.equal(e.n.renderInstallation.getPhase(), 'installed');
+const direct = createEngine({kits:createGraphicsLanguageDomain({backend:'wasm'})});
+await direct.n.graphicsLanguage.ready; await direct.n.graphicsLanguage.dispose();
+
+let nativeReference;
+for (const backend of hasNative ? ['native','wasm'] : ['wasm']) {
+  const p = createNexusGLProvider({backend});
+  await p.initialize(); await p.initialize();
+  for(const r of sceneResources()) p.createResource(r);
+  function render(spec) { p.beginFrame(spec.frame); p.executePass({frameId:spec.frame.frameId,passId:'main',sequence:0,kind:'render'},spec.draws); p.submitFrame(spec.frame.frameId); return p.getCompletedFrame(); }
+  const spec=sceneFrame('contract',.09,240,140);
+  const initial=render(spec); assert(initial.pixels.some(v=>v!==22));
+  compare(initial.pixels,render(spec).pixels);
+  const retained=p.getCompletedFrame(); retained.pixels.fill(0); compare(initial.pixels,p.getCompletedFrame().pixels);
+  await save(initial,`contract-${backend}`);
+  const pixel=(x,y)=>Array.from(initial.pixels.slice((y*240+x)*4,(y*240+x)*4+4));
+  assert.deepEqual(pixel(0,0),[22,29,43,255]);
+  assert(pixel(45,70)[0]!==22, 'Opaque panel must be visible');
+  assert(pixel(185,80)[2]>43, 'Blended panel must be visible');
+  if(backend==='native') nativeReference=initial.pixels;
+  else if(nativeReference) results.push({nativeWasm:compare(nativeReference,initial.pixels,2)});
+  for(const quality of ['gaussian-half','guided-half']) { const f=render(sceneFrame('quality',.04,120,70,quality)); assert.equal(f.pixels.length,120*70*4); }
+  // Unused geometry cannot invalidate texture residency. Used material updates can.
+  const before=p.getDiagnostics().resourceRebuilds;
+  const geo=sceneResources().find(r=>r.id==='panel'); geo.data.positions[0]-=.1;p.updateResource(geo);render(spec);
+  assert.equal(p.getDiagnostics().resourceRebuilds,before);
+  const mat={id:'glass',kind:'material',data:{shading:'unlit',tint:[1,.1,.1],alphaMode:'blend',opacity:.7}};
+  p.updateResource(mat);const updated=render(spec);assert.notDeepEqual(updated.pixels,initial.pixels);
+  const tex=sceneResources()[0];tex.data.rgba[0]=255;p.updateResource(tex);render(spec);
+  assert.throws(()=>p.releaseResource('checker'),/referenced/);
+  p.createResource({id:'unused',kind:'material',data:{shading:'unlit'}});p.releaseResource('unused');render(spec);
+  const snapshot=p.getSnapshot();p.reset();p.loadSnapshot(snapshot);const restored=render(spec);
+  compare(restored.pixels,render(spec).pixels);
+  const completed=p.getCompletedFrame();
+  assert.throws(()=>p.loadSnapshot({schema:snapshot.schema,resources:[{id:'oops',kind:'material',data:{colorTexture:'missing'}}]}),/missing texture/);
+  compare(completed.pixels,p.getCompletedFrame().pixels);
+  p.beginFrame({...spec.frame,frameId:'bad-order'});
+  assert.throws(()=>p.executePass({frameId:'bad-order',passId:'bad',kind:'compute',sequence:0}),/Unsupported/);
+  p.executePass({frameId:'bad-order',passId:'ok',kind:'render',sequence:0},[]);
+  assert.throws(()=>p.executePass({frameId:'bad-order',passId:'ok',kind:'render',sequence:0}),/ordering/);
+  p.cancelFrame();
+  // A real allocator-budget rejection must preserve independently owned pixels.
+  p.beginFrame({frameId:'too-large',width:3000,height:1300});
+  p.executePass({frameId:'too-large',passId:'main',sequence:0,kind:'render'},spec.draws);
+  assert.throws(()=>p.submitFrame('too-large'),/budget|memory|allocation/i);
+  compare(completed.pixels,p.getCompletedFrame().pixels);
+  render(sceneFrame('recovered',0,120,70));
+  // Exact unlit normal-independent fixture; clipping and degenerate triangles are safe.
+  p.reset();p.createResource({id:'flat',kind:'material',data:{shading:'unlit',tint:[1,0,0]}});
+  p.createResource({id:'clip',kind:'geometry',data:{positions:[-3,-3,.5,3,-3,.5,0,3,.5],castsShadow:false}});
+  const flat={frame:{frameId:'flat',width:32,height:32,view:{shadowResolution:16,exposure:1}},draws:[{geometryId:'clip',materialId:'flat'}]};
+  const f=render(flat);assert.deepEqual(Array.from(f.pixels.slice((16*32+16)*4,(16*32+16)*4+4)),[188,0,0,255]);
+  p.updateResource({id:'flat',kind:'material',data:{shading:'unlit',tint:[1,0,0],opacity:.5,alphaMode:'blend'}});
+  const alpha=render({...flat,frame:{...flat.frame,clear:[0,0,0,0]}});
+  assert.deepEqual(Array.from(alpha.pixels.slice((16*32+16)*4,(16*32+16)*4+4)),[188,0,0,128]);
+  p.updateResource({id:'clip',kind:'geometry',data:{positions:[0,0,.5,0,0,.5,0,0,.5]}});render(flat);
+  p.reset();
+  const resource=graphicsResourceDescriptor({id:'core-triangle',kind:'geometry',data:{positions:[-.4,-.4,.5,.4,-.4,.5,0,.4,.5],castsShadow:false}});
+  p.createResource(resource);
+  const frame=graphicsFrameDescriptor({frameId:'core-frame',width:40,height:30,view:{shadowResolution:16}});
+  frame.passIds=['core-pass'];frame.resourceIds=['core-triangle'];
+  p.beginFrame(frame);p.executePass({frameId:frame.frameId,passId:'core-pass',kind:'render',sequence:0,metadata:{graphicsLanguage:{draws:[{geometryId:'core-triangle'}]}}});p.submitFrame(frame.frameId);
+  resource.revision=1;resource.descriptor.graphicsLanguage.positions[0]-=.1;p.updateResource(resource);
+  assert.throws(()=>p.updateResource({...resource,revision:0}),/newer revision/);
+  p.beginFrame({...frame,frameId:'incomplete'});assert.throws(()=>p.submitFrame('incomplete'),/unfinished declared passes/);
+  assert.throws(()=>p.beginFrame({...frame,surfaceId:'unsupported'}),/incompatible surface/);
+  p.releaseResource('core-triangle');assert.equal(p.getDiagnostics().resources,0);
+  p.dispose();p.dispose();assert.equal(p.getDiagnostics().resources,0);assert.equal(p.getDiagnostics().runtimeHeapBytes,0);
+  results.push({backend,passed:true});
+}
+console.log('Graphics contract:',JSON.stringify(results));
