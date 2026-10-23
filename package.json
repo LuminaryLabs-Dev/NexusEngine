@@ -472,7 +472,8 @@
     "./foundation": "./src/foundation/index.js",
     "./kits": "./kits/catalog.js",
     "./release": "./src/release.js",
-    "./runtime-kit": "./src/runtime-kit.js"
+    "./runtime-kit": "./src/runtime-kit.js",
+    "./domains/agent/interaction": "./src/core-domains/agent/interaction/index.js"
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",

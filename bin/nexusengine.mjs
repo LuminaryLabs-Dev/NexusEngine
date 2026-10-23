@@ -54,6 +54,11 @@ async function confirmPlan(plan) {
 }
 
 async function main() {
+  if (process.argv[2] === "agent") {
+    const { runAgentCli } = await import("../src/adapters/node/agent-cli.js");
+    await runAgentCli(process.argv.slice(3));
+    return;
+  }
   const { positional, options } = parseArgs(process.argv.slice(2));
   if (options.help || positional.length === 0) {
     print(usage());
