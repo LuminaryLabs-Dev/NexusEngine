@@ -14,7 +14,7 @@ import {
   requireInteger,
   requireText,
 } from "../contracts/value.js";
-import { evaluateAuthoringAssembly } from "../assembly/services.js";
+import { assemblyReferences, evaluateAuthoringAssembly } from "../assembly/services.js";
 import { evaluateAuthoringMesh, vunit } from "../mesh/evaluate.js";
 import { inspectAuthoringMesh } from "../mesh/geometry.js";
 export function normalizeAuthoringPublishing(c) {
@@ -28,10 +28,12 @@ export function normalizeAuthoringPublishing(c) {
       "allowWeightReduction",
       "smooth",
       "sharpAngle",
+      "focusMeshIds",
     ],
     "publishing",
   );
   requireText(c.assemblyId, "assembly ID");
+  if (c.focusMeshIds !== undefined && (!Array.isArray(c.focusMeshIds) || !c.focusMeshIds.length || c.focusMeshIds.length > 20 || c.focusMeshIds.some(id => typeof id !== "string"))) throw error("AUTHORING_INVALID_PUBLISHING", "Invalid focus mesh IDs.");
   c.variantId ??= null;
   if (c.variantId !== null) requireText(c.variantId, "variant ID");
   c.maxInfluences = requireInteger(
@@ -57,15 +59,24 @@ export function prepareAuthoringDelivery(project, input) {
       "AUTHORING_DEPENDENCY_KIND",
       "Publishing requires an assembly.",
     );
+  let assemblyContent = assemblyDoc.content;
+  if (profile.focusMeshIds) {
+    const byId = new Map(assemblyContent.nodes.map(n => [n.id,n])), keep = new Set();
+    for (const meshId of profile.focusMeshIds) if (!assemblyContent.nodes.some(n => n.meshId === meshId)) throw error("AUTHORING_DEPENDENCY_MISSING", "Focus mesh is not in this assembly.");
+    for (const node of assemblyContent.nodes.filter(n => profile.focusMeshIds.includes(n.meshId))) {
+      let n = node; while (n) { keep.add(n.id); n = byId.get(n.parent); }
+    }
+    assemblyContent = { ...assemblyContent, nodes: assemblyContent.nodes.filter(n => keep.has(n.id)).map(n => profile.focusMeshIds.includes(n.meshId) ? n : {...n,meshId:null,materials:[],rigId:null,skinId:null,shapeId:null,animationIds:[]}) };
+  }
   const documents = new Map(),
     visit = (id) => {
       if (documents.has(id)) return;
       const d = project.getDocument(id);
       documents.set(id, d);
-      for (const ref of d.dependencies) visit(ref.id);
+      for (const ref of (id === assemblyDoc.id && profile.focusMeshIds ? assemblyReferences(assemblyContent) : d.dependencies)) visit(ref.id);
     };
   visit(assemblyDoc.id);
-  const assembly = evaluateAuthoringAssembly(assemblyDoc.content, {
+  const assembly = evaluateAuthoringAssembly(assemblyContent, {
       variantId: profile.variantId,
     }),
     source = [...documents.values()]

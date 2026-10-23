@@ -61,9 +61,11 @@
         "publicSubpath": "./domains/authoring/create/create-service"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-import-registry-kit",
@@ -75,9 +77,11 @@
         "publicSubpath": "./domains/authoring/importing/import-registry"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-import-validation-kit",
@@ -89,9 +93,11 @@
         "publicSubpath": "./domains/authoring/importing/import-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-import-commit-kit",
@@ -103,9 +109,11 @@
         "publicSubpath": "./domains/authoring/importing/import-commit"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-import-service-kit",
@@ -117,9 +125,11 @@
         "publicSubpath": "./domains/authoring/importing/import-service"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-project-package-kit",
@@ -131,9 +141,11 @@
         "publicSubpath": "./domains/authoring/persistence/project-package"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-storage-provider-registry-kit",
@@ -145,9 +157,11 @@
         "publicSubpath": "./domains/authoring/persistence/storage-provider-registry"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-save-kit",
@@ -159,9 +173,11 @@
         "publicSubpath": "./domains/authoring/persistence/save"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-load-kit",
@@ -173,9 +189,11 @@
         "publicSubpath": "./domains/authoring/persistence/load"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-persistence-service-kit",
@@ -187,9 +205,11 @@
         "publicSubpath": "./domains/authoring/persistence/persistence-service"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-export-registry-kit",
@@ -201,9 +221,11 @@
         "publicSubpath": "./domains/authoring/publishing/export/export-registry"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-export-capability-kit",
@@ -215,9 +237,11 @@
         "publicSubpath": "./domains/authoring/publishing/export/export-capability"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-export-validation-kit",
@@ -229,9 +253,11 @@
         "publicSubpath": "./domains/authoring/publishing/export/export-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-export-receipt-kit",
@@ -243,9 +269,11 @@
         "publicSubpath": "./domains/authoring/publishing/export/export-receipt"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-export-service-kit",
@@ -257,9 +285,11 @@
         "publicSubpath": "./domains/authoring/publishing/export/export-service"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-document-validation-kit",
@@ -271,9 +301,11 @@
         "publicSubpath": "./domains/authoring/validation/document-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-project-validation-kit",
@@ -285,9 +317,11 @@
         "publicSubpath": "./domains/authoring/validation/project-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-delivery-validation-kit",
@@ -299,9 +333,11 @@
         "publicSubpath": "./domains/authoring/validation/delivery-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-format-validation-kit",
@@ -313,9 +349,11 @@
         "publicSubpath": "./domains/authoring/validation/format-validation"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-validation-report-kit",
@@ -327,9 +365,11 @@
         "publicSubpath": "./domains/authoring/validation/validation-report"
       },
       "proofReferences": [
-        "tests/core-domains/core-authoring-consolidation.mjs"
+        "tests/core-domains/core-authoring-consolidation.mjs",
+        "tests/core-domains/core-authoring-io-safety.mjs",
+        "tests/core-domains/core-authoring-roundtrip.mjs"
       ],
-      "declaredProofStatus": "pending"
+      "declaredProofStatus": "proven"
     },
     {
       "id": "authoring-modifier-service-kit",

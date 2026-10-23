@@ -1,0 +1,1 @@
+Finish candidate cleanup, review the final diff and commit the validated Engine integration locally on main. Preserve the original checkout, unrelated Spatial Layout and custom Build-provider work separately. No push or publication.

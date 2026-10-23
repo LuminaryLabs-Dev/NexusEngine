@@ -6,8 +6,8 @@ import {encodeUSDZ,decodeUSDZ} from '../../src/core-domains/authoring/publishing
 import {encodePNG,decodePNG} from '../../src/core-domains/authoring/publishing/export/codecs/png.js';
 const copy=x=>structuredClone(x);
 const makeFile=()=>mkdtemp(join(tmpdir(),'authoring-proof-'));
-test('all 39 installed kits retain declared owners and duplicate installs do not alter source',async()=>{
- const e=building(),p=e.n.authoringProject,snapshot=p.getSnapshot();assert.equal(authoringDomainManifest.publicKits.length,39);
+test('all 41 installed kits retain declared owners and duplicate installs do not alter source',async()=>{
+ const e=building(),p=e.n.authoringProject,snapshot=p.getSnapshot();assert.equal(authoringDomainManifest.publicKits.length,41);
  for(const m of authoringDomainManifest.publicKits){const module=await import('nexusengine/'+m.source.publicSubpath.slice(2)),kit=module[m.source.exportName]();e.installKit(kit);assert.ok(e.n.ownersOf(m.domainPath).includes(m.id));assert.equal(e.n.api(m.apiName).ownerKitId,m.id);}
  assert.deepEqual(p.getSnapshot(),snapshot);
 });

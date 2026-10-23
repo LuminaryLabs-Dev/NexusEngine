@@ -14,8 +14,10 @@ export function createRuntimeLifecycleKit(config = {}) {
       status: "ready",
       installationReceipts: []
     },
-    createApi({ baseApi }) {
+    createApi({ baseApi, engine }) {
       return {
+        commitOperation: options => engine.commitOperation(options),
+        operationDiagnostics: () => engine.getOperationDiagnostics(),
         getStatus: () => baseApi.getState().status,
         recordInstallation(receipt = {}) {
           const state = baseApi.getState();

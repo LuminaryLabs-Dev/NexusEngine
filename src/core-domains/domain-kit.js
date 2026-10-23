@@ -191,7 +191,7 @@ export function createDomainKit(config = {}) {
         if (JSON.stringify(readState()) === JSON.stringify(portable)) return getState();
         world.setResource(State, portable);
         const event = events[toPascal(eventName)] ?? events.Updated;
-        if (event) world.emit(event, { domain, state: clone(portable), ...clone(payload) });
+        if (event) world.emit(event, config.eventState === "delta" ? { domain, sequence: portable.sequence, ...clone(payload) } : { domain, state: clone(portable), ...clone(payload) });
         return clone(portable);
       };
 
@@ -274,6 +274,12 @@ export function createDomainKit(config = {}) {
           const descriptors = clone(state?.descriptors ?? {});
           descriptors[type] = { ...(descriptors[type] ?? {}), [id]: clone(descriptorValue) };
           return setState(mergeState(state, { descriptors }, "descriptorChanged"), "descriptorChanged", { type, id });
+        },
+        removeDescriptor(type, id) {
+          const state = getState();
+          if (!Object.hasOwn(state.descriptors?.[type] ?? {}, id)) return state;
+          delete state.descriptors[type][id];
+          return setState(mergeState(state, {descriptors:state.descriptors}, "descriptorChanged"), "descriptorChanged", { type, id, removed: true });
         },
         getPolicy(name) {
           return config.policies?.[name] ?? clone(getState()?.policies?.[name]);

@@ -244,6 +244,8 @@ writer session and generation checks prevent accidental competing saves. Files
 and parent directories are synced before manifest replacement. A failed manifest
 write preserves the previous checkpoint. Missing/corrupt records fail explicitly.
 
+Portable `authoringPersistence.save` uses incremental filesystem encoding with backpressure. It captures immutable source pointers, resolves one archived history/receipt record at a time, stages each object and streams checkpoint JSON. It preserves the v1 package format, generation conflicts, cancellation and manifest-last publication. Extra memory is bounded by the largest serialized document/history record plus compact object references. Memory/IndexedDB providers retain their compatible eager APIs; loading still observes the existing 256 MiB package-read budget. Concrete IndexedDB execution lives in `kits/authoring/storage/indexeddb`, behind the existing lazy provider route.
+
 Browser IndexedDB storage is a separate explicit-save profile with atomic
 transactions and generation checks. It does not claim the Node journal/lease
 profile or cross-device collaboration.

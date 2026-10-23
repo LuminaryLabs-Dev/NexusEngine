@@ -1,0 +1,130 @@
+{
+  "status": "PASS",
+  "scope": "Pre-commit candidate validation; raw local evidence retained separately",
+  "upstream": "4905af9a566d66d3cd283dcb4f1032d9150110f3",
+  "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+  "memory": {
+    "iterations": 10000,
+    "minRetainedHeapMiB": 167.25513458251953,
+    "maxRetainedHeapMiB": 167.3243637084961,
+    "growthMiB": 0.0692291259765625,
+    "zeroRuntimeJournalAndEventBacklog": true
+  },
+  "heldOut": [
+    "Spatial Layout",
+    "custom additional Build providers and Agora target",
+    "runtime workspaces and raw state"
+  ],
+  "limits": [
+    "First endurance attempt and first PDF check failed from host disk exhaustion; affected checks reran successfully after task-owned disposable install cleanup. Failed evidence remains preserved.",
+    "Fixed scene endurance is not unlimited scene capacity. Live geometry and durable disk usage grow with content. Loads and non-filesystem saves retain materialization/read limits.",
+    "Engineering fixtures with controlled defects are not an artistic-quality benchmark; pose checks are sampled.",
+    "Pinned animated FBX/USDZ external imports remain fail-closed for canonical restoration; native exporter roundtrips pass.",
+    "Installed public Kit remains 0.4.1; only the private proof adapter uses this candidate. No physical XR/device claim."
+  ],
+  "checks": [
+    {
+      "name": "Engine smoke suite",
+      "status": "PASS",
+      "evidenceId": "1",
+      "sha256": "009fde1b5d1e1fd949924c65bcd945e93227e10d3d45a2ea05ac6bd3bed931e8"
+    },
+    {
+      "name": "Focused Authoring",
+      "status": "PASS",
+      "evidenceId": "2",
+      "sha256": "946f3b697d51dc5a471d9133f3e6d441aff4caff4e66be52f12b091d7e804626"
+    },
+    {
+      "name": "Guide PDF",
+      "status": "PASS",
+      "evidenceId": "3",
+      "sha256": "2be79a7c8c453f09516e9ef561ac062149c1c9b895a0d76179b5441f98c66390"
+    },
+    {
+      "name": "MCP package",
+      "status": "PASS",
+      "evidenceId": "4",
+      "sha256": "db9770ade87c812c4d1b7191995719b730baf3a6874ced8db4f96253a299712b"
+    },
+    {
+      "name": "Production",
+      "status": "PASS",
+      "evidenceId": "5",
+      "sha256": "7df976b0a2b62d330897063c67cb705d7f215049a0a9c8cfc66b6f95cbaeaa8d"
+    },
+    {
+      "name": "Browser game",
+      "status": "PASS",
+      "evidenceId": "6",
+      "sha256": "c8df2377a575a609f5e073beb30ad2db09b767790ccd368d38cda3a98503b118"
+    },
+    {
+      "name": "Streaming compatibility/failure safety",
+      "status": "PASS",
+      "evidenceId": "7",
+      "sha256": "bde92a50acb22ca0a1df0131fa655a6485e1453f73d4e1c10305e297b91168e0"
+    },
+    {
+      "name": "Code plus geometry streaming/history",
+      "status": "PASS",
+      "evidenceId": "8",
+      "sha256": "ae2b38dc55c54a53f9868561ffd6e3e8ae901ce1dd13a92b79452df8a1909694"
+    },
+    {
+      "name": "IndexedDB browser",
+      "status": "PASS",
+      "evidenceId": "9",
+      "sha256": "b1c675a5dcd589c1e79a43e374970d49e03d7f28939ab403fa063825539d3917"
+    },
+    {
+      "name": "Package source identity",
+      "status": "PASS",
+      "evidenceId": "10",
+      "sha256": "5f1c383e414d5f9bea1234a11779c945113d5141d77edbf9b12b698e528bf3ea"
+    },
+    {
+      "name": "Old checkpoint upgrade",
+      "status": "PASS",
+      "evidenceId": "11",
+      "sha256": "919f554fd70cc72b6709a1599c960854c52d2df57db6fe30e98e6a36803abb1b"
+    },
+    {
+      "name": "Upstream IDE browser",
+      "status": "PASS",
+      "evidenceId": "12",
+      "sha256": "26e2a60d40c1c743a30bc277bc561ea84060a31117af07382702ecbe06a1c030"
+    },
+    {
+      "name": "Upstream Agent CLI",
+      "status": "PASS",
+      "evidenceId": "13",
+      "sha256": "5734ce9f78f0da141ca969a978a1213b82c75083cdebc5b72996a3127413fdfd"
+    },
+    {
+      "name": "Persistent authoring and endurance",
+      "status": "PASS",
+      "evidenceId": "14",
+      "sha256": "b96c451abfe38ea20dd069fc6de71cfc22383af07f01e57fa438069902e48284"
+    },
+    {
+      "name": "Archived receipt readback",
+      "status": "PASS",
+      "evidenceId": "15",
+      "sha256": "90d2c5799c2a195ccefd0d095ae9f3e5f2cd4388aacd90bf88acb8ff5a991afe"
+    },
+    {
+      "name": "Gallery browser",
+      "status": "PASS",
+      "evidenceId": "16",
+      "sha256": "e757751bdad884068bf31b7ffa0a4c3efaa8f0d71ef1e211943d92c2243df1f7"
+    },
+    {
+      "name": "Visual inspection",
+      "status": "PASS",
+      "evidenceId": "17",
+      "sha256": "43a8765379b4e33c741dcaa3b7bf06cbdb28d8a74b1b7794633685b1d1f64745"
+    }
+  ],
+  "evidenceAvailability": "Raw logs, captures, receipts, original reports and local workspace are preserved locally; these hashes record observed validation, not independently hosted CI results."
+}

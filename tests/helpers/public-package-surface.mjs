@@ -1,4 +1,12 @@
 // Generated from package.json exports. This is test-only and is not a package entrypoint.
+export * from "../../kits/agent/production/authoring-recipes.mjs";
+export * from "../../kits/agent/production/cli.mjs";
+export * from "../../kits/agent/production/index.mjs";
+export * from "../../kits/agent/production/inspection-comparison.mjs";
+export * from "../../kits/agent/production/receipt-mapping.mjs";
+export * from "../../kits/agent/production/server.mjs";
+export * from "../../kits/agent/production/visual-inspection.mjs";
+export * from "../../kits/authoring/storage/indexeddb/index.js";
 export * from "../../kits/build/language-toolchains-kit/index.js";
 export * from "../../kits/catalog.js";
 export * from "../../kits/development/ide-kit/index.js";
@@ -9,6 +17,7 @@ export * from "../../src/core-domains/actor/index.js";
 export * from "../../src/core-domains/actor/kits/actor-registry-kit/index.js";
 export * from "../../src/core-domains/actor/player/kits/player-kit/index.js";
 export * from "../../src/core-domains/agent/index.js";
+export * from "../../src/core-domains/agent/interaction/index.js";
 export * from "../../src/core-domains/agent/kits/agent-kit/index.js";
 export * from "../../src/core-domains/asset/index.js";
 export * from "../../src/core-domains/asset/kits/asset-kit/index.js";

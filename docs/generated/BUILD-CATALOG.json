@@ -5179,7 +5179,7 @@
     "./domains/build/toolchain/toolchain-resolution": "./src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js"
   },
-  "registryHash": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+  "registryHash": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
   "schema": "nexusengine.build-catalog/1",
   "sourceFiles": [
     {
@@ -6008,7 +6008,7 @@
     },
     {
       "path": "src/core-domains/build/source/kits/dependency-source-kit/services.js",
-      "sha256": "902024b390e4bd5ec8a37a13990baf2828159cf7fa239e001a2b29c8c2ce9bc7"
+      "sha256": "ec1245f8d3d382580509a7d517f97e2e7f44bbe4637bd8cb212295ccddf4e5d7"
     },
     {
       "path": "src/core-domains/build/source/kits/dependency-source-kit/sources.json",

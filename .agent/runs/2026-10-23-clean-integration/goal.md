@@ -1,0 +1,1 @@
+Prepare and validate a clean integration candidate on main combining upstream 4905af9 Code/Toolchain/IDE/Agent features with Nexus Engine Kit production, modeling, bounded memory, streaming saves and controller retirement. Hold out unrelated Spatial Layout and custom Build target providers. Preserve original checkout and historical records. No commit or push.

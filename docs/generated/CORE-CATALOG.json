@@ -949,9 +949,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "requires": [
         "n:authoring:project"
@@ -1036,9 +1038,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "requires": [
         "n:authoring:project"
@@ -1123,9 +1127,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "requires": [
         "n:authoring:project"
@@ -1210,9 +1216,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "requires": [
         "n:authoring:project"
@@ -1297,9 +1305,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "requires": [
         "n:authoring:project"
@@ -21124,9 +21134,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:create-service",
@@ -21195,9 +21207,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:import-registry"
@@ -21265,9 +21279,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:import-validation"
@@ -21335,9 +21351,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:import-commit"
@@ -21405,9 +21423,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:import-service",
@@ -21478,9 +21498,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:project-package"
@@ -21548,9 +21570,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:storage-provider-registry"
@@ -21618,9 +21642,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:save"
@@ -21689,9 +21715,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:load"
@@ -21760,9 +21788,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:persistence-service",
@@ -21832,9 +21862,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:export-registry"
@@ -21902,9 +21934,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:export-capability"
@@ -21972,9 +22006,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:export-validation"
@@ -22042,9 +22078,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:export-receipt"
@@ -22112,9 +22150,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:export-service",
@@ -22186,9 +22226,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:document-validation"
@@ -22256,9 +22298,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:project-validation"
@@ -22326,9 +22370,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:delivery-validation"
@@ -22396,9 +22442,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:format-validation"
@@ -22466,9 +22514,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "provides": [
         "authoring:validation-report",
@@ -49167,7 +49217,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+  "registryHash": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -49232,15 +49282,19 @@
     },
     {
       "path": "src/core-domains/agent/interaction/answer-session.js",
-      "sha256": "c7355065c732fc8447d694028d4386bf507fa917815fe7699090d602dc8d9c2e"
+      "sha256": "e278f83b80b98e6255ff9e0780dfb5e5a1f14f2ad7b8cec86d3a449452c5ba8e"
     },
     {
       "path": "src/core-domains/agent/interaction/index.js",
-      "sha256": "c83c26947107fc8d2c77862868a95afeffbfe8599d5cd847ddc818f4966db448"
+      "sha256": "b2c990f8be1aac938e4ae2ac553b07a9e9208e876030160c4ab27369d6982d8c"
     },
     {
       "path": "src/core-domains/agent/interaction/task-graph.js",
-      "sha256": "50135b60b516f05a3fbb0acb173c955df38fb108e5f6b74e9ab4ea10228aa05f"
+      "sha256": "36e1d8ce3ed3c614e63d94fc5390a5723b4c3475485e579e2597a0f8e1b002a0"
+    },
+    {
+      "path": "src/core-domains/agent/interaction/workflows.js",
+      "sha256": "c78515d7741ee8142a93d59ea52ac6a4944b5b056f4e9a2449aa10ad64a9abe0"
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/action-proposals.js",
@@ -49264,11 +49318,11 @@
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/execution-ledger.js",
-      "sha256": "5a522baac66559b73ae01acba400fc23d844ff60b83cf919be72db2b47117b46"
+      "sha256": "6b780bccc8ec4b49a921b4d7693cfe7f8fe5ed5b048077f96796ee919be98045"
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/index.js",
-      "sha256": "ef137a7f26202eecb4d8796e0034ddc66d49ac9e538f4e6f43d419d3be8db37d"
+      "sha256": "e939ab41b3c1ce87b40af4a286179c1fa50d5f915731612b24ae072aa5040c43"
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/observations.js",
@@ -49448,7 +49502,7 @@
     },
     {
       "path": "src/core-domains/authoring/create/kits/authoring-create-service-kit/kit.manifest.js",
-      "sha256": "0ec645ca8f4a6710f65b223b98c4ccd8f0a70f88bcf988530c92f6988c639b9b"
+      "sha256": "86152c9c44daae7263d93b468608a409e112acdbc7a87928c9787312b6e11ea3"
     },
     {
       "path": "src/core-domains/authoring/create/services.js",
@@ -49456,7 +49510,7 @@
     },
     {
       "path": "src/core-domains/authoring/create/subdomain.manifest.js",
-      "sha256": "209314ac52228f6948247be9310b8e64e8a3ba353e519cfdd8ae7da0dc6db27c"
+      "sha256": "35202ca925bb833af1f3529d0446c567cf8aacb193b7d834514c2d4ef9cf046c"
     },
     {
       "path": "src/core-domains/authoring/curve/index.js",
@@ -49536,7 +49590,7 @@
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-commit-kit/kit.manifest.js",
-      "sha256": "1dd780a33fdbb3485ec7febd103c798d223e8b64ee79d845a55905d4426ed813"
+      "sha256": "e33bab05dd387f52ca5a2cfa0f020b1153bbf7eb09fe9d170dcfc8b78ffa42a1"
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
@@ -49544,7 +49598,7 @@
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-registry-kit/kit.manifest.js",
-      "sha256": "348de9aa7ce081857dd14d9704ed5e57b0bbd96a584346055479cf4c16a1597e"
+      "sha256": "84b63ebeef48530b1412e04a52a485ce9c663667f997c3eaa4dda2794cb1e8f3"
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
@@ -49552,7 +49606,7 @@
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-service-kit/kit.manifest.js",
-      "sha256": "d79fb3184eda1ffc460d7e20a0994d1ded7a1311673af71d6b68d4d9e9bead50"
+      "sha256": "9d7f456875321e9a0483b3505b2aaf5064265b2ea1d6198095292951e9ef4ba2"
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
@@ -49560,7 +49614,7 @@
     },
     {
       "path": "src/core-domains/authoring/importing/kits/authoring-import-validation-kit/kit.manifest.js",
-      "sha256": "959eaf0572864630dda8eb8b8a23a7606faa7f84cd9bcd23f14f8ec13dd42ded"
+      "sha256": "a1d951846a79bd1396b61f78f12a6a08fc310f4433f050c59031b7765b3cf33a"
     },
     {
       "path": "src/core-domains/authoring/importing/providers/fbx/decode.js",
@@ -49608,11 +49662,11 @@
     },
     {
       "path": "src/core-domains/authoring/importing/subdomain.manifest.js",
-      "sha256": "93a46d3dd5c1ebdfeaaed8be72472644b0ebe9bced4bc8ac711207d8aec528a6"
+      "sha256": "0b8c4123969b9f3019da595f9325e0ce6e0ff0b729bc5e1513e8a82798ae787a"
     },
     {
       "path": "src/core-domains/authoring/index.js",
-      "sha256": "eaca5f814ec8d308ff1356fd35919ee60fa20b67d9d66ee6d715e039b755e7db"
+      "sha256": "3e8972c82d2d0bcd6eff8633b4817d337b22eafc4118fdfe1457bb4c0fa7dd3e"
     },
     {
       "path": "src/core-domains/authoring/io-kits.js",
@@ -49667,8 +49721,12 @@
       "sha256": "ca37d0675ace4e9a119a411ebc01bea886a1c4dc632c65abfc47c7c129ebff39"
     },
     {
+      "path": "src/core-domains/authoring/mesh/inspection.js",
+      "sha256": "fe30721f2bcf1145a20199f0628edadfbb7202d0435acdf57eb96320a28b6650"
+    },
+    {
       "path": "src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js",
-      "sha256": "d815e2ed00578e75497aea346415b708d673cbe6920ba8ab8400558ccff47307"
+      "sha256": "08993c27be4ffcdee09b5f27a9d87799de25bee623ac17a4d6802fa8084f27bd"
     },
     {
       "path": "src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/kit.manifest.js",
@@ -49764,7 +49822,7 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-load-kit/kit.manifest.js",
-      "sha256": "0dfd22e5571d3259e572473ce7a1b47d25a60d8eb6612800b25e3b49a7d6c7a0"
+      "sha256": "459f7a451781a22eb13e3313ab86855453c004c35e2571a5e3b4c6135b9f9820"
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js",
@@ -49772,7 +49830,7 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/kit.manifest.js",
-      "sha256": "5f0a064c868e460a714fa3685cd6afd19088215694fb1869fcef4ea1da0c656f"
+      "sha256": "ca88b8e4b77e76da77e9d903052be4b124105596e0bc6bd1c80e3927a7ca0541"
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js",
@@ -49780,7 +49838,7 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-project-package-kit/kit.manifest.js",
-      "sha256": "3789fc445609041b8ffffaaf97332483d012b5823ff53204afce445dada6fc5a"
+      "sha256": "7a173d8a9c3d62671baf0c51371d7f1dfe483fd397e57674a55dd4e72e68b553"
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js",
@@ -49788,7 +49846,7 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-save-kit/kit.manifest.js",
-      "sha256": "58197b4b024f3610aa0d5209efa1e2498a57652acf2f0992dd73ec213e1db070"
+      "sha256": "04fdcfe5c039f96ce6da5458f29039c832504fb0dadd8b79ee71b854f1ef5760"
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js",
@@ -49796,19 +49854,19 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/kit.manifest.js",
-      "sha256": "9558e42209a7678e95f4b1b3d42d1313254a261cba378b3756b2b4ac6b50377d"
+      "sha256": "1ff9c5f8500848815f92c4604fd3bd0d28eeb3ed8efb71c1d3dd22e216ef70a0"
     },
     {
       "path": "src/core-domains/authoring/persistence/project-package.js",
-      "sha256": "69a006a1057eecd53b50512a81ea33c78dec5fed082dcf20a9e216d34fa1540c"
+      "sha256": "fff86add478f52f27bfb5b8731ad8fa300798af4dacf1a67fa4e17747828727c"
     },
     {
       "path": "src/core-domains/authoring/persistence/providers/filesystem/index.js",
-      "sha256": "b504d008618328ad5f7b31c0116ab089b1f4a5d7f1fd5a77dd89a5e771232899"
+      "sha256": "a50d2979ad2235cb7ba9950ea80f89d9ad6febc18b246855330ea347e7335a8b"
     },
     {
       "path": "src/core-domains/authoring/persistence/providers/indexeddb/index.js",
-      "sha256": "4266ecccd5db95c790d777e77cffdabc333828763f6613d6d6a43df3f0bd8b77"
+      "sha256": "df8afebab2c82d821b7b10c6a721423c4c95c22b5ffc96ce014fd2bb10f1a002"
     },
     {
       "path": "src/core-domains/authoring/persistence/providers/memory/index.js",
@@ -49816,11 +49874,11 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/services.js",
-      "sha256": "4e1aa8f4a1968cbf6b0ae56b315f3a023f1b90a2420414a8cc8035531d41ddb1"
+      "sha256": "ac86f4b29b44ef94d63bc00ab6840f9921b3087804208153a0d26b77824311e6"
     },
     {
       "path": "src/core-domains/authoring/persistence/subdomain.manifest.js",
-      "sha256": "1cf37236c627c3407b14294cb0d14e008c99c4a85b07180e21f87160a42d4454"
+      "sha256": "7a21d6e9eaf5e5210909a7f192b8aa8327909b65646897ef1f9bb35ad1ae5b9a"
     },
     {
       "path": "src/core-domains/authoring/project/index.js",
@@ -49828,7 +49886,7 @@
     },
     {
       "path": "src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js",
-      "sha256": "b3afcf35aaf476192893c81b2899f4ff077c188bddcb31425b19b5218357b7d5"
+      "sha256": "35ab06d35e70fe3baf7d44774e3382c92b9634b6a4221a931cee781b1155f2db"
     },
     {
       "path": "src/core-domains/authoring/project/kits/authoring-project-document-kit/kit.manifest.js",
@@ -49836,7 +49894,7 @@
     },
     {
       "path": "src/core-domains/authoring/project/store.js",
-      "sha256": "477630dbc04cf7caedb2c3b77b52311acc61fdb1266699760907329454fe5234"
+      "sha256": "9b7fd821be68fa23ece08d9687be62cdc00178d0c4fde748daacdef230757797"
     },
     {
       "path": "src/core-domains/authoring/project/subdomain.manifest.js",
@@ -49872,7 +49930,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/kit.manifest.js",
-      "sha256": "daf005b5f2438766517e8c8f150e82297cc6c288d6455ba62831207648c6c90e"
+      "sha256": "5e6ac2c21ca8667d1b87eb591cdc54367d77588a3349651f0e613aeac5edcbee"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js",
@@ -49880,7 +49938,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/kit.manifest.js",
-      "sha256": "992aa7954306ae689fa8adb3d51fa65e9a6a96c55de450410c57d8773558dfcc"
+      "sha256": "3a9c1577b3d5a5636f3f014104063902f3e8c309f183863ff39e823bda916218"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js",
@@ -49888,7 +49946,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/kit.manifest.js",
-      "sha256": "1fee53505dd20c85b040d83e021060e96d433956a7c07d1d025f52c5fc526854"
+      "sha256": "a877344aa7eaf49d969b83964529f859262005b2ad37808921a8b5f1b3182067"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js",
@@ -49896,7 +49954,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/kit.manifest.js",
-      "sha256": "d263ae01e36f76e8456c871ef5d0336d46143c75e077a7cb667867a69b304963"
+      "sha256": "4f71c47d6e664adb7d4fc6440a7acc18f432046144c9c26c3c6aafba6117a58c"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js",
@@ -49904,7 +49962,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/kit.manifest.js",
-      "sha256": "6701cfe85c19243d190c6563dad53dc066e21400155be500dcac47e14bdfb7ec"
+      "sha256": "3a9ec71ea0b864b06fb7adc719f7cc3627a5f7e08c861fbe45266c41ba80960b"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/providers/fbx/encode.js",
@@ -49940,7 +49998,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/subdomain.manifest.js",
-      "sha256": "600af9bdfa6a994ecd41a086ba7b3fcf930dce2a9809c31f4f993f1712b208c8"
+      "sha256": "ea1c4672adb13977ed8bc5b1f39bb0bdf6b0a54f932667e8daf36d960fca8083"
     },
     {
       "path": "src/core-domains/authoring/publishing/index.js",
@@ -49956,7 +50014,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/services.js",
-      "sha256": "c1bd946f5bbe033c53e9c8524d1a8e8e8dfdd0ed7073de102afdadeb1b9fa09f"
+      "sha256": "23d6c078f43d26c04f797d82057322fe8adda94beb6247660e1e16ca03395ddf"
     },
     {
       "path": "src/core-domains/authoring/publishing/subdomain.manifest.js",
@@ -50076,7 +50134,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/kit.manifest.js",
-      "sha256": "f88905daeb351124192509500334c797f221eaf4d0e869dd533ce66edb9b83f3"
+      "sha256": "9b50df43e6659529f8a1c2de539170c194c189958c9eb2480d71c88897586729"
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js",
@@ -50084,7 +50142,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-document-validation-kit/kit.manifest.js",
-      "sha256": "d6400db8d0bc6d5b0618248e4212a3070a371d2b34c9b43f0979f7a350bbc61a"
+      "sha256": "8ce33cb6776d42186dd4bc947aea3df8bb455f93af6a04fc8d6756f79266351a"
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js",
@@ -50092,7 +50150,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-format-validation-kit/kit.manifest.js",
-      "sha256": "96f23189114f85dc4bbaa81c6c0830864be3ec33825746a7c8e24ce52efcf014"
+      "sha256": "d0a5c7ad401b918d8d9a4e15b8492c92045ca31ad793a0cb8b9e10c917a3d827"
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js",
@@ -50100,7 +50158,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-project-validation-kit/kit.manifest.js",
-      "sha256": "3992382f41da8b091bbc7cd984f2ccff544c9a535b95db5112d10fa7d2c11b70"
+      "sha256": "a390331eda469c556a40afb266cc7feba25a4c282566d9907a64f617de94db94"
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js",
@@ -50108,7 +50166,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/kits/authoring-validation-report-kit/kit.manifest.js",
-      "sha256": "a7df28494852d36c7a5603a4ce2732a6c94b927555adebfccd023c8d344733f0"
+      "sha256": "565e18941cb60e11dda07b6b34417b0c6b07d0a3886f3090da9786b571340d87"
     },
     {
       "path": "src/core-domains/authoring/validation/services.js",
@@ -50116,7 +50174,7 @@
     },
     {
       "path": "src/core-domains/authoring/validation/subdomain.manifest.js",
-      "sha256": "1c39fd069f0b7ccbef39a219d57edc26ce3403753ccc3177cf3e36e45b4189df"
+      "sha256": "45df08009d2c57dd32ae80c37477918a08da47c335f0dbbd76ce423256875651"
     },
     {
       "path": "src/core-domains/authoring/workspace/index.js",
@@ -50964,7 +51022,7 @@
     },
     {
       "path": "src/core-domains/build/source/kits/dependency-source-kit/services.js",
-      "sha256": "902024b390e4bd5ec8a37a13990baf2828159cf7fa239e001a2b29c8c2ce9bc7"
+      "sha256": "ec1245f8d3d382580509a7d517f97e2e7f44bbe4637bd8cb212295ccddf4e5d7"
     },
     {
       "path": "src/core-domains/build/source/kits/dependency-source-kit/sources.json",
@@ -52240,7 +52298,7 @@
     },
     {
       "path": "src/core-domains/domain-kit.js",
-      "sha256": "b28b8251bd198c8b7a95063552e1c959b2a26eccb7259c8c20feb5cc2ded6a74"
+      "sha256": "573482f783713f16e078ba2c02a1181720e5c30622f2957a438e1713891d97bb"
     },
     {
       "path": "src/core-domains/domain-manifest.js",
@@ -55496,7 +55554,7 @@
     },
     {
       "path": "src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js",
-      "sha256": "ac113c82aad996ac53bafb12d83ed9665b23ccd6469d0bdd60a9f4035e872b94"
+      "sha256": "3c16763c9ec6b81703757b7d2b2be86aec2074a194fd49781270ed1d70d1e9ba"
     },
     {
       "path": "src/core-domains/runtime/persistence/kits/persistence-kit/index.js",
@@ -56728,11 +56786,11 @@
     },
     {
       "path": "src/ecs.js",
-      "sha256": "e5aad6de67cba4051d886bbf91f2500cf6dab462787320fd3fa20cfab2688782"
+      "sha256": "50d0e58d54af850d59ef4fe638bdb42d8f4fe2980d0b34eb213654a374bef205"
     },
     {
       "path": "src/engine.js",
-      "sha256": "26c8664c1132bb31f3756f91cb285c739a46fcdb3543eea352c1ff7e120052ff"
+      "sha256": "f0ec9e5fc18ef6e5b290859c63b14757237d2d6eb6df65b3903e8d56b3d10d21"
     },
     {
       "path": "src/foundation/completion-ledger.js",

@@ -2,6 +2,7 @@ import { authoringServiceLifecycle } from "../../../contracts/service-lifecycle.
 import { createDomainKit } from "../../../../domain-kit.js";
 import { rawMutation, requireFields } from "../../../contracts/value.js";
 import { installAuthoringMeshServices } from "../../services.js";
+import { inspectGeometry, selectGeometry, validateSelection, bindSelection } from "../../inspection.js";
 import { resolveAuthoringSelection } from "../../geometry.js";
 
 export function createAuthoringMeshDocumentKit(config = {}) {
@@ -21,6 +22,10 @@ export function createAuthoringMeshDocumentKit(config = {}) {
       const api = (() => {
         return {
           ...installAuthoringMeshServices(engine.n.authoringProject),
+          inspectGeometry: input => inspectGeometry(engine, input),
+          selectGeometry: input => selectGeometry(engine, input),
+          validateSelection: input => validateSelection(engine, input),
+          bindSelection: (request, selection) => bindSelection(engine, request, selection),
           resolveContentSelection: resolveAuthoringSelection,
         };
       })();

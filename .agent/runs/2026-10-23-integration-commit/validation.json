@@ -1,0 +1,71 @@
+{
+  "status": "PASS",
+  "baseCommit": "4905af9a566d66d3cd283dcb4f1032d9150110f3",
+  "phase": "Final cleanup and local commit review",
+  "freshChecks": [
+    {
+      "command": "node tests/run-all.mjs",
+      "exitCode": 0,
+      "smokeEntries": 128,
+      "evidenceSha256": "602e2e641e03bc6776a3aed699ae94bacdd9415255c4a1a58d03d2004c198f64"
+    },
+    {
+      "command": "node --test tests/core-domains/core-authoring-consolidation.mjs tests/core-domains/core-authoring-roundtrip.mjs tests/core-domains/core-authoring-io-safety.mjs",
+      "exitCode": 0,
+      "tests": 23,
+      "evidenceSha256": "8bedc5052788176bcaa4198a10cbca1b95ec2d91a479c45b03eb63fdecd04422"
+    }
+  ],
+  "priorValidation": {
+    "summary": "candidate-validation.json",
+    "sha256": "930eb2e9753527f41490729e5b04bc5e933d21a0e3a882404516022bb8af4adb",
+    "packagedFilesReverified": 2493,
+    "sourceIdentityEvidenceSha256": "c4eec54fa272454bb1fc56e362673c8d91661cd731427704d89ce36cafd979b1",
+    "reuse": "Prior MCP, production/build, browser, guide PDF and 10000-call evidence is retained. 2493 packaged files match exactly; one file differs only by removal of a trailing ASCII space. Final runtime suites preceded this format-only cleanup; syntax and generated checks followed.",
+    "formattingOnlyFiles": 1,
+    "formattingDelta": {
+      "status": "PASS",
+      "path": "kits/agent/production/visual-inspection.mjs",
+      "change": "Removed one trailing ASCII space from a JavaScript line. All non-trailing-whitespace source bytes are unchanged.",
+      "beforeSha256": "1c37e5f98d149adb375b102b37b987eab48bd5b4977ecd76bbbfd354c52b27a6",
+      "afterSha256": "436540fbef362705015e8d4735d00269870fbfff760a1a352fe99729ae6ec27b"
+    }
+  },
+  "preservation": {
+    "originalFilesUnchanged": 248,
+    "candidateUntrackedArchiveVerified": 111,
+    "evidenceSha256": "6b18b29ebecc088f098940a7b1dee9fb4dc824752c5783f664572592215399f5",
+    "historicalContractsHashVerified": 8
+  },
+  "review": {
+    "file": "source-review.json",
+    "sha256": "13d4219477c6a0f246b48de18ae5d60b49ff1b0354496ca5675c993e6581cf36",
+    "credentialSignatures": 0,
+    "machineSpecificPaths": 0,
+    "runtimeAndRollbackFilesInScope": 0
+  },
+  "authority": {
+    "localCommitTo": "main",
+    "push": false,
+    "release": false,
+    "installedPluginUpdate": false
+  },
+  "limits": "Local source/runtime/browser proof only. Existing bounded-memory, streaming-load, external-import and device-proof limits remain documented in report.md.",
+  "formattingChecks": {
+    "status": "PASS",
+    "commands": [
+      "node --check kits/agent/production/visual-inspection.mjs",
+      "node scripts/generate-core-catalog.mjs --check",
+      "node scripts/generate-kit-ownership-ledger.mjs --check",
+      "node scripts/generate-dsk-manifest.mjs --check",
+      "node scripts/check-active-docs.mjs"
+    ],
+    "exitCodes": [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  }
+}

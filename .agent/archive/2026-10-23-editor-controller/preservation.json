@@ -1,0 +1,34 @@
+{
+  "AGENTS.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/AGENTS.md",
+    "sha256": "a892971867abbaa8d245754f67a49bcdf9ae69d0337ef5878f528c1e59d1681d"
+  },
+  ".agent/tracker.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/tracker.md",
+    "sha256": "66e914e43c178bb5b79d176a837f50ca93e6825ca887337e26500afbd761c31b"
+  },
+  ".agent/instructions.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/instructions.md",
+    "sha256": "0338728a6db0af589823b6c33a4eba2669346284e95fdf10222b8e29229ea8ff"
+  },
+  ".agent/automation-rules.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/automation-rules.md",
+    "sha256": "ba980de896c003eb9e56891766f30f0b35005e21c35aee61a4dc7771a78bea8a"
+  },
+  ".agent/repository-profile.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/repository-profile.md",
+    "sha256": "994df916fbdba5d45dc482d390cdb25811861582e0ce526e86c53e8a0a099ef0"
+  },
+  ".agent/start-here.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/start-here.md",
+    "sha256": "5948d7ac97cb33d9eef569b87290c422aba58e8bf28b22d3e0dbdd51e20d09cb"
+  },
+  "README.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/README.md",
+    "sha256": "6fca7958c6c8c2e4bedab097b0550fc73f8a68e2d1cb5ff42bb0a14bd45acc10"
+  },
+  ".agent/target.md": {
+    "archive": ".agent/archive/2026-10-23-editor-controller/.agent/target.md",
+    "sha256": "081fae0c1fd0b18327d5c23b547334c5f72834d7e0c3a000e8526917bac640d8"
+  }
+}

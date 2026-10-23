@@ -129,7 +129,9 @@ for (const filePath of productionFiles) {
     /\bnew\s+(?:AudioContext|OfflineAudioContext)\b/,
     /\bgetContext\(["'](?:webgl2?|webgpu|2d)["']\)/
   ];
-  if (executablePlatformPatterns.some((pattern) => pattern.test(source))) {
+  // Browser proof runners are fixtures, not runtime production ownership.
+  const isTestFixture = path.relative(sourceRoot, filePath).split(path.sep).some(part => ['tests','test','fixtures'].includes(part));
+  if (!isTestFixture && executablePlatformPatterns.some((pattern) => pattern.test(source))) {
     const relativePath = path.relative(root, filePath);
     if (!relativePath.startsWith(path.join("src", "core-domains", "build", path.sep))) {
       concretePlatformOwnership.push(relativePath);

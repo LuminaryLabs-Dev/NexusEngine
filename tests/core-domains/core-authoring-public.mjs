@@ -20,7 +20,7 @@ for (const manifest of authoringDomainManifest.publicKits) {
   assert.equal(typeof factory, "function", manifest.id);
   const kit = factory();
   assert.equal(kit.id, manifest.id);
-  assert.equal(engine.n.ownerOf(manifest.domainPath), manifest.id);
+  assert.ok(engine.n.ownersOf(manifest.domainPath).includes(manifest.id));
   assert.equal(engine.n.api(manifest.apiName).ownerKitId, manifest.id);
   const api = engine.n[manifest.apiName];
   if (manifest.id !== "authoring-project-document-kit") {
@@ -48,9 +48,9 @@ assert.notEqual(
   project.getDocument("cube").content.vertices[0].position[0],
   42,
 );
-assert.equal(authoringDomainManifest.publicKits.length, 19);
+assert.equal(authoringDomainManifest.publicKits.length, 41);
 assert.throws(() => createAuthoringDomain({ unknown: true }));
 engine.n.authoringSequence.dispose();
 console.log(
-  "Authoring public surface: all 19 factory imports, domain/API ownership, repeated installation and immutable/mutable snapshot isolation passed.",
+  "Authoring public surface: all 41 factory imports, domain/API ownership, repeated installation and immutable/mutable snapshot isolation passed.",
 );

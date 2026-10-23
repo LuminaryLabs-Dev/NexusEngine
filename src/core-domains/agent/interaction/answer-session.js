@@ -1,9 +1,10 @@
 // Transport-neutral interaction contract. Model reasoning and tool execution remain external.
 const copy = (v) => structuredClone(v);
 const valid = (s, label) => { if (typeof s !== "string" || !s.trim()) throw new TypeError(label+" must be nonempty."); return s; };
-export function createAgentAnswerSession({ id, intent, project = null, maxTurns = 128 } = {}) {
+export function createAgentAnswerSession({ id, intent, project = null, maxTurns = 128, maxBytes = Infinity } = {}) {
   valid(id,"Session ID"); valid(intent,"Intent");
   if (!Number.isSafeInteger(maxTurns) || maxTurns < 1) throw new RangeError("Invalid turn budget.");
+  const checkBytes=value=>{if(JSON.stringify(value).length*2>maxBytes)throw new RangeError("Session byte budget exceeded; store large payloads as artifact references.");};
   const state={schema:"nexusengine.agent-answer/1",id,intent,project,status:"awaiting-agent",turn:0,history:[],result:null};
   const current=()=>copy(state);
   return Object.freeze({
@@ -15,6 +16,7 @@ export function createAgentAnswerSession({ id, intent, project = null, maxTurns 
       if(!request || !["plan","tool","complete","blocked"].includes(request.action)) throw new TypeError("Unknown agent response action.");
       if(request.action==="tool" && (typeof request.payload?.toolId!=="string" || !request.payload.toolId)) throw new TypeError("Tool request must identify a tool.");
       const entry={id:state.id+":"+(state.turn+1),action:request.action,payload:copy(request.payload??{}),result:null};
+      checkBytes({...state,history:[...state.history,entry]});
       state.history.push(entry);state.turn++;
       if(request.action==="complete"||request.action==="blocked"){state.status=request.action==="complete"?"completed":"blocked";state.result=copy(request.payload??{});}
       else state.status="awaiting-result";
@@ -24,6 +26,7 @@ export function createAgentAnswerSession({ id, intent, project = null, maxTurns 
       if(state.status!=="awaiting-result") throw new Error("No outstanding result.");
       const entry=state.history.at(-1);
       if(!receipt || receipt.requestId!==entry.id || typeof receipt.ok!=="boolean") throw new TypeError("Result must match pending request.");
+      checkBytes({...state,history:[...state.history.slice(0,-1),{...entry,result:receipt}]});
       entry.result=copy(receipt);
       state.status="awaiting-agent";
       return {session:current(),next:this.next()};
@@ -32,7 +35,7 @@ export function createAgentAnswerSession({ id, intent, project = null, maxTurns 
     resume(snapshot){
       if(snapshot?.schema!==state.schema || snapshot.id!==state.id || snapshot.intent!==state.intent || !Array.isArray(snapshot.history) || !Number.isSafeInteger(snapshot.turn) || snapshot.turn!==snapshot.history.length || snapshot.turn>maxTurns || !["awaiting-agent","awaiting-result","completed","blocked"].includes(snapshot.status))throw new TypeError("Invalid session snapshot.");
       if(snapshot.status==="awaiting-result" && (!snapshot.history.length || snapshot.history.at(-1)?.result!==null))throw new TypeError("Unreconciled pending result.");
-      Object.assign(state,copy(snapshot));return {session:current(),next:this.next()};
+      checkBytes(snapshot);Object.assign(state,copy(snapshot));return {session:current(),next:this.next()};
     },
     snapshot:current
   });

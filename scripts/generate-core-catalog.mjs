@@ -32,7 +32,16 @@ const fixedPackageExports = Object.freeze({
   "./domains/render/graphics-language": "./kits/render/graphics-language-kit/index.js",
   "./kits": "./kits/catalog.js",
   "./kits/build/language-toolchains": "./kits/build/language-toolchains-kit/index.js",
-  "./kits/development/ide": "./kits/development/ide-kit/index.js"
+  "./kits/development/ide": "./kits/development/ide-kit/index.js",
+  "./domains/agent/interaction": "./src/core-domains/agent/interaction/index.js",
+  "./kits/agent/production": "./kits/agent/production/index.mjs",
+  "./kits/agent/production/recipes": "./kits/agent/production/authoring-recipes.mjs",
+  "./kits/agent/production/inspection": "./kits/agent/production/visual-inspection.mjs",
+  "./kits/agent/production/comparison": "./kits/agent/production/inspection-comparison.mjs",
+  "./kits/agent/production/receipts": "./kits/agent/production/receipt-mapping.mjs",
+  "./kits/agent/production/server": "./kits/agent/production/server.mjs",
+  "./kits/agent/production/cli": "./kits/agent/production/cli.mjs",
+  "./kits/authoring/storage/indexeddb": "./kits/authoring/storage/indexeddb/index.js"
 });
 
 function walk(directory, predicate, output = []) {

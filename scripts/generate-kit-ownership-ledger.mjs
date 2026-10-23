@@ -103,11 +103,28 @@ for (const absolutePath of [...walk(sourceRoot), ...walk(path.join(root, "kits")
   let reviewStatus = "unreviewed";
   let ownershipBasis = "none";
 
-  if (modulePath.startsWith("kits/")) {
-    owner = "n:render";
-    destination = "NexusEngine optional Graphics Language Kit";
+  const optional = [
+    ["kits/render/graphics-language-kit/", "n:render", "Graphics Language Kit", "kits/render/graphics-language-kit/manifest.js"],
+    ["kits/agent/production/", "n:agent", "Agent production host", "kits/agent/production/manifest.js"],
+    ["kits/authoring/storage/indexeddb/", "n:authoring:persistence", "IndexedDB storage host", "src/core-domains/authoring/persistence/providers/indexeddb/index.js"],
+    ["kits/build/language-toolchains-kit/", "n:build", "Language toolchain providers", "kits/build/language-toolchains-kit/index.js"],
+    ["kits/development/ide-kit/", "n:authoring:code", "IDE host", "kits/development/ide-kit/index.js"]
+  ].find(([prefix]) => modulePath.startsWith(prefix));
+  if (optional) {
+    owner = optional[1];
+    destination = `NexusEngine optional ${optional[2]}`;
     reviewStatus = "optional-provider-kit";
-    ownershipBasis = "kits/render/graphics-language-kit/manifest.js";
+    ownershipBasis = optional[3];
+  } else if (modulePath === "kits/catalog.js") {
+    owner = "n:composition";
+    destination = "NexusEngine optional Kit catalog";
+    reviewStatus = "root-contract";
+    ownershipBasis = "package.json optional-kit export";
+  } else if (modulePath === "src/adapters/node/agent-cli.js") {
+    owner = "n:agent";
+    destination = "NexusEngine optional Node Agent CLI adapter";
+    reviewStatus = "optional-provider-kit";
+    ownershipBasis = "bin/nexusengine.mjs";
   } else if (modulePath.startsWith("src/foundation/")) {
     owner = "engine-foundation";
     destination = "NexusEngine foundation";

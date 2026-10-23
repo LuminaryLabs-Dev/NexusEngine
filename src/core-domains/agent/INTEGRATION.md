@@ -1,24 +1,9 @@
 # Agent integration ownership
 
-The existing `agent-cycle-kit` remains the stable public entry point. It owns agent identity, observations, proposed actions and execution evidence. It does **not** execute tools or select an LLM.
+The existing agent-cycle-kit remains the public owner of identity, observations, proposals and execution evidence. Context remains small and bounded. `engine.n.agent.workflows` owns portable workflow definitions, task graphs and answer sessions; it does not execute tools or choose a model. `getInteractionSnapshot`/`loadInteractionSnapshot` capture this state explicitly. Task completion is evidence bookkeeping, not automatic visual acceptance.
 
-Optional `context` stores small, per-agent JSON values and source references with bounded sizes. The full project, meshes, logs and runtime state remain authoritative in their existing domains. `context.snapshot()` and `context.restore()` support explicit host persistence; persistence is not automatic.
+Execution ledgers support optional count/byte budgets and archive/retrieval callbacks. The default ledger preserves its existing unbounded contract; hosts opting into bounded windows must retain durable evidence. The optional Engine production host does so and stores compact receipt references in Agent descriptors. `eventState:"delta"` opts into state-free event payloads; default domain publication remains compatible.
 
-Optional `toolAccess` is enabled by a host-supplied `listTools` callback and optional `authorizeTool`. It discovers tool metadata and checks access before a host chooses to invoke the actual domain API. It never runs a tool or bypasses domain permissions. The host must still reauthorize at actual execution.
+Runtime owns headless operation commit and scheduling; Composition owns dependencies; Authoring owns geometry and source; MCP owns protocol; host providers own filesystem and browser execution. Do not introduce a competing harness domain. Tool discovery never grants execution permission; hosts reauthorize execution.
 
-Other ownership: `n:mcp` provides protocol connectivity; Runtime and Composition own execution and composition graphs; Authoring owns asset source, validation and publishing. Do not introduce `n:harness` unless a distinct non-agent orchestration requirement is demonstrated.
-
-## Programmatic entry
-
-```js
-import { createAgentContextStore, createAgentToolAccess } from "nexusengine/domains/agent/cycle";
-const context = createAgentContextStore();
-context.put("bird-agent", "current-task", { project: "birds", phase: "rigging" });
-const access = createAgentToolAccess({
-  listTools: () => engine.n.authoringProject.tools(),
-  authorize: ({ agentId, tool, action }) => policyAllows(agentId, tool, action)
-});
-const permitted = access.list("bird-agent", { domainPath: "n:authoring:mesh" });
-```
-
-Model planning, task-graph scheduling, persistence adapters, MCP CLI exposure and full integrated Authoring production tests are **not** implemented by these helpers.
+Generic agents can import `nexusengine/kits/agent/production`, bind a workspace and call `production.discover`. Codex-specific prompts and presentation remain in Nexus Engine Kit. The optional host is not imported by portable Core defaults.

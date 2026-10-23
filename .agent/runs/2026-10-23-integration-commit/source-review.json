@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "credentialSignatures": 0,
+  "runtimeOrTemporaryFiles": 0,
+  "historicalArchiveHashes": "8/8",
+  "heldOutProduction": "matches upstream; Layout absent",
+  "sourceReview": [
+    "Runtime commit persists before event delivery and acknowledges afterward; observer failures retain pending work.",
+    "Agent workflow and ledger budgets preserve compact references and existing context/tool APIs.",
+    "Project history/archive references resolve through Authoring; filesystem streaming retains format and manifest-last guards.",
+    "Geometry bridge delegates native operations; selections bind revision and epoch.",
+    "Concrete browser/filesystem execution remains optional and outside portable Core.",
+    "Build local tarballs require project-owned captured archives and SHA-512 lock integrity.",
+    "Generated ownership/export inputs preserve upstream IDE and language-toolchain entries."
+  ],
+  "commitStrategy": "One coherent integration commit; source, exports, manifests and generated documentation stay consistent.",
+  "retainedUpstream": [
+    "Code Authoring and intelligence",
+    "Compiler/toolchain resolution and optional IDE",
+    "Agent context, authorized tool discovery, interaction APIs and CLI"
+  ],
+  "preservation": "Original 248-file checkout preserved separately; pre-cleanup candidate patch, untracked archive and original reports retained locally."
+}

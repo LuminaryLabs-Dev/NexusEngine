@@ -2,7 +2,7 @@
 
 This file is generated from Build Domain and atomic Kit manifests.
 
-Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
+Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
 
 ## Domain Service
 

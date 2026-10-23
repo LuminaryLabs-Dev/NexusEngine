@@ -47,7 +47,7 @@ install the Domain, register its own provider, and connect a transport.
   contracts
 - Domain factories and domain-owned subpaths
 - `nexusengine` CLI for Build inspect, plan, and approval-gated execution
-- NexusEngine-Editor supplies the separate `nexus-editor` repository controller
+- Engine Agent task/session APIs and optional production host/MCP/CLI provide development continuity; NexusEngine-Editor is an optional consumer
 - Machine-readable DSK and Kit ownership manifests under `docs/`
 
 Consumers should use declared package entrypoints and must not import private
@@ -55,15 +55,14 @@ source paths.
 
 ## Repository Workflow
 
-1. Read `AGENTS.md`, `.agent/target.md`, and `.agent/tracker.md`.
-2. Resume the active NexusEngine-Editor guided-development run.
+1. Read `AGENTS.md`, `.agent/development.md` and the applicable run goal.
+2. Resume Engine Agent task/session state using the recorded workspace and IDs.
 3. Find the owning Domain and existing Kit.
 4. Reuse and compose before creating a boundary.
-5. Validate direct and installed paths.
-6. Reconcile exports, manifests, docs, fixtures, and evidence.
+5. Validate direct and installed paths, then record actual reports and evidence.
+6. Reconcile exports, manifests, docs, fixtures and progress references.
 
-Do not overwrite `.agent/target.md` or `.agent/tracker.md` as part of generic
-repository documentation. They belong to the active controller workflow.
+Preserve unrelated targets and historical runs. The former Editor completion tracker is retired and archived; it is not a development prerequisite or current completion authority.
 
 ## Validation Surface
 

@@ -73,3 +73,5 @@ export function createAuthoringDomain(config = {}) {
     createCodeIntelligenceKit(),
   ];
 }
+
+export { inspectGeometry, selectGeometry, validateSelection, bindSelection, MODELING_HELP } from "./mesh/inspection.js";

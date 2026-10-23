@@ -15,6 +15,7 @@ export function createFilesystemAuthoringStorageProvider(){return {
     }
     return {...m,files,manifest:m};
   },
+  async writeStream(...args){return this.write(...args);},
   async write(target,bundle,{expectedGeneration=0,signal}={}){
     abort(signal);const fs=await import('node:fs/promises'),path=await import('node:path'),{randomUUID}=await import('node:crypto');
     await fs.mkdir(target.path,{recursive:true});const root=await fs.realpath(target.path);
@@ -26,15 +27,39 @@ export function createFilesystemAuthoringStorageProvider(){return {
       if(prior&&(prior.schema!=='nexusengine.authoring-package/1'||!Number.isSafeInteger(prior.generation)||prior.generation<1))throw fail('AUTHORING_STORAGE_CORRUPT','Malformed prior manifest.');
       if(prior&&prior.projectId!==bundle.projectId)throw fail('AUTHORING_STORAGE_CONFLICT','Cannot overwrite a different project.');
       if((prior?.generation??0)!==expectedGeneration)throw fail('AUTHORING_STORAGE_CONFLICT','Saved generation changed.');
-      for(const [p,data] of Object.entries(bundle.files)){
-        abort(signal);safePath(p);await rejectLinks(fs,path,root,p);
-        const full=path.join(root,...p.split('/'));await fs.mkdir(path.dirname(full),{recursive:true});await rejectLinks(fs,path,root,p);
-        let out;try{out=await fs.open(full,'wx',0o600);}catch(e){if(e.code!=='EEXIST')throw e;
-          if(digest(new Uint8Array(await fs.readFile(full)))!==digest(data))throw fail('AUTHORING_STORAGE_CORRUPT','Existing immutable object differs.');continue;}
-        try{await out.writeFile(asBytes(data));await out.sync();}finally{await out.close();}
-        await syncDir(fs,path.dirname(full));
+      const {createHash}=await import('node:crypto');
+      const {createReadStream}=await import('node:fs');
+      const hashes=Object.create(null);
+      const entries=bundle.entries ? bundle.entries() : (function*(){for(const [path,bytes] of Object.entries(bundle.files))yield {path,bytes};})();
+      for(const entry of entries){
+        abort(signal);
+        const staging=path.join(root,`.authoring-object-${randomUUID()}`);
+        let output;
+        try {
+          output=await fs.open(staging,'wx',0o600);
+          const hash=createHash('sha256');
+          for(const chunk of entry.chunks??[entry.bytes]) {
+            abort(signal);const bytes=typeof chunk==='string'?new TextEncoder().encode(chunk):asBytes(chunk);
+            hash.update(bytes);await output.writeFile(bytes);
+          }
+          await output.sync();await output.close();output=null;
+          const integrity=`sha256:${hash.digest('hex')}`;
+          const p=entry.checkpoint?`checkpoints/${integrity.slice(7)}.json`:safePath(entry.path);
+          await rejectLinks(fs,path,root,p);
+          const full=path.join(root,...p.split('/'));await fs.mkdir(path.dirname(full),{recursive:true});await rejectLinks(fs,path,root,p);
+          let existing=false;
+          try {
+            await fs.stat(full);existing=true;
+            const priorHash=createHash('sha256');for await(const chunk of createReadStream(full))priorHash.update(chunk);
+            if(`sha256:${priorHash.digest('hex')}`!==integrity)throw fail('AUTHORING_STORAGE_CORRUPT','Existing immutable object differs.');
+          } catch(e){if(e.code!=='ENOENT')throw e;}
+          abort(signal);if(!existing)await fs.rename(staging,full);
+          await syncDir(fs,path.dirname(full));hashes[p]=integrity;
+          if(entry.checkpoint)bundle.root={path:p,hash:integrity};
+        } finally {await output?.close();await fs.rm(staging,{force:true});}
       }
-      const generation=expectedGeneration+1,manifest=packageManifest(bundle,generation);
+      if(!bundle.root||hashes[bundle.root.path]!==bundle.root.hash)throw fail('AUTHORING_PACKAGE','Checkpoint is missing or corrupt.');
+      const generation=expectedGeneration+1,manifest={schema:bundle.schema,projectId:bundle.projectId,root:bundle.root,generation,files:hashes};
       const output=await fs.open(path.join(root,tmp),'wx',0o600);
       try{await output.writeFile(jsonBytes(manifest));await output.sync();}finally{await output.close();}
       abort(signal);await fs.rename(path.join(root,tmp),path.join(root,'authoring-project.json'));await syncDir(fs,root);return {generation};

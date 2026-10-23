@@ -4,7 +4,7 @@ Status: active
 
 ## Before Running
 
-- Read `.agent/start-here.md`, `.agent/target.md`, and `.agent/tracker.md`.
+- Read `AGENTS.md`, `.agent/start-here.md`, `.agent/development.md` and the applicable run goal. Resume Engine task/session state from the recorded workspace; the old tracker is historical only.
 - Run `npm run automation:preflight` before writing an automation packet.
 - Prefer current source, tests, and canonical docs over packet history.
 

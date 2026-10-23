@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa<br>
-      Guide content SHA-256: 9f9a7cd840406e75efa16bd702bb220bf72017e23014b0ae3098712fb2211bc9<br><br>
+      Core registry SHA-256: 6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a<br>
+      Guide content SHA-256: 8edb0077b243f87ad2db8d12e65cc8604388afd491fe70278d53fcf73da0b5ff<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -670,6 +670,7 @@ include source/history and reference image tiles as blobs. An exclusive local
 writer session and generation checks prevent accidental competing saves. Files
 and parent directories are synced before manifest replacement. A failed manifest
 write preserves the previous checkpoint. Missing/corrupt records fail explicitly.</p>
+<p>Portable <code>authoringPersistence.save</code> uses incremental filesystem encoding with backpressure. It captures immutable source pointers, resolves one archived history/receipt record at a time, stages each object and streams checkpoint JSON. It preserves the v1 package format, generation conflicts, cancellation and manifest-last publication. Extra memory is bounded by the largest serialized document/history record plus compact object references. Memory/IndexedDB providers retain their compatible eager APIs; loading still observes the existing 256 MiB package-read budget. Concrete IndexedDB execution lives in <code>kits/authoring/storage/indexeddb</code>, behind the existing lazy provider route.</p>
 <p>Browser IndexedDB storage is a separate explicit-save profile with atomic
 transactions and generation checks. It does not claim the Node journal/lease
 profile or cross-device collaboration.</p>
@@ -1322,7 +1323,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
+<p>Registry SHA-256: <code>6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -1530,7 +1531,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
+<p>Registry SHA-256: <code>6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a</code></p>
 <table>
 <thead>
 <tr>
@@ -2542,7 +2543,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
+<p>Registry SHA-256: <code>6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -6106,14 +6107,14 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
+<p>Registry SHA-256: <code>6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a</code></p>
 <ul>
-<li>Source modules: 1767</li>
+<li>Source modules: 1781</li>
 <li>Manifest-proven public atoms: 390</li>
-<li>Manifest-owned internal modules: 1335</li>
-<li>Root contract modules: 25</li>
-<li>Optional provider modules: 16</li>
-<li>Unreviewed modules: 1</li>
+<li>Manifest-owned internal modules: 1337</li>
+<li>Root contract modules: 26</li>
+<li>Optional provider modules: 28</li>
+<li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
 </ul>
 <table>
@@ -6126,46 +6127,118 @@ npm pack --dry-run --json
 </tr>
 </thead>
 <tbody><tr>
-<td><code>kits/build/language-toolchains-kit/index.js</code></td>
-<td><code>n:render</code></td>
+<td><code>kits/agent/production/authoring-recipes.mjs</code></td>
+<td><code>n:agent</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/blockout-recipes.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/cli.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/index.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/inspection-comparison.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/inspection-viewer.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/manifest.js</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/receipt-mapping.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/server.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/storage.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/agent/production/visual-inspection.mjs</code></td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent production host</td>
+</tr>
+<tr>
+<td><code>kits/authoring/storage/indexeddb/index.js</code></td>
+<td><code>n:authoring:persistence</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional IndexedDB storage host</td>
+</tr>
+<tr>
+<td><code>kits/build/language-toolchains-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Language toolchain providers</td>
 </tr>
 <tr>
 <td><code>kits/catalog.js</code></td>
-<td><code>n:render</code></td>
-<td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td><code>n:composition</code></td>
+<td>root-contract</td>
+<td>NexusEngine optional Kit catalog</td>
 </tr>
 <tr>
 <td><code>kits/development/ide-kit/client.mjs</code></td>
-<td><code>n:render</code></td>
+<td><code>n:authoring:code</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional IDE host</td>
 </tr>
 <tr>
 <td><code>kits/development/ide-kit/index.js</code></td>
-<td><code>n:render</code></td>
+<td><code>n:authoring:code</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional IDE host</td>
 </tr>
 <tr>
 <td><code>kits/development/ide-kit/language.js</code></td>
-<td><code>n:render</code></td>
+<td><code>n:authoring:code</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional IDE host</td>
 </tr>
 <tr>
 <td><code>kits/development/ide-kit/protocol.js</code></td>
-<td><code>n:render</code></td>
+<td><code>n:authoring:code</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional IDE host</td>
 </tr>
 <tr>
 <td><code>kits/development/ide-kit/server.mjs</code></td>
-<td><code>n:render</code></td>
+<td><code>n:authoring:code</code></td>
 <td>optional-provider-kit</td>
-<td>NexusEngine optional Graphics Language Kit</td>
+<td>NexusEngine optional IDE host</td>
 </tr>
 <tr>
 <td><code>kits/render/graphics-language-kit/contracts.js</code></td>
@@ -6223,9 +6296,9 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/adapters/node/agent-cli.js</code></td>
-<td>unassigned</td>
-<td>unreviewed</td>
-<td>review-required</td>
+<td><code>n:agent</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Node Agent CLI adapter</td>
 </tr>
 <tr>
 <td><code>src/core-domains/actor/character/index.js</code></td>
@@ -6325,6 +6398,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/agent/interaction/task-graph.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/interaction/workflows.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6961,6 +7040,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/mesh/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/mesh/inspection.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

@@ -1,3 +1,4 @@
+import { createHash } from "node:crypto";
 import { lstat, readFile, readdir } from "node:fs/promises";
 import path from "node:path";
 
@@ -185,6 +186,19 @@ export function createDependencySourceService() {
           requiredEnvironment: ["node"],
           resolutionStatus: integrity && license ? "resolved" : integrity ? "license-unavailable" : "integrity-unavailable"
         }));
+        continue;
+      }
+      if (entry.resolved.startsWith("file:")) {
+        // A local dependency is immutable only when its archive is in the captured source.
+        const relative = posixPath(entry.resolved.slice(5));
+        if (path.isAbsolute(relative) || relative.split("/").includes("..") || !relative.endsWith(".tgz")) throw new Error(`Local dependency must be a project-owned tarball: ${packageName}.`);
+        const archive = projectSource.files.find(file => file.path === relative);
+        if (!archive || !/^sha512-[A-Za-z0-9+/]+=*$/.test(entry.integrity ?? "")) throw new Error(`Local dependency requires captured archive and SHA-512 lock integrity: ${packageName}.`);
+        const actual = "sha512-" + createHash("sha512").update(archive.bytes).digest("base64");
+        if (actual !== entry.integrity) throw new Error(`Local dependency archive integrity mismatch: ${packageName}.`);
+        const tree = await packageTreeIntegrity(projectSource.root, packageName);
+        if (!tree) throw new Error(`Local dependency must be installed: ${packageName}.`);
+        records.push(normalizeBuildSourceRecord({id:`npm:${packageName}@${entry.version}`,sourceKind:"npm",package:packageName,packagePath:packagePath(packageName),canonicalLocator:entry.resolved,exactVersion:entry.version,integrity:contentIntegrity(stableJson({archive:actual,installed:tree})),license,transitiveDependencies:dependencies.map(d=>`npm:${d}`),requiredEnvironment:["node"],resolutionStatus:license?"resolved":"license-unavailable"}));
         continue;
       }
       if (!/^https:\/\//.test(entry.resolved) || !entry.integrity) {

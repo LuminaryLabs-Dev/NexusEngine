@@ -30,17 +30,25 @@ function allOldExports(record) {
 }
 
 function verifyHistory() {
-  try {
-    execFileSync("git", ["rev-parse", "--git-dir"], { cwd: root, stdio: "ignore" });
-  } catch {
-    return;
-  }
   const sourceCommit = document.history.S.commit;
+  let hasSnapshot = false;
+  try {
+    execFileSync("git", ["cat-file", "-e", `${sourceCommit}^{tree}`], {cwd:root, stdio:"ignore"});
+    hasSnapshot = true;
+  } catch {}
+  const archive = document.history.S.sourceArchive;
+  const archiveRoot = archive && path.resolve(root, archive);
+  if (!hasSnapshot) assert.ok(archiveRoot?.startsWith(root + path.sep), "Historical source tree unavailable; a repository-owned source archive is required.");
   for (const record of document.records) {
-    const content = execFileSync("git", ["show", `${sourceCommit}:${record.sourcePath}`], { cwd: root });
+    // An available Git tree remains authoritative. Missing paths or changed bytes
+    // never fall back to another source. Archived bytes must match the original hash.
+    const content = hasSnapshot
+      ? execFileSync("git", ["show", `${sourceCommit}:${record.sourcePath}`], {cwd:root})
+      : fs.readFileSync(path.join(archiveRoot, `${record.sourceSha256}.txt`));
     const actual = crypto.createHash("sha256").update(content).digest("hex");
     assert.equal(actual, record.sourceSha256, `${record.sourcePath} historical checksum drift.`);
   }
+  console.log(`Verified ${document.records.length} historical source hashes from ${hasSnapshot ? "Git" : archive}.`);
 }
 
 assert.equal(document.schema, "nexusengine.restored-behaviors/1");

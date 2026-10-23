@@ -8,14 +8,15 @@ Entry point for NexusEngine automation agents and long-running scans.
 
 ## Read Order
 
-1. `.agent/start-here.md`
-2. `.agent/operating-model.md`
-3. `.agent/automation-rules.md`
-4. `.agent/report-format.md`
-5. `.agent/AGENT_MEMORY.md`
-6. `memory.md`
-7. `README.md`
-8. `state/automation/README.md`
+1. `AGENTS.md`, then `.agent/development.md` and the applicable run goal
+2. `.agent/start-here.md`
+3. `.agent/operating-model.md`
+4. `.agent/automation-rules.md`
+5. `.agent/report-format.md`
+6. `.agent/AGENT_MEMORY.md`
+7. `memory.md`
+8. `README.md`
+9. `state/automation/README.md`
 
 ## Rule
 

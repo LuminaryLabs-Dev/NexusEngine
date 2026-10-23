@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
-  "compositionRegistryHash": "sha256:bf00288ffbddf927128fcd6c2c11c95787e8ac133f2bdf0b35ac8463af82869d",
+  "registryHash": "sha256:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+  "compositionRegistryHash": "sha256:681d803b228e9af2f87a0185a58d464c85544f5b292712fc9f1af25703ac178b",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
-      "integrity": "sha256:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+      "sourceCommit": "builtin:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+      "integrity": "sha256:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
       "status": "available",
       "environments": [
         "browser",
@@ -8096,9 +8096,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8258,9 +8260,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8332,9 +8336,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8673,9 +8679,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8747,9 +8755,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8821,9 +8831,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8899,9 +8911,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -8973,9 +8987,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9047,9 +9063,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9121,9 +9139,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9195,9 +9215,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9272,9 +9294,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9346,9 +9370,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9421,9 +9447,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9849,9 +9877,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -9997,9 +10027,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -10071,9 +10103,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -10321,9 +10355,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -10661,9 +10697,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {
@@ -10827,9 +10865,11 @@
           }
         },
         "proof": {
-          "status": "pending",
+          "status": "proven",
           "references": [
-            "tests/core-domains/core-authoring-consolidation.mjs"
+            "tests/core-domains/core-authoring-consolidation.mjs",
+            "tests/core-domains/core-authoring-io-safety.mjs",
+            "tests/core-domains/core-authoring-roundtrip.mjs"
           ],
           "consumers": [
             {

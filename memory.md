@@ -16,8 +16,8 @@ broad catalog of useful game features.
   adapters, and policies that are niche, genre-specific, or platform-specific.
 - Experiment and game repositories: complete games, authored recipes, presets,
   content, product UI, and tuning.
-- `NexusEngine-Editor`: repository tooling, terminal access, guided-development
-  control plane, concrete hosts, and editor integrations.
+- `NexusEngine-Editor`: optional editor UI, concrete hosts and editor integrations.
+  Engine Agent task/session APIs and optional production hosts own reusable workflow coordination.
 - `tests/`: isolated fixtures may use niche scenarios only to prove generic
   Core invariants; production source never imports them.
 
@@ -206,13 +206,15 @@ blindly reverse-imported.
 
 ## Agent Conventions
 
-- Read `AGENTS.md`, `.agent/target.md`, and `.agent/tracker.md`.
+- Read `AGENTS.md`, `.agent/development.md`, and the applicable run goal.
+  Preserve unrelated targets; the archived tracker is historical only.
 - Version-cycle planning is repository-owned under `.agent/versions/<version>/`.
   Plans, matrices, checklists, readiness, delivery queues, and evidence indexes
   use repository-relative paths or stable `repo://<name>` references. Never
   commit a user name, home-directory path, temporary path, or sibling checkout
   location as planning authority.
-- Use the NexusEngine-Editor guided-development harness and inspect its evidence.
+- Resume Engine Agent task/session state and inspect actual validation reports.
+  No Editor controller is required.
 - Consult `docs/KIT-OWNERSHIP.md` before production changes.
 - Preserve other worktrees and generated evidence; never stash, reset, or absorb
   unrelated work.

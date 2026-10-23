@@ -36,3 +36,62 @@ export function decodeProjectPackage(bundle) {
   return {...checkpoint,documents:Object.fromEntries(Object.entries(checkpoint.documents).map(([id,ref])=>[id,document(ref)])),undo:history(checkpoint.undo),redo:history(checkpoint.redo)};
 }
 export function packageManifest(bundle,generation){return record({schema:bundle.schema,projectId:bundle.projectId,root:bundle.root,generation,files:Object.fromEntries(Object.entries(bundle.files).map(([p,b])=>[p,digest(b)]))});}
+
+/** Pull-based v1 encoder. Retains references, never the encoded project or full history.
+ * The writer hashes the final checkpoint chunks and assigns bundle.root before commit.
+ */
+export function streamProjectPackage(source) {
+  const references = new Map();
+  const key = doc => JSON.stringify([doc.id, doc.kind, doc.revision, doc.hash]);
+  const ref = doc => doc === null ? null : references.get(key(doc));
+  const bundle = {schema:'nexusengine.authoring-package/1', projectId:source.projectId, root:null};
+  function* document(doc) {
+    if (doc === null || references.has(key(doc))) return;
+    let content = doc.content;
+    if (doc.kind === 'image') {
+      const layers = [];
+      for (const layer of content.layers) {
+        const tiles = {};
+        for (const [name, value] of Object.entries(layer.tiles)) {
+          const bytes = unhex(value), hash = digest(bytes), path = `blobs/${hash.slice(7)}`;
+          yield {path, bytes}; tiles[name] = {path, hash};
+        }
+        layers.push({...layer, tiles});
+      }
+      content = {...content, layers};
+    }
+    const bytes = jsonBytes({...doc, content}), hash = digest(bytes), path = `documents/${hash.slice(7)}.json`;
+    references.set(key(doc), {path, hash});
+    yield {path, bytes};
+  }
+  const historyEntry = entry => ({...entry, deltas:entry.deltas.map(delta => ({...delta, before:ref(delta.before), after:ref(delta.after)}))});
+  function* object(entries) {
+    yield '{'; let comma = '';
+    for (const [name, value] of entries) { yield comma; yield JSON.stringify(name); yield ':'; yield jsonBytes(value); comma = ','; }
+    yield '}';
+  }
+  function* history(entries) {
+    yield '['; let comma = '';
+    for (const entry of entries) { yield comma; yield jsonBytes(historyEntry(entry)); comma = ','; }
+    yield ']';
+  }
+  function* checkpoint() {
+    yield '{'; let comma = '';
+    for (const name of ['clock','documents','epoch','projectId','receipts','redo','schema','undo']) {
+      yield comma; yield JSON.stringify(name); yield ':';
+      if (name === 'documents') yield* object((function*(){for(const [id,doc] of source.documents()) yield [id,ref(doc)];})());
+      else if (name === 'receipts') yield* object(source.receipts());
+      else if (name === 'redo' || name === 'undo') yield* history(source[name]());
+      else yield jsonBytes(source[name]);
+      comma = ',';
+    }
+    yield '}';
+  }
+  bundle.entries = function* () {
+    for (const [,doc] of source.documents()) yield* document(doc);
+    for (const stack of ['undo','redo']) for (const entry of source[stack]())
+      for (const delta of entry.deltas) { yield* document(delta.before); yield* document(delta.after); }
+    yield {checkpoint:true, chunks:checkpoint()};
+  };
+  return bundle;
+}

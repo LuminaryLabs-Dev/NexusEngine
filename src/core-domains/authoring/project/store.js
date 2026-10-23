@@ -32,6 +32,10 @@ export function createAuthoringProjectStore({
   projectId = "project",
   maxHistory = 128,
   maxReceipts = 10000,
+  maxHistoryBytes = Infinity,
+  historyArchive = null,
+  maxReceiptBytes = Infinity,
+  receiptArchive = null,
 }) {
   requireText(projectId, "projectId");
   requireInteger(maxHistory, "maxHistory", 1, 10000);
@@ -52,7 +56,29 @@ export function createAuthoringProjectStore({
   if (!read()) write(freeze(empty()));
   let recoveryState = null;
   const state = () => recoveryState ?? read();
+  if (!(maxHistoryBytes > 0) || (Number.isFinite(maxHistoryBytes) && (!historyArchive?.put || !historyArchive?.get))) throw new TypeError("A finite history budget requires a synchronous durable history archive.");
+  if (!(maxReceiptBytes > 0) || (Number.isFinite(maxReceiptBytes) && (!receiptArchive?.put || !receiptArchive?.get))) throw new TypeError("A finite receipt budget requires a durable archive.");
+  const resolveChange = change => change.archive ? historyArchive.get(change.archive) : change;
+  const resolveReceipt = receipt => receipt.archive ? receiptArchive.get(receipt.archive) : receipt;
+  const portableSnapshot = value => ({ ...value, receipts:Object.fromEntries(Object.entries(value.receipts).map(([id,r])=>[id,resolveReceipt(r)])), undo: value.undo.map(resolveChange), redo: value.redo.map(resolveChange) });
+  const budgetHistory = value => {
+    let receiptBytes = 0;
+    if (receiptArchive) value = { ...value, receipts:Object.fromEntries(Object.entries(value.receipts).reverse().map(([id,r])=>{
+      if(r.archive)return [id,r];receiptBytes += JSON.stringify(r).length*2;
+      return [id,receiptBytes>maxReceiptBytes?{archive:receiptArchive.put(r)}:r];
+    }).reverse()) };
+    if (!historyArchive) return freeze(value);
+    let bytes = 0;
+    const compact = stack => [...stack].reverse().map(change => {
+      if (change.archive) return change;
+      const size = JSON.stringify(change).length * 2;
+      bytes += size;
+      return bytes > maxHistoryBytes ? { archive: historyArchive.put(change) } : change;
+    }).reverse();
+    return freeze({ ...value, undo: compact(value.undo), redo: compact(value.redo) });
+  };
   const publish = (value) => {
+    value = budgetHistory(value);
     if (recoveryState) recoveryState = value;
     else write(value);
   };
@@ -194,7 +220,7 @@ export function createAuthoringProjectStore({
     const current = state(),
       requestHash = hash(request);
     if (owns(current.receipts, request.requestId)) {
-      const receipt = current.receipts[request.requestId];
+      const receipt = resolveReceipt(current.receipts[request.requestId]);
       if (receipt.requestHash !== requestHash)
         throw error(
           "AUTHORING_REQUEST_CONFLICT",
@@ -423,7 +449,7 @@ export function createAuthoringProjectStore({
       stack = current[direction];
     if (!stack.length)
       throw error("AUTHORING_HISTORY_EMPTY", `No ${direction} is available.`);
-    const change = stack.at(-1),
+    const change = resolveChange(stack.at(-1)),
       documents = Object.assign(Object.create(null), current.documents),
       deltas = [];
     let clock = current.clock;
@@ -718,7 +744,26 @@ export function createAuthoringProjectStore({
       return travel(input, "redo");
     },
     getSnapshot({ immutable = false } = {}) {
-      return immutable ? freeze(sharedCanonical(state())) : canonical(state());
+      const value = portableSnapshot(state());
+      return immutable ? freeze(sharedCanonical(value)) : canonical(value);
+    },
+    // Capture immutable pointers now; resolve one archived record per iterator step.
+    getPortableSnapshotStream() {
+      const captured = state();
+      return {
+        schema: captured.schema, projectId: captured.projectId, clock: captured.clock, epoch: captured.epoch,
+        documents: function* () { for (const id of Object.keys(captured.documents).sort()) yield [id, captured.documents[id]]; },
+        receipts: function* () { for (const id of Object.keys(captured.receipts).sort()) yield [id, resolveReceipt(captured.receipts[id])]; },
+        undo: function* () { for (const change of captured.undo) yield resolveChange(change); },
+        redo: function* () { for (const change of captured.redo) yield resolveChange(change); },
+      };
+    },
+    getStorageSnapshot() { return state(); },
+    loadStorageSnapshot(input) { return this.loadSnapshot(portableSnapshot(input)); },
+    historyDiagnostics() {
+      const stacks = [...state().undo, ...state().redo];
+      return { entries: stacks.length, archived: stacks.filter(c => c.archive).length,
+        hotBytes: stacks.filter(c => !c.archive).reduce((n,c) => n + JSON.stringify(c).length * 2,0), maxHistoryBytes };
     },
     validateSnapshot(input) {
       validateSnapshot(input);

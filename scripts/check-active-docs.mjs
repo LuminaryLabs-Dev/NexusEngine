@@ -29,7 +29,10 @@ const activeDocs = [
   path.join(root, "memory.md"),
   ...await markdownFiles(path.join(root, "docs"), historical),
   ...await markdownFiles(path.join(root, ".agent"), (relativePath, entry) => {
-    return entry.isDirectory() && ["runs", "evidence"].includes(entry.name);
+    // Historical contracts retain their original relative links and bytes.
+    // Their archive hashes are validated separately from active documentation.
+    return entry.isDirectory() && (["runs", "evidence"].includes(entry.name)
+      || relativePath === path.join(".agent", "archive"));
   }),
   path.join(root, "state", "automation", "AUTOMATION_MANIFEST.md")
 ];

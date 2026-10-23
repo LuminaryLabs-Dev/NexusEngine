@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`<br>
-Guide content SHA-256: `9f9a7cd840406e75efa16bd702bb220bf72017e23014b0ae3098712fb2211bc9`
+Core registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`<br>
+Guide content SHA-256: `8edb0077b243f87ad2db8d12e65cc8604388afd491fe70278d53fcf73da0b5ff`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -558,6 +558,8 @@ include source/history and reference image tiles as blobs. An exclusive local
 writer session and generation checks prevent accidental competing saves. Files
 and parent directories are synced before manifest replacement. A failed manifest
 write preserves the previous checkpoint. Missing/corrupt records fail explicitly.
+
+Portable `authoringPersistence.save` uses incremental filesystem encoding with backpressure. It captures immutable source pointers, resolves one archived history/receipt record at a time, stages each object and streams checkpoint JSON. It preserves the v1 package format, generation conflicts, cancellation and manifest-last publication. Extra memory is bounded by the largest serialized document/history record plus compact object references. Memory/IndexedDB providers retain their compatible eager APIs; loading still observes the existing 256 MiB package-read budget. Concrete IndexedDB execution lives in `kits/authoring/storage/indexeddb`, behind the existing lazy provider route.
 
 Browser IndexedDB storage is a separate explicit-save profile with atomic
 transactions and generation checks. It does not claim the Node journal/lease
@@ -1334,7 +1336,7 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
+Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -1542,7 +1544,7 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 
 # Core Dependency Table
 
-Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
+Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -1754,7 +1756,7 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
+Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
 
 ## Domains
 
@@ -2363,25 +2365,37 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
+Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
 
-- Source modules: 1767
+- Source modules: 1781
 - Manifest-proven public atoms: 390
-- Manifest-owned internal modules: 1335
-- Root contract modules: 25
-- Optional provider modules: 16
-- Unreviewed modules: 1
+- Manifest-owned internal modules: 1337
+- Root contract modules: 26
+- Optional provider modules: 28
+- Unreviewed modules: 0
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
-| `kits/build/language-toolchains-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/catalog.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/development/ide-kit/client.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/development/ide-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/development/ide-kit/language.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/development/ide-kit/protocol.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `kits/development/ide-kit/server.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/cli.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/index.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/inspection-comparison.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/inspection-viewer.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/manifest.js` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/receipt-mapping.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/server.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/storage.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/agent/production/visual-inspection.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
+| `kits/authoring/storage/indexeddb/index.js` | `n:authoring:persistence` | optional-provider-kit | NexusEngine optional IndexedDB storage host |
+| `kits/build/language-toolchains-kit/index.js` | `n:build` | optional-provider-kit | NexusEngine optional Language toolchain providers |
+| `kits/catalog.js` | `n:composition` | root-contract | NexusEngine optional Kit catalog |
+| `kits/development/ide-kit/client.mjs` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
+| `kits/development/ide-kit/index.js` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
+| `kits/development/ide-kit/language.js` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
+| `kits/development/ide-kit/protocol.js` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
+| `kits/development/ide-kit/server.mjs` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
 | `kits/render/graphics-language-kit/contracts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/hosts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
@@ -2391,7 +2405,7 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 | `kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/runtime/loader.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/session.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
-| `src/adapters/node/agent-cli.js` | unassigned | unreviewed | review-required |
+| `src/adapters/node/agent-cli.js` | `n:agent` | optional-provider-kit | NexusEngine optional Node Agent CLI adapter |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
@@ -2409,6 +2423,7 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 | `src/core-domains/agent/interaction/answer-session.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/task-graph.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/interaction/workflows.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/action-proposals.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/adapters.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/agent-state.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
@@ -2515,6 +2530,7 @@ Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024b
 | `src/core-domains/authoring/mesh/evaluate.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/mesh/geometry.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/mesh/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/mesh/inspection.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/mesh/primitives.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |

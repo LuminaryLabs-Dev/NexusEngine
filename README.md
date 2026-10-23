@@ -23,8 +23,8 @@ Editor host, persistence, preview and GLB export.
 3. Read [Kit Ownership](docs/KIT-OWNERSHIP.md) before changing production code.
 4. Read [Current Architecture](docs/CURRENT-ARCHITECTURE.md) and
    [Operations](docs/OPERATIONS.md) before release work.
-5. Follow [AGENTS.md](AGENTS.md), `.agent/target.md`, and `.agent/tracker.md` for
-   repository work.
+5. Follow [AGENTS.md](AGENTS.md) and [Engine-backed development](.agent/development.md) for
+   repository work. Engine task/session state and validation reports replace the retired Editor completion tracker.
 
 ## Ownership
 

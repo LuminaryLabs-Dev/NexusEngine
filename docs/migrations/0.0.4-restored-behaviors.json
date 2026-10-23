@@ -8,7 +8,7 @@
     "K": { "commit": "99292c7d1d93ca2d50a3d8a8a6f8601154670498", "meaning": "Expanded Kit implementations" },
     "T": { "commit": "8b57b03904889cdbc71021d3bdb1d4070af5c8d3", "meaning": "Seamless streamed-terrain normals" },
     "R": { "commit": "8b968c201b713c2cb00447e7765f0e2c16dcec8a", "meaning": "Pre-consolidation Core refactor" },
-    "S": { "commit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9", "meaning": "Last complete source snapshot" },
+    "S": { "commit": "a9adca5b3620f996f00860358c4864dd4bdfa6d9", "meaning": "Last complete source snapshot", "sourceArchive": "docs/migrations/restored-source-evidence" },
     "X": { "commit": "a68544434424438491be1398e3f3d5aced5bc5ee", "meaning": "Removal commit" }
   },
   "counts": { "historicalModules": 26, "behaviorAtoms": 27, "optionalAdapters": 9, "recipes": 6 },

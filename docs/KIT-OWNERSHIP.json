@@ -1,12 +1,12 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1335,
+    "manifestOwnedInternalModules": 1337,
     "manifestProvenPublicAtoms": 390,
-    "optionalProviderModules": 16,
-    "rootContractModules": 25,
-    "sourceModules": 1767,
-    "unreviewedModules": 1,
+    "optionalProviderModules": 28,
+    "rootContractModules": 26,
+    "sourceModules": 1781,
+    "unreviewedModules": 0,
     "violations": 0
   },
   "generatedFrom": [
@@ -18,13 +18,269 @@
     {
       "atomic": null,
       "currentConsumers": [
-        "./kits/build/language-toolchains"
+        "./kits/agent/production/recipes"
       ],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional Agent production host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/recipes"
+      ],
+      "path": "kits/agent/production/authoring-recipes.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "AUTHORING_RECIPES",
+        "authorBlockoutAsset",
+        "authorHingedAsset",
+        "correctHingedAsset",
+        "refinePanelAppearance"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/agent/production/blockout-recipes.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "AUTHORING_RECIPES",
+        "authorBlockoutAsset"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production/cli"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/cli"
+      ],
+      "path": "kits/agent/production/cli.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "runProductionCli"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production"
+      ],
+      "path": "kits/agent/production/index.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "PRODUCTION_WORKFLOWS",
+        "TOOL_DEFINITIONS",
+        "createEngineProductionHost"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production/comparison"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/comparison"
+      ],
+      "path": "kits/agent/production/inspection-comparison.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "compareInspections"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/agent/production/inspection-viewer.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/agent/production/manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "productionProviderManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production/receipts"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/receipts"
+      ],
+      "path": "kits/agent/production/receipt-mapping.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "ENGINE_REVISION",
+        "digest",
+        "errorResult",
+        "receipt"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production/server"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/server"
+      ],
+      "path": "kits/agent/production/server.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "startProductionMcp"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/agent/production/storage.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createProductionStorage"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/production/inspection"
+      ],
+      "destination": "NexusEngine optional Agent production host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "kits/agent/production/manifest.js",
+      "packageEntrypoints": [
+        "./kits/agent/production/inspection"
+      ],
+      "path": "kits/agent/production/visual-inspection.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "inspectAuthoringAsset"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/authoring/storage/indexeddb"
+      ],
+      "destination": "NexusEngine optional IndexedDB storage host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring:persistence",
+      "ownershipBasis": "src/core-domains/authoring/persistence/providers/indexeddb/index.js",
+      "packageEntrypoints": [
+        "./kits/authoring/storage/indexeddb"
+      ],
+      "path": "kits/authoring/storage/indexeddb/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createIndexedDBAuthoringStorageProvider"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/build/language-toolchains"
+      ],
+      "destination": "NexusEngine optional Language toolchain providers",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "kits/build/language-toolchains-kit/index.js",
       "packageEntrypoints": [
         "./kits/build/language-toolchains"
       ],
@@ -43,11 +299,11 @@
       "currentConsumers": [
         "./kits"
       ],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional Kit catalog",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:composition",
+      "ownershipBasis": "package.json optional-kit export",
       "packageEntrypoints": [
         "./kits"
       ],
@@ -58,19 +314,20 @@
         "IDE_ENTRY",
         "LANGUAGE_TOOLCHAINS_ENTRY",
         "OPTIONAL_KIT_CATALOG",
-        "installOptionalKit"
+        "installOptionalKit",
+        "productionProviderManifest"
       ],
       "responsibility": null,
-      "reviewStatus": "optional-provider-kit"
+      "reviewStatus": "root-contract"
     },
     {
       "atomic": null,
       "currentConsumers": [],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional IDE host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:authoring:code",
+      "ownershipBasis": "kits/development/ide-kit/index.js",
       "packageEntrypoints": [],
       "path": "kits/development/ide-kit/client.mjs",
       "productOrGenreSpecific": null,
@@ -84,11 +341,11 @@
       "currentConsumers": [
         "./kits/development/ide"
       ],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional IDE host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:authoring:code",
+      "ownershipBasis": "kits/development/ide-kit/index.js",
       "packageEntrypoints": [
         "./kits/development/ide"
       ],
@@ -107,11 +364,11 @@
     {
       "atomic": null,
       "currentConsumers": [],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional IDE host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:authoring:code",
+      "ownershipBasis": "kits/development/ide-kit/index.js",
       "packageEntrypoints": [],
       "path": "kits/development/ide-kit/language.js",
       "productOrGenreSpecific": null,
@@ -125,11 +382,11 @@
     {
       "atomic": null,
       "currentConsumers": [],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional IDE host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:authoring:code",
+      "ownershipBasis": "kits/development/ide-kit/index.js",
       "packageEntrypoints": [],
       "path": "kits/development/ide-kit/protocol.js",
       "productOrGenreSpecific": null,
@@ -143,11 +400,11 @@
     {
       "atomic": null,
       "currentConsumers": [],
-      "destination": "NexusEngine optional Graphics Language Kit",
+      "destination": "NexusEngine optional IDE host",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": "n:render",
-      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "owner": "n:authoring:code",
+      "ownershipBasis": "kits/development/ide-kit/index.js",
       "packageEntrypoints": [],
       "path": "kits/development/ide-kit/server.mjs",
       "productOrGenreSpecific": null,
@@ -355,11 +612,11 @@
     {
       "atomic": null,
       "currentConsumers": [],
-      "destination": "review-required",
+      "destination": "NexusEngine optional Node Agent CLI adapter",
       "fullyReusable": null,
       "idempotency": null,
-      "owner": null,
-      "ownershipBasis": "none",
+      "owner": "n:agent",
+      "ownershipBasis": "bin/nexusengine.mjs",
       "packageEntrypoints": [],
       "path": "src/adapters/node/agent-cli.js",
       "productOrGenreSpecific": null,
@@ -368,7 +625,7 @@
         "runAgentCli"
       ],
       "responsibility": null,
-      "reviewStatus": "unreviewed"
+      "reviewStatus": "optional-provider-kit"
     },
     {
       "atomic": null,
@@ -781,19 +1038,24 @@
     },
     {
       "atomic": null,
-      "currentConsumers": [],
+      "currentConsumers": [
+        "./domains/agent/interaction"
+      ],
       "destination": "NexusEngine Core",
       "fullyReusable": null,
       "idempotency": null,
       "owner": "n:agent",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
+      "packageEntrypoints": [
+        "./domains/agent/interaction"
+      ],
       "path": "src/core-domains/agent/interaction/index.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
         "createAgentAnswerSession",
-        "createAgentTaskGraph"
+        "createAgentTaskGraph",
+        "createAgentWorkflowStore"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -812,6 +1074,24 @@
       "proof": null,
       "publicExports": [
         "createAgentTaskGraph"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/interaction/workflows.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentWorkflowStore"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -2011,9 +2291,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringCreateServiceKit"
@@ -2508,9 +2790,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringImportCommitKit"
@@ -2568,9 +2852,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringImportRegistryKit"
@@ -2628,9 +2914,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringImportServiceKit"
@@ -2688,9 +2976,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringImportValidationKit"
@@ -2952,7 +3242,9 @@
       "proof": null,
       "publicExports": [
         "*",
+        "MODELING_HELP",
         "authoringDomainManifest",
+        "bindSelection",
         "createAuthoringAnimationServiceKit",
         "createAuthoringAssemblyServiceKit",
         "createAuthoringBrushServiceKit",
@@ -2972,7 +3264,10 @@
         "createAuthoringSequenceServiceKit",
         "createAuthoringSkinServiceKit",
         "createAuthoringUVServiceKit",
-        "createAuthoringWorkspaceServiceKit"
+        "createAuthoringWorkspaceServiceKit",
+        "inspectGeometry",
+        "selectGeometry",
+        "validateSelection"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -3295,6 +3590,29 @@
       "proof": null,
       "publicExports": [
         "createAuthoringMeshDocumentKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/mesh/inspection.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "MODELING_HELP",
+        "bindSelection",
+        "inspectGeometry",
+        "meshDocument",
+        "selectGeometry",
+        "validateSelection"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -3843,9 +4161,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringLoadKit"
@@ -3903,9 +4223,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringPersistenceServiceKit"
@@ -3963,9 +4285,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringProjectPackageKit"
@@ -4023,9 +4347,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringSaveKit"
@@ -4083,9 +4409,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringStorageProviderRegistryKit"
@@ -4124,7 +4452,8 @@
       "publicExports": [
         "decodeProjectPackage",
         "encodeProjectPackage",
-        "packageManifest"
+        "packageManifest",
+        "streamProjectPackage"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -4498,9 +4827,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringExportCapabilityKit"
@@ -4558,9 +4889,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringExportReceiptKit"
@@ -4618,9 +4951,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringExportRegistryKit"
@@ -4678,9 +5013,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringExportServiceKit"
@@ -4738,9 +5075,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringExportValidationKit"
@@ -5703,9 +6042,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringDeliveryValidationKit"
@@ -5763,9 +6104,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringDocumentValidationKit"
@@ -5823,9 +6166,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringFormatValidationKit"
@@ -5883,9 +6228,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringProjectValidationKit"
@@ -5943,9 +6290,11 @@
           }
         ],
         "references": [
-          "tests/core-domains/core-authoring-consolidation.mjs"
+          "tests/core-domains/core-authoring-consolidation.mjs",
+          "tests/core-domains/core-authoring-io-safety.mjs",
+          "tests/core-domains/core-authoring-roundtrip.mjs"
         ],
-        "status": "pending"
+        "status": "proven"
       },
       "publicExports": [
         "createAuthoringValidationReportKit"
@@ -44916,7 +45265,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+  "registrySha256": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

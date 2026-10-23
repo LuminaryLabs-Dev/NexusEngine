@@ -5,7 +5,7 @@ import { createAuthoringProjectStore } from "../../store.js";
 export function createAuthoringProjectDocumentKit(config = {}) {
   requireFields(
     config,
-    ["projectId", "maxHistory", "maxReceipts"],
+    ["projectId", "maxHistory", "maxReceipts", "maxHistoryBytes", "historyArchive", "maxReceiptBytes", "receiptArchive"],
     "authoring-project-document-kit configuration",
   );
   return createDomainKit({
@@ -17,7 +17,7 @@ export function createAuthoringProjectDocumentKit(config = {}) {
     apiName: "authoringProject",
     requires: ["n:authoring"],
     provides: ["n:authoring:project"],
-    config,
+    config: Object.fromEntries(Object.entries(config).filter(([key]) => !["historyArchive","receiptArchive"].includes(key))),
     purpose: "Own project Authoring contracts and typed operations.",
     createApi({ engine, world, State, baseApi }) {
       const api = (() => {
@@ -28,6 +28,10 @@ export function createAuthoringProjectDocumentKit(config = {}) {
           projectId: config.projectId,
           maxHistory: config.maxHistory,
           maxReceipts: config.maxReceipts,
+          maxHistoryBytes: config.maxHistoryBytes,
+          historyArchive: config.historyArchive,
+          maxReceiptBytes: config.maxReceiptBytes,
+          receiptArchive: config.receiptArchive,
         });
         return { ...store, getState: store.getSnapshot };
       })();

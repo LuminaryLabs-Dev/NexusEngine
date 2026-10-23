@@ -1,9 +1,10 @@
-# Guided Development Instructions
+# Development instructions
 
-1. Read `AGENTS.md` completely.
-2. Read `.agent/target.md` as the current task and acceptance contract.
-3. Run `nexus-editor start` for a new target or `nexus-editor resume` for an active run.
-4. Read `.agent/tracker.md` after every meaningful stage.
-5. Follow the tracker route, record implementation and test evidence, and continue.
-6. Do not manually edit generated controller state in `.agent/tracker.md` or `.agent/runs/*/state.json`.
-7. Stop only when the run is complete, externally blocked, or waiting for a product decision.
+1. Read `AGENTS.md` and `.agent/development.md`.
+2. Select the applicable run goal; preserve unrelated targets and historical runs.
+3. Create or resume existing Engine Agent task/session state using the recorded workspace and IDs.
+4. Inspect, implement and validate within the user's authorized scope.
+5. Record actual results and evidence references; persist progress through the selected Engine host.
+6. Keep failed or unverified work unfinished. Report blockers and the next action explicitly.
+
+The old Editor controller and completion tracker are retired. No separate controller is required. Historical records remain in `.agent/archive/2026-10-23-editor-controller/`.

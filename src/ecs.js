@@ -84,6 +84,12 @@ function createJournal() {
     push(record) {
       records.push({ sequence: ++sequence, ...record });
     },
+    acknowledge(through) {
+      let count = 0;
+      while (count < records.length && records[count].sequence <= through) count++;
+      records.splice(0, count);
+    },
+    get size() { return records.length; },
     drain() {
       const snapshot = records.slice();
       records.length = 0;
@@ -314,6 +320,17 @@ export function createWorld() {
       }
     },
 
+    peekJournal() { return journal.snapshot().records; },
+    pendingMutations() {
+      return { journalRecords: journal.size, queuedEvents: [...eventQueues.values()].reduce((n, q) => n + q.length, 0) };
+    },
+    acknowledgeJournal(records) {
+      if (!records.length) return;
+      const counts = new Map();
+      for (const record of records) if (record.kind === "event") counts.set(record.event, (counts.get(record.event) ?? 0) + 1);
+      for (const [event, count] of counts) ensureEventQueue(event).splice(0, count);
+      journal.acknowledge(records.at(-1).sequence);
+    },
     drainJournal() {
       return journal.drain();
     },

@@ -4,46 +4,24 @@ This file defines how agents must work inside NexusEngine.
 
 ## Mandatory Development Bootstrap
 
-For every planning, implementation, repair, promotion, or validation task:
+For every planning, implementation, repair, promotion or validation task:
 
-1. Read this file completely.
-2. Read `.agent/target.md` as the current goal and acceptance contract.
-3. Read `.agent/tracker.md` as the generated controller state and resume point.
-4. Resume the active guided-development run when one exists.
-5. Otherwise create a new run under `.agent/runs/<run-id>/`.
-6. Initialize the NexusEngine-Editor guided-development controller using that
-   run folder as its workspace.
-7. Set `.agent/target.md` as the run goal.
-8. Run `status`, then follow `next` or `continue` through the guided development loop.
-9. Inspect every evidence file named by the tracker before planning, applying, validating, or claiming completion.
-10. Write plans, risks, changes, tests, failures, repairs, verification, differences, and reports into the active run folder.
-11. Let the Headless Editor update `.agent/tracker.md`; do not manually substitute tracker prose for controller state.
-12. Continue until the target is proven complete, an exact external blocker is recorded, or a product decision requires user input.
+1. Read this file and `.agent/development.md`.
+2. Read the current user request and the applicable target. Preserve `.agent/target.md` when it belongs to another task; record this task's goal under `.agent/runs/<run-id>/goal.md` instead.
+3. Resume the applicable Engine Agent task/session using the workspace and IDs recorded in the run's `run.json`, or create them through the existing Engine workflow APIs.
+4. Read the associated validation reports and evidence before claiming completion.
+5. Record plans, changes, failures, repairs, commands, results and remaining work in the run folder. Keep large artifacts outside Agent working context and reference them by path/hash.
+6. Run checks appropriate to the actual changes. Mark work complete only when the required evidence passes; record failures, missing evidence and blockers explicitly.
 
-There is no static development profile. The target is the input, the tracker is the operating memory, and the Headless Editor is the execution layer.
+Engine task/session state is the execution resume point. Validation reports establish correctness. The agent selects work within the user's authority; optional hosts execute filesystem, terminal and browser actions. No Editor application, `nexus-editor` executable or separate guided-development controller is required.
 
-The minimum instruction required to begin work is:
+The former completion tracker is retired. `.agent/tracker.md` is a historical pointer only; it must not be used as current completion authority.
 
-```txt
-Read and follow AGENTS.md to implement the target in .agent/target.md.
-```
+## Development Interfaces
 
-## Guided Development Commands
+The former Editor controller commands are retired as repository prerequisites. Use the existing Engine Agent workflow APIs and optional production host, MCP or CLI surfaces for task/session state; discover supported operations before invoking them. See `.agent/development.md` for the active procedure.
 
-From the repository root:
-
-```txt
-nexus-editor target
-nexus-editor start
-nexus-editor resume
-nexus-editor status
-nexus-editor next
-nexus-editor continue
-nexus-editor report
-```
-
-The `nexus-editor` executable is owned and supplied by NexusEngine-Editor. This
-Core package does not ship repository, terminal, or guided-development tooling.
+No replacement controller, tracker generator or new top-level domain is introduced. Historical instructions and the original tracker are preserved under `.agent/archive/2026-10-23-editor-controller/`.
 
 ## Prime Directive
 
@@ -166,9 +144,9 @@ same change.
 
 ## Agent Work Loop
 
-Every task must follow this loop inside the active guided-development run:
+Every task must follow this loop within its Engine-backed task/session:
 
-1. Bootstrap from `AGENTS.md`, `.agent/target.md`, and `.agent/tracker.md`.
+1. Bootstrap from `AGENTS.md`, `.agent/development.md` and the applicable run goal.
 2. Inspect the existing kit and domain structure before editing.
 3. Identify the domain that owns the requested behavior.
 4. Check whether a kit already provides the capability.
@@ -178,103 +156,43 @@ Every task must follow this loop inside the active guided-development run:
 8. Make the change idempotent.
 9. Add or update reset, snapshot, replay, and validation behavior when state matters.
 10. Run the smallest meaningful validation available.
-11. Run every reliability check inferred by the Headless Editor.
+11. Select and run reliability checks justified by the changed contracts and risk.
 12. Reconcile exports, docs, package surfaces, examples, manifests, and fixtures.
 13. Verify and compare before and after evidence.
 14. Report the exact domain, kit, files, validation, evidence, and remaining risk.
 
 Do not skip the loop because a change appears small. Small scattered changes are how the engine loses its operating-system shape.
 
-## Guided Development Loop
+## Evidence-Based Development Loop
 
-The NexusEngine-Editor controller wraps the finite evidence lifecycle in a
-persistent development loop:
+Use the existing development sequence:
 
-```txt
-BOOTSTRAP
-→ READ TARGET
-→ INSPECT REPOSITORY
-→ FIND DOMAIN
-→ FIND KIT
-→ INSPECT COMPOSITION
-→ CLASSIFY RISK
-→ PLAN
-→ VALIDATE PLAN
-→ APPLY
-→ RELOAD
-→ RUN FIXTURES
-→ VERIFY
-→ COMPARE
-→ DECIDE
+```text
+inspect -> find domain/kit -> plan -> apply -> validate -> compare -> report
 ```
 
-Decision routing is mandatory:
+Engine Agent task graphs record dependencies, pending work, failures and revisions. Answer sessions record intent, outstanding requests, results and handoffs. Runtime commits persist progress and reclaim delivered transient state without advancing gameplay.
 
-```txt
-complete
-→ generate report
-→ close run
-→ update tracker
-
-failed
-→ write failure evidence
-→ diagnose
-→ increment the repair iteration
-→ replan
-
-insufficient evidence
-→ identify the missing evidence
-→ run or create the required fixture
-→ return to verification
-
-external blocker
-→ record the exact blocker
-→ pause the run
-
-product decision required
-→ record the question
-→ ask the user
-```
-
-The agent reasons and edits code. The harness owns sequence, routing, evidence requirements, validation gates, iteration state, resumption, and completion criteria.
+On failure, preserve the evidence, revise affected work and repair it before repeating relevant checks. If evidence is insufficient, keep the task unfinished and identify the next check. If an external blocker or product decision prevents progress, record it explicitly. A successful tool receipt or a completed task alone does not prove repository correctness or visual quality.
 
 ## `.agent` Ownership
 
-```txt
-AGENTS.md
-→ mandatory repository development protocol
-
-.agent/target.md
-→ only task-specific input and acceptance contract
-
-.agent/tracker.md
-→ generated active-run summary and resume point
-
-.agent/runs/<run-id>/
-→ generated state, goal, inspection, risks, plan, ledger, validation, verification, differences, and report
-
-.agent/evidence/<run-id>/
-→ machine-readable repository, module, kit, runtime, test, and snapshot evidence
-```
-
-Ownership rules:
-
-| Path | Owner |
+| Path/state | Owner and purpose |
 | --- | --- |
-| `.agent/target.md` | User or agent translating the user request |
-| `.agent/tracker.md` | NexusEngine-Editor guided-development controller |
-| `.agent/runs/<id>/state.json` | Guided development controller |
-| `.agent/runs/<id>/plan.md` | Headless Editor and agent |
-| `.agent/runs/<id>/ledger.md` | Headless Editor |
-| `.agent/runs/<id>/validation.md` | Test and reliability kits |
-| `.agent/runs/<id>/report.md` | Headless Editor |
-| `.agent/evidence/<id>/...` | Harness and environment adapters |
+| `AGENTS.md`, `.agent/development.md` | Active repository development contract |
+| `.agent/target.md` | Applicable task input; preserve unrelated targets |
+| `.agent/runs/<id>/goal.md` | Task-specific goal and acceptance criteria |
+| `.agent/runs/<id>/run.json` | Workspace, Engine task/session IDs and evidence locations; a resume pointer, not a completion tracker |
+| Engine Agent task/session state | Durable progress and handoff state, persisted by the selected host |
+| `.agent/runs/<id>/` reports and evidence | Actual commands, results, hashes, failures and remaining work |
+| `.agent/tracker.md` | Retired historical pointer; no active completion authority |
+| `.agent/archive/2026-10-23-editor-controller/` | Original instructions/tracker and preservation hashes |
 
-Do not add a global development profile. Reliability requirements must be inferred from the target, repository, changed files, module graph, kit graph, contracts, state ownership, renderer or host involvement, and existing tests.
+Do not rewrite old run state, historical completion claims or unrelated targets. Infer validation requirements from the current goal, changed files and contracts; do not add a global profile or a replacement controller.
 
 ## Reliability Inference
 
-The Headless Editor should infer checks such as:
+The agent should select applicable checks such as:
 
 ```txt
 repository-integrity
@@ -401,7 +319,7 @@ After modifying behavior, reconcile:
 - promotion notes
 - API lists
 - kit and domain manifests
-- `.agent` target, tracker, run, and evidence state
+- applicable `.agent` goal, Engine task/session references, run reports and evidence
 
 A change is not complete if the code changed but the kit graph or development evidence became harder to understand.
 
@@ -454,92 +372,37 @@ does not own hidden compiler, target, or artifact behavior.
 The manifest is the ownership and public-surface contract. Do not add legacy
 Kit metadata or an unmanifested public Kit factory.
 
-## Headless Editor Evidence Lifecycle
+## Development Evidence Lifecycle
 
-The finite evidence harness remains:
+Preserve the useful evidence sequence without requiring an Editor controller:
 
-```txt
-read -> capture-before -> plan -> validate -> submit -> observe -> verify -> capture-after -> observed-differences
+```text
+read -> capture-before -> plan -> validate -> apply -> observe -> verify -> capture-after -> compare
 ```
 
-Use it for bounded evidence collection inside the persistent guided-development loop.
+Store actual observations and test results in the run folder. Inspect visual output when applicable. Missing evidence remains missing; no task state, report heading or confidence score can convert an unexecuted check into a pass.
 
-The interactive lifecycle router supports:
+## Resume and Completion State
 
-```txt
-status
-routes
-next
-instructions
-run <stage>
-run-until <stage>
-inspect <path>
-list [prefix]
-report
-help
-```
+A resumable run records the goal, workspace, Engine task/session IDs, pending work, evidence locations, failures and next action. Keep only compact references in Agent context. Read actual reports to determine whether acceptance criteria pass.
 
-Always run `status` or `next` before choosing a manual stage. Never bypass validation before submit. Do not claim completion until observed differences have run or the remaining host-specific verification is explicitly recorded.
-
-## Guided Development Router State
-
-Guided-development status must explain:
-
-```txt
-mode
-goal
-run id
-iteration
-phase
-current route
-route reason
-required checks
-required evidence
-missing evidence
-failed evidence
-next command
-completion confidence
-whether completion can be claimed
-whether agent or user action is required
-```
-
-The tracker must expose the same information in human-readable form so another agent can resume without reconstructing the workflow.
+The archived tracker is historical evidence. Do not resume its old controller routes or treat its completed release run as evidence for current changes.
 
 ## Router and Adapter Boundary
 
-The Headless Editor owns:
+- Engine Agent owns workflow definitions, task graphs, answer sessions and compact progress records.
+- Runtime owns execution lifecycle and commit; domain owners retain their authoritative source and validation contracts.
+- Agents select actions and interpret evidence within the user's authorization.
+- Optional hosts/providers execute filesystem, terminal, browser, renderer and platform actions.
+- Nexus Engine Kit is a thin Codex adapter and modeling guide. NexusEngine-Editor is an optional consumer, not a repository-development prerequisite.
 
-- agent-facing command routing
-- stage and route availability
-- next-route recommendation
-- target loading
-- run creation and resumption
-- tracker generation
-- reliability inference
-- evidence scoring
-- completion gates
-- workspace inspection
-- run and evidence reports
-
-It does not own:
-
-- Unity JSON-RPC execution
-- Playwright or browser implementation
-- Three.js or WebGL mutation
-- GitHub writes
-- package installation
-- long-running servers
-- project-specific gameplay logic
-
-Those capabilities enter through environments, adapters, lifecycle kits, test kits, or harness kits.
+Do not move concrete host execution into portable Core or create another mandatory controller to replace the retired one.
 
 ## Disposable Use
 
 A domain kit should remain importable, installable, runnable, exportable, and disposable.
 
-The external controller may use memory or text workspaces. Repository
-development uses file workspaces under `.agent/runs/<run-id>/` so work can be
-resumed and audited.
+Repository development uses run folders and an explicitly recorded Engine host workspace so progress and validation evidence can be resumed and audited.
 
 ## Reporting Requirements
 
@@ -556,4 +419,4 @@ Every final report must include:
 - completion confidence
 - remaining risk or exact external blocker
 
-Never report success based only on source review, syntax checks, or generated tracker prose.
+Never report success based only on source review, syntax checks, task completion flags or historical tracker prose.

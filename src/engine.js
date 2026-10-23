@@ -136,6 +136,33 @@ export function createEngine(options = {}) {
   };
 
   const tickCheckpoints = new Map();
+  let operationRunning = false;
+  let operationRevision = 0;
+  async function commitOperation({ persist, maxRecords = 100000 } = {}) {
+    if (tickState.running || operationRunning) throw new Error("Operation commit re-entry is not allowed.");
+    const journal = world.peekJournal();
+    if (journal.length > maxRecords) throw new Error("Operation journal budget exceeded; persist/reconcile pending mutations before continuing.");
+    const context = { engine, world, scheduler, clock, operationId: `operation:${operationRevision + 1}`, frame: clock.frame, delta: 0, elapsed: clock.elapsed };
+    const memberships = registry.query.map(surface => ({ surface, members: new Set(surface.members ?? []), initialized: surface.initialized }));
+    operationRunning = true;
+    try {
+      // Persist first. Delivery is at-least-once on observer failure; acknowledgement is last.
+      if (persist) await persist({ operationId: context.operationId, dirty: createDirtySummary(journal), recordCount: journal.length });
+      for (const surface of registry.event) publishSurfaceBatch(surface, journal.filter(r => r.kind === "event" && r.event.name === surface.event.name), context);
+      for (const surface of registry.resource) publishSurfaceBatch(surface, journal.filter(r => r.kind === "resource" && r.resource.name === surface.resource.name), context);
+      for (const surface of registry.query) publishSurfaceBatch(surface, reconcileQuerySurface(surface, world), context);
+      for (const surface of registry.lifecycle) {
+        const batch = [{ kind: "lifecycle", topic: "operation", stage: "commit", operationId: context.operationId }];
+        if (!surface.topics?.length || surface.topics.includes("operation")) publishSurfaceBatch(surface, batch, context);
+      }
+      world.acknowledgeJournal(journal);
+      operationRevision++;
+      return { operationId: context.operationId, committed: true, recordCount: journal.length, pending: world.pendingMutations() };
+    } catch (error) {
+      for (const {surface, members, initialized} of memberships) { surface.members = members; surface.initialized = initialized; }
+      throw error;
+    } finally { operationRunning = false; }
+  }
 
   function registerSurface(surface) {
     assertSurface(surface);
@@ -171,6 +198,7 @@ export function createEngine(options = {}) {
   }
 
   function tick(delta = clock.delta) {
+    if (operationRunning) throw new Error("Cannot tick during an operation commit.");
     if (tickState.running) {
       if (rejectReentry) throw new Error("NexusEngine tick re-entry is not allowed.");
       return world;
@@ -455,6 +483,8 @@ export function createEngine(options = {}) {
     isTicking() {
       return tickState.running;
     },
+    commitOperation,
+    getOperationDiagnostics: () => ({ revision: operationRevision, committing: operationRunning, ...world.pendingMutations() }),
     tick
   };
 

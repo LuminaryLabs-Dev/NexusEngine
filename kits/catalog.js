@@ -10,3 +10,5 @@ export async function installOptionalKit(engine, id, options = {}) {
 
 export const LANGUAGE_TOOLCHAINS_ENTRY='nexusengine/kits/build/language-toolchains';
 export const IDE_ENTRY='nexusengine/kits/development/ide';
+
+export { productionProviderManifest } from "./agent/production/manifest.js";
