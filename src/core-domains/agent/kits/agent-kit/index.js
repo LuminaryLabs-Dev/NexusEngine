@@ -3,6 +3,8 @@ import { createAgentState } from "./agent-state.js";
 import { createAgentObservation } from "./observations.js";
 import { createActionProposal } from "./action-proposals.js";
 import { createAgentExecutionLedger } from "./execution-ledger.js";
+import { createAgentContextStore } from "./context-store.js";
+import { createAgentToolAccess } from "./tool-access.js";
 
 export * from "./agent-state.js";
 export * from "./observations.js";
@@ -10,6 +12,8 @@ export * from "./action-proposals.js";
 export * from "./execution-ledger.js";
 export * from "./decision-cycle.js";
 export * from "./adapters.js";
+export * from "./context-store.js";
+export * from "./tool-access.js";
 
 export function createAgentKit(config = {}) {
   return createDomainKit({
@@ -31,7 +35,11 @@ export function createAgentKit(config = {}) {
       const agents = new Map((config.agents ?? []).map((agent) => [agent.id, createAgentState(agent)]));
       const ledger = createAgentExecutionLedger();
       const proposals = [];
+      const agentContext = createAgentContextStore(config.contextLimits);
+      const toolAccess = config.listTools ? createAgentToolAccess({ listTools: config.listTools, authorize: config.authorizeTool }) : null;
       return {
+        context: agentContext,
+        ...(toolAccess ? { toolAccess } : {}),
         registerAgent(agent = {}) {
           const state = createAgentState(agent);
           agents.set(state.id, state);
