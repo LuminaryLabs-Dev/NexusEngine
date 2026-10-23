@@ -2,7 +2,7 @@
 
 This file is generated from Build Domain and atomic Kit manifests.
 
-Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
+Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
 
 ## Domain Service
 
@@ -20,6 +20,9 @@ reset()
 
 | Kit | Domain | Import | Responsibility |
 | --- | --- | --- | --- |
+| `toolchain-registry-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-registry` | Register compiler, interpreter and runtime tool descriptors. |
+| `toolchain-resolution-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-resolution` | Resolve compatible tools and complete runtime dependencies. |
+| `compiler-driver-kit` | `n:build:compile` | `nexusengine/domains/build/compile/compiler-driver` | Execute reviewed compiler drivers against isolated source snapshots. |
 | `host-native-target-kit` | `n:build:target:host-native` | `nexusengine/domains/build/target/host-native/host-native-target` | Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim. |
 | `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |

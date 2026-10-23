@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
+Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -9,6 +9,8 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
 - `n:authoring`: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
+- `n:authoring:code`: Own editable code documents and revision-bound language intelligence contracts.
+- `n:authoring:code:intelligence`: Own revision-bound language service requests.
 - `n:authoring:create`: Own canonical create operations, default providers, diagnostics and source-safe lifecycle.
 - `n:authoring:importing`: Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.
 - `n:authoring:persistence`: Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.

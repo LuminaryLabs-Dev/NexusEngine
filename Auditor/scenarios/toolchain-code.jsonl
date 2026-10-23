@@ -1,0 +1,8 @@
+{"test":"TOOLCHAIN-CODE-GENERATE","name":"Regenerate manifest-owned public surfaces","suite":"toolchain-code","services":[]}
+{"do":"command","command":["node","tests/toolchain-code-capture.mjs","generate"],"cwd":".","timeout_seconds":180}
+{"test":"TOOLCHAIN-CODE-001","name":"Real toolchain, Project editing, language intelligence and IDE host acceptance","suite":"toolchain-code","services":[]}
+{"do":"command","command":["node","tests/toolchain-code-capture.mjs","acceptance"],"cwd":".","timeout_seconds":180}
+{"test":"TOOLCHAIN-CODE-002","name":"Build graph, manifest and Authoring public contract regressions","suite":"toolchain-code","services":[]}
+{"do":"command","command":["node","tests/toolchain-code-capture.mjs","regressions"],"cwd":".","timeout_seconds":180}
+{"test":"TOOLCHAIN-CODE-BASELINE","name":"Compare unchanged boundary failures against published base; not a release pass","suite":"toolchain-code","services":[]}
+{"do":"command","command":["node","tests/toolchain-code-capture.mjs","baseline"],"cwd":".","timeout_seconds":180}

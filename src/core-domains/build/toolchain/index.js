@@ -3,3 +3,6 @@ export * from "./kits/toolchain-discovery-kit/index.js";
 export * from "./kits/toolchain-provision-kit/index.js";
 export * from "./kits/isolated-stage-kit/index.js";
 export * from "./kits/process-execution-kit/index.js";
+
+export * from './kits/toolchain-registry-kit/index.js';
+export * from './kits/toolchain-resolution-kit/index.js';

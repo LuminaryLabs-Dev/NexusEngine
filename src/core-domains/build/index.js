@@ -1,3 +1,6 @@
+import {createToolchainRegistryService} from './toolchain/kits/toolchain-registry-kit/services.js';
+import {createToolchainResolutionService} from './toolchain/kits/toolchain-resolution-kit/services.js';
+import {createCompilerDriverService} from './compile/kits/compiler-driver-kit/services.js';
 import { homedir } from "node:os";
 import path from "node:path";
 
@@ -60,7 +63,7 @@ export function createBuildDomain(config = {}) {
   const stateRoot = path.resolve(config.stateRoot ?? process.env.NEXUSENGINE_HOME ?? path.join(homedir(), ".nexusengine"));
   const artifactRoot = path.resolve(config.artifactRoot ?? path.join(stateRoot, "artifacts"));
   const sourceCache = createSourceCacheService({ root: path.join(stateRoot, "sources") });
-  const toolchainSource = createToolchainSourceService();
+  const toolchainSource = createToolchainSourceService(config.toolchainSource);
   const targetSet = createTargetSetService();
   const processExecution = createProcessExecutionService({ allowedRoot: stateRoot });
   const toolchainProvision = createToolchainProvisionService({
@@ -74,6 +77,11 @@ export function createBuildDomain(config = {}) {
   const openxrRender = createOpenXrRenderService();
   const rustLowering = createRustLoweringService();
   const toolchainDiscovery = createToolchainDiscoveryService(config.toolchainDiscovery);
+  const toolchainRegistry=createToolchainRegistryService(config.toolchainRegistry);
+  const toolchainResolution=createToolchainResolutionService({registry:toolchainRegistry,discovery:toolchainDiscovery});
+  const isolatedStage=createIsolatedStageService({root:path.join(stateRoot,'builds')});
+  const buildApproval=createBuildApprovalService();
+  const compilerDriver=createCompilerDriverService({approval:buildApproval,resolution:toolchainResolution,drivers:config.compilerDrivers??{},processExecution,isolatedStage});
   const javascriptFallback = createJavascriptFallbackService({
     available: config.quickJsAvailable !== false,
     sourceRecord: toolchainSource.get("git:quickjs-ng@v0.15.0"),
@@ -138,7 +146,7 @@ export function createBuildDomain(config = {}) {
     fallbackSelection: createFallbackSelectionService({ quickJsAvailable: config.quickJsAvailable !== false }),
     buildRequest: createBuildRequestService({ targetSet }),
     buildPlan: createBuildPlanService(),
-    buildApproval: createBuildApprovalService(),
+    buildApproval,
     buildReceipt: createBuildReceiptService({ root: path.join(stateRoot, "receipts") }),
     rustLowering,
     javascriptFallback,
@@ -146,9 +154,12 @@ export function createBuildDomain(config = {}) {
     runtimeAbi,
     nativeRuntimeLink: createNativeRuntimeLinkService(),
     toolchainSource,
+    toolchainRegistry,
+    toolchainResolution,
+    compilerDriver,
     toolchainDiscovery,
     toolchainProvision,
-    isolatedStage: createIsolatedStageService({ root: path.join(stateRoot, "builds") }),
+    isolatedStage,
     processExecution,
     targetRegistry,
     openxrRuntime,
@@ -163,6 +174,7 @@ export function createBuildDomain(config = {}) {
     targetValidation: createTargetValidationService()
   });
 
+  if(config.initialSnapshot?.toolchainRegistry)toolchainRegistry.loadSnapshot(config.initialSnapshot.toolchainRegistry);
   const build = createBuildExecutionService(services, {
     stateRoot,
     artifactRoot,
@@ -172,6 +184,13 @@ export function createBuildDomain(config = {}) {
 
   return Object.freeze({
     ...build,
+    snapshot:()=>({...build.snapshot(),toolchainRegistry:toolchainRegistry.getSnapshot()}),
+    loadSnapshot(input){const candidate=createToolchainRegistryService();if(input?.toolchainRegistry)candidate.loadSnapshot(input.toolchainRegistry);build.loadSnapshot(input);if(input.toolchainRegistry)toolchainRegistry.loadSnapshot(input.toolchainRegistry);return {...build.snapshot(),toolchainRegistry:toolchainRegistry.getSnapshot()};},
+    reset(){compilerDriver.reset();toolchainRegistry.reset();build.reset();if(config.initialSnapshot?.toolchainRegistry)toolchainRegistry.loadSnapshot(config.initialSnapshot.toolchainRegistry);return {...build.snapshot(),toolchainRegistry:toolchainRegistry.getSnapshot()};},
+    async shutdown(){await Promise.all([build.shutdown(),compilerDriver.shutdown()]);},
+    planProgram:input=>compilerDriver.plan(input),
+    compileProgram:(id,options)=>compilerDriver.execute(id,options),
+    runProgram:(id,options)=>compilerDriver.run(id,options),
     stateRoot,
     services
   });

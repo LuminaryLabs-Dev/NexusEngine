@@ -24,6 +24,12 @@ export function createToolchainDiscoveryService(config = {}) {
     });
   }
 
+  function inspectTool(record) {
+    if(!record.command)return Object.freeze({command:null,available:false,version:null,error:'runtime-provider-not-prepared'});
+    const result=spawnSync(record.command,[...(record.arguments??[]),...(record.probeArguments??['--version'])],{encoding:'utf8',shell:false,timeout:Number(config.timeoutMs??5000),maxBuffer:256*1024});
+    const version=result.status===0?String(result.stdout||result.stderr).trim().split('\n')[0]:null;
+    return Object.freeze({command:record.command,available:result.status===0,version,error:result.status===0?null:result.error?.message??String(result.stderr??'').slice(0,4000)});
+  }
   function discover(commands = Object.keys(COMMANDS)) {
     return Object.freeze(commands.map(inspect));
   }
@@ -41,7 +47,7 @@ export function createToolchainDiscoveryService(config = {}) {
     return Object.freeze({ok:false,standard,probeHash:contentIntegrity(source),attempts});
   }
 
-  return Object.freeze({ inspect, discover, selectCpp });
+  return Object.freeze({ inspect, inspectTool, discover, selectCpp });
 }
 
 export default createToolchainDiscoveryService;

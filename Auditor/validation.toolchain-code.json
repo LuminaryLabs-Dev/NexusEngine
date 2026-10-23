@@ -1,0 +1,1 @@
+{"name":"Nexus Toolchain and Code Authoring","runs_dir":"Auditor/runs","allowed_origins":["http://127.0.0.1:57941"],"required_tools":["node","python3","rustc"],"required_env":[],"scenario_files":["Auditor/scenarios/toolchain-code.jsonl"],"services":{}}

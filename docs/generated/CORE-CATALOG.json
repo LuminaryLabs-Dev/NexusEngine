@@ -712,6 +712,179 @@
       ]
     },
     {
+      "domainPath": "n:authoring:code",
+      "forbiddenResponsibilities": [
+        "compiler execution",
+        "filesystem ownership",
+        "language-server processes"
+      ],
+      "id": "authoring-code-domain",
+      "inputs": [
+        {
+          "description": "Authoring Code required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Code",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Code API without duplicate state or systems.",
+        "install": "Create one Authoring Code state owner and public API.",
+        "replay": "Reapply equivalent Authoring Code inputs deterministically.",
+        "reset": "Restore the configured Authoring Code baseline.",
+        "snapshot": "Serialize Authoring Code state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Code provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:code",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "code source operations",
+        "language request contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Code state and registry records.",
+          "id": "authoring-code-domain-state",
+          "owner": "authoring-code-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Code contract fixture.",
+            "deterministic": true,
+            "id": "authoring-code-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Code composition fixture.",
+            "deterministic": true,
+            "id": "authoring-code-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Own editable code documents and revision-bound language intelligence contracts.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Code behavior.",
+          "deterministic": true,
+          "id": "n:authoring:code:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:code:intelligence",
+      "forbiddenResponsibilities": [
+        "provider processes"
+      ],
+      "id": "code-intelligence-domain",
+      "inputs": [
+        {
+          "description": "Code Intelligence required capability.",
+          "deterministic": true,
+          "id": "authoring:code-document",
+          "schema": null
+        }
+      ],
+      "label": "Code Intelligence",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Code Intelligence API without duplicate state or systems.",
+        "install": "Create one Code Intelligence state owner and public API.",
+        "replay": "Reapply equivalent Code Intelligence inputs deterministically.",
+        "reset": "Restore the configured Code Intelligence baseline.",
+        "snapshot": "Serialize Code Intelligence state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Code Intelligence provided capability.",
+          "deterministic": true,
+          "id": "authoring:code-intelligence",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "language request state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Code Intelligence state and registry records.",
+          "id": "code-intelligence-domain-state",
+          "owner": "code-intelligence-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring:code",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Code Intelligence contract fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Code Intelligence composition fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "authoring:code-document"
+      ],
+      "responsibility": "Own revision-bound language service requests.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Code Intelligence behavior.",
+          "deterministic": true,
+          "id": "n:authoring:code:intelligence:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:authoring:create",
       "forbiddenResponsibilities": [
         "Editor-specific presentation",
@@ -20753,6 +20926,170 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "authoringCode",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:code",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "code-document-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "code-document-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "code-document-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "authoring:code-document"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Clear derived service state; Project owns source documents and history.",
+        "supported": true
+      },
+      "responsibility": "Own revisioned source-code document operations.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "kitId": {
+              "const": "code-document-kit"
+            },
+            "schema": {
+              "const": "nexusengine.authoring-service/1"
+            }
+          },
+          "required": [
+            "schema",
+            "kitId"
+          ],
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCodeDocumentKit",
+        "module": "./src/core-domains/authoring/code/kits/code-document-kit/index.js",
+        "publicSubpath": "./domains/authoring/code/code-document"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "codeIntelligence",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:code:intelligence",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "code-intelligence-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring:code",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "authoring:code-intelligence"
+      ],
+      "requires": [
+        "authoring:code-document"
+      ],
+      "reset": {
+        "semantics": "Clear derived service state; Project owns source documents and history.",
+        "supported": true
+      },
+      "responsibility": "Own revision-bound language intelligence requests and proposed edits.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": false,
+          "properties": {
+            "kitId": {
+              "const": "code-intelligence-kit"
+            },
+            "schema": {
+              "const": "nexusengine.authoring-service/1"
+            }
+          },
+          "required": [
+            "schema",
+            "kitId"
+          ],
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCodeIntelligenceKit",
+        "module": "./src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
+        "publicSubpath": "./domains/authoring/code/code-intelligence"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "authoringCreate",
       "atomic": true,
       "composes": [],
@@ -23755,6 +24092,214 @@
         "exportName": "createAuthoringEditingSessionKit",
         "module": "./src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js",
         "publicSubpath": "./domains/authoring/editing"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "toolchainRegistry",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:build:toolchain",
+      "environments": [
+        "node"
+      ],
+      "id": "toolchain-registry-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:build",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "toolchain-registry-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "toolchain-registry-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "build:toolchain-registry"
+      ],
+      "requires": [
+        "n:build:toolchain"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Register compiler, interpreter and runtime tool descriptors.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createToolchainRegistryKit",
+        "module": "./src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js",
+        "publicSubpath": "./domains/build/toolchain/toolchain-registry"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "toolchainResolution",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:build:toolchain",
+      "environments": [
+        "node"
+      ],
+      "id": "toolchain-resolution-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:build",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "toolchain-resolution-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "toolchain-resolution-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "build:toolchain-resolution"
+      ],
+      "requires": [
+        "build:toolchain-discovery",
+        "build:toolchain-registry"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Resolve compatible tools and complete runtime dependencies.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createToolchainResolutionKit",
+        "module": "./src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
+        "publicSubpath": "./domains/build/toolchain/toolchain-resolution"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "compilerDriver",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:build:compile",
+      "environments": [
+        "node"
+      ],
+      "id": "compiler-driver-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:build",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "compiler-driver-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "compiler-driver-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "build:compiler-driver"
+      ],
+      "requires": [
+        "build:build-approval",
+        "build:isolated-stage",
+        "build:process-execution",
+        "build:toolchain-resolution"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Execute reviewed compiler drivers against isolated source snapshots.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createCompilerDriverKit",
+        "module": "./src/core-domains/build/compile/kits/compiler-driver-kit/index.js",
+        "publicSubpath": "./domains/build/compile/compiler-driver"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -48178,6 +48723,9 @@
     "./domains/authoring/animation": "./src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js",
     "./domains/authoring/assembly": "./src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js",
     "./domains/authoring/brush": "./src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js",
+    "./domains/authoring/code": "./src/core-domains/authoring/code/index.js",
+    "./domains/authoring/code/code-document": "./src/core-domains/authoring/code/kits/code-document-kit/index.js",
+    "./domains/authoring/code/code-intelligence": "./src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
     "./domains/authoring/contract": "./src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js",
     "./domains/authoring/create/create-service": "./src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
     "./domains/authoring/curve": "./src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js",
@@ -48230,6 +48778,7 @@
     "./domains/build/classification/fallback-selection": "./src/core-domains/build/classification/kits/fallback-selection-kit/index.js",
     "./domains/build/classification/portability-classifier": "./src/core-domains/build/classification/kits/portability-classifier-kit/index.js",
     "./domains/build/compile": "./src/core-domains/build/compile/index.js",
+    "./domains/build/compile/compiler-driver": "./src/core-domains/build/compile/kits/compiler-driver-kit/index.js",
     "./domains/build/compile/javascript-fallback": "./src/core-domains/build/compile/kits/javascript-fallback-kit/index.js",
     "./domains/build/compile/native-runtime-link": "./src/core-domains/build/compile/kits/native-runtime-link-kit/index.js",
     "./domains/build/compile/runtime-abi": "./src/core-domains/build/compile/kits/runtime-abi-kit/index.js",
@@ -48278,6 +48827,8 @@
     "./domains/build/toolchain/process-execution": "./src/core-domains/build/toolchain/kits/process-execution-kit/index.js",
     "./domains/build/toolchain/toolchain-discovery": "./src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js",
     "./domains/build/toolchain/toolchain-provision": "./src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js",
+    "./domains/build/toolchain/toolchain-registry": "./src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js",
+    "./domains/build/toolchain/toolchain-resolution": "./src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js",
     "./domains/camel": "./src/core-domains/camel/index.js",
     "./domains/camel/runtime": "./src/core-domains/camel/kits/runtime-kit/index.js",
@@ -48616,9 +49167,13 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+  "registryHash": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
+    {
+      "path": "src/adapters/node/agent-cli.js",
+      "sha256": "46599e1a208f49eadd0c880e857fbe5d18a0aa964dd45f97e4372f50dd9476fd"
+    },
     {
       "path": "src/core-domains/actor/character/index.js",
       "sha256": "8f56ea4846ddd940f9af8d127fc1d2e255daf32bbb88a4c02f76256ff370598d"
@@ -48676,6 +49231,18 @@
       "sha256": "110c1ad4c13445969b2721755d4de696889e92e88db1ba47a43b32f8eb4281b9"
     },
     {
+      "path": "src/core-domains/agent/interaction/answer-session.js",
+      "sha256": "c7355065c732fc8447d694028d4386bf507fa917815fe7699090d602dc8d9c2e"
+    },
+    {
+      "path": "src/core-domains/agent/interaction/index.js",
+      "sha256": "c83c26947107fc8d2c77862868a95afeffbfe8599d5cd847ddc818f4966db448"
+    },
+    {
+      "path": "src/core-domains/agent/interaction/task-graph.js",
+      "sha256": "50135b60b516f05a3fbb0acb173c955df38fb108e5f6b74e9ab4ea10228aa05f"
+    },
+    {
       "path": "src/core-domains/agent/kits/agent-kit/action-proposals.js",
       "sha256": "4f13a62a0fb82cbe2eda9199415ab146c52e507c41ac5c77437a53bb24964e22"
     },
@@ -48688,6 +49255,10 @@
       "sha256": "ab0038ea9cd4f6eb6a9c83e60da6d71d0442906ef95bee0038949141bc201a72"
     },
     {
+      "path": "src/core-domains/agent/kits/agent-kit/context-store.js",
+      "sha256": "2b7e464cdb2dd7ea12952b7a48539fb417f4579594444187049453deb6578a2b"
+    },
+    {
       "path": "src/core-domains/agent/kits/agent-kit/decision-cycle.js",
       "sha256": "f9b7832759ca05b33ecda5764112593934ec66a4f39394935931634010f2f519"
     },
@@ -48697,11 +49268,15 @@
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/index.js",
-      "sha256": "d86b160c23f4298db552b8f2575eabe6c2d7c1ea5c14d126e4197a08fdf7fb4b"
+      "sha256": "ef137a7f26202eecb4d8796e0034ddc66d49ac9e538f4e6f43d419d3be8db37d"
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/observations.js",
       "sha256": "fed28dbcbdeb2daa00063eb36ce9086b71aa35122a84f17970958b5281d58a56"
+    },
+    {
+      "path": "src/core-domains/agent/kits/agent-kit/tool-access.js",
+      "sha256": "ccb2753deaba179c96efa6ffa5d19d98992947c90e0ecea0677308b1adc66fff"
     },
     {
       "path": "src/core-domains/asset/domain.manifest.js",
@@ -48792,6 +49367,42 @@
       "sha256": "2f6b0b8e3a3851353ad4aab11585228a5d61f059c2e1e6ff4cbc30384938ebaf"
     },
     {
+      "path": "src/core-domains/authoring/code/contracts.js",
+      "sha256": "07e12143fb8bf02b887b3fa11753cdf1f686d085c13b34661e4d567d64874edc"
+    },
+    {
+      "path": "src/core-domains/authoring/code/index.js",
+      "sha256": "52c4aeb21444fbff038479e81316410354b2a9c1ca9ce64f1e7346e137b544b0"
+    },
+    {
+      "path": "src/core-domains/authoring/code/intelligence.js",
+      "sha256": "88503357255ac7d3b1fc48d42b1c67fb5f41c583afcbb19d0fc7f16072d56d13"
+    },
+    {
+      "path": "src/core-domains/authoring/code/kits/code-document-kit/index.js",
+      "sha256": "a8fd2cacdb033f653d00d455fbc4f6c3d7ed5b9d61a06f98a902a98255076cf1"
+    },
+    {
+      "path": "src/core-domains/authoring/code/kits/code-document-kit/kit.manifest.js",
+      "sha256": "ef6615958109cdf7b75711ee454f51496b6b4a283389db70e806b90e4592fd7e"
+    },
+    {
+      "path": "src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
+      "sha256": "4f680b32d2c1b08e3492bb4c17f09c06e12b7d560d4cb31aece225c5f4af9d47"
+    },
+    {
+      "path": "src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js",
+      "sha256": "6cdaa8d43f41783ff2632e3ff876074edcf0be5d89a70003064d13a09c00bbef"
+    },
+    {
+      "path": "src/core-domains/authoring/code/services.js",
+      "sha256": "1fbd916d0e5a23ee12f58ac7c4635e99b2e742d0112afdbfd31e523f6dce9722"
+    },
+    {
+      "path": "src/core-domains/authoring/code/subdomain.manifest.js",
+      "sha256": "a59bf65d8eed8e2add92fef10befe95f7ca77c8c20e84d2fdaea80adafbb4e19"
+    },
+    {
       "path": "src/core-domains/authoring/contracts/io-kit.js",
       "sha256": "95dc33be3bec8e9d2783b39f34d6735045cea8c217bfba9918e4a7333c3797fa"
     },
@@ -48817,7 +49428,7 @@
     },
     {
       "path": "src/core-domains/authoring/contracts/tool-schema.js",
-      "sha256": "9a056e6e8d5fd8cc937245846f5b0b41feb12e0b5190dd2c84a7e2ed85af1708"
+      "sha256": "594ac4f2b5a02cc96f6900598b295e4612584a98ff72e1021510537e629fe7f1"
     },
     {
       "path": "src/core-domains/authoring/contracts/transforms.js",
@@ -48889,7 +49500,7 @@
     },
     {
       "path": "src/core-domains/authoring/domain.manifest.js",
-      "sha256": "25ed355f385d8d83269f0dde91a0bd91a217f401fa3ebd0e20f480dff19d45ea"
+      "sha256": "5d241680e0da2355693f452f5c90d6465d03ca1f1900842bf27c7e125fa4815d"
     },
     {
       "path": "src/core-domains/authoring/editing/index.js",
@@ -49001,7 +49612,7 @@
     },
     {
       "path": "src/core-domains/authoring/index.js",
-      "sha256": "daee93a871f87405872a36e550499190d3f8ad294d39a8e0a420f23f323a3e3e"
+      "sha256": "eaca5f814ec8d308ff1356fd35919ee60fa20b67d9d66ee6d715e039b755e7db"
     },
     {
       "path": "src/core-domains/authoring/io-kits.js",
@@ -49829,7 +50440,31 @@
     },
     {
       "path": "src/core-domains/build/compile/index.js",
-      "sha256": "318f05bb9f1831bcdbe4fc2c27f188823958bedd6998bef67cd84f1fca587cde"
+      "sha256": "52668dd68aabb90b9aa83593bdd0c63dde5d15fa2a8144643b4b69646477a908"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/contracts.js",
+      "sha256": "187ee0919bc4bf8b0dbdfa38603fe3f84dbeb2b5d6c0db277a91fd7a7e96fe9a"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/index.js",
+      "sha256": "972869a53608f10255c231e35bd3977bbc1dd2d0ce0b7f620e62162c8ec8ca63"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/kit.manifest.js",
+      "sha256": "9ac6b0af60f48f1f62e968474a75541fb241c088ba999933ae2ef9895e333f88"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/services.js",
+      "sha256": "12e891cbc3fa5087680cc77691b7fcb9f4a9c9514e1d6931e12bd258ea4d8218"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/sources.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/state.js",
+      "sha256": "ecb63763d94459c9df8bf5cbf1a367afe2e241bcfa5cfd2811b3d2d11f9768eb"
     },
     {
       "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/contracts.js",
@@ -49965,7 +50600,7 @@
     },
     {
       "path": "src/core-domains/build/index.js",
-      "sha256": "8b92a837aba618b615e01eb17993262dc105077b479d3905a9e0dc27944d2e68"
+      "sha256": "a152311ec28e47b2787b48db8a6cecfd102f2fbb7a46bd9285fc8e2bcffa7588"
     },
     {
       "path": "src/core-domains/build/ir/index.js",
@@ -50073,7 +50708,7 @@
     },
     {
       "path": "src/core-domains/build/kit-manifests.js",
-      "sha256": "fc2cc3bda7c0f210b9325796d2346cbf5b836a820d891848225c5c70d322a879"
+      "sha256": "012249b68b04cd62bec18f167f49d6921e0be9d97af7e1cdab222bce4368e0bd"
     },
     {
       "path": "src/core-domains/build/manifest-input.js",
@@ -50745,7 +51380,7 @@
     },
     {
       "path": "src/core-domains/build/tests/domain-tree.mjs",
-      "sha256": "727da2e95fdbb80fdfdd1b80fc64a5f709dc0280358d7f6c0cfe1caaf325c447"
+      "sha256": "8f870300a4d1540148c15acfffbb2172be0317e037f6b2acd4e3765f4ff3a6b6"
     },
     {
       "path": "src/core-domains/build/tests/fixtures/external-project/package-lock.json",
@@ -50837,7 +51472,7 @@
     },
     {
       "path": "src/core-domains/build/toolchain/index.js",
-      "sha256": "8b9fc015f2f03518590991e4cc57174843467598d8023e8f1500c0a81f083c23"
+      "sha256": "51ed10c4b59711fda80eb5476468ca85e6445c649dfca9ad0ff7bb3433ad6595"
     },
     {
       "path": "src/core-domains/build/toolchain/kits/isolated-stage-kit/contracts.js",
@@ -50901,7 +51536,7 @@
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/services.js",
-      "sha256": "79b76b4f3b5f716f44d3a2e5496adb0eac3631818b81c4f141129e40eae19a3b"
+      "sha256": "c9726b69d7854196897ef0dee75131b5852c88adf0a2f1a69908f7bf02d3a99a"
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/sources.json",
@@ -50936,6 +51571,54 @@
       "sha256": "58839983527ced9372e0205fdc673e92b921128bfa9e43a5c364a937f85e6db3"
     },
     {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/contracts.js",
+      "sha256": "ac36590b04a723956b59aa16100ab0e987d4a09f62af342847ab92fd27332f8d"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js",
+      "sha256": "3d9c673537f4b2626e1d14f599aa6bc24bfd8f34d617740c678af219dcfb5470"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/kit.manifest.js",
+      "sha256": "86a88ae1b29f8a967b2b82f896ce60eccae4af147c49b5a2a41d6798c06134fa"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/services.js",
+      "sha256": "e0ceb883f1dc2386f2bf5eb6a0626fd3ebb14cbff5686e9e721b82834df2e028"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/sources.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/state.js",
+      "sha256": "932ac8a7421f963acbc4d33c6f49c981794e9e4bdaa394eb52740a9b9cbb6f13"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/contracts.js",
+      "sha256": "cb18bd1a7238b4fedd8394252adf3ff2620c4e06b61fef58969834faf217774b"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
+      "sha256": "cd4027e181aab4c0cac8a7a7e5e6af2a8186da26f8bb59ec7cb3ab58f8c51ebe"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/kit.manifest.js",
+      "sha256": "fec5e7f92bd9668bf96c05a197c23ed3b47c9a94764c7f246b859009077fb4fe"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/services.js",
+      "sha256": "590b498c0be555c83c2e9ba825f9ed23015f5feb1fb918b6bce557e34c9b0b43"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/sources.json",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    },
+    {
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/state.js",
+      "sha256": "7567458294859179a5a5d2b69225128d272f6c1e33e1b1a65c2803bdf2bfa91d"
+    },
+    {
       "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/contracts.js",
       "sha256": "6dd0991a861e5a8ac33b38c04c2dc8b96aa38fbc257d0bbb2b01ab9b7631c8e5"
     },
@@ -50949,7 +51632,7 @@
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/services.js",
-      "sha256": "209850433b8851a66e62ad4f556d8b6fe9fb35f89afc9aa31000887017ac0856"
+      "sha256": "622186baf6ffc650a0029577bc237d187bffa49ff8c54545fcbe412b51c9a201"
     },
     {
       "path": "src/core-domains/build/toolchain/kits/toolchain-source-kit/sources.json",

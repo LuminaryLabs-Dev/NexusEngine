@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76<br>
-      Guide content SHA-256: f8b4d4e14038f60791386da2056a6c815fc059362d95c674a8de3c5735f7c462<br><br>
+      Core registry SHA-256: 206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa<br>
+      Guide content SHA-256: 9f9a7cd840406e75efa16bd702bb220bf72017e23014b0ae3098712fb2211bc9<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -1322,7 +1322,7 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
+<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
@@ -1331,6 +1331,8 @@ npm pack --dry-run --json
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
 <li><code>n:asset</code>: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.</li>
 <li><code>n:authoring</code>: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.</li>
+<li><code>n:authoring:code</code>: Own editable code documents and revision-bound language intelligence contracts.</li>
+<li><code>n:authoring:code:intelligence</code>: Own revision-bound language service requests.</li>
 <li><code>n:authoring:create</code>: Own canonical create operations, default providers, diagnostics and source-safe lifecycle.</li>
 <li><code>n:authoring:importing</code>: Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.</li>
 <li><code>n:authoring:persistence</code>: Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.</li>
@@ -1528,7 +1530,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
+<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
 <table>
 <thead>
 <tr>
@@ -1570,6 +1572,16 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:authoring</code></td>
 <td><code>n:runtime</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:code</code></td>
+<td><code>n:authoring:project</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:authoring:code:intelligence</code></td>
+<td><code>authoring:code-document</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2530,7 +2542,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
+<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2581,6 +2593,18 @@ npm pack --dry-run --json
 <td><code>n:authoring</code></td>
 <td>-</td>
 <td>Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:code</code></td>
+<td><code>n:authoring</code></td>
+<td>Own editable code documents and revision-bound language intelligence contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:authoring:code:intelligence</code></td>
+<td><code>n:authoring:code</code></td>
+<td>Own revision-bound language service requests.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3771,6 +3795,18 @@ npm pack --dry-run --json
 <td>Resolve asset manifests and bundles through content-addressed provider jobs.</td>
 </tr>
 <tr>
+<td><code>code-document-kit</code></td>
+<td><code>n:authoring:code</code></td>
+<td><code>nexusengine/domains/authoring/code/code-document</code></td>
+<td>Own revisioned source-code document operations.</td>
+</tr>
+<tr>
+<td><code>code-intelligence-kit</code></td>
+<td><code>n:authoring:code:intelligence</code></td>
+<td><code>nexusengine/domains/authoring/code/code-intelligence</code></td>
+<td>Own revision-bound language intelligence requests and proposed edits.</td>
+</tr>
+<tr>
 <td><code>authoring-create-service-kit</code></td>
 <td><code>n:authoring:create</code></td>
 <td><code>nexusengine/domains/authoring/create/create-service</code></td>
@@ -4003,6 +4039,24 @@ npm pack --dry-run --json
 <td><code>n:authoring:editing</code></td>
 <td><code>nexusengine/domains/authoring/editing</code></td>
 <td>Own editing Authoring contracts and operations.</td>
+</tr>
+<tr>
+<td><code>toolchain-registry-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/toolchain-registry</code></td>
+<td>Register compiler, interpreter and runtime tool descriptors.</td>
+</tr>
+<tr>
+<td><code>toolchain-resolution-kit</code></td>
+<td><code>n:build:toolchain</code></td>
+<td><code>nexusengine/domains/build/toolchain/toolchain-resolution</code></td>
+<td>Resolve compatible tools and complete runtime dependencies.</td>
+</tr>
+<tr>
+<td><code>compiler-driver-kit</code></td>
+<td><code>n:build:compile</code></td>
+<td><code>nexusengine/domains/build/compile/compiler-driver</code></td>
+<td>Execute reviewed compiler drivers against isolated source snapshots.</td>
 </tr>
 <tr>
 <td><code>host-native-target-kit</code></td>
@@ -6052,14 +6106,14 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76</code></p>
+<p>Registry SHA-256: <code>206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa</code></p>
 <ul>
-<li>Source modules: 1731</li>
-<li>Manifest-proven public atoms: 385</li>
-<li>Manifest-owned internal modules: 1311</li>
+<li>Source modules: 1767</li>
+<li>Manifest-proven public atoms: 390</li>
+<li>Manifest-owned internal modules: 1335</li>
 <li>Root contract modules: 25</li>
-<li>Optional provider modules: 10</li>
-<li>Unreviewed modules: 0</li>
+<li>Optional provider modules: 16</li>
+<li>Unreviewed modules: 1</li>
 <li>Violations: 0</li>
 </ul>
 <table>
@@ -6072,7 +6126,43 @@ npm pack --dry-run --json
 </tr>
 </thead>
 <tbody><tr>
+<td><code>kits/build/language-toolchains-kit/index.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
 <td><code>kits/catalog.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/development/ide-kit/client.mjs</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/development/ide-kit/index.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/development/ide-kit/language.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/development/ide-kit/protocol.js</code></td>
+<td><code>n:render</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>kits/development/ide-kit/server.mjs</code></td>
 <td><code>n:render</code></td>
 <td>optional-provider-kit</td>
 <td>NexusEngine optional Graphics Language Kit</td>
@@ -6130,6 +6220,12 @@ npm pack --dry-run --json
 <td><code>n:render</code></td>
 <td>optional-provider-kit</td>
 <td>NexusEngine optional Graphics Language Kit</td>
+</tr>
+<tr>
+<td><code>src/adapters/node/agent-cli.js</code></td>
+<td>unassigned</td>
+<td>unreviewed</td>
+<td>review-required</td>
 </tr>
 <tr>
 <td><code>src/core-domains/actor/character/index.js</code></td>
@@ -6216,6 +6312,24 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/agent/interaction/answer-session.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/interaction/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/interaction/task-graph.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/agent/kits/agent-kit/action-proposals.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
@@ -6229,6 +6343,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/agent/kits/agent-kit/agent-state.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/context-store.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6253,6 +6373,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/agent/kits/agent-kit/observations.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/kits/agent-kit/tool-access.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -6385,6 +6511,60 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/brush/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/contracts.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/intelligence.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/kits/code-document-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/kits/code-document-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/kits/code-intelligence-kit/index.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/services.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/code/subdomain.manifest.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
@@ -7884,6 +8064,36 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/build/compile/kits/compiler-driver-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/compile/kits/compiler-driver-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/compile/kits/compiler-driver-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/compile/kits/compiler-driver-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/compile/kits/compiler-driver-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/build/compile/kits/javascript-fallback-kit/contracts.js</code></td>
 <td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
@@ -9145,6 +9355,66 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/build/toolchain/kits/toolchain-provision-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-registry-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-registry-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-registry-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-registry-kit/state.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-resolution-kit/contracts.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-resolution-kit/kit.manifest.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-resolution-kit/services.js</code></td>
+<td><code>n:build</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/build/toolchain/kits/toolchain-resolution-kit/state.js</code></td>
 <td><code>n:build</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

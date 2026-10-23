@@ -1,5 +1,7 @@
 // Generated from package.json exports. This is test-only and is not a package entrypoint.
+export * from "../../kits/build/language-toolchains-kit/index.js";
 export * from "../../kits/catalog.js";
+export * from "../../kits/development/ide-kit/index.js";
 export * from "../../kits/render/graphics-language-kit/index.js";
 export * from "../../src/core-domains/actor/character/kits/character-kit/index.js";
 export * from "../../src/core-domains/actor/creature/kits/creature-kit/index.js";
@@ -13,6 +15,9 @@ export * from "../../src/core-domains/asset/kits/asset-kit/index.js";
 export * from "../../src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js";
 export * from "../../src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js";
 export * from "../../src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js";
+export * from "../../src/core-domains/authoring/code/index.js";
+export * from "../../src/core-domains/authoring/code/kits/code-document-kit/index.js";
+export * from "../../src/core-domains/authoring/code/kits/code-intelligence-kit/index.js";
 export * from "../../src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js";
 export * from "../../src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js";
 export * from "../../src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js";
@@ -65,6 +70,7 @@ export * from "../../src/core-domains/build/classification/kits/capability-resol
 export * from "../../src/core-domains/build/classification/kits/fallback-selection-kit/index.js";
 export * from "../../src/core-domains/build/classification/kits/portability-classifier-kit/index.js";
 export * from "../../src/core-domains/build/compile/index.js";
+export * from "../../src/core-domains/build/compile/kits/compiler-driver-kit/index.js";
 export * from "../../src/core-domains/build/compile/kits/javascript-fallback-kit/index.js";
 export * from "../../src/core-domains/build/compile/kits/native-runtime-link-kit/index.js";
 export * from "../../src/core-domains/build/compile/kits/runtime-abi-kit/index.js";
@@ -114,6 +120,8 @@ export * from "../../src/core-domains/build/toolchain/kits/isolated-stage-kit/in
 export * from "../../src/core-domains/build/toolchain/kits/process-execution-kit/index.js";
 export * from "../../src/core-domains/build/toolchain/kits/toolchain-discovery-kit/index.js";
 export * from "../../src/core-domains/build/toolchain/kits/toolchain-provision-kit/index.js";
+export * from "../../src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js";
+export * from "../../src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js";
 export * from "../../src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js";
 export * from "../../src/core-domains/camel/index.js";
 export * from "../../src/core-domains/camel/kits/runtime-kit/index.js";

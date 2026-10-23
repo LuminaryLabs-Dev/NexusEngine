@@ -1,0 +1,3 @@
+import { defineBuildAtomicKitManifest } from '../../../manifest-input.js';
+export const kitManifest = defineBuildAtomicKitManifest({ id: 'compiler-driver-kit', responsibility: 'Execute reviewed compiler drivers against isolated source snapshots.', domainPath: 'n:build:compile', apiName: 'compilerDriver', requires: ['build:toolchain-resolution', 'build:build-approval', 'build:isolated-stage', 'build:process-execution'], provides: ['build:compiler-driver'], module: './src/core-domains/build/compile/kits/compiler-driver-kit/index.js', exportName: 'createCompilerDriverKit', publicSubpath: './domains/build/compile/compiler-driver', proofReferences: ['tests/toolchain-code.mjs'] });
+export default kitManifest;

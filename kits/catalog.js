@@ -7,3 +7,6 @@ export async function installOptionalKit(engine, id, options = {}) {
   await api.ready;
   return api;
 }
+
+export const LANGUAGE_TOOLCHAINS_ENTRY='nexusengine/kits/build/language-toolchains';
+export const IDE_ENTRY='nexusengine/kits/development/ide';

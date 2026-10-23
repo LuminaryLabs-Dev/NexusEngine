@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
+Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -11,6 +11,8 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `n:agent` | - | - |
 | `n:asset` | - | - |
 | `n:authoring` | `n:runtime` | - |
+| `n:authoring:code` | `n:authoring:project` | - |
+| `n:authoring:code:intelligence` | `authoring:code-document` | - |
 | `n:authoring:create` | `n:authoring:project` | - |
 | `n:authoring:importing` | `n:authoring:project` | - |
 | `n:authoring:persistence` | `n:authoring:project` | - |

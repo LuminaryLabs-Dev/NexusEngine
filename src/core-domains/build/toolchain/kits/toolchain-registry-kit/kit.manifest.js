@@ -1,0 +1,3 @@
+import { defineBuildAtomicKitManifest } from '../../../manifest-input.js';
+export const kitManifest = defineBuildAtomicKitManifest({ id: 'toolchain-registry-kit', responsibility: 'Register compiler, interpreter and runtime tool descriptors.', domainPath: 'n:build:toolchain', apiName: 'toolchainRegistry', requires: ['n:build:toolchain'], provides: ['build:toolchain-registry'], module: './src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js', exportName: 'createToolchainRegistryKit', publicSubpath: './domains/build/toolchain/toolchain-registry', proofReferences: ['tests/toolchain-code.mjs'] });
+export default kitManifest;

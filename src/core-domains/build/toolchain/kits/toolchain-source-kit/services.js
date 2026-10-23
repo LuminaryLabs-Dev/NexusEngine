@@ -25,10 +25,13 @@ export const BUILD_TOOLCHAIN_SOURCES = Object.freeze([
   })
 ]);
 
-export function createToolchainSourceService() {
+export function createToolchainSourceService(config = {}) {
+  const records=new Map(BUILD_TOOLCHAIN_SOURCES.map(r=>[r.id,r]));
+  for(const input of config.records??[]){const r=normalizeBuildSourceRecord(input);if(records.has(r.id)&&JSON.stringify(records.get(r.id))!==JSON.stringify(r))throw new Error('Toolchain source identity collision: '+r.id);records.set(r.id,r);}
+  const sources=Object.freeze([...records.values()]);
   return Object.freeze({
-    list() { return BUILD_TOOLCHAIN_SOURCES; },
-    get(id) { return BUILD_TOOLCHAIN_SOURCES.find((record) => record.id === id) ?? null; }
+    list() { return sources; },
+    get(id) { return sources.find((record) => record.id === id) ?? null; }
   });
 }
 

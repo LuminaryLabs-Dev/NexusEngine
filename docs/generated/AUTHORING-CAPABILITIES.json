@@ -6,6 +6,7 @@
     "animation",
     "assembly",
     "brush",
+    "code",
     "curve",
     "domain-composition",
     "image",
@@ -22,6 +23,314 @@
     "workspace"
   ],
   "kits": [
+    {
+      "id": "code-document-kit",
+      "domainPath": "n:authoring:code",
+      "apiName": "authoringCode",
+      "source": {
+        "module": "./src/core-domains/authoring/code/kits/code-document-kit/index.js",
+        "exportName": "createCodeDocumentKit",
+        "publicSubpath": "./domains/authoring/code/code-document"
+      },
+      "proofReferences": [
+        "tests/toolchain-code.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "code-intelligence-kit",
+      "domainPath": "n:authoring:code:intelligence",
+      "apiName": "codeIntelligence",
+      "source": {
+        "module": "./src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
+        "exportName": "createCodeIntelligenceKit",
+        "publicSubpath": "./domains/authoring/code/code-intelligence"
+      },
+      "proofReferences": [
+        "tests/toolchain-code.mjs"
+      ],
+      "declaredProofStatus": "proven"
+    },
+    {
+      "id": "authoring-create-service-kit",
+      "domainPath": "n:authoring:create",
+      "apiName": "authoringCreate",
+      "source": {
+        "module": "./src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
+        "exportName": "createAuthoringCreateServiceKit",
+        "publicSubpath": "./domains/authoring/create/create-service"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-import-registry-kit",
+      "domainPath": "n:authoring:importing",
+      "apiName": "authoringImportRegistry",
+      "source": {
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
+        "exportName": "createAuthoringImportRegistryKit",
+        "publicSubpath": "./domains/authoring/importing/import-registry"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-import-validation-kit",
+      "domainPath": "n:authoring:importing",
+      "apiName": "authoringImportValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
+        "exportName": "createAuthoringImportValidationKit",
+        "publicSubpath": "./domains/authoring/importing/import-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-import-commit-kit",
+      "domainPath": "n:authoring:importing",
+      "apiName": "authoringImportCommit",
+      "source": {
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js",
+        "exportName": "createAuthoringImportCommitKit",
+        "publicSubpath": "./domains/authoring/importing/import-commit"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-import-service-kit",
+      "domainPath": "n:authoring:importing",
+      "apiName": "authoringImport",
+      "source": {
+        "module": "./src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
+        "exportName": "createAuthoringImportServiceKit",
+        "publicSubpath": "./domains/authoring/importing/import-service"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-project-package-kit",
+      "domainPath": "n:authoring:persistence",
+      "apiName": "authoringProjectPackage",
+      "source": {
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-project-package-kit/index.js",
+        "exportName": "createAuthoringProjectPackageKit",
+        "publicSubpath": "./domains/authoring/persistence/project-package"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-storage-provider-registry-kit",
+      "domainPath": "n:authoring:persistence",
+      "apiName": "authoringStorageRegistry",
+      "source": {
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-storage-provider-registry-kit/index.js",
+        "exportName": "createAuthoringStorageProviderRegistryKit",
+        "publicSubpath": "./domains/authoring/persistence/storage-provider-registry"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-save-kit",
+      "domainPath": "n:authoring:persistence",
+      "apiName": "authoringSave",
+      "source": {
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-save-kit/index.js",
+        "exportName": "createAuthoringSaveKit",
+        "publicSubpath": "./domains/authoring/persistence/save"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-load-kit",
+      "domainPath": "n:authoring:persistence",
+      "apiName": "authoringLoad",
+      "source": {
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-load-kit/index.js",
+        "exportName": "createAuthoringLoadKit",
+        "publicSubpath": "./domains/authoring/persistence/load"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-persistence-service-kit",
+      "domainPath": "n:authoring:persistence",
+      "apiName": "authoringPersistence",
+      "source": {
+        "module": "./src/core-domains/authoring/persistence/kits/authoring-persistence-service-kit/index.js",
+        "exportName": "createAuthoringPersistenceServiceKit",
+        "publicSubpath": "./domains/authoring/persistence/persistence-service"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-export-registry-kit",
+      "domainPath": "n:authoring:publishing:export",
+      "apiName": "authoringExportRegistry",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-registry-kit/index.js",
+        "exportName": "createAuthoringExportRegistryKit",
+        "publicSubpath": "./domains/authoring/publishing/export/export-registry"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-export-capability-kit",
+      "domainPath": "n:authoring:publishing:export",
+      "apiName": "authoringExportCapability",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-capability-kit/index.js",
+        "exportName": "createAuthoringExportCapabilityKit",
+        "publicSubpath": "./domains/authoring/publishing/export/export-capability"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-export-validation-kit",
+      "domainPath": "n:authoring:publishing:export",
+      "apiName": "authoringExportValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-validation-kit/index.js",
+        "exportName": "createAuthoringExportValidationKit",
+        "publicSubpath": "./domains/authoring/publishing/export/export-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-export-receipt-kit",
+      "domainPath": "n:authoring:publishing:export",
+      "apiName": "authoringExportReceipt",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-receipt-kit/index.js",
+        "exportName": "createAuthoringExportReceiptKit",
+        "publicSubpath": "./domains/authoring/publishing/export/export-receipt"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-export-service-kit",
+      "domainPath": "n:authoring:publishing:export",
+      "apiName": "authoringExport",
+      "source": {
+        "module": "./src/core-domains/authoring/publishing/export/kits/authoring-export-service-kit/index.js",
+        "exportName": "createAuthoringExportServiceKit",
+        "publicSubpath": "./domains/authoring/publishing/export/export-service"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-document-validation-kit",
+      "domainPath": "n:authoring:validation",
+      "apiName": "authoringDocumentValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/validation/kits/authoring-document-validation-kit/index.js",
+        "exportName": "createAuthoringDocumentValidationKit",
+        "publicSubpath": "./domains/authoring/validation/document-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-project-validation-kit",
+      "domainPath": "n:authoring:validation",
+      "apiName": "authoringProjectValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/validation/kits/authoring-project-validation-kit/index.js",
+        "exportName": "createAuthoringProjectValidationKit",
+        "publicSubpath": "./domains/authoring/validation/project-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-delivery-validation-kit",
+      "domainPath": "n:authoring:validation",
+      "apiName": "authoringDeliveryValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/validation/kits/authoring-delivery-validation-kit/index.js",
+        "exportName": "createAuthoringDeliveryValidationKit",
+        "publicSubpath": "./domains/authoring/validation/delivery-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-format-validation-kit",
+      "domainPath": "n:authoring:validation",
+      "apiName": "authoringFormatValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/validation/kits/authoring-format-validation-kit/index.js",
+        "exportName": "createAuthoringFormatValidationKit",
+        "publicSubpath": "./domains/authoring/validation/format-validation"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
+    {
+      "id": "authoring-validation-report-kit",
+      "domainPath": "n:authoring:validation",
+      "apiName": "authoringValidation",
+      "source": {
+        "module": "./src/core-domains/authoring/validation/kits/authoring-validation-report-kit/index.js",
+        "exportName": "createAuthoringValidationReportKit",
+        "publicSubpath": "./domains/authoring/validation/validation-report"
+      },
+      "proofReferences": [
+        "tests/core-domains/core-authoring-consolidation.mjs"
+      ],
+      "declaredProofStatus": "pending"
+    },
     {
       "id": "authoring-modifier-service-kit",
       "domainPath": "n:authoring:modifier",
@@ -1347,6 +1656,311 @@
       "cancellation": "before-submit",
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:code",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "code"
+        ],
+        "writes": [
+          "code"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "code.apply-edits",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "documents": {
+            "items": {
+              "type": "object"
+            },
+            "maxItems": 256,
+            "minItems": 1,
+            "type": "array"
+          }
+        },
+        "required": [
+          "documents"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "documents"
+        ],
+        "type": "object"
+      },
+      "profile": "utf8-source-utf16-edits/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:code",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "code"
+        ],
+        "writes": [
+          "code"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "code.delete",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision"
+        ],
+        "type": "object"
+      },
+      "profile": "utf8-source-utf16-edits/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:code",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "code"
+        ],
+        "writes": [
+          "code"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "code.edit",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "edits": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "end": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "start": {
+                  "minimum": 0,
+                  "type": "integer"
+                },
+                "text": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "start",
+                "end",
+                "text"
+              ],
+              "type": "object"
+            },
+            "maxItems": 10000,
+            "type": "array"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "edits"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "edits"
+        ],
+        "type": "object"
+      },
+      "profile": "utf8-source-utf16-edits/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:code",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "code"
+        ],
+        "writes": [
+          "code"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "code.rename",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "path": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "expectedRevision",
+          "path"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "path"
+        ],
+        "type": "object"
+      },
+      "profile": "utf8-source-utf16-edits/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:code",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "code"
+        ],
+        "writes": [
+          "code"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "code.set",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "content": {
+            "type": "object"
+          },
+          "expectedRevision": {
+            "description": "Current target revision; 0 only for a document created earlier in this same transaction.",
+            "minimum": 0,
+            "type": "integer"
+          },
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "content"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "id",
+          "expectedRevision",
+          "content"
+        ],
+        "type": "object"
+      },
+      "profile": "utf8-source-utf16-edits/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:curve",
       "effects": {
         "atomic": true,
@@ -2028,6 +2642,88 @@
         ]
       },
       "profile": "explicit-element-selection/1",
+      "requiredKits": [],
+      "resultSchema": "nexusengine.authoring-receipt/1",
+      "schemaVersion": 1,
+      "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
+    },
+    {
+      "cancellation": "before-submit",
+      "cost": "bounded-document",
+      "documentation": "AUTHORING.md#capability-profiles",
+      "domainPath": "n:authoring:importing",
+      "effects": {
+        "atomic": true,
+        "reads": [
+          "project"
+        ],
+        "writes": [
+          "mesh",
+          "material",
+          "image",
+          "rig",
+          "skin",
+          "shape",
+          "animation",
+          "assembly"
+        ]
+      },
+      "errors": [
+        "AUTHORING_INVALID_INPUT",
+        "AUTHORING_STALE_REVISION",
+        "AUTHORING_DEPENDENCY_KIND"
+      ],
+      "expectedRevisions": "existing targets required",
+      "id": "importing.commit",
+      "inputSchema": {
+        "additionalProperties": false,
+        "properties": {
+          "documents": {
+            "items": {
+              "additionalProperties": false,
+              "properties": {
+                "content": {
+                  "type": "object"
+                },
+                "id": {
+                  "minLength": 1,
+                  "type": "string"
+                },
+                "kind": {
+                  "minLength": 1,
+                  "type": "string"
+                }
+              },
+              "required": [
+                "id",
+                "kind",
+                "content"
+              ],
+              "type": "object"
+            },
+            "maxItems": 10000,
+            "minItems": 1,
+            "type": "array"
+          },
+          "provenance": {
+            "type": "object"
+          }
+        },
+        "required": [
+          "documents",
+          "provenance"
+        ],
+        "type": "object"
+      },
+      "parameters": {
+        "additionalProperties": false,
+        "fields": [
+          "documents",
+          "provenance"
+        ],
+        "type": "object"
+      },
+      "profile": "staged-canonical-import/1",
       "requiredKits": [],
       "resultSchema": "nexusengine.authoring-receipt/1",
       "schemaVersion": 1,

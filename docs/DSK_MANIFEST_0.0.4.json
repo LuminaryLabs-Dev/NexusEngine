@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
-  "compositionRegistryHash": "sha256:14afa1ecab9bbdf7c8dc24d1e688327b927c178f61caf2a0fa78d53e82698d97",
+  "registryHash": "sha256:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+  "compositionRegistryHash": "sha256:bf00288ffbddf927128fcd6c2c11c95787e8ac133f2bdf0b35ac8463af82869d",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
-      "integrity": "sha256:147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+      "sourceCommit": "builtin:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
+      "integrity": "sha256:206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
       "status": "available",
       "environments": [
         "browser",
@@ -368,6 +368,37 @@
       ],
       "provides": [
         "n:authoring:brush"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "authoring-code-domain",
+      "domainPath": "n:authoring:code",
+      "parentDomainPath": "n:authoring",
+      "label": "Authoring Code",
+      "status": "stable-candidate",
+      "responsibility": "Own editable code documents and revision-bound language intelligence contracts.",
+      "ownedMeaning": [
+        "code source operations",
+        "language request contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "compiler execution",
+        "filesystem ownership",
+        "language-server processes"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "n:authoring:code"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1122,6 +1153,34 @@
       ],
       "provides": [
         "n:build:classification"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "code-intelligence-domain",
+      "domainPath": "n:authoring:code:intelligence",
+      "parentDomainPath": "n:authoring:code",
+      "label": "Code Intelligence",
+      "status": "stable-candidate",
+      "responsibility": "Own revision-bound language service requests.",
+      "ownedMeaning": [
+        "language request state"
+      ],
+      "forbiddenResponsibilities": [
+        "provider processes"
+      ],
+      "requires": [
+        "authoring:code-document"
+      ],
+      "provides": [
+        "n:authoring:code:intelligence"
       ],
       "settingsSchema": {
         "type": "object",
@@ -13934,6 +13993,178 @@
       }
     },
     {
+      "id": "code-document-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own revisioned source-code document operations.",
+      "domainPath": "n:authoring:code",
+      "parentDomainPath": "n:authoring",
+      "apiName": "authoringCode",
+      "apiVisibility": "public",
+      "requires": [
+        "n:authoring:project"
+      ],
+      "provides": [
+        "authoring:code-document"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/code/code-document",
+        "exportName": "createCodeDocumentKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Clear derived service state; Project owns source documents and history."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "required": [
+              "schema",
+              "kitId"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "schema": {
+                "const": "nexusengine.authoring-service/1"
+              },
+              "kitId": {
+                "const": "code-document-kit"
+              }
+            }
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/toolchain-code.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "code-document-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "code-document-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "code-intelligence-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Own revision-bound language intelligence requests and proposed edits.",
+      "domainPath": "n:authoring:code:intelligence",
+      "parentDomainPath": "n:authoring:code",
+      "apiName": "codeIntelligence",
+      "apiVisibility": "public",
+      "requires": [
+        "authoring:code-document"
+      ],
+      "provides": [
+        "authoring:code-intelligence"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/authoring/code/code-intelligence",
+        "exportName": "createCodeIntelligenceKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Clear derived service state; Project owns source documents and history."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "required": [
+              "schema",
+              "kitId"
+            ],
+            "additionalProperties": false,
+            "properties": {
+              "schema": {
+                "const": "nexusengine.authoring-service/1"
+              },
+              "kitId": {
+                "const": "code-intelligence-kit"
+              }
+            }
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/toolchain-code.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "code-intelligence-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "code-intelligence-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "collider-attachment-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -14772,6 +15003,81 @@
             },
             {
               "id": "collision-mask-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "compiler-driver-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Execute reviewed compiler drivers against isolated source snapshots.",
+      "domainPath": "n:build:compile",
+      "parentDomainPath": "n:build",
+      "apiName": "compilerDriver",
+      "apiVisibility": "public",
+      "requires": [
+        "build:build-approval",
+        "build:isolated-stage",
+        "build:process-execution",
+        "build:toolchain-resolution"
+      ],
+      "provides": [
+        "build:compiler-driver"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/compile/compiler-driver",
+        "exportName": "createCompilerDriverKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/toolchain-code.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "compiler-driver-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "compiler-driver-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -33854,6 +34160,151 @@
             },
             {
               "id": "toolchain-provision-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toolchain-registry-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Register compiler, interpreter and runtime tool descriptors.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "toolchainRegistry",
+      "apiVisibility": "public",
+      "requires": [
+        "n:build:toolchain"
+      ],
+      "provides": [
+        "build:toolchain-registry"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/toolchain-registry",
+        "exportName": "createToolchainRegistryKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/toolchain-code.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "toolchain-registry-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "toolchain-registry-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "toolchain-resolution-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Resolve compatible tools and complete runtime dependencies.",
+      "domainPath": "n:build:toolchain",
+      "parentDomainPath": "n:build",
+      "apiName": "toolchainResolution",
+      "apiVisibility": "public",
+      "requires": [
+        "build:toolchain-discovery",
+        "build:toolchain-registry"
+      ],
+      "provides": [
+        "build:toolchain-resolution"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/build/toolchain/toolchain-resolution",
+        "exportName": "createToolchainResolutionKit",
+        "environments": [
+          "node"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/toolchain-code.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "toolchain-resolution-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "toolchain-resolution-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true

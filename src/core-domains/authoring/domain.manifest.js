@@ -1,3 +1,6 @@
+import codeDomain,{intelligenceDomain} from './code/subdomain.manifest.js';
+import codeDocumentManifest from './code/kits/code-document-kit/kit.manifest.js';
+import codeIntelligenceManifest from './code/kits/code-intelligence-kit/kit.manifest.js';
 import { AUTHORING_IO_KIT_MANIFESTS, AUTHORING_IO_DOMAINS } from './io.manifests.js';
 import modifierManifest from "./modifier/kits/authoring-modifier-service-kit/kit.manifest.js";
 import modifierDomain from "./modifier/subdomain.manifest.js";
@@ -66,6 +69,7 @@ export default defineCoreDomainManifest(
       proofStatus: "proven",
     }),
     subdomains: [
+      codeDomain,intelligenceDomain,
       ...AUTHORING_IO_DOMAINS,
       modifierDomain,
       publishingDomain,
@@ -86,11 +90,14 @@ export default defineCoreDomainManifest(
       meshDomain,
       editingDomain,
     ],
+    publicEntries: [{domainPath:'n:authoring:code',subpath:'./domains/authoring/code',module:'./src/core-domains/authoring/code/index.js'}],
     publicEntry: {
       subpath: "./domains/authoring",
       module: "./src/core-domains/authoring/index.js",
     },
     publicKits: [
+      codeDocumentManifest,
+      codeIntelligenceManifest,
       ...AUTHORING_IO_KIT_MANIFESTS,
       modifierManifest,
       publishingManifest,

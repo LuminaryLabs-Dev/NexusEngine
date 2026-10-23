@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
+Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
 
 ## Domains
 
@@ -15,6 +15,8 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
 | `n:authoring` | - | Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations. | stable-candidate |
+| `n:authoring:code` | `n:authoring` | Own editable code documents and revision-bound language intelligence contracts. | stable-candidate |
+| `n:authoring:code:intelligence` | `n:authoring:code` | Own revision-bound language service requests. | stable-candidate |
 | `n:authoring:create` | `n:authoring` | Own canonical create operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
 | `n:authoring:importing` | `n:authoring` | Own canonical importing operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
 | `n:authoring:persistence` | `n:authoring` | Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
@@ -216,6 +218,8 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
+| `code-document-kit` | `n:authoring:code` | `nexusengine/domains/authoring/code/code-document` | Own revisioned source-code document operations. |
+| `code-intelligence-kit` | `n:authoring:code:intelligence` | `nexusengine/domains/authoring/code/code-intelligence` | Own revision-bound language intelligence requests and proposed edits. |
 | `authoring-create-service-kit` | `n:authoring:create` | `nexusengine/domains/authoring/create/create-service` | Route creation requests to existing typed Project operations without owning duplicate content. |
 | `authoring-import-registry-kit` | `n:authoring:importing` | `nexusengine/domains/authoring/importing/import-registry` | Own trusted canonical importer discovery and provider selection. |
 | `authoring-import-validation-kit` | `n:authoring:importing` | `nexusengine/domains/authoring/importing/import-validation` | Validate a complete staged canonical import against the existing Project writer. |
@@ -255,6 +259,9 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `authoring-project-document-kit` | `n:authoring:project` | `nexusengine/domains/authoring/project` | Own project Authoring contracts and operations. |
 | `authoring-mesh-document-kit` | `n:authoring:mesh` | `nexusengine/domains/authoring/mesh` | Own mesh Authoring contracts and operations. |
 | `authoring-editing-session-kit` | `n:authoring:editing` | `nexusengine/domains/authoring/editing` | Own editing Authoring contracts and operations. |
+| `toolchain-registry-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-registry` | Register compiler, interpreter and runtime tool descriptors. |
+| `toolchain-resolution-kit` | `n:build:toolchain` | `nexusengine/domains/build/toolchain/toolchain-resolution` | Resolve compatible tools and complete runtime dependencies. |
+| `compiler-driver-kit` | `n:build:compile` | `nexusengine/domains/build/compile/compiler-driver` | Execute reviewed compiler drivers against isolated source snapshots. |
 | `host-native-target-kit` | `n:build:target:host-native` | `nexusengine/domains/build/target/host-native/host-native-target` | Compile Rust and embedded Node contract bindings for local host proof; no redistributable package claim. |
 | `project-source-kit` | `n:build:source` | `nexusengine/domains/build/source/project-source` | Read a deterministic project inventory without following links or mutating source. |
 | `source-fingerprint-kit` | `n:build:source` | `nexusengine/domains/build/source/source-fingerprint` | Create the canonical SHA-256 project fingerprint. |

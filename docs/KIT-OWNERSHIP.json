@@ -1,12 +1,12 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1311,
-    "manifestProvenPublicAtoms": 385,
-    "optionalProviderModules": 10,
+    "manifestOwnedInternalModules": 1335,
+    "manifestProvenPublicAtoms": 390,
+    "optionalProviderModules": 16,
     "rootContractModules": 25,
-    "sourceModules": 1731,
-    "unreviewedModules": 0,
+    "sourceModules": 1767,
+    "unreviewedModules": 1,
     "violations": 0
   },
   "generatedFrom": [
@@ -15,6 +15,29 @@
     "src and optional kits production inventory"
   ],
   "records": [
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/build/language-toolchains"
+      ],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/build/language-toolchains"
+      ],
+      "path": "kits/build/language-toolchains-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLanguageToolchains",
+        "languageToolchainsManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
     {
       "atomic": null,
       "currentConsumers": [
@@ -32,8 +55,105 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
+        "IDE_ENTRY",
+        "LANGUAGE_TOOLCHAINS_ENTRY",
         "OPTIONAL_KIT_CATALOG",
         "installOptionalKit"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/development/ide-kit/client.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/development/ide"
+      ],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/development/ide"
+      ],
+      "path": "kits/development/ide-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createIdeHost",
+        "createStdioProtocol",
+        "ideManifest",
+        "serveIde"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/development/ide-kit/language.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createTypeScriptProvider"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/development/ide-kit/protocol.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createStdioProtocol"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Graphics Language Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:render",
+      "ownershipBasis": "kits/render/graphics-language-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/development/ide-kit/server.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "serveIde"
       ],
       "responsibility": null,
       "reviewStatus": "optional-provider-kit"
@@ -231,6 +351,24 @@
       ],
       "responsibility": null,
       "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "review-required",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": null,
+      "ownershipBasis": "none",
+      "packageEntrypoints": [],
+      "path": "src/adapters/node/agent-cli.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "runAgentCli"
+      ],
+      "responsibility": null,
+      "reviewStatus": "unreviewed"
     },
     {
       "atomic": null,
@@ -632,6 +770,61 @@
       "owner": "n:agent",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
+      "path": "src/core-domains/agent/interaction/answer-session.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentAnswerSession"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/interaction/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentAnswerSession",
+        "createAgentTaskGraph"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/interaction/task-graph.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentTaskGraph"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
       "path": "src/core-domains/agent/kits/agent-kit/action-proposals.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -673,6 +866,24 @@
       "proof": null,
       "publicExports": [
         "createAgentState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/kits/agent-kit/context-store.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentContextStore"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -772,6 +983,24 @@
       "proof": null,
       "publicExports": [
         "createAgentObservation"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/kits/agent-kit/tool-access.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentToolAccess"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -1300,6 +1529,225 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "editCode",
+        "normalizeCodeContent"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/authoring/code"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/authoring/code"
+      ],
+      "path": "src/core-domains/authoring/code/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCodeDocumentKit",
+        "createCodeIntelligenceKit",
+        "editCode",
+        "normalizeCodeContent"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/intelligence.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCodeIntelligenceService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/authoring/code/code-document"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:authoring",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/authoring/code/code-document"
+      ],
+      "path": "src/core-domains/authoring/code/kits/code-document-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "code-document-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "code-document-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCodeDocumentKit"
+      ],
+      "responsibility": "Own revisioned source-code document operations.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/kits/code-document-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/authoring/code/code-intelligence"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:authoring",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/authoring/code/code-intelligence"
+      ],
+      "path": "src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "code-intelligence-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createCodeIntelligenceKit"
+      ],
+      "responsibility": "Own revision-bound language intelligence requests and proposed edits.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "installCodeDocumentServices"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/code/subdomain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "codeDomain",
+        "intelligenceDomain"
+      ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
     },
@@ -7210,6 +7658,126 @@
       "owner": "n:build",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "BUILD_TIME_ONLY",
+        "DOMAIN_PATH",
+        "KIT_ID"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/build/compile/compiler-driver"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:build",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/build/compile/compiler-driver"
+      ],
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "compiler-driver-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "compiler-driver-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createCompilerDriverKit",
+        "kitManifest"
+      ],
+      "responsibility": "Execute reviewed compiler drivers against isolated source snapshots.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "kitManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createCompilerDriverService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/compile/kits/compiler-driver-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createInitialState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
       "path": "src/core-domains/build/compile/kits/javascript-fallback-kit/contracts.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -12192,6 +12760,245 @@
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
       "path": "src/core-domains/build/toolchain/kits/toolchain-provision-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createInitialState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "TOOLCHAIN_SCHEMA",
+        "normalizeToolchain"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/build/toolchain/toolchain-registry"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:build",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/build/toolchain/toolchain-registry"
+      ],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "toolchain-registry-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "toolchain-registry-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createToolchainRegistryKit",
+        "kitManifest"
+      ],
+      "responsibility": "Register compiler, interpreter and runtime tool descriptors.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "kitManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createToolchainRegistryService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-registry-kit/state.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createInitialState"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "BUILD_TIME_ONLY",
+        "DOMAIN_PATH",
+        "KIT_ID"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/build/toolchain/toolchain-resolution"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:build",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/build/toolchain/toolchain-resolution"
+      ],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "toolchain-resolution-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "toolchain-resolution-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/toolchain-code.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createToolchainResolutionKit",
+        "kitManifest"
+      ],
+      "responsibility": "Resolve compatible tools and complete runtime dependencies.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "kitManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/services.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createToolchainResolutionService"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:build",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/state.js",
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
@@ -44109,7 +44916,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+  "registrySha256": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

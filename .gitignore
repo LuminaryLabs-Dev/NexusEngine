@@ -27,3 +27,7 @@ dist/
 .tmp/
 .cache/
 memory.md
+
+# Local audit and Engine Kit evidence
+Auditor/runs/
+.nexus-engine-kit/

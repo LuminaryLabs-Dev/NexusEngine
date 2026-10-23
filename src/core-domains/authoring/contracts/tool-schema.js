@@ -15,6 +15,11 @@ const tuple = (n) => ({
   ids = { type: "array", uniqueItems: true, items: text },
   object = { type: "object" };
 const requiredByOperation = {
+  'code.set':['id','content'],
+  'code.delete':['id','expectedRevision'],
+  'code.edit':['id','expectedRevision','edits'],
+  'code.apply-edits':['documents'],
+  'code.rename':['id','expectedRevision','path'],
   "importing.commit": ["documents", "provenance"],
   "mesh.create": ["id", "mesh"],
   "mesh.cube": ["id"],
@@ -234,6 +239,10 @@ export function authoringToolInputSchema(id, fields) {
                       : text,
       ]),
     );
+  if(id.startsWith('code.')){
+    if(properties.edits)properties.edits={type:'array',maxItems:10000,items:{type:'object',required:['start','end','text'],additionalProperties:false,properties:{start:{type:'integer',minimum:0},end:{type:'integer',minimum:0},text:{type:'string'}}}};
+    if(properties.documents)properties.documents={type:'array',minItems:1,maxItems:256,items:{type:'object'}};
+  }
   if (id === "importing.commit") {
     properties.documents = { type: "array", minItems: 1, maxItems: 10000, items: { type: "object", required: ["id", "kind", "content"], additionalProperties: false, properties: { id: text, kind: text, content: object } } };
     properties.provenance = object;

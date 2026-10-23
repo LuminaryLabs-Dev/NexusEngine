@@ -2,19 +2,25 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76`
+Registry SHA-256: `206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa`
 
-- Source modules: 1731
-- Manifest-proven public atoms: 385
-- Manifest-owned internal modules: 1311
+- Source modules: 1767
+- Manifest-proven public atoms: 390
+- Manifest-owned internal modules: 1335
 - Root contract modules: 25
-- Optional provider modules: 10
-- Unreviewed modules: 0
+- Optional provider modules: 16
+- Unreviewed modules: 1
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
+| `kits/build/language-toolchains-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/catalog.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/development/ide-kit/client.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/development/ide-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/development/ide-kit/language.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/development/ide-kit/protocol.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/development/ide-kit/server.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/contracts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/hosts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
@@ -24,6 +30,7 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/runtime/loader.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/session.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `src/adapters/node/agent-cli.js` | unassigned | unreviewed | review-required |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
@@ -38,13 +45,18 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `src/core-domains/actor/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/domain.manifest.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/interaction/answer-session.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/interaction/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/interaction/task-graph.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/action-proposals.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/adapters.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/agent-state.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/context-store.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/decision-cycle.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/execution-ledger.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/observations.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/kits/agent-kit/tool-access.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
@@ -67,6 +79,15 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `src/core-domains/authoring/brush/kits/authoring-brush-service-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/brush/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/brush/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/contracts.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/index.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/intelligence.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/kits/code-document-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/code/kits/code-document-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/kits/code-intelligence-kit/index.js` | `n:authoring` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/code/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io-kit.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/ledger.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
@@ -316,6 +337,11 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `src/core-domains/build/classification/kits/portability-classifier-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/classification/subdomain.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/compile/index.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/compile/kits/compiler-driver-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/compile/kits/compiler-driver-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/compile/kits/compiler-driver-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/compile/kits/compiler-driver-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/compile/kits/compiler-driver-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/compile/kits/javascript-fallback-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/compile/kits/javascript-fallback-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/build/compile/kits/javascript-fallback-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
@@ -527,6 +553,16 @@ Registry SHA-256: `147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486
 | `src/core-domains/build/toolchain/kits/toolchain-provision-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-provision-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-provision-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-registry-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-registry-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-registry-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-registry-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-registry-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-resolution-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-resolution-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-resolution-kit/services.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/build/toolchain/kits/toolchain-resolution-kit/state.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-source-kit/contracts.js` | `n:build` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js` | `n:build` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/build/toolchain/kits/toolchain-source-kit/kit.manifest.js` | `n:build` | manifest-owned-internal | NexusEngine Core |

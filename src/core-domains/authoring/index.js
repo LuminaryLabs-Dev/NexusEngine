@@ -1,3 +1,5 @@
+import {createCodeDocumentKit,createCodeIntelligenceKit} from './code/index.js';
+export * from './code/index.js';
 import { createAuthoringIOKits } from './io-kits.js';
 export * from './io-kits.js';
 import { requireFields } from "./contracts/value.js";
@@ -67,5 +69,7 @@ export function createAuthoringDomain(config = {}) {
     createAuthoringPublishingServiceKit(),
     createAuthoringModifierServiceKit(),
     ...createAuthoringIOKits(),
+    createCodeDocumentKit(),
+    createCodeIntelligenceKit(),
   ];
 }

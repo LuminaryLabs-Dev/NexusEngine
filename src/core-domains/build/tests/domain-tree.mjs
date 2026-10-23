@@ -7,9 +7,9 @@ import buildDomainManifest from "../domain.manifest.js";
 assert.equal(buildDomainManifest.domainPath, "n:build");
 assert.equal(buildDomainManifest.subdomains.length, 16);
 assert.equal(buildDomainManifest.publicEntries.length, 16);
-assert.equal(buildDomainManifest.publicKits.length, 48);
-assert.equal(new Set(buildDomainManifest.publicKits.map((kit) => kit.id)).size, 48);
-assert.equal(new Set(buildDomainManifest.publicKits.map((kit) => kit.source.publicSubpath)).size, 48);
+assert.equal(buildDomainManifest.publicKits.length, 51);
+assert.equal(new Set(buildDomainManifest.publicKits.map((kit) => kit.id)).size, 51);
+assert.equal(new Set(buildDomainManifest.publicKits.map((kit) => kit.source.publicSubpath)).size, 51);
 
 const providers = new Map();
 for (const kit of buildDomainManifest.publicKits) {
@@ -106,4 +106,4 @@ for (const pathName of [
   assert.equal(node.identity.parentDomainPath, "n:build:target");
 }
 
-console.log("Build Domain tree: 16 subdomains, 48 atomic Kit contracts, and acyclic dependency traversal ok");
+console.log("Build Domain tree: 16 subdomains, 51 atomic Kit contracts, and acyclic dependency traversal ok");

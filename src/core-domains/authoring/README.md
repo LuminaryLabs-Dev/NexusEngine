@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:authoring`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `6a22be0498b35e1552e941baf226327c42c86f63fff45d820b1550a15ea71436`
 - Public entry: `nexusengine/domains/authoring`
 
 ## Responsibility
@@ -27,6 +27,8 @@ Own canonical headless creation, import, editing, validation, persistence and pu
 
 | Path | Responsibility |
 | --- | --- |
+| `n:authoring:code` | Own editable code documents and revision-bound language intelligence contracts. |
+| `n:authoring:code:intelligence` | Own revision-bound language service requests. |
 | `n:authoring:create` | Own canonical create operations, default providers, diagnostics and source-safe lifecycle. |
 | `n:authoring:importing` | Own canonical importing operations, default providers, diagnostics and source-safe lifecycle. |
 | `n:authoring:persistence` | Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle. |
@@ -55,6 +57,8 @@ Own canonical headless creation, import, editing, validation, persistence and pu
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
+| `code-document-kit` | `nexusengine/domains/authoring/code/code-document` | Own revisioned source-code document operations. |
+| `code-intelligence-kit` | `nexusengine/domains/authoring/code/code-intelligence` | Own revision-bound language intelligence requests and proposed edits. |
 | `authoring-create-service-kit` | `nexusengine/domains/authoring/create/create-service` | Route creation requests to existing typed Project operations without owning duplicate content. |
 | `authoring-import-registry-kit` | `nexusengine/domains/authoring/importing/import-registry` | Own trusted canonical importer discovery and provider selection. |
 | `authoring-import-validation-kit` | `nexusengine/domains/authoring/importing/import-validation` | Validate a complete staged canonical import against the existing Project writer. |

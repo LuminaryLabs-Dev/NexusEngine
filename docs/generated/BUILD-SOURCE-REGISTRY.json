@@ -92,7 +92,7 @@
       "transitiveDependencies": []
     }
   ],
-  "registryHash": "147e7302e0563cdf246cc33c197ba32fec606f783817d345244544e3ce486c76",
+  "registryHash": "206c26b2aeacc8202455d87cef05b5a33659079bdac80e2e36e41fe50024bdaa",
   "schema": "nexusengine.build-source-registry/1",
   "sourceFiles": [
     "src/core-domains/build/analysis/kits/dependency-analysis-kit/sources.json",
@@ -106,6 +106,7 @@
     "src/core-domains/build/classification/kits/capability-resolution-kit/sources.json",
     "src/core-domains/build/classification/kits/fallback-selection-kit/sources.json",
     "src/core-domains/build/classification/kits/portability-classifier-kit/sources.json",
+    "src/core-domains/build/compile/kits/compiler-driver-kit/sources.json",
     "src/core-domains/build/compile/kits/javascript-fallback-kit/sources.json",
     "src/core-domains/build/compile/kits/native-runtime-link-kit/sources.json",
     "src/core-domains/build/compile/kits/runtime-abi-kit/sources.json",
@@ -141,6 +142,8 @@
     "src/core-domains/build/toolchain/kits/process-execution-kit/sources.json",
     "src/core-domains/build/toolchain/kits/toolchain-discovery-kit/sources.json",
     "src/core-domains/build/toolchain/kits/toolchain-provision-kit/sources.json",
+    "src/core-domains/build/toolchain/kits/toolchain-registry-kit/sources.json",
+    "src/core-domains/build/toolchain/kits/toolchain-resolution-kit/sources.json",
     "src/core-domains/build/toolchain/kits/toolchain-source-kit/sources.json"
   ]
 }

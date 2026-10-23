@@ -1,0 +1,3 @@
+import { defineBuildAtomicKitManifest } from '../../../manifest-input.js';
+export const kitManifest = defineBuildAtomicKitManifest({ id: 'toolchain-resolution-kit', responsibility: 'Resolve compatible tools and complete runtime dependencies.', domainPath: 'n:build:toolchain', apiName: 'toolchainResolution', requires: ['build:toolchain-registry', 'build:toolchain-discovery'], provides: ['build:toolchain-resolution'], module: './src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js', exportName: 'createToolchainResolutionKit', publicSubpath: './domains/build/toolchain/toolchain-resolution', proofReferences: ['tests/toolchain-code.mjs'] });
+export default kitManifest;
