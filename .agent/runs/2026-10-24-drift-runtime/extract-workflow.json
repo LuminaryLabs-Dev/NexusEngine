@@ -1,0 +1,114 @@
+{
+  "observation": {
+    "schema": "nexus-engine-kit.execution/1",
+    "requestId": "nexus-engine-kit:3",
+    "action": "kit_session",
+    "ok": true,
+    "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+    "before": {
+      "projectId": "project",
+      "epoch": 3,
+      "clock": 2
+    },
+    "after": {
+      "projectId": "project",
+      "epoch": 3,
+      "clock": 2
+    },
+    "result": {
+      "snapshot": {
+        "schema": "nexusengine.agent-answer/1",
+        "id": "drift-runtime",
+        "intent": "Extract and validate reusable scene runtime; publish independent static Drift Isles through existing Website/main root Pages.",
+        "project": "drift-runtime-engine",
+        "status": "awaiting-result",
+        "turn": 1,
+        "history": [
+          {
+            "id": "drift-runtime:1",
+            "action": "plan",
+            "payload": {
+              "phase": "extract",
+              "completedExternalWork": {
+                "path": ".agent/runs/2026-10-24-drift-runtime/validation.json",
+                "sha256": "5b34dc0d6cc590cc822894ea2b42b98fde658d6908ee5c37b8a2a8319640d42b",
+                "observedValidation": "pass",
+                "receiptMeaning": "Acknowledges externally executed and inspected validation report, not an independent validator verdict."
+              }
+            },
+            "result": null
+          }
+        ],
+        "result": null
+      },
+      "next": {
+        "type": "tool-result",
+        "requestId": "drift-runtime:1"
+      }
+    },
+    "agentId": "nexus-engine-kit"
+  },
+  "completion": {
+    "schema": "nexus-engine-kit.execution/1",
+    "requestId": "nexus-engine-kit:4",
+    "action": "kit_task",
+    "ok": true,
+    "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+    "before": {
+      "projectId": "project",
+      "epoch": 4,
+      "clock": 3
+    },
+    "after": {
+      "projectId": "project",
+      "epoch": 4,
+      "clock": 3
+    },
+    "result": {
+      "snapshot": {
+        "schema": "nexusengine.agent-task-graph/1",
+        "nodes": [
+          {
+            "id": "extract",
+            "dependencies": [],
+            "status": "complete",
+            "receipt": {
+              "requestId": "nexus-engine-kit:3",
+              "action": "kit_session",
+              "ok": true,
+              "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1"
+            }
+          },
+          {
+            "id": "integrate",
+            "dependencies": [
+              "extract"
+            ],
+            "status": "pending",
+            "receipt": null
+          },
+          {
+            "id": "validate",
+            "dependencies": [
+              "integrate"
+            ],
+            "status": "pending",
+            "receipt": null
+          },
+          {
+            "id": "publish",
+            "dependencies": [
+              "validate"
+            ],
+            "status": "pending",
+            "receipt": null
+          }
+        ]
+      },
+      "ready": [
+        "integrate"
+      ]
+    },
+    "agentId": "nexus-engine-kit"
+  }
+}

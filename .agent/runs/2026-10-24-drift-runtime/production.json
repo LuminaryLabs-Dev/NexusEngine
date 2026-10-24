@@ -1,0 +1,27 @@
+{
+  "url": "https://luminarylabs.dev/drift-isles/",
+  "sourceCommit": "f7ffdf7b0fd9b10d9934efa13647308a4638a1c9",
+  "engineCommit": "e3b9b589c9eaad144ef815ec9fa5ab20f0806424",
+  "studioSourceCommit": "f2b067ee613bd8894a8b2921b2d03c838ebdb6bf",
+  "studioVersion": "0.7.0",
+  "hashes": {
+    "index.html": "b79a2c25dbd4af252fe2e021f0faac2efa280d92f1b0759ba09cc1d8d35f8113",
+    "nexusengine-LICENSE.txt": "4a0ae6ed06f277f289a4b0c20b6949640aa02bc491f0cb46b2be24d843256ca7",
+    "three-LICENSE.txt": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc"
+  },
+  "homepagePublicPagesPlayLink": true,
+  "previewImage": true,
+  "keyboardCollection": true,
+  "pauseRestart": true,
+  "standaloneNoStudioRequests": true,
+  "offlinePlay": true,
+  "publishedStudioOpensAndPlaysGame": true,
+  "studioPortableSave": true,
+  "pageErrors": [],
+  "deployment": {
+    "branch": "main",
+    "path": "/",
+    "type": "legacy",
+    "yamlChanged": false
+  }
+}
