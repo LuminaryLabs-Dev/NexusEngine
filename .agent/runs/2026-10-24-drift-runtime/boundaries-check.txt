@@ -1,0 +1,1 @@
+Core boundaries ok: 1797 production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.

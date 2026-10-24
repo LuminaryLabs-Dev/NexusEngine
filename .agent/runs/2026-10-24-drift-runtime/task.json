@@ -1,0 +1,58 @@
+{
+  "schema": "nexus-engine-kit.execution/1",
+  "requestId": "nexus-engine-kit:2",
+  "action": "kit_task",
+  "ok": true,
+  "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+  "before": {
+    "projectId": "project",
+    "epoch": 2,
+    "clock": 1
+  },
+  "after": {
+    "projectId": "project",
+    "epoch": 2,
+    "clock": 1
+  },
+  "result": {
+    "snapshot": {
+      "schema": "nexusengine.agent-task-graph/1",
+      "nodes": [
+        {
+          "id": "extract",
+          "dependencies": [],
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "id": "integrate",
+          "dependencies": [
+            "extract"
+          ],
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "id": "validate",
+          "dependencies": [
+            "integrate"
+          ],
+          "status": "pending",
+          "receipt": null
+        },
+        {
+          "id": "publish",
+          "dependencies": [
+            "validate"
+          ],
+          "status": "pending",
+          "receipt": null
+        }
+      ]
+    },
+    "ready": [
+      "extract"
+    ]
+  },
+  "agentId": "nexus-engine-kit"
+}

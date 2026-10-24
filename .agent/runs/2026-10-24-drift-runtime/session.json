@@ -1,0 +1,33 @@
+{
+  "schema": "nexus-engine-kit.execution/1",
+  "requestId": "nexus-engine-kit:1",
+  "action": "kit_session",
+  "ok": true,
+  "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+  "before": {
+    "projectId": "project",
+    "epoch": 1,
+    "clock": 0
+  },
+  "after": {
+    "projectId": "project",
+    "epoch": 1,
+    "clock": 0
+  },
+  "result": {
+    "snapshot": {
+      "schema": "nexusengine.agent-answer/1",
+      "id": "drift-runtime",
+      "intent": "Extract and validate reusable scene runtime; publish independent static Drift Isles through existing Website/main root Pages.",
+      "project": "drift-runtime-engine",
+      "status": "awaiting-agent",
+      "turn": 0,
+      "history": [],
+      "result": null
+    },
+    "next": {
+      "type": "agent-response"
+    }
+  },
+  "agentId": "nexus-engine-kit"
+}

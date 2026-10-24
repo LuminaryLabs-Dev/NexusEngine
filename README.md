@@ -325,3 +325,7 @@ See [CHANGELOG.md](CHANGELOG.md), [RELEASE_0.0.4.md](RELEASE_0.0.4.md), and
 [Security](SECURITY.md) for current boundaries.
 
 Native and hybrid host builds: [Build host guide](docs/BUILD-NATIVE-HOST.md).
+
+### Configured scene runtime (optional)
+
+Use `nexusengine/kits/simulation/configured-scene-runtime` for Engine-owned configured scene play, platform motion/carry, checkpoints, collection and completion. Its `/project`, `/browser`, `/export` and `/composition` public entries support portable projects and standalone static games without Studio. The browser host uses the optional Three.js peer outside Core; Studio remains an authoring/export consumer. See [Kit API and ownership](kits/simulation/configured-scene-runtime-kit/README.md).

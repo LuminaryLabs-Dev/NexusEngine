@@ -1,0 +1,9 @@
+{
+ "runId":"2026-10-24-drift-runtime",
+ "workspace":"/Users/crimsonwheeler/.codex/workspaces/drift-runtime-engine",
+ "taskId":"drift-runtime","sessionId":"drift-runtime",
+ "baseEngineRevision":"8c55d7f",
+ "goal":"goal.md","validation":"validation.json","report":"report.md",
+ "ownership":"Optional simulation composition and optional browser adapter; no new Core Domain",
+ "initialFailure":"CLI workspace did not exist; created the task-specific workspace and successfully retried. No source data was lost."
+}

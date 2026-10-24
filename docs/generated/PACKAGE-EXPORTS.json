@@ -479,6 +479,12 @@
     "./kits/authoring/storage/indexeddb": "./kits/authoring/storage/indexeddb/index.js",
     "./kits/build/language-toolchains": "./kits/build/language-toolchains-kit/index.js",
     "./kits/development/ide": "./kits/development/ide-kit/index.js",
+    "./kits/simulation/configured-scene-runtime": "./kits/simulation/configured-scene-runtime-kit/index.js",
+    "./kits/simulation/configured-scene-runtime/assets": "./kits/simulation/configured-scene-runtime-kit/asset-library.js",
+    "./kits/simulation/configured-scene-runtime/browser": "./kits/simulation/configured-scene-runtime-kit/browser/player.js",
+    "./kits/simulation/configured-scene-runtime/composition": "./kits/simulation/configured-scene-runtime-kit/composition.js",
+    "./kits/simulation/configured-scene-runtime/export": "./kits/simulation/configured-scene-runtime-kit/export.js",
+    "./kits/simulation/configured-scene-runtime/project": "./kits/simulation/configured-scene-runtime-kit/project.js",
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
