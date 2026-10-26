@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import {createLoopControl,advanceLoopControl} from "../../src/core-domains/agent/loop/control/index.js";
+let s=createLoopControl({loopId:"l",agentId:"a",goalRef:"g",budgets:{maxTokens:5,maxSteps:3}});
+s=advanceLoopControl(s,{status:"active"});
+assert.throws(()=>advanceLoopControl(s,{status:"completed"}));
+assert.throws(()=>advanceLoopControl(s,{status:"active",expectedRevision:0}));
+s=advanceLoopControl(s,{status:"active",stepId:"one",tokens:6});
+assert.equal(s.status,"blocked");
+assert.throws(()=>advanceLoopControl(s,{status:"active"}));
+console.log("Loop control budgets and receipts passed");
