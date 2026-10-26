@@ -18,7 +18,13 @@ export function createInferenceProviderPool({providers=[],instances=[],snapshot=
   const lease={requestId:request.id,instanceId:chosen.id,expiresAt:now+leaseMs};leases.set(request.id,lease);
   return copy({...lease,instance:chosen});
  }
- function reportFailure(instanceId,{reason="unknown",retryAfterMs=null,now=Date.now()}={}){\n  const x=endpoints.get(instanceId);if(!x)throw new Error("Unknown provider instance");\n  if(reason==="rate_limited"||reason==="quota_exhausted"){x.health="cooldown";x.cooldownUntil=reason==="quota_exhausted"?(x.quotaResetAt??null):now+Math.max(1000,retryAfterMs??60000);}\n  else if(reason==="unavailable") {x.health="cooldown";x.cooldownUntil=now+Math.max(1000,retryAfterMs??30000);}\n  return copy(x);\n }\n function release(id){const l=leases.get(id);if(!l)return false;const e=endpoints.get(l.instanceId);if(e)e.active=Math.max(0,e.active-1);leases.delete(id);return true;}
+ function reportFailure(instanceId,{reason="unknown",retryAfterMs=null,now=Date.now()}={}){
+  const x=endpoints.get(instanceId);if(!x)throw new Error("Unknown provider instance");
+  if(reason==="rate_limited"||reason==="quota_exhausted"){x.health="cooldown";x.cooldownUntil=reason==="quota_exhausted"?(x.quotaResetAt??null):now+Math.max(1000,retryAfterMs??60000);}
+  else if(reason==="unavailable") {x.health="cooldown";x.cooldownUntil=now+Math.max(1000,retryAfterMs??30000);}
+  return copy(x);
+ }
+ function release(id){const l=leases.get(id);if(!l)return false;const e=endpoints.get(l.instanceId);if(e)e.active=Math.max(0,e.active-1);leases.delete(id);return true;}
  function reconcileExpired(now=Date.now()){return [...leases.values()].filter(x=>x.expiresAt<=now).map(copy);}
  return Object.freeze({registerProvider,registerInstance,reserve,release,reconcileExpired,reportFailure,
   setHealth(id,health){if(!["ready","unavailable","cooldown"].includes(health)||!endpoints.has(id))throw new Error("Invalid health");endpoints.get(id).health=health;if(health==="ready")endpoints.get(id).cooldownUntil=null;},
