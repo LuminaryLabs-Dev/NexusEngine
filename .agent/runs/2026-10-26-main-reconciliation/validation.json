@@ -88,5 +88,16 @@
   },
   "studioPinUnchanged": true,
   "deploymentYamlChanged": false,
-  "published": false
+  "published": false,
+  "developmentDependencyFollowup": {
+    "three": "0.186.1",
+    "packageLockSynchronized": true,
+    "checks": [
+      "node tests/domain-service-kit-smoke.mjs",
+      "npm run core:check",
+      "npm run ownership:check"
+    ],
+    "result": "PASS",
+    "note": "No product source changed after the complete 129-script run."
+  }
 }

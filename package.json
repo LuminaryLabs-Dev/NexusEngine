@@ -598,7 +598,8 @@
     "@modelcontextprotocol/sdk": "1.29.0",
     "marked": "17.0.5",
     "playwright": "1.61.1",
-    "pngjs": "7.0.0"
+    "pngjs": "7.0.0",
+    "three": "0.186.1"
   },
   "overrides": {
     "@hono/node-server": "2.0.11"
