@@ -25,3 +25,5 @@ export * from "./authoring/index.js";
 export * from "./material/index.js";
 export * from "./lighting/index.js";
 export * from "./camera/index.js";
+export * from "./inference/index.js";
+export * from "./harness/index.js";

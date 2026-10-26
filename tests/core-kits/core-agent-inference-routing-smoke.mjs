@@ -1,0 +1,13 @@
+import assert from "node:assert/strict";
+import {createInferenceRequest} from "../../src/core-domains/inference/contract/index.js";
+import {createInferenceProviderPool} from "../../src/core-domains/inference/provider/index.js";
+import {createDecisionRouter} from "../../src/core-domains/harness/routing/index.js";
+const pool=createInferenceProviderPool({providers:[{id:"p",protocol:"openai-compatible"}],instances:[{id:"a",providerId:"p",models:["m"],capacity:1},{id:"b",providerId:"p",models:["m"],capacity:1}]});
+const one=pool.reserve(createInferenceRequest({id:"1",modelId:"m"})),two=pool.reserve(createInferenceRequest({id:"2",modelId:"m"}));
+assert.notEqual(one.instanceId,two.instanceId);
+assert.equal(pool.reserve(createInferenceRequest({id:"3",modelId:"m"})),null);
+pool.release("1");assert.ok(pool.reserve(createInferenceRequest({id:"3",modelId:"m"})));
+const router=createDecisionRouter({discover:()=>[{id:"memory.retrieve"}],authorize:()=>true});
+assert.equal(router.resolve({decisionId:"d",loopId:"l",action:"request_context",capabilityId:"memory.retrieve"}).ok,true);
+assert.equal(router.resolve({decisionId:"e",loopId:"l",action:"request_context",capabilityId:"unknown"}).code,"UNAVAILABLE");
+console.log("inference and routing contracts passed");

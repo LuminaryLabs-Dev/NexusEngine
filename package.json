@@ -499,7 +499,12 @@
     "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
     "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
     "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
-    "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js"
+    "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
+    "./domains/inference": "./src/core-domains/inference/index.js",
+    "./domains/inference/contract": "./src/core-domains/inference/contract/index.js",
+    "./domains/inference/provider": "./src/core-domains/inference/provider/index.js",
+    "./domains/harness": "./src/core-domains/harness/index.js",
+    "./domains/harness/routing": "./src/core-domains/harness/routing/index.js"
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",

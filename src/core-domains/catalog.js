@@ -10,6 +10,8 @@ import manifest8 from "./compute/domain.manifest.js";
 import manifest9 from "./diagnostics/domain.manifest.js";
 import manifest10 from "./host/domain.manifest.js";
 import manifest11 from "./interaction/domain.manifest.js";
+import inferenceManifest from "./inference/domain.manifest.js";
+import harnessManifest from "./harness/domain.manifest.js";
 import manifest12 from "./lighting/domain.manifest.js";
 import manifest13 from "./material/domain.manifest.js";
 import manifest14 from "./mcp/domain.manifest.js";
@@ -52,7 +54,9 @@ export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest21,
   manifest22,
   manifest23,
-  manifest24
+  manifest24,
+  inferenceManifest,
+  harnessManifest
 ]);
 
 export const CORE_DOMAIN_CATALOG = flattenCoreDomainManifests(CORE_DOMAIN_MANIFESTS);
