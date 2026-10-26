@@ -12,6 +12,12 @@ export const agentDomainManifest = defineCoreDomainManifest(manifestShell({
     domainNode({ id:"agent-loop-coordination-domain", domainPath:"n:agent:loop:coordination", parentDomainPath:"n:agent:loop", label:"Loop Coordination", responsibility:"Own parent-child relationships and join outcomes.", owns:["delegations","join state"], forbiddenResponsibilities:["worker scheduling","independent tool authority"], requires:["n:agent:loop"], provides:["n:agent:loop:coordination"], proofReferences:proof })
   ],
   publicEntry: { subpath: "./domains/agent", module: "./src/core-domains/agent/index.js" },
+  publicEntries: [
+    { domainPath:"n:agent:loop", subpath:"./domains/agent/loop", module:"./src/core-domains/agent/loop/index.js" },
+    { domainPath:"n:agent:loop:step", subpath:"./domains/agent/loop/step", module:"./src/core-domains/agent/loop/step/index.js" },
+    { domainPath:"n:agent:loop:control", subpath:"./domains/agent/loop/control", module:"./src/core-domains/agent/loop/control/index.js" },
+    { domainPath:"n:agent:loop:coordination", subpath:"./domains/agent/loop/coordination", module:"./src/core-domains/agent/loop/coordination/index.js" }
+  ],
   publicKits: [atomicKit({ id: "agent-cycle-kit", responsibility: "Record observations, action proposals, decision cycles, and execution receipts.", domainPath: "n:agent", apiName: "agent", provides: ["n:agent", "agent:observation", "agent:proposal", "agent:execution-receipt"], module: "./src/core-domains/agent/kits/agent-kit/index.js", exportName: "createAgentKit", publicSubpath: "./domains/agent/cycle", proofReferences: proof })]
 }));
 
