@@ -1,7 +1,7 @@
 import { defineCoreDomainManifest } from "../domain-manifest.js";
 import { atomicKit, domainNode, manifestShell } from "../manifest-input.js";
 
-const proof = ["tests/core-kits/core-agent-kit-smoke.mjs", "tests/core-kits/core-agent-loop-composition-smoke.mjs", "tests/core-kits/core-agent-loop-specialized-smoke.mjs", "tests/core-kits/core-agent-loop-coordination-smoke.mjs", "tests/core-kits/core-agent-loop-recovery-smoke.mjs"];
+const proof = ["tests/core-kits/core-agent-kit-smoke.mjs", "tests/core-kits/core-agent-loop-composition-smoke.mjs", "tests/core-kits/core-agent-loop-specialized-smoke.mjs", "tests/core-kits/core-agent-loop-coordination-smoke.mjs", "tests/core-kits/core-agent-loop-recovery-smoke.mjs", "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs"];
 
 export const agentDomainManifest = defineCoreDomainManifest(manifestShell({
   root: domainNode({ id: "agent-domain", domainPath: "n:agent", label: "Agent", responsibility: "Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.", owns: ["agent observations", "action proposals", "decision cycles", "execution receipts"], forbiddenResponsibilities: ["model provider", "game AI policy", "LLM prompting", "host tool execution"], provides: ["n:agent", "agent:observation", "agent:proposal", "agent:execution-receipt"], proofReferences: proof }),

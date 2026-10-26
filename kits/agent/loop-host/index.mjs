@@ -19,8 +19,8 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
   },
   execute:async({decision,state,idempotencyKey})=>{
    const route=router.resolve({...decision,decisionId:decision.decisionId??idempotencyKey,loopId});
-   if(!route.ok)return {ok:false,receiptRef:"route:"+route.code,code:route.code};
-   if(!route.route)return {ok:false,receiptRef:"route:non-executable",code:"NON_EXECUTABLE"};
+   if(!route.ok)throw new Error("Route rejected: "+route.code);
+   if(!route.route)throw new Error("Route does not authorize execution");
    return dispatch({route:route.route,decision:route.decision,state,idempotencyKey,signal});
   }
  });

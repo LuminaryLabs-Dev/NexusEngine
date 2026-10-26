@@ -31,7 +31,7 @@ export async function runSelfPropagation({loopId,agentId,goalRef,infer,observe,e
    const decision=await infer({goalRef,context,state});
    attemptedInference=true;
    if(!decision||typeof decision!=="object")throw new Error("Invalid inference decision");
-   if(decision.action==="finish"){
+   if(decision.action==="finish"||decision.action==="propose_completion"){
     const proof=await verify({goalRef,context,trace,decision});
     const accepted=proof?.ok===true&&Boolean(proof?.receiptRef);
     step=transitionLoopStep(step,accepted?"succeeded":"failed",{output:proof,evidenceRefs:proof?.receiptRef?[proof.receiptRef]:[]});
