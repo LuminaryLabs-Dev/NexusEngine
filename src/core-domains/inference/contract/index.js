@@ -16,3 +16,9 @@ export function normalizeDecisionResponse(value){
  if(!data||typeof data!=="object"||Array.isArray(data)||typeof data.action!=="string")throw new TypeError("Invalid model decision");
  return copy(data);
 }
+
+export const INFERENCE_FAILURE_REASONS=Object.freeze(["rate_limited","unavailable","timeout","authentication","invalid_response","quota_exhausted","invalid_request","unknown"]);
+export function createInferenceFailure({requestId,providerId,reason="unknown",retryable=false,retryAfterMs=null,status="failed",uncertain=false}={}){
+ if(!requestId||!providerId||!INFERENCE_FAILURE_REASONS.includes(reason)||retryAfterMs!==null&&(!Number.isSafeInteger(retryAfterMs)||retryAfterMs<0))throw new TypeError("Invalid provider failure");
+ return Object.freeze({status,requestId,providerId,reason,retryable:retryable===true&&!uncertain, retryAfterMs,uncertain:uncertain===true});
+}
