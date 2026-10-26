@@ -504,7 +504,8 @@
     "./domains/inference/contract": "./src/core-domains/inference/contract/index.js",
     "./domains/inference/provider": "./src/core-domains/inference/provider/index.js",
     "./domains/harness": "./src/core-domains/harness/index.js",
-    "./domains/harness/routing": "./src/core-domains/harness/routing/index.js"
+    "./domains/harness/routing": "./src/core-domains/harness/routing/index.js",
+    "./kits/agent/loop-host": "./kits/agent/loop-host/index.mjs"
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",

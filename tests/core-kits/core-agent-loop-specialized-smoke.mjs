@@ -1,0 +1,10 @@
+import assert from "node:assert/strict";
+import {retrieveLoopMemory} from "../../src/core-domains/agent/loop/kits/memory-loop-kit/index.js";
+import {planLoopWork} from "../../src/core-domains/agent/loop/kits/planning-loop-kit/index.js";
+import {validateLoopResult} from "../../src/core-domains/agent/loop/kits/validation-loop-kit/index.js";
+import {runCodingLoop} from "../../src/core-domains/agent/loop/kits/coding-loop-kit/index.js";
+assert.equal((await retrieveLoopMemory({query:"a",search:async()=>[{source:"s",text:"abc"}]})).records.length,1);
+assert.deepEqual((await planLoopWork({goal:"g",propose:async()=>({nodes:[{id:"a",dependencies:[]}]})})).ready,["a"]);
+assert.equal((await validateLoopResult({checks:[{id:"c",run:async()=>({ok:true})}]})).ok,true);
+assert.equal((await runCodingLoop({goal:"g",inspect:async()=>({}),propose:async()=>({id:"x",operation:"patch",expectedRevision:"1"}),authorize:async()=>true,apply:async()=>({ok:true,receiptRef:"r"}),validate:async()=>({ok:true})})).ok,true);
+console.log("specialized loop composition passed");
