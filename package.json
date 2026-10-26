@@ -495,7 +495,11 @@
     "./kits/simulation/configured-scene-runtime/export": "./kits/simulation/configured-scene-runtime-kit/export.js",
     "./kits/simulation/configured-scene-runtime/project": "./kits/simulation/configured-scene-runtime-kit/project.js",
     "./release": "./src/release.js",
-    "./runtime-kit": "./src/runtime-kit.js"
+    "./runtime-kit": "./src/runtime-kit.js",
+    "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
+    "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
+    "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
+    "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js"
   },
   "scripts": {
     "automation:preflight": "node scripts/automation-preflight.mjs",
