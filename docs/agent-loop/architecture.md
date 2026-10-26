@@ -12,4 +12,4 @@ Existing Runtime, MCP, Authoring and production host remain authoritative for ac
 
 The existing `n:compute:model` surface is preserved for compatibility and must be audited before any migration. No model is bundled.
 
-Provider leases are snapshot-capable; expiration signals reconciliation rather than automatic replay. The optional staged-rename checkpoint adapter does not provide multi-process atomic CAS. The self-propagation loop is bounded and works in memory, but crash-resumable end-to-end execution is not yet verified. Do not claim exactly-once effects from arbitrary providers.
+Provider leases are snapshot-capable; expiration signals reconciliation rather than automatic replay. The optional checkpoint adapter uses an exclusive lock file and a revision check, failing closed on concurrent writers. A crash can leave a lock requiring operator inspection; the production host retains its own durable receipt authority. The self-propagation loop is bounded and works in memory, but crash-resumable end-to-end execution is not yet verified. Do not claim exactly-once effects from arbitrary providers.
