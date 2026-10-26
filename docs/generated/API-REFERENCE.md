@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 ## Domains
 
@@ -13,6 +13,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:loop` | `n:agent` | Own portable agent-loop composition contracts. | stable-candidate |
+| `n:agent:loop:step` | `n:agent:loop` | Own step envelopes and immutable outcome transitions. | stable-candidate |
+| `n:agent:loop:control` | `n:agent:loop` | Own per-loop lifecycle and continuation. | stable-candidate |
+| `n:agent:loop:coordination` | `n:agent:loop` | Own parent-child relationships and join outcomes. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
 | `n:authoring` | - | Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations. | stable-candidate |
 | `n:authoring:code` | `n:authoring` | Own editable code documents and revision-bound language intelligence contracts. | stable-candidate |
@@ -88,6 +92,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:compute:model:inference` | `n:compute:model` | Own provider-neutral inference requests, results, and compute requirements. | stable-candidate |
 | `n:compute:model:inference:provider` | `n:compute:model:inference` | Own inference provider capability and contract semantics without owning runtimes. | stable-candidate |
 | `n:diagnostics` | - | Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors. | stable-candidate |
+| `n:harness` | - | Own reusable harness capability composition contracts. | stable-candidate |
+| `n:harness:routing` | `n:harness` | Resolve model decisions to registered capabilities without executing them. | stable-candidate |
 | `n:host` | - | Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private. | stable-candidate |
 | `n:host:gpu` | `n:host` | Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render. | stable-candidate |
 | `n:host:gpu:capability` | `n:host:gpu` | Own backend-neutral GPU features, limits, profiles, and compatibility requirements. | stable-candidate |
@@ -99,6 +105,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:host:gpu:resource` | `n:host:gpu` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. | stable-candidate |
 | `n:host:gpu:synchronization` | `n:host:gpu` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. | stable-candidate |
 | `n:host:gpu:recovery` | `n:host:gpu` | Own shared device-loss records, resource invalidation, and restoration coordination. | stable-candidate |
+| `n:inference` | - | Own model inference requests and results independently of compute resources. | stable-candidate |
+| `n:inference:provider` | `n:inference` | Own provider identities, serving instances, capacity admission and selection. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
 | `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
@@ -189,6 +197,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:simulation:progression:lifecycle` | `n:simulation:progression` | Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors. | stable-candidate |
 | `n:spatial` | - | Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math. | stable-candidate |
 | `n:spatial:scale` | `n:spatial` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. | stable-candidate |
+| `n:spatial:layout` | `n:spatial` | Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces. | stable-candidate |
 | `n:world` | - | Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts. | stable-candidate |
 | `n:world:scene` | `n:world` | Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots. | stable-candidate |
 | `n:world:weather` | `n:world` | Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution. | stable-candidate |
@@ -330,7 +339,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `diagnostics-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/runtime` | Collect serializable telemetry, runtime health, determinism, and performance evidence. |
 | `debug-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug` | Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics. |
 | `debug-draw-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug-draw` | Create stateless renderer-neutral debug draw descriptors. |
+| `decision-routing-kit` | `n:harness:routing` | `nexusengine/domains/harness/routing` | Validate and resolve capability route requests. |
 | `host-capability-kit` | `n:host` | `nexusengine/domains/host/capabilities` | Describe available host capabilities and select declarative fallback modes. |
+| `inference-contract-kit` | `n:inference` | `nexusengine/domains/inference/contract` | Validate neutral inference request and result envelopes. |
+| `inference-provider-pool-kit` | `n:inference:provider` | `nexusengine/domains/inference/provider` | Register inference endpoints and reserve bounded instance capacity. |
 | `interaction-kit` | `n:interaction` | `nexusengine/domains/interaction/runtime` | Manage interaction targets, affordances, activation, and results. |
 | `input-contract-kit` | `n:interaction:input` | `nexusengine/domains/interaction/input` | Normalize semantic input actions, axes, contexts, and bindings. |
 | `assistance-target-kit` | `n:interaction:assistance-target` | `nexusengine/domains/interaction/assistance-target` | Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection. |
@@ -583,6 +595,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `spatial-transform-math-kit` | `n:spatial` | `nexusengine/domains/spatial/transform-math` | Calculate deterministic transforms, bases, interpolation, and planar projections. |
 | `spatial-quaternion-math-kit` | `n:spatial` | `nexusengine/domains/spatial/quaternion-math` | Create, compose, normalize, rotate, and interpolate quaternions. |
 | `spatial-scale-kit` | `n:spatial:scale` | `nexusengine/domains/spatial/scale` | Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions. |
+| `spatial-layout-kit` | `n:spatial:layout` | `nexusengine/domains/spatial/layout` | Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects. |
 | `world-state-kit` | `n:world` | `nexusengine/domains/world/runtime` | Manage world identity, cells, partitions, surfaces, and deterministic assembly state. |
 | `scene-lifecycle-kit` | `n:world:scene` | `nexusengine/domains/world/scene` | Manage host-neutral scene identity, lifecycle, transitions, bindings, and snapshots. |
 | `weather-state-kit` | `n:world:weather` | `nexusengine/domains/world/weather` | Manage deterministic weather conditions, tendencies, regions, and sampling. |

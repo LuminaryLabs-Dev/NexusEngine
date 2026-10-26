@@ -1,0 +1,1 @@
+Runtime commit and bounded Agent publication first; durable content-addressed host storage; Authoring geometry/history APIs; Engine optional production kit and providers; compatibility wrappers; persistent-session and legacy proofs; public-surface reconciliation.

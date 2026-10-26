@@ -1,0 +1,97 @@
+{
+  "runId": "2026-10-26-main-reconciliation",
+  "workspace": "/Users/crimsonwheeler/Documents/GitHub/.reconciliation-backups/2026-10-26-182122/NexusEngine/engine-workflow/",
+  "taskId": "main-reconciliation",
+  "sessionId": "main-reconciliation",
+  "task": {
+    "schema": "nexus-engine-kit.execution/1",
+    "requestId": "codex-main-reconciliation:1",
+    "action": "kit_task",
+    "ok": true,
+    "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+    "before": {
+      "projectId": "project",
+      "epoch": 1,
+      "clock": 0
+    },
+    "after": {
+      "projectId": "project",
+      "epoch": 1,
+      "clock": 0
+    },
+    "result": {
+      "snapshot": {
+        "schema": "nexusengine.agent-task-graph/1",
+        "nodes": [
+          {
+            "id": "preserve",
+            "dependencies": [],
+            "status": "pending",
+            "receipt": null
+          },
+          {
+            "id": "integrate",
+            "dependencies": [
+              "preserve"
+            ],
+            "status": "pending",
+            "receipt": null
+          },
+          {
+            "id": "validate",
+            "dependencies": [
+              "integrate"
+            ],
+            "status": "pending",
+            "receipt": null
+          },
+          {
+            "id": "push",
+            "dependencies": [
+              "validate"
+            ],
+            "status": "pending",
+            "receipt": null
+          }
+        ]
+      },
+      "ready": [
+        "preserve"
+      ]
+    },
+    "agentId": "codex-main-reconciliation"
+  },
+  "session": {
+    "schema": "nexus-engine-kit.execution/1",
+    "requestId": "codex-main-reconciliation:2",
+    "action": "kit_session",
+    "ok": true,
+    "engineRevision": "4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1",
+    "before": {
+      "projectId": "project",
+      "epoch": 1,
+      "clock": 0
+    },
+    "after": {
+      "projectId": "project",
+      "epoch": 1,
+      "clock": 0
+    },
+    "result": {
+      "snapshot": {
+        "schema": "nexusengine.agent-answer/1",
+        "id": "main-reconciliation",
+        "intent": "Preserve and reconcile Engine and Studio, validate, commit and push main without publication or deployment YAML changes.",
+        "project": "engine-workflow",
+        "status": "awaiting-agent",
+        "turn": 0,
+        "history": [],
+        "result": null
+      },
+      "next": {
+        "type": "agent-response"
+      }
+    },
+    "agentId": "codex-main-reconciliation"
+  }
+}

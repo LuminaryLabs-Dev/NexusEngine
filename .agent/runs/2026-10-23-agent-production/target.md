@@ -1,0 +1,1 @@
+Implement the authorized Engine production workflow migration, bounded memory lifecycle, thin Nexus Engine Kit adapter and persistent-session door/chest/large-scene proof. Preserve all existing workflows and unrelated dirty changes. No commit or push.

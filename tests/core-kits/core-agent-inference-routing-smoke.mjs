@@ -27,3 +27,22 @@ assert.equal(recovered.instanceId,"first");
 failPool.release("recovered");
 console.log("inference and routing contracts passed");
 
+
+// Reconciliation: manifest factories must install without changing direct APIs.
+const {createEngine}=await import("../../src/engine.js");
+const {createInferenceContractKit}=await import("../../src/core-domains/inference/contract/index.js");
+const {createInferenceProviderPoolKit}=await import("../../src/core-domains/inference/provider/index.js");
+const {createDecisionRoutingKit}=await import("../../src/core-domains/harness/routing/index.js");
+const installed=createEngine({kits:[createInferenceContractKit(),createInferenceProviderPoolKit({providers:[{id:"p",protocol:"test"}],instances:[{id:"i",providerId:"p",models:["m"],capacity:1}]})]});
+const installedPool=installed.n.inferenceProvider;
+const pristine=installedPool.getSnapshot();
+assert.equal(installedPool.reserve(installed.n.inference.createRequest({id:"installed",modelId:"m"})).instanceId,"i");
+assert.equal(installedPool.snapshot().leases.length,1);
+installedPool.loadSnapshot(pristine);
+assert.equal(installedPool.snapshot().leases.length,0);
+assert.throws(()=>installedPool.registerInstance({id:"broken"}));
+assert.deepEqual(installedPool.getSnapshot(),pristine);
+installedPool.reset();assert.equal(installedPool.listInstances().length,1);
+const installedRouting=createEngine({kits:[createDecisionRoutingKit({discover:()=>[{id:"memory.retrieve"}],authorize:()=>true})]});
+assert.equal(installedRouting.n.routing.resolve({decisionId:"installed",loopId:"l",action:"request_context",capabilityId:"memory.retrieve"}).ok,true);
+console.log("installed inference and routing Kit parity passed");

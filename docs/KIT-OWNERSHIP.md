@@ -2,18 +2,22 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
-- Source modules: 1781
-- Manifest-proven public atoms: 390
-- Manifest-owned internal modules: 1337
+- Source modules: 1818
+- Manifest-proven public atoms: 394
+- Manifest-owned internal modules: 1354
 - Root contract modules: 26
-- Optional provider modules: 28
+- Optional provider modules: 44
 - Unreviewed modules: 0
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
+| `kits/agent/loop-host/index.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/production-bridge.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/providers/openai-compatible.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/storage.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/cli.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
@@ -42,6 +46,18 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/runtime/loader.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/session.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/simulation/configured-scene-runtime-kit/asset-library.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/feedback.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/player.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/terrain.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/view.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/composition.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/export.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/index.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/manifest.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/platform-motion.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/project.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/runtime.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
 | `src/adapters/node/agent-cli.js` | `n:agent` | optional-provider-kit | NexusEngine optional Node Agent CLI adapter |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
@@ -70,6 +86,15 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/agent/kits/agent-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/observations.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/tool-access.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/control/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/coordination/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/coding-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/memory-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/planning-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/validation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/step/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
@@ -681,11 +706,18 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/diagnostics/kits/diagnostics-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/domain-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/domain-manifest.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/harness/domain.manifest.js` | `n:harness` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/harness/index.js` | `n:harness` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/harness/routing/index.js` | `n:harness` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/host/domain.manifest.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/gpu/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/inference/contract/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/inference/domain.manifest.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/inference/index.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/inference/provider/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
@@ -1650,6 +1682,11 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/spatial/kits/spatial-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/transform-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/vector-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/contracts.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/kit.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/resolve.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/subdomain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/kits/spatial-scale-kit/contracts.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/kits/spatial-scale-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |

@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -9,6 +9,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:loop` | `n:agent` | - |
+| `n:agent:loop:step` | `n:agent:loop` | - |
+| `n:agent:loop:control` | `n:agent:loop` | - |
+| `n:agent:loop:coordination` | `n:agent:loop` | - |
 | `n:asset` | - | - |
 | `n:authoring` | `n:runtime` | - |
 | `n:authoring:code` | `n:authoring:project` | - |
@@ -84,6 +88,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:compute:model:inference` | `n:compute:model` | - |
 | `n:compute:model:inference:provider` | `n:compute:model:inference` | - |
 | `n:diagnostics` | - | - |
+| `n:harness` | - | - |
+| `n:harness:routing` | `n:harness` | - |
 | `n:host` | - | - |
 | `n:host:gpu` | `n:host` | - |
 | `n:host:gpu:capability` | `n:host:gpu` | - |
@@ -95,6 +101,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:host:gpu:resource` | `n:host:gpu` | - |
 | `n:host:gpu:synchronization` | `n:host:gpu` | - |
 | `n:host:gpu:recovery` | `n:host:gpu` | - |
+| `n:inference` | - | - |
+| `n:inference:provider` | `n:inference` | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
 | `n:interaction:assistance-target` | `n:interaction` | - |
@@ -185,6 +193,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:simulation:progression:lifecycle` | `n:simulation` | - |
 | `n:spatial` | - | - |
 | `n:spatial:scale` | `n:spatial` | - |
+| `n:spatial:layout` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |
 | `n:world:scene` | `n:world` | - |
 | `n:world:weather` | `n:world` | - |

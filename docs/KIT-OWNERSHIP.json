@@ -1,11 +1,11 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1337,
-    "manifestProvenPublicAtoms": 390,
-    "optionalProviderModules": 28,
+    "manifestOwnedInternalModules": 1354,
+    "manifestProvenPublicAtoms": 394,
+    "optionalProviderModules": 44,
     "rootContractModules": 26,
-    "sourceModules": 1781,
+    "sourceModules": 1818,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -15,6 +15,85 @@
     "src and optional kits production inventory"
   ],
   "records": [
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/loop-host"
+      ],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [
+        "./kits/agent/loop-host"
+      ],
+      "path": "kits/agent/loop-host/index.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLoopCheckpointStore",
+        "createOpenAICompatibleInference",
+        "createProductionLoopDispatcher",
+        "runHostedAgent"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [],
+      "path": "kits/agent/loop-host/production-bridge.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createProductionLoopDispatcher"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [],
+      "path": "kits/agent/loop-host/providers/openai-compatible.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createOpenAICompatibleInference"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [],
+      "path": "kits/agent/loop-host/storage.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLoopCheckpointStore"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
     {
       "atomic": null,
       "currentConsumers": [
@@ -611,6 +690,272 @@
     },
     {
       "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime/assets"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime/assets"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/asset-library.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "ROOT",
+        "defaultFolders",
+        "folderFor",
+        "libraryFor",
+        "pathFor",
+        "validateLibrary",
+        "validateName"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/browser/feedback.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "mountFeedback"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime/browser"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime/browser"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/browser/player.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "boot",
+        "createTerrainSampler",
+        "gameMessage",
+        "mountFeedback",
+        "mountGame"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/browser/terrain.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createTerrainSampler"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/browser/view.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createView"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime/composition"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime/composition"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/composition.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "capabilities",
+        "compositionFor",
+        "factories",
+        "kitLabel",
+        "registry",
+        "resolveKits",
+        "supported"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime/export"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime/export"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/export.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "exportGameHTML"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "connectScene",
+        "createSceneRuntime",
+        "installConfiguredSceneRuntime",
+        "platformOffset",
+        "sceneRuntimeManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "sceneRuntimeManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/platform-motion.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "platformOffset"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/simulation/configured-scene-runtime/project"
+      ],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [
+        "./kits/simulation/configured-scene-runtime/project"
+      ],
+      "path": "kits/simulation/configured-scene-runtime-kit/project.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "ENGINE_COMMIT",
+        "FORMAT",
+        "PROJECT_COMPATIBILITY_COMMIT",
+        "SceneProject",
+        "newBinding"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Configured scene runtime Kit",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:simulation",
+      "ownershipBasis": "kits/simulation/configured-scene-runtime-kit/manifest.js",
+      "packageEntrypoints": [],
+      "path": "kits/simulation/configured-scene-runtime-kit/runtime.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "connectScene",
+        "createSceneRuntime",
+        "installConfiguredSceneRuntime"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
       "currentConsumers": [],
       "destination": "NexusEngine optional Node Agent CLI adapter",
       "fullyReusable": null,
@@ -1012,6 +1357,7 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
+        "*",
         "agentDomainManifest",
         "createAgentKit"
       ],
@@ -1238,7 +1584,12 @@
           }
         ],
         "references": [
-          "tests/core-kits/core-agent-kit-smoke.mjs"
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -1281,6 +1632,190 @@
       "proof": null,
       "publicExports": [
         "createAgentToolAccess"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/agent/loop/control"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/agent/loop/control"
+      ],
+      "path": "src/core-domains/agent/loop/control/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "advanceLoopControl",
+        "checkpointLoopControl",
+        "createLoopControl",
+        "loopIsTerminal",
+        "restoreLoopControl"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/agent/loop/coordination"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/agent/loop/coordination"
+      ],
+      "path": "src/core-domains/agent/loop/coordination/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLoopCoordination"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/agent/loop"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/agent/loop"
+      ],
+      "path": "src/core-domains/agent/loop/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/loop/kits/coding-loop-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "runCodingLoop"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/loop/kits/memory-loop-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "retrieveLoopMemory"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/loop/kits/planning-loop-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "planLoopWork"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "runSelfPropagation"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/loop/kits/validation-loop-kit/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "validateLoopResult"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/agent/loop/step"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/agent/loop/step"
+      ],
+      "path": "src/core-domains/agent/loop/step/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createLoopStep",
+        "isLoopStepTerminal",
+        "transitionLoopStep"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -15930,6 +16465,93 @@
       "destination": "NexusEngine Core",
       "fullyReusable": null,
       "idempotency": null,
+      "owner": "n:harness",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/harness/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "harnessDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/harness"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:harness",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/harness"
+      ],
+      "path": "src/core-domains/harness/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "harnessDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/harness/routing"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:harness",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/harness/routing"
+      ],
+      "path": "src/core-domains/harness/routing/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "decision-routing-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "decision-routing-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createDecisionRouter",
+        "createDecisionRoutingKit",
+        "normalizeRouteDecision"
+      ],
+      "responsibility": "Validate and resolve capability route requests.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
       "owner": "n:host",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
@@ -16053,6 +16675,141 @@
       ],
       "responsibility": null,
       "reviewStatus": "manifest-infrastructure"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/inference/contract"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:inference",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/inference/contract"
+      ],
+      "path": "src/core-domains/inference/contract/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "inference-contract-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "inference-contract-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "INFERENCE_FAILURE_REASONS",
+        "createInferenceContractKit",
+        "createInferenceFailure",
+        "createInferenceRequest",
+        "createInferenceResult",
+        "normalizeDecisionResponse"
+      ],
+      "responsibility": "Validate neutral inference request and result envelopes.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:inference",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/inference/domain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "inferenceDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./domains/inference"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:inference",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [
+        "./domains/inference"
+      ],
+      "path": "src/core-domains/inference/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "*",
+        "inferenceDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/inference/provider"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:inference",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/inference/provider"
+      ],
+      "path": "src/core-domains/inference/provider/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "inference-provider-pool-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "inference-provider-pool-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createInferenceProviderPool",
+        "createInferenceProviderPoolKit"
+      ],
+      "responsibility": "Register inference endpoints and reserve bounded instance capacity.",
+      "reviewStatus": "manifest-proven-public-atom"
     },
     {
       "atomic": null,
@@ -41817,6 +42574,128 @@
       "owner": "n:spatial",
       "ownershipBasis": "semantic-folder-and-domain-manifest",
       "packageEntrypoints": [],
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/contracts.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "SPATIAL_LAYOUT_SCHEMA",
+        "keys",
+        "normalizeLayoutContext",
+        "normalizeSpatialLayout",
+        "number",
+        "object",
+        "vector"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/spatial/layout"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:spatial",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/spatial/layout"
+      ],
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/spatial/tests/spatial-layout.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "SPATIAL_LAYOUT_SCHEMA",
+        "SPATIAL_LAYOUT_STATE_SCHEMA",
+        "createSpatialLayoutKit",
+        "normalizeSpatialLayout",
+        "resolveSpatialLayout"
+      ],
+      "responsibility": "Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:spatial",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/kit.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:spatial",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/resolve.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "resolveSpatialLayout"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:spatial",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/spatial/layout/subdomain.manifest.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:spatial",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
       "path": "src/core-domains/spatial/scale/index.js",
       "productOrGenreSpecific": null,
       "proof": null,
@@ -45265,7 +46144,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+  "registrySha256": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

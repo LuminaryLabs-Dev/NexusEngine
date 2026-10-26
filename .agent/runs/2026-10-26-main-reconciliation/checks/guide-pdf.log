@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 guide:pdf
+> node scripts/generate-guide.mjs --render
+
+Generated 22 guide chapters (sha256:f28f7ec154eec5410d164c0e1d3ccbb3612a4e40b7cce0f130b6c9c6791b61f3) and rendered docs/NexusEngine-Guide.pdf.

@@ -9,7 +9,8 @@ export const BUILD_TARGET_IDS = Object.freeze([
 ]);
 
 export function createTargetSetService(config = {}) {
-  const allowed = new Set(config.targets ?? BUILD_TARGET_IDS);
+  if (!Array.isArray(config.targets ?? BUILD_TARGET_IDS)) throw new TypeError("Build targets must be an explicit array.");
+  const allowed = new Set(sortedUnique(config.targets ?? BUILD_TARGET_IDS));
 
   function normalize(value) {
     const targets = sortedUnique(Array.isArray(value) ? value : value == null ? [] : [value]);

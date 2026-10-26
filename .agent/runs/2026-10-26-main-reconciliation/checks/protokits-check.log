@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 protokits:check
+> node scripts/generate-protokit-extraction.mjs --check
+
+Checked frozen ProtoKit extraction: 530 folders, 3698 classified source items.

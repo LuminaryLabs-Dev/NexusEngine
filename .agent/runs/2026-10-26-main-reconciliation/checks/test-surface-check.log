@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 test:surface:check
+> node scripts/generate-public-test-surface.mjs --check
+
+Test package surface ok: 498 package modules.

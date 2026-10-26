@@ -1,0 +1,15 @@
+{
+  "runId": "nexus-studio-kit-coverage-20261025",
+  "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/nexus-studio-kit-coverage-20261025/workspace",
+  "taskId": "studio-kit-coverage-20261025",
+  "sessionId": "studio-kit-coverage-20261025",
+  "goal": "goal.md",
+  "bootstrap": "bootstrap.md",
+  "baseline": "baseline.md",
+  "validation": "validation.json",
+  "report": "report.md",
+  "engineCheckoutHead": "5a4da3eba6ac95d2d8c74a008bb12caff0d6b0e8",
+  "studioEnginePin": "e3b9b589c9eaad144ef815ec9fa5ab20f0806424",
+  "taskCreateReceipt": "nexus-engine-kit:3",
+  "sessionCreateReceipt": "nexus-engine-kit:4"
+}

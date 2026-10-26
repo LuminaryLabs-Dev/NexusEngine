@@ -1,0 +1,58 @@
+ M .agent/target.md
+ M AGENTS.md
+ M docs/DSK_MANIFEST_0.0.4.json
+ M docs/KIT-OWNERSHIP.json
+ M docs/KIT-OWNERSHIP.md
+ M docs/NexusEngine-Guide.md
+ M docs/NexusEngine-Guide.pdf
+ M docs/generated/API-REFERENCE.md
+ M docs/generated/BUILD-API.md
+ M docs/generated/BUILD-CATALOG.json
+ M docs/generated/BUILD-SOURCE-REGISTRY.json
+ M docs/generated/BUILD-TARGETS.md
+ M docs/generated/CORE-CATALOG.json
+ M docs/generated/CORE-REGISTRY-SHA256
+ M docs/generated/PACKAGE-EXPORTS.json
+ M docs/guide/generated/NexusEngine-Guide.html
+ M docs/guide/generated/book-state.json
+ M docs/guide/generated/dependency-table.md
+ M docs/guide/generated/domain-index.md
+ M kits/catalog.js
+ M package.json
+ M src/core-domains/agent/kits/agent-kit/execution-ledger.js
+ M src/core-domains/agent/kits/agent-kit/index.js
+ M src/core-domains/authoring/index.js
+ M src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js
+ M src/core-domains/authoring/project/kits/authoring-project-document-kit/index.js
+ M src/core-domains/authoring/project/store.js
+ M src/core-domains/authoring/publishing/services.js
+ M src/core-domains/build/index.js
+ M src/core-domains/build/orchestration/kits/target-set-kit/services.js
+ M src/core-domains/build/source/kits/dependency-source-kit/services.js
+ M src/core-domains/build/target/kits/target-registry-kit/services.js
+ M src/core-domains/catalog.js
+ M src/core-domains/composition/adapters/mcp/generated-guide-resources.js
+ M src/core-domains/domain-kit.js
+ M src/core-domains/runtime/kits/runtime-lifecycle-kit/index.js
+ M src/core-domains/spatial/README.md
+ M src/core-domains/spatial/domain.manifest.js
+ M src/core-domains/spatial/index.js
+ M src/ecs.js
+ M src/engine.js
+ M tests/helpers/public-package-surface.mjs
+ M tests/run-all.mjs
+?? .agent/runs/2026-10-17-external-build-providers/
+?? .agent/runs/2026-10-18-graphics-language/
+?? .agent/runs/2026-10-18-spatial-layout/
+?? .agent/runs/2026-10-23-agent-production/
+?? .nexus-engine-kit/
+?? docs/BUILD-TARGET-PROVIDERS.md
+?? examples/spatial-layout/
+?? kits/agent/
+?? src/core-domains/agent/INTEGRATION.md
+?? src/core-domains/agent/interaction/
+?? src/core-domains/agent/kits/agent-kit/context-store.js
+?? src/core-domains/agent/kits/agent-kit/tool-access.js
+?? src/core-domains/authoring/mesh/inspection.js
+?? src/core-domains/spatial/layout/
+?? src/core-domains/spatial/tests/spatial-layout.mjs

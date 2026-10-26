@@ -488,7 +488,12 @@
           }
         ],
         "references": [
-          "tests/core-kits/core-agent-kit-smoke.mjs"
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -504,6 +509,374 @@
           "description": "Install, validate, snapshot, reset, and replay Agent behavior.",
           "deterministic": true,
           "id": "n:agent:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:agent:loop",
+      "forbiddenResponsibilities": [
+        "host scheduling",
+        "model hosting",
+        "tool dispatch"
+      ],
+      "id": "agent-loop-domain",
+      "inputs": [
+        {
+          "description": "Agent Loop required capability.",
+          "deterministic": true,
+          "id": "n:agent",
+          "schema": null
+        }
+      ],
+      "label": "Agent Loop",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Agent Loop API without duplicate state or systems.",
+        "install": "Create one Agent Loop state owner and public API.",
+        "replay": "Reapply equivalent Agent Loop inputs deterministically.",
+        "reset": "Restore the configured Agent Loop baseline.",
+        "snapshot": "Serialize Agent Loop state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Agent Loop provided capability.",
+          "deterministic": true,
+          "id": "n:agent:loop",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "loop capability contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Agent Loop state and registry records.",
+          "id": "agent-loop-domain-state",
+          "owner": "agent-loop-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Agent Loop contract fixture.",
+            "deterministic": true,
+            "id": "agent-loop-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Agent Loop composition fixture.",
+            "deterministic": true,
+            "id": "agent-loop-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent"
+      ],
+      "responsibility": "Own portable agent-loop composition contracts.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Agent Loop behavior.",
+          "deterministic": true,
+          "id": "n:agent:loop:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:agent:loop:step",
+      "forbiddenResponsibilities": [
+        "LLM inference",
+        "tool execution"
+      ],
+      "id": "agent-loop-step-domain",
+      "inputs": [
+        {
+          "description": "Loop Step required capability.",
+          "deterministic": true,
+          "id": "n:agent:loop",
+          "schema": null
+        }
+      ],
+      "label": "Loop Step",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Loop Step API without duplicate state or systems.",
+        "install": "Create one Loop Step state owner and public API.",
+        "replay": "Reapply equivalent Loop Step inputs deterministically.",
+        "reset": "Restore the configured Loop Step baseline.",
+        "snapshot": "Serialize Loop Step state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Loop Step provided capability.",
+          "deterministic": true,
+          "id": "n:agent:loop:step",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "step identity",
+        "step transitions"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Loop Step state and registry records.",
+          "id": "agent-loop-step-domain-state",
+          "owner": "agent-loop-step-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent:loop",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Loop Step contract fixture.",
+            "deterministic": true,
+            "id": "agent-loop-step-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Loop Step composition fixture.",
+            "deterministic": true,
+            "id": "agent-loop-step-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent:loop"
+      ],
+      "responsibility": "Own step envelopes and immutable outcome transitions.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Loop Step behavior.",
+          "deterministic": true,
+          "id": "n:agent:loop:step:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:agent:loop:control",
+      "forbiddenResponsibilities": [
+        "global scheduling",
+        "host execution"
+      ],
+      "id": "agent-loop-control-domain",
+      "inputs": [
+        {
+          "description": "Loop Control required capability.",
+          "deterministic": true,
+          "id": "n:agent:loop",
+          "schema": null
+        }
+      ],
+      "label": "Loop Control",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Loop Control API without duplicate state or systems.",
+        "install": "Create one Loop Control state owner and public API.",
+        "replay": "Reapply equivalent Loop Control inputs deterministically.",
+        "reset": "Restore the configured Loop Control baseline.",
+        "snapshot": "Serialize Loop Control state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Loop Control provided capability.",
+          "deterministic": true,
+          "id": "n:agent:loop:control",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "continuation state",
+        "loop identity"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Loop Control state and registry records.",
+          "id": "agent-loop-control-domain-state",
+          "owner": "agent-loop-control-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent:loop",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Loop Control contract fixture.",
+            "deterministic": true,
+            "id": "agent-loop-control-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Loop Control composition fixture.",
+            "deterministic": true,
+            "id": "agent-loop-control-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent:loop"
+      ],
+      "responsibility": "Own per-loop lifecycle and continuation.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Loop Control behavior.",
+          "deterministic": true,
+          "id": "n:agent:loop:control:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:agent:loop:coordination",
+      "forbiddenResponsibilities": [
+        "independent tool authority",
+        "worker scheduling"
+      ],
+      "id": "agent-loop-coordination-domain",
+      "inputs": [
+        {
+          "description": "Loop Coordination required capability.",
+          "deterministic": true,
+          "id": "n:agent:loop",
+          "schema": null
+        }
+      ],
+      "label": "Loop Coordination",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Loop Coordination API without duplicate state or systems.",
+        "install": "Create one Loop Coordination state owner and public API.",
+        "replay": "Reapply equivalent Loop Coordination inputs deterministically.",
+        "reset": "Restore the configured Loop Coordination baseline.",
+        "snapshot": "Serialize Loop Coordination state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Loop Coordination provided capability.",
+          "deterministic": true,
+          "id": "n:agent:loop:coordination",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "delegations",
+        "join state"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Loop Coordination state and registry records.",
+          "id": "agent-loop-coordination-domain-state",
+          "owner": "agent-loop-coordination-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent:loop",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Loop Coordination contract fixture.",
+            "deterministic": true,
+            "id": "agent-loop-coordination-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Loop Coordination composition fixture.",
+            "deterministic": true,
+            "id": "agent-loop-coordination-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent:loop"
+      ],
+      "responsibility": "Own parent-child relationships and join outcomes.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Loop Coordination behavior.",
+          "deterministic": true,
+          "id": "n:agent:loop:coordination:lifecycle",
           "schema": null
         }
       ]
@@ -7437,6 +7810,172 @@
       ]
     },
     {
+      "domainPath": "n:harness",
+      "forbiddenResponsibilities": [
+        "agent continuation",
+        "inference transport",
+        "tool execution"
+      ],
+      "id": "harness-domain",
+      "inputs": [],
+      "label": "Harness",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Harness API without duplicate state or systems.",
+        "install": "Create one Harness state owner and public API.",
+        "replay": "Reapply equivalent Harness inputs deterministically.",
+        "reset": "Restore the configured Harness baseline.",
+        "snapshot": "Serialize Harness state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Harness provided capability.",
+          "deterministic": true,
+          "id": "n:harness",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "harness capability composition"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Harness state and registry records.",
+          "id": "harness-domain-state",
+          "owner": "harness-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": null,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Harness contract fixture.",
+            "deterministic": true,
+            "id": "harness-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Harness composition fixture.",
+            "deterministic": true,
+            "id": "harness-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [],
+      "responsibility": "Own reusable harness capability composition contracts.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Harness behavior.",
+          "deterministic": true,
+          "id": "n:harness:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:harness:routing",
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "provider selection",
+        "tool dispatch"
+      ],
+      "id": "harness-routing-domain",
+      "inputs": [
+        {
+          "description": "Harness Routing required capability.",
+          "deterministic": true,
+          "id": "n:harness",
+          "schema": null
+        }
+      ],
+      "label": "Harness Routing",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Harness Routing API without duplicate state or systems.",
+        "install": "Create one Harness Routing state owner and public API.",
+        "replay": "Reapply equivalent Harness Routing inputs deterministically.",
+        "reset": "Restore the configured Harness Routing baseline.",
+        "snapshot": "Serialize Harness Routing state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Harness Routing provided capability.",
+          "deterministic": true,
+          "id": "n:harness:routing",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "decision route selection",
+        "routing result contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Harness Routing state and registry records.",
+          "id": "harness-routing-domain-state",
+          "owner": "harness-routing-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:harness",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Harness Routing contract fixture.",
+            "deterministic": true,
+            "id": "harness-routing-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Harness Routing composition fixture.",
+            "deterministic": true,
+            "id": "harness-routing-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:harness"
+      ],
+      "responsibility": "Resolve model decisions to registered capabilities without executing them.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Harness Routing behavior.",
+          "deterministic": true,
+          "id": "n:harness:routing:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:host",
       "forbiddenResponsibilities": [
         "application process lifecycle",
@@ -8434,6 +8973,175 @@
           "description": "Install, validate, snapshot, reset, and replay Host GPU Recovery behavior.",
           "deterministic": true,
           "id": "n:host:gpu:recovery:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:inference",
+      "forbiddenResponsibilities": [
+        "GPU scheduling",
+        "agent decisions",
+        "network transport"
+      ],
+      "id": "inference-domain",
+      "inputs": [],
+      "label": "Inference",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Inference API without duplicate state or systems.",
+        "install": "Create one Inference state owner and public API.",
+        "replay": "Reapply equivalent Inference inputs deterministically.",
+        "reset": "Restore the configured Inference baseline.",
+        "snapshot": "Serialize Inference state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Inference provided capability.",
+          "deterministic": true,
+          "id": "n:inference",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "inference model requirements",
+        "inference requests",
+        "inference results"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Inference state and registry records.",
+          "id": "inference-domain-state",
+          "owner": "inference-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": null,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Inference contract fixture.",
+            "deterministic": true,
+            "id": "inference-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Inference composition fixture.",
+            "deterministic": true,
+            "id": "inference-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [],
+      "responsibility": "Own model inference requests and results independently of compute resources.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Inference behavior.",
+          "deterministic": true,
+          "id": "n:inference:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:inference:provider",
+      "forbiddenResponsibilities": [
+        "HTTP transport",
+        "agent routing",
+        "worker scheduling"
+      ],
+      "id": "inference-provider-domain",
+      "inputs": [
+        {
+          "description": "Inference Provider required capability.",
+          "deterministic": true,
+          "id": "n:inference",
+          "schema": null
+        }
+      ],
+      "label": "Inference Provider",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Inference Provider API without duplicate state or systems.",
+        "install": "Create one Inference Provider state owner and public API.",
+        "replay": "Reapply equivalent Inference Provider inputs deterministically.",
+        "reset": "Restore the configured Inference Provider baseline.",
+        "snapshot": "Serialize Inference Provider state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Inference Provider provided capability.",
+          "deterministic": true,
+          "id": "n:inference:provider",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "capacity leases",
+        "instance selection",
+        "provider registry"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Inference Provider state and registry records.",
+          "id": "inference-provider-domain-state",
+          "owner": "inference-provider-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:inference",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Inference Provider contract fixture.",
+            "deterministic": true,
+            "id": "inference-provider-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Inference Provider composition fixture.",
+            "deterministic": true,
+            "id": "inference-provider-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:inference"
+      ],
+      "responsibility": "Own provider identities, serving instances, capacity admission and selection.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Inference Provider behavior.",
+          "deterministic": true,
+          "id": "n:inference:provider:lifecycle",
           "schema": null
         }
       ]
@@ -18680,6 +19388,103 @@
       ]
     },
     {
+      "domainPath": "n:spatial:layout",
+      "forbiddenResponsibilities": [
+        "collision avoidance",
+        "content creation",
+        "persistent transform mutation",
+        "rendering",
+        "text measurement"
+      ],
+      "id": "spatial-layout-domain",
+      "inputs": [
+        {
+          "description": "Spatial Layout required capability.",
+          "deterministic": true,
+          "id": "n:spatial",
+          "schema": null
+        }
+      ],
+      "label": "Spatial Layout",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Spatial Layout API without duplicate state or systems.",
+        "install": "Create one Spatial Layout state owner and public API.",
+        "replay": "Reapply equivalent Spatial Layout inputs deterministically.",
+        "reset": "Restore the configured Spatial Layout baseline.",
+        "snapshot": "Serialize Spatial Layout state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Spatial Layout provided capability.",
+          "deterministic": true,
+          "id": "n:spatial:layout",
+          "schema": null
+        },
+        {
+          "description": "Spatial Layout provided capability.",
+          "deterministic": true,
+          "id": "spatial:layout-resolution",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "layout membership",
+        "layout rules",
+        "placement resolution"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Spatial Layout state and registry records.",
+          "id": "spatial-layout-domain-state",
+          "owner": "spatial-layout-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:spatial",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Spatial Layout contract fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Spatial Layout composition fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/spatial/tests/spatial-layout.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:spatial"
+      ],
+      "responsibility": "Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Spatial Layout behavior.",
+          "deterministic": true,
+          "id": "n:spatial:layout:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:world",
       "forbiddenResponsibilities": [
         "authored maps",
@@ -20825,7 +21630,12 @@
           }
         ],
         "references": [
-          "tests/core-kits/core-agent-kit-smoke.mjs"
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
         ],
         "status": "proven"
       },
@@ -29147,6 +29957,75 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "routing",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:harness:routing",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "decision-routing-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:harness",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "decision-routing-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "decision-routing-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:harness",
+        "n:harness:routing"
+      ],
+      "requires": [],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Validate and resolve capability route requests.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createDecisionRoutingKit",
+        "module": "./src/core-domains/harness/routing/index.js",
+        "publicSubpath": "./domains/harness/routing"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "host",
       "atomic": true,
       "composes": [],
@@ -29212,6 +30091,144 @@
         "exportName": "createHostCapabilityKit",
         "module": "./src/core-domains/host/kits/host-capability-kit/index.js",
         "publicSubpath": "./domains/host/capabilities"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "inference",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:inference",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "inference-contract-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": null,
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "inference-contract-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "inference-contract-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:inference"
+      ],
+      "requires": [],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Validate neutral inference request and result envelopes.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createInferenceContractKit",
+        "module": "./src/core-domains/inference/contract/index.js",
+        "publicSubpath": "./domains/inference/contract"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "inferenceProvider",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:inference:provider",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "inference-provider-pool-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:inference",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "inference-provider-pool-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "inference-provider-pool-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:inference:provider"
+      ],
+      "requires": [
+        "n:inference"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Register inference endpoints and reserve bounded instance capacity.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createInferenceProviderPoolKit",
+        "module": "./src/core-domains/inference/provider/index.js",
+        "publicSubpath": "./domains/inference/provider"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -47391,6 +48408,77 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "spatialLayout",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:spatial:layout",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "spatial-layout-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:spatial",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "spatial-layout-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "src/core-domains/spatial/tests/spatial-layout.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:spatial:layout",
+        "spatial:layout-resolution"
+      ],
+      "requires": [
+        "n:spatial"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createSpatialLayoutKit",
+        "module": "./src/core-domains/spatial/layout/kits/layout-kit/index.js",
+        "publicSubpath": "./domains/spatial/layout"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "world",
       "atomic": true,
       "composes": [],
@@ -48767,6 +49855,10 @@
     "./domains/actor/registry": "./src/core-domains/actor/kits/actor-registry-kit/index.js",
     "./domains/agent": "./src/core-domains/agent/index.js",
     "./domains/agent/cycle": "./src/core-domains/agent/kits/agent-kit/index.js",
+    "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
+    "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
+    "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
+    "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
     "./domains/asset": "./src/core-domains/asset/index.js",
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",
@@ -48906,8 +49998,13 @@
     "./domains/diagnostics/debug": "./src/core-domains/diagnostics/kits/debug-descriptor-kit/index.js",
     "./domains/diagnostics/debug-draw": "./src/core-domains/diagnostics/kits/debug-draw-kit.js",
     "./domains/diagnostics/runtime": "./src/core-domains/diagnostics/kits/diagnostics-kit/index.js",
+    "./domains/harness": "./src/core-domains/harness/index.js",
+    "./domains/harness/routing": "./src/core-domains/harness/routing/index.js",
     "./domains/host": "./src/core-domains/host/index.js",
     "./domains/host/capabilities": "./src/core-domains/host/kits/host-capability-kit/index.js",
+    "./domains/inference": "./src/core-domains/inference/index.js",
+    "./domains/inference/contract": "./src/core-domains/inference/contract/index.js",
+    "./domains/inference/provider": "./src/core-domains/inference/provider/index.js",
     "./domains/interaction": "./src/core-domains/interaction/index.js",
     "./domains/interaction/adapters/occupant-request": "./src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js",
     "./domains/interaction/adapters/request-economy": "./src/core-domains/interaction/adapters/request-economy-adapter-kit/index.js",
@@ -49191,6 +50288,7 @@
     "./domains/spatial": "./src/core-domains/spatial/index.js",
     "./domains/spatial/angle-math": "./src/core-domains/spatial/kits/angle-math-kit.js",
     "./domains/spatial/contracts": "./src/core-domains/spatial/kits/spatial-kit/index.js",
+    "./domains/spatial/layout": "./src/core-domains/spatial/layout/kits/layout-kit/index.js",
     "./domains/spatial/quaternion-math": "./src/core-domains/spatial/kits/quaternion-math-kit.js",
     "./domains/spatial/scale": "./src/core-domains/spatial/scale/kits/spatial-scale-kit/index.js",
     "./domains/spatial/transform-math": "./src/core-domains/spatial/kits/transform-math-kit.js",
@@ -49217,7 +50315,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+  "registryHash": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -49274,11 +50372,11 @@
     },
     {
       "path": "src/core-domains/agent/domain.manifest.js",
-      "sha256": "bcd7d97507f22fba146588bcb244176e96294156a41819dc8c014e7beafb4fee"
+      "sha256": "5df767e17c911bd29489a33c4fb5467329ce7e977f0698dd29994eb35c6115b8"
     },
     {
       "path": "src/core-domains/agent/index.js",
-      "sha256": "110c1ad4c13445969b2721755d4de696889e92e88db1ba47a43b32f8eb4281b9"
+      "sha256": "436643be3667eba9376f9e6a011cb9eec598c40f4b1de4b694e062b52862e52c"
     },
     {
       "path": "src/core-domains/agent/interaction/answer-session.js",
@@ -49331,6 +50429,42 @@
     {
       "path": "src/core-domains/agent/kits/agent-kit/tool-access.js",
       "sha256": "ccb2753deaba179c96efa6ffa5d19d98992947c90e0ecea0677308b1adc66fff"
+    },
+    {
+      "path": "src/core-domains/agent/loop/control/index.js",
+      "sha256": "78e1ca9238fbda2c11a0680c1b51e0463f6b79b7569828f47990b54ec6e0d791"
+    },
+    {
+      "path": "src/core-domains/agent/loop/coordination/index.js",
+      "sha256": "8b19b663a84a466fb7a44fab6e69fd43b522262f912f2ce8c5cdd48183172bdc"
+    },
+    {
+      "path": "src/core-domains/agent/loop/index.js",
+      "sha256": "73584f32025abf3af8ea9308bdfe13c0a99795b102cb66624f8462ea35c4fd56"
+    },
+    {
+      "path": "src/core-domains/agent/loop/kits/coding-loop-kit/index.js",
+      "sha256": "32e2ff354e3f76602075333bc4b4b24e6a8c473051752edcfcec47b45a7d8d7c"
+    },
+    {
+      "path": "src/core-domains/agent/loop/kits/memory-loop-kit/index.js",
+      "sha256": "2f69b09bc432e70cd7b7f523dff4d4b6de86cde16428f75cd38182650ae6d6b7"
+    },
+    {
+      "path": "src/core-domains/agent/loop/kits/planning-loop-kit/index.js",
+      "sha256": "252f63427e648af78a23f5e474d8c18d332576b3e16907bdb84f217e7a562a95"
+    },
+    {
+      "path": "src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js",
+      "sha256": "eebeadda9ad05ba4d62aa5d73fa07fcea6703c26bb75e15cf9fb43982f505f10"
+    },
+    {
+      "path": "src/core-domains/agent/loop/kits/validation-loop-kit/index.js",
+      "sha256": "85c67af4f7dcef57944db5277f7115dcc1ee3650a8623297abeb4a17c3a935fb"
+    },
+    {
+      "path": "src/core-domains/agent/loop/step/index.js",
+      "sha256": "94581687fa3b1f4fab8740ed64f17335e4370afef241ac4648673a095979958c"
     },
     {
       "path": "src/core-domains/asset/domain.manifest.js",
@@ -50658,7 +51792,7 @@
     },
     {
       "path": "src/core-domains/build/index.js",
-      "sha256": "a152311ec28e47b2787b48db8a6cecfd102f2fbb7a46bd9285fc8e2bcffa7588"
+      "sha256": "d0b8e2d8475e3f8fdb6703a2cd6aade1a156e52dea7db966ce9ee608442dec71"
     },
     {
       "path": "src/core-domains/build/ir/index.js",
@@ -50910,7 +52044,7 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/services.js",
-      "sha256": "400389865b41200b2684e790091bb0c68c53fee75b3edcf6a19aabbdc481d266"
+      "sha256": "4b68b06db302cae25482944563d9b9c01cb20aa7f38a6d0f9fb921214d48e653"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/sources.json",
@@ -51214,7 +52348,7 @@
     },
     {
       "path": "src/core-domains/build/target/kits/target-registry-kit/services.js",
-      "sha256": "af3413c39fa8e08dc1c18de95c5b41a03e2597b56e0add0c826104b4c97e4bd6"
+      "sha256": "94f35aee709ff102233b2b40cd71958bf5a4ff36e6780f2dbb2a5f8e5156ce79"
     },
     {
       "path": "src/core-domains/build/target/kits/target-registry-kit/sources.json",
@@ -52305,6 +53439,18 @@
       "sha256": "32d50a9c072c80ad0e9b3ec42fc22eb5f9d7e613e7d695d63eedac4ecef0a9c6"
     },
     {
+      "path": "src/core-domains/harness/domain.manifest.js",
+      "sha256": "d7485d3237e047da61bbc23a0f5e4005b8d9ac5db340b89081ad7dad834d7c68"
+    },
+    {
+      "path": "src/core-domains/harness/index.js",
+      "sha256": "5b89fffaa86c66d72045c2c98f30680e12548a33855c9c623bceeddf59de9d13"
+    },
+    {
+      "path": "src/core-domains/harness/routing/index.js",
+      "sha256": "9bd98ac9c26f963dd93caff78404a935d229eeb12d4167373623103ba7d49f09"
+    },
+    {
       "path": "src/core-domains/host/domain.manifest.js",
       "sha256": "1aab304f5a66637fc94db119814c5a58debba04edd1c77148f8ba8d9ac576a66"
     },
@@ -52322,7 +53468,23 @@
     },
     {
       "path": "src/core-domains/index.js",
-      "sha256": "ae4a7bf6c52962dee6c92ce15adf24490f549963502dc5aaa279aa26a7acd9cd"
+      "sha256": "5c2b0799c76440c913e158b875bd9b45593334be2b58f42a29fcc0626296201c"
+    },
+    {
+      "path": "src/core-domains/inference/contract/index.js",
+      "sha256": "5035ff753d9e5a9e387047da24b87532bb300d38d795be0b6ebe4c9637a95a36"
+    },
+    {
+      "path": "src/core-domains/inference/domain.manifest.js",
+      "sha256": "bfb4356dbaff713bad22e95b724c7ce886ca76116b209bce9de3bbd2d77100be"
+    },
+    {
+      "path": "src/core-domains/inference/index.js",
+      "sha256": "c1b847bba44aca93e6e022c606fd38e8c5e4681e5ec1aea57bb994d3d27f8b3c"
+    },
+    {
+      "path": "src/core-domains/inference/provider/index.js",
+      "sha256": "4aa1204cf70074dc344211105c7c38ad0f09bbff7c60110c1bc146973823ec86"
     },
     {
       "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js",
@@ -56222,11 +57384,11 @@
     },
     {
       "path": "src/core-domains/spatial/domain.manifest.js",
-      "sha256": "3e6f93e6fb53e5e38527d48380adf184d1c222938914ce3b136837cb9abfb8b3"
+      "sha256": "15c7cec477263eb3e561dc5295e2e9e6d7815a17d876a0994234453c903bc067"
     },
     {
       "path": "src/core-domains/spatial/index.js",
-      "sha256": "292dc558ff2ead77e4d56c4b6b723bb13cc43cf5f367a4186e9241d34f2d56f0"
+      "sha256": "a5ae1a68ac5867cebf2f51ced63e4e1b1f5f3a05ccdfca4236c5e6d7331f1e16"
     },
     {
       "path": "src/core-domains/spatial/kits/angle-math-kit.js",
@@ -56247,6 +57409,26 @@
     {
       "path": "src/core-domains/spatial/kits/vector-math-kit.js",
       "sha256": "dc9da06785780b05bb342b346f2d3e01e831389c1e070eb25b22f1ba936116bd"
+    },
+    {
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/contracts.js",
+      "sha256": "bc77cb97eb20c0902d787e6a02376eed7e9f6744cca008021fae5096f389ff65"
+    },
+    {
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/index.js",
+      "sha256": "66f788f801dbe1eec970aa18aeb84c9e3172447065eacbee93c419d460901f8d"
+    },
+    {
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/kit.manifest.js",
+      "sha256": "0e87f2488dcdc8106dceed28a5c0c23ad26f6cd60014423a7f19866513e01333"
+    },
+    {
+      "path": "src/core-domains/spatial/layout/kits/layout-kit/resolve.js",
+      "sha256": "4b230a15a1ecadc20bb02374daf0a5c50ffe24b196862a966cb250796da5e86d"
+    },
+    {
+      "path": "src/core-domains/spatial/layout/subdomain.manifest.js",
+      "sha256": "eadc190d45a35c46d80273239f13beae01c8a6fc37c019f81f6a5fd80469913a"
     },
     {
       "path": "src/core-domains/spatial/scale/index.js",
@@ -56275,6 +57457,10 @@
     {
       "path": "src/core-domains/spatial/scale/subdomain.manifest.js",
       "sha256": "c9a440892d251fcfc727be366f8b612e77f3c7a885607484dc8b7a4b99ee7867"
+    },
+    {
+      "path": "src/core-domains/spatial/tests/spatial-layout.mjs",
+      "sha256": "2de6c7cae89a0af25be03fbbc56382c70a4930fb2927965bdb0408c7e963ad97"
     },
     {
       "path": "src/core-domains/spatial/tests/spatial-scale-restoration.mjs",

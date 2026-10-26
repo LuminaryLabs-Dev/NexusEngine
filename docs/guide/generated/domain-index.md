@@ -1,12 +1,16 @@
 # Domain Index
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:loop`: Own portable agent-loop composition contracts.
+- `n:agent:loop:step`: Own step envelopes and immutable outcome transitions.
+- `n:agent:loop:control`: Own per-loop lifecycle and continuation.
+- `n:agent:loop:coordination`: Own parent-child relationships and join outcomes.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
 - `n:authoring`: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
 - `n:authoring:code`: Own editable code documents and revision-bound language intelligence contracts.
@@ -82,6 +86,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:compute:model:inference`: Own provider-neutral inference requests, results, and compute requirements.
 - `n:compute:model:inference:provider`: Own inference provider capability and contract semantics without owning runtimes.
 - `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
+- `n:harness`: Own reusable harness capability composition contracts.
+- `n:harness:routing`: Resolve model decisions to registered capabilities without executing them.
 - `n:host`: Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private.
 - `n:host:gpu`: Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render.
 - `n:host:gpu:capability`: Own backend-neutral GPU features, limits, profiles, and compatibility requirements.
@@ -93,6 +99,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:host:gpu:resource`: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.
 - `n:host:gpu:synchronization`: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.
 - `n:host:gpu:recovery`: Own shared device-loss records, resource invalidation, and restoration coordination.
+- `n:inference`: Own model inference requests and results independently of compute resources.
+- `n:inference:provider`: Own provider identities, serving instances, capacity admission and selection.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
 - `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
@@ -183,6 +191,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:simulation:progression:lifecycle`: Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
 - `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
+- `n:spatial:layout`: Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.
 - `n:world:scene`: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.
 - `n:world:weather`: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.

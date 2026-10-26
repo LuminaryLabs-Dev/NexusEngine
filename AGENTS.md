@@ -82,6 +82,10 @@ contracts, and concrete renderer providers remain external. Do not put GPU
 handles, Three.js objects, WebGL calls, shader compilation, or frame submission
 inside Core contracts. Applications compose these services and select their rendering pipeline.
 
+`n:spatial:layout` owns optional arrangement descriptions, membership and derived
+2D/3D placements. Applications supply viewport or coordinate context and apply
+placements explicitly; Layout never mutates persistent Spatial transforms.
+
 The requested bundled Graphics Language Kit lives in `kits/render/graphics-language-kit`,
 outside Core production sources. It may contain NexusGL, native/WASM runtime artifacts
 and concrete presentation adapters. Core imports must not initialize this optional kit.

@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 authoring:check
+> node scripts/generate-authoring-capabilities.mjs --check
+
+Checked Authoring: 41 kits, 18 source kinds, 80 commands.

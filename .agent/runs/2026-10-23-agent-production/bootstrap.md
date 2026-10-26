@@ -1,0 +1,1 @@
+Read AGENTS.md, Authoring AGENTS.md, existing target and tracker. Existing tracker is completed and target belongs to unrelated external Build work; preserve both. nexus-editor executable absent; inspected local Editor CLI capabilities. Record actual controller availability without fabricating generated tracker state.

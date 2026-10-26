@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "engineTaskRecovery": true,
+  "sessionRecovery": true,
+  "failedReceiptCannotCompleteTask": true,
+  "validationStillPending": true,
+  "noEditorControllerUsed": true
+}

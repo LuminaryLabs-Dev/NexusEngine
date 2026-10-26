@@ -1,0 +1,53 @@
+{
+  "status": "partial",
+  "studioSourceRevision": "da9fa3e70734a3aaed89e8ad6e42e7206ad07e11",
+  "studioUncommittedImplementation": "schema-driven Engine Authoring workbench; all-Kit coverage remains incomplete",
+  "engineSourceCheckout": "5a4da3eba6ac95d2d8c74a008bb12caff0d6b0e8",
+  "studioEnginePin": "e3b9b589c9eaad144ef815ec9fa5ab20f0806424",
+  "checks": [
+    {
+      "command": "npm run build",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "pass",
+      "result": "Static Studio built with local dependencies and standalone game exporter."
+    },
+    {
+      "command": "node scripts/generate-kit-ui-coverage.mjs",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "pass",
+      "result": "Generated 390 manifest-derived Kit rows; unique IDs and expected 199 Domain / 390 Kit registry identity verified."
+    },
+    {
+      "command": "Read-only dynamic import and default factory construction for every manifest Kit",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "pass",
+      "result": "390 of 390 source exports resolved to functions and returned matching Kit IDs. This is constructor-only evidence, not behavior or Studio GUI acceptance."
+    },
+    {
+      "command": "Playwright Engine Authoring workflow: discover operations, mesh.cube preview/apply, file save and file reopen",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "pass",
+      "result": "All 82 typed operation rows appeared. mesh.cube preview/apply succeeded, asset survived project-file save/reopen, invalid required input remained visible and blocked Apply; no page errors."
+    },
+    {
+      "command": "npm run build:native",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "pass",
+      "result": "Packaged macOS arm64 app at release/Nexus Engine Studio-darwin-arm64."
+    },
+    {
+      "command": "Actual packaged-native GUI workflow",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "not-verified",
+      "result": "CUA app binding timed out; package creation is not accepted as native interaction proof."
+    },
+    {
+      "command": "All-390-Kit GUI/runtime/export acceptance",
+      "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Studio",
+      "status": "incomplete",
+      "result": "Authoring operation workbench is the first slice; end-to-end per-Kit integration and independent export checks remain."
+    }
+  ],
+  "publication": "not-authorized-and-not-performed",
+  "engineKitHostRevisionWarning": "The local production host embeds 081fea1cdd9ca1662bc15116e7174d9c27821630+agent-production.4, which differs from the Studio Engine pin. Its discovery receipt is not used as Engine source identity."
+}

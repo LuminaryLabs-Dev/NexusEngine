@@ -5179,7 +5179,7 @@
     "./domains/build/toolchain/toolchain-resolution": "./src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js"
   },
-  "registryHash": "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+  "registryHash": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
   "schema": "nexusengine.build-catalog/1",
   "sourceFiles": [
     {
@@ -5644,7 +5644,7 @@
     },
     {
       "path": "src/core-domains/build/index.js",
-      "sha256": "a152311ec28e47b2787b48db8a6cecfd102f2fbb7a46bd9285fc8e2bcffa7588"
+      "sha256": "d0b8e2d8475e3f8fdb6703a2cd6aade1a156e52dea7db966ce9ee608442dec71"
     },
     {
       "path": "src/core-domains/build/ir/index.js",
@@ -5896,7 +5896,7 @@
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/services.js",
-      "sha256": "400389865b41200b2684e790091bb0c68c53fee75b3edcf6a19aabbdc481d266"
+      "sha256": "4b68b06db302cae25482944563d9b9c01cb20aa7f38a6d0f9fb921214d48e653"
     },
     {
       "path": "src/core-domains/build/orchestration/kits/target-set-kit/sources.json",
@@ -6200,7 +6200,7 @@
     },
     {
       "path": "src/core-domains/build/target/kits/target-registry-kit/services.js",
-      "sha256": "af3413c39fa8e08dc1c18de95c5b41a03e2597b56e0add0c826104b4c97e4bd6"
+      "sha256": "94f35aee709ff102233b2b40cd71958bf5a4ff36e6780f2dbb2a5f8e5156ce79"
     },
     {
       "path": "src/core-domains/build/target/kits/target-registry-kit/sources.json",

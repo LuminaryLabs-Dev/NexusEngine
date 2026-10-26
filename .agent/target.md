@@ -1,5 +1,5 @@
-# Agora native and hybrid build integration
+# External build providers for Agora
 
-Implement the attached dependency reconciliation plan through existing n:build and the Build MCP provider. Preserve previous spatial work and frozen Agora source locks. Prove compiled Rust plus embedded Node through one generated API, expose inspection/plans/receipts through Agora, and keep unproven target/runtime/provider paths blocked.
+Extend the existing n:build target-registry and target-set composition so host applications can supply explicit additional build target providers through createBuildDomain({additionalTargetProviders:[provider]}). Preserve the existing built-in targets, collision rejection, exact-plan approval, isolated stages and source-immutability checks. Keep concrete Agora packaging outside Core; do not add a new domain.
 
-Active evidence: `.agent/runs/2026-10-16-hybrid-build`. User authorizes validation and push to the actual default branches. Overall APK, Linux and physical XR gates remain incomplete until matching evidence exists. Do not claim completion from host proof alone.
+User explicitly requires all source to be written before tests/builds/validation. This run is source read/plan and implementation only. Promotion, generated evidence, controller submit, final checks and adoption of an updated Agora engine pin remain pending until the final validation phase. Do not modify the existing completed run or generated tracker.

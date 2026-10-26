@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`<br>
-Guide content SHA-256: `8edb0077b243f87ad2db8d12e65cc8604388afd491fe70278d53fcf73da0b5ff`
+Core registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`<br>
+Guide content SHA-256: `f28f7ec154eec5410d164c0e1d3ccbb3612a4e40b7cce0f130b6c9c6791b61f3`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -1336,13 +1336,17 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:loop`: Own portable agent-loop composition contracts.
+- `n:agent:loop:step`: Own step envelopes and immutable outcome transitions.
+- `n:agent:loop:control`: Own per-loop lifecycle and continuation.
+- `n:agent:loop:coordination`: Own parent-child relationships and join outcomes.
 - `n:asset`: Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts.
 - `n:authoring`: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
 - `n:authoring:code`: Own editable code documents and revision-bound language intelligence contracts.
@@ -1418,6 +1422,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:compute:model:inference`: Own provider-neutral inference requests, results, and compute requirements.
 - `n:compute:model:inference:provider`: Own inference provider capability and contract semantics without owning runtimes.
 - `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
+- `n:harness`: Own reusable harness capability composition contracts.
+- `n:harness:routing`: Resolve model decisions to registered capabilities without executing them.
 - `n:host`: Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private.
 - `n:host:gpu`: Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render.
 - `n:host:gpu:capability`: Own backend-neutral GPU features, limits, profiles, and compatibility requirements.
@@ -1429,6 +1435,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:host:gpu:resource`: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.
 - `n:host:gpu:synchronization`: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.
 - `n:host:gpu:recovery`: Own shared device-loss records, resource invalidation, and restoration coordination.
+- `n:inference`: Own model inference requests and results independently of compute resources.
+- `n:inference:provider`: Own provider identities, serving instances, capacity admission and selection.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
 - `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.
@@ -1519,6 +1527,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 - `n:simulation:progression:lifecycle`: Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors.
 - `n:spatial`: Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math.
 - `n:spatial:scale`: Own subject scale, scale anchors, proximity bands, and deterministic scale queries.
+- `n:spatial:layout`: Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces.
 - `n:world`: Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts.
 - `n:world:scene`: Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots.
 - `n:world:weather`: Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution.
@@ -1544,7 +1553,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 
 # Core Dependency Table
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -1553,6 +1562,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:loop` | `n:agent` | - |
+| `n:agent:loop:step` | `n:agent:loop` | - |
+| `n:agent:loop:control` | `n:agent:loop` | - |
+| `n:agent:loop:coordination` | `n:agent:loop` | - |
 | `n:asset` | - | - |
 | `n:authoring` | `n:runtime` | - |
 | `n:authoring:code` | `n:authoring:project` | - |
@@ -1628,6 +1641,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:compute:model:inference` | `n:compute:model` | - |
 | `n:compute:model:inference:provider` | `n:compute:model:inference` | - |
 | `n:diagnostics` | - | - |
+| `n:harness` | - | - |
+| `n:harness:routing` | `n:harness` | - |
 | `n:host` | - | - |
 | `n:host:gpu` | `n:host` | - |
 | `n:host:gpu:capability` | `n:host:gpu` | - |
@@ -1639,6 +1654,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:host:gpu:resource` | `n:host:gpu` | - |
 | `n:host:gpu:synchronization` | `n:host:gpu` | - |
 | `n:host:gpu:recovery` | `n:host:gpu` | - |
+| `n:inference` | - | - |
+| `n:inference:provider` | `n:inference` | - |
 | `n:interaction` | - | - |
 | `n:interaction:input` | - | - |
 | `n:interaction:assistance-target` | `n:interaction` | - |
@@ -1729,6 +1746,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:simulation:progression:lifecycle` | `n:simulation` | - |
 | `n:spatial` | - | - |
 | `n:spatial:scale` | `n:spatial` | - |
+| `n:spatial:layout` | `n:spatial` | - |
 | `n:world` | `n:spatial` | - |
 | `n:world:scene` | `n:world` | - |
 | `n:world:weather` | `n:world` | - |
@@ -1756,7 +1774,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
 ## Domains
 
@@ -1767,6 +1785,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:loop` | `n:agent` | Own portable agent-loop composition contracts. | stable-candidate |
+| `n:agent:loop:step` | `n:agent:loop` | Own step envelopes and immutable outcome transitions. | stable-candidate |
+| `n:agent:loop:control` | `n:agent:loop` | Own per-loop lifecycle and continuation. | stable-candidate |
+| `n:agent:loop:coordination` | `n:agent:loop` | Own parent-child relationships and join outcomes. | stable-candidate |
 | `n:asset` | - | Own asset identity, manifests, bundles, content-addressed jobs, readiness, and provider contracts. | stable-candidate |
 | `n:authoring` | - | Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations. | stable-candidate |
 | `n:authoring:code` | `n:authoring` | Own editable code documents and revision-bound language intelligence contracts. | stable-candidate |
@@ -1842,6 +1864,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:compute:model:inference` | `n:compute:model` | Own provider-neutral inference requests, results, and compute requirements. | stable-candidate |
 | `n:compute:model:inference:provider` | `n:compute:model:inference` | Own inference provider capability and contract semantics without owning runtimes. | stable-candidate |
 | `n:diagnostics` | - | Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors. | stable-candidate |
+| `n:harness` | - | Own reusable harness capability composition contracts. | stable-candidate |
+| `n:harness:routing` | `n:harness` | Resolve model decisions to registered capabilities without executing them. | stable-candidate |
 | `n:host` | - | Own host capability descriptors, fallback contracts, and shared physical execution-environment ownership while keeping backend handles provider-private. | stable-candidate |
 | `n:host:gpu` | `n:host` | Own the shared GPU environment, portable physical-resource identity, device lifecycle, cross-consumer readiness, and recovery used by Compute and Render. | stable-candidate |
 | `n:host:gpu:capability` | `n:host:gpu` | Own backend-neutral GPU features, limits, profiles, and compatibility requirements. | stable-candidate |
@@ -1853,6 +1877,8 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:host:gpu:resource` | `n:host:gpu` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. | stable-candidate |
 | `n:host:gpu:synchronization` | `n:host:gpu` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. | stable-candidate |
 | `n:host:gpu:recovery` | `n:host:gpu` | Own shared device-loss records, resource invalidation, and restoration coordination. | stable-candidate |
+| `n:inference` | - | Own model inference requests and results independently of compute resources. | stable-candidate |
+| `n:inference:provider` | `n:inference` | Own provider identities, serving instances, capacity admission and selection. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
 | `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
@@ -1943,6 +1969,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `n:simulation:progression:lifecycle` | `n:simulation:progression` | Own prerequisite-gated lifecycle timing, completion, and portable effect descriptors. | stable-candidate |
 | `n:spatial` | - | Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance queries, and deterministic spatial math. | stable-candidate |
 | `n:spatial:scale` | `n:spatial` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. | stable-candidate |
+| `n:spatial:layout` | `n:spatial` | Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces. | stable-candidate |
 | `n:world` | - | Own world identity, cells, partitions, surfaces, deterministic assembly, and world state receipts. | stable-candidate |
 | `n:world:scene` | `n:world` | Own host-neutral scene identity, lifecycle, transition, binding descriptors, and scene snapshots. | stable-candidate |
 | `n:world:weather` | `n:world` | Own weather conditions, tendencies, regions, layers, sampling, and deterministic evolution. | stable-candidate |
@@ -2084,7 +2111,10 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `diagnostics-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/runtime` | Collect serializable telemetry, runtime health, determinism, and performance evidence. |
 | `debug-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug` | Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics. |
 | `debug-draw-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug-draw` | Create stateless renderer-neutral debug draw descriptors. |
+| `decision-routing-kit` | `n:harness:routing` | `nexusengine/domains/harness/routing` | Validate and resolve capability route requests. |
 | `host-capability-kit` | `n:host` | `nexusengine/domains/host/capabilities` | Describe available host capabilities and select declarative fallback modes. |
+| `inference-contract-kit` | `n:inference` | `nexusengine/domains/inference/contract` | Validate neutral inference request and result envelopes. |
+| `inference-provider-pool-kit` | `n:inference:provider` | `nexusengine/domains/inference/provider` | Register inference endpoints and reserve bounded instance capacity. |
 | `interaction-kit` | `n:interaction` | `nexusengine/domains/interaction/runtime` | Manage interaction targets, affordances, activation, and results. |
 | `input-contract-kit` | `n:interaction:input` | `nexusengine/domains/interaction/input` | Normalize semantic input actions, axes, contexts, and bindings. |
 | `assistance-target-kit` | `n:interaction:assistance-target` | `nexusengine/domains/interaction/assistance-target` | Own assistance target urgency, attachment, terminal completion, loss, and deterministic selection. |
@@ -2337,6 +2367,7 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `spatial-transform-math-kit` | `n:spatial` | `nexusengine/domains/spatial/transform-math` | Calculate deterministic transforms, bases, interpolation, and planar projections. |
 | `spatial-quaternion-math-kit` | `n:spatial` | `nexusengine/domains/spatial/quaternion-math` | Create, compose, normalize, rotate, and interpolate quaternions. |
 | `spatial-scale-kit` | `n:spatial:scale` | `nexusengine/domains/spatial/scale` | Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions. |
+| `spatial-layout-kit` | `n:spatial:layout` | `nexusengine/domains/spatial/layout` | Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects. |
 | `world-state-kit` | `n:world` | `nexusengine/domains/world/runtime` | Manage world identity, cells, partitions, surfaces, and deterministic assembly state. |
 | `scene-lifecycle-kit` | `n:world:scene` | `nexusengine/domains/world/scene` | Manage host-neutral scene identity, lifecycle, transitions, bindings, and snapshots. |
 | `weather-state-kit` | `n:world:weather` | `nexusengine/domains/world/weather` | Manage deterministic weather conditions, tendencies, regions, and sampling. |
@@ -2365,18 +2396,22 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a`
+Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
 
-- Source modules: 1781
-- Manifest-proven public atoms: 390
-- Manifest-owned internal modules: 1337
+- Source modules: 1818
+- Manifest-proven public atoms: 394
+- Manifest-owned internal modules: 1354
 - Root contract modules: 26
-- Optional provider modules: 28
+- Optional provider modules: 44
 - Unreviewed modules: 0
 - Violations: 0
 
 | Path | Owner | Review | Destination |
 | --- | --- | --- | --- |
+| `kits/agent/loop-host/index.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/production-bridge.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/providers/openai-compatible.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/storage.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/cli.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
@@ -2405,6 +2440,18 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `kits/render/graphics-language-kit/runtime/artifacts/nexusgl.mjs` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/runtime/loader.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/session.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/simulation/configured-scene-runtime-kit/asset-library.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/feedback.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/player.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/terrain.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/browser/view.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/composition.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/export.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/index.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/manifest.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/platform-motion.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/project.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
+| `kits/simulation/configured-scene-runtime-kit/runtime.js` | `n:simulation` | optional-provider-kit | NexusEngine optional Configured scene runtime Kit |
 | `src/adapters/node/agent-cli.js` | `n:agent` | optional-provider-kit | NexusEngine optional Node Agent CLI adapter |
 | `src/core-domains/actor/character/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/character/kits/character-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
@@ -2433,6 +2480,15 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/agent/kits/agent-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/observations.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/kits/agent-kit/tool-access.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/control/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/coordination/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/coding-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/memory-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/planning-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/validation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/step/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
@@ -3044,11 +3100,18 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/diagnostics/kits/diagnostics-kit/index.js` | `n:diagnostics` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/domain-kit.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/domain-manifest.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/harness/domain.manifest.js` | `n:harness` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/harness/index.js` | `n:harness` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/harness/routing/index.js` | `n:harness` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/host/domain.manifest.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/gpu/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/index.js` | `n:host` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/host/kits/host-capability-kit/index.js` | `n:host` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
+| `src/core-domains/inference/contract/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/inference/domain.manifest.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/inference/index.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/inference/provider/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/index.js` | `n:interaction` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/kit.manifest.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |
@@ -4013,6 +4076,11 @@ Registry SHA-256: `6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a
 | `src/core-domains/spatial/kits/spatial-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/transform-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/spatial/kits/vector-math-kit.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/contracts.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/kit.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/kits/layout-kit/resolve.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/spatial/layout/subdomain.manifest.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/index.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/kits/spatial-scale-kit/contracts.js` | `n:spatial` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/spatial/scale/kits/spatial-scale-kit/index.js` | `n:spatial` | manifest-proven-public-atom | NexusEngine Core |

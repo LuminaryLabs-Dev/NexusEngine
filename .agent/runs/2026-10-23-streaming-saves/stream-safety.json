@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "workspace": "/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-stream-proof-aPYkXQ",
+  "checks": [
+    "filesystem avoids eager snapshot",
+    "v1 byte identity including root, image tiles, history",
+    "fresh-engine roundtrip",
+    "relocated self-contained save",
+    "mid-stream cancellation preserves old manifest",
+    "archive failure preserves old manifest and retry succeeds",
+    "lazy IndexedDB host adapter loads"
+  ]
+}

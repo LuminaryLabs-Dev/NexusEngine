@@ -1,3 +1,4 @@
+import { createDomainKit } from "../../domain-kit.js";
 const copy=x=>structuredClone(x);
 export function createInferenceProviderPool({providers=[],instances=[],snapshot=null}={}){
  const registered=new Map(),endpoints=new Map(),leases=new Map();let next=0;
@@ -30,5 +31,23 @@ export function createInferenceProviderPool({providers=[],instances=[],snapshot=
   setHealth(id,health){if(!["ready","unavailable","cooldown"].includes(health)||!endpoints.has(id))throw new Error("Invalid health");endpoints.get(id).health=health;if(health==="ready")endpoints.get(id).cooldownUntil=null;},
   listInstances(){return [...endpoints.values()].map(copy);},listProviders(){return [...registered.values()].map(copy);},
   snapshot(){return copy({schema:"nexusengine.inference.provider/1",providers:[...registered.values()],instances:[...endpoints.values()].map(({active,...x})=>x),leases:[...leases.values()],cursor:next});}
+ });
+}
+
+// Preserve the standalone pool API; installed pools use Engine-owned state so
+// reset and snapshot restoration cannot leave a second mutable pool behind.
+export function createInferenceProviderPoolKit(config={}) {
+ const initial=createInferenceProviderPool(config).snapshot();
+ return createDomainKit({id:"inference-provider-pool-kit",domain:"inference-provider",initialState:{pool:initial},
+  createApi:({baseApi})=>{
+   const names=["registerProvider","registerInstance","reserve","release","reconcileExpired","reportFailure","setHealth","listInstances","listProviders","snapshot"];
+   return Object.fromEntries(names.map(name=>[name,(...args)=>{
+    const before=baseApi.getState().pool;
+    const pool=createInferenceProviderPool({snapshot:before});
+    const result=pool[name](...args),after=pool.snapshot();
+    if(JSON.stringify(before)!==JSON.stringify(after))baseApi.update({pool:after});
+    return result;
+   }]));
+  }
  });
 }

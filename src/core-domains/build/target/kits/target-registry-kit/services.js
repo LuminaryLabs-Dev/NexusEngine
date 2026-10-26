@@ -26,6 +26,7 @@ export function defineBuildTargetProvider(input = {}) {
 }
 
 export function createTargetRegistryService(config = {}) {
+  if (!Array.isArray(config.providers ?? [])) throw new TypeError("Build target providers must be an explicit array.");
   const providers = new Map();
 
   function register(input) {

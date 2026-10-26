@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "validArchive": "accepted",
+  "changedHistoricalBytes": "rejected with historical checksum drift",
+  "liveSourceUntouched": true
+}

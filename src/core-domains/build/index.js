@@ -64,7 +64,6 @@ export function createBuildDomain(config = {}) {
   const artifactRoot = path.resolve(config.artifactRoot ?? path.join(stateRoot, "artifacts"));
   const sourceCache = createSourceCacheService({ root: path.join(stateRoot, "sources") });
   const toolchainSource = createToolchainSourceService(config.toolchainSource);
-  const targetSet = createTargetSetService();
   const processExecution = createProcessExecutionService({ allowedRoot: stateRoot });
   const toolchainProvision = createToolchainProvisionService({
     cache: sourceCache,
@@ -123,9 +122,12 @@ export function createBuildDomain(config = {}) {
         openxrRuntime,
         openxrInput,
         openxrRender
-      })
+      }),
+      ...(config.additionalTargetProviders ?? [])
     ]
   });
+  // Target acceptance follows the same installed registry used by planning/execution.
+  const targetSet = createTargetSetService({ targets: targetRegistry.list().map((provider) => provider.id) });
 
   const services = Object.freeze({
     projectSource: createProjectSourceService(config.projectSource),

@@ -1,0 +1,32 @@
+{
+  "status": "PASS",
+  "runId": "2026-10-23-controller-retirement",
+  "requirement": "RETIRED by explicit user authorization",
+  "tracker": "Historical pointer only; original bytes archived",
+  "existingEngineTaskSessionState": "Used; recovery verified; failed receipt cannot complete validation",
+  "newControllerIntroduced": false,
+  "editorDependencyRequired": false,
+  "archiveFiles": 8,
+  "archiveHashes": "PASS",
+  "unrelatedTarget": "byte-identical to before",
+  "historicalRuns": "not edited",
+  "engineSuite": 128,
+  "productionChecks": 33,
+  "gameBrowserChecks": 8,
+  "mcpTools": 23,
+  "publicSkills": 1,
+  "preservedWorkflowRoutes": 17,
+  "preservedWorkflowResourceHashes": "PASS",
+  "activeDocs": "PASS: 93 files; historical archive excluded and separately hash-verified",
+  "commit": "NOT PERFORMED",
+  "push": "NOT PERFORMED",
+  "resumePointer": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/2026-10-23-controller-retirement/run.json",
+  "evidence": {
+    "engine": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/2026-10-23-controller-retirement/engine-tests.log",
+    "production": "/Users/crimsonwheeler/Documents/GitHub/LuminaryLabs/.agent/projects/nexus-engine-kit/controller-retirement-production.log",
+    "mcp": "/Users/crimsonwheeler/Documents/GitHub/LuminaryLabs/.agent/projects/nexus-engine-kit/controller-retirement-mcp.log",
+    "browser": "/Users/crimsonwheeler/Documents/GitHub/LuminaryLabs/.agent/evidence/2026-10-23-controller-retirement/browser-game/browser-report.json",
+    "recovery": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/2026-10-23-controller-retirement/resume-proof.json",
+    "archive": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/archive/2026-10-23-editor-controller/preservation.json"
+  }
+}

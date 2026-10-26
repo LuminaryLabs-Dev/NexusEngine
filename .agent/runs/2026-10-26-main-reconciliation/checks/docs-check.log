@@ -1,0 +1,7 @@
+
+> nexusengine@0.0.4 docs:check
+> node scripts/check-active-docs.mjs && node scripts/generate-guide.mjs --check && node scripts/check-guide-pdf.mjs
+
+Active docs ok: 95 files, 60 kit suggestions reclassified, 26 restored sources reconciled.
+Checked 22 guide chapters (sha256:f28f7ec154eec5410d164c0e1d3ccbb3612a4e40b7cce0f130b6c9c6791b61f3).
+NexusEngine Guide PDF ok: 228 nonblank, unclipped US Letter pages.

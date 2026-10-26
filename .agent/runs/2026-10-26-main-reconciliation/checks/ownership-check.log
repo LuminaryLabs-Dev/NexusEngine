@@ -1,0 +1,13 @@
+
+> nexusengine@0.0.4 ownership:check
+> node scripts/generate-kit-ownership-ledger.mjs --check
+
+Checked ownership ledger v2 {
+  sourceModules: 1818,
+  manifestProvenPublicAtoms: 394,
+  manifestOwnedInternalModules: 1354,
+  rootContractModules: 26,
+  optionalProviderModules: 44,
+  unreviewedModules: 0,
+  violations: 0
+}

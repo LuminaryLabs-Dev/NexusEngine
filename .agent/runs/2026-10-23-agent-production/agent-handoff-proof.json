@@ -1,0 +1,8 @@
+{
+  "status": "PASS",
+  "checks": [
+    "Independent agent resumes same Engine project",
+    "Archived receipt retains originating agent identity"
+  ],
+  "workspace": "/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-agent-handoff-QCBBHt"
+}

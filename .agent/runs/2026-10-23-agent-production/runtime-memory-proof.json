@@ -1,0 +1,41 @@
+{
+  "status": "PASS",
+  "samples": [
+    {
+      "iterations": 20,
+      "retainedMiB": 0.2646026611328125
+    },
+    {
+      "iterations": 40,
+      "retainedMiB": 0.27066802978515625
+    },
+    {
+      "iterations": 60,
+      "retainedMiB": 0.27712249755859375
+    },
+    {
+      "iterations": 80,
+      "retainedMiB": 0.2830352783203125
+    },
+    {
+      "iterations": 100,
+      "retainedMiB": 0.28661346435546875
+    },
+    {
+      "iterations": 120,
+      "retainedMiB": 0.31888580322265625
+    }
+  ],
+  "checks": [
+    "durability failure preserves backlog",
+    "observer failure preserves backlog; delivery at least once",
+    "clock unchanged",
+    "bounded hot ledger and zero transient backlog"
+  ],
+  "ledger": {
+    "records": 8,
+    "bytes": 151240,
+    "maxRecords": 8,
+    "maxBytes": 262144
+  }
+}

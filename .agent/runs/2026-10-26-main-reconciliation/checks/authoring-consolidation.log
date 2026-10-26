@@ -1,0 +1,53 @@
+
+> nexusengine@0.0.4 test:authoring:consolidation
+> node --test tests/core-domains/core-authoring-consolidation.mjs tests/core-domains/core-authoring-roundtrip.mjs tests/core-domains/core-authoring-io-safety.mjs
+
+✔ root installs complete Authoring APIs without Editor or experimental kits (78.00075ms)
+✔ create routes typed operations, duplicate ID rejects and identical request retries once (16.419917ms)
+✔ source publication guard rejects concurrent mutations and releases on failure (15.296625ms)
+✔ native project persistence survives fresh engine and preserves source/history/receipts (102.986209ms)
+✔ import OBJ creates editable canonical documents atomically (24.884542ms)
+✔ GLB, FBX and USDZ encode real files then reimport into a fresh Core runtime (461.399209ms)
+✔ all 41 installed kits retain declared owners and duplicate installs do not alter source (218.82575ms)
+✔ registry reset/load restores portable selections, never executable functions (15.918875ms)
+✔ cancelled, stale and altered packets leave no export success receipt (275.514833ms)
+✔ filesystem failure does not record a success receipt; publication retry returns stable identity (381.866666ms)
+✔ filesystem package reloads in a fresh process with source, image tiles and history (1418.747583ms)
+✔ filesystem rejects manifest symlinks and cancelled saves preserve prior manifest (141.263083ms)
+✔ import collision and source mutation after preview reject before any document changes (28.96025ms)
+✔ PNG and USDZ bytes are deterministic, CRC checked, truncated input rejected (2.609542ms)
+✔ glb textured multi-material 12-triangle building native round trip (747.94125ms)
+✔ fbx textured multi-material 12-triangle building native round trip (315.478375ms)
+✔ usdz textured multi-material 12-triangle building native round trip (277.96075ms)
+✔ glb rig/skin/morph/animation native round trip (402.297875ms)
+✔ fbx rig/skin/morph/animation native round trip (336.41475ms)
+✔ usdz rig/skin/morph/animation native round trip (444.962291ms)
+{"proof":"native-pose-sample","format":"glb","time":0,"maxWorldPointError":5.960464344313954e-10}
+{"proof":"native-pose-sample","format":"glb","time":0.125,"maxWorldPointError":1.2290140391974258e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.25,"maxWorldPointError":2.154403882793134e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.5,"maxWorldPointError":3.96029792351177e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.75,"maxWorldPointError":5.710168489732874e-9}
+{"proof":"native-pose-sample","format":"glb","time":1,"maxWorldPointError":7.883140905536305e-9}
+✔ glb preserves sampled world-space skin + morph deformation (230.0415ms)
+{"proof":"native-pose-sample","format":"fbx","time":0,"maxWorldPointError":9.992007221626409e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.125,"maxWorldPointError":9.155133597044475e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.25,"maxWorldPointError":1.355199909595506e-15}
+{"proof":"native-pose-sample","format":"fbx","time":0.5,"maxWorldPointError":9.930136612989092e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.75,"maxWorldPointError":1.3777505409863061e-15}
+{"proof":"native-pose-sample","format":"fbx","time":1,"maxWorldPointError":9.305364597889227e-16}
+✔ fbx preserves sampled world-space skin + morph deformation (218.121375ms)
+{"proof":"native-pose-sample","format":"usdz","time":0,"maxWorldPointError":7.395889819684156e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.125,"maxWorldPointError":7.89271189666585e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.25,"maxWorldPointError":7.991415947929875e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.5,"maxWorldPointError":1.0519691884658898e-12}
+{"proof":"native-pose-sample","format":"usdz","time":0.75,"maxWorldPointError":1.675552458209268e-12}
+{"proof":"native-pose-sample","format":"usdz","time":1,"maxWorldPointError":1.0686249801286981e-12}
+✔ usdz preserves sampled world-space skin + morph deformation (254.109084ms)
+ℹ tests 23
+ℹ suites 0
+ℹ pass 23
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 4687.669667

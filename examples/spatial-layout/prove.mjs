@@ -1,0 +1,38 @@
+import assert from "node:assert/strict";
+import { chromium } from "playwright";
+import { mkdir, writeFile } from "node:fs/promises";
+import { resolve } from "node:path";
+const out = resolve(process.argv[2] ?? ".agent/runs/2026-10-18-spatial-layout/visual");
+await mkdir(out, { recursive: true });
+const browser = await chromium.launch({ headless: true });
+try {
+  const page = await browser.newPage({ viewport: { width: 1200, height: 800 }, deviceScaleFactor: 1 });
+  const errors = [];
+  page.on("pageerror", e => errors.push(e.message));
+  page.on("console", m => { if (m.type() === "error") errors.push(m.text()); });
+  await page.goto("http://127.0.0.1:4179/");
+  await page.waitForFunction(() => window.layoutExample?.screen?.placements.length === 3);
+  const initial = await page.evaluate(() => structuredClone(window.layoutExample));
+  assert.deepEqual(initial.screen.placements.map(p => p.contentRef), initial.world.placements.map(p => p.contentRef));
+  assert.ok(initial.screen.placements.every(p => !p.overflow));
+  assert.ok(initial.world.placements[2].position[2] !== initial.world.placements[0].position[2]);
+  await page.screenshot({ path: resolve(out, "desktop.png"), fullPage: true });
+  await page.getByRole("button", { name: "UI scale: 1×", exact: true }).click();
+  const scaled = await page.evaluate(() => structuredClone(window.layoutExample));
+  assert.equal(scaled.uiScale, 1.25);
+  assert.equal(scaled.screen.placements[0].size[0], initial.screen.placements[0].size[0] * 1.25);
+  assert.deepEqual(scaled.world, initial.world);
+  await page.screenshot({ path: resolve(out, "scaled.png"), fullPage: true });
+  await page.getByRole("button", { name: "Reset layouts", exact: true }).click();
+  assert.deepEqual(await page.evaluate(() => window.layoutExample.snapshot), initial.snapshot);
+  await page.setViewportSize({ width: 520, height: 1000 });
+  await page.waitForFunction(width => window.layoutExample.viewport.width !== width, initial.viewport.width);
+  const compact = await page.evaluate(() => structuredClone(window.layoutExample));
+  assert.ok(compact.screen.placements.every(p => !p.overflow));
+  assert.notEqual(compact.screen.placements[0].position[0], initial.screen.placements[0].position[0]);
+  assert.deepEqual(compact.world, initial.world);
+  await page.screenshot({ path: resolve(out, "compact.png"), fullPage: true });
+  assert.deepEqual(errors, []);
+  await writeFile(resolve(out, "result.json"), JSON.stringify({ status: "PASS", checks: ["shared content references", "screen containment", "world depth", "UI scale", "reset", "resize", "world stability", "no browser errors"], initial, scaled, compact, errors }, null, 2));
+  console.log(`Browser layout proof PASS: ${out}`);
+} finally { await browser.close(); }

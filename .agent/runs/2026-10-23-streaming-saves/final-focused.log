@@ -1,0 +1,22 @@
+✔ root installs complete Authoring APIs without Editor or experimental kits (26.907542ms)
+✔ create routes typed operations, duplicate ID rejects and identical request retries once (11.365667ms)
+✔ source publication guard rejects concurrent mutations and releases on failure (7.871292ms)
+✔ native project persistence survives fresh engine and preserves source/history/receipts (70.522625ms)
+✔ import OBJ creates editable canonical documents atomically (29.348833ms)
+✔ GLB, FBX and USDZ encode real files then reimport into a fresh Core runtime (280.065416ms)
+✔ all 39 installed kits retain declared owners and duplicate installs do not alter source (119.863625ms)
+✔ registry reset/load restores portable selections, never executable functions (19.0385ms)
+✔ cancelled, stale and altered packets leave no export success receipt (248.546667ms)
+✔ filesystem failure does not record a success receipt; publication retry returns stable identity (139.761292ms)
+✔ filesystem package reloads in a fresh process with source, image tiles and history (652.137959ms)
+✔ filesystem rejects manifest symlinks and cancelled saves preserve prior manifest (180.329208ms)
+✔ import collision and source mutation after preview reject before any document changes (12.431208ms)
+✔ PNG and USDZ bytes are deterministic, CRC checked, truncated input rejected (1.540542ms)
+ℹ tests 14
+ℹ suites 0
+ℹ pass 14
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2058.768

@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 core:contracts
+> node scripts/check-manifest-execution-parity.mjs
+
+Validated executable parity for 394 manifest-backed Core Kits.

@@ -1,0 +1,30 @@
+[
+  {
+    "file": "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-control-budgets-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-production-bridge-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+    "exitCode": 0
+  },
+  {
+    "file": "tests/core-kits/core-agent-loop-specialized-smoke.mjs",
+    "exitCode": 0
+  }
+]

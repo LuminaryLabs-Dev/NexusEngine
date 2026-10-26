@@ -1,0 +1,204 @@
+Graphics contract: [{"backend":"native","passed":true},{"nativeWasm":{"max":0,"changed":0}},{"backend":"wasm","passed":true}]
+Graphics handover: passed, native/WASM, 17 swaps, retained RSS growth -71925760 bytes
+Transformed normals, mirrored tangent frames and column-major projections: passed
+✔ static bodies normalize through direct installed state and registry paths (15.197292ms)
+✔ body batch is atomic, revision checked, retry stable and conflict rejecting (7.845375ms)
+✔ body snapshot retains latest streaming retry only and restores it (145.075708ms)
+✔ invalid body output leaves registry unchanged (18.6915ms)
+✔ frame commit checks readiness, provider and strict sequence; latest retry is stable (5.756541ms)
+✔ tick checkpoints restore external state, ECS setters and clock on error (2.105708ms)
+✔ tick clock snapshot is isolated and malformed restore is rejected (1.610666ms)
+ℹ tests 7
+ℹ suites 0
+ℹ pass 7
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 223.783291
+✔ movement values remain correct at a fixed simulation delta (1.887916ms)
+✔ movement replaces values without mutating previously stored references (0.237042ms)
+✔ movement preserves unrelated component fields (0.172791ms)
+✔ movement can read frozen component snapshots (0.200625ms)
+✔ movement publishes accurate before/after component journal records (0.222625ms)
+✔ a later resolve-phase failure rolls movement and the journal back (1.228ms)
+✔ rollback restores the original stored component identities (0.237333ms)
+✔ a second-entity policy failure also restores the first entity (0.226416ms)
+✔ world bounds still clamp the completed position (0.133375ms)
+✔ zero delta does not advance position (0.13675ms)
+✔ two independent 600-tick runs have identical per-tick state hashes (25.801917ms)
+✔ retry after a failed tick matches an uninterrupted 600-tick run (17.683917ms)
+✔ collision resolution observes replaced transforms on subsequent pairs (0.35875ms)
+✔ collision filtering and event publication retain their existing behavior (0.178334ms)
+✔ large pending journals roll back without masking the original exception (41.816042ms)
+✔ collision resolution observes replaced colliders on subsequent pairs (0.285042ms)
+✔ invalid position conversion cannot partially commit velocity (0.206833ms)
+ℹ tests 17
+ℹ suites 0
+ℹ pass 17
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 97.456
+observation history: PASS
+observation commits: PASS
+{ discovered: 981, imported: 983, failed: 0 }
+core domain import smoke ok
+Checked 25 Domain manifests, 198 Domain records, and 386 atomic Kits (eea6ff6b873b2bd0d60c1743a3e117a99f90e092b440a21886b5e8c58a21c7a5).
+Validated executable parity for 386 manifest-backed Core Kits.
+Core boundaries ok: 1778 production modules, Build isolated from runtime, platform code confined to Build, and no transitional tree, private sibling imports, ownership drift, retired names, migrated files, or stale examples.
+Active docs ok: 93 files, 60 kit suggestions reclassified, 26 restored sources reconciled.
+Checked ownership ledger v2 {
+  sourceModules: 1755,
+  manifestProvenPublicAtoms: 386,
+  manifestOwnedInternalModules: 1322,
+  rootContractModules: 25,
+  optionalProviderModules: 22,
+  unreviewedModules: 0,
+  violations: 0
+}
+Verified 26 historical source hashes from docs/migrations/restored-source-evidence.
+Checked 26 restored behavior migrations, 27 behavior atoms, 9 adapters, and 6 recipes.
+Root module dispositions ok: 61 retired source records.
+Checked frozen ProtoKit extraction: 530 folders, 3698 classified source items.
+Test package surface ok: 474 package modules.
+Checked /Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/DSK_MANIFEST_0.0.4.json
+Checked 22 guide chapters (sha256:4ec53e619d3df72f302e880e67b2116d922a1e4f1f3ca1bb69f050aeca43762b).
+guide basic engine example ok
+guide object placement example ok
+guide composition inspection example ok
+public-api-freeze ok
+Validated 1572 modules reachable from 474 public entrypoints.
+runtime Kit idempotency smoke: ok
+domain-service-kit-smoke ok
+domain-path-api-registration-smoke ok
+core-domain-kits-smoke ok
+Core Domain manifest v2 hierarchy and proof contract ok
+core world domain smoke passed
+world foundation domain smoke passed
+world feature domain smoke passed
+landform feature domain smoke passed
+world feature catalog smoke passed
+world feature foundation integration passed
+world terrain compatibility passed
+public terrain adapter compatibility passed
+restored World behaviors: ok
+restored Spatial Scale behavior: ok
+spatial layout: exact placements, resize, frame rotation, validation, installed parity and lifecycle PASS
+restored Motion and contact behaviors: ok
+restored Economy and Operations behaviors: ok
+restored Interaction behaviors: ok
+restored Hazard, Pursuit, and Lifecycle behaviors: ok
+restored optional integration adapters and recipes: ok
+third-person camera restoration: ok
+core weather and layered weather smoke passed
+sequence-node-library-smoke ok
+sequence-node-runtime-smoke ok
+sequence-node-frame-driver-smoke ok
+sequence-node-kit-deploy-smoke ok
+sequence-node-surface-bridge-smoke ok
+core capability package surface installed 386 manifest-backed Kits
+realtime core tick contract smoke ok
+core-data-kit piece smoke ok
+core-object-kit smoke ok
+core-input-kit piece smoke ok
+core-scene-kit smoke ok
+core motion kit smoke ok
+core utility articulation smoke ok
+core-graphics-kit piece smoke ok
+core graphics procedural material smoke ok
+core graphics reflection kit smoke ok
+core graphics render-layer contract test ok
+core graphics render-layer graph smoke ok
+core graphics domain smoke ok
+core-simulation-kit piece smoke ok
+core promoted services smoke ok
+core child capabilities smoke ok
+core simulation resolution smoke ok
+core physics provider smoke ok
+core motion domain smoke ok
+core physics domain smoke ok
+core physics body smoke ok
+Checked Authoring: 39 kits, 17 source kinds, 75 commands.
+Authoring first edit: installed source, preview, undo/redo and reload passed.
+Authoring foundation: installed edits, staged rollback, stable history, restore epochs, retries and isolation passed.
+Authoring public surface: all 39 factory imports, domain/API ownership, repeated installation and immutable/mutable snapshot isolation passed.
+Authoring geometry: primitive orientation, concave triangulation, mapped topology, dependency rollback, curves, workspaces, sculpt, UVs and evaluated corners passed.
+Authoring surfaces and deformation: linear color blending, procedural bake, dependencies, bind pose, analytical bend, quaternion/cubic sampling, IK and source recovery passed.
+Authoring integration: ten modifier algorithms, analytical CSG volumes, Runtime Sequence causality/failure/cancel, assemblies, public Object/Asset/Presentation delivery and Composition planning passed.
+Authoring modeling: quad loop cuts, knife chords, dissolve, convex bevel, exact BVH distance, deterministic constrained scatter and caller-input preservation passed.
+Authoring UV overlap/stretch, locked-weight smoothing/mirroring, clip arrangement and measured bake/retarget proof passed.
+Constraints descriptors: all ten types, units/defaults, boundaries, portability, large finite normalization and break thresholds passed
+Constraints registry: atomic failures, prototype-safe IDs, retries, revisions, terminal breaks, guards, snapshot recovery and deterministic replay passed
+Constraints integration: twelve installed kits, public discovery, direct behavior, duplicate installation, snapshot identity, reset/load and isolated instances passed
+Constraints public exports: all twelve independent factories install and execute through Engine APIs
+core physics shape smoke ok
+core physics collider smoke ok
+core physics detection smoke ok
+core render surface smoke ok
+0.0.5 five-goal public surface smoke ok (64 exports)
+core compute provider-neutral domain smoke ok
+{
+  "status": "PASS",
+  "device": "gpu-1",
+  "restoredDevice": "gpu-2",
+  "resources": 1
+}
+Portable Host shared-resource ownership proof passed; native execution proof lives with external providers
+core capture domain smoke ok
+core object shape input-output smoke ok {
+  sourceTriangles: 952,
+  reducedTriangles: 345,
+  proxyTriangles: 187,
+  boundsDeviation: 0.04441004986648385,
+  qualification: 'approved'
+}
+core object shape skinned qualification smoke ok {
+  requestedRatio: 0.4,
+  approvedRatio: 0.7,
+  qualificationAttempts: 3,
+  poseCount: 3,
+  silhouetteViews: 36
+}
+core capture shape visual smoke ok {
+  outputPath: '/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-object-shape-capture-QB3IUB/source-vs-reduced.svg',
+  minimumSilhouetteIou: 0.9287020109689214,
+  averageSilhouetteIou: 0.9490706471294997,
+  sourceTriangles: 1140,
+  reducedTriangles: 502
+}
+core object fidelity and capture contract smoke ok
+core object vegetation domain smoke passed
+core object vegetation natural growth and compute contract smoke passed
+domain-owned Core catalog smoke ok
+core Object Placement smoke ok
+core Object Placement roundtrip ok
+core MCP registry smoke ok
+core MCP contract negative checks ok
+core MCP stdio smoke ok
+Core Composition MCP exactly-once smoke ok
+Build Domain tree: 16 subdomains, 48 atomic Kit contracts, and acyclic dependency traversal ok
+Build dependency source identity rejects moving references
+Build project immutability proof detects byte changes
+Build multi-target graphs isolate target entries while preserving whole-project immutability and successful target cache
+Build full loop: composed and atomic-Kit graphs inspect, normalize, approve, apply once, preserve source, replay receipts, reset, and snapshot ok
+Build native lowering: supported numeric Kit IR compiles with Rust parity and unsupported syntax fails closed
+Build CLI repeated-target, approval, apply, and persisted no-op contracts ok
+Build MCP inspect, plan, exact approval, apply, and receipt tools ok
+Build Web targets: one verified npm dependency closure starts cleanly in web-live and web-static
+core creature character player smoke ok
+core speech provider-neutral contract smoke ok
+core-interaction-kit piece smoke ok
+core model provider contract smoke ok
+core-agent-kit piece smoke ok
+core debug kit smoke ok
+core startup domain: launch, preparation, continuation, failure, retry, first-frame, and snapshot passed
+core assets async smoke passed
+core assets bundle smoke passed
+core assets cache smoke passed
+core assets deduplication smoke passed
+core assets startup bridge smoke passed
+core presentation domain smoke ok
+core custom replacement smoke ok
+Passed 128 smoke tests.

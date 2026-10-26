@@ -1,0 +1,14 @@
+{
+  "status": "PASS",
+  "historyVersions": 160,
+  "coordinatesPerVersion": 48000,
+  "packageBytes": 53294575,
+  "streaming": {
+    "peakGrowthMiB": 1.462646484375,
+    "retainedGrowthMiB": 0.22930145263671875,
+    "objects": 161
+  },
+  "eagerRetainedGrowthMiB": 59.32067108154297,
+  "rootHash": "sha256:3035b419858a21ee085cc6c556411709a44f5db486544bd9693453f8aa36f8d4",
+  "workspace": "/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-stream-memory-Wu1vVg"
+}

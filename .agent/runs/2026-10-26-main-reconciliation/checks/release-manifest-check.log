@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 release:manifest:check
+> node scripts/generate-dsk-manifest.mjs --check
+
+Checked /Users/crimsonwheeler/Documents/GitHub/.reconciliation-backups/2026-10-26-182122/NexusEngine/candidate/docs/DSK_MANIFEST_0.0.4.json

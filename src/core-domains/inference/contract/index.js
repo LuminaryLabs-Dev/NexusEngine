@@ -1,3 +1,4 @@
+import { createDomainKit } from "../../domain-kit.js";
 const copy=x=>structuredClone(x);
 export function createInferenceRequest(input={}){
  if(!input.id||!input.modelId)throw new TypeError("Inference request needs id and modelId");
@@ -21,4 +22,12 @@ export const INFERENCE_FAILURE_REASONS=Object.freeze(["rate_limited","unavailabl
 export function createInferenceFailure({requestId,providerId,reason="unknown",retryable=false,retryAfterMs=null,status="failed",uncertain=false}={}){
  if(!requestId||!providerId||!INFERENCE_FAILURE_REASONS.includes(reason)||retryAfterMs!==null&&(!Number.isSafeInteger(retryAfterMs)||retryAfterMs<0))throw new TypeError("Invalid provider failure");
  return Object.freeze({status,requestId,providerId,reason,retryable:retryable===true&&!uncertain, retryAfterMs,uncertain:uncertain===true});
+}
+
+// Manifest installation is separate from constructing an individual request.
+export function createInferenceContractKit() {
+ return createDomainKit({id:"inference-contract-kit",domain:"inference",createApi:()=>({
+  createRequest:createInferenceRequest,createResult:createInferenceResult,
+  createFailure:createInferenceFailure,normalizeDecisionResponse
+ })});
 }

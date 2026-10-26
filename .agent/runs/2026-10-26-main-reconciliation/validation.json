@@ -1,0 +1,92 @@
+{
+  "scope": "Reconciled Engine candidate; not all device/platform acceptance",
+  "checks": [
+    {
+      "command": "npm test",
+      "exitCode": 0,
+      "proof": "checks/test.log",
+      "observed": "Passed 129 smoke tests.",
+      "sha256": "d005c3d2610c60aca5b342e388af8962b0f88c3d303fee42f04c0d17a735cde6"
+    },
+    {
+      "command": "npm run test:authoring:consolidation",
+      "exitCode": 0,
+      "proof": "checks/authoring-consolidation.log",
+      "observed": "23 tests passed",
+      "sha256": "f3139fb8437137c2dc65b072a486090e5efada8600bc5a7be74cdcc75e35f0a1"
+    },
+    {
+      "command": "node tests/core-kits/core-agent-inference-routing-smoke.mjs",
+      "exitCode": 0,
+      "proof": "checks/inference-routing.log",
+      "observed": "direct and installed inference/routing passed",
+      "sha256": "f55919443ac56ccdaa01d277f40ed09fefd8b27b7d8a01394f88b2127ce69414"
+    },
+    {
+      "command": "npm run docs:check",
+      "exitCode": 0,
+      "proof": "checks/docs-check.log",
+      "observed": "active docs, generated guide and PDF checked",
+      "sha256": "e650a876ad16288bc2c93602824f841c4ef23889cb85e2c2a24e79cd7ec75eb8"
+    },
+    {
+      "command": "npm run core:check",
+      "exitCode": 0,
+      "proof": "checks/core-check.log",
+      "sha256": "fd9b72bbd8d7681a7e6571c1a75ad0e172565102c64fc2c8c88ee6c585e23ab0"
+    },
+    {
+      "command": "npm run core:contracts",
+      "exitCode": 0,
+      "proof": "checks/core-contracts.log",
+      "sha256": "ef06f8dc4fe6af962554f3ddad5d05959f135a2a6cb1c033dd31035a7d4bc696"
+    },
+    {
+      "command": "npm run ownership:check",
+      "exitCode": 0,
+      "proof": "checks/ownership-check.log",
+      "sha256": "e986c862b44eaf4437648c971dc79d558dcbb4bf9d7ab06e4898f2bd91ebb579"
+    }
+  ],
+  "agentLoopChecks": [
+    {
+      "file": "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-control-budgets-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-production-bridge-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+      "exitCode": 0
+    },
+    {
+      "file": "tests/core-kits/core-agent-loop-specialized-smoke.mjs",
+      "exitCode": 0
+    }
+  ],
+  "studioCompatibility": {
+    "inputFormat": "nexusengine.studio-project/2",
+    "migrated": true,
+    "nodes": 3,
+    "scenes": 1,
+    "engine": "reconciled candidate",
+    "studioPinUnchanged": true
+  },
+  "studioPinUnchanged": true,
+  "deploymentYamlChanged": false,
+  "published": false
+}

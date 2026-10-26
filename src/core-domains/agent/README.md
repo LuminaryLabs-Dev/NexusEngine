@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:agent`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `c31d7b0cb162415ad77c669691d5683eed98cb582aa599bf6cb1e7ba505ad185`
 - Public entry: `nexusengine/domains/agent`
 
 ## Responsibility
@@ -27,7 +27,12 @@ Own product-neutral observation, proposal, decision-cycle, execution receipt, an
 
 ## Subdomains
 
-None.
+| Path | Responsibility |
+| --- | --- |
+| `n:agent:loop` | Own portable agent-loop composition contracts. |
+| `n:agent:loop:step` | Own step envelopes and immutable outcome transitions. |
+| `n:agent:loop:control` | Own per-loop lifecycle and continuation. |
+| `n:agent:loop:coordination` | Own parent-child relationships and join outcomes. |
 
 ## Atomic Kits
 

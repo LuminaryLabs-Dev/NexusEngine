@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
-  "compositionRegistryHash": "sha256:681d803b228e9af2f87a0185a58d464c85544f5b292712fc9f1af25703ac178b",
+  "registryHash": "sha256:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+  "compositionRegistryHash": "sha256:25d3387ae8c558cde7788803a9ef1282fab3ed6dfd9c70b9f98aecca6c7a8264",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
-      "integrity": "sha256:6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a",
+      "sourceCommit": "builtin:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+      "integrity": "sha256:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
       "status": "available",
       "environments": [
         "browser",
@@ -180,6 +180,126 @@
       "requires": [],
       "provides": [
         "n:agent"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-loop-control-domain",
+      "domainPath": "n:agent:loop:control",
+      "parentDomainPath": "n:agent:loop",
+      "label": "Loop Control",
+      "status": "stable-candidate",
+      "responsibility": "Own per-loop lifecycle and continuation.",
+      "ownedMeaning": [
+        "continuation state",
+        "loop identity"
+      ],
+      "forbiddenResponsibilities": [
+        "global scheduling",
+        "host execution"
+      ],
+      "requires": [
+        "n:agent:loop"
+      ],
+      "provides": [
+        "n:agent:loop:control"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-loop-coordination-domain",
+      "domainPath": "n:agent:loop:coordination",
+      "parentDomainPath": "n:agent:loop",
+      "label": "Loop Coordination",
+      "status": "stable-candidate",
+      "responsibility": "Own parent-child relationships and join outcomes.",
+      "ownedMeaning": [
+        "delegations",
+        "join state"
+      ],
+      "forbiddenResponsibilities": [
+        "independent tool authority",
+        "worker scheduling"
+      ],
+      "requires": [
+        "n:agent:loop"
+      ],
+      "provides": [
+        "n:agent:loop:coordination"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-loop-domain",
+      "domainPath": "n:agent:loop",
+      "parentDomainPath": "n:agent",
+      "label": "Agent Loop",
+      "status": "stable-candidate",
+      "responsibility": "Own portable agent-loop composition contracts.",
+      "ownedMeaning": [
+        "loop capability contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "host scheduling",
+        "model hosting",
+        "tool dispatch"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:loop"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-loop-step-domain",
+      "domainPath": "n:agent:loop:step",
+      "parentDomainPath": "n:agent:loop",
+      "label": "Loop Step",
+      "status": "stable-candidate",
+      "responsibility": "Own step envelopes and immutable outcome transitions.",
+      "ownedMeaning": [
+        "step identity",
+        "step transitions"
+      ],
+      "forbiddenResponsibilities": [
+        "LLM inference",
+        "tool execution"
+      ],
+      "requires": [
+        "n:agent:loop"
+      ],
+      "provides": [
+        "n:agent:loop:step"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2130,6 +2250,65 @@
       }
     },
     {
+      "id": "harness-domain",
+      "domainPath": "n:harness",
+      "parentDomainPath": null,
+      "label": "Harness",
+      "status": "stable-candidate",
+      "responsibility": "Own reusable harness capability composition contracts.",
+      "ownedMeaning": [
+        "harness capability composition"
+      ],
+      "forbiddenResponsibilities": [
+        "agent continuation",
+        "inference transport",
+        "tool execution"
+      ],
+      "requires": [],
+      "provides": [
+        "n:harness"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "harness-routing-domain",
+      "domainPath": "n:harness:routing",
+      "parentDomainPath": "n:harness",
+      "label": "Harness Routing",
+      "status": "stable-candidate",
+      "responsibility": "Resolve model decisions to registered capabilities without executing them.",
+      "ownedMeaning": [
+        "decision route selection",
+        "routing result contracts"
+      ],
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "provider selection",
+        "tool dispatch"
+      ],
+      "requires": [
+        "n:harness"
+      ],
+      "provides": [
+        "n:harness:routing"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "host-domain",
       "domainPath": "n:host",
       "parentDomainPath": null,
@@ -2489,6 +2668,68 @@
       ],
       "provides": [
         "n:host:gpu:synchronization"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "inference-domain",
+      "domainPath": "n:inference",
+      "parentDomainPath": null,
+      "label": "Inference",
+      "status": "stable-candidate",
+      "responsibility": "Own model inference requests and results independently of compute resources.",
+      "ownedMeaning": [
+        "inference model requirements",
+        "inference requests",
+        "inference results"
+      ],
+      "forbiddenResponsibilities": [
+        "GPU scheduling",
+        "agent decisions",
+        "network transport"
+      ],
+      "requires": [],
+      "provides": [
+        "n:inference"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "inference-provider-domain",
+      "domainPath": "n:inference:provider",
+      "parentDomainPath": "n:inference",
+      "label": "Inference Provider",
+      "status": "stable-candidate",
+      "responsibility": "Own provider identities, serving instances, capacity admission and selection.",
+      "ownedMeaning": [
+        "capacity leases",
+        "instance selection",
+        "provider registry"
+      ],
+      "forbiddenResponsibilities": [
+        "HTTP transport",
+        "agent routing",
+        "worker scheduling"
+      ],
+      "requires": [
+        "n:inference"
+      ],
+      "provides": [
+        "n:inference:provider"
       ],
       "settingsSchema": {
         "type": "object",
@@ -5704,6 +5945,40 @@
       }
     },
     {
+      "id": "spatial-layout-domain",
+      "domainPath": "n:spatial:layout",
+      "parentDomainPath": "n:spatial",
+      "label": "Spatial Layout",
+      "status": "stable-candidate",
+      "responsibility": "Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces.",
+      "ownedMeaning": [
+        "layout membership",
+        "layout rules",
+        "placement resolution"
+      ],
+      "forbiddenResponsibilities": [
+        "collision avoidance",
+        "content creation",
+        "persistent transform mutation",
+        "rendering",
+        "text measurement"
+      ],
+      "requires": [
+        "n:spatial"
+      ],
+      "provides": [
+        "n:spatial:layout"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
       "id": "spatial-scale-domain",
       "domainPath": "n:spatial:scale",
       "parentDomainPath": "n:spatial",
@@ -6774,7 +7049,12 @@
         "proof": {
           "status": "proven",
           "references": [
-            "tests/core-kits/core-agent-kit-smoke.mjs"
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
           ],
           "consumers": [
             {
@@ -16200,6 +16480,79 @@
       }
     },
     {
+      "id": "decision-routing-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Validate and resolve capability route requests.",
+      "domainPath": "n:harness:routing",
+      "parentDomainPath": "n:harness",
+      "apiName": "routing",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "n:harness",
+        "n:harness:routing"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/harness/routing",
+        "exportName": "createDecisionRoutingKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "decision-routing-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "decision-routing-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
       "id": "density-material-kit",
       "version": "0.0.4",
       "status": "stable-candidate",
@@ -19145,6 +19498,152 @@
             },
             {
               "id": "indirect-buffer-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "inference-contract-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Validate neutral inference request and result envelopes.",
+      "domainPath": "n:inference",
+      "parentDomainPath": null,
+      "apiName": "inference",
+      "apiVisibility": "public",
+      "requires": [],
+      "provides": [
+        "n:inference"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/inference/contract",
+        "exportName": "createInferenceContractKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "inference-contract-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "inference-contract-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "inference-provider-pool-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Register inference endpoints and reserve bounded instance capacity.",
+      "domainPath": "n:inference:provider",
+      "parentDomainPath": "n:inference",
+      "apiName": "inferenceProvider",
+      "apiVisibility": "public",
+      "requires": [
+        "n:inference"
+      ],
+      "provides": [
+        "n:inference:provider"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/inference/provider",
+        "exportName": "createInferenceProviderPoolKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-inference-routing-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "inference-provider-pool-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "inference-provider-pool-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -31934,6 +32433,81 @@
             },
             {
               "id": "spatial-contract-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "spatial-layout-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects.",
+      "domainPath": "n:spatial:layout",
+      "parentDomainPath": "n:spatial",
+      "apiName": "spatialLayout",
+      "apiVisibility": "public",
+      "requires": [
+        "n:spatial"
+      ],
+      "provides": [
+        "n:spatial:layout",
+        "spatial:layout-resolution"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/spatial/layout",
+        "exportName": "createSpatialLayoutKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "src/core-domains/spatial/tests/spatial-layout.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "spatial-layout-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "spatial-layout-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true

@@ -1,3 +1,4 @@
+import { createDomainKit } from "../../domain-kit.js";
 const copy=x=>structuredClone(x);
 const kinds=new Set(["request_context","invoke_capability","delegate_loop","request_validation","propose_completion","report_blocker"]);
 export function normalizeRouteDecision(input){
@@ -21,4 +22,12 @@ export function createDecisionRouter({discover,authorize=()=>false,policy=null}=
   if(!chosen||!candidates.some(x=>x.id===chosen.id))return {ok:false,code:"AMBIGUOUS",decision};
   return {ok:true,decision,route:{capabilityId:chosen.id,domainPath:chosen.domainPath??null,version:chosen.version??"1",requestedCapability:decision.capabilityId}};
  }});
+}
+
+// An installed routing Kit owns contracts only. Discovery/authorization remain
+// injected host capabilities; an unconfigured Kit fails closed when resolving.
+export function createDecisionRoutingKit(config={}) {
+ const policies={discover:config.discover??(()=>[]),authorize:config.authorize??(()=>false),policy:config.policy??null};
+ return createDomainKit({id:"decision-routing-kit",domain:"harness-routing",policies,
+  createApi:()=>({resolve:createDecisionRouter(policies).resolve,normalizeDecision:normalizeRouteDecision})});
 }

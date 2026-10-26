@@ -106,6 +106,8 @@ for (const absolutePath of [...walk(sourceRoot), ...walk(path.join(root, "kits")
   const optional = [
     ["kits/render/graphics-language-kit/", "n:render", "Graphics Language Kit", "kits/render/graphics-language-kit/manifest.js"],
     ["kits/agent/production/", "n:agent", "Agent production host", "kits/agent/production/manifest.js"],
+    ["kits/agent/loop-host/", "n:agent:loop", "Agent loop host", "kits/agent/loop-host/index.mjs"],
+    ["kits/simulation/configured-scene-runtime-kit/", "n:simulation", "Configured scene runtime Kit", "kits/simulation/configured-scene-runtime-kit/manifest.js"],
     ["kits/authoring/storage/indexeddb/", "n:authoring:persistence", "IndexedDB storage host", "src/core-domains/authoring/persistence/providers/indexeddb/index.js"],
     ["kits/build/language-toolchains-kit/", "n:build", "Language toolchain providers", "kits/build/language-toolchains-kit/index.js"],
     ["kits/development/ide-kit/", "n:authoring:code", "IDE host", "kits/development/ide-kit/index.js"]

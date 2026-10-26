@@ -1,0 +1,161 @@
+[
+  {
+    "path": ".agent/CHANGE_LOG.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": ".agent/development.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": ".agent/tracker.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/DSK_MANIFEST_0.0.4.json",
+    "conflicts": 2,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/KIT-OWNERSHIP.json",
+    "conflicts": 4,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/KIT-OWNERSHIP.md",
+    "conflicts": 2,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/NexusEngine-Guide.md",
+    "conflicts": 6,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/NexusEngine-Guide.pdf",
+    "resolution": "Keep current upstream generated PDF until regeneration"
+  },
+  {
+    "path": "docs/generated/API-REFERENCE.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/AUTHORING-CAPABILITIES.json",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/BUILD-API.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/BUILD-CATALOG.json",
+    "conflicts": 2,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/BUILD-SOURCE-REGISTRY.json",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/BUILD-TARGETS.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/CORE-CATALOG.json",
+    "conflicts": 3,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/CORE-REGISTRY-SHA256",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/generated/PACKAGE-EXPORTS.json",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/guide/generated/NexusEngine-Guide.html",
+    "conflicts": 6,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/guide/generated/book-state.json",
+    "conflicts": 5,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/guide/generated/dependency-table.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "docs/guide/generated/domain-index.md",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "kits/agent/production/index.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "kits/agent/production/receipt-mapping.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "kits/agent/production/visual-inspection.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "kits/catalog.js",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "package.json",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "scripts/generate-core-catalog.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "src/core-domains/build/index.js",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "src/core-domains/catalog.js",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "src/core-domains/composition/adapters/mcp/generated-guide-resources.js",
+    "conflicts": 5,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "tests/core-domains/core-authoring-public.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  },
+  {
+    "path": "tests/helpers/public-package-surface.mjs",
+    "conflicts": 1,
+    "resolution": "Retain current upstream conflict content; preserve cleanly merged local additions; regenerate derived records"
+  }
+]

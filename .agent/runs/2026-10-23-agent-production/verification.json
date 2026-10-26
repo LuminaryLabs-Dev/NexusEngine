@@ -1,0 +1,48 @@
+{
+  "status": "LOCAL_IMPLEMENTATION_VALIDATED",
+  "plugin": "nexus-engine-kit@luminary-engine",
+  "version": "0.4.0",
+  "publicSkills": 1,
+  "publicMcpTools": 23,
+  "preservedProcedures": 17,
+  "engineDomainsRetained": 25,
+  "engineOverlayFiles": 31,
+  "persistentSession": {
+    "calls": 10000,
+    "heapMiBMin": 166.87616729736328,
+    "heapMiBMax": 166.9445037841797,
+    "pendingEvents": 0,
+    "pendingJournalRecords": 0,
+    "scene": {
+      "name": "larger scene and dense curved shell in the same host",
+      "status": "PASS",
+      "nodes": 870,
+      "triangles": 162240,
+      "uniqueShellVertices": 8450,
+      "artifactBytes": 4230852
+    }
+  },
+  "additionalPostHardeningCalls": 1000,
+  "checks": {
+    "coreAuthoringAgentRuntime": 25,
+    "buildRegression": 3,
+    "productionFlow": 33,
+    "gameBrowserInteractions": 8,
+    "galleryBrowser": 3,
+    "sourceAndInstalledMcp": "PASS",
+    "genericEngineMcp": "PASS",
+    "legacyMigrationAndIntegrity": "PASS",
+    "storageExhaustionRecovery": "PASS",
+    "sourceInstalledParity": "PASS",
+    "contentHeaderDeduplication": "PASS: metadata revisions share immutable content; source-matched final scene export and save/load",
+    "agentHandoff": "PASS: archived receipt keeps original agent identity"
+  },
+  "promotion": "PENDING: unpublished local Engine distribution; pre-existing repository-wide checks and unavailable guided controller are recorded separately",
+  "limits": [
+    "Explicit portable saves materialize retained history; this is not unlimited-memory streaming save.",
+    "Finite history count, receipt count and session/graph budgets remain; large interaction payloads use artifact references.",
+    "Cancellation is checked before dispatch; arbitrary in-flight external effects require reconciliation.",
+    "Existing animated FBX/USDZ durable-import preflight guard remains."
+  ],
+  "additionalStorageValidationCalls": 500
+}

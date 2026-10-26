@@ -1,0 +1,9 @@
+{
+  "runId": "2026-10-23-controller-retirement",
+  "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/2026-10-23-controller-retirement/workspace",
+  "taskId": "controller-retirement",
+  "sessionId": "controller-retirement",
+  "goal": "goal.md",
+  "validation": "validation.json",
+  "report": "report.md"
+}

@@ -1,0 +1,7 @@
+
+> nexusengine@0.0.4 migrations:check
+> node scripts/generate-restored-behavior-migrations.mjs --check && node scripts/generate-root-module-dispositions.mjs --check
+
+Verified 26 historical source hashes from docs/migrations/restored-source-evidence.
+Checked 26 restored behavior migrations, 27 behavior atoms, 9 adapters, and 6 recipes.
+Root module dispositions ok: 61 retired source records.

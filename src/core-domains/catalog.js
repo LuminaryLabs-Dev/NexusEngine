@@ -8,26 +8,26 @@ import manifest6 from "./camera/domain.manifest.js";
 import manifest7 from "./composition/domain.manifest.js";
 import manifest8 from "./compute/domain.manifest.js";
 import manifest9 from "./diagnostics/domain.manifest.js";
-import manifest10 from "./host/domain.manifest.js";
-import manifest11 from "./interaction/domain.manifest.js";
-import inferenceManifest from "./inference/domain.manifest.js";
-import harnessManifest from "./harness/domain.manifest.js";
-import manifest12 from "./lighting/domain.manifest.js";
-import manifest13 from "./material/domain.manifest.js";
-import manifest14 from "./mcp/domain.manifest.js";
-import manifest15 from "./network/domain.manifest.js";
-import manifest16 from "./object/domain.manifest.js";
-import manifest17 from "./physics/domain.manifest.js";
-import manifest18 from "./policy/domain.manifest.js";
-import manifest19 from "./presentation/domain.manifest.js";
-import manifest20 from "./render/domain.manifest.js";
-import manifest21 from "./runtime/domain.manifest.js";
-import manifest22 from "./simulation/domain.manifest.js";
-import manifest23 from "./spatial/domain.manifest.js";
-import manifest24 from "./world/domain.manifest.js";
+import manifest10 from "./harness/domain.manifest.js";
+import manifest11 from "./host/domain.manifest.js";
+import manifest12 from "./inference/domain.manifest.js";
+import manifest13 from "./interaction/domain.manifest.js";
+import manifest14 from "./lighting/domain.manifest.js";
+import manifest15 from "./material/domain.manifest.js";
+import manifest16 from "./mcp/domain.manifest.js";
+import manifest17 from "./network/domain.manifest.js";
+import manifest18 from "./object/domain.manifest.js";
+import manifest19 from "./physics/domain.manifest.js";
+import manifest20 from "./policy/domain.manifest.js";
+import manifest21 from "./presentation/domain.manifest.js";
+import manifest22 from "./render/domain.manifest.js";
+import manifest23 from "./runtime/domain.manifest.js";
+import manifest24 from "./simulation/domain.manifest.js";
+import manifest25 from "./spatial/domain.manifest.js";
+import manifest26 from "./world/domain.manifest.js";
 import { flattenCoreDomainManifests } from "./domain-manifest.js";
 
-export const CORE_REGISTRY_SHA256 = "6e344592dc257c489f828f4da76bc046234e0c197c9f08622d0927e77ec3a77a";
+export const CORE_REGISTRY_SHA256 = "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01";
 
 export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest0,
@@ -55,8 +55,8 @@ export const CORE_DOMAIN_MANIFESTS = Object.freeze([
   manifest22,
   manifest23,
   manifest24,
-  inferenceManifest,
-  harnessManifest
+  manifest25,
+  manifest26
 ]);
 
 export const CORE_DOMAIN_CATALOG = flattenCoreDomainManifests(CORE_DOMAIN_MANIFESTS);

@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:spatial`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `71e5401b81bedad6f64ee642a57efd77d1bba47da3b917163af36d1813954e3f`
 - Public entry: `nexusengine/domains/spatial`
 
 ## Responsibility
@@ -32,6 +32,7 @@ Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance quer
 | Path | Responsibility |
 | --- | --- |
 | `n:spatial:scale` | Own subject scale, scale anchors, proximity bands, and deterministic scale queries. |
+| `n:spatial:layout` | Own optional layout descriptions and deterministic placement of existing items in screen or world coordinate spaces. |
 
 ## Atomic Kits
 
@@ -43,6 +44,7 @@ Own renderer-neutral transforms, coordinate spaces, bounds, zones, distance quer
 | `spatial-transform-math-kit` | `nexusengine/domains/spatial/transform-math` | Calculate deterministic transforms, bases, interpolation, and planar projections. |
 | `spatial-quaternion-math-kit` | `nexusengine/domains/spatial/quaternion-math` | Create, compose, normalize, rotate, and interpolate quaternions. |
 | `spatial-scale-kit` | `nexusengine/domains/spatial/scale` | Manage deterministic subject scale, scale anchors, proximity bands, and scale transitions. |
+| `spatial-layout-kit` | `nexusengine/domains/spatial/layout` | Store validated arrangement descriptions and resolve explicit, row, column and grid placements without moving scene objects. |
 
 ## Lifecycle
 

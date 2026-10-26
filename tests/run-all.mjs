@@ -38,6 +38,7 @@ const tests = [
   "tests/core-domains/world-terrain-compatibility.mjs",
   "src/core-domains/world/tests/restored-world-behaviors.mjs",
   "src/core-domains/spatial/tests/spatial-scale-restoration.mjs",
+  "src/core-domains/spatial/tests/spatial-layout.mjs",
   "src/core-domains/simulation/tests/restored-motion-behaviors.mjs",
   "src/core-domains/simulation/tests/restored-economy-operations.mjs",
   "src/core-domains/interaction/tests/restored-interaction-behaviors.mjs",

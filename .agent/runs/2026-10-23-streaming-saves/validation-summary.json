@@ -1,0 +1,61 @@
+{
+  "status": "LOCAL_VALIDATION_PASS_EDITOR_CONTROLLER_BLOCKED",
+  "pluginVersion": "0.4.1",
+  "engineOverlay": "0.0.4-agent-production.4",
+  "publicSkills": 1,
+  "tools": 23,
+  "preservedWorkflows": 17,
+  "coreDomains": 25,
+  "persistentCalls": 10000,
+  "retainedHeapMiB": {
+    "min": 166.92125701904297,
+    "max": 167.07161712646484
+  },
+  "scene": {
+    "nodes": 870,
+    "triangles": 162240,
+    "denseShellVertices": 8450
+  },
+  "streamingMemory": {
+    "status": "PASS",
+    "historyVersions": 160,
+    "coordinatesPerVersion": 48000,
+    "packageBytes": 53294575,
+    "streaming": {
+      "peakGrowthMiB": 1.462646484375,
+      "retainedGrowthMiB": 0.22930145263671875,
+      "objects": 161
+    },
+    "eagerRetainedGrowthMiB": 59.32067108154297,
+    "rootHash": "sha256:3035b419858a21ee085cc6c556411709a44f5db486544bd9693453f8aa36f8d4",
+    "workspace": "/var/folders/39/z4v5c5bj7ws6krbnfg777dn80000gn/T/nexus-stream-memory-Wu1vVg"
+  },
+  "finalSourceProof": "/Users/crimsonwheeler/Documents/GitHub/LuminaryLabs/.agent/evidence/2026-10-23-streaming-saves/persistent/final-source-proof.json",
+  "enduranceDistribution": ".2; final .4 adds provider snapshot compatibility and explicit checkpoint revision compatibility. Final .4 save/load/capture/export, 100 extra calls, legacy upgrade, installed MCP and 33 production checks rerun.",
+  "productionChecks": 33,
+  "gameBrowserChecks": 8,
+  "galleryBrowserChecks": 3,
+  "fullEngineSuite": 128,
+  "distribution": {
+    "status": "PASS",
+    "pluginVersion": "0.4.1",
+    "engineVersion": "0.0.4-agent-production.4",
+    "pluginFilesCompared": 92,
+    "engineOverlayFiles": 100,
+    "mismatches": [],
+    "tarball": "/Users/crimsonwheeler/Documents/GitHub/LuminaryLabs/.agent/plugins/nexus-engine-kit/vendor/nexusengine-0.0.4-agent-production.4.tgz",
+    "sha256": "ea69961be13ed016e128763ac5b8b27792d7e69bd34b198a2d1508f430002d6e",
+    "integrity": "sha512-TN3+9uvdJ96umr9+UAwtVzEuH/MG3GyQqveN4YR/ibl+ahz3GQHLPGVLc2cTfEKhm2kB3JdGWjD6KWarcrOejQ=="
+  },
+  "remaining": [
+    "Editor-owned guided controller unavailable",
+    "review/integrate dirty work and upstream before separately authorized commit/push",
+    "publish immutable Engine revision and replace local overlay pin"
+  ],
+  "limits": [
+    "Streaming is filesystem-save specific; other storage providers and portable loading still materialize data.",
+    "Largest individual document/history record plus compact reference metadata remains the save working set.",
+    "Portable load retains its existing 256 MiB package-read budget.",
+    "Native/XR proof is outside this web/asset validation."
+  ]
+}

@@ -1,0 +1,32 @@
+{
+  "protected": {
+    ".agent/target.md": true,
+    ".agent/tracker.md": true,
+    "src/core-domains/build/index.js": true,
+    "src/core-domains/build/orchestration/kits/target-set-kit/services.js": true,
+    "src/core-domains/build/target/kits/target-registry-kit/services.js": true
+  },
+  "additionalChangesToPreexistingFiles": [
+    "AGENTS.md",
+    "docs/DSK_MANIFEST_0.0.4.json",
+    "docs/KIT-OWNERSHIP.json",
+    "docs/KIT-OWNERSHIP.md",
+    "docs/NexusEngine-Guide.md",
+    "docs/generated/API-REFERENCE.md",
+    "docs/generated/BUILD-API.md",
+    "docs/generated/BUILD-CATALOG.json",
+    "docs/generated/BUILD-SOURCE-REGISTRY.json",
+    "docs/generated/BUILD-TARGETS.md",
+    "docs/generated/CORE-CATALOG.json",
+    "docs/generated/CORE-REGISTRY-SHA256",
+    "docs/generated/PACKAGE-EXPORTS.json",
+    "docs/guide/generated/NexusEngine-Guide.html",
+    "docs/guide/generated/book-state.json",
+    "docs/guide/generated/dependency-table.md",
+    "docs/guide/generated/domain-index.md",
+    "package.json",
+    "src/core-domains/catalog.js",
+    "src/core-domains/composition/adapters/mcp/generated-guide-resources.js",
+    "tests/helpers/public-package-surface.mjs"
+  ]
+}

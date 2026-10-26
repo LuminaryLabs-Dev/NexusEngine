@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 guide:check
+> node scripts/generate-guide.mjs --check
+
+Checked 22 guide chapters (sha256:fa36dd46bcefefd9e71bc90715e88604900bd5c6f23803358a02ccf2d13e0af8).

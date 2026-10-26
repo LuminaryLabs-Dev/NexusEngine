@@ -1,0 +1,168 @@
+[
+  {
+    "command": [
+      "node",
+      "src/core-domains/spatial/tests/spatial-layout.mjs"
+    ],
+    "code": 0,
+    "output": "spatial layout: exact placements, resize, frame rotation, validation, installed parity and lifecycle PASS\n"
+  },
+  {
+    "command": [
+      "node",
+      "src/core-domains/spatial/tests/spatial-scale-restoration.mjs"
+    ],
+    "code": 0,
+    "output": "restored Spatial Scale behavior: ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-utility-articulation-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core utility articulation smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domain-kits-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core-domain-kits-smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-graphics-domain-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core graphics domain smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-kits/core-presentation-domain-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "core presentation domain smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-visual-contribution-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "Portable VisualContribution contract OK\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/core-domains/core-domain-import-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "{ discovered: 980, imported: 982, failed: 0 }\ncore domain import smoke ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/runtime-kit-idempotency-smoke.mjs"
+    ],
+    "code": 0,
+    "output": "runtime Kit idempotency smoke: ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "src/core-domains/tests/domain-manifest-contract.mjs"
+    ],
+    "code": 0,
+    "output": "Core Domain manifest v2 hierarchy and proof contract ok\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-manifest-execution-parity.mjs"
+    ],
+    "code": 0,
+    "output": "Validated executable parity for 386 manifest-backed Core Kits.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-core-catalog.mjs",
+      "--check",
+      "--allow-pending"
+    ],
+    "code": 0,
+    "output": "Checked 25 Domain manifests, 198 Domain records, and 386 atomic Kits (c539a7a73df1e0275bb0e08ebaf3f2909582cb51c7659ad1c9d0f0c443b3819f).\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-kit-ownership-ledger.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked ownership ledger v2 {\n  sourceModules: 1722,\n  manifestProvenPublicAtoms: 386,\n  manifestOwnedInternalModules: 1311,\n  rootContractModules: 25,\n  unreviewedModules: 0,\n  violations: 0\n}\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-public-test-surface.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Test package surface ok: 463 package modules.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-guide.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked 22 guide chapters (sha256:87707b0661900ccdf73785d4e7cd3e2d75e7531b9848861a545162a4783e81f3).\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/generate-dsk-manifest.mjs",
+      "--check"
+    ],
+    "code": 0,
+    "output": "Checked /Users/crimsonwheeler/Documents/GitHub/NexusEngine/docs/DSK_MANIFEST_0.0.4.json\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-active-docs.mjs"
+    ],
+    "code": 0,
+    "output": "Active docs ok: 91 files, 60 kit suggestions reclassified, 26 restored sources reconciled.\n"
+  },
+  {
+    "command": [
+      "node",
+      "scripts/check-core-boundaries.mjs"
+    ],
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: Runtime Core production modules own concrete renderer or platform behavior:\nsrc/core-domains/authoring/persistence/providers/indexeddb/index.js\n+ actual - expected\n\n+ [\n+   'src/core-domains/authoring/persistence/providers/indexeddb/index.js'\n+ ]\n- []\n\n    at file:///Users/crimsonwheeler/Documents/GitHub/NexusEngine/scripts/check-core-boundaries.mjs:159:8 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: [\n    'src/core-domains/authoring/persistence/providers/indexeddb/index.js'\n  ],\n  expected: [],\n  operator: 'deepStrictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": [
+      "node",
+      "tests/public-entrypoint-relative-targets-smoke.mjs"
+    ],
+    "code": 1,
+    "output": "node:internal/modules/run_main:107\n    triggerUncaughtException(\n    ^\n\nAssertionError [ERR_ASSERTION]: src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js lacks proven manifest evidence\n+ actual - expected\n\n+ 'pending'\n- 'proven'\n\n    at file:///Users/crimsonwheeler/Documents/GitHub/NexusEngine/tests/public-entrypoint-relative-targets-smoke.mjs:166:12 {\n  generatedMessage: false,\n  code: 'ERR_ASSERTION',\n  actual: 'pending',\n  expected: 'proven',\n  operator: 'strictEqual',\n  diff: 'simple'\n}\n\nNode.js v25.8.1\n"
+  },
+  {
+    "command": [
+      "node",
+      "examples/spatial-layout/prove.mjs"
+    ],
+    "code": 0,
+    "output": "Browser layout proof PASS: /Users/crimsonwheeler/Documents/GitHub/NexusEngine/.agent/runs/2026-10-18-spatial-layout/visual\n"
+  }
+]

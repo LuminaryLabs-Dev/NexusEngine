@@ -1,0 +1,53 @@
+✔ root installs complete Authoring APIs without Editor or experimental kits (27.163083ms)
+✔ create routes typed operations, duplicate ID rejects and identical request retries once (9.38075ms)
+✔ source publication guard rejects concurrent mutations and releases on failure (9.611708ms)
+✔ native project persistence survives fresh engine and preserves source/history/receipts (39.380542ms)
+✔ import OBJ creates editable canonical documents atomically (9.621625ms)
+✔ GLB, FBX and USDZ encode real files then reimport into a fresh Core runtime (158.932917ms)
+✔ all 39 installed kits retain declared owners and duplicate installs do not alter source (72.279792ms)
+✔ registry reset/load restores portable selections, never executable functions (6.32125ms)
+✔ cancelled, stale and altered packets leave no export success receipt (96.545584ms)
+✔ filesystem failure does not record a success receipt; publication retry returns stable identity (175.7115ms)
+✔ filesystem package reloads in a fresh process with source, image tiles and history (787.78325ms)
+✔ filesystem rejects manifest symlinks and cancelled saves preserve prior manifest (91.728167ms)
+✔ import collision and source mutation after preview reject before any document changes (12.085042ms)
+✔ PNG and USDZ bytes are deterministic, CRC checked, truncated input rejected (6.455792ms)
+✔ glb textured multi-material 12-triangle building native round trip (282.381375ms)
+✔ fbx textured multi-material 12-triangle building native round trip (145.496083ms)
+✔ usdz textured multi-material 12-triangle building native round trip (135.823666ms)
+✔ glb rig/skin/morph/animation native round trip (160.3525ms)
+✔ fbx rig/skin/morph/animation native round trip (208.449125ms)
+✔ usdz rig/skin/morph/animation native round trip (203.334667ms)
+{"proof":"native-pose-sample","format":"glb","time":0,"maxWorldPointError":5.960464344313954e-10}
+{"proof":"native-pose-sample","format":"glb","time":0.125,"maxWorldPointError":1.2290140391974258e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.25,"maxWorldPointError":2.154403882793134e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.5,"maxWorldPointError":3.96029792351177e-9}
+{"proof":"native-pose-sample","format":"glb","time":0.75,"maxWorldPointError":5.710168489732874e-9}
+{"proof":"native-pose-sample","format":"glb","time":1,"maxWorldPointError":7.883140905536305e-9}
+✔ glb preserves sampled world-space skin + morph deformation (146.346459ms)
+{"proof":"native-pose-sample","format":"fbx","time":0,"maxWorldPointError":9.992007221626409e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.125,"maxWorldPointError":9.155133597044475e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.25,"maxWorldPointError":1.355199909595506e-15}
+{"proof":"native-pose-sample","format":"fbx","time":0.5,"maxWorldPointError":9.930136612989092e-16}
+{"proof":"native-pose-sample","format":"fbx","time":0.75,"maxWorldPointError":1.3777505409863061e-15}
+{"proof":"native-pose-sample","format":"fbx","time":1,"maxWorldPointError":9.305364597889227e-16}
+✔ fbx preserves sampled world-space skin + morph deformation (159.935167ms)
+{"proof":"native-pose-sample","format":"usdz","time":0,"maxWorldPointError":7.395889819684156e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.125,"maxWorldPointError":7.89271189666585e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.25,"maxWorldPointError":7.991415947929875e-13}
+{"proof":"native-pose-sample","format":"usdz","time":0.5,"maxWorldPointError":1.0519691884658898e-12}
+{"proof":"native-pose-sample","format":"usdz","time":0.75,"maxWorldPointError":1.675552458209268e-12}
+{"proof":"native-pose-sample","format":"usdz","time":1,"maxWorldPointError":1.0686249801286981e-12}
+✔ usdz preserves sampled world-space skin + morph deformation (199.501958ms)
+core-agent-kit piece smoke ok
+✔ tests/core-kits/core-agent-kit-smoke.mjs (1897.78975ms)
+realtime core tick contract smoke ok
+✔ tests/realtime-core-tick-contract-smoke.mjs (741.001625ms)
+ℹ tests 25
+ℹ suites 0
+ℹ pass 25
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 2622.215625

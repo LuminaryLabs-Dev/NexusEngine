@@ -1,0 +1,5 @@
+
+> nexusengine@0.0.4 core:check
+> node scripts/generate-core-catalog.mjs --check
+
+Checked 27 Domain manifests, 208 Domain records, and 394 atomic Kits (0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01).
