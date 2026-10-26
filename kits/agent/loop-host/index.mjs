@@ -16,7 +16,7 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
    for(let attempt=0;attempt<maxAttempts;attempt++){
     if(signal?.aborted)throw signal.reason??new Error("Inference cancelled");
     if(Date.now()>=deadline)throw new Error("Inference deadline exceeded");
-    const lease=pool.reserve(request,{excludeInstanceIds:[...attempted],freeOnly:limits?.freeOnly===true});
+    const lease=pool.reserve(request,{excludeInstanceIds:[...attempted],freeOnly:limits?.allowPaid!==true});
     if(!lease)break;
     attempted.add(lease.instanceId);
     try{
