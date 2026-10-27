@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:compute`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a107d85a5a389dabf666cf1115205cb62af3d5d6830cf4a910fa3079d35fd02`
+- Registry SHA-256: `a49b310d0bf31ffb0a1b52b532ed92490e94a7ada5a2110453d21cb8eb529c6f`
 - Public entry: `nexusengine/domains/compute`
 
 ## Responsibility
@@ -53,16 +53,14 @@ Own portable compute graphs, resource requirements, dispatch intent, executor ho
 | `n:compute:host:execution:cpu:javascript` | Own JavaScript and Worker execution of portable Compute graphs. |
 | `n:compute:host:execution:cpu:wasm` | Own WebAssembly compute execution, memory, SIMD, and threading contracts. |
 | `n:compute:host:execution:cpu:native` | Own native CPU extension contracts for threads, vector execution, and synchronization. |
-| `n:compute:model` | Own model descriptors, registries, inference requests/results, and provider contracts. |
-| `n:compute:model:inference` | Own provider-neutral inference requests, results, and compute requirements. |
-| `n:compute:model:inference:provider` | Own inference provider capability and contract semantics without owning runtimes. |
+| `n:compute:model` | Own model descriptors, registry and capabilities. |
 
 ## Atomic Kits
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
 | `compute-graph-kit` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
-| `model-registry-kit` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
+| `model-registry-kit` | `nexusengine/domains/compute/model` | Register model descriptors and capabilities without executing inference. |
 
 ## Lifecycle
 

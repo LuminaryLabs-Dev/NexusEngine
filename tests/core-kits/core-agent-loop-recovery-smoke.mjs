@@ -6,3 +6,10 @@ assert.equal(done.state.status,"completed");assert.ok(snapshots.some(x=>x.pendin
 const missing=await runSelfPropagation({...config,resume:snapshots.find(x=>x.pending)});
 assert.equal(missing.state.status,"blocked");
 console.log("Durable propagation boundaries passed");
+
+let lostOperation;
+await runSelfPropagation({...config,loopId:'lost',execute:async()=>{throw Error('Transport interrupted after possible effect');},checkpoint:async snapshot=>{if(snapshot.pending?.phase==='execution')lostOperation=structuredClone(snapshot);}});
+let dispatchedAgain=0;
+const recovered=await runSelfPropagation({...config,loopId:'lost',resume:lostOperation,execute:async()=>{dispatchedAgain++;},resolvePending:async()=>({ok:true,receiptRef:'reconciled-effect'}),infer:async()=>({action:'finish'})});
+assert.equal(recovered.state.status,'completed');assert.equal(dispatchedAgain,0);assert.equal(recovered.state.progress.steps,2);assert.equal(recovered.state.progress.modelCalls,2);
+console.log('Explicit operation reconciliation preserves usage without replay passed');

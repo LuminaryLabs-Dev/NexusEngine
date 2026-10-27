@@ -12,7 +12,7 @@ export function createLoopCoordination({maxDepth=4}={}){
   if(!Array.isArray(authority)||!Array.isArray(parentAuthority)||authority.some(x=>!parentAuthority.includes(x)))throw new Error("Authority escalation");
   let a=parentLoopId,depth=1;const seen=new Set();while(a){if(a===childLoopId||seen.has(a))throw new Error("Delegation cycle");seen.add(a);a=parents.get(a);depth++;}
   if(depth>maxDepth)throw new Error("Delegation depth exceeded");
-  if(!valid(budgetAllocation?.maxSteps)||!valid(budgetAllocation?.maxModelCalls)||budgetAllocation.maxSteps<1||budgetAllocation.maxModelCalls<1)throw new TypeError("Invalid child budget");
+  if(!valid(budgetAllocation?.maxSteps)||!valid(budgetAllocation?.maxModelCalls)||budgetAllocation.maxSteps<1)throw new TypeError("Invalid child budget");
   const parent=budgets.get(parentLoopId);
   if(parent&&(budgetAllocation.maxSteps>parent.steps||budgetAllocation.maxModelCalls>parent.modelCalls))throw new Error("Parent budget exceeded");
   if(parent){parent.steps-=budgetAllocation.maxSteps;parent.modelCalls-=budgetAllocation.maxModelCalls;}

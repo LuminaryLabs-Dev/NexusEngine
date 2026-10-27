@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
+Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
 
 ## Domains
 
@@ -13,6 +13,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:decision` | `n:agent` | Own typed judgments, classification questions and evidence-bound proposal selections. | stable-candidate |
 | `n:agent:loop` | `n:agent` | Own portable agent-loop composition contracts. | stable-candidate |
 | `n:agent:loop:step` | `n:agent:loop` | Own step envelopes and immutable outcome transitions. | stable-candidate |
 | `n:agent:loop:control` | `n:agent:loop` | Own per-loop lifecycle and continuation. | stable-candidate |
@@ -88,9 +89,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `n:compute:host:execution:cpu:javascript` | `n:compute:host:execution:cpu` | Own JavaScript and Worker execution of portable Compute graphs. | stable-candidate |
 | `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | Own WebAssembly compute execution, memory, SIMD, and threading contracts. | stable-candidate |
 | `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | Own native CPU extension contracts for threads, vector execution, and synchronization. | stable-candidate |
-| `n:compute:model` | `n:compute` | Own model descriptors, registries, inference requests/results, and provider contracts. | stable-candidate |
-| `n:compute:model:inference` | `n:compute:model` | Own provider-neutral inference requests, results, and compute requirements. | stable-candidate |
-| `n:compute:model:inference:provider` | `n:compute:model:inference` | Own inference provider capability and contract semantics without owning runtimes. | stable-candidate |
+| `n:compute:model` | `n:compute` | Own model descriptors, registry and capabilities. | stable-candidate |
 | `n:diagnostics` | - | Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors. | stable-candidate |
 | `n:harness` | - | Own reusable harness capability composition contracts. | stable-candidate |
 | `n:harness:routing` | `n:harness` | Resolve model decisions to registered capabilities without executing them. | stable-candidate |
@@ -105,8 +104,8 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `n:host:gpu:resource` | `n:host:gpu` | Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime. | stable-candidate |
 | `n:host:gpu:synchronization` | `n:host:gpu` | Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources. | stable-candidate |
 | `n:host:gpu:recovery` | `n:host:gpu` | Own shared device-loss records, resource invalidation, and restoration coordination. | stable-candidate |
-| `n:inference` | - | Own model inference requests and results independently of compute resources. | stable-candidate |
-| `n:inference:provider` | `n:inference` | Own provider identities, serving instances, capacity admission and selection. | stable-candidate |
+| `n:inference` | - | Own canonical inference requests, execution, results and usage receipts. | stable-candidate |
+| `n:inference:provider` | `n:inference` | Own provider identities, deployments, instance admission, selection and failover. | stable-candidate |
 | `n:interaction` | - | Own targets, affordances, activation progress, semantic requirements, prompts, and completion results. | stable-candidate |
 | `n:interaction:input` | `n:interaction` | Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts. | stable-candidate |
 | `n:interaction:assistance-target` | `n:interaction` | Own assistance target urgency, attachment, completion, loss, and deterministic selection. | stable-candidate |
@@ -225,6 +224,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `creature-registry-kit` | `n:actor:creature` | `nexusengine/domains/actor/creature` | Register and resolve neutral creature embodiment definitions. |
 | `character-registry-kit` | `n:actor:character` | `nexusengine/domains/actor/character` | Register and resolve active embodied character descriptors. |
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
+| `agent-decision-kit` | `n:agent:decision` | `nexusengine/domains/agent/decision` | Validate and retain versioned typed judgments bound to Agent proposals and evidence. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
 | `code-document-kit` | `n:authoring:code` | `nexusengine/domains/authoring/code/code-document` | Own revisioned source-code document operations. |
@@ -335,7 +335,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `stereo-camera-kit` | `n:camera` | `nexusengine/domains/camera/execution/stereo-camera` | Own portable stereo camera semantics and deterministic state. |
 | `composition-registry-kit` | `n:composition` | `nexusengine/domains/composition/registry` | Maintain normalized composition metadata and produce deterministic plans and receipts. |
 | `compute-graph-kit` | `n:compute` | `nexusengine/domains/compute/graph` | Validate compute descriptors, create deterministic dependency-ordered dispatch plans, and execute them through an injected provider or Compute Host. |
-| `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and normalize provider-neutral inference requests and results. |
+| `model-registry-kit` | `n:compute:model` | `nexusengine/domains/compute/model` | Register model descriptors and capabilities without executing inference. |
 | `diagnostics-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/runtime` | Collect serializable telemetry, runtime health, determinism, and performance evidence. |
 | `debug-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug` | Record renderer-neutral rays, markers, scalars, and capture packets for diagnostics. |
 | `debug-draw-descriptor-kit` | `n:diagnostics` | `nexusengine/domains/diagnostics/debug-draw` | Create stateless renderer-neutral debug draw descriptors. |

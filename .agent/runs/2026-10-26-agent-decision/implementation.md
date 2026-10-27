@@ -1,0 +1,1 @@
+Implementation phase: typed decision records/lifecycle, inference classification envelope, model-neutral loop ports/accounting, optional TypeSafe runtime bridge and protocol adaptation, public exports, docs and additions to existing validation files written. Generated catalogues follow. No tests, audit dry-runs or paid calls have run. Cloud is unchanged.

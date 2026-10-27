@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01<br>
-      Guide content SHA-256: f28f7ec154eec5410d164c0e1d3ccbb3612a4e40b7cce0f130b6c9c6791b61f3<br><br>
+      Core registry SHA-256: 4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3<br>
+      Guide content SHA-256: e82a0f0d1d9273fc54d05213a2133042a9f538c173ccb0ba29f25b6694c29aa5<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -1323,13 +1323,14 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01</code></p>
+<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
 <li><code>n:actor:character</code>: Own active embodied character identity and neutral runtime bindings.</li>
 <li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
+<li><code>n:agent:decision</code>: Own typed judgments, classification questions and evidence-bound proposal selections.</li>
 <li><code>n:agent:loop</code>: Own portable agent-loop composition contracts.</li>
 <li><code>n:agent:loop:step</code>: Own step envelopes and immutable outcome transitions.</li>
 <li><code>n:agent:loop:control</code>: Own per-loop lifecycle and continuation.</li>
@@ -1405,9 +1406,7 @@ npm pack --dry-run --json
 <li><code>n:compute:host:execution:cpu:javascript</code>: Own JavaScript and Worker execution of portable Compute graphs.</li>
 <li><code>n:compute:host:execution:cpu:wasm</code>: Own WebAssembly compute execution, memory, SIMD, and threading contracts.</li>
 <li><code>n:compute:host:execution:cpu:native</code>: Own native CPU extension contracts for threads, vector execution, and synchronization.</li>
-<li><code>n:compute:model</code>: Own model descriptors, registries, inference requests/results, and provider contracts.</li>
-<li><code>n:compute:model:inference</code>: Own provider-neutral inference requests, results, and compute requirements.</li>
-<li><code>n:compute:model:inference:provider</code>: Own inference provider capability and contract semantics without owning runtimes.</li>
+<li><code>n:compute:model</code>: Own model descriptors, registry and capabilities.</li>
 <li><code>n:diagnostics</code>: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.</li>
 <li><code>n:harness</code>: Own reusable harness capability composition contracts.</li>
 <li><code>n:harness:routing</code>: Resolve model decisions to registered capabilities without executing them.</li>
@@ -1422,8 +1421,8 @@ npm pack --dry-run --json
 <li><code>n:host:gpu:resource</code>: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.</li>
 <li><code>n:host:gpu:synchronization</code>: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.</li>
 <li><code>n:host:gpu:recovery</code>: Own shared device-loss records, resource invalidation, and restoration coordination.</li>
-<li><code>n:inference</code>: Own model inference requests and results independently of compute resources.</li>
-<li><code>n:inference:provider</code>: Own provider identities, serving instances, capacity admission and selection.</li>
+<li><code>n:inference</code>: Own canonical inference requests, execution, results and usage receipts.</li>
+<li><code>n:inference:provider</code>: Own provider identities, deployments, instance admission, selection and failover.</li>
 <li><code>n:interaction</code>: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.</li>
 <li><code>n:interaction:input</code>: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.</li>
 <li><code>n:interaction:assistance-target</code>: Own assistance target urgency, attachment, completion, loss, and deterministic selection.</li>
@@ -1540,7 +1539,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01</code></p>
+<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
 <table>
 <thead>
 <tr>
@@ -1572,6 +1571,11 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:agent</code></td>
 <td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:agent:decision</code></td>
+<td><code>n:agent</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -1952,16 +1956,6 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:compute:model</code></td>
 <td><code>n:compute</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>n:compute:model:inference</code></td>
-<td><code>n:compute:model</code></td>
-<td>-</td>
-</tr>
-<tr>
-<td><code>n:compute:model:inference:provider</code></td>
-<td><code>n:compute:model:inference</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2597,7 +2591,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01</code></p>
+<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2636,6 +2630,12 @@ npm pack --dry-run --json
 <td><code>n:agent</code></td>
 <td>-</td>
 <td>Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:agent:decision</code></td>
+<td><code>n:agent</code></td>
+<td>Own typed judgments, classification questions and evidence-bound proposal selections.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3091,19 +3091,7 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:compute:model</code></td>
 <td><code>n:compute</code></td>
-<td>Own model descriptors, registries, inference requests/results, and provider contracts.</td>
-<td>stable-candidate</td>
-</tr>
-<tr>
-<td><code>n:compute:model:inference</code></td>
-<td><code>n:compute:model</code></td>
-<td>Own provider-neutral inference requests, results, and compute requirements.</td>
-<td>stable-candidate</td>
-</tr>
-<tr>
-<td><code>n:compute:model:inference:provider</code></td>
-<td><code>n:compute:model:inference</code></td>
-<td>Own inference provider capability and contract semantics without owning runtimes.</td>
+<td>Own model descriptors, registry and capabilities.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3193,13 +3181,13 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:inference</code></td>
 <td>-</td>
-<td>Own model inference requests and results independently of compute resources.</td>
+<td>Own canonical inference requests, execution, results and usage receipts.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
 <td><code>n:inference:provider</code></td>
 <td><code>n:inference</code></td>
-<td>Own provider identities, serving instances, capacity admission and selection.</td>
+<td>Own provider identities, deployments, instance admission, selection and failover.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3892,6 +3880,12 @@ npm pack --dry-run --json
 <td>Track player identity, possession, control authority, and spawn generations.</td>
 </tr>
 <tr>
+<td><code>agent-decision-kit</code></td>
+<td><code>n:agent:decision</code></td>
+<td><code>nexusengine/domains/agent/decision</code></td>
+<td>Validate and retain versioned typed judgments bound to Agent proposals and evidence.</td>
+</tr>
+<tr>
 <td><code>agent-cycle-kit</code></td>
 <td><code>n:agent</code></td>
 <td><code>nexusengine/domains/agent/cycle</code></td>
@@ -4555,7 +4549,7 @@ npm pack --dry-run --json
 <td><code>model-registry-kit</code></td>
 <td><code>n:compute:model</code></td>
 <td><code>nexusengine/domains/compute/model</code></td>
-<td>Register model descriptors and normalize provider-neutral inference requests and results.</td>
+<td>Register model descriptors and capabilities without executing inference.</td>
 </tr>
 <tr>
 <td><code>diagnostics-kit</code></td>
@@ -6239,13 +6233,13 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01</code></p>
+<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
 <ul>
 <li>Source modules: 1818</li>
-<li>Manifest-proven public atoms: 394</li>
-<li>Manifest-owned internal modules: 1354</li>
+<li>Manifest-proven public atoms: 395</li>
+<li>Manifest-owned internal modules: 1352</li>
 <li>Root contract modules: 26</li>
-<li>Optional provider modules: 44</li>
+<li>Optional provider modules: 45</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
 </ul>
@@ -6272,6 +6266,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>kits/agent/loop-host/providers/openai-compatible.mjs</code></td>
+<td><code>n:agent:loop</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent loop host</td>
+</tr>
+<tr>
+<td><code>kits/agent/loop-host/providers/typesafe.mjs</code></td>
 <td><code>n:agent:loop</code></td>
 <td>optional-provider-kit</td>
 <td>NexusEngine optional Agent loop host</td>
@@ -6597,6 +6597,12 @@ npm pack --dry-run --json
 <tr>
 <td><code>src/core-domains/actor/player/kits/player-kit/index.js</code></td>
 <td><code>n:actor</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/decision/index.js</code></td>
+<td><code>n:agent</code></td>
 <td>manifest-proven-public-atom</td>
 <td>NexusEngine Core</td>
 </tr>
@@ -10321,27 +10327,9 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
-<td><code>src/core-domains/compute/model/kits/model-kit/adapters.js</code></td>
-<td><code>n:compute</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
 <td><code>src/core-domains/compute/model/kits/model-kit/index.js</code></td>
 <td><code>n:compute</code></td>
 <td>manifest-proven-public-atom</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/compute/model/kits/model-kit/inference-request.js</code></td>
-<td><code>n:compute</code></td>
-<td>manifest-owned-internal</td>
-<td>NexusEngine Core</td>
-</tr>
-<tr>
-<td><code>src/core-domains/compute/model/kits/model-kit/inference-result.js</code></td>
-<td><code>n:compute</code></td>
-<td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>
@@ -10466,6 +10454,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/inference/domain.manifest.js</code></td>
+<td><code>n:inference</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/inference/execution/index.js</code></td>
 <td><code>n:inference</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

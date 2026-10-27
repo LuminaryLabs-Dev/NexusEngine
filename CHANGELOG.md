@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Added `n:agent:decision` typed classifications and evidence-bound proposal judgments, model-neutral loop decision ports with explicit usage/recovery, and an optional TypeSafe/Jev runtime adapter. Existing LLM callbacks remain supported; Core selects no model by default. See `docs/AGENT-DECISION.md`.
+
 - Connected the first external Physics runtime slice through bounded Body/Step
   commits and opt-in transactional tick checkpoints. Added clock snapshots,
   static-body sleep validation repair, ECS transactional movement/collision and

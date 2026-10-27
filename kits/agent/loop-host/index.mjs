@@ -8,11 +8,12 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
  if(typeof dispatch!=="function")throw new TypeError("Authorized operation dispatcher required");
  const router=createDecisionRouter({discover,authorize});
  return runSelfPropagation({loopId,agentId,goalRef,limits,signal,observe,verify,
-  infer:async({goalRef,context,state})=>{
+  infer:async({goalRef,context,state,accountUsage})=>{
    const request=createInferenceRequest({id:loopId+":infer:"+state.revision,modelId:context.modelId,messages:context.messages});
    const result=await executeInference({request,pool,adapter:inference,
-    maxAttempts:limits?.providerAttempts??3,timeoutMs:limits?.inferenceTimeoutMs??120000,
+    maxAttempts:Math.min(limits?.providerAttempts??3,state.budgets.maxModelCalls-state.progress.modelCalls),timeoutMs:limits?.inferenceTimeoutMs??120000,
     allowPaid:limits?.allowPaid===true,signal});
+   await accountUsage({modelCalls:result.attempts.length,tokens:result.usage?.total_tokens??((result.usage?.input_tokens??0)+(result.usage?.output_tokens??0))});
    if(result.status!=="ok"){const error=new Error("Inference failed: "+result.status);error.receipt=result;throw error;}
    return typeof result.output==="string"?JSON.parse(result.output):result.output;
   },
@@ -25,3 +26,5 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
  });
 }
 export {createProductionLoopDispatcher} from "./production-bridge.mjs";
+
+export {createTypeSafeInference,createTypeSafeRuntimeBridge} from "./providers/typesafe.mjs";

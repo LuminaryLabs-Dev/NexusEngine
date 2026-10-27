@@ -1,12 +1,13 @@
 # Domain Index
 
-Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
+Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:decision`: Own typed judgments, classification questions and evidence-bound proposal selections.
 - `n:agent:loop`: Own portable agent-loop composition contracts.
 - `n:agent:loop:step`: Own step envelopes and immutable outcome transitions.
 - `n:agent:loop:control`: Own per-loop lifecycle and continuation.
@@ -82,9 +83,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 - `n:compute:host:execution:cpu:javascript`: Own JavaScript and Worker execution of portable Compute graphs.
 - `n:compute:host:execution:cpu:wasm`: Own WebAssembly compute execution, memory, SIMD, and threading contracts.
 - `n:compute:host:execution:cpu:native`: Own native CPU extension contracts for threads, vector execution, and synchronization.
-- `n:compute:model`: Own model descriptors, registries, inference requests/results, and provider contracts.
-- `n:compute:model:inference`: Own provider-neutral inference requests, results, and compute requirements.
-- `n:compute:model:inference:provider`: Own inference provider capability and contract semantics without owning runtimes.
+- `n:compute:model`: Own model descriptors, registry and capabilities.
 - `n:diagnostics`: Own renderer-neutral telemetry, health, determinism, performance, replay, and debug evidence descriptors.
 - `n:harness`: Own reusable harness capability composition contracts.
 - `n:harness:routing`: Resolve model decisions to registered capabilities without executing them.
@@ -99,8 +98,8 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 - `n:host:gpu:resource`: Own portable shared GPU-resource identity, usage, revision, residency, references, and lifetime.
 - `n:host:gpu:synchronization`: Own engine-level cross-consumer ownership, readiness, transitions, and completion state for shared GPU resources.
 - `n:host:gpu:recovery`: Own shared device-loss records, resource invalidation, and restoration coordination.
-- `n:inference`: Own model inference requests and results independently of compute resources.
-- `n:inference:provider`: Own provider identities, serving instances, capacity admission and selection.
+- `n:inference`: Own canonical inference requests, execution, results and usage receipts.
+- `n:inference:provider`: Own provider identities, deployments, instance admission, selection and failover.
 - `n:interaction`: Own targets, affordances, activation progress, semantic requirements, prompts, and completion results.
 - `n:interaction:input`: Own semantic input actions, axes, contexts, bindings, dead zones, and adapter contracts.
 - `n:interaction:assistance-target`: Own assistance target urgency, attachment, completion, loss, and deterministic selection.

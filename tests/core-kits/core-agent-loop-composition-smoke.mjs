@@ -17,3 +17,22 @@ const out=await runSelfPropagation({loopId:"run",agentId:"a",goalRef:"g",infer:a
 assert.equal(out.state.status,"completed");
 assert.equal(out.steps.length,2);
 console.log("Agent loop composition smoke passed");
+
+const {runAgentLoop}=await import('nexusengine/domains/agent/loop');
+const ports={agentId:'a',goalRef:'g',observe:async()=>({revision:'r1'}),execute:async()=>({ok:true,receiptRef:'execution'}),verify:async()=>({ok:true,receiptRef:'verification'})};
+const deterministic=await runAgentLoop({...ports,loopId:'deterministic',limits:{maxModelCalls:0,maxTokens:0},decide:async({state})=>({decision:{action:state.progress.steps?'propose_completion':'inspect'},usage:{modelCalls:0,tokens:0}})});
+assert.equal(deterministic.state.status,'completed');assert.equal(deterministic.state.progress.modelCalls,0);
+const classified=await runAgentLoop({...ports,loopId:'classified',decide:async({state,accountUsage})=>{await accountUsage({modelCalls:1});await accountUsage({tokens:7});return {decision:{action:state.progress.steps?'finish':'inspect'}};}});
+assert.equal(classified.state.status,'completed');assert.equal(classified.state.progress.modelCalls,2);assert.equal(classified.state.progress.tokens,14);
+const multi=await runAgentLoop({...ports,loopId:'multi',decide:async()=>({decision:{action:'finish'},usage:{modelCalls:3,tokens:12}})});assert.equal(multi.state.progress.modelCalls,3);
+let unauthorizedEffects=0;
+const rejected=await runAgentLoop({...ports,loopId:'invalid',decide:async()=>({decision:{action:'inspect'},usage:{modelCalls:0,tokens:0}}),validateDecision:()=>false,execute:async()=>{unauthorizedEffects++;}});
+assert.equal(rejected.state.status,'blocked');assert.equal(unauthorizedEffects,0);
+const exhausted=await runAgentLoop({...ports,loopId:'exhausted',limits:{maxModelCalls:1},decide:async({accountUsage})=>{await accountUsage({modelCalls:1});await accountUsage({modelCalls:1});return {action:'inspect'};}});assert.equal(exhausted.state.status,'blocked');assert.equal(exhausted.state.progress.modelCalls,1);
+const legacyFailure=await runAgentLoop({...ports,loopId:'legacy-failure',infer:async()=>{throw Error('Provider failure');}});assert.equal(legacyFailure.state.progress.modelCalls,1);
+const ac=new AbortController();const cancelled=await runAgentLoop({...ports,loopId:'cancel',signal:ac.signal,decide:async({accountUsage})=>{await accountUsage({modelCalls:1});ac.abort();throw ac.signal.reason;}});assert.equal(cancelled.state.status,'cancelled');assert.equal(cancelled.state.progress.modelCalls,1);
+let pendingJudgment;await runAgentLoop({...ports,loopId:'pending-judge',checkpoint:async s=>{if(s.pending?.phase==='decision')pendingJudgment=structuredClone(s);},decide:async()=>({decision:{action:'finish'},usage:{modelCalls:0,tokens:0}})});
+let replays=0;const restored=await runAgentLoop({...ports,loopId:'pending-judge',resume:pendingJudgment,decide:async()=>{replays++;}});assert.equal(restored.state.status,'blocked');assert.equal(replays,0);
+await assert.rejects(runAgentLoop({...ports,loopId:'none'}),/exactly one/);
+console.log('Model-neutral deterministic/classifier/LLM usage, gates and recovery passed');
+const actualOverrun=await runAgentLoop({...ports,loopId:'overrun',limits:{maxModelCalls:1},decide:async()=>({decision:{action:'finish'},usage:{modelCalls:2,tokens:10}})});assert.equal(actualOverrun.state.status,'blocked');assert.equal(actualOverrun.state.progress.modelCalls,2);assert.equal(actualOverrun.state.progress.tokens,10);

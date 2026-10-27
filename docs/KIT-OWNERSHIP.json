@@ -1,9 +1,9 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1354,
-    "manifestProvenPublicAtoms": 394,
-    "optionalProviderModules": 44,
+    "manifestOwnedInternalModules": 1352,
+    "manifestProvenPublicAtoms": 395,
+    "optionalProviderModules": 45,
     "rootContractModules": 26,
     "sourceModules": 1818,
     "unreviewedModules": 0,
@@ -35,6 +35,8 @@
         "createLoopCheckpointStore",
         "createOpenAICompatibleInference",
         "createProductionLoopDispatcher",
+        "createTypeSafeInference",
+        "createTypeSafeRuntimeBridge",
         "runHostedAgent"
       ],
       "responsibility": null,
@@ -72,6 +74,29 @@
       "proof": null,
       "publicExports": [
         "createOpenAICompatibleInference"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [
+        "./kits/agent/typesafe-provider"
+      ],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [
+        "./kits/agent/typesafe-provider"
+      ],
+      "path": "kits/agent/loop-host/providers/typesafe.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createTypeSafeInference",
+        "createTypeSafeRuntimeBridge"
       ],
       "responsibility": null,
       "reviewStatus": "optional-provider-kit"
@@ -1323,6 +1348,58 @@
       "reviewStatus": "manifest-proven-public-atom"
     },
     {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/agent/decision"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:agent",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/agent/decision"
+      ],
+      "path": "src/core-domains/agent/decision/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-decision-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-decision-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createAgentDecisionKit",
+        "createDecisionRequest",
+        "resolveDecision",
+        "validateDecisionJudgment"
+      ],
+      "responsibility": "Validate and retain versioned typed judgments bound to Agent proposals and evidence.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
       "atomic": null,
       "currentConsumers": [],
       "destination": "NexusEngine Core",
@@ -1773,6 +1850,7 @@
       "productOrGenreSpecific": null,
       "proof": null,
       "publicExports": [
+        "runAgentLoop",
         "runSelfPropagation"
       ],
       "responsibility": null,
@@ -16056,24 +16134,6 @@
       "reviewStatus": "manifest-owned-internal"
     },
     {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:compute",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/compute/model/kits/model-kit/adapters.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createModelAdapterBoundary"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
       "atomic": true,
       "currentConsumers": [
         "./domains/compute/model"
@@ -16115,44 +16175,8 @@
         "*",
         "createModelKit"
       ],
-      "responsibility": "Register model descriptors and normalize provider-neutral inference requests and results.",
+      "responsibility": "Register model descriptors and capabilities without executing inference.",
       "reviewStatus": "manifest-proven-public-atom"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:compute",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/compute/model/kits/model-kit/inference-request.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createInferenceRequest"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
-    },
-    {
-      "atomic": null,
-      "currentConsumers": [],
-      "destination": "NexusEngine Core",
-      "fullyReusable": null,
-      "idempotency": null,
-      "owner": "n:compute",
-      "ownershipBasis": "semantic-folder-and-domain-manifest",
-      "packageEntrypoints": [],
-      "path": "src/core-domains/compute/model/kits/model-kit/inference-result.js",
-      "productOrGenreSpecific": null,
-      "proof": null,
-      "publicExports": [
-        "createInferenceResult"
-      ],
-      "responsibility": null,
-      "reviewStatus": "manifest-owned-internal"
     },
     {
       "atomic": null,
@@ -16716,6 +16740,7 @@
       },
       "publicExports": [
         "INFERENCE_FAILURE_REASONS",
+        "createClassificationInferenceRequest",
         "createInferenceContractKit",
         "createInferenceFailure",
         "createInferenceRequest",
@@ -16739,6 +16764,24 @@
       "proof": null,
       "publicExports": [
         "inferenceDomainManifest"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:inference",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/inference/execution/index.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "executeInference"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -46144,7 +46187,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+  "registrySha256": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

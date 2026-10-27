@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
-  "compositionRegistryHash": "sha256:25d3387ae8c558cde7788803a9ef1282fab3ed6dfd9c70b9f98aecca6c7a8264",
+  "registryHash": "sha256:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
+  "compositionRegistryHash": "sha256:47d87cec690d2d2e0ce487dfbb0557a9baa0249c3a496615eb6f2e59f107d73e",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
-      "integrity": "sha256:0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+      "sourceCommit": "builtin:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
+      "integrity": "sha256:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
       "status": "available",
       "environments": [
         "browser",
@@ -148,6 +148,38 @@
       ],
       "provides": [
         "n:actor:player"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-decision-domain",
+      "domainPath": "n:agent:decision",
+      "parentDomainPath": "n:agent",
+      "label": "Agent Decision",
+      "status": "stable-candidate",
+      "responsibility": "Own typed judgments, classification questions and evidence-bound proposal selections.",
+      "ownedMeaning": [
+        "classification questions",
+        "decision history",
+        "typed judgments"
+      ],
+      "forbiddenResponsibilities": [
+        "application policy",
+        "provider transport",
+        "tool execution"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:decision"
       ],
       "settingsSchema": {
         "type": "object",
@@ -1865,87 +1897,23 @@
       "parentDomainPath": "n:compute",
       "label": "Compute Model",
       "status": "stable-candidate",
-      "responsibility": "Own model descriptors, registries, inference requests/results, and provider contracts.",
+      "responsibility": "Own model descriptors, registry and capabilities.",
       "ownedMeaning": [
-        "inference requests",
-        "inference results",
+        "model capabilities",
         "model descriptors",
         "model registry"
       ],
       "forbiddenResponsibilities": [
-        "agent policy",
-        "authored model files",
-        "model runtime implementation",
-        "network model service"
+        "inference execution",
+        "inference requests",
+        "inference results",
+        "network transport"
       ],
       "requires": [
         "n:compute"
       ],
       "provides": [
         "n:compute:model"
-      ],
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "sourceRegistryId": "nexusengine-core",
-      "metadata": {
-        "core": true
-      }
-    },
-    {
-      "id": "compute-model-inference-domain",
-      "domainPath": "n:compute:model:inference",
-      "parentDomainPath": "n:compute:model",
-      "label": "Compute Model Inference",
-      "status": "stable-candidate",
-      "responsibility": "Own provider-neutral inference requests, results, and compute requirements.",
-      "ownedMeaning": [
-        "inference compute requirements",
-        "inference requests",
-        "inference results"
-      ],
-      "forbiddenResponsibilities": [
-        "agent policy",
-        "model runtime implementation",
-        "model training"
-      ],
-      "requires": [
-        "n:compute:model"
-      ],
-      "provides": [
-        "n:compute:model:inference"
-      ],
-      "settingsSchema": {
-        "type": "object",
-        "additionalProperties": true
-      },
-      "sourceRegistryId": "nexusengine-core",
-      "metadata": {
-        "core": true
-      }
-    },
-    {
-      "id": "compute-model-inference-provider-domain",
-      "domainPath": "n:compute:model:inference:provider",
-      "parentDomainPath": "n:compute:model:inference",
-      "label": "Compute Model Inference Provider",
-      "status": "stable-candidate",
-      "responsibility": "Own inference provider capability and contract semantics without owning runtimes.",
-      "ownedMeaning": [
-        "inference provider capabilities",
-        "inference provider contracts"
-      ],
-      "forbiddenResponsibilities": [
-        "agent orchestration",
-        "model runtime implementation",
-        "network authentication"
-      ],
-      "requires": [
-        "n:compute:model:inference"
-      ],
-      "provides": [
-        "n:compute:model:inference:provider"
       ],
       "settingsSchema": {
         "type": "object",
@@ -2684,11 +2652,12 @@
       "parentDomainPath": null,
       "label": "Inference",
       "status": "stable-candidate",
-      "responsibility": "Own model inference requests and results independently of compute resources.",
+      "responsibility": "Own canonical inference requests, execution, results and usage receipts.",
       "ownedMeaning": [
-        "inference model requirements",
+        "inference execution",
         "inference requests",
-        "inference results"
+        "inference results",
+        "inference usage receipts"
       ],
       "forbiddenResponsibilities": [
         "GPU scheduling",
@@ -2714,10 +2683,12 @@
       "parentDomainPath": "n:inference",
       "label": "Inference Provider",
       "status": "stable-candidate",
-      "responsibility": "Own provider identities, serving instances, capacity admission and selection.",
+      "responsibility": "Own provider identities, deployments, instance admission, selection and failover.",
       "ownedMeaning": [
         "capacity leases",
+        "deployments",
         "instance selection",
+        "provider health and failover",
         "provider registry"
       ],
       "forbiddenResponsibilities": [
@@ -7065,6 +7036,85 @@
             },
             {
               "id": "agent-cycle-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agent-decision-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Validate and retain versioned typed judgments bound to Agent proposals and evidence.",
+      "domainPath": "n:agent:decision",
+      "parentDomainPath": "n:agent",
+      "apiName": "decision",
+      "apiVisibility": "public",
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:decision"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/agent/decision",
+        "exportName": "createAgentDecisionKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "agent-decision-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "agent-decision-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true
@@ -21763,7 +21813,7 @@
       "version": "0.0.4",
       "status": "stable-candidate",
       "kind": "domain-service-kit",
-      "responsibility": "Register model descriptors and normalize provider-neutral inference requests and results.",
+      "responsibility": "Register model descriptors and capabilities without executing inference.",
       "domainPath": "n:compute:model",
       "parentDomainPath": "n:compute",
       "apiName": "model",
@@ -21772,7 +21822,6 @@
         "n:compute"
       ],
       "provides": [
-        "model:inference-contract",
         "model:registry",
         "n:compute:model"
       ],

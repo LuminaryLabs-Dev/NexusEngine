@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
+Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -9,6 +9,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:decision` | `n:agent` | - |
 | `n:agent:loop` | `n:agent` | - |
 | `n:agent:loop:step` | `n:agent:loop` | - |
 | `n:agent:loop:control` | `n:agent:loop` | - |
@@ -85,8 +86,6 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `n:compute:host:execution:cpu:wasm` | `n:compute:host:execution:cpu` | - |
 | `n:compute:host:execution:cpu:native` | `n:compute:host:execution:cpu` | - |
 | `n:compute:model` | `n:compute` | - |
-| `n:compute:model:inference` | `n:compute:model` | - |
-| `n:compute:model:inference:provider` | `n:compute:model:inference` | - |
 | `n:diagnostics` | - | - |
 | `n:harness` | - | - |
 | `n:harness:routing` | `n:harness` | - |

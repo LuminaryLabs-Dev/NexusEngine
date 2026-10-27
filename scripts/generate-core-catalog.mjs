@@ -42,6 +42,7 @@ const fixedPackageExports = Object.freeze({
   "./domains/agent/interaction": "./src/core-domains/agent/interaction/index.js",
   "./kits/agent/production": "./kits/agent/production/index.mjs",
   "./kits/agent/loop-host": "./kits/agent/loop-host/index.mjs",
+  "./kits/agent/typesafe-provider": "./kits/agent/loop-host/providers/typesafe.mjs",
   "./kits/agent/production/recipes": "./kits/agent/production/authoring-recipes.mjs",
   "./kits/agent/production/inspection": "./kits/agent/production/visual-inspection.mjs",
   "./kits/agent/production/comparison": "./kits/agent/production/inspection-comparison.mjs",

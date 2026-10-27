@@ -273,3 +273,7 @@ package exports or registry entries.
 
 Historical plans and generated run packets are evidence, not active
 architecture.
+
+## Agent judgments and model-neutral loops
+
+Agent Decision owns versioned typed classifications, uncertainty, proposal references and retained judgments. Harness Routing retains authorized capability resolution. Loop steps accept caller-supplied deterministic, classifier or LLM implementations; no model is selected by default. TypeSafe/Jev is an optional host provider kit. See [Agent Decision](AGENT-DECISION.md).

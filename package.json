@@ -21,6 +21,7 @@
     "./domains/actor/registry": "./src/core-domains/actor/kits/actor-registry-kit/index.js",
     "./domains/agent": "./src/core-domains/agent/index.js",
     "./domains/agent/cycle": "./src/core-domains/agent/kits/agent-kit/index.js",
+    "./domains/agent/decision": "./src/core-domains/agent/decision/index.js",
     "./domains/agent/interaction": "./src/core-domains/agent/interaction/index.js",
     "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
     "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
@@ -496,6 +497,7 @@
     "./kits/agent/production/receipts": "./kits/agent/production/receipt-mapping.mjs",
     "./kits/agent/production/recipes": "./kits/agent/production/authoring-recipes.mjs",
     "./kits/agent/production/server": "./kits/agent/production/server.mjs",
+    "./kits/agent/typesafe-provider": "./kits/agent/loop-host/providers/typesafe.mjs",
     "./kits/authoring/storage/indexeddb": "./kits/authoring/storage/indexeddb/index.js",
     "./kits/build/language-toolchains": "./kits/build/language-toolchains-kit/index.js",
     "./kits/development/ide": "./kits/development/ide-kit/index.js",
@@ -576,7 +578,8 @@
     "docs/BUILD-NATIVE-HOST.md",
     "kits",
     "docs/GRAPHICS-LANGUAGE.md",
-    "examples/graphics-language"
+    "examples/graphics-language",
+    "docs/AGENT-DECISION.md"
   ],
   "license": "MIT",
   "engines": {

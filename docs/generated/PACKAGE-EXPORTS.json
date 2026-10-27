@@ -12,6 +12,7 @@
     "./domains/actor/registry": "./src/core-domains/actor/kits/actor-registry-kit/index.js",
     "./domains/agent": "./src/core-domains/agent/index.js",
     "./domains/agent/cycle": "./src/core-domains/agent/kits/agent-kit/index.js",
+    "./domains/agent/decision": "./src/core-domains/agent/decision/index.js",
     "./domains/agent/interaction": "./src/core-domains/agent/interaction/index.js",
     "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
     "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
@@ -487,6 +488,7 @@
     "./kits/agent/production/receipts": "./kits/agent/production/receipt-mapping.mjs",
     "./kits/agent/production/recipes": "./kits/agent/production/authoring-recipes.mjs",
     "./kits/agent/production/server": "./kits/agent/production/server.mjs",
+    "./kits/agent/typesafe-provider": "./kits/agent/loop-host/providers/typesafe.mjs",
     "./kits/authoring/storage/indexeddb": "./kits/authoring/storage/indexeddb/index.js",
     "./kits/build/language-toolchains": "./kits/build/language-toolchains-kit/index.js",
     "./kits/development/ide": "./kits/development/ide-kit/index.js",
@@ -499,6 +501,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+  "registryHash": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
   "schema": "nexusengine.package-exports/1"
 }

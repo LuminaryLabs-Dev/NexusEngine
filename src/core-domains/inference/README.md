@@ -4,18 +4,19 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:inference`
 - Status: `stable-candidate`
-- Registry SHA-256: `c31d7b0cb162415ad77c669691d5683eed98cb582aa599bf6cb1e7ba505ad185`
+- Registry SHA-256: `a49b310d0bf31ffb0a1b52b532ed92490e94a7ada5a2110453d21cb8eb529c6f`
 - Public entry: `nexusengine/domains/inference`
 
 ## Responsibility
 
-Own model inference requests and results independently of compute resources.
+Own canonical inference requests, execution, results and usage receipts.
 
 ## Owns
 
-- inference model requirements
+- inference execution
 - inference requests
 - inference results
+- inference usage receipts
 
 ## Does Not Own
 
@@ -27,7 +28,7 @@ Own model inference requests and results independently of compute resources.
 
 | Path | Responsibility |
 | --- | --- |
-| `n:inference:provider` | Own provider identities, serving instances, capacity admission and selection. |
+| `n:inference:provider` | Own provider identities, deployments, instance admission, selection and failover. |
 
 ## Atomic Kits
 

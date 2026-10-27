@@ -28,6 +28,11 @@ export function createInferenceFailure({requestId,providerId,reason="unknown",re
 export function createInferenceContractKit() {
  return createDomainKit({id:"inference-contract-kit",domain:"inference",createApi:()=>({
   createRequest:createInferenceRequest,createResult:createInferenceResult,
-  createFailure:createInferenceFailure,normalizeDecisionResponse
+  createFailure:createInferenceFailure,normalizeDecisionResponse,createClassificationRequest:createClassificationInferenceRequest
  })});
+}
+
+export function createClassificationInferenceRequest({id,modelId,state,questions,profileVersion,tokenBudget=4096,traceId,metadata={}}={}){
+ if(!questions||Array.isArray(questions)||typeof questions!=='object'||!Object.keys(questions).length||!Number.isSafeInteger(profileVersion)||profileVersion<1)throw new TypeError('Versioned classification questions required');
+ return createInferenceRequest({id,modelId,input:{state:copy(state),questions:copy(questions),profileVersion},capabilities:['classification'],tokenBudget,traceId,metadata});
 }

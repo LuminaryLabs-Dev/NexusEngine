@@ -2,13 +2,13 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01`
+Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
 
 - Source modules: 1818
-- Manifest-proven public atoms: 394
-- Manifest-owned internal modules: 1354
+- Manifest-proven public atoms: 395
+- Manifest-owned internal modules: 1352
 - Root contract modules: 26
-- Optional provider modules: 44
+- Optional provider modules: 45
 - Unreviewed modules: 0
 - Violations: 0
 
@@ -17,6 +17,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `kits/agent/loop-host/index.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/production-bridge.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/providers/openai-compatible.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/providers/typesafe.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/storage.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
@@ -71,6 +72,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `src/core-domains/actor/player/index.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/player/kits/player-kit/contracts.js` | `n:actor` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/actor/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/decision/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/domain.manifest.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/answer-session.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
@@ -691,10 +693,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `src/core-domains/compute/kits/compute-kit/descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/compute/kits/compute-kit/provider.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/compute/model/kits/model-kit/adapters.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/index.js` | `n:compute` | manifest-proven-public-atom | NexusEngine Core |
-| `src/core-domains/compute/model/kits/model-kit/inference-request.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
-| `src/core-domains/compute/model/kits/model-kit/inference-result.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-descriptors.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/model/kits/model-kit/model-registry.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/compute/portable.js` | `n:compute` | manifest-owned-internal | NexusEngine Core |
@@ -716,6 +715,7 @@ Registry SHA-256: `0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7a
 | `src/core-domains/index.js` | `n:composition` | manifest-infrastructure | NexusEngine Core |
 | `src/core-domains/inference/contract/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/inference/domain.manifest.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/inference/execution/index.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/inference/index.js` | `n:inference` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/inference/provider/index.js` | `n:inference` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js` | `n:interaction` | manifest-owned-internal | NexusEngine Core |

@@ -514,6 +514,100 @@
       ]
     },
     {
+      "domainPath": "n:agent:decision",
+      "forbiddenResponsibilities": [
+        "application policy",
+        "provider transport",
+        "tool execution"
+      ],
+      "id": "agent-decision-domain",
+      "inputs": [
+        {
+          "description": "Agent Decision required capability.",
+          "deterministic": true,
+          "id": "n:agent",
+          "schema": null
+        }
+      ],
+      "label": "Agent Decision",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Agent Decision API without duplicate state or systems.",
+        "install": "Create one Agent Decision state owner and public API.",
+        "replay": "Reapply equivalent Agent Decision inputs deterministically.",
+        "reset": "Restore the configured Agent Decision baseline.",
+        "snapshot": "Serialize Agent Decision state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Agent Decision provided capability.",
+          "deterministic": true,
+          "id": "n:agent:decision",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "classification questions",
+        "decision history",
+        "typed judgments"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Agent Decision state and registry records.",
+          "id": "agent-decision-domain-state",
+          "owner": "agent-decision-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Agent Decision contract fixture.",
+            "deterministic": true,
+            "id": "agent-decision-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Agent Decision composition fixture.",
+            "deterministic": true,
+            "id": "agent-decision-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent"
+      ],
+      "responsibility": "Own typed judgments, classification questions and evidence-bound proposal selections.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Agent Decision behavior.",
+          "deterministic": true,
+          "id": "n:agent:decision:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:agent:loop",
       "forbiddenResponsibilities": [
         "host scheduling",
@@ -7442,10 +7536,10 @@
     {
       "domainPath": "n:compute:model",
       "forbiddenResponsibilities": [
-        "agent policy",
-        "authored model files",
-        "model runtime implementation",
-        "network model service"
+        "inference execution",
+        "inference requests",
+        "inference results",
+        "network transport"
       ],
       "id": "compute-model-domain",
       "inputs": [
@@ -7474,8 +7568,7 @@
         }
       ],
       "ownedMeaning": [
-        "inference requests",
-        "inference results",
+        "model capabilities",
         "model descriptors",
         "model registry"
       ],
@@ -7515,7 +7608,7 @@
       "requires": [
         "n:compute"
       ],
-      "responsibility": "Own model descriptors, registries, inference requests/results, and provider contracts.",
+      "responsibility": "Own model descriptors, registry and capabilities.",
       "settingsSchema": {
         "additionalProperties": true,
         "type": "object"
@@ -7526,183 +7619,6 @@
           "description": "Install, validate, snapshot, reset, and replay Compute Model behavior.",
           "deterministic": true,
           "id": "n:compute:model:lifecycle",
-          "schema": null
-        }
-      ]
-    },
-    {
-      "domainPath": "n:compute:model:inference",
-      "forbiddenResponsibilities": [
-        "agent policy",
-        "model runtime implementation",
-        "model training"
-      ],
-      "id": "compute-model-inference-domain",
-      "inputs": [
-        {
-          "description": "Compute Model Inference required capability.",
-          "deterministic": true,
-          "id": "n:compute:model",
-          "schema": null
-        }
-      ],
-      "label": "Compute Model Inference",
-      "lifecycle": {
-        "duplicateInstall": "Return the installed Compute Model Inference API without duplicate state or systems.",
-        "install": "Create one Compute Model Inference state owner and public API.",
-        "replay": "Reapply equivalent Compute Model Inference inputs deterministically.",
-        "reset": "Restore the configured Compute Model Inference baseline.",
-        "snapshot": "Serialize Compute Model Inference state and descriptors."
-      },
-      "optionalDependencies": [],
-      "outputs": [
-        {
-          "description": "Compute Model Inference provided capability.",
-          "deterministic": true,
-          "id": "n:compute:model:inference",
-          "schema": null
-        }
-      ],
-      "ownedMeaning": [
-        "inference compute requirements",
-        "inference requests",
-        "inference results"
-      ],
-      "ownedState": [
-        {
-          "description": "Serializable Compute Model Inference state and registry records.",
-          "id": "compute-model-inference-domain-state",
-          "owner": "compute-model-inference-domain",
-          "persistence": "snapshot",
-          "schema": {
-            "additionalProperties": true,
-            "type": "object"
-          }
-        }
-      ],
-      "parentDomainPath": "n:compute:model",
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct Compute Model Inference contract fixture.",
-            "deterministic": true,
-            "id": "compute-model-inference-domain-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Compute Model Inference composition fixture.",
-            "deterministic": true,
-            "id": "compute-model-inference-domain-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-mlnn-kit-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "requires": [
-        "n:compute:model"
-      ],
-      "responsibility": "Own provider-neutral inference requests, results, and compute requirements.",
-      "settingsSchema": {
-        "additionalProperties": true,
-        "type": "object"
-      },
-      "status": "stable-candidate",
-      "systems": [
-        {
-          "description": "Install, validate, snapshot, reset, and replay Compute Model Inference behavior.",
-          "deterministic": true,
-          "id": "n:compute:model:inference:lifecycle",
-          "schema": null
-        }
-      ]
-    },
-    {
-      "domainPath": "n:compute:model:inference:provider",
-      "forbiddenResponsibilities": [
-        "agent orchestration",
-        "model runtime implementation",
-        "network authentication"
-      ],
-      "id": "compute-model-inference-provider-domain",
-      "inputs": [
-        {
-          "description": "Compute Model Inference Provider required capability.",
-          "deterministic": true,
-          "id": "n:compute:model:inference",
-          "schema": null
-        }
-      ],
-      "label": "Compute Model Inference Provider",
-      "lifecycle": {
-        "duplicateInstall": "Return the installed Compute Model Inference Provider API without duplicate state or systems.",
-        "install": "Create one Compute Model Inference Provider state owner and public API.",
-        "replay": "Reapply equivalent Compute Model Inference Provider inputs deterministically.",
-        "reset": "Restore the configured Compute Model Inference Provider baseline.",
-        "snapshot": "Serialize Compute Model Inference Provider state and descriptors."
-      },
-      "optionalDependencies": [],
-      "outputs": [
-        {
-          "description": "Compute Model Inference Provider provided capability.",
-          "deterministic": true,
-          "id": "n:compute:model:inference:provider",
-          "schema": null
-        }
-      ],
-      "ownedMeaning": [
-        "inference provider capabilities",
-        "inference provider contracts"
-      ],
-      "ownedState": [
-        {
-          "description": "Serializable Compute Model Inference Provider state and registry records.",
-          "id": "compute-model-inference-provider-domain-state",
-          "owner": "compute-model-inference-provider-domain",
-          "persistence": "snapshot",
-          "schema": {
-            "additionalProperties": true,
-            "type": "object"
-          }
-        }
-      ],
-      "parentDomainPath": "n:compute:model:inference",
-      "proof": {
-        "consumers": [
-          {
-            "description": "Direct Compute Model Inference Provider contract fixture.",
-            "deterministic": true,
-            "id": "compute-model-inference-provider-domain-direct-consumer",
-            "schema": null
-          },
-          {
-            "description": "Installed Compute Model Inference Provider composition fixture.",
-            "deterministic": true,
-            "id": "compute-model-inference-provider-domain-installed-consumer",
-            "schema": null
-          }
-        ],
-        "references": [
-          "tests/core-kits/core-mlnn-kit-smoke.mjs"
-        ],
-        "status": "proven"
-      },
-      "requires": [
-        "n:compute:model:inference"
-      ],
-      "responsibility": "Own inference provider capability and contract semantics without owning runtimes.",
-      "settingsSchema": {
-        "additionalProperties": true,
-        "type": "object"
-      },
-      "status": "stable-candidate",
-      "systems": [
-        {
-          "description": "Install, validate, snapshot, reset, and replay Compute Model Inference Provider behavior.",
-          "deterministic": true,
-          "id": "n:compute:model:inference:provider:lifecycle",
           "schema": null
         }
       ]
@@ -9004,9 +8920,10 @@
         }
       ],
       "ownedMeaning": [
-        "inference model requirements",
+        "inference execution",
         "inference requests",
-        "inference results"
+        "inference results",
+        "inference usage receipts"
       ],
       "ownedState": [
         {
@@ -9042,7 +8959,7 @@
         "status": "proven"
       },
       "requires": [],
-      "responsibility": "Own model inference requests and results independently of compute resources.",
+      "responsibility": "Own canonical inference requests, execution, results and usage receipts.",
       "settingsSchema": {
         "additionalProperties": true,
         "type": "object"
@@ -9092,7 +9009,9 @@
       ],
       "ownedMeaning": [
         "capacity leases",
+        "deployments",
         "instance selection",
+        "provider health and failover",
         "provider registry"
       ],
       "ownedState": [
@@ -9131,7 +9050,7 @@
       "requires": [
         "n:inference"
       ],
-      "responsibility": "Own provider identities, serving instances, capacity admission and selection.",
+      "responsibility": "Own provider identities, deployments, instance admission, selection and failover.",
       "settingsSchema": {
         "additionalProperties": true,
         "type": "object"
@@ -21596,6 +21515,81 @@
       "version": "0.0.4"
     },
     {
+      "apiName": "decision",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:agent:decision",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "agent-decision-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:agent",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-decision-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-decision-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:agent:decision"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Validate and retain versioned typed judgments bound to Agent proposals and evidence.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAgentDecisionKit",
+        "module": "./src/core-domains/agent/decision/index.js",
+        "publicSubpath": "./domains/agent/decision"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
       "apiName": "agent",
       "atomic": true,
       "composes": [],
@@ -29716,7 +29710,6 @@
         "status": "proven"
       },
       "provides": [
-        "model:inference-contract",
         "model:registry",
         "n:compute:model"
       ],
@@ -29727,7 +29720,7 @@
         "semantics": "Restore the configured baseline without duplicate state or systems.",
         "supported": true
       },
-      "responsibility": "Register model descriptors and normalize provider-neutral inference requests and results.",
+      "responsibility": "Register model descriptors and capabilities without executing inference.",
       "schema": "nexusengine.atomic-kit-manifest/2",
       "settingsSchema": {
         "additionalProperties": true,
@@ -49855,6 +49848,7 @@
     "./domains/actor/registry": "./src/core-domains/actor/kits/actor-registry-kit/index.js",
     "./domains/agent": "./src/core-domains/agent/index.js",
     "./domains/agent/cycle": "./src/core-domains/agent/kits/agent-kit/index.js",
+    "./domains/agent/decision": "./src/core-domains/agent/decision/index.js",
     "./domains/agent/loop": "./src/core-domains/agent/loop/index.js",
     "./domains/agent/loop/control": "./src/core-domains/agent/loop/control/index.js",
     "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
@@ -50315,7 +50309,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "0933ec3ea4bc0b912e5af9d9061229796c38eab24fb8c779dfcf86e996a7ab01",
+  "registryHash": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -50371,12 +50365,16 @@
       "sha256": "108f5d4f59786366eda70fd9f4cd8ed6424d4d83ec369b4a2b5f5855f4cc9f68"
     },
     {
+      "path": "src/core-domains/agent/decision/index.js",
+      "sha256": "169c2ea03ede7170f4ad1e0076efbf7f5f846e99f1969cc36e448142e7cc256b"
+    },
+    {
       "path": "src/core-domains/agent/domain.manifest.js",
-      "sha256": "5df767e17c911bd29489a33c4fb5467329ce7e977f0698dd29994eb35c6115b8"
+      "sha256": "f814a5b9b9ada03a9bba747c1ec119015d0ebe19d21a0dbe4e900d6c0f1363e5"
     },
     {
       "path": "src/core-domains/agent/index.js",
-      "sha256": "436643be3667eba9376f9e6a011cb9eec598c40f4b1de4b694e062b52862e52c"
+      "sha256": "fb48c54fe651edb3be13ef555b4e2986e7b11e8fa3af1b520386765e007e0676"
     },
     {
       "path": "src/core-domains/agent/interaction/answer-session.js",
@@ -50432,11 +50430,11 @@
     },
     {
       "path": "src/core-domains/agent/loop/control/index.js",
-      "sha256": "78e1ca9238fbda2c11a0680c1b51e0463f6b79b7569828f47990b54ec6e0d791"
+      "sha256": "1b3f2953a3d41ae1d93cbb3b09a3ffbed7bba51b417be9cf9ff2e7ec936690b2"
     },
     {
       "path": "src/core-domains/agent/loop/coordination/index.js",
-      "sha256": "8b19b663a84a466fb7a44fab6e69fd43b522262f912f2ce8c5cdd48183172bdc"
+      "sha256": "59953942c7975afb9cb75aee4f845b218a153d270435dbfba2291bae0950d4e4"
     },
     {
       "path": "src/core-domains/agent/loop/index.js",
@@ -50456,7 +50454,7 @@
     },
     {
       "path": "src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js",
-      "sha256": "eebeadda9ad05ba4d62aa5d73fa07fcea6703c26bb75e15cf9fb43982f505f10"
+      "sha256": "3ecaf90a48d3a5bc0a7db4b41cbe2e3e5c275adf8c3a0739eb0c0a75dbb4b77e"
     },
     {
       "path": "src/core-domains/agent/loop/kits/validation-loop-kit/index.js",
@@ -53332,7 +53330,7 @@
     },
     {
       "path": "src/core-domains/compute/domain.manifest.js",
-      "sha256": "cc656b7141ae215bb4eb4a2378b3f5c79b46b1f927d769d1097e089d957aa0dc"
+      "sha256": "4b69a089f8b674058c30c25c9f3cbc4f70e30bb21ca502d4ba4079841d2f288e"
     },
     {
       "path": "src/core-domains/compute/graph/index.js",
@@ -53379,20 +53377,8 @@
       "sha256": "6ba96d24b98da726d88c6678471987e0a086115e9f51124f8da74a9bff8001dc"
     },
     {
-      "path": "src/core-domains/compute/model/kits/model-kit/adapters.js",
-      "sha256": "95af68a0e5e1bc22a9e225cb5391310d278142894696241a25d1a1d235187043"
-    },
-    {
       "path": "src/core-domains/compute/model/kits/model-kit/index.js",
-      "sha256": "8e80fe2e41b05511c91199eb95b1f31659b912aef7e26bf7d59c2a6964888c9b"
-    },
-    {
-      "path": "src/core-domains/compute/model/kits/model-kit/inference-request.js",
-      "sha256": "bc80ad8332d43247a4f01d1bb8b8334de9d0d15ea65ee66c4a4bec2c71ceef7b"
-    },
-    {
-      "path": "src/core-domains/compute/model/kits/model-kit/inference-result.js",
-      "sha256": "0533bcfb3a29fc1d4a8cf3d3fe599d439ef899ff35693f37efe2b037bd2e18b0"
+      "sha256": "033dc1aba9360e7e6b7fd919b827b73466b16f8040da8bcfa505bbd69e749c43"
     },
     {
       "path": "src/core-domains/compute/model/kits/model-kit/model-descriptors.js",
@@ -53472,19 +53458,23 @@
     },
     {
       "path": "src/core-domains/inference/contract/index.js",
-      "sha256": "5035ff753d9e5a9e387047da24b87532bb300d38d795be0b6ebe4c9637a95a36"
+      "sha256": "34c14324f647fd136e003671d099e77f9fc74e6efc3e0880c8d6122cd3fdfac2"
     },
     {
       "path": "src/core-domains/inference/domain.manifest.js",
-      "sha256": "bfb4356dbaff713bad22e95b724c7ce886ca76116b209bce9de3bbd2d77100be"
+      "sha256": "c7b0d3250c53b7e335353096bc4f782f224602452a6879618b36b8ab9ff2c629"
+    },
+    {
+      "path": "src/core-domains/inference/execution/index.js",
+      "sha256": "29ac7bb12836f6eb41ffe8ddbaad97dcb6f47c66be01724e07e7eeaf9a9cf209"
     },
     {
       "path": "src/core-domains/inference/index.js",
-      "sha256": "c1b847bba44aca93e6e022c606fd38e8c5e4681e5ec1aea57bb994d3d27f8b3c"
+      "sha256": "be3e9393f2e4a7d6d987916e88be6448552a2732e052cece177ba67d2b275ece"
     },
     {
       "path": "src/core-domains/inference/provider/index.js",
-      "sha256": "4aa1204cf70074dc344211105c7c38ad0f09bbff7c60110c1bc146973823ec86"
+      "sha256": "0c99860bbb41848c991e7c4a1cee9e7d0f6574129e87b53a161f2efd0159ca7f"
     },
     {
       "path": "src/core-domains/interaction/adapters/occupant-request-adapter-kit/contracts.js",

@@ -6,3 +6,6 @@ assert.throws(()=>c.delegate({delegationId:"d2",parentLoopId:"root",childLoopId:
 c.consume("child",{steps:2,modelCalls:1});c.complete("child",{ok:true,receiptRef:"receipt"});
 assert.equal(c.join("root").accepted,true);
 console.log("Coordination budget inheritance passed");
+const deterministicChildren=createLoopCoordination();deterministicChildren.setParentBudget('droot',{maxSteps:3,maxModelCalls:0});
+deterministicChildren.delegate({delegationId:'dd',parentLoopId:'droot',childLoopId:'dc',goalRef:'goal',budgetAllocation:{maxSteps:2,maxModelCalls:0}});
+deterministicChildren.consume('dc',{steps:1,modelCalls:0});deterministicChildren.complete('dc',{ok:true,receiptRef:'deterministic-proof'});assert.equal(deterministicChildren.join('droot').accepted,true);
