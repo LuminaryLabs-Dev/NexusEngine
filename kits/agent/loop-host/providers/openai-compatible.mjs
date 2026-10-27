@@ -10,7 +10,7 @@ export function createOpenAICompatibleInference({fetchImpl=fetch,allowUrl,tokenP
   try{
    const response=await fetchImpl(endpoint,{method:"POST",redirect:"error",signal:controller.signal,
     headers:{"content-type":"application/json",...(token?{authorization:"Bearer "+token}:{})},
-    body:JSON.stringify({model:request.modelId,messages:request.messages,max_tokens:request.tokenBudget,...request.parameters})});
+    body:JSON.stringify({model:instance.providerModelId??request.modelId,messages:request.messages,max_tokens:request.tokenBudget,...request.parameters})});
    if(!response.ok){
     const status=response.status;
     const reason=status===429?"rate_limited":status===401||status===403?"authentication":status===402?"quota_exhausted":status===408||status===504?"timeout":status>=500?"unavailable":status>=400&&status<500?"invalid_request":"unknown";

@@ -13,15 +13,15 @@ export function createInferenceProviderPool({providers=[],instances=[],snapshot=
   if(leases.has(request.id))throw new Error("Request already reserved");
   for(const x of endpoints.values())if(x.health==="cooldown"&&Number.isFinite(x.cooldownUntil)&&x.cooldownUntil<=now){x.health="ready";x.cooldownUntil=null;}
   const excluded=new Set(excludeInstanceIds);
-  const eligible=[...endpoints.values()].filter(x=>!excluded.has(x.id)&&(!freeOnly||x.free===true)&&x.health==="ready"&&(x.quotaRemaining===undefined||x.quotaRemaining>0)&&x.active<x.capacity&&x.models.includes(request.modelId)&&(request.capabilities??[]).every(c=>(x.capabilities??[]).includes(c)));
+  const eligible=[...endpoints.values()].filter(x=>!excluded.has(x.id)&&(!freeOnly||x.free===true)&&x.health==="ready"&&x.active<x.capacity&&x.models.includes(request.modelId)&&(request.capabilities??[]).every(c=>(x.capabilities??[]).includes(c)));
   if(!eligible.length)return null;
   const chosen=eligible[next++%eligible.length];chosen.active++;
   const lease={requestId:request.id,instanceId:chosen.id,expiresAt:now+leaseMs};leases.set(request.id,lease);
-  return copy({...lease,instance:chosen});
+  return copy({...lease,instance:{...chosen,deploymentId:chosen.deploymentId??chosen.id,providerModelId:chosen.providerModelId??request.modelId}});
  }
  function reportFailure(instanceId,{reason="unknown",retryAfterMs=null,now=Date.now()}={}){
   const x=endpoints.get(instanceId);if(!x)throw new Error("Unknown provider instance");
-  if(reason==="rate_limited"||reason==="quota_exhausted"){x.health="cooldown";x.cooldownUntil=reason==="quota_exhausted"?(x.quotaResetAt??null):now+Math.max(1000,retryAfterMs??60000);}
+  if(reason==="rate_limited"||reason==="quota_exhausted"){x.health="cooldown";x.cooldownUntil=reason==="quota_exhausted"?(Number.isFinite(x.quotaResetAt)&&x.quotaResetAt>now?x.quotaResetAt:now+Math.max(1000,retryAfterMs??60000)):now+Math.max(1000,retryAfterMs??60000);}
   else if(reason==="unavailable") {x.health="cooldown";x.cooldownUntil=now+Math.max(1000,retryAfterMs??30000);}
   return copy(x);
  }

@@ -1,5 +1,5 @@
 import {createInferenceRequest} from "../../../src/core-domains/inference/contract/index.js";
-import {createInferenceProviderPool} from "../../../src/core-domains/inference/provider/index.js";
+import {executeInference} from "../../../src/core-domains/inference/execution/index.js";
 import {createDecisionRouter} from "../../../src/core-domains/harness/routing/index.js";
 import {runSelfPropagation} from "../../../src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js";
 export {createOpenAICompatibleInference} from "./providers/openai-compatible.mjs";
@@ -10,28 +10,11 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
  return runSelfPropagation({loopId,agentId,goalRef,limits,signal,observe,verify,
   infer:async({goalRef,context,state})=>{
    const request=createInferenceRequest({id:loopId+":infer:"+state.revision,modelId:context.modelId,messages:context.messages});
-   const attempted=new Set(),attempts=[];
-   const maxAttempts=Math.max(1,Math.min(10,limits?.providerAttempts??3));
-   const started=Date.now(),deadline=started+Math.max(1,limits?.inferenceTimeoutMs??120000);
-   for(let attempt=0;attempt<maxAttempts;attempt++){
-    if(signal?.aborted)throw signal.reason??new Error("Inference cancelled");
-    if(Date.now()>=deadline)throw new Error("Inference deadline exceeded");
-    const lease=pool.reserve(request,{excludeInstanceIds:[...attempted],freeOnly:limits?.allowPaid!==true});
-    if(!lease)break;
-    attempted.add(lease.instanceId);
-    try{
-     const result=await inference.infer({request,instance:lease.instance,signal});
-     if(result.status==="ok")return typeof result.output==="string"?JSON.parse(result.output):result.output;
-     attempts.push({instanceId:lease.instanceId,status:result.status,reason:result.reason??"unknown"});
-     if(result.status==="uncertain"||result.uncertain||!result.retryable)break;
-     pool.reportFailure?.(lease.instanceId,{reason:result.reason,retryAfterMs:result.retryAfterMs});
-    }catch(error){
-     attempts.push({instanceId:lease.instanceId,status:"uncertain",reason:String(error?.message??error)});
-     break; // Unknown completion state must never be replayed.
-    }finally{pool.release(request.id);}
-   }
-   const error=new Error("Inference providers exhausted");
-   error.attempts=attempts;throw error;
+   const result=await executeInference({request,pool,adapter:inference,
+    maxAttempts:limits?.providerAttempts??3,timeoutMs:limits?.inferenceTimeoutMs??120000,
+    allowPaid:limits?.allowPaid===true,signal});
+   if(result.status!=="ok"){const error=new Error("Inference failed: "+result.status);error.receipt=result;throw error;}
+   return typeof result.output==="string"?JSON.parse(result.output):result.output;
   },
   execute:async({decision,state,idempotencyKey})=>{
    const route=router.resolve({...decision,decisionId:decision.decisionId??idempotencyKey,loopId});

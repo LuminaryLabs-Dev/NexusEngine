@@ -46,3 +46,13 @@ installedPool.reset();assert.equal(installedPool.listInstances().length,1);
 const installedRouting=createEngine({kits:[createDecisionRoutingKit({discover:()=>[{id:"memory.retrieve"}],authorize:()=>true})]});
 assert.equal(installedRouting.n.routing.resolve({decisionId:"installed",loopId:"l",action:"request_context",capabilityId:"memory.retrieve"}).ok,true);
 console.log("installed inference and routing Kit parity passed");
+
+const {executeInference}=await import("../../src/core-domains/inference/execution/index.js");
+const nextPool=createInferenceProviderPool({providers:[{id:"one",protocol:"test"},{id:"two",protocol:"test"}],instances:[{id:"i1",providerId:"one",models:["m"],capacity:1,free:true},{id:"i2",providerId:"two",models:["m"],capacity:1,free:true}]});
+const calls=[];
+const routed=await executeInference({request:createInferenceRequest({id:"routed",modelId:"m"}),pool:nextPool,
+ adapter:{infer:async({instance})=>{calls.push(instance.id);return instance.id==="i1"?{status:"failed",reason:"rate_limited",retryable:true,retryAfterMs:1000}:{status:"ok",output:"done",usage:{output_tokens:2}};}}});
+assert.equal(routed.status,"ok");assert.equal(routed.output,"done");
+assert.deepEqual(calls,["i1","i2"]);assert.equal(routed.attempts.length,2);
+assert.equal(nextPool.snapshot().leases.length,0);
+console.log("canonical two-provider failover passed");
