@@ -19,4 +19,16 @@ struct Mat4 {
 };
 Mat4 operator*(const Mat4& a, const Mat4& b) noexcept;
 Vec4 operator*(const Mat4& m, Vec4 v) noexcept;
+// Checked affine transforms use row-major matrices and column vectors. External
+// column-major arrays must be converted exactly once by their adapter.
+struct AffineTransform {
+    Mat4 model;
+    std::array<double, 9> normal;
+    double handedness = 1;
+};
+AffineTransform checkedAffine(const Mat4& model);
+Vec3 transformPosition(const AffineTransform&, Vec3);
+Vec3 transformNormal(const AffineTransform&, Vec3);
+Vec3 transformTangent(const AffineTransform&, Vec3);
+std::array<Vec3, 2> transformBounds(const AffineTransform&, Vec3 minimum, Vec3 maximum);
 } // namespace nexusgl

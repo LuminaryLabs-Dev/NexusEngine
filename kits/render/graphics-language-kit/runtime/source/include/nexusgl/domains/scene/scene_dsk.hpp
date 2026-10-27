@@ -1,5 +1,6 @@
 #pragma once
 #include "descriptors.hpp"
+#include "resource_store.hpp"
 #include <memory>
 #include <optional>
 #include <utility>
@@ -43,10 +44,13 @@ struct Snapshot {
     unsigned version = 1;
     PlaybackState playback;
     SceneFrameKit::Snapshot frame;
+    std::shared_ptr<const ResourceStore::Snapshot> resources;
 };
 class SceneDSK {
   public:
     static constexpr const char* id = "nexusgl.scene";
+    ResourceStore& resources() noexcept { return resources_; }
+    const ResourceStore& resources() const noexcept { return resources_; }
     const PlaybackState& playback() const noexcept { return playback_.state(); }
     void setTime(double seconds);
     void advance(double delta);
@@ -54,11 +58,12 @@ class SceneDSK {
     void prepare(Descriptor descriptor) { frames_.submit(std::move(descriptor)); }
     const Descriptor& frame() const { return frames_.frame(); }
     std::shared_ptr<const Descriptor> immutableFrame() const { return frames_.immutableFrame(); }
-    void reset() noexcept;
+    void reset();
     Snapshot snapshot() const;
     void restore(const Snapshot& snapshot);
 
   private:
+    ResourceStore resources_;
     PlaybackKit playback_;
     SceneFrameKit frames_;
 };

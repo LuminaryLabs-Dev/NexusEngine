@@ -21,7 +21,8 @@ class CpuFrameKit {
     void setResourceLimits(ResourceLimits limits) noexcept { limits_ = limits; }
     const Framebuffer& render(const scene::CanvasFrame& frame, int width, int height);
     const Framebuffer& render(const scene::SceneFrame& frame, int width, int height,
-                              Quality quality);
+                              Quality quality, std::uint64_t preparedIdentity = 0,
+                              std::uint64_t shadowRevision = 0);
 
   private:
     void resolveGuided(const scene::SceneFrame& frame, const LightingSettings& settings);
@@ -29,8 +30,10 @@ class CpuFrameKit {
     ProfileHooks hooks_;
     ResourceLimits limits_;
     FrameStatistics statistics_;
-    std::vector<std::uint8_t> shadowKey_;
+    std::vector<std::uint8_t> shadowKey_, shadowScratch_;
     std::vector<float> visibility_;
+    std::vector<bool> shadowMaskTextures_;
+    std::uint64_t scratchAllocations_ = 0;
     RenderTarget3D target_{1, 1}, shadow_{1, 1, true};
     Framebuffer output_{1, 1}, canvas_{1, 1};
     GaussianUpsampler reconstruction_;

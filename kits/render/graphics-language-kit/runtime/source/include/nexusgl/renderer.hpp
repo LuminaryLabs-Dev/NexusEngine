@@ -24,6 +24,9 @@ class Framebuffer {
     std::size_t stride() const noexcept { return static_cast<std::size_t>(width_) * 4; }
     const std::uint8_t* data() const noexcept { return pixels_.data(); }
     std::size_t size() const noexcept { return pixels_.size(); }
+    std::size_t allocatedBytes() const noexcept { return pixels_.capacity(); }
+    std::uint64_t allocations() const noexcept { return allocations_; }
+    void trim();
     Color pixel(int x, int y) const;
     void clear(Color color) noexcept;
     void triangle(Point a, Point b, Point c, Color color) noexcept;
@@ -36,6 +39,7 @@ class Framebuffer {
     friend class render::CpuFrameKit;
     void blend(int x, int y, Color color) noexcept;
     void put(int x, int y, Color color) noexcept;
+    std::uint64_t allocations_ = 0;
     int width_ = 0, height_ = 0;
     std::vector<std::uint8_t> pixels_;
 };

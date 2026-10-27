@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Repaired the optional Graphics Language CPU path with atomic scene transactions, resident meshes/instances, bounded shadow and output ownership, explicit host pacing and per-artifact ABI2 integrity. ABI1 and public captures remain compatible; native/WASM pixels, sanitizer, display and bounded-soak checks pass. See `docs/GRAPHICS-LANGUAGE.md` and `.agent/runs/2026-10-27-graphics-efficiency/report.md`.
+
 - Added `n:agent:decision` typed classifications and evidence-bound proposal judgments, model-neutral loop decision ports with explicit usage/recovery, and an optional TypeSafe/Jev runtime adapter. Existing LLM callbacks remain supported; Core selects no model by default. See `docs/AGENT-DECISION.md`.
 
 - Connected the first external Physics runtime slice through bounded Body/Step

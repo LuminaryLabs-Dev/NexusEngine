@@ -17,8 +17,9 @@ RenderTarget3D::RenderTarget3D(int w, int h, bool depthOnly)
     : width_(w), height_(h), depthOnly_(depthOnly), color_(depthOnly ? 1 : w, depthOnly ? 1 : h),
       depth_(checkedPixels(w, h), 1.0f), alpha_(depthOnly ? 0 : checkedPixels(w, h), 1.0f) {}
 std::size_t RenderTarget3D::allocatedBytes() const noexcept {
-    return color_.size() + depth_.capacity() * sizeof(float) + alpha_.capacity() * sizeof(float) +
-           radiance_.capacity() * sizeof(LinearRGB) + surfaces_.capacity() * sizeof(SurfaceSample) +
+    return color_.allocatedBytes() + depth_.capacity() * sizeof(float) +
+           alpha_.capacity() * sizeof(float) + radiance_.capacity() * sizeof(LinearRGB) +
+           surfaces_.capacity() * sizeof(SurfaceSample) +
            heads_.capacity() * sizeof(std::uint32_t) + layers_.capacity() +
            fragments_.capacity() * sizeof(Fragment);
 }
@@ -30,21 +31,45 @@ void RenderTarget3D::setFragmentLimit(std::size_t count) {
 void RenderTarget3D::resize(int w, int h) {
     if (w == width_ && h == height_)
         return;
-    RenderTarget3D replacement(w, h, depthOnly_);
-    if (lightingEnabled())
-        replacement.setLighting(lighting_);
-    replacement.captureSurfaces(!surfaces_.empty(), deferred_);
-    surfaces_.swap(replacement.surfaces_);
-    width_ = w;
-    height_ = h;
-    transparencyPhase_ = TransparencyPhase::Disabled;
+    const auto count = checkedPixels(w, h);
+    // Reserve every required replacement before publishing extents. A failed
+    // reserve may retain extra capacity, but leaves all existing pixels and
+    // dimensions intact.
+    const auto reserve = [&](auto& values, std::size_t size) {
+        if (size > values.capacity()) {
+            values.reserve(size);
+            ++allocations_;
+        }
+    };
+    reserve(depth_, count);
+    if (!depthOnly_)
+        reserve(alpha_, count);
+    const bool lit = lightingEnabled(), captured = !surfaces_.empty();
+    if (lit)
+        reserve(radiance_, count);
+    if (captured)
+        reserve(surfaces_, count);
+    if (!depthOnly_)
+        color_.resize(w, h);
+    depth_.resize(count);
+    if (!depthOnly_)
+        alpha_.resize(count);
+    if (lit)
+        radiance_.resize(count);
+    if (captured)
+        surfaces_.resize(count);
+    // Preserve the initialization contract of a newly allocated extent while
+    // retaining capacity. The unchanged-extent path above remains a no-op.
+    std::fill(depth_.begin(), depth_.end(), 1.0f);
+    std::fill(alpha_.begin(), alpha_.end(), 1.0f);
+    std::fill(radiance_.begin(), radiance_.end(), LinearRGB{});
+    std::fill(surfaces_.begin(), surfaces_.end(), SurfaceSample{});
     heads_.clear();
     layers_.clear();
     fragments_.clear();
-    alpha_.swap(replacement.alpha_);
-    std::swap(color_, replacement.color_);
-    depth_.swap(replacement.depth_);
-    radiance_.swap(replacement.radiance_);
+    width_ = w;
+    height_ = h;
+    transparencyPhase_ = TransparencyPhase::Disabled;
 }
 void RenderTarget3D::setLighting(const LightingSettings& settings) {
     if (depthOnly_)
@@ -68,8 +93,9 @@ void RenderTarget3D::setLighting(const LightingSettings& settings) {
     if (settings.shadowMap == this)
         throw std::invalid_argument("lighting target cannot shadow itself");
     if (radiance_.size() != depth_.size()) {
-        std::vector<LinearRGB> replacement(depth_.size());
-        radiance_.swap(replacement);
+        if (depth_.size() > radiance_.capacity())
+            ++allocations_;
+        radiance_.resize(depth_.size());
     }
     lighting_ = settings;
     const double length = std::sqrt(d.x * d.x + d.y * d.y + d.z * d.z);
@@ -86,11 +112,12 @@ void RenderTarget3D::setLighting(const LightingSettings& settings) {
 }
 void RenderTarget3D::captureSurfaces(bool enabled, bool deferred) {
     if (enabled && surfaces_.size() != depth_.size()) {
-        std::vector<SurfaceSample> next(depth_.size());
-        surfaces_.swap(next);
+        if (depth_.size() > surfaces_.capacity())
+            ++allocations_;
+        surfaces_.resize(depth_.size());
     }
     if (!enabled)
-        std::vector<SurfaceSample>().swap(surfaces_);
+        surfaces_.clear();
     deferred_ = enabled && deferred;
 }
 void RenderTarget3D::clear(Color c) noexcept {
@@ -109,17 +136,21 @@ void RenderTarget3D::clear(Color c) noexcept {
               LinearRGB{srgbToLinear(c.r), srgbToLinear(c.g), srgbToLinear(c.b)});
 }
 void RenderTarget3D::prepareTransparency(bool enabled) {
-    if (enabled)
-        fragments_.reserve(fragmentLimit_);
     if (enabled && heads_.size() != depth_.size()) {
-        std::vector<std::uint32_t> heads(depth_.size(), UINT32_MAX);
-        std::vector<std::uint8_t> layers(depth_.size(), 0);
-        heads_.swap(heads);
-        layers_.swap(layers);
+        if (depth_.size() > heads_.capacity()) {
+            heads_.reserve(depth_.size());
+            ++allocations_;
+        }
+        if (depth_.size() > layers_.capacity()) {
+            layers_.reserve(depth_.size());
+            ++allocations_;
+        }
+        heads_.resize(depth_.size(), UINT32_MAX);
+        layers_.resize(depth_.size(), 0);
     } else if (!enabled) {
-        std::vector<std::uint32_t>().swap(heads_);
-        std::vector<std::uint8_t>().swap(layers_);
-        std::vector<Fragment>().swap(fragments_);
+        heads_.clear();
+        layers_.clear();
+        fragments_.clear();
     }
     fragments_.clear();
     transparencyError_ = TransparencyError::None;
@@ -138,8 +169,8 @@ void RenderTarget3D::resolveTransparency() {
         throw std::runtime_error(
             "transparency requires a lit target and prepareTransparency(true)");
     if (transparencyError_ == TransparencyError::Budget)
-        throw std::runtime_error(
-            "transparency exceeds 64 layers per pixel or configured fragments per frame");
+        throw std::runtime_error("transparency exceeds 64 layers per pixel or "
+                                 "configured fragments per frame");
     if (transparencyError_ == TransparencyError::Allocation)
         throw std::runtime_error("could not allocate transparent fragments");
     for (std::size_t pixel = 0; pixel < heads_.size(); ++pixel) {
@@ -368,16 +399,16 @@ void RenderTarget3D::rasterize(Vertex a, Vertex b, Vertex c) noexcept {
             };
             float colorLod = 0;
             if (material_ && lighting_.textures && material_->colorTexture >= 0 &&
-                std::size_t(material_->colorTexture) < lighting_.textures->size())
-                colorLod = lodFor((*lighting_.textures)[material_->colorTexture]);
+                std::size_t(material_->colorTexture) < lighting_.textures.size())
+                colorLod = lodFor(lighting_.textures[material_->colorTexture]);
             const bool blended = material_ && material_->alphaMode == AlphaMode::Blend;
             float opacity = 1;
             if (material_ && material_->alphaMode != AlphaMode::Opaque) {
                 opacity = float(channels[3] / 255) * material_->opacity;
                 if (lighting_.textures && material_->colorTexture >= 0 &&
-                    std::size_t(material_->colorTexture) < lighting_.textures->size())
-                    opacity *= sampleTextureAlpha((*lighting_.textures)[material_->colorTexture],
-                                                  uv, colorLod);
+                    std::size_t(material_->colorTexture) < lighting_.textures.size())
+                    opacity *= sampleTextureAlpha(lighting_.textures[material_->colorTexture], uv,
+                                                  colorLod);
                 if (!std::isfinite(opacity))
                     continue;
                 opacity = std::clamp(opacity, 0.f, 1.f);
@@ -400,22 +431,21 @@ void RenderTarget3D::rasterize(Vertex a, Vertex b, Vertex c) noexcept {
                                float(channels[2] / 255)};
                 if (material_ && lighting_.textures) {
                     if (material_->colorTexture >= 0 &&
-                        std::size_t(material_->colorTexture) < lighting_.textures->size()) {
-                        const auto t = sampleTexture((*lighting_.textures)[material_->colorTexture],
+                        std::size_t(material_->colorTexture) < lighting_.textures.size()) {
+                        const auto t = sampleTexture(lighting_.textures[material_->colorTexture],
                                                      uv, true, colorLod);
                         base = {base.r * t.r, base.g * t.g, base.b * t.b};
                     }
                     if (material_->normalTexture >= 0 &&
-                        std::size_t(material_->normalTexture) < lighting_.textures->size()) {
+                        std::size_t(material_->normalTexture) < lighting_.textures.size()) {
                         const Vec3 tangent{w0 * p.tangent.x + w1 * q.tangent.x + w2 * r.tangent.x,
                                            w0 * p.tangent.y + w1 * q.tangent.y + w2 * r.tangent.y,
                                            w0 * p.tangent.z + w1 * q.tangent.z + w2 * r.tangent.z};
                         normal = textureNormal(
                             normal, tangent,
                             w0 * p.handedness + w1 * q.handedness + w2 * r.handedness,
-                            sampleTexture((*lighting_.textures)[material_->normalTexture], uv,
-                                          false,
-                                          lodFor((*lighting_.textures)[material_->normalTexture])),
+                            sampleTexture(lighting_.textures[material_->normalTexture], uv, false,
+                                          lodFor(lighting_.textures[material_->normalTexture])),
                             material_->normalStrength);
                     }
                 }
@@ -428,6 +458,14 @@ void RenderTarget3D::rasterize(Vertex a, Vertex b, Vertex c) noexcept {
                         continue;
                     }
                     try {
+                        if (fragments_.size() == fragments_.capacity()) {
+                            const auto next =
+                                std::min(fragmentLimit_, std::max(std::size_t(1024),
+                                                                  fragments_.capacity() +
+                                                                      fragments_.capacity() / 2));
+                            fragments_.reserve(next);
+                            ++allocations_;
+                        }
                         fragments_.push_back(
                             {shadeMaterial(base, world, normal, *material_, lighting_), opacity, z,
                              heads_[offset]});
@@ -436,8 +474,8 @@ void RenderTarget3D::rasterize(Vertex a, Vertex b, Vertex c) noexcept {
                     } catch (...) {
                         transparencyError_ = TransparencyError::Allocation;
                     }
-                    continue; // Translucency tests opaque depth, but never writes depth/surface
-                              // guidance.
+                    continue; // Translucency tests opaque depth, but never writes
+                              // depth/surface guidance.
                 }
                 if (!surfaces_.empty()) {
                     const double length =

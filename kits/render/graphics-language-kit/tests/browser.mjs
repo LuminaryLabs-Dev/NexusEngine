@@ -30,7 +30,7 @@ try {
   assert.deepEqual(await pixels(),changed);
   await page.screenshot({path:'build/graphics-evidence/browser-failed-candidate.png'});
   for(const value of ['guided-half','gaussian-half','native']) {
-    await page.getByRole('combobox').selectOption(value);await page.waitForFunction(()=>!document.querySelector('#swap').disabled);
+    await page.getByRole('combobox',{name:'Quality',exact:true}).selectOption(value);await page.waitForFunction(()=>!document.querySelector('#swap').disabled);
     assert.equal(await page.evaluate(()=>window.graphicsProof.graphics.capture().width),480);
   }
   await page.evaluate(()=>window.graphicsProof.resize(360,240));
@@ -40,6 +40,36 @@ try {
   for(let i=0;i<5;i++){await page.getByRole('button',{name:'Replace renderer'}).click();await page.waitForFunction(()=>!document.querySelector('#swap').disabled);}
   const outcome=await page.evaluate(()=>({generation:window.graphicsProof.graphics.getState().generation,revision:window.graphicsProof.graphics.getState().resourceRevision,status:document.querySelector('#status').textContent}));
   assert.equal(outcome.generation,6);
+  // The host opts into cadence; it neither queues frames nor ticks simulation.
+  await page.evaluate(()=>{
+    const p=window.graphicsProof, render=p.graphics.render.bind(p.graphics),tick=p.engine.tick.bind(p.engine);
+    window.pacingProof={running:0,maximum:0,calls:0,ticks:0};
+    p.graphics.render=async(...args)=>{const s=window.pacingProof;s.calls++;s.maximum=Math.max(s.maximum,++s.running);try{return await render(...args);}finally{s.running--;}};
+    p.engine.tick=(...args)=>{window.pacingProof.ticks++;return tick(...args);};
+  });
+  assert.equal(await page.getByRole('checkbox',{name:'Animate (optional)'}).isChecked(),false);
+  await page.getByRole('combobox',{name:'Target FPS',exact:true}).selectOption('15');
+  await page.getByRole('checkbox',{name:'Animate (optional)'}).check();
+  await page.waitForFunction(()=>window.graphicsProof.pacer.getDiagnostics().completed>=4);
+  await page.getByRole('combobox',{name:'Target FPS',exact:true}).selectOption('30');
+  await page.waitForFunction(()=>window.graphicsProof.pacer.getDiagnostics().completed>=6);
+  // Synthetic visibility exercises the browser listener deterministically; the
+  // report does not call this an operating-system background-tab qualification.
+  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
+  await page.waitForFunction(()=>!window.graphicsProof.pacer.getDiagnostics().inFlight);
+  const hiddenCalls=await page.evaluate(()=>window.pacingProof.calls);
+  await page.waitForTimeout(180);
+  assert.equal(await page.evaluate(()=>window.pacingProof.calls),hiddenCalls);
+  assert.equal(await page.evaluate(()=>window.graphicsProof.pacer.getDiagnostics().paused),true);
+  await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
+  await page.waitForFunction(count=>window.pacingProof.calls>count,hiddenCalls);
+  await page.getByRole('checkbox',{name:'Animate (optional)'}).uncheck();
+  await page.waitForFunction(()=>!window.graphicsProof.pacer.getDiagnostics().inFlight);
+  const pacing=await page.evaluate(()=>({...window.pacingProof,...window.graphicsProof.pacer.getDiagnostics(),runtime:window.graphicsProof.graphics.getState().diagnostics,visibilityProof:'synthetic visibilitychange'}));
+  assert.equal(pacing.maximum,1);assert.equal(pacing.queuedFrames,0);assert.equal(pacing.ticks,0);
+  assert(pacing.runtime.framePool.slots<=3);assert.equal(pacing.runtime.host.stagedFrames,0);
+  await page.screenshot({path:'build/graphics-evidence/browser-paced.png'});
+
   // Real incompatible-context handling: reject safely, then explicitly replace
   // the canvas while rebinding input and retaining dimensions/attributes.
   const surface=await page.evaluate(async()=>{
@@ -57,10 +87,10 @@ try {
   assert.deepEqual(errors,[]);
   await page.screenshot({path:'build/graphics-evidence/browser-final.png'});
   if(process.argv.includes('--soak')) {
-    const started=Date.now(), samples=[];let frames=0;
+    const started=Date.now(), samples=[];let frames=0;const timings=[];
     const cdp=await page.context().newCDPSession(page);
     while(Date.now()-started<60000) {
-      await page.evaluate(async()=>{const p=window.graphicsProof;p.engine.tick(1/60);await p.graphics.render(p.spec());});frames++;
+      const frameStarted=performance.now();await page.evaluate(async()=>{const p=window.graphicsProof;p.engine.tick(1/60);await p.graphics.render(p.spec());});timings.push(performance.now()-frameStarted);frames++;
       if(frames%40===0) {
         await page.getByRole('button',{name:'Replace renderer'}).click();await page.waitForFunction(()=>!document.querySelector('#swap').disabled);
         await cdp.send('HeapProfiler.collectGarbage');
@@ -69,10 +99,17 @@ try {
       await new Promise(r=>setTimeout(r,40));
     }
     assert(frames>=100);assert.deepEqual(errors,[]);
-    await writeFile('build/graphics-evidence/browser-soak.json',JSON.stringify({durationMs:Date.now()-started,frames,samples,errors},null,2)+'\n');
+    await writeFile('build/graphics-evidence/browser-soak.json',JSON.stringify({durationMs:Date.now()-started,frames,samples,errors,frameMs:timings,workload:{width:360,height:240,quality:'native',scene:'graphics-language-three-panels',cadence:'explicit one frame then 40ms delay'}},null,2)+'\n');
     console.log(`Browser soak: ${frames} responsive frames over 60 seconds`);
   }
+  await page.evaluate(()=>window.dispatchEvent(new Event('pagehide')));
+  await page.waitForFunction(()=>window.graphicsProof.graphics.getState().phase==='installed');
+  assert.equal(await page.evaluate(()=>window.graphicsProof.pacer.getDiagnostics().disposed),true);
+  const afterDispose=await page.evaluate(()=>window.pacingProof.calls);await page.waitForTimeout(100);
+  assert.equal(await page.evaluate(()=>window.pacingProof.calls),afterDispose);
+  await page.reload();await page.waitForFunction(()=>window.graphicsProof?.graphics.getState().status==='ready'&&!document.querySelector('#swap').disabled);
+  assert.equal(await page.getByRole('checkbox',{name:'Animate (optional)'}).isChecked(),false);
   await page.evaluate(()=>window.graphicsProof.graphics.dispose());
-  await writeFile('build/graphics-evidence/browser-result.json',JSON.stringify({url,viewport:{width:1024,height:850},outcome,surface,errors},null,2)+'\n');
+  await writeFile('build/graphics-evidence/browser-result.json',JSON.stringify({url,viewport:{width:1024,height:850},outcome,surface,pacing,errors},null,2)+'\n');
   console.log('Browser visible handover, movement, material update, rejection, resize, keyboard and canvas replacement: passed');
 }finally{await browser.close();await new Promise(r=>server.close(r));}

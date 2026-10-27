@@ -1,5 +1,6 @@
 #pragma once
 #include "types.hpp"
+#include <memory>
 #include <vector>
 
 namespace nexusgl {
@@ -15,6 +16,22 @@ struct Texture2D {
     std::vector<Color> pixels;
     TextureFilter filter = TextureFilter::Nearest;
     std::vector<TextureLevel> mips{};
+};
+// An accessor borrows either legacy values or immutable resident objects. The
+// prepared frame owns the resident shared pointers for the entire synchronous
+// render.
+struct TextureTableView {
+    const std::vector<Texture2D>* owned = nullptr;
+    const std::vector<std::shared_ptr<const Texture2D>>* resident = nullptr;
+    TextureTableView() = default;
+    TextureTableView(const std::vector<Texture2D>* values) : owned(values) {}
+    std::size_t size() const noexcept {
+        return resident ? resident->size() : (owned ? owned->size() : 0);
+    }
+    const Texture2D& operator[](std::size_t index) const noexcept {
+        return resident ? *(*resident)[index] : (*owned)[index];
+    }
+    explicit operator bool() const noexcept { return owned || resident; }
 };
 enum class AlphaMode { Opaque, Mask, Blend };
 enum class Shading { Reference, Toon, PBR, Unlit };

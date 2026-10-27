@@ -11,3 +11,9 @@ export async function save(frame, name) {
   await mkdir('build/graphics-evidence', { recursive: true });
   await writeFile(`build/graphics-evidence/${name}.png`, PNG.sync.write({ width: frame.width, height: frame.height, data: Buffer.from(frame.pixels) }));
 }
+export function distribution(samples) {
+  assert(samples.length > 0 && samples.every(Number.isFinite), 'Finite timing samples are required');
+  const sorted = [...samples].sort((a, b) => a - b);
+  const percentile = fraction => sorted[Math.min(sorted.length - 1, Math.ceil(fraction * sorted.length) - 1)];
+  return { count: sorted.length, min: sorted[0], median: percentile(.5), p95: percentile(.95), max: sorted.at(-1), mean: samples.reduce((sum, value) => sum + value, 0) / samples.length };
+}

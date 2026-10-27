@@ -1,0 +1,11 @@
+{
+  "runId": "2026-10-27-graphics-efficiency",
+  "workspace": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Graphics-Efficiency-Candidate/.agent/runs/2026-10-27-graphics-efficiency/workspace",
+  "taskId": "graphics-efficiency",
+  "sessionId": "graphics-efficiency-session",
+  "base": "71d4872",
+  "checkout": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Graphics-Efficiency-Candidate",
+  "evidence": "build/graphics-efficiency",
+  "validation": "validation.json",
+  "report": "report.md"
+}

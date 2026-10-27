@@ -25,23 +25,23 @@ void executeCanvas(Framebuffer& target, const scene::CanvasFrame& frame) {
 static void drawScene(RenderTarget3D& target, const scene::SceneFrame& frame,
                       const Mat4& viewProjection, bool shadowPass, bool blendPass = false,
                       bool clear = true) {
-    target.setTextureSource(&frame.textures);
+    target.setTextureSource(scene::texturesOf(frame));
     if (clear)
         target.clear(frame.background);
-    for (const auto& triangle : frame.triangles) {
+    scene::eachTriangle(frame, [&](const auto& triangle) {
         const Material* material =
             triangle.material < 0 ? nullptr : &frame.materials[triangle.material];
         if (!shadowPass && bool(material && material->alphaMode == AlphaMode::Blend) != blendPass)
-            continue;
+            return;
         if (shadowPass) {
             if (material && material->alphaMode == AlphaMode::Blend)
-                continue;
+                return;
             if (!triangle.castsShadow)
-                continue;
+                return;
             const auto n = triangle.geometricNormal, light = frame.shadow.directionToLight;
             if (frame.shadow.closedBackFacesOnly && !triangle.twoSidedShadow &&
                 light.x * n.x + light.y * n.y + light.z * n.z >= 0)
-                continue;
+                return;
         }
         const std::uint32_t key = (std::uint32_t(triangle.albedo.r) << 16) |
                                   (std::uint32_t(triangle.albedo.g) << 8) | triangle.albedo.b;
@@ -57,7 +57,7 @@ static void drawScene(RenderTarget3D& target, const scene::SceneFrame& frame,
         };
         target.triangle(vertex(triangle.vertices[0]), vertex(triangle.vertices[1]),
                         vertex(triangle.vertices[2]));
-    }
+    });
     target.setMaterial(nullptr);
 }
 void executeScene(RenderTarget3D& target, const scene::SceneFrame& frame,
@@ -80,19 +80,34 @@ const Framebuffer& CpuFrameKit::render(const scene::CanvasFrame& frame, int widt
                                      frame.draws.size() * sizeof(scene::Draw2D) * 2 + 256 * 1024;
     if (statistics_.estimatedPeakBytes > limits_.budgetBytes)
         throw std::runtime_error("canvas exceeds total rendering memory budget");
-    target_ = RenderTarget3D(1, 1);
-    shadow_ = RenderTarget3D(1, 1, true);
-    output_ = Framebuffer(1, 1);
-    reconstruction_ = GaussianUpsampler{};
-    std::vector<float>().swap(visibility_);
-    std::vector<std::uint8_t>().swap(shadowKey_);
+    // Retained scratch is counted below and released by explicit trim or budget
+    // pressure.
+    const auto retained = target_.allocatedBytes() + shadow_.allocatedBytes() +
+                          output_.allocatedBytes() + reconstruction_.allocatedBytes() +
+                          visibility_.capacity() * sizeof(float) + shadowKey_.capacity() +
+                          shadowScratch_.capacity() + shadowMaskTextures_.capacity() / 8;
+    if (statistics_.estimatedPeakBytes + retained > limits_.budgetBytes) {
+        target_ = RenderTarget3D(1, 1);
+        shadow_ = RenderTarget3D(1, 1, true);
+        output_ = Framebuffer(1, 1);
+        reconstruction_ = {};
+        std::vector<float>().swap(visibility_);
+        std::vector<std::uint8_t>().swap(shadowKey_);
+        std::vector<std::uint8_t>().swap(shadowScratch_);
+        std::vector<bool>().swap(shadowMaskTextures_);
+    }
     canvas_.resize(width, height);
     executeCanvas(canvas_, frame);
-    statistics_.residentBytes = canvas_.size();
+    statistics_.residentBytes = canvas_.allocatedBytes() + target_.allocatedBytes() +
+                                shadow_.allocatedBytes() + output_.allocatedBytes() +
+                                reconstruction_.allocatedBytes() +
+                                visibility_.capacity() * sizeof(float) + shadowKey_.capacity() +
+                                shadowScratch_.capacity() + shadowMaskTextures_.capacity() / 8;
     return canvas_;
 }
 const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width, int height,
-                                       Quality quality) {
+                                       Quality quality, std::uint64_t preparedIdentity,
+                                       std::uint64_t shadowRevision) {
     const bool guided = quality == Quality::GuidedHalf;
     if (guided &&
         std::uint64_t(width) * height * frame.display.sampleScale * frame.display.sampleScale >
@@ -104,7 +119,7 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
         std::uint64_t(width) * height > Framebuffer::maxPixels)
         throw std::invalid_argument("invalid render extent");
     bool outlines = false, blending = false, lit = false;
-    for (const auto& triangle : frame.triangles) {
+    scene::eachTriangle(frame, [&](const auto& triangle) {
         if (triangle.material < 0)
             lit = true;
         else {
@@ -113,16 +128,19 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
             blending |= material.alphaMode == AlphaMode::Blend;
             lit |= material.shading != Shading::Unlit;
         }
-    }
+    });
     const int sourceWidth =
         (quality == Quality::GaussianHalf ? (width + 1) / 2 : width) * frame.display.sampleScale;
     const int sourceHeight =
         (quality == Quality::GaussianHalf ? (height + 1) / 2 : height) * frame.display.sampleScale;
     const std::uint64_t sourcePixels = std::uint64_t(sourceWidth) * sourceHeight,
                         outputPixels = std::uint64_t(width) * height;
-    std::uint64_t sceneBytes = frame.triangles.size() * sizeof(scene::SurfaceTriangle) +
-                               frame.materials.size() * sizeof(Material);
-    for (const auto& texture : frame.textures) {
+    std::uint64_t sceneBytes =
+        (preparedIdentity ? 0 : scene::triangleCount(frame)) * sizeof(scene::SurfaceTriangle) +
+        frame.materials.size() * sizeof(Material);
+    const auto textureTable = scene::texturesOf(frame);
+    for (std::size_t ti = 0; !preparedIdentity && ti < textureTable.size(); ++ti) {
+        const auto& texture = textureTable[ti];
         sceneBytes += texture.pixels.size() * sizeof(Color);
         for (const auto& mip : texture.mips)
             sceneBytes += mip.pixels.size() * sizeof(Color);
@@ -138,14 +156,19 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
         4 * 1024 * 1024;
     if (statistics_.estimatedPeakBytes > limits_.budgetBytes)
         throw std::runtime_error("scene exceeds total rendering memory budget");
-    if (target_.width() != sourceWidth || target_.height() != sourceHeight) {
-        // Release old derived attachments before replacing them; presentation owns its last good
-        // frame.
+    const auto retained =
+        target_.allocatedBytes() + shadow_.allocatedBytes() + output_.allocatedBytes() +
+        canvas_.allocatedBytes() + reconstruction_.allocatedBytes() +
+        visibility_.capacity() * sizeof(float) + shadowKey_.capacity() + shadowScratch_.capacity();
+    if (statistics_.estimatedPeakBytes + retained > limits_.budgetBytes) {
         target_ = RenderTarget3D(1, 1);
+        shadow_ = RenderTarget3D(1, 1, true);
         output_ = Framebuffer(1, 1);
-        reconstruction_ = GaussianUpsampler{};
-        visibility_.clear();
-        visibility_.shrink_to_fit();
+        canvas_ = Framebuffer(1, 1);
+        reconstruction_ = {};
+        std::vector<float>().swap(visibility_);
+        std::vector<std::uint8_t>().swap(shadowKey_);
+        std::vector<std::uint8_t>().swap(shadowScratch_);
     }
     output_.resize(width, height);
     target_.resize(sourceWidth, sourceHeight);
@@ -153,15 +176,33 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
     shadow_.resize(frame.shadow.resolution, frame.shadow.resolution);
     {
         ProfileScope scope(hooks_, "shadows");
-        std::vector<std::uint8_t> key;
+        auto& key = shadowScratch_;
+        key.clear();
+        const auto mapBytes = shadow_.allocatedBytes();
+        const auto keyBudget =
+            limits_.shadowCacheBytes > mapBytes ? limits_.shadowCacheBytes - mapBytes : 0;
+        bool cacheable = keyBudget > 0;
         const auto append = [&](const auto& value) {
             const auto* bytes = reinterpret_cast<const std::uint8_t*>(&value);
+            if (key.size() + sizeof(value) > keyBudget) {
+                cacheable = false;
+                return;
+            }
+            const auto needed = key.size() + sizeof(value);
+            if (needed > key.capacity()) {
+                key.reserve(std::min(std::size_t(keyBudget), std::max(needed, key.capacity() * 2)));
+                ++scratchAllocations_;
+            }
             key.insert(key.end(), bytes, bytes + sizeof(value));
         };
-        // Exact canonical field bytes, never struct padding or a collision-prone hash.
-        // Cache admission is bounded; larger scenes bypass it without changing output.
-        bool cacheable = frame.triangles.size() < 2048;
-        std::vector<bool> maskTextures(frame.textures.size());
+        // Exact canonical field bytes, never struct padding or a collision-prone
+        // hash. Admission follows actual key bytes, independent of triangle count.
+        auto& maskTextures = shadowMaskTextures_;
+        if (!preparedIdentity) {
+            if (textureTable.size() > maskTextures.capacity())
+                ++scratchAllocations_;
+            maskTextures.assign(textureTable.size(), false);
+        }
         if (lit && cacheable) {
             for (double value : frame.shadow.viewProjection.values)
                 append(value);
@@ -170,74 +211,87 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
             append(frame.shadow.directionToLight.x);
             append(frame.shadow.directionToLight.y);
             append(frame.shadow.directionToLight.z);
-            std::size_t casterCount = 0;
-            for (const auto& t : frame.triangles)
-                if (t.castsShadow &&
-                    (t.material < 0 || frame.materials[t.material].alphaMode != AlphaMode::Blend))
-                    ++casterCount;
-            append(casterCount);
-            for (const auto& triangle : frame.triangles) {
-                const auto* material =
-                    triangle.material < 0 ? nullptr : &frame.materials[triangle.material];
-                if (!triangle.castsShadow || (material && material->alphaMode == AlphaMode::Blend))
-                    continue;
-                append(triangle.twoSidedShadow);
-                append(triangle.geometricNormal.x);
-                append(triangle.geometricNormal.y);
-                append(triangle.geometricNormal.z);
-                for (const auto& v : triangle.vertices) {
-                    append(v.position.x);
-                    append(v.position.y);
-                    append(v.position.z);
-                }
-                const bool masked = material && material->alphaMode == AlphaMode::Mask;
-                append(masked);
-                if (masked) {
-                    append(triangle.albedo.a);
-                    append(material->opacity);
-                    append(material->alphaCutoff);
-                    append(material->colorTexture);
-                    if (material->colorTexture >= 0)
-                        maskTextures[material->colorTexture] = true;
-                    for (const auto& v : triangle.vertices) {
-                        append(v.uv.x);
-                        append(v.uv.y);
-                    }
-                }
-            }
-            for (std::size_t i = 0; i < frame.textures.size(); ++i)
-                if (maskTextures[i]) {
-                    const auto& texture = frame.textures[i];
-                    if (texture.pixels.size() > 65536 ||
-                        key.size() + texture.pixels.size() > 512 * 1024) {
+            if (preparedIdentity) {
+                append(preparedIdentity);
+                append(shadowRevision);
+            } else {
+                std::size_t casterCount = 0;
+                scene::eachTriangle(frame, [&](const auto& t) {
+                    if (t.castsShadow && (t.material < 0 || frame.materials[t.material].alphaMode !=
+                                                                AlphaMode::Blend))
+                        ++casterCount;
+                });
+                append(casterCount);
+                scene::eachTriangle(frame, [&](const auto& triangle) {
+                    const auto* material =
+                        triangle.material < 0 ? nullptr : &frame.materials[triangle.material];
+                    if (!triangle.castsShadow ||
+                        (material && material->alphaMode == AlphaMode::Blend))
+                        return;
+                    if (key.size() + 256 > keyBudget) {
                         cacheable = false;
-                        break;
+                        return;
                     }
-                    append(texture.width);
-                    append(texture.height);
-                    append(texture.filter);
-                    append(texture.mips.size());
-                    for (const auto& pixel : texture.pixels)
-                        append(pixel.a);
-                    for (const auto& mip : texture.mips) {
-                        if (key.size() + mip.pixels.size() > 512 * 1024) {
+                    append(triangle.twoSidedShadow);
+                    append(triangle.geometricNormal.x);
+                    append(triangle.geometricNormal.y);
+                    append(triangle.geometricNormal.z);
+                    for (const auto& v : triangle.vertices) {
+                        append(v.position.x);
+                        append(v.position.y);
+                        append(v.position.z);
+                    }
+                    const bool masked = material && material->alphaMode == AlphaMode::Mask;
+                    append(masked);
+                    if (masked) {
+                        append(triangle.albedo.a);
+                        append(material->opacity);
+                        append(material->alphaCutoff);
+                        append(material->colorTexture);
+                        if (material->colorTexture >= 0)
+                            maskTextures[material->colorTexture] = true;
+                        for (const auto& v : triangle.vertices) {
+                            append(v.uv.x);
+                            append(v.uv.y);
+                        }
+                    }
+                });
+                for (std::size_t i = 0; i < textureTable.size(); ++i)
+                    if (maskTextures[i]) {
+                        const auto& texture = textureTable[i];
+                        if (key.size() + texture.pixels.size() + 64 > keyBudget) {
                             cacheable = false;
                             break;
                         }
-                        for (const auto& pixel : mip.pixels)
+                        append(texture.width);
+                        append(texture.height);
+                        append(texture.filter);
+                        append(texture.mips.size());
+                        for (const auto& pixel : texture.pixels)
                             append(pixel.a);
+                        for (const auto& mip : texture.mips) {
+                            if (key.size() + mip.pixels.size() > keyBudget) {
+                                cacheable = false;
+                                break;
+                            }
+                            for (const auto& pixel : mip.pixels)
+                                append(pixel.a);
+                        }
                     }
-                }
+            }
         }
+        cacheable = cacheable && key.size() <= keyBudget;
         if (lit && cacheable && !key.empty() && key == shadowKey_)
             statistics_.shadowCacheHit = true;
         else {
+            statistics_.shadowCacheMiss = lit;
+            statistics_.shadowCacheBypass = lit && !cacheable;
             if (lit)
                 drawScene(shadow_, frame, frame.shadow.viewProjection, true);
             else
                 shadow_.clear(frame.background);
             if (lit && cacheable)
-                shadowKey_ = std::move(key);
+                shadowKey_.swap(key);
             else
                 shadowKey_.clear();
         }
@@ -251,10 +305,10 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
     settings.receiverPlaneClamp = frame.shadow.receiverPlaneClamp;
     settings.shadowFilterRadius = frame.shadow.filterRadius;
     settings.parameters = frame.light;
-    settings.textures = &frame.textures;
+    settings.textures = textureTable;
     target_.setLighting(settings);
     if (!guided)
-        std::vector<float>().swap(visibility_);
+        visibility_.clear();
     target_.captureSurfaces(guided || outlines, guided);
     target_.prepareTransparency(blending);
     {
@@ -283,9 +337,18 @@ const Framebuffer& CpuFrameKit::render(const scene::SceneFrame& frame, int width
     }
 
     statistics_.residentBytes = reconstruction_.allocatedBytes() + shadowKey_.capacity() +
-                                target_.allocatedBytes() + shadow_.allocatedBytes() +
-                                output_.size() + canvas_.size() +
-                                visibility_.capacity() * sizeof(float);
+                                shadowScratch_.capacity() + target_.allocatedBytes() +
+                                shadow_.allocatedBytes() + output_.allocatedBytes() +
+                                canvas_.allocatedBytes() + visibility_.capacity() * sizeof(float) +
+                                shadowMaskTextures_.capacity() / 8;
+    statistics_.shadowCacheBytes =
+        shadowKey_.empty() ? 0
+                           : shadow_.allocatedBytes() + shadowKey_.capacity() +
+                                 shadowScratch_.capacity() + shadowMaskTextures_.capacity() / 8;
+    statistics_.fragmentCapacity = target_.fragmentCapacity();
+    statistics_.allocations = scratchAllocations_ + output_.allocations() + canvas_.allocations() +
+                              target_.allocations() + shadow_.allocations() +
+                              reconstruction_.allocations();
     return output_;
 }
 namespace {
@@ -300,6 +363,8 @@ void CpuFrameKit::resolveGuided(const scene::SceneFrame& frame, const LightingSe
     const int width = target_.width(), height = target_.height(), sw = (width + 1) / 2,
               sh = (height + 1) / 2;
     const auto& surfaces = target_.surfaces();
+    if (std::size_t(sw) * sh > visibility_.capacity())
+        ++scratchAllocations_;
     visibility_.resize(std::size_t(sw) * sh);
     const auto sourceIndex = [&](int x, int y) {
         return std::size_t(std::min(height - 1, y * 2 + 1)) * width +

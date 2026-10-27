@@ -101,12 +101,12 @@ export function normalizeFrame(input) {
   return { frameId: text(input.frameId, "frameId"), width, height, quality, clear, view: v, light: l };
 }
 export function normalizeDraw(draw) {
-  record(draw, ["geometryId", "materialId", "transform"], "draw");
+  record(draw, ["geometryId", "materialId", "transform", "instanceId"], "draw");
   const transform = array(draw.transform ?? [1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1], "transform", 16, 16);
   if (transform[3] !== 0 || transform[7] !== 0 || transform[11] !== 0 || transform[15] !== 1) throw TypeError("Draw transform must be affine");
   const det = transform[0]*(transform[5]*transform[10]-transform[9]*transform[6])-transform[4]*(transform[1]*transform[10]-transform[9]*transform[2])+transform[8]*(transform[1]*transform[6]-transform[5]*transform[2]);
   if (!Number.isFinite(det) || Math.abs(det) < 1e-12) throw TypeError("Draw transform is singular");
-  return { geometryId: text(draw.geometryId, "geometryId"), materialId: draw.materialId == null ? null : text(draw.materialId, "materialId"), transform };
+  return { ...(draw.instanceId===undefined?{}:{instanceId:text(draw.instanceId,"instanceId")}), geometryId: text(draw.geometryId, "geometryId"), materialId: draw.materialId == null ? null : text(draw.materialId, "materialId"), transform };
 }
 import { normalizeRenderResource } from 'nexusengine/domains/render/resource-schema';
 import { normalizeRenderFrame } from 'nexusengine/domains/render/frame-schema';

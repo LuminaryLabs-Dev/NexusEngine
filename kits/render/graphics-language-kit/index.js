@@ -32,12 +32,12 @@ function sameOptions(a, b) {
   return [...keys].every(k => Object.is(a[k], b[k]));
 }
 export function createGraphicsLanguageKit(config = {}) {
-  record(config,['host','canvas','nativeWindow','surfaceOptions','surfaceId','selection','backend','memoryBudgetBytes','maxResourceBytes','maxFragments','handoverBudgetBytes','handoverTimeoutMs','xr'],'Graphics Language Kit options');
+  record(config,['host','canvas','nativeWindow','surfaceOptions','surfaceId','selection','backend','memoryBudgetBytes','maxResourceBytes','maxFragments','shadowCacheBytes','handoverBudgetBytes','handoverTimeoutMs','xr'],'Graphics Language Kit options');
   const options = { ...config };
   return defineDomainServiceKit({
     id: graphicsLanguageManifest.id,
     domain: 'graphics-language', domainPath: 'n:render:graphics-language', parentDomainPath: 'n:render',
-    apiName: 'graphicsLanguage', version: '1', stability: 'experimental',
+    apiName: 'graphicsLanguage', version: '2', stability: 'experimental',
     requires: graphicsLanguageManifest.requires, provides: graphicsLanguageManifest.provides,
     serializableState: false,
     metadata: { optional: true, providerOwnedExternally: true, contentFingerprint: configurationFingerprint(options) },
@@ -68,3 +68,5 @@ export function installGraphicsLanguage(engine, config = {}) {
   for (const kit of createGraphicsLanguageDomain(config)) engine.installKit(kit);
   return engine.n.graphicsLanguage;
 }
+
+export { createFramePacer } from './frame-pacing.js';

@@ -2,7 +2,7 @@
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
   "registryHash": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
-  "contentHash": "sha256:e82a0f0d1d9273fc54d05213a2133042a9f538c173ccb0ba29f25b6694c29aa5",
+  "contentHash": "sha256:f60d010797ff2c59ac981c0c6063a5182a09f47736888a89ca7c1fd165b85a1f",
   "chapters": [
     {
       "id": "start-here",
@@ -154,7 +154,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:dad6c97d0dd17a1053a15e985374482b2929db19ecda7fe2eaa6875ebe408bf4"
+      "contentHash": "sha256:05c5da945d6d7de94dd34ddbb65149fbb58994a224491936ffc56afddbc7b6c4"
     },
     {
       "id": "restored-behavior-migration",

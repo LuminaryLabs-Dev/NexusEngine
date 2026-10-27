@@ -1,11 +1,5 @@
-function own(frame) {
-  if (!frame || !Number.isSafeInteger(frame.width) || !Number.isSafeInteger(frame.height) ||
-      frame.width < 1 || frame.height < 1 || !(frame.pixels instanceof Uint8ClampedArray) ||
-      frame.pixels.length !== frame.width * frame.height * 4 || frame.stride !== frame.width * 4) {
-    throw TypeError('Host requires a completed tightly packed straight RGBA8 frame.');
-  }
-  return { ...frame, pixels: new Uint8ClampedArray(frame.pixels) };
-}
+import { copyFrame, copyFrameLease, retainFrame, releaseFrame, registerFrameHost } from './frame-ownership.js';
+const now = () => globalThis.performance?.now() ?? Date.now();
 function synchronous(result) {
   if (result && typeof result.then === 'function') {
     result.catch?.(() => {});
@@ -13,39 +7,81 @@ function synchronous(result) {
   }
 }
 
-// prepare may be asynchronous in a custom host. commit and rollback are a short,
-// synchronous presentation boundary, so a timed-out operation cannot present later.
-export function createFrameHost({ present = () => {}, restore = present, dispose = () => {} } = {}) {
-  if ([present,restore].some(fn=>typeof fn!=='function'||fn.constructor.name==='AsyncFunction')) throw TypeError('Presentation commit callbacks must be synchronous');
-  let last = null, generation = -1, closed = false;
-  return {
+// prepare may be asynchronous in a custom host. The built-in host keeps its
+// staging tokens opaque and owns the last good frame until rollback is impossible.
+function makeFrameHost({ present = () => {}, restore = present, dispose = () => {} } = {}, trusted = false) {
+  if ([present, restore].some(fn => typeof fn !== 'function' || fn.constructor.name === 'AsyncFunction')) throw TypeError('Presentation commit callbacks must be synchronous');
+  let last = null, generation = -1, closed = false, copiedBytes = 0;
+  let presentations = 0, presentationMs = 0, maxPresentationMs = 0;
+  const stages = new Map();
+  const copied = bytes => { copiedBytes += bytes; };
+  const presentFrame = (callback, lease, tag) => synchronous(callback(trusted ? lease.frame : copyFrame(lease.frame, copied), { ...tag }));
+  function stage(lease, tag) {
+    if (closed) throw Error('Host disposed');
+    if (stages.size >= 2) throw Error('Host staging pool is exhausted');
+    if (!Number.isSafeInteger(tag?.generation) || tag.generation < 0) throw TypeError('Host requires a presentation generation');
+    const token = Object.freeze({});
+    stages.set(token, { lease: retainFrame(lease), tag: { ...tag } });
+    return token;
+  }
+  function discard(token) {
+    const staged = stages.get(token);
+    if (staged) { stages.delete(token); releaseFrame(staged.lease); }
+  }
+  function clear() {
+    for (const token of stages.keys()) discard(token);
+    releaseFrame(last); last = null;
+  }
+  function restoreLease(previous, tag) {
+    if (closed) throw Error('Host disposed');
+    const next = previous ? retainFrame(previous) : null;
+    try { if (next) presentFrame(restore, next, tag); }
+    catch (error) { releaseFrame(next); throw error; }
+    releaseFrame(last); last = next; generation = tag.generation;
+  }
+  const host = {
     kind: 'rgba8', reservationBytes: 0,
     prepare(frame, tag) {
-      if (closed) throw Error('Host disposed');
-      return { frame: own(frame), tag: { ...tag } };
+      const lease = copyFrameLease(frame, copied);
+      try { return stage(lease, tag); } finally { releaseFrame(lease); }
     },
-    commit(staged) {
+    commit(token) {
       if (closed) throw Error('Host disposed');
-      if (staged.tag.generation < generation) throw Error('Stale presentation generation');
+      const staged = stages.get(token);
+      if (!staged) throw Error('Unknown or consumed presentation token');
+      const started = now();
       try {
-        synchronous(present(own(staged.frame), staged.tag));
-        last = own(staged.frame);
-        generation = staged.tag.generation;
+        if (staged.tag.generation < generation) throw Error('Stale presentation generation');
+        presentFrame(present, staged.lease, staged.tag);
+        releaseFrame(last); last = staged.lease;
+        stages.delete(token); generation = staged.tag.generation; presentations++;
+        return { presented: true, generation };
       } catch (error) {
-        if (last) synchronous(restore(own(last), { generation, rollback: true }));
+        discard(token);
+        if (last) presentFrame(restore, last, { generation, rollback: true });
         throw error;
+      } finally {
+        presentationMs = now() - started;
+        maxPresentationMs = Math.max(maxPresentationMs, presentationMs);
       }
-      return { presented: true, generation };
     },
     rollback(previous, tag) {
-      if (previous) synchronous(restore(own(previous), tag));
-      last = previous ? own(previous) : null;
-      generation = tag.generation;
+      const lease = previous ? copyFrameLease(previous, copied) : null;
+      try { restoreLease(lease, tag); } finally { releaseFrame(lease); }
     },
-    capture: () => last ? own(last) : null,
-    dispose() { if (!closed) { closed = true; last = null; dispose(); } }
+    capture: () => last ? copyFrame(last.frame, copied) : null,
+    getDiagnostics() {
+      const retained = new Set([...stages.values()].map(s => s.lease.frame.pixels));
+      if (last) retained.add(last.frame.pixels);
+      return { copiedBytes, presentationMs, maxPresentationMs, presentations, stagedFrames: stages.size,
+        retainedFrames: retained.size, retainedBytes: [...retained].reduce((n,pixels) => n + pixels.byteLength, 0), maxRetainedFrames: 3 };
+    },
+    dispose() { if (!closed) { closed = true; clear(); dispose(); } }
   };
+  registerFrameHost(host, { prepare: stage, discard, capture: () => last ? retainFrame(last) : null, restore: restoreLease, clear });
+  return host;
 }
+export function createFrameHost(options = {}) { return makeFrameHost(options, !options.present && !options.restore); }
 
 export function createCanvasHost(canvas, { bindSurface, allowReplacement = false } = {}) {
   if (!canvas?.ownerDocument || typeof canvas.getContext !== 'function') throw TypeError('A canvas surface is required');
@@ -72,19 +108,21 @@ export function createCanvasHost(canvas, { bindSurface, allowReplacement = false
       replacement = false;
     }
   };
-  return { ...createFrameHost({ present: paint, dispose: () => unbind?.() }), getSurface: () => current };
+  const host = makeFrameHost({ present: paint, dispose: () => unbind?.() }, true);
+  host.getSurface = () => current;
+  return host;
 }
 
 export function createNativeWindowHost({ width = 640, height = 360 } = {}) {
   if (![width,height].every(v=>Number.isSafeInteger(v)&&v>0&&v<=4096)) throw TypeError('Native window dimensions must be integers in 1..4096');
   let adapter, handle, closed = false;
-  const host = createFrameHost({
+  const host = makeFrameHost({
     present(frame) {
       if (!handle || closed) throw Error('Native presentation is not ready');
       adapter.present(handle, frame.pixels, frame.width, frame.height);
     },
     dispose() { closed = true; if (handle) { adapter.close(handle); handle = null; } }
-  });
+  }, true);
   const ready = (async () => {
     const { loadNativeWindow } = await import('./runtime/loader.js');
     adapter = await loadNativeWindow();
@@ -92,5 +130,7 @@ export function createNativeWindowHost({ width = 640, height = 360 } = {}) {
     handle = adapter.create(width, height);
   })();
   ready.catch(() => {});
-  return { ...host, ready, getWindowState() { return handle ? adapter.pump(handle) : { closed: true }; } };
+  host.ready = ready;
+  host.getWindowState = () => handle ? adapter.pump(handle) : { closed: true };
+  return host;
 }

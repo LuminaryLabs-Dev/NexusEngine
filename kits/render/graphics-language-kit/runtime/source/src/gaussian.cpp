@@ -4,8 +4,8 @@
 #include <stdexcept>
 
 namespace nexusgl {
-std::vector<GaussianUpsampler::Taps> GaussianUpsampler::axis(int source, int destination) {
-    std::vector<Taps> result(destination);
+void GaussianUpsampler::axis(int source, int destination, std::vector<Taps>& result) {
+    result.resize(destination);
     for (int i = 0; i < destination; ++i) {
         const double center = (i + .5) * source / destination - .5;
         const int first = static_cast<int>(std::floor(center)) - 1;
@@ -20,7 +20,31 @@ std::vector<GaussianUpsampler::Taps> GaussianUpsampler::axis(int source, int des
         for (auto& weight : result[i].weight)
             weight = static_cast<float>(weight / sum);
     }
-    return result;
+}
+void GaussianUpsampler::prepare(int width, int height, int ow, int oh, bool alpha) {
+    const auto reserve = [&](auto& values, std::size_t count) {
+        if (count > values.capacity()) {
+            values.reserve(count);
+            ++allocations_;
+        }
+    };
+    const auto count = std::size_t(ow) * height;
+    // Capacity reservations cannot invalidate the old tap keys/content on
+    // failure.
+    reserve(horizontal_, ow);
+    reserve(vertical_, oh);
+    reserve(temporary_, count);
+    if (alpha)
+        reserve(temporaryAlpha_, count);
+    axis(width, ow, horizontal_);
+    axis(height, oh, vertical_);
+    temporary_.resize(count);
+    if (alpha)
+        temporaryAlpha_.resize(count);
+    sourceWidth_ = width;
+    sourceHeight_ = height;
+    outputWidth_ = ow;
+    outputHeight_ = oh;
 }
 void GaussianUpsampler::reconstruct(const std::vector<LinearRGB>& source, int width, int height,
                                     Framebuffer& output, float exposure,
@@ -54,16 +78,10 @@ void GaussianUpsampler::reconstruct(const std::vector<LinearRGB>& source, int wi
         } else {
             if (width != sourceWidth_ || height != sourceHeight_ || ow != outputWidth_ ||
                 oh != outputHeight_) {
-                auto horizontal = axis(width, ow), vertical = axis(height, oh);
-                std::vector<LinearRGB> temporary(std::size_t(ow) * height);
-                horizontal_.swap(horizontal);
-                vertical_.swap(vertical);
-                temporary_.swap(temporary);
-                sourceWidth_ = width;
-                sourceHeight_ = height;
-                outputWidth_ = ow;
-                outputHeight_ = oh;
+                prepare(width, height, ow, oh, true);
             }
+            if (std::size_t(ow) * height > temporaryAlpha_.capacity())
+                ++allocations_;
             temporaryAlpha_.resize(std::size_t(ow) * height);
             for (int y = 0; y < height; ++y)
                 for (int x = 0; x < ow; ++x) {
@@ -111,15 +129,7 @@ void GaussianUpsampler::reconstruct(const std::vector<LinearRGB>& source, int wi
     }
     if (width != sourceWidth_ || height != sourceHeight_ || ow != outputWidth_ ||
         oh != outputHeight_) {
-        auto horizontal = axis(width, ow), vertical = axis(height, oh);
-        std::vector<LinearRGB> temporary(static_cast<std::size_t>(ow) * height);
-        horizontal_.swap(horizontal);
-        vertical_.swap(vertical);
-        temporary_.swap(temporary);
-        sourceWidth_ = width;
-        sourceHeight_ = height;
-        outputWidth_ = ow;
-        outputHeight_ = oh;
+        prepare(width, height, ow, oh, false);
     }
     for (int y = 0; y < height; ++y)
         for (int x = 0; x < ow; ++x) {

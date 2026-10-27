@@ -1,0 +1,17 @@
+{
+  "runId": "2026-10-27-graphics-efficiency",
+  "checkout": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-Graphics-Efficiency-Candidate",
+  "completed": [
+    "baseline",
+    "native",
+    "integration",
+    "validation"
+  ],
+  "evidence": "validation.json",
+  "sdk": "Temporary 425,660,416-byte installation stayed below 500 MB and was removed after matched artifact rebuild",
+  "limits": [
+    "Synthetic engineering qualification only; real-game target input not selected",
+    "Host contention affects wall timings; report includes alternating CPU check and scaling workload"
+  ],
+  "publication": "Engine task/session owns main publication state and exact remote SHA; read run.json to resume."
+}

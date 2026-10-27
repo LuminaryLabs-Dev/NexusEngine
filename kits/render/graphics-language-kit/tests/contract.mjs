@@ -19,11 +19,17 @@ const e = createEngine();
 assert(!e.n.graphicsLanguage);
 assert.equal(OPTIONAL_KIT_CATALOG[0].optional, true);
 const g = installGraphicsLanguage(e, { backend: 'wasm' });
+assert.throws(()=>createNexusGLProvider({shadowCacheBytes:-1}),/shadow cache budget/);
 assert.equal(installGraphicsLanguage(e, { backend: 'wasm' }), g);
 assert.throws(()=>installGraphicsLanguage(e, { backend: 'native' }), /different options/);
 await fails(()=>g.render(sceneFrame()), /not ready/);
 await g.ready;
 assert.equal(g.getState().status, 'ready');
+const configured=createEngine();const configuredGraphics=installGraphicsLanguage(configured,{backend:'wasm',shadowCacheBytes:0});
+assert.equal(installGraphicsLanguage(configured,{backend:'wasm',shadowCacheBytes:0}),configuredGraphics);
+assert.throws(()=>installGraphicsLanguage(configured,{backend:'wasm',shadowCacheBytes:1024}),/different options/);
+await configuredGraphics.ready;await configuredGraphics.dispose();
+
 const kitCount=e.kits.length;
 e.installKit(createGraphicsLanguageKit({backend:'wasm'}));assert.equal(e.kits.length,kitCount);
 assert.throws(()=>e.installKit(createGraphicsLanguageKit({backend:'native'})),/different content/);

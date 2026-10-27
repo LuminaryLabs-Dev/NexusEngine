@@ -10,6 +10,13 @@ class GaussianUpsampler {
     void reconstruct(const std::vector<LinearRGB>& source, int width, int height,
                      Framebuffer& output, float exposure = 1.25f,
                      const std::vector<float>* alpha = nullptr);
+    std::uint64_t allocations() const noexcept { return allocations_; }
+    void trim() {
+        horizontal_.shrink_to_fit();
+        vertical_.shrink_to_fit();
+        temporary_.shrink_to_fit();
+        temporaryAlpha_.shrink_to_fit();
+    }
     std::size_t allocatedBytes() const noexcept {
         return temporary_.capacity() * sizeof(LinearRGB) +
                temporaryAlpha_.capacity() * sizeof(float) +
@@ -21,7 +28,9 @@ class GaussianUpsampler {
         std::array<int, 4> index{};
         std::array<float, 4> weight{};
     };
-    static std::vector<Taps> axis(int source, int destination);
+    static void axis(int source, int destination, std::vector<Taps>& result);
+    void prepare(int width, int height, int outputWidth, int outputHeight, bool alpha);
+    std::uint64_t allocations_ = 0;
     int sourceWidth_ = 0, sourceHeight_ = 0, outputWidth_ = 0, outputHeight_ = 0;
     std::vector<Taps> horizontal_, vertical_;
     std::vector<LinearRGB> temporary_;

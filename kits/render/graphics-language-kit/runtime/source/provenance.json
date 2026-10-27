@@ -1,95 +1,203 @@
 {
   "repository": "https://github.com/LuminaryLabs-Dev/NexusGL",
   "revision": "49c6a7c263f6ab0d72f0b6e7121121833a0cbf10",
-  "note": "Exact local source snapshot; per-file hashes are authoritative because the source checkout contains existing local work. No sibling repository was modified.",
+  "note": "Vendored NexusGL snapshot with local NexusEngine efficiency and stability patches. The upstream revision identifies ancestry, not an exact upstream checkout; original per-file attribution is retained separately.",
   "files": [
     {
-      "path": "include/nexusgl/render3d.hpp",
-      "sha256": "c1cba5e8640bb88ae3e61a10f471a451acbea0044da8bf65744cf3e34912c6f9"
+      "path": "adapters/c_api.cpp",
+      "sha256": "7a93dbf18737ec21f33424a4885f5127186be43be7ff9426f99f6398a4b68b67"
     },
     {
-      "path": "include/nexusgl/material.hpp",
-      "sha256": "5cf49184f743a20b38ef68e26036d0033ee9f9177da6b8fdcbbc74d5f99b41a0"
+      "path": "include/nexusgl/c_api.h",
+      "sha256": "b6db365f2c29954206ea2981d4ff6b73db87e486f2331f28f3ecc99f30189190"
     },
     {
-      "path": "include/nexusgl/renderer.hpp",
-      "sha256": "6e11898f1ae9487ab54bf9d276b2bf6b184933ca5e2c6100cce01e3662bd104a"
+      "path": "include/nexusgl/domains/render/cpu_execution_kit.hpp",
+      "sha256": "f5d5e31a814f3a2e03d59fc5282dec0240eadf57436333181f6df7c2399ccb8c"
     },
     {
-      "path": "include/nexusgl/graphics.hpp",
-      "sha256": "e2cfc684aac94bde704395772f318e67cf75d4cca8e0990b5845799f3cbbc5dd"
+      "path": "include/nexusgl/domains/render/render_dsk.hpp",
+      "sha256": "79dedcb5fc65694f8aae36e8f6e73cc9926e05e02c238434c1a45c2263667342"
     },
     {
-      "path": "include/nexusgl/math.hpp",
-      "sha256": "973c7de23559147ca3eaa6ffff277588662f7852b716d9120ff21648ffff1430"
+      "path": "include/nexusgl/domains/scene/descriptors.hpp",
+      "sha256": "038710c06f1c39c617a467e16d42ea5764f879904551921bcb3e2dc28a386755"
+    },
+    {
+      "path": "include/nexusgl/domains/scene/resource_store.hpp",
+      "sha256": "331c2eb579a947e792758d99f38da8d6b55b8dd8c2f9c82ec5e4291750e1dac9"
+    },
+    {
+      "path": "include/nexusgl/domains/scene/scene_dsk.hpp",
+      "sha256": "4d2a59c3698d83889c94ebedf46b48951b9762bf56bee0b7f2ea3b966b671e9e"
     },
     {
       "path": "include/nexusgl/gaussian.hpp",
-      "sha256": "cdf6ef243a99c14193e7805d189c2553c226ebecd36dd4bde407e823756638eb"
+      "sha256": "579010df6db4b18b56aa55200c060d8d8b3c461e9f05b9c3ee58749bc81cd5b7"
+    },
+    {
+      "path": "include/nexusgl/graphics.hpp",
+      "sha256": "a3c78f427d41333807523e6bed2815eee632d638565129f5a156f54b9ca4d1ee"
     },
     {
       "path": "include/nexusgl/lighting.hpp",
       "sha256": "c7f0c559900062f219bb4df0b56affe8abec98b8766ad9f40c818c08acf1cc11"
     },
     {
+      "path": "include/nexusgl/material.hpp",
+      "sha256": "adc07581bbb5b49c5ea9431bdc334219a364b970e0171b909ed6582c71387878"
+    },
+    {
+      "path": "include/nexusgl/math.hpp",
+      "sha256": "641bda3feca4d7b0978f957a0d2c165b47f28b198ec2a3e429b8e9f0ad8d163a"
+    },
+    {
+      "path": "include/nexusgl/render3d.hpp",
+      "sha256": "51b12f319a8433ce8490d48644bc7fdc2ed1bbad175ee395321c90b6d79d4fd1"
+    },
+    {
+      "path": "include/nexusgl/renderer.hpp",
+      "sha256": "0ebed9c68458cbfd04b8fd00cb17755b17b82febcbab03c0636f57d448b6f9fe"
+    },
+    {
+      "path": "include/nexusgl/resource_budget.hpp",
+      "sha256": "0ffbfda257df1ee541af85b7f869b8842e1ef638f34e2f303882b4344f30f080"
+    },
+    {
       "path": "include/nexusgl/types.hpp",
       "sha256": "25bc2b2b5a74dbe190fc543823bec6132d364aeb6dd04a39b3d4706fb1de82e2"
     },
     {
-      "path": "include/nexusgl/domains/render/cpu_execution_kit.hpp",
-      "sha256": "93b9d1eefbc0c13edee647298407cfe4caf4a5eb262f37bde4a63979a06ddff3"
+      "path": "src/domains/render/kits/cpu_execution.cpp",
+      "sha256": "c58a4b4f209d2c3420ae9ad70dc945ae79c6809377dac8aff5acb06bdf7f0a9b"
     },
     {
-      "path": "include/nexusgl/domains/render/render_dsk.hpp",
-      "sha256": "778ed738f5a8139fae66039ee873fe3dcebfad2748c076799c98d739c41ca95a"
+      "path": "src/domains/render/render_dsk.cpp",
+      "sha256": "0946606d2dc18f9422a2d408c24f94c625df1da6a40e0efdd5add50b9867ede1"
     },
     {
-      "path": "include/nexusgl/domains/scene/scene_dsk.hpp",
-      "sha256": "0eaca48c7552287db508e2970e44a87e837b9a0aecef132970239c00aa6804ea"
+      "path": "src/domains/scene/resource_store.cpp",
+      "sha256": "99900cb3c9def33196dd876ca7d302139566d14ac9fdca1b6cf5e14cc0743630"
     },
     {
-      "path": "include/nexusgl/domains/scene/descriptors.hpp",
-      "sha256": "1cb5fe8abd16d5d0ba99f1bd786d869dbd0561c043b5812b6009807821f95457"
+      "path": "src/domains/scene/scene_dsk.cpp",
+      "sha256": "55956707717631325726f713ee09d846a58c7bb46c8977615f8f1ae314fcc721"
     },
     {
-      "path": "include/nexusgl/c_api.h",
-      "sha256": "6e665414ca623292cec38de892bb8543ef16a604d120e7a79f8db913f0f76a03"
-    },
-    {
-      "path": "adapters/c_api.cpp",
-      "sha256": "76df9d31019a5f12cd8dc90bc41da0cc471515d448ea38bda6b2f328c816d4a9"
-    },
-    {
-      "path": "src/math.cpp",
-      "sha256": "f73333f0b098455a043d603cc1fe6057933453af12a273539c14224c2e33760c"
-    },
-    {
-      "path": "src/renderer.cpp",
-      "sha256": "8adb790d88bd9fbb36909a4f310a73c3a00b3e00c73c468b36867d99cd693a98"
-    },
-    {
-      "path": "src/render3d.cpp",
-      "sha256": "381a0c2daf4e5a6ec9da42628d2c719fa526b2f4ae68df57ddf4c6dd2d983826"
+      "path": "src/gaussian.cpp",
+      "sha256": "7905e66c013ca610ebd82ecf5131f8ac1a9f3eb975b2c12a3773f576e7e29014"
     },
     {
       "path": "src/lighting.cpp",
       "sha256": "d93b9abb06fb4d27a2fa8fb1562686d144f01759aed985e6d4343087378e2371"
     },
     {
-      "path": "src/gaussian.cpp",
-      "sha256": "b824d29cd47ddb34adb49003953a777f466b3bc3bba7fb36ce76d06e57c071fc"
+      "path": "src/math.cpp",
+      "sha256": "09220b5b5f2717fb05cc7e70aea4a3439e8cc55d8eeb78d5f702a620d5a4b9fe"
     },
     {
-      "path": "src/domains/scene/scene_dsk.cpp",
-      "sha256": "9305cefab646a00dbfcfb657f24d4cfdc26424e3d9fc30b179834f574298371d"
+      "path": "src/render3d.cpp",
+      "sha256": "7fcc1f424e71ccab524cf64a1e9c09f1735806d6f894e491d99dfab9030dc209"
     },
     {
-      "path": "src/domains/render/render_dsk.cpp",
-      "sha256": "a7e0e657e4434702416039219dfa2b29649267e1063ac39b39fe8fcd3f5c7117"
-    },
-    {
-      "path": "src/domains/render/kits/cpu_execution.cpp",
-      "sha256": "1843a753620df7f90d3491885d68f50ca6cca124163f854cd43f894b5756c3f2"
+      "path": "src/renderer.cpp",
+      "sha256": "3f2b7ff3a591cfdfe5253fd4444f81984d2ae8b1220f1246f1517e64e0abca5a"
     }
-  ]
+  ],
+  "schema": "nexusengine.nexusgl-source/2",
+  "upstreamSnapshot": {
+    "repository": "https://github.com/LuminaryLabs-Dev/NexusGL",
+    "revision": "49c6a7c263f6ab0d72f0b6e7121121833a0cbf10",
+    "note": "Exact local source snapshot; per-file hashes are authoritative because the source checkout contains existing local work. No sibling repository was modified.",
+    "files": [
+      {
+        "path": "include/nexusgl/render3d.hpp",
+        "sha256": "c1cba5e8640bb88ae3e61a10f471a451acbea0044da8bf65744cf3e34912c6f9"
+      },
+      {
+        "path": "include/nexusgl/material.hpp",
+        "sha256": "5cf49184f743a20b38ef68e26036d0033ee9f9177da6b8fdcbbc74d5f99b41a0"
+      },
+      {
+        "path": "include/nexusgl/renderer.hpp",
+        "sha256": "6e11898f1ae9487ab54bf9d276b2bf6b184933ca5e2c6100cce01e3662bd104a"
+      },
+      {
+        "path": "include/nexusgl/graphics.hpp",
+        "sha256": "e2cfc684aac94bde704395772f318e67cf75d4cca8e0990b5845799f3cbbc5dd"
+      },
+      {
+        "path": "include/nexusgl/math.hpp",
+        "sha256": "973c7de23559147ca3eaa6ffff277588662f7852b716d9120ff21648ffff1430"
+      },
+      {
+        "path": "include/nexusgl/gaussian.hpp",
+        "sha256": "cdf6ef243a99c14193e7805d189c2553c226ebecd36dd4bde407e823756638eb"
+      },
+      {
+        "path": "include/nexusgl/lighting.hpp",
+        "sha256": "c7f0c559900062f219bb4df0b56affe8abec98b8766ad9f40c818c08acf1cc11"
+      },
+      {
+        "path": "include/nexusgl/types.hpp",
+        "sha256": "25bc2b2b5a74dbe190fc543823bec6132d364aeb6dd04a39b3d4706fb1de82e2"
+      },
+      {
+        "path": "include/nexusgl/domains/render/cpu_execution_kit.hpp",
+        "sha256": "93b9d1eefbc0c13edee647298407cfe4caf4a5eb262f37bde4a63979a06ddff3"
+      },
+      {
+        "path": "include/nexusgl/domains/render/render_dsk.hpp",
+        "sha256": "778ed738f5a8139fae66039ee873fe3dcebfad2748c076799c98d739c41ca95a"
+      },
+      {
+        "path": "include/nexusgl/domains/scene/scene_dsk.hpp",
+        "sha256": "0eaca48c7552287db508e2970e44a87e837b9a0aecef132970239c00aa6804ea"
+      },
+      {
+        "path": "include/nexusgl/domains/scene/descriptors.hpp",
+        "sha256": "1cb5fe8abd16d5d0ba99f1bd786d869dbd0561c043b5812b6009807821f95457"
+      },
+      {
+        "path": "include/nexusgl/c_api.h",
+        "sha256": "6e665414ca623292cec38de892bb8543ef16a604d120e7a79f8db913f0f76a03"
+      },
+      {
+        "path": "adapters/c_api.cpp",
+        "sha256": "76df9d31019a5f12cd8dc90bc41da0cc471515d448ea38bda6b2f328c816d4a9"
+      },
+      {
+        "path": "src/math.cpp",
+        "sha256": "f73333f0b098455a043d603cc1fe6057933453af12a273539c14224c2e33760c"
+      },
+      {
+        "path": "src/renderer.cpp",
+        "sha256": "8adb790d88bd9fbb36909a4f310a73c3a00b3e00c73c468b36867d99cd693a98"
+      },
+      {
+        "path": "src/render3d.cpp",
+        "sha256": "381a0c2daf4e5a6ec9da42628d2c719fa526b2f4ae68df57ddf4c6dd2d983826"
+      },
+      {
+        "path": "src/lighting.cpp",
+        "sha256": "d93b9abb06fb4d27a2fa8fb1562686d144f01759aed985e6d4343087378e2371"
+      },
+      {
+        "path": "src/gaussian.cpp",
+        "sha256": "b824d29cd47ddb34adb49003953a777f466b3bc3bba7fb36ce76d06e57c071fc"
+      },
+      {
+        "path": "src/domains/scene/scene_dsk.cpp",
+        "sha256": "9305cefab646a00dbfcfb657f24d4cfdc26424e3d9fc30b179834f574298371d"
+      },
+      {
+        "path": "src/domains/render/render_dsk.cpp",
+        "sha256": "a7e0e657e4434702416039219dfa2b29649267e1063ac39b39fe8fcd3f5c7117"
+      },
+      {
+        "path": "src/domains/render/kits/cpu_execution.cpp",
+        "sha256": "1843a753620df7f90d3491885d68f50ca6cca124163f854cd43f894b5756c3f2"
+      }
+    ]
+  }
 }

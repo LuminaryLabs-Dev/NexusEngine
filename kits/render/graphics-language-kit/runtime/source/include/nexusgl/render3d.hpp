@@ -13,7 +13,7 @@ struct LightingSettings {
     const RenderTarget3D* shadowMap = nullptr; // Borrowed through triangle submission.
     Mat4 worldToShadow = Mat4::identity();
     LightParameters parameters;
-    const std::vector<Texture2D>* textures = nullptr;
+    TextureTableView textures;
     double shadowBias = .0005, receiverPlaneClamp = .03;
     int shadowFilterRadius = 1;
     bool prepared = false;
@@ -54,6 +54,8 @@ class RenderTarget3D {
     int width() const noexcept { return width_; }
     int height() const noexcept { return height_; }
     std::size_t allocatedBytes() const noexcept;
+    std::uint64_t allocations() const noexcept { return allocations_ + color_.allocations(); }
+    std::size_t fragmentCapacity() const noexcept { return fragments_.capacity(); }
     void setFragmentLimit(std::size_t count);
     void resize(int width, int height); // Strong exception guarantee.
     void clear(Color color) noexcept;
@@ -63,10 +65,12 @@ class RenderTarget3D {
     static constexpr std::size_t maxTransparentFragments = 8 * 1024 * 1024;
     static constexpr int maxTransparentLayers = 64;
     void prepareTransparency(bool enabled);
-    void resolveTransparency(); // Reports allocation/layer limits; never drops fragments silently.
+    void resolveTransparency(); // Reports allocation/layer limits; never drops
+                                // fragments silently.
     void setTextureSource(const std::vector<Texture2D>* textures) noexcept {
         lighting_.textures = textures;
     }
+    void setTextureSource(TextureTableView textures) noexcept { lighting_.textures = textures; }
     const std::vector<float>& alpha() const noexcept { return alpha_; }
     void triangle(ClipVertex a, ClipVertex b, ClipVertex c) noexcept;
     void setMaterial(const Material* material, int index = -1, std::uint32_t key = 0) noexcept {
@@ -104,6 +108,7 @@ class RenderTarget3D {
         double handedness;
     };
     void rasterize(Vertex a, Vertex b, Vertex c) noexcept;
+    std::uint64_t allocations_ = 0;
     int width_, height_;
     bool depthOnly_;
     std::size_t fragmentLimit_ = maxTransparentFragments;

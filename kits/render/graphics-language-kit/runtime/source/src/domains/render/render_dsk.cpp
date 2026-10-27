@@ -21,25 +21,42 @@ const Framebuffer& RenderDSK::render(const scene::Descriptor& descriptor, int wi
 }
 const Framebuffer& RenderDSK::renderAtQuality(const scene::Descriptor& descriptor, int width,
                                               int height, Quality selectedQuality) {
+    return renderImpl(&descriptor, nullptr, width, height, selectedQuality);
+}
+const Framebuffer& RenderDSK::render(const scene::PreparedScene& prepared, int width, int height) {
+    return renderImpl(nullptr, &prepared, width, height, quality());
+}
+const Framebuffer& RenderDSK::renderImpl(const scene::Descriptor* raw,
+                                         const scene::PreparedScene* prepared, int width,
+                                         int height, Quality selectedQuality) {
     ResolutionKit check;
     check.setQuality(selectedQuality);
     {
         ProfileScope scope(hooks_, "validation");
-        scene::validate(descriptor);
+        if (raw)
+            scene::validate(*raw);
     }
     execution_->setProfileHooks(hooks_);
     execution_->setResourceLimits(limits_);
-    const auto& output = std::visit(
-        [&](const auto& frame) -> const Framebuffer& {
-            using Frame = std::decay_t<decltype(frame)>;
-            if constexpr (std::is_same_v<Frame, scene::SceneFrame>)
-                return execution_->render(frame, width, height, selectedQuality);
-            else
-                return execution_->render(frame, width, height);
-        },
-        descriptor);
-    const bool spatial = std::holds_alternative<scene::SceneFrame>(descriptor);
-    const int scale = spatial ? std::get<scene::SceneFrame>(descriptor).display.sampleScale : 1;
+    const auto rawRender = [&]() -> const Framebuffer& {
+        return std::visit(
+            [&](const auto& frame) -> const Framebuffer& {
+                using Frame = std::decay_t<decltype(frame)>;
+                if constexpr (std::is_same_v<Frame, scene::SceneFrame>)
+                    return execution_->render(frame, width, height, selectedQuality);
+                else
+                    return execution_->render(frame, width, height);
+            },
+            *raw);
+    };
+    const auto& output = prepared
+                             ? execution_->render(prepared->frame(), width, height, selectedQuality,
+                                                  prepared->identity(), prepared->shadowRevision())
+                             : rawRender();
+    const bool spatial = prepared || std::holds_alternative<scene::SceneFrame>(*raw);
+    const int scale = prepared
+                          ? prepared->frame().display.sampleScale
+                          : (spatial ? std::get<scene::SceneFrame>(*raw).display.sampleScale : 1);
     receipt_ = {
         true,
         receipt_.serial + 1,
@@ -69,6 +86,13 @@ void RenderDSK::setResourceLimits(ResourceLimits limits) {
         limits.externalReservationBytes > limits.budgetBytes)
         throw std::invalid_argument(
             "resource limits require 1 MiB..4 GiB and 1..8388608 fragments");
+    if (limits.budgetBytes == limits_.budgetBytes &&
+        limits.transparentFragments == limits_.transparentFragments &&
+        limits.externalReservationBytes == limits_.externalReservationBytes &&
+        limits.shadowCacheBytes == limits_.shadowCacheBytes)
+        return;
+    if (limits.shadowCacheBytes > limits.budgetBytes)
+        limits.shadowCacheBytes = limits.budgetBytes;
     trimResources();
     limits_ = limits;
 }

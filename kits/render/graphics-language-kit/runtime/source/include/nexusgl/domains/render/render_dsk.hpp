@@ -1,5 +1,6 @@
 #pragma once
 #include "nexusgl/domains/scene/descriptors.hpp"
+#include "nexusgl/domains/scene/resource_store.hpp"
 #include "nexusgl/renderer.hpp"
 #include <memory>
 
@@ -30,11 +31,13 @@ struct ResourceLimits {
     std::uint64_t budgetBytes = 512ULL * 1024 * 1024;
     std::size_t transparentFragments = 8 * 1024 * 1024;
     std::uint64_t externalReservationBytes = 0;
+    std::uint64_t shadowCacheBytes = 32 * 1024 * 1024;
 };
 struct FrameStatistics {
     std::uint64_t estimatedPeakBytes = 0, residentBytes = 0;
     std::size_t transparentFragments = 0, guidedExactPixels = 0;
-    bool shadowCacheHit = false;
+    bool shadowCacheHit = false, shadowCacheMiss = false, shadowCacheBypass = false;
+    std::uint64_t allocations = 0, shadowCacheBytes = 0, fragmentCapacity = 0;
 };
 struct Snapshot {
     unsigned version = 1;
@@ -69,6 +72,7 @@ class RenderDSK {
     RenderDSK(const RenderDSK&) = delete;
     RenderDSK& operator=(const RenderDSK&) = delete;
     const Framebuffer& render(const scene::Descriptor& descriptor, int width, int height);
+    const Framebuffer& render(const scene::PreparedScene& prepared, int width, int height);
     // Single-flight execution. Per-submission quality is captured before a worker starts.
     // Only default quality commands may overlap execution; join before resource/lifecycle/receipt
     // access.
@@ -92,6 +96,9 @@ class RenderDSK {
     void restore(Snapshot snapshot);
 
   private:
+    const Framebuffer& renderImpl(const scene::Descriptor* raw,
+                                  const scene::PreparedScene* prepared, int width, int height,
+                                  Quality quality);
     ResolutionKit resolution_;
     std::unique_ptr<CpuFrameKit> execution_;
     Receipt receipt_;

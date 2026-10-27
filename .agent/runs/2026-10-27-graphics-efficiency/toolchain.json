@@ -1,0 +1,21 @@
+{
+  "officialArchive": "https://storage.googleapis.com/webassembly/emscripten-releases-builds/mac/6e9f6885cb17a3d6c8fd488a5cff730f50aba61d/wasm-binaries-arm64.tar.xz",
+  "downloadBytes": 280157468,
+  "archiveSHA256": "8e91c0eca2b8728aa2babb32b805318eaf5e8d6652c6535163d0ea467a6d907c",
+  "selectedFileBytes": 417744832,
+  "allocatedBytes": 425660416,
+  "files": 3088,
+  "limitBytes": 500000000,
+  "path": "/private/tmp/nexusengine-graphics-efficiency-20261027/build/graphics-runtime/emscripten-minimal",
+  "config": "/private/tmp/nexusengine-graphics-efficiency-20261027/build/graphics-runtime/emscripten-minimal/emscripten-config.py",
+  "additionalModules": [
+    {
+      "name": "acorn-import-phases",
+      "version": "1.0.4",
+      "downloadBytes": 2860,
+      "fileBytes": 7462,
+      "integrity": "sha512-wKmbr/DDiIXzEOiWrTTUcDm24kQ2vGfZQvM2fwg2vXqR5uW6aapr7ObPtj1th32b9u90/Pf4AItvdTh42fBmVQ==",
+      "url": "https://registry.npmjs.org/acorn-import-phases/-/acorn-import-phases-1.0.4.tgz"
+    }
+  ]
+}

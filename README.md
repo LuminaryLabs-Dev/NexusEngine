@@ -9,7 +9,7 @@ targets, artifacts, and proof without entering the application runtime graph.
 
 ## Optional NexusGL rendering
 
-Use the bundled [Graphics Language Kit](docs/GRAPHICS-LANGUAGE.md) for native or WASM rendering and controlled renderer handover. It installs through one optional entry; ordinary Core imports stay renderer-neutral.
+Use the bundled [Graphics Language Kit](docs/GRAPHICS-LANGUAGE.md) for CPU rendering through native or WASM execution and controlled renderer handover. The optional bundle provides resident meshes, atomic updates, bounded frame ownership and opt-in host pacing; [measurement commands](docs/GRAPHICS-LANGUAGE.md#measurements-and-artifact-checks) document its performance policy. It installs through one optional entry; ordinary Core imports stay renderer-neutral.
 
 ## Start Here
 

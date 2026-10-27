@@ -4,7 +4,7 @@ Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
 Core registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`<br>
-Guide content SHA-256: `e82a0f0d1d9273fc54d05213a2133042a9f538c173ccb0ba29f25b6694c29aa5`
+Guide content SHA-256: `f60d010797ff2c59ac981c0c6063a5182a09f47736888a89ca7c1fd165b85a1f`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -2396,11 +2396,11 @@ Generated from Domain manifest v2 and the production source inventory. Null comp
 
 Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
 
-- Source modules: 1818
+- Source modules: 1820
 - Manifest-proven public atoms: 395
 - Manifest-owned internal modules: 1352
 - Root contract modules: 26
-- Optional provider modules: 45
+- Optional provider modules: 47
 - Unreviewed modules: 0
 - Violations: 0
 
@@ -2431,6 +2431,8 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `kits/development/ide-kit/protocol.js` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
 | `kits/development/ide-kit/server.mjs` | `n:authoring:code` | optional-provider-kit | NexusEngine optional IDE host |
 | `kits/render/graphics-language-kit/contracts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/frame-ownership.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
+| `kits/render/graphics-language-kit/frame-pacing.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/hosts.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/index.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |
 | `kits/render/graphics-language-kit/manifest.js` | `n:render` | optional-provider-kit | NexusEngine optional Graphics Language Kit |

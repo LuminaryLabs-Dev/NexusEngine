@@ -54,12 +54,37 @@ struct SceneFrame {
     Vec3 cameraPosition{0, 0, 5};
     ShadowDescriptor shadow;
     std::vector<SurfaceTriangle> triangles;
+    // Owner-produced immutable instance batches; legacy triangles retain their
+    // ordering.
+    std::vector<std::shared_ptr<const std::vector<SurfaceTriangle>>> batches;
+    std::vector<std::shared_ptr<const Texture2D>> residentTextures;
     std::vector<Material> materials;
     std::vector<Texture2D> textures;
     LightParameters light;
     DisplaySettings display;
 };
+inline TextureTableView texturesOf(const SceneFrame& frame) noexcept {
+    TextureTableView view(&frame.textures);
+    if (!frame.residentTextures.empty())
+        view.resident = &frame.residentTextures;
+    return view;
+}
+template <class F> void eachTriangle(const SceneFrame& frame, F action) {
+    for (const auto& triangle : frame.triangles)
+        action(triangle);
+    for (const auto& batch : frame.batches)
+        for (const auto& triangle : *batch)
+            action(triangle);
+}
+inline std::size_t triangleCount(const SceneFrame& frame) noexcept {
+    std::size_t count = frame.triangles.size();
+    for (const auto& batch : frame.batches)
+        count += batch->size();
+    return count;
+}
 using Descriptor = std::variant<CanvasFrame, SceneFrame>;
 // Shared descriptor contract; no raster targets, host types, IO or timers.
 void validate(const Descriptor& descriptor);
+void validateVertex(const SurfaceVertex&);
+void validateTriangles(const std::vector<SurfaceTriangle>&, std::size_t materialCount);
 } // namespace nexusgl::scene

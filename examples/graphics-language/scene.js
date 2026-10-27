@@ -33,8 +33,15 @@ export function sceneFrame(frameId = 'scene', angle = 0, width = 480, height = 2
   const projection = identity(); projection[10] = -1/9.9; projection[14] = 4.9/9.9; projection[12] = -cameraX;
   return { frame: { frameId, width, height, quality, clear: [22,29,43,255], view: { projection, camera: [cameraX,0,5], shadowResolution: 64, exposure: 1 }, light: { intensity: 1.4, fill: .4 } },
     draws: [
-      { geometryId: 'panel', materialId: 'opaque', transform: transform(-.56,0,0,angle,1,1) },
-      { geometryId: 'window', materialId: 'cutout', transform: transform(.02,0,.2,-angle*.6) },
-      { geometryId: 'overlay', materialId: 'glass', transform: transform(.5,-.12,.4,angle*.4) }
+      { instanceId: 'panel', geometryId: 'panel', materialId: 'opaque', transform: transform(-.56,0,0,angle,1,1) },
+      { instanceId: 'window', geometryId: 'window', materialId: 'cutout', transform: transform(.02,0,.2,-angle*.6) },
+      { instanceId: 'overlay', geometryId: 'overlay', materialId: 'glass', transform: transform(.5,-.12,.4,angle*.4) }
     ] };
+}
+
+// Camera-only fixture deliberately leaves every instance transform unchanged.
+export function cameraFrame(frameId='camera', angle=0, width=480, height=280, quality='native') {
+  const scene=sceneFrame(frameId,0,width,height,quality);
+  scene.frame.view=sceneFrame(frameId,angle,width,height,quality).frame.view;
+  return scene;
 }

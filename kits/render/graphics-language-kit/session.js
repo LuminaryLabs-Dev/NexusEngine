@@ -2,6 +2,7 @@ import { validateRenderProvider } from 'nexusengine/domains/render/provider-cont
 import { normalizeResource, normalizeResourceUpdate, normalizeFrame, normalizeDraw, graphicsFrameDescriptor, integer, text, record, GRAPHICS_LANGUAGE_SCHEMA } from './contracts.js';
 import { createNexusGLProvider } from './provider.js';
 import { createFrameHost } from './hosts.js';
+import { acquireCompletedFrame, releaseFrame, prepareHostFrame, discardHostFrame, captureHostRollback, captureHostFrame, restoreHostRollback, releaseHostRollback, clearHostFrames, frameReservationBytes } from './frame-ownership.js';
 
 const receipt = (p, ready = true) => ({ providerId: p.id, providerVersion: p.version ?? null, ready,
   details: { backend: p.getDiagnostics?.().backend ?? 'custom' } });
@@ -66,6 +67,9 @@ export function createGraphicsSession(engine, config = {}) {
   let active = null, activeReservation = 0, resources = new Map(), lastSpec = null;
   let flight = null, write = null, barrier = false, candidate = null, closed = false, operation = 0;
   let initialization = null, handover = null, disposal = null;
+  let copiedBytes = 0, renderMs = 0, renderedFrames = 0;
+  const copied = bytes => { copiedBytes += bytes; };
+  const now = () => globalThis.performance?.now() ?? Date.now();
   const retired = new Set();
   const identities = engine.n.renderResourceIdentities;
   const resourceSetId = 'graphics-language:portable-resources';
@@ -110,17 +114,27 @@ export function createGraphicsSession(engine, config = {}) {
     };
     return token;
   };
-  async function bounded(task, token) {
-    let timer;
+  async function bounded(task, token, abandon = releaseFrame) {
+    let timer, settled = false, settledResult, abandonedResult = false;
     const pending = Promise.resolve(task);
+    const discardResult = result => { if (!abandonedResult) { abandonedResult = true; abandon(result); } };
     // A provider must honor disposal even when initialization or upload settles late.
-    pending.then(() => { if (token.abandoned) return token.provider.dispose(); }, () => {}).catch(() => {});
+    pending.then(result => {
+      settled = true; settledResult = result;
+      if (token.abandoned) { discardResult(result); return token.provider.dispose(); }
+    }, () => {}).catch(() => {});
     const timed = new Promise((_, reject) => { timer = setTimeout(() => reject(Error('Renderer handover timed out')), Math.max(0, token.deadline - Date.now())); });
     try {
       const result = await Promise.race([pending, timed, token.stop]);
       if (Date.now() > token.deadline) throw Error('Renderer handover timed out');
       if (token.cancelled || (closed && !token.allowClosed)) throw Error('Renderer handover cancelled');
       return result;
+    } catch (error) {
+      if (settled) discardResult(settledResult);
+      // Also cover a result settling between the rejected race and its caller's
+      // cancellation handling, without requiring the caller to retain a lease.
+      pending.then(discardResult, () => {});
+      throw error;
     } finally { clearTimeout(timer); }
   }
   async function disposeProvider(provider) {
@@ -135,10 +149,13 @@ export function createGraphicsSession(engine, config = {}) {
     try {
       await provider.executePass({ frameId: spec.frame.frameId, passId: contract.passIds?.[0] ?? spec.frame.frameId + ':scene', sequence: 0, kind: 'render', metadata:{graphicsLanguage:{draws:spec.draws}} });
       await provider.submitFrame(spec.frame.frameId);
-      const frame = await provider.getCompletedFrame();
-      if (frame?.frameId !== spec.frame.frameId) throw Error('Provider returned a stale frame');
-      if (frame.width !== spec.frame.width || frame.height !== spec.frame.height) throw Error('Provider returned an incomplete frame extent');
-      return frame;
+      const lease = await acquireCompletedFrame(provider, copied);
+      try {
+        const frame = lease?.frame;
+        if (frame?.frameId !== spec.frame.frameId) throw Error('Provider returned a stale frame');
+        if (frame.width !== spec.frame.width || frame.height !== spec.frame.height) throw Error('Provider returned an incomplete frame extent');
+        return lease;
+      } catch (error) { releaseFrame(lease); throw error; }
     } catch (error) { await provider.cancelFrame?.(); throw error; }
   }
   function checkSpec(input) {
@@ -221,14 +238,21 @@ export function createGraphicsSession(engine, config = {}) {
       mutable();
       const spec = checkSpec(input), provider = active, generation = installation.getState().generation;
       compatible(provider, requirements(resources, spec.frame));
+      if (activeReservation + frameReservationBytes(provider, spec.frame.width, spec.frame.height) + (host.reservationBytes ?? 0) > memoryLimit) throw Error('Frame output exceeds the rendering memory budget');
+      const retainedSpec = structuredClone(spec);
       const pending = (async () => {
-        const frame = await runFrame(provider, spec);
-        if (closed || active !== provider || installation.getPhase() !== 'ready' || installation.getState().generation !== generation) throw Error('Stale renderer result');
-        const stage = await host.prepare(frame, { generation, operationId: op('frame') });
-        if (closed || active !== provider || installation.getPhase() !== 'ready' || installation.getState().generation !== generation) throw Error('Stale renderer result');
-        synchronous(host.commit(stage));
-        lastSpec = structuredClone(spec);
-        return { frameId: frame.frameId, generation, presented: true };
+        const started = now();
+        let lease, stage;
+        try {
+          lease = await runFrame(provider, spec);
+          if (closed || active !== provider || installation.getPhase() !== 'ready' || installation.getState().generation !== generation) throw Error('Stale renderer result');
+          stage = await prepareHostFrame(host, lease, { generation, operationId: op('frame') }, copied);
+          if (closed || active !== provider || installation.getPhase() !== 'ready' || installation.getState().generation !== generation) throw Error('Stale renderer result');
+          const presented = synchronous(host.commit(stage));
+          if (presented?.presented !== true) throw Error('Host did not confirm presentation');
+          lastSpec = retainedSpec; renderedFrames++;
+          return { frameId: lease.frame.frameId, generation, presented: true };
+        } finally { discardHostFrame(host, stage); releaseFrame(lease); renderMs = now() - started; }
       })();
       flight = pending;
       pending.finally(() => { if (flight === pending) flight = null; }).catch(() => {});
@@ -250,16 +274,16 @@ export function createGraphicsSession(engine, config = {}) {
       request.signal?.addEventListener('abort', abort, { once: true });
       if (request.signal?.aborted) abort();
       const pending = (async () => {
-        let begun = false, committed = false;
+        let begun = false, committed = false, first = null, stage = null, previous = null;
         try {
           installation.beginHandover({ operationId, candidate: { providerId: selection.provider.id, providerVersion: selection.provider.version ?? null }, resourceRevision: revision() });
           begun = true;
           if (token.cancelled) throw Error('Renderer handover cancelled');
           compatible(selection.provider, requirements(resources, lastSpec.frame));
-          // Each provider reserves renderer storage plus portable resources and runtime
-          // overhead. Four RGBA copies cover completed, prepared, rollback and presentation.
-          const frameBytes = lastSpec.frame.width * lastSpec.frame.height * 4;
-          if (activeReservation + selection.reservationBytes + frameBytes * 4 + (host.reservationBytes ?? 0) > memoryLimit) {
+          // Reserve both bounded output pools during overlap. Custom boundaries
+          // also retain defensive staging/rollback copies.
+          const outputReservation = spec => frameReservationBytes(active, spec.frame.width, spec.frame.height) + frameReservationBytes(selection.provider, spec.frame.width, spec.frame.height);
+          if (activeReservation + selection.reservationBytes + outputReservation(lastSpec) + (host.reservationBytes ?? 0) > memoryLimit) {
             throw Error('Both renderers exceed the handover memory budget');
           }
           await bounded(selection.provider.initialize(), token);
@@ -269,24 +293,24 @@ export function createGraphicsSession(engine, config = {}) {
           if (flight) await bounded(flight.catch(() => {}), token);
           const capturedRevision = revision(), spec = structuredClone(lastSpec);
           compatible(selection.provider, requirements(resources, spec.frame));
-          if (activeReservation + selection.reservationBytes + spec.frame.width * spec.frame.height * 16 + (host.reservationBytes ?? 0) > memoryLimit) throw Error('Updated frame exceeds the handover memory budget');
+          if (activeReservation + selection.reservationBytes + outputReservation(spec) + (host.reservationBytes ?? 0) > memoryLimit) throw Error('Updated frame exceeds the handover memory budget');
           verifyReferences(resources);
           for (const r of ordered(resources)) await bounded(selection.provider.createResource(structuredClone(r)), token);
           if (capturedRevision !== revision()) throw Error('Resources changed during the submission barrier');
-          const first = await bounded(runFrame(selection.provider, spec), token);
+          first = await bounded(runFrame(selection.provider, spec), token);
           const generation = installation.getState().generation + 1;
-          const stage = await bounded(host.prepare(first, { generation, operationId }), token);
+          stage = await bounded(prepareHostFrame(host, first, { generation, operationId }, copied), token, staged => discardHostFrame(host, staged));
           if (capturedRevision !== revision()) throw Error('Resources changed before presentation commit');
           installation.prepareHandover({ operationId: op('prepared'), handoverId: operationId, resourceRevision: capturedRevision });
           if (token.cancelled || closed) throw Error('Renderer handover cancelled');
-          const previous = host.capture();
+          previous = captureHostRollback(host, copied);
           token.committing = true;
           try {
             const presented = synchronous(host.commit(stage));
             if (presented?.presented !== true) throw Error('Host did not confirm presentation');
             installation.commitHandover({ operationId: op('commit'), handoverId: operationId, resourceRevision: capturedRevision, providerReceipt: receipt(selection.provider) });
           } catch (error) {
-            synchronous(host.rollback(previous, { generation: generation - 1, operationId }));
+            synchronous(restoreHostRollback(host, previous, { generation: generation - 1, operationId }));
             throw error;
           }
           const old = active;
@@ -304,6 +328,7 @@ export function createGraphicsSession(engine, config = {}) {
           }
           throw error;
         } finally {
+          discardHostFrame(host, stage); releaseFrame(first); releaseHostRollback(previous);
           barrier = false;
           if (candidate === token) candidate = null;
           request.signal?.removeEventListener('abort', abort);
@@ -328,19 +353,19 @@ export function createGraphicsSession(engine, config = {}) {
       return mutation(async () => {
         if (typeof active.replaceResources !== 'function') throw Error('Provider does not support atomic resource restoration');
         await assignResources(next, () => active.replaceResources(list));
-        lastSpec = null;
+        lastSpec = null; clearHostFrames(host);
         return { restored: true };
       });
     },
     reset() {
       if (candidate) throw Error('Cannot reset during handover');
-      return mutation(async () => { await assignResources(new Map(), () => active.reset()); lastSpec = null; return { reset: true }; });
+      return mutation(async () => { await assignResources(new Map(), () => active.reset()); lastSpec = null; clearHostFrames(host); return { reset: true }; });
     },
     getState() {
       return { status: closed ? 'disposed' : active ? 'ready' : startup.getStatus() === 'failed' ? 'failed' : initialization ? 'starting' : 'installed',
-        ...installation.getState(), resourceRevision: revision(), barrier, retiredProviders: retired.size, diagnostics: active?.getDiagnostics?.() ?? null };
+        ...installation.getState(), resourceRevision: revision(), barrier, retiredProviders: retired.size, diagnostics: active ? { ...active.getDiagnostics?.(), host: host.getDiagnostics?.() ?? null, session: { copiedBytes, renderMs, renderedFrames } } : null };
     },
-    capture: () => host.capture(),
+    capture: () => captureHostFrame(host, copied),
     getSurfaceState() {
       if (closed) return { width: 0, height: 0, closed: true };
       if (host.getWindowState) { const {width,height,closed} = host.getWindowState(); return {width,height,closed}; }
@@ -352,21 +377,25 @@ export function createGraphicsSession(engine, config = {}) {
       closed = true;
       candidate?.abort();
       disposal = (async () => {
-        if (initialization) await initialization.catch(() => {});
-        if (handover) await handover.catch(() => {});
-        if (write) await write.catch(() => {});
-        if (flight) await flight.catch(() => {});
-        if (active) {
-          const p = active;
-          if (['ready','failed'].includes(installation.getPhase())) engine.n.renderShutdown.begin({ operationId: op('shutdown') });
-          await disposeProvider(p);
-          if (installation.getPhase() === 'stopping') engine.n.renderShutdown.complete({ operationId: op('stopped'), providerReceipt: receipt(p, false) });
-          active = null;
-        }
-        for (const p of [...retired]) await disposeProvider(p);
-        retired.clear();
-        host.dispose(); resources.clear();
+        try {
+          if (initialization) await initialization.catch(() => {});
+          if (handover) await handover.catch(() => {});
+          if (write) await write.catch(() => {});
+          if (flight) await flight.catch(() => {});
+          if (active) {
+            const p = active;
+            if (['ready','failed'].includes(installation.getPhase())) engine.n.renderShutdown.begin({ operationId: op('shutdown') });
+            await disposeProvider(p);
+            if (installation.getPhase() === 'stopping') engine.n.renderShutdown.complete({ operationId: op('stopped'), providerReceipt: receipt(p, false) });
+            active = null;
+          }
+          for (const p of [...retired]) await disposeProvider(p);
+          retired.clear();
+        } finally { host.dispose(); resources.clear(); }
       })();
+      // A provider cleanup failure must not strand presentation leases, and a
+      // later explicit disposal call may retry the failed provider cleanup.
+      disposal.catch(() => { disposal = null; });
       return disposal;
     }
   };

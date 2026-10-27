@@ -42,10 +42,24 @@ void Framebuffer::resize(int width, int height) {
             "framebuffer dimensions exceed the positive 8192-axis / 16M-pixel limit");
     if (width == width_ && height == height_)
         return;
-    std::vector<std::uint8_t> replacement(static_cast<std::size_t>(width) * height * 4);
-    pixels_.swap(replacement);
+    const auto bytes = static_cast<std::size_t>(width) * height * 4;
+    if (bytes > pixels_.capacity()) {
+        std::vector<std::uint8_t> replacement(bytes);
+        pixels_.swap(replacement);
+        ++allocations_;
+    } else {
+        pixels_.resize(bytes);
+        std::fill(pixels_.begin(), pixels_.end(), 0);
+    }
     width_ = width;
     height_ = height;
+}
+void Framebuffer::trim() {
+    if (pixels_.capacity() != pixels_.size()) {
+        std::vector<std::uint8_t> replacement(pixels_);
+        pixels_.swap(replacement);
+        ++allocations_;
+    }
 }
 void Framebuffer::put(int x, int y, Color c) noexcept {
     const auto i = static_cast<std::size_t>(y) * stride() + static_cast<std::size_t>(x) * 4;

@@ -36,7 +36,37 @@ void finite(const Mat4& matrix) {
     for (double value : matrix.values)
         finite(value);
 }
+void freezeSharedTables(Descriptor& descriptor) {
+    if (auto* frame = std::get_if<SceneFrame>(&descriptor)) {
+        for (auto& batch : frame->batches)
+            batch = std::make_shared<const std::vector<SurfaceTriangle>>(*batch);
+        for (auto& texture : frame->residentTextures)
+            texture = std::make_shared<const Texture2D>(*texture);
+    }
+}
 } // namespace
+void validateVertex(const SurfaceVertex& vertex) {
+    finite(vertex.position);
+    direction(vertex.normal);
+    finite(vertex.uv.x);
+    finite(vertex.uv.y);
+    finite(vertex.tangent);
+    if (vertex.handedness != 1 && vertex.handedness != -1)
+        throw std::invalid_argument("tangent handedness must be +1 or -1");
+}
+void validateTriangles(const std::vector<SurfaceTriangle>& triangles, std::size_t materialCount) {
+    for (const auto& triangle : triangles) {
+        finite(triangle.geometricNormal);
+        if (triangle.material < -1 ||
+            (triangle.material >= 0 && std::size_t(triangle.material) >= materialCount))
+            throw std::invalid_argument("triangle material reference outside descriptor");
+        if (triangle.vertices[0].handedness != triangle.vertices[1].handedness ||
+            triangle.vertices[0].handedness != triangle.vertices[2].handedness)
+            throw std::invalid_argument("triangle tangent handedness must agree");
+        for (const auto& vertex : triangle.vertices)
+            validateVertex(vertex);
+    }
+}
 void validate(const Descriptor& descriptor) {
     std::visit(
         [](const auto& frame) {
@@ -75,8 +105,8 @@ void validate(const Descriptor& descriptor) {
                 const auto& shadowMatrix = frame.shadow.viewProjection.values;
                 if (shadowMatrix[12] != 0 || shadowMatrix[13] != 0 || shadowMatrix[14] != 0 ||
                     shadowMatrix[15] != 1)
-                    throw std::invalid_argument(
-                        "directional shadows require an affine orthographic projection");
+                    throw std::invalid_argument("directional shadows require an affine "
+                                                "orthographic projection");
                 positive(frame.light.color.r);
                 positive(frame.light.color.g);
                 positive(frame.light.color.b);
@@ -89,7 +119,15 @@ void validate(const Descriptor& descriptor) {
                 positive(frame.light.specular);
                 positive(frame.light.specularPower);
                 positive(frame.display.exposure);
-                for (const auto& texture : frame.textures) {
+                for (const auto& texture : frame.residentTextures)
+                    if (!texture)
+                        throw std::invalid_argument("missing resident texture");
+                for (const auto& batch : frame.batches)
+                    if (!batch)
+                        throw std::invalid_argument("missing immutable triangle batch");
+                const auto textureTable = texturesOf(frame);
+                for (std::size_t ti = 0; ti < textureTable.size(); ++ti) {
+                    const auto& texture = textureTable[ti];
                     if (texture.width <= 0 || texture.height <= 0 || texture.width > 8192 ||
                         texture.height > 8192 ||
                         std::size_t(texture.width) * texture.height > 16 * 1024 * 1024 ||
@@ -145,7 +183,7 @@ void validate(const Descriptor& descriptor) {
                     rgb(material.outlineColor);
                     for (int texture : {material.colorTexture, material.normalTexture})
                         if (texture < -1 ||
-                            (texture >= 0 && std::size_t(texture) >= frame.textures.size()))
+                            (texture >= 0 && std::size_t(texture) >= textureTable.size()))
                             throw std::invalid_argument(
                                 "material texture reference outside descriptor");
                 }
@@ -154,26 +192,9 @@ void validate(const Descriptor& descriptor) {
                         16 * 1024 * 1024)
                     throw std::invalid_argument(
                         "shadow descriptor dimensions outside target bounds");
-                for (const auto& triangle : frame.triangles) {
-                    finite(triangle.geometricNormal);
-                    if (triangle.material < -1 ||
-                        (triangle.material >= 0 &&
-                         std::size_t(triangle.material) >= frame.materials.size()))
-                        throw std::invalid_argument(
-                            "triangle material reference outside descriptor");
-                    if (triangle.vertices[0].handedness != triangle.vertices[1].handedness ||
-                        triangle.vertices[0].handedness != triangle.vertices[2].handedness)
-                        throw std::invalid_argument("triangle tangent handedness must agree");
-                    for (const auto& vertex : triangle.vertices) {
-                        finite(vertex.position);
-                        direction(vertex.normal);
-                        finite(vertex.uv.x);
-                        finite(vertex.uv.y);
-                        finite(vertex.tangent);
-                        if (vertex.handedness != 1 && vertex.handedness != -1)
-                            throw std::invalid_argument("tangent handedness must be +1 or -1");
-                    }
-                }
+                validateTriangles(frame.triangles, frame.materials.size());
+                for (const auto& batch : frame.batches)
+                    validateTriangles(*batch, frame.materials.size());
             }
         },
         descriptor);
@@ -197,6 +218,7 @@ void PlaybackKit::restore(PlaybackState state) {
 }
 void SceneFrameKit::submit(Descriptor descriptor) {
     validate(descriptor);
+    freezeSharedTables(descriptor);
     frame_ = std::make_shared<const Descriptor>(std::move(descriptor));
 }
 const Descriptor& SceneFrameKit::frame() const {
@@ -205,8 +227,10 @@ const Descriptor& SceneFrameKit::frame() const {
     return *frame_;
 }
 void SceneFrameKit::restore(Snapshot snapshot) {
-    if (snapshot)
+    if (snapshot) {
         validate(*snapshot);
+        freezeSharedTables(*snapshot);
+    }
     auto replacement = snapshot ? std::make_shared<const Descriptor>(std::move(*snapshot))
                                 : std::shared_ptr<const Descriptor>{};
     frame_ = std::move(replacement);
@@ -219,20 +243,25 @@ void SceneDSK::advance(double delta) {
     if (playback_.advance(delta))
         frames_.reset();
 }
-void SceneDSK::reset() noexcept {
+void SceneDSK::reset() {
+    resources_.reset();
     playback_.reset();
     frames_.reset();
 }
 Snapshot SceneDSK::snapshot() const {
-    return {1, playback_.snapshot(), frames_.snapshot()};
+    return {2, playback_.snapshot(), frames_.snapshot(), resources_.snapshot()};
 }
 void SceneDSK::restore(const Snapshot& snapshot) {
-    if (snapshot.version != 1)
+    if (snapshot.version != 1 && snapshot.version != 2)
         throw std::invalid_argument("unsupported scene snapshot version");
     PlaybackKit playback;
     playback.restore(snapshot.playback);
     SceneFrameKit frames;
     frames.restore(snapshot.frame);
+    if (snapshot.version == 2)
+        resources_.restore(snapshot.resources);
+    else
+        resources_.reset();
     playback_ = std::move(playback);
     frames_ = std::move(frames);
 }

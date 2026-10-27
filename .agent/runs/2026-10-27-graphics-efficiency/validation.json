@@ -1,0 +1,199 @@
+{
+  "base": "71d48721f71da501dda30533364640bb61e4bc32",
+  "abi": 2,
+  "sourceDigest": "811bc3fed1b9811e901c3482e229a3db30c7f8bc59c0109aa2bb263a6378b364",
+  "artifacts": [
+    {
+      "path": "nexusgl.mjs",
+      "sha256": "50e9b5d655ad7af3c6c48021f984720c09d7862493d49dd22f9a53b0a4ac9dc7",
+      "bytes": 20795
+    },
+    {
+      "path": "nexusgl.wasm",
+      "sha256": "072cbe18b7f5c42e0e1df45ad268b9a71afd7193da9c975cd10267c4a450204d",
+      "bytes": 235400
+    },
+    {
+      "path": "nexusgl-darwin-arm64.node",
+      "sha256": "b13f1ee50398f8e5aaa85aa2c941c15a834b5a8eb215c31cfc40bf5e762e2cdd",
+      "bytes": 317720
+    },
+    {
+      "path": "nexusgl-window-darwin-arm64.node",
+      "sha256": "08fa3d6b6d25f18383658cbcd13020a950c353ac2d68abc25c00c0f81f9bf714",
+      "bytes": 57536
+    }
+  ],
+  "checks": {
+    "graphics": "PASS",
+    "nativeSourceASanUBSan": "PASS all five, with subsequent affected-suite reruns",
+    "nativeWindow": "PASS native\u2192WASM\u2192native, 9 quality/extent combinations, 5 launch-and-close cycles",
+    "browser": "PASS displayed output and 60-second soak",
+    "artifacts": "PASS matching native/WASM ABI 2 and 4 hashes",
+    "boundaries": "PASS",
+    "coreCatalog": "PASS",
+    "ownership": "PASS regenerated actual optional helper inventory",
+    "publicPackageSurface": "PASS",
+    "beforeAfterPixels": {
+      "cases": 18,
+      "maxDifference": 0,
+      "changedChannels": 0
+    },
+    "rendererSoaks": [
+      {
+        "backend": "native",
+        "durationMs": 60008.511875,
+        "frames": 3108,
+        "meshUploadDelta": 0,
+        "transformDelta": 0,
+        "renderAllocationDelta": 0,
+        "poolBytesBefore": 460800,
+        "poolBytesAfter": 460800
+      },
+      {
+        "backend": "wasm",
+        "durationMs": 60013.09575000001,
+        "frames": 2181,
+        "meshUploadDelta": 0,
+        "transformDelta": 0,
+        "renderAllocationDelta": 0,
+        "poolBytesBefore": 460800,
+        "poolBytesAfter": 460800
+      }
+    ],
+    "browserSoak": {
+      "frames": 675,
+      "durationMs": 60066
+    },
+    "representativeGame": "NOT RUN: replay/hardware envelope not selected",
+    "physicalCPUFault": "NOT ASSESSED: no hardware diagnosis",
+    "documentation": "PASS active docs, regenerated guide and 228-page PDF"
+  },
+  "evidence": [
+    {
+      "path": "build/graphics-efficiency/graphics-tests.log",
+      "bytes": 866,
+      "sha256": "39abf0560fc6901ab56acca321087fc7ca658f7344c91dba2907ca7d4a127479"
+    },
+    {
+      "path": "build/graphics-efficiency/full-build.log",
+      "bytes": 168,
+      "sha256": "6f8c011b0b4f82754192c0316a3c3ae0683a69141fa37478843aedbb5f69493c"
+    },
+    {
+      "path": "build/graphics-efficiency/artifacts.log",
+      "bytes": 226,
+      "sha256": "48e5e0fbcbbb6c35c17d5b2cbe146d187d5c5d6edf6f9c1f1e88e02bc057c10a"
+    },
+    {
+      "path": "build/graphics-efficiency/boundaries.log",
+      "bytes": 305,
+      "sha256": "bde1052cf6efd93af7e128e9f150ff273f6e98fcd36deff19dd483f5f42e2db6"
+    },
+    {
+      "path": "build/graphics-efficiency/core-check.log",
+      "bytes": 219,
+      "sha256": "f97a2114078e43f2ff084b3203fe3c308cead80235693255fac573e380782b9e"
+    },
+    {
+      "path": "build/graphics-efficiency/ownership.log",
+      "bytes": 320,
+      "sha256": "8913600310a9f3c161d9c89b89541e9eff826267c71069f92fbff28d739b7552"
+    },
+    {
+      "path": "build/graphics-efficiency/public-surface.log",
+      "bytes": 143,
+      "sha256": "1c88330833fa0eb3e27ceec58667521b4630379397e498e415124c1d4ca018b9"
+    },
+    {
+      "path": "build/graphics-efficiency/native-window.log",
+      "bytes": 74,
+      "sha256": "8f2ce63704ed0aeaeba4527fe45420c29440df3bb4daa130dd872b3a5c368342"
+    },
+    {
+      "path": "build/graphics-efficiency/browser-soak.log",
+      "bytes": 164,
+      "sha256": "de6985811d473dbe949c7a301084440fa4ce42e9a09b2a9f556d8ab050dce3ba"
+    },
+    {
+      "path": "build/graphics-efficiency/performance-before-final.json",
+      "bytes": 236076,
+      "sha256": "bb916d982076e68f316f1e19acdcd319550824e80f365f1aaae88d2a45bf2538"
+    },
+    {
+      "path": "build/graphics-efficiency/performance-after-final.json",
+      "bytes": 495806,
+      "sha256": "7651a620c76742bf60d168da732eafb105dcfb24a7861408b148b3b482fb644d"
+    },
+    {
+      "path": "build/graphics-efficiency/scaling-before.json",
+      "bytes": 22132,
+      "sha256": "5340588e09dbe37f119a104122498d933b09042efaa338e7df5ae3e9cdf9c38a"
+    },
+    {
+      "path": "build/graphics-efficiency/scaling-after.json",
+      "bytes": 44971,
+      "sha256": "84949ac10448c63fc88400be854b79f9433c943bf7edad55a68ec242a68d198a"
+    },
+    {
+      "path": "build/graphics-efficiency/paired-cpu.json",
+      "bytes": 10915,
+      "sha256": "ec4251e6d5bb413c02bf303f5aae1e5498253b8c6a00dd9cda9431ee8a1503af"
+    },
+    {
+      "path": "build/graphics-efficiency/soak.json",
+      "bytes": 579141,
+      "sha256": "13117d0f8f5a057d46773578ae5a65aa0560cacf03709edccbde98ad6c76b070"
+    },
+    {
+      "path": "build/graphics-efficiency/before-after-pixels.json",
+      "bytes": 2007,
+      "sha256": "f92f4fe20b0be3dde550004d07f82a95dddd5668fdc14a7aa8fd45237cf5c526"
+    },
+    {
+      "path": "build/graphics-runtime/native-tests/final-ownership-sanitizer.log",
+      "bytes": 113,
+      "sha256": "65051cdd113ec010badf2550d460f06ec6328aa7c781e9669a2e9e4469fa8c51"
+    },
+    {
+      "path": "build/graphics-runtime/native-tests/final-raw-cache-sanitizer.log",
+      "bytes": 96,
+      "sha256": "ecc81e143ae47a89d02feb8cc1012b8518d13a0a69bf9e90b28aa672452625bb"
+    },
+    {
+      "path": "build/graphics-runtime/native-tests/final-resize-sanitizer.log",
+      "bytes": 58,
+      "sha256": "336d1736c471bc542e1e0e9f42308a60fa3449c9afb5118d0812d4fab8d80ee3"
+    },
+    {
+      "path": "build/graphics-evidence/browser-initial.png",
+      "bytes": 43903,
+      "sha256": "2ee0aff148d7d1fbf4bb0d114617c62f386edcc377a94f3e7f738374e22063ef"
+    },
+    {
+      "path": "build/graphics-evidence/native-window-displayed.png",
+      "bytes": 466533,
+      "sha256": "4d01c4cc01d0b653a36c250c00a54a53abe883f378b21fe3eab019c4db3c2332"
+    },
+    {
+      "path": "build/graphics-evidence/browser-soak.json",
+      "bytes": 48649,
+      "sha256": "4de699e4d1835b2658e48ec38f024933f91584caf67aa605fd1c3a9982ef51d4"
+    },
+    {
+      "path": "build/graphics-evidence/native-window-result.json",
+      "bytes": 32044,
+      "sha256": "239f3f80fcb7d98146a72e99d963b2f4e976923a25db31942b6eada02aa34fea"
+    },
+    {
+      "path": "build/graphics-efficiency/docs.log",
+      "bytes": 408,
+      "sha256": "276124fdf68ecab46941610b18ba62e4071e4ae77a7767b12f23c2dcb6b51d76"
+    },
+    {
+      "path": "build/graphics-efficiency/guide-generation.log",
+      "bytes": 218,
+      "sha256": "498e31b010a34a3596a35882422f93cd07e9eeadc62336b7e80bb70ee69fc390"
+    }
+  ]
+}

@@ -52,6 +52,9 @@ class Renderer {
     const Framebuffer& render(const scene::Descriptor& scene, Surface surface) {
         return service_.render(scene, surface.width, surface.height);
     }
+    const Framebuffer& render(const scene::PreparedScene& prepared, Surface surface) {
+        return service_.render(prepared, surface.width, surface.height);
+    }
     const Framebuffer& submit(const CommandBuffer& commands, Surface surface) {
         return render(commands.descriptor(), surface);
     }
