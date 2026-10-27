@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`<br>
-Guide content SHA-256: `f60d010797ff2c59ac981c0c6063a5182a09f47736888a89ca7c1fd165b85a1f`
+Core registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`<br>
+Guide content SHA-256: `9ea5e94c1202b8c8a0f92bc228a3fe3940ef363706e4165157f154bcc9b0a0ab`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -1336,13 +1336,15 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:graph`: Own bounded typed agent-work topology and revisioned atomic graph operations.
+- `n:agent:goal`: Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.
 - `n:agent:decision`: Own typed judgments, classification questions and evidence-bound proposal selections.
 - `n:agent:loop`: Own portable agent-loop composition contracts.
 - `n:agent:loop:step`: Own step envelopes and immutable outcome transitions.
@@ -1552,7 +1554,7 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 
 # Core Dependency Table
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -1561,6 +1563,8 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:graph` | `n:agent` | - |
+| `n:agent:goal` | `n:agent:graph` | - |
 | `n:agent:decision` | `n:agent` | - |
 | `n:agent:loop` | `n:agent` | - |
 | `n:agent:loop:step` | `n:agent:loop` | - |
@@ -1772,7 +1776,7 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
 ## Domains
 
@@ -1783,6 +1787,8 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:graph` | `n:agent` | Own bounded typed agent-work topology and revisioned atomic graph operations. | stable-candidate |
+| `n:agent:goal` | `n:agent` | Own outcome meaning, conditional checks and revision-linked verification over Agent graphs. | stable-candidate |
 | `n:agent:decision` | `n:agent` | Own typed judgments, classification questions and evidence-bound proposal selections. | stable-candidate |
 | `n:agent:loop` | `n:agent` | Own portable agent-loop composition contracts. | stable-candidate |
 | `n:agent:loop:step` | `n:agent:loop` | Own step envelopes and immutable outcome transitions. | stable-candidate |
@@ -1994,6 +2000,9 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `creature-registry-kit` | `n:actor:creature` | `nexusengine/domains/actor/creature` | Register and resolve neutral creature embodiment definitions. |
 | `character-registry-kit` | `n:actor:character` | `nexusengine/domains/actor/character` | Register and resolve active embodied character descriptors. |
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
+| `agent-graph-kit` | `n:agent:graph` | `nexusengine/domains/agent/graph` | Maintain bounded typed graphs with atomic patches, traversal and replay. |
+| `agent-goal-kit` | `n:agent:goal` | `nexusengine/domains/agent/goal` | Interpret Agent graphs as evidence-bound conditional goals. |
+| `agent-goal-loop-kit` | `n:agent:loop` | `nexusengine/domains/agent/loop/goal-graph` | Optionally follow goal graphs through existing model-neutral loop ports. |
 | `agent-decision-kit` | `n:agent:decision` | `nexusengine/domains/agent/decision` | Validate and retain versioned typed judgments bound to Agent proposals and evidence. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
@@ -2394,11 +2403,11 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
-- Source modules: 1820
-- Manifest-proven public atoms: 395
-- Manifest-owned internal modules: 1352
+- Source modules: 1825
+- Manifest-proven public atoms: 398
+- Manifest-owned internal modules: 1354
 - Root contract modules: 26
 - Optional provider modules: 47
 - Unreviewed modules: 0
@@ -2468,6 +2477,10 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `src/core-domains/actor/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/decision/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/domain.manifest.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/goal/goals.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/goal/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/graph/graph.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/graph/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/answer-session.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
@@ -2486,6 +2499,7 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `src/core-domains/agent/loop/coordination/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/coding-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/memory-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/planning-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |

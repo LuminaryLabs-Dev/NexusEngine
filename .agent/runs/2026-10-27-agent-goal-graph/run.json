@@ -1,0 +1,9 @@
+{
+  "workspace": "/Users/crimsonwheeler/Library/Application Support/Nexus Engine Maintenance/agent-goal-graph-20261027",
+  "task": "agent-goal-graph",
+  "session": "agent-goal-graph-session",
+  "state": "/Users/crimsonwheeler/Library/Application Support/Nexus Engine Maintenance/agent-goal-graph-20261027/workflow.json",
+  "base": "6d2727a",
+  "candidate": "/Users/crimsonwheeler/Documents/GitHub/NexusEngine-AgentGraph-Candidate",
+  "evidence": "/Users/crimsonwheeler/Library/Application Support/Nexus Engine Maintenance/agent-goal-graph-20261027"
+}

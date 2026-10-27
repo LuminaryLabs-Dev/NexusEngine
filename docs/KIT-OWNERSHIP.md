@@ -2,11 +2,11 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
-- Source modules: 1820
-- Manifest-proven public atoms: 395
-- Manifest-owned internal modules: 1352
+- Source modules: 1825
+- Manifest-proven public atoms: 398
+- Manifest-owned internal modules: 1354
 - Root contract modules: 26
 - Optional provider modules: 47
 - Unreviewed modules: 0
@@ -76,6 +76,10 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `src/core-domains/actor/player/kits/player-kit/index.js` | `n:actor` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/decision/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/domain.manifest.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/goal/goals.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/goal/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/graph/graph.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/graph/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/answer-session.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/interaction/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
@@ -94,6 +98,7 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `src/core-domains/agent/loop/coordination/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/coding-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/memory-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/planning-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |

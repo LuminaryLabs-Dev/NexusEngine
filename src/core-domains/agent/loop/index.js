@@ -6,3 +6,5 @@ export * from "./kits/memory-loop-kit/index.js";
 export * from "./kits/planning-loop-kit/index.js";
 export * from "./kits/coding-loop-kit/index.js";
 export * from "./kits/validation-loop-kit/index.js";
+
+export * from "./kits/goal-graph-loop-kit/index.js";

@@ -13,3 +13,5 @@ For model calls, await `accountUsage({modelCalls:1})` before each attempt, then 
 Inference classification requests use the existing neutral `input` envelope and declare the `classification` capability. Provider selection is still explicit, respects capacity and does not silently substitute protocols. A TypeSafe provider kit is optional; see kits/agent/loop-host/providers/README.md. Core has no Jev default, mandatory classifier review, universal 1000-token cap or Cloud policy.
 
 Cloud is unchanged by this Engine update. Its future adapter must consume the public contracts and pin a validated Engine revision separately.
+
+Graph-aware callers may add `graphRef` and nonnegative `graphRevision` to decision bindings. Both are required together. They participate in request identity and stale-selection rejection; existing bindings remain unchanged. Optional goal traversal uses the same decision/usage contracts: see [Agent Goal Graph](AGENT-GOAL-GRAPH.md).

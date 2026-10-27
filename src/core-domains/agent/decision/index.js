@@ -10,6 +10,7 @@ export function createDecisionRequest(input={}){
  const {id,profile,state=null,binding,proposalIds=[]}=input;
  if(!text(id)||!text(profile?.id)||!Number.isSafeInteger(profile.version)||profile.version<1||!Array.isArray(profile.questions)||profile.questions.length<1||profile.questions.length>64)throw new TypeError('Versioned decision profile required');
  if(!text(binding?.goalRef)||!Number.isSafeInteger(binding.goalVersion)||binding.goalVersion<1||!text(binding.sourceRevision)||!unique(binding.evidenceRefs??[]))throw new TypeError('Goal, revision and evidence binding required');
+ if((binding.graphRef!==undefined||binding.graphRevision!==undefined)&&(!text(binding.graphRef)||!Number.isSafeInteger(binding.graphRevision)||binding.graphRevision<0))throw new TypeError('Valid graph binding required');
  if(!unique(proposalIds))throw new TypeError('Unique permitted proposal IDs required');
  const ids=new Set();const questions=profile.questions.map(q=>{
   if(!text(q?.id)||ids.has(q.id)||!text(q.instructions)||!['choice','score','probability'].includes(q.type))throw new TypeError('Invalid decision question');ids.add(q.id);
@@ -17,7 +18,7 @@ export function createDecisionRequest(input={}){
   if(q.type==='score'&&(!unique(q.levels)||q.levels.length<2||q.levels.length>64))throw new TypeError('Ordered score levels required');
   return {id:q.id,type:q.type,instructions:q.instructions,...(q.type==='choice'?{options:copy(q.options)}:{}),...(q.type==='score'?{levels:copy(q.levels)}:{})};
  });
- const request={schema:'nexusengine.agent.decision.request/1',id,profile:{id:profile.id,version:profile.version,questions},state:copy(state),binding:{goalRef:binding.goalRef,goalVersion:binding.goalVersion,sourceRevision:binding.sourceRevision,evidenceRefs:copy(binding.evidenceRefs??[])},proposalIds:copy(proposalIds)};
+ const request={schema:'nexusengine.agent.decision.request/1',id,profile:{id:profile.id,version:profile.version,questions},state:copy(state),binding:{goalRef:binding.goalRef,goalVersion:binding.goalVersion,sourceRevision:binding.sourceRevision,evidenceRefs:copy(binding.evidenceRefs??[]),...(binding.graphRef!==undefined?{graphRef:binding.graphRef,graphRevision:binding.graphRevision}:{})},proposalIds:copy(proposalIds)};
  return Object.freeze({...request,requestHash:operationRequestHash(request)});
 }
 export function validateDecisionJudgment(request,input={}){

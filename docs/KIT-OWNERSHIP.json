@@ -1,11 +1,11 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1352,
-    "manifestProvenPublicAtoms": 395,
+    "manifestOwnedInternalModules": 1354,
+    "manifestProvenPublicAtoms": 398,
     "optionalProviderModules": 47,
     "rootContractModules": 26,
-    "sourceModules": 1820,
+    "sourceModules": 1825,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -1472,6 +1472,146 @@
     },
     {
       "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/goal/goals.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "createAgentGoal",
+        "createAgentGoalMap"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/agent/goal"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:agent",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/agent/goal"
+      ],
+      "path": "src/core-domains/agent/goal/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-goal-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-goal-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createAgentGoalKit"
+      ],
+      "responsibility": "Interpret Agent graphs as evidence-bound conditional goals.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/graph/graph.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "AGENT_GRAPH_SCHEMA",
+        "agentGraphLimits",
+        "createAgentGraph",
+        "graphText"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/agent/graph"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:agent",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/agent/graph"
+      ],
+      "path": "src/core-domains/agent/graph/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-graph-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-graph-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createAgentGraphKit"
+      ],
+      "responsibility": "Maintain bounded typed graphs with atomic patches, traversal and replay.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
       "currentConsumers": [
         "./domains/agent"
       ],
@@ -1853,6 +1993,56 @@
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/agent/loop/goal-graph"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:agent",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/agent/loop/goal-graph"
+      ],
+      "path": "src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-goal-loop-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-goal-loop-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "createAgentGoalLoopKit",
+        "runAgentGoalLoop"
+      ],
+      "responsibility": "Optionally follow goal graphs through existing model-neutral loop ports.",
+      "reviewStatus": "manifest-proven-public-atom"
     },
     {
       "atomic": null,
@@ -46240,7 +46430,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
+  "registrySha256": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

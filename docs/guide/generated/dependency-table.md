@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -9,6 +9,8 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:graph` | `n:agent` | - |
+| `n:agent:goal` | `n:agent:graph` | - |
 | `n:agent:decision` | `n:agent` | - |
 | `n:agent:loop` | `n:agent` | - |
 | `n:agent:loop:step` | `n:agent:loop` | - |

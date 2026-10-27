@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3`
+Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
 
 ## Domains
 
@@ -13,6 +13,8 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:graph` | `n:agent` | Own bounded typed agent-work topology and revisioned atomic graph operations. | stable-candidate |
+| `n:agent:goal` | `n:agent` | Own outcome meaning, conditional checks and revision-linked verification over Agent graphs. | stable-candidate |
 | `n:agent:decision` | `n:agent` | Own typed judgments, classification questions and evidence-bound proposal selections. | stable-candidate |
 | `n:agent:loop` | `n:agent` | Own portable agent-loop composition contracts. | stable-candidate |
 | `n:agent:loop:step` | `n:agent:loop` | Own step envelopes and immutable outcome transitions. | stable-candidate |
@@ -224,6 +226,9 @@ Registry SHA-256: `4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df35
 | `creature-registry-kit` | `n:actor:creature` | `nexusengine/domains/actor/creature` | Register and resolve neutral creature embodiment definitions. |
 | `character-registry-kit` | `n:actor:character` | `nexusengine/domains/actor/character` | Register and resolve active embodied character descriptors. |
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
+| `agent-graph-kit` | `n:agent:graph` | `nexusengine/domains/agent/graph` | Maintain bounded typed graphs with atomic patches, traversal and replay. |
+| `agent-goal-kit` | `n:agent:goal` | `nexusengine/domains/agent/goal` | Interpret Agent graphs as evidence-bound conditional goals. |
+| `agent-goal-loop-kit` | `n:agent:loop` | `nexusengine/domains/agent/loop/goal-graph` | Optionally follow goal graphs through existing model-neutral loop ports. |
 | `agent-decision-kit` | `n:agent:decision` | `nexusengine/domains/agent/decision` | Validate and retain versioned typed judgments bound to Agent proposals and evidence. |
 | `agent-cycle-kit` | `n:agent` | `nexusengine/domains/agent/cycle` | Record observations, action proposals, decision cycles, and execution receipts. |
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |

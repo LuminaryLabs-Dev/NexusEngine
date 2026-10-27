@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3<br>
-      Guide content SHA-256: f60d010797ff2c59ac981c0c6063a5182a09f47736888a89ca7c1fd165b85a1f<br><br>
+      Core registry SHA-256: 9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d<br>
+      Guide content SHA-256: 9ea5e94c1202b8c8a0f92bc228a3fe3940ef363706e4165157f154bcc9b0a0ab<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -1323,13 +1323,15 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
+<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
 <li><code>n:actor:character</code>: Own active embodied character identity and neutral runtime bindings.</li>
 <li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
+<li><code>n:agent:graph</code>: Own bounded typed agent-work topology and revisioned atomic graph operations.</li>
+<li><code>n:agent:goal</code>: Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.</li>
 <li><code>n:agent:decision</code>: Own typed judgments, classification questions and evidence-bound proposal selections.</li>
 <li><code>n:agent:loop</code>: Own portable agent-loop composition contracts.</li>
 <li><code>n:agent:loop:step</code>: Own step envelopes and immutable outcome transitions.</li>
@@ -1539,7 +1541,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
+<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
 <table>
 <thead>
 <tr>
@@ -1571,6 +1573,16 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:agent</code></td>
 <td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:agent:graph</code></td>
+<td><code>n:agent</code></td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:agent:goal</code></td>
+<td><code>n:agent:graph</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2591,7 +2603,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
+<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2630,6 +2642,18 @@ npm pack --dry-run --json
 <td><code>n:agent</code></td>
 <td>-</td>
 <td>Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:agent:graph</code></td>
+<td><code>n:agent</code></td>
+<td>Own bounded typed agent-work topology and revisioned atomic graph operations.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:agent:goal</code></td>
+<td><code>n:agent</code></td>
+<td>Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3878,6 +3902,24 @@ npm pack --dry-run --json
 <td><code>n:actor:player</code></td>
 <td><code>nexusengine/domains/actor/player</code></td>
 <td>Track player identity, possession, control authority, and spawn generations.</td>
+</tr>
+<tr>
+<td><code>agent-graph-kit</code></td>
+<td><code>n:agent:graph</code></td>
+<td><code>nexusengine/domains/agent/graph</code></td>
+<td>Maintain bounded typed graphs with atomic patches, traversal and replay.</td>
+</tr>
+<tr>
+<td><code>agent-goal-kit</code></td>
+<td><code>n:agent:goal</code></td>
+<td><code>nexusengine/domains/agent/goal</code></td>
+<td>Interpret Agent graphs as evidence-bound conditional goals.</td>
+</tr>
+<tr>
+<td><code>agent-goal-loop-kit</code></td>
+<td><code>n:agent:loop</code></td>
+<td><code>nexusengine/domains/agent/loop/goal-graph</code></td>
+<td>Optionally follow goal graphs through existing model-neutral loop ports.</td>
 </tr>
 <tr>
 <td><code>agent-decision-kit</code></td>
@@ -6233,11 +6275,11 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3</code></p>
+<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
 <ul>
-<li>Source modules: 1820</li>
-<li>Manifest-proven public atoms: 395</li>
-<li>Manifest-owned internal modules: 1352</li>
+<li>Source modules: 1825</li>
+<li>Manifest-proven public atoms: 398</li>
+<li>Manifest-owned internal modules: 1354</li>
 <li>Root contract modules: 26</li>
 <li>Optional provider modules: 47</li>
 <li>Unreviewed modules: 0</li>
@@ -6625,6 +6667,30 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/agent/goal/goals.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/goal/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/graph/graph.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/graph/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/agent/index.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
@@ -6730,6 +6796,12 @@ npm pack --dry-run --json
 <td><code>src/core-domains/agent/loop/kits/coding-loop-kit/index.js</code></td>
 <td><code>n:agent</code></td>
 <td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-proven-public-atom</td>
 <td>NexusEngine Core</td>
 </tr>
 <tr>

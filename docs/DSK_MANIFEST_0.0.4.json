@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
-  "compositionRegistryHash": "sha256:47d87cec690d2d2e0ce487dfbb0557a9baa0249c3a496615eb6f2e59f107d73e",
+  "registryHash": "sha256:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+  "compositionRegistryHash": "sha256:d325f8cb0a3003336d519e451838ea1e1f320af2daebb5fb9f80c45f3f91eb32",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
-      "integrity": "sha256:4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
+      "sourceCommit": "builtin:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+      "integrity": "sha256:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
       "status": "available",
       "environments": [
         "browser",
@@ -212,6 +212,70 @@
       "requires": [],
       "provides": [
         "n:agent"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-goal-domain",
+      "domainPath": "n:agent:goal",
+      "parentDomainPath": "n:agent",
+      "label": "Agent Goal",
+      "status": "stable-candidate",
+      "responsibility": "Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.",
+      "ownedMeaning": [
+        "conditional verification",
+        "goal evidence",
+        "goal provenance"
+      ],
+      "forbiddenResponsibilities": [
+        "game rules",
+        "host execution",
+        "provider selection"
+      ],
+      "requires": [
+        "n:agent:graph"
+      ],
+      "provides": [
+        "n:agent:goal"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-graph-domain",
+      "domainPath": "n:agent:graph",
+      "parentDomainPath": "n:agent",
+      "label": "Agent Graph",
+      "status": "stable-candidate",
+      "responsibility": "Own bounded typed agent-work topology and revisioned atomic graph operations.",
+      "ownedMeaning": [
+        "graph identities",
+        "graph revisions",
+        "typed relationships"
+      ],
+      "forbiddenResponsibilities": [
+        "goal acceptance",
+        "host execution",
+        "model selection"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:graph"
       ],
       "settingsSchema": {
         "type": "object",
@@ -7115,6 +7179,243 @@
             },
             {
               "id": "agent-decision-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agent-goal-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Interpret Agent graphs as evidence-bound conditional goals.",
+      "domainPath": "n:agent:goal",
+      "parentDomainPath": "n:agent",
+      "apiName": "agentGoal",
+      "apiVisibility": "public",
+      "requires": [
+        "n:agent:graph"
+      ],
+      "provides": [
+        "n:agent:goal"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/agent/goal",
+        "exportName": "createAgentGoalKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "agent-goal-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "agent-goal-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agent-goal-loop-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Optionally follow goal graphs through existing model-neutral loop ports.",
+      "domainPath": "n:agent:loop",
+      "parentDomainPath": "n:agent",
+      "apiName": "agentGoalLoop",
+      "apiVisibility": "public",
+      "requires": [
+        "n:agent:goal"
+      ],
+      "provides": [
+        "agent:goal-loop"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/agent/loop/goal-graph",
+        "exportName": "createAgentGoalLoopKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "agent-goal-loop-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "agent-goal-loop-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agent-graph-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Maintain bounded typed graphs with atomic patches, traversal and replay.",
+      "domainPath": "n:agent:graph",
+      "parentDomainPath": "n:agent",
+      "apiName": "agentGraph",
+      "apiVisibility": "public",
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:graph"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/agent/graph",
+        "exportName": "createAgentGraphKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "agent-graph-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "agent-graph-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true

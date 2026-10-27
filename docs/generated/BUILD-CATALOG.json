@@ -5179,7 +5179,7 @@
     "./domains/build/toolchain/toolchain-resolution": "./src/core-domains/build/toolchain/kits/toolchain-resolution-kit/index.js",
     "./domains/build/toolchain/toolchain-source": "./src/core-domains/build/toolchain/kits/toolchain-source-kit/index.js"
   },
-  "registryHash": "4540add4df5d1c296b52c6708e5df7c9a608b085f76a83832d95c8284df357e3",
+  "registryHash": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
   "schema": "nexusengine.build-catalog/1",
   "sourceFiles": [
     {
