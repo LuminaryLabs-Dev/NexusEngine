@@ -21,6 +21,7 @@
     "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
     "./domains/agent/loop/goal-graph": "./src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js",
     "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
+    "./domains/agent/worker": "./src/core-domains/agent/worker/index.js",
     "./domains/asset": "./src/core-domains/asset/index.js",
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",
@@ -504,6 +505,6 @@
     "./release": "./src/release.js",
     "./runtime-kit": "./src/runtime-kit.js"
   },
-  "registryHash": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+  "registryHash": "fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
   "schema": "nexusengine.package-exports/1"
 }

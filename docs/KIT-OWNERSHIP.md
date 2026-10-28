@@ -2,13 +2,13 @@
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
-- Source modules: 1825
-- Manifest-proven public atoms: 398
-- Manifest-owned internal modules: 1354
+- Source modules: 1829
+- Manifest-proven public atoms: 399
+- Manifest-owned internal modules: 1356
 - Root contract modules: 26
-- Optional provider modules: 47
+- Optional provider modules: 48
 - Unreviewed modules: 0
 - Violations: 0
 
@@ -19,6 +19,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `kits/agent/loop-host/providers/openai-compatible.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/providers/typesafe.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/storage.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/worker.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/cli.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
@@ -104,6 +105,8 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/validation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/step/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/worker/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/worker/worker.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
@@ -135,6 +138,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/code/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/code/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/capabilities.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io-kit.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/ledger.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |

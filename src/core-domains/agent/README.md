@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:agent`
 - Status: `stable-candidate`
-- Registry SHA-256: `3124512704a4926c3fd145bf84076f9957a7647dceb52954b1757bc99ec68525`
+- Registry SHA-256: `92feb5853727f67e0c977801f7c8839a4b311a879fc310251d2f1d3d22a71ffb`
 - Public entry: `nexusengine/domains/agent`
 
 ## Responsibility
@@ -29,6 +29,7 @@ Own product-neutral observation, proposal, decision-cycle, execution receipt, an
 
 | Path | Responsibility |
 | --- | --- |
+| `n:agent:worker` | Own portable worker identity, bounded assignments and result references. |
 | `n:agent:graph` | Own bounded typed agent-work topology and revisioned atomic graph operations. |
 | `n:agent:goal` | Own outcome meaning, conditional checks and revision-linked verification over Agent graphs. |
 | `n:agent:decision` | Own typed judgments, classification questions and evidence-bound proposal selections. |
@@ -41,6 +42,7 @@ Own product-neutral observation, proposal, decision-cycle, execution receipt, an
 
 | Kit | Import | Responsibility |
 | --- | --- | --- |
+| `agent-worker-kit` | `nexusengine/domains/agent/worker` | Maintain portable worker assignments and revision-checked result references. |
 | `agent-graph-kit` | `nexusengine/domains/agent/graph` | Maintain bounded typed graphs with atomic patches, traversal and replay. |
 | `agent-goal-kit` | `nexusengine/domains/agent/goal` | Interpret Agent graphs as evidence-bound conditional goals. |
 | `agent-goal-loop-kit` | `nexusengine/domains/agent/loop/goal-graph` | Optionally follow goal graphs through existing model-neutral loop ports. |

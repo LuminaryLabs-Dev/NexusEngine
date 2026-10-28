@@ -1,12 +1,13 @@
 # Domain Index
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:worker`: Own portable worker identity, bounded assignments and result references.
 - `n:agent:graph`: Own bounded typed agent-work topology and revisioned atomic graph operations.
 - `n:agent:goal`: Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.
 - `n:agent:decision`: Own typed judgments, classification questions and evidence-bound proposal selections.

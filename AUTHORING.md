@@ -133,6 +133,43 @@ review. It contains request identity, before/after clocks, changed document
 identities, operation results, validation and recovery information. Successful
 transport delivery alone does not establish valid geometry or visual quality.
 
+## Automatically discovered capability ledger
+
+`project.tools()` discovers every registered command and exposes capability
+metadata without changing operation IDs or parameter schemas. The existing
+`npm run authoring:generate` catalogue includes an additive `ledger` section;
+`npm run authoring:check` detects source or registration drift. Ownership comes
+from manifests; parameters and selectors reference the installed tool schemas.
+Mesh topology profiles are generated from the schema's operation enum. Modifier
+support metadata is declared beside its existing service. Unannotated tools stay
+discoverable with `support: undeclared`; no generic claim of unlimited support is
+inferred. Studio bindings and export fidelity remain unknown unless separately
+established. Proposed tools are outside this executable catalogue.
+
+The default catalogue contains no execution authority and never promotes manifest
+proof declarations or test filenames to verification. Its implementation identity
+conservatively fingerprints all `src` and `kits/authoring` JavaScript/JSON sources
+and the declared capability verifier files.
+Each capability also has a contract hash binding its schema, effects and profile.
+Source changes can therefore stale evidence even if the profile name is unchanged.
+
+For a reviewed, retained evidence view, run:
+
+```sh
+node scripts/generate-authoring-capabilities.mjs --evidence /absolute/evidence.json --output /absolute/ledger-view.json
+```
+
+The evidence file is an array of records containing `capabilityId`, `profileVersion`,
+`contractHash`, `implementationIdentity`, `receiptRef`, `scenarios` and `result`
+(`passed` or `failed`). Matching passed evidence yields `verified` only for those
+reported scenarios. Matching failures take precedence; mismatched retained evidence
+is `stale`; missing evidence is `unverified`. References must point to retained
+actual validation output reviewed by the caller. Parsing a supplied record is not
+an independent audit or proof that its author told the truth. Raw reports stay
+outside the catalogue; the default generated file cannot be replaced by an
+evidence-enriched view. Runtime project eligibility and authorization are always
+rechecked by their owning services.
+
 ## Capability profiles
 
 Every row below names implemented behavior. Algorithm limits are intentional,

@@ -665,6 +665,17 @@
   "commands": [
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.bake-constraints",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -731,6 +742,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.bake-morph",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -797,6 +819,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -853,6 +886,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.key",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -929,6 +973,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.retarget",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -1000,6 +1055,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -1060,6 +1126,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "animation.shape",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:animation",
@@ -1127,6 +1204,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1187,6 +1275,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.duplicate",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1259,6 +1358,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.node",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1324,6 +1434,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.remove-node",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1390,6 +1511,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.scatter",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1518,6 +1650,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "assembly.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:assembly",
@@ -1582,6 +1725,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "brush.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:brush",
@@ -1636,6 +1790,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "brush.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:brush",
@@ -1694,6 +1859,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "code.apply-edits",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:code",
@@ -1745,6 +1921,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "code.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:code",
@@ -1799,6 +1986,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "code.edit",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:code",
@@ -1881,6 +2079,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "code.rename",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:code",
@@ -1941,6 +2150,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "code.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:code",
@@ -1999,6 +2219,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "curve.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:curve",
@@ -2053,6 +2284,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "curve.point",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:curve",
@@ -2112,6 +2354,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "curve.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:curve",
@@ -2170,6 +2423,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "curve.sweep",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:curve",
@@ -2228,6 +2492,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "domain-composition.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:domain-composition",
@@ -2282,6 +2557,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "domain-composition.node",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:domain-composition",
@@ -2341,6 +2627,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "domain-composition.remove-node",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:domain-composition",
@@ -2401,6 +2698,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "domain-composition.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:domain-composition",
@@ -2459,6 +2767,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "editing.modify",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:editing",
@@ -2537,6 +2856,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "editing.object-select",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:editing",
@@ -2609,6 +2939,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "editing.select",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:editing",
@@ -2689,6 +3030,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "importing.commit",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:importing",
@@ -2771,6 +3123,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "material.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:material",
@@ -2825,6 +3188,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "material.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:material",
@@ -2883,6 +3257,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.attribute",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -2942,6 +3327,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.create",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -2994,6 +3390,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.cube",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -3045,6 +3452,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.primitive",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -3168,6 +3586,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.replace",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -3227,6 +3656,296 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": "Edit mesh topology using delete",
+          "id": "mesh.topology#delete",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "delete"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using extract",
+          "id": "mesh.topology#extract",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "extract"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using duplicate",
+          "id": "mesh.topology#duplicate",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "duplicate"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using split",
+          "id": "mesh.topology#split",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "split"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using triangulate",
+          "id": "mesh.topology#triangulate",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "triangulate"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using weld",
+          "id": "mesh.topology#weld",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "weld"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using fill",
+          "id": "mesh.topology#fill",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "fill"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using extrude",
+          "id": "mesh.topology#extrude",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "extrude"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using inset",
+          "id": "mesh.topology#inset",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+            "This profile insets one selected face at a time."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "inset"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using subdivide-edge",
+          "id": "mesh.topology#subdivide-edge",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "subdivide-edge"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using bridge",
+          "id": "mesh.topology#bridge",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "bridge"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using knife",
+          "id": "mesh.topology#knife",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+            "Native knife-chord profile; arbitrary interactive cutting paths are not declared."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "knife"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using dissolve",
+          "id": "mesh.topology#dissolve",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "dissolve"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using loop-cut",
+          "id": "mesh.topology#loop-cut",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "loop-cut"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        },
+        {
+          "description": "Edit mesh topology using bevel",
+          "id": "mesh.topology#bevel",
+          "limitations": [
+            "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+            "Closed convex polyhedra only; flat chamfer; authored attributes must be absent."
+          ],
+          "selector": {
+            "path": [
+              "parameters",
+              "operation"
+            ],
+            "value": "bevel"
+          },
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -3391,6 +4110,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "mesh.transform",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:mesh",
@@ -3499,6 +4229,25 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": "Evaluate and atomically apply the native modifier stack. Supported entry types: mirror, array, subdivision, solidify, smooth, shrinkwrap, deform, boolean, decimation, remesh",
+          "id": "modifier.apply",
+          "limitations": [
+            "Ordered stack has at most 32 unique entries; disabled entries do not evaluate.",
+            "Subdivision uses binary smooth/hard creases, not fractional crease weights.",
+            "BSP Boolean supports at most 4000 faces per operand and enforces a tree-depth bound.",
+            "Validated edge-collapse decimation supports at most 5000 vertices.",
+            "Remesh is the native subdivision/triangulation/relaxation profile, not voxel remeshing."
+          ],
+          "selector": null,
+          "support": "declared",
+          "verifierRefs": [
+            "tests/core-domains/core-authoring-geometry.mjs"
+          ],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3567,6 +4316,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "modifier.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3621,6 +4381,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "modifier.entry",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3680,6 +4451,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "modifier.remove",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3740,6 +4522,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "modifier.reorder",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3804,6 +4597,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "modifier.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:modifier",
@@ -3862,6 +4666,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.bake",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -3929,6 +4744,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.bake-normal",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4000,6 +4826,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4055,6 +4892,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.fill",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4126,6 +4974,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4185,6 +5044,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.stroke",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4246,6 +5116,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "paint.vertex-color",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:paint",
@@ -4305,6 +5186,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "publishing.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:publishing",
@@ -4359,6 +5251,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "publishing.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:publishing",
@@ -4417,6 +5320,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "rig.bone",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:rig",
@@ -4476,6 +5390,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "rig.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:rig",
@@ -4530,6 +5455,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "rig.remove-bone",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:rig",
@@ -4590,6 +5526,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "rig.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:rig",
@@ -4648,6 +5595,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "sculpt.stroke",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:sculpt",
@@ -4708,6 +5666,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "sequence.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:sequence",
@@ -4762,6 +5731,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "sequence.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:sequence",
@@ -4820,6 +5800,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.bind",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -4892,6 +5883,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -4948,6 +5950,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.lock",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5014,6 +6027,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.mirror",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5109,6 +6133,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.paint",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5176,6 +6211,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5236,6 +6282,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.smooth",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5319,6 +6376,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "skin.weights",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:skin",
@@ -5380,6 +6448,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "uv.pack",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:uv",
@@ -5439,6 +6518,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "uv.project",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:uv",
@@ -5498,6 +6588,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "uv.seams",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:uv",
@@ -5562,6 +6663,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "uv.transform",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:uv",
@@ -5621,6 +6733,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "uv.unwrap",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:uv",
@@ -5680,6 +6803,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "workspace.close",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:workspace",
@@ -5740,6 +6874,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "workspace.delete",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:workspace",
@@ -5794,6 +6939,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "workspace.open",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:workspace",
@@ -5854,6 +7010,17 @@
     },
     {
       "cancellation": "before-submit",
+      "capabilities": [
+        {
+          "description": null,
+          "id": "workspace.set",
+          "limitations": [],
+          "selector": null,
+          "support": "undeclared",
+          "verifierRefs": [],
+          "version": 1
+        }
+      ],
       "cost": "bounded-document",
       "documentation": "AUTHORING.md#capability-profiles",
       "domainPath": "n:authoring:workspace",
@@ -5910,5 +7077,2622 @@
       "schemaVersion": 1,
       "validation": "Project.preview validates typed schemas, limits, references and the complete prospective state before commit."
     }
-  ]
+  ],
+  "ledger": {
+    "schema": "nexusengine.authoring-capability-ledger/1",
+    "implementationIdentity": "sha256:149c7154adc1004a20e47c013517702b394cb98528816d10ad8d94b71d6e483f",
+    "executionAuthority": false,
+    "capabilities": [
+      {
+        "id": "animation.bake-constraints",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.bake-constraints",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:1d7345a9732b9167ca0c7d17427147cb3dd8210c9ac4fb5686974fa98934fea8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.bake-morph",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.bake-morph",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:5b1e181ace92635ce0421ed48c289f7904d6450f7c8a1d28057681cc2a34e3a0",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.delete",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:1936607f636991b65332d88141af0ce2837bf0a8b0a1604cab63b97088bb0476",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.key",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.key",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9efe817336a49e082e5d3b1153165d08d0cbd946f86b9381a4c92e92a30a6a0f",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.retarget",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.retarget",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:79db057d68d34fca10f68e24e20942243868705f07113c43f7021c76f2d03a91",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.set",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:011ad5097ba5967db22d4d03c202f1cccc1815d0aa2df104af3fd17159a33ba3",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "animation.shape",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "animation.shape",
+        "domainPath": "n:authoring:animation",
+        "kitIds": [
+          "authoring-animation-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:60ae4a520217b4af532c28bc7904070186237966000c84e2385b0340ea9dfb50",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.delete",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:aab7c31e06377e46f7f23454455839a2a32eb2947161b37e0828c28c59063a87",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.duplicate",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.duplicate",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f8bc2d1d5c6df05b4bc3ed2c1150caf550e54a1faa61b216cf629de80a1886da",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.node",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.node",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:eb598752a8a7f06d196679b119f6a73f936efc789a0c2669e2141ce5dbf7bbd9",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.remove-node",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.remove-node",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:b5767affd60d1dffc17b9869b76353b3a984434ab5254878b9b43832591ed4e8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.scatter",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.scatter",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:071195dd2504c4d379940340271a13a5064b471f83cfccdf5a2c342365e06108",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "assembly.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "assembly.set",
+        "domainPath": "n:authoring:assembly",
+        "kitIds": [
+          "authoring-assembly-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:73df742f0e156636f7fb2ac69da350a5f82ebed6d756ff877fd9503a14cf9e92",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "brush.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "brush.delete",
+        "domainPath": "n:authoring:brush",
+        "kitIds": [
+          "authoring-brush-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:15754dfce85e39663897694cf99e21d7268a0510e32d9778f0f175fe2aeb808b",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "brush.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "brush.set",
+        "domainPath": "n:authoring:brush",
+        "kitIds": [
+          "authoring-brush-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9cad803c9dd16e5086d64210438928d455b02c92aa0c308422501171604b7f74",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "code.apply-edits",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "code.apply-edits",
+        "domainPath": "n:authoring:code",
+        "kitIds": [
+          "code-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:6fedfcf19ed0995a1feacd58b5304155fbe4cf66ee0a9a7ab10d96f7f39fbee4",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "code.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "code.delete",
+        "domainPath": "n:authoring:code",
+        "kitIds": [
+          "code-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:24735820cbe0f724b8c3c5f511726120d993f5c5703e12525cb72b9784754953",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "code.edit",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "code.edit",
+        "domainPath": "n:authoring:code",
+        "kitIds": [
+          "code-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:56214683eaa0e013c0d04bb4aaadc4b9cd7a210a01b50066df2d6a67fb30575c",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "code.rename",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "code.rename",
+        "domainPath": "n:authoring:code",
+        "kitIds": [
+          "code-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:6f8a6628ec731d08a7f0479b1076343e86fa92c5411854c68b367f1593c86ed5",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "code.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "code.set",
+        "domainPath": "n:authoring:code",
+        "kitIds": [
+          "code-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:325a277f2830b70933ae636ba36075136a53e73dd94b4038caae6ecfbebc522b",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "curve.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "curve.delete",
+        "domainPath": "n:authoring:curve",
+        "kitIds": [
+          "authoring-curve-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:a252dbbfc5e1ecddf04bf638485a671343b7e81444ea4f80c035be7a3f677901",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "curve.point",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "curve.point",
+        "domainPath": "n:authoring:curve",
+        "kitIds": [
+          "authoring-curve-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:12bb774b561884234bd582ede8946e01d5aa0ce573fb419a462078b9ee7f7466",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "curve.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "curve.set",
+        "domainPath": "n:authoring:curve",
+        "kitIds": [
+          "authoring-curve-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:5ba2982f2d767a21a9ed3337db1c9f9eeb8231fab3d8c3ced242af8d1eb99114",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "curve.sweep",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "curve.sweep",
+        "domainPath": "n:authoring:curve",
+        "kitIds": [
+          "authoring-curve-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:383b31c6081556fc39065c3df0501b0b671c79278f062abf41a7ff2b7fee30e8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "domain-composition.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "domain-composition.delete",
+        "domainPath": "n:authoring:domain-composition",
+        "kitIds": [
+          "authoring-domain-composition-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f4f3e83d78543590dfeb8de1d299861f44b21578c0b06e5a5da946a37e02cc4a",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "domain-composition.node",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "domain-composition.node",
+        "domainPath": "n:authoring:domain-composition",
+        "kitIds": [
+          "authoring-domain-composition-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:109ad51ffa9201d4ff2b6509049885cf5409469c48789d33d69280e64384e1f9",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "domain-composition.remove-node",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "domain-composition.remove-node",
+        "domainPath": "n:authoring:domain-composition",
+        "kitIds": [
+          "authoring-domain-composition-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:2d80c0b760a53793a80f534ad9b2ca512a492cb69b643b804b2eb7466c9f9e03",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "domain-composition.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "domain-composition.set",
+        "domainPath": "n:authoring:domain-composition",
+        "kitIds": [
+          "authoring-domain-composition-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:df91963ffd3d049fca2533c9d27849392b488ee18cf5212c72a2727b5de68042",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "editing.modify",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "editing.modify",
+        "domainPath": "n:authoring:editing",
+        "kitIds": [
+          "authoring-editing-session-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:dd3c523fbde16104558b4cec21094507260a2243dcf7df1f6b419a4ba6a1160d",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "editing.object-select",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "editing.object-select",
+        "domainPath": "n:authoring:editing",
+        "kitIds": [
+          "authoring-editing-session-kit"
+        ],
+        "requiredKits": [
+          "authoring-assembly-service-kit"
+        ],
+        "contractHash": "sha256:c7d56d1c7fcf96b1efa7eb96656e702b34729b47d98aa3ca3abd45c832d253ae",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "editing.select",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "editing.select",
+        "domainPath": "n:authoring:editing",
+        "kitIds": [
+          "authoring-editing-session-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:83c7d6bf43d910656ab2b0fd2fbc4e1615768cbf4e4bdad57c4fd6f16fd4de6c",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "importing.commit",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "importing.commit",
+        "domainPath": "n:authoring:importing",
+        "kitIds": [
+          "authoring-import-commit-kit",
+          "authoring-import-registry-kit",
+          "authoring-import-service-kit",
+          "authoring-import-validation-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:eec07cdc2a6497cca4088c31c298a0a49e5ab27e5b98a10b16dc2cdd2b4fb8e8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "material.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "material.delete",
+        "domainPath": "n:authoring:material",
+        "kitIds": [
+          "authoring-material-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:7b021f0416f1f82d01a96e751bfb9e7f8d29ffe49dc45d6af6c9b4cfc88440b3",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "material.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "material.set",
+        "domainPath": "n:authoring:material",
+        "kitIds": [
+          "authoring-material-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:c7758819a8bc41b981a5f6ddae9bb3de116fe7f110655b68d11f00def5d417c1",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.attribute",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.attribute",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f474a370b7c0433c4402b214e2bb797acd29ac1f98a272e900d4e5e077b8d4f8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.create",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.create",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:790935828ad4519bdc8aaff1761e23b2c6019ff05cd08b60ecaab25cd9a3bc70",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.cube",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.cube",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:a4ec94db242348c6cb655fa7f5f07e71cd7279c166668ebac266318b54ddb0ca",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.primitive",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.primitive",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:92415efd9b3274ea3c750ff2934cae5e479c53db92bc0319331a5e186ee5077e",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.replace",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.replace",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:891996e0475398322d090434055d33d31ba2238ab48f94a6a5b8bc36818daf46",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#bevel",
+        "version": 1,
+        "description": "Edit mesh topology using bevel",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "bevel"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+          "Closed convex polyhedra only; flat chamfer; authored attributes must be absent."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:2d2c8572a93a2f58ed9c476e3baa1897bc1187220c507baf70a39815fd300ab7",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#bridge",
+        "version": 1,
+        "description": "Edit mesh topology using bridge",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "bridge"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:999035c17e7077c12c7944e6be7fecd42bcf9c3f0db6552d19b5df6ecd7b865d",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#delete",
+        "version": 1,
+        "description": "Edit mesh topology using delete",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "delete"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:a0a01867188fa45331c5bb07c65777a88fc97d65521c9852e77277e8b64525d0",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#dissolve",
+        "version": 1,
+        "description": "Edit mesh topology using dissolve",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "dissolve"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:2bde365d9f790b885d7fbd2d4d96998b94487a020c2c43c45b4fdebc8f967548",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#duplicate",
+        "version": 1,
+        "description": "Edit mesh topology using duplicate",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "duplicate"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9252fbcc71111af8cf605199f35e51837d3b0405bcd4cc38b04472668103564e",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#extract",
+        "version": 1,
+        "description": "Edit mesh topology using extract",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "extract"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:927cef8824ac23efddf83eaa1c593af2b431f3f0c7c6ec9aedbe9ec8fbe988c8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#extrude",
+        "version": 1,
+        "description": "Edit mesh topology using extrude",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "extrude"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:49fd049d4abe309d3290546c611c75f7d10fc56042582388e0aced27182cf984",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#fill",
+        "version": 1,
+        "description": "Edit mesh topology using fill",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "fill"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f79c9acb4be43d6da162a9136f67fb57b8cae0506625615c7c74d67949da75f0",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#inset",
+        "version": 1,
+        "description": "Edit mesh topology using inset",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "inset"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+          "This profile insets one selected face at a time."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:36c1eb52c35e58d6a7e9bbb1e6c693fda429a9e87c2d2dc8a01d6a8382635382",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#knife",
+        "version": 1,
+        "description": "Edit mesh topology using knife",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "knife"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.",
+          "Native knife-chord profile; arbitrary interactive cutting paths are not declared."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:e2b8051b0e75a5cfeeb0a46fd517683cbf617852d63df7a3fef5841a9536ff64",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#loop-cut",
+        "version": 1,
+        "description": "Edit mesh topology using loop-cut",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "loop-cut"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:fef82d3c0f1c2438872247038c7c2743e3c2c28acfb08d7caf74ae58586e92ac",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#split",
+        "version": 1,
+        "description": "Edit mesh topology using split",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "split"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:37100eab5282f0971c69bfc76dc8e6b252d025c5206418b6505333453f66a571",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#subdivide-edge",
+        "version": 1,
+        "description": "Edit mesh topology using subdivide-edge",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "subdivide-edge"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:ba5756d2ca63d12a8a063db05f1baa247464276fa256adadf4faec065d812667",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#triangulate",
+        "version": 1,
+        "description": "Edit mesh topology using triangulate",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "triangulate"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:407d02166b2a2e5ac69daf86ca52e53b8ec1500b8489f619ed0358cafe546c94",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.topology#weld",
+        "version": 1,
+        "description": "Edit mesh topology using weld",
+        "selector": {
+          "path": [
+            "parameters",
+            "operation"
+          ],
+          "value": "weld"
+        },
+        "support": "declared",
+        "limitations": [
+          "Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "mesh.topology",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:2499e0c4750f13768bc2d5623dba03b2c70afeae297709b7cfe22ba86739baf3",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "mesh.transform",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "mesh.transform",
+        "domainPath": "n:authoring:mesh",
+        "kitIds": [
+          "authoring-mesh-document-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:6d3b97e253af347a4a39a15e6fd2bc40b93caecb8500a20c7a788df6ea899ac8",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.apply",
+        "version": 1,
+        "description": "Evaluate and atomically apply the native modifier stack. Supported entry types: mirror, array, subdivision, solidify, smooth, shrinkwrap, deform, boolean, decimation, remesh",
+        "selector": null,
+        "support": "declared",
+        "limitations": [
+          "Ordered stack has at most 32 unique entries; disabled entries do not evaluate.",
+          "Subdivision uses binary smooth/hard creases, not fractional crease weights.",
+          "BSP Boolean supports at most 4000 faces per operand and enforces a tree-depth bound.",
+          "Validated edge-collapse decimation supports at most 5000 vertices.",
+          "Remesh is the native subdivision/triangulation/relaxation profile, not voxel remeshing."
+        ],
+        "verifierRefs": [
+          "tests/core-domains/core-authoring-geometry.mjs"
+        ],
+        "operationId": "modifier.apply",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:26b45b9985dcfd075195917cfe34f0420655368cb254d23048b4cb8956fec45c",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "modifier.delete",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:fe23773e6679bfaf7d731f1944b9ff878ab171ec4b3b5120bd1e0a26c695cb68",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.entry",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "modifier.entry",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:431c3bca14643824daaca34ae41aa2e6934395d6aab9ce220f98866e9ab59bec",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.remove",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "modifier.remove",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:da1903caaab35d5f61f8fc1f88426491efc2511d63a8fb251314edf17fe3395d",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.reorder",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "modifier.reorder",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:ff4327ebcd9b83d8a3cb98835994573a3d95a8f1923febbe83be4e644811139c",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "modifier.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "modifier.set",
+        "domainPath": "n:authoring:modifier",
+        "kitIds": [
+          "authoring-modifier-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:0ee41a411d2d4a5087bd51f872ea166fbe26b887bb4d7d0fb21aa7c36ce5ceb3",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.bake",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.bake",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:4c2b891bef14efd6fd9416e1a98b94e627d95e2d43f566dbf207ac00d2e71edb",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.bake-normal",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.bake-normal",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:1c22564ad5daee7e68ec2928a04fd4f7254717e3c09373ffb3269b6d4b3da9bc",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.delete",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9589e0b32e3b374df955e8e3435cad1c38077721a0bfc5619f1759175dc9a1fd",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.fill",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.fill",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:e5e31e7a69b8f05eb9e176019ce9c6684b9f86c9f4d05a05f6894252e06435da",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.set",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:bff7d66e8d61ed0bf0510e6d9b19421d2233edb5efe10ec7212e969ad1b7967d",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.stroke",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.stroke",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:5816d26c9a2ebf69d7bd3ab0db308dd2ad4ccdedbfdb2faabd49d5f6e7d6e7d2",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "paint.vertex-color",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "paint.vertex-color",
+        "domainPath": "n:authoring:paint",
+        "kitIds": [
+          "authoring-paint-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:642bd4587e034fbce6cb702059e26598e2688dcd3a561002f5e24eced9546b79",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "publishing.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "publishing.delete",
+        "domainPath": "n:authoring:publishing",
+        "kitIds": [
+          "authoring-publishing-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:8b3986a7e2fc7f655f207f6a1518ae11644f59c4606e4d7668add7fb58e8c1e2",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "publishing.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "publishing.set",
+        "domainPath": "n:authoring:publishing",
+        "kitIds": [
+          "authoring-publishing-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:86faee774ec24e24cf622fbed3244cf4db7b3b90885c61bcccc793482554411f",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "rig.bone",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "rig.bone",
+        "domainPath": "n:authoring:rig",
+        "kitIds": [
+          "authoring-rig-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:e5d16bf49fecb3eab9bc904a7454e9356168c3ebbd875099659b88bcb2fa8158",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "rig.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "rig.delete",
+        "domainPath": "n:authoring:rig",
+        "kitIds": [
+          "authoring-rig-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:81955db03cffde1ce15da9d012bb7a879135f468c1d9fd12ec86fc2435da1c5e",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "rig.remove-bone",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "rig.remove-bone",
+        "domainPath": "n:authoring:rig",
+        "kitIds": [
+          "authoring-rig-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:15fb0c7c4e1d7f35f4348095de94453fd36821cda2abe71869318a2ea8f13374",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "rig.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "rig.set",
+        "domainPath": "n:authoring:rig",
+        "kitIds": [
+          "authoring-rig-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:8a42211b7f44c13101e332882defe28bfe0c332efa8fdfe0882b20360a498102",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "sculpt.stroke",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "sculpt.stroke",
+        "domainPath": "n:authoring:sculpt",
+        "kitIds": [
+          "authoring-sculpt-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:254c975488e776fd7c8bc1d96e13aeb8c9cb25fbb4508f9d46ba3267582b4a47",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "sequence.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "sequence.delete",
+        "domainPath": "n:authoring:sequence",
+        "kitIds": [
+          "authoring-sequence-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:dd696c37d60dbaecc3e026bf89e70db02daa2e9d38de5a0529dea92f30615bdd",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "sequence.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "sequence.set",
+        "domainPath": "n:authoring:sequence",
+        "kitIds": [
+          "authoring-sequence-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:835230659af7e5b5542d60978aea216c3cefd8ee39368ace6784cce94e704946",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.bind",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.bind",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:99001664622ecc13dd653557f748fed08cd3885416c64b2aed8dff4efe2e82f3",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.delete",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:6ccba3d6d3b2d046c8524dfa23f27af1f587fc35b7246716d7d92f44d4b1a877",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.lock",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.lock",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:e22b3b1120c515e5e0272075d4fd0ff7cc2e21a8e848d8c47caf5b749279be32",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.mirror",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.mirror",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:050d265c3fdbfcb6d0ed9d152b69e13d48900486a0882afe7185ccfcf61643be",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.paint",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.paint",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f4f3bcdc42d9d959f6aba634c90eb6a02cab91e19724d57d3f69b40da8457cec",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.set",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9d5b1c3380377ff66ea0572cafdae4dd68c6fce128c7291a8dbed58c525fc9ee",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.smooth",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.smooth",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:9f3adaea19861010ad9f45bec2388b609658d673aabaa87db01101941217831b",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "skin.weights",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "skin.weights",
+        "domainPath": "n:authoring:skin",
+        "kitIds": [
+          "authoring-skin-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:d84b610a5b2f7f0c717281432348d37adbb3d6d1f960f1148739fc88f2bc6063",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "uv.pack",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "uv.pack",
+        "domainPath": "n:authoring:uv",
+        "kitIds": [
+          "authoring-uv-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:1bf48e093d7caa0655d3834938edd6b68cff8b8f6cf782acbd6d8a00ad5b9003",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "uv.project",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "uv.project",
+        "domainPath": "n:authoring:uv",
+        "kitIds": [
+          "authoring-uv-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f4de774d3e6797d29fd3fa52879781a46fa6c1eabb51e5bb7da31912a7e4b58a",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "uv.seams",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "uv.seams",
+        "domainPath": "n:authoring:uv",
+        "kitIds": [
+          "authoring-uv-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:bb7d7134bfa26f29897aec387b7f7aa606b0b0f989460b7a53e08e0b3b014482",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "uv.transform",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "uv.transform",
+        "domainPath": "n:authoring:uv",
+        "kitIds": [
+          "authoring-uv-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:f0290c581dcd3fbfd3b174a1db34036d963ffa498a8bc12fd2e5013436cc519d",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "uv.unwrap",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "uv.unwrap",
+        "domainPath": "n:authoring:uv",
+        "kitIds": [
+          "authoring-uv-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:697ed95db209ceaa405f58c69d5d9b0d216f91b7d6d6a1621070e867359aa782",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "workspace.close",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "workspace.close",
+        "domainPath": "n:authoring:workspace",
+        "kitIds": [
+          "authoring-workspace-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:8b02d450e0adf1cef5833ddb5a1bb2639204a404ba63b4eb240f5bd10ea88f5b",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "workspace.delete",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "workspace.delete",
+        "domainPath": "n:authoring:workspace",
+        "kitIds": [
+          "authoring-workspace-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:909d99e6aab600620068072f71453736723bee8d55f3ea608865dbb698b99fd6",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "workspace.open",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "workspace.open",
+        "domainPath": "n:authoring:workspace",
+        "kitIds": [
+          "authoring-workspace-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:a1ec71e10c30f7538a1710fb7e9a08df98d7a3585425cf97806f5d45764b3350",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      },
+      {
+        "id": "workspace.set",
+        "version": 1,
+        "description": null,
+        "selector": null,
+        "support": "undeclared",
+        "limitations": [],
+        "verifierRefs": [],
+        "operationId": "workspace.set",
+        "domainPath": "n:authoring:workspace",
+        "kitIds": [
+          "authoring-workspace-service-kit"
+        ],
+        "requiredKits": [],
+        "contractHash": "sha256:150fa65feb2ec81fa8b16a040dcc6248a58e3d80e58e72bc54e0c7e646d02582",
+        "availability": "registered",
+        "eligibility": "requires-runtime-context",
+        "verification": {
+          "status": "unverified",
+          "scope": "reported-scenarios-only",
+          "evidence": [],
+          "staleEvidenceCount": 0
+        },
+        "studioBinding": "unknown",
+        "exportSupport": "undeclared"
+      }
+    ]
+  }
 }

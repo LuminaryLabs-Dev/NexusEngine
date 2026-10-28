@@ -1,8 +1,8 @@
 {
   "schema": "nexusengine.guide-book-state/1",
   "version": "0.0.4",
-  "registryHash": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
-  "contentHash": "sha256:9ea5e94c1202b8c8a0f92bc228a3fe3940ef363706e4165157f154bcc9b0a0ab",
+  "registryHash": "fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
+  "contentHash": "sha256:30c3924f30eecad7c2ff1e47bb8c500642e2a7419dda2f02a70c2c7cf47f6ce6",
   "chapters": [
     {
       "id": "start-here",
@@ -42,7 +42,7 @@
       "source": "AUTHORING.md",
       "googleDocTab": "04 Authoring",
       "generated": false,
-      "contentHash": "sha256:9d566356dd9c66a1cdae08184dc569313e87e712d4bd99da1439c6e9005f7862"
+      "contentHash": "sha256:1ccf7b5d5d8f2cad07f18a659bb9483d35ae0cf49915da415cc8981ba0068cc1"
     },
     {
       "id": "lifecycle",
@@ -130,7 +130,7 @@
       "source": "docs/guide/generated/domain-index.md",
       "googleDocTab": "A Domain Index",
       "generated": true,
-      "contentHash": "sha256:395395d8e6706f334f54aa6ee76b22b57271b5485ac5a3b85b08553a5d181415"
+      "contentHash": "sha256:6b8a22e341e97911c47789c0881bbb9e76df823cccb356da0cb7222d99a097c9"
     },
     {
       "id": "dependency-table",
@@ -138,7 +138,7 @@
       "source": "docs/guide/generated/dependency-table.md",
       "googleDocTab": "B Dependencies",
       "generated": true,
-      "contentHash": "sha256:99019a17d903c350ead14885a6b8bb34cc9dc0f6d515db0d70e21b3080014fe9"
+      "contentHash": "sha256:5dffd192d0dff034fa298d7581f6bc9212f7fa953cb459dec8e9806d8835b88f"
     },
     {
       "id": "api-reference",
@@ -146,7 +146,7 @@
       "source": "docs/generated/API-REFERENCE.md",
       "googleDocTab": "C API Reference",
       "generated": true,
-      "contentHash": "sha256:a6ceeb874cf219ce9831f72883ebb1334e74a78e3640efcfeca94f4f05807be1"
+      "contentHash": "sha256:56fe1bb3f265934b9a1d8ef148e1a3d6f8dc08d4a23e5f0ffaa8b5ed7b3c5aa8"
     },
     {
       "id": "ownership-ledger",
@@ -154,7 +154,7 @@
       "source": "docs/KIT-OWNERSHIP.md",
       "googleDocTab": "D Ownership",
       "generated": true,
-      "contentHash": "sha256:afc4ebb26e0726bb919cdbb994d863c38d01bed7d3f6e323ae5e186215043d93"
+      "contentHash": "sha256:56969c8c7304d6d313e840caefe17d1cadc265681ca4f70d4eebc5d4176edef6"
     },
     {
       "id": "restored-behavior-migration",

@@ -53,8 +53,8 @@
     </div>
     <div class="metadata">
       <strong>Version 0.0.4</strong><br>
-      Core registry SHA-256: 9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d<br>
-      Guide content SHA-256: 9ea5e94c1202b8c8a0f92bc228a3fe3940ef363706e4165157f154bcc9b0a0ab<br><br>
+      Core registry SHA-256: fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb<br>
+      Guide content SHA-256: 30c3924f30eecad7c2ff1e47bb8c500642e2a7419dda2f02a70c2c7cf47f6ce6<br><br>
       Canonical source: modular Markdown declared by docs/guide/book.json
     </div>
   </section>
@@ -485,6 +485,36 @@ Project alone snapshots/restores/resets editable documents and history.</p>
 review. It contains request identity, before/after clocks, changed document
 identities, operation results, validation and recovery information. Successful
 transport delivery alone does not establish valid geometry or visual quality.</p>
+<h2>Automatically discovered capability ledger</h2>
+<p><code>project.tools()</code> discovers every registered command and exposes capability
+metadata without changing operation IDs or parameter schemas. The existing
+<code>npm run authoring:generate</code> catalogue includes an additive <code>ledger</code> section;
+<code>npm run authoring:check</code> detects source or registration drift. Ownership comes
+from manifests; parameters and selectors reference the installed tool schemas.
+Mesh topology profiles are generated from the schema&#39;s operation enum. Modifier
+support metadata is declared beside its existing service. Unannotated tools stay
+discoverable with <code>support: undeclared</code>; no generic claim of unlimited support is
+inferred. Studio bindings and export fidelity remain unknown unless separately
+established. Proposed tools are outside this executable catalogue.</p>
+<p>The default catalogue contains no execution authority and never promotes manifest
+proof declarations or test filenames to verification. Its implementation identity
+conservatively fingerprints all <code>src</code> and <code>kits/authoring</code> JavaScript/JSON sources
+and the declared capability verifier files.
+Each capability also has a contract hash binding its schema, effects and profile.
+Source changes can therefore stale evidence even if the profile name is unchanged.</p>
+<p>For a reviewed, retained evidence view, run:</p>
+<pre><code class="language-sh">node scripts/generate-authoring-capabilities.mjs --evidence /absolute/evidence.json --output /absolute/ledger-view.json
+</code></pre>
+<p>The evidence file is an array of records containing <code>capabilityId</code>, <code>profileVersion</code>,
+<code>contractHash</code>, <code>implementationIdentity</code>, <code>receiptRef</code>, <code>scenarios</code> and <code>result</code>
+(<code>passed</code> or <code>failed</code>). Matching passed evidence yields <code>verified</code> only for those
+reported scenarios. Matching failures take precedence; mismatched retained evidence
+is <code>stale</code>; missing evidence is <code>unverified</code>. References must point to retained
+actual validation output reviewed by the caller. Parsing a supplied record is not
+an independent audit or proof that its author told the truth. Raw reports stay
+outside the catalogue; the default generated file cannot be replaced by an
+evidence-enriched view. Runtime project eligibility and authorization are always
+rechecked by their owning services.</p>
 <h2>Capability profiles</h2>
 <p>Every row below names implemented behavior. Algorithm limits are intentional,
 and unsupported inputs fail before replacing source. This is a source editing
@@ -1323,13 +1353,14 @@ npm pack --dry-run --json
     <article class="chapter" id="domain-index">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Domain Index</h1>
-<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
+<p>Registry SHA-256: <code>fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb</code></p>
 <ul>
 <li><code>n:actor</code>: Own neutral embodied actor identity and shared actor references.</li>
 <li><code>n:actor:creature</code>: Own neutral creature embodiment definitions and references.</li>
 <li><code>n:actor:character</code>: Own active embodied character identity and neutral runtime bindings.</li>
 <li><code>n:actor:player</code>: Own neutral player identity, possession, control authority, and spawn generations.</li>
 <li><code>n:agent</code>: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</li>
+<li><code>n:agent:worker</code>: Own portable worker identity, bounded assignments and result references.</li>
 <li><code>n:agent:graph</code>: Own bounded typed agent-work topology and revisioned atomic graph operations.</li>
 <li><code>n:agent:goal</code>: Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.</li>
 <li><code>n:agent:decision</code>: Own typed judgments, classification questions and evidence-bound proposal selections.</li>
@@ -1541,7 +1572,7 @@ npm pack --dry-run --json
     <article class="chapter" id="dependency-table">
       <div class="chapter-kicker">Generated reference</div>
       <h1>Core Dependency Table</h1>
-<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
+<p>Registry SHA-256: <code>fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb</code></p>
 <table>
 <thead>
 <tr>
@@ -1573,6 +1604,11 @@ npm pack --dry-run --json
 <tr>
 <td><code>n:agent</code></td>
 <td>-</td>
+<td>-</td>
+</tr>
+<tr>
+<td><code>n:agent:worker</code></td>
+<td><code>n:agent</code></td>
 <td>-</td>
 </tr>
 <tr>
@@ -2603,7 +2639,7 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Generated Core API Reference</h1>
 <p>This file is generated from Domain manifest v2 records. Do not edit it directly.</p>
-<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
+<p>Registry SHA-256: <code>fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb</code></p>
 <h2>Domains</h2>
 <table>
 <thead>
@@ -2642,6 +2678,12 @@ npm pack --dry-run --json
 <td><code>n:agent</code></td>
 <td>-</td>
 <td>Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.</td>
+<td>stable-candidate</td>
+</tr>
+<tr>
+<td><code>n:agent:worker</code></td>
+<td><code>n:agent</code></td>
+<td>Own portable worker identity, bounded assignments and result references.</td>
 <td>stable-candidate</td>
 </tr>
 <tr>
@@ -3902,6 +3944,12 @@ npm pack --dry-run --json
 <td><code>n:actor:player</code></td>
 <td><code>nexusengine/domains/actor/player</code></td>
 <td>Track player identity, possession, control authority, and spawn generations.</td>
+</tr>
+<tr>
+<td><code>agent-worker-kit</code></td>
+<td><code>n:agent:worker</code></td>
+<td><code>nexusengine/domains/agent/worker</code></td>
+<td>Maintain portable worker assignments and revision-checked result references.</td>
 </tr>
 <tr>
 <td><code>agent-graph-kit</code></td>
@@ -6275,13 +6323,13 @@ npm pack --dry-run --json
       <div class="chapter-kicker">Generated reference</div>
       <h1>Kit Ownership Ledger</h1>
 <p>Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.</p>
-<p>Registry SHA-256: <code>9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d</code></p>
+<p>Registry SHA-256: <code>fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb</code></p>
 <ul>
-<li>Source modules: 1825</li>
-<li>Manifest-proven public atoms: 398</li>
-<li>Manifest-owned internal modules: 1354</li>
+<li>Source modules: 1829</li>
+<li>Manifest-proven public atoms: 399</li>
+<li>Manifest-owned internal modules: 1356</li>
 <li>Root contract modules: 26</li>
-<li>Optional provider modules: 47</li>
+<li>Optional provider modules: 48</li>
 <li>Unreviewed modules: 0</li>
 <li>Violations: 0</li>
 </ul>
@@ -6320,6 +6368,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>kits/agent/loop-host/storage.mjs</code></td>
+<td><code>n:agent:loop</code></td>
+<td>optional-provider-kit</td>
+<td>NexusEngine optional Agent loop host</td>
+</tr>
+<tr>
+<td><code>kits/agent/loop-host/worker.mjs</code></td>
 <td><code>n:agent:loop</code></td>
 <td>optional-provider-kit</td>
 <td>NexusEngine optional Agent loop host</td>
@@ -6835,6 +6889,18 @@ npm pack --dry-run --json
 <td>NexusEngine Core</td>
 </tr>
 <tr>
+<td><code>src/core-domains/agent/worker/index.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-proven-public-atom</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/agent/worker/worker.js</code></td>
+<td><code>n:agent</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
 <td><code>src/core-domains/asset/domain.manifest.js</code></td>
 <td><code>n:asset</code></td>
 <td>manifest-owned-internal</td>
@@ -7016,6 +7082,12 @@ npm pack --dry-run --json
 </tr>
 <tr>
 <td><code>src/core-domains/authoring/code/subdomain.manifest.js</code></td>
+<td><code>n:authoring</code></td>
+<td>manifest-owned-internal</td>
+<td>NexusEngine Core</td>
+</tr>
+<tr>
+<td><code>src/core-domains/authoring/contracts/capabilities.js</code></td>
 <td><code>n:authoring</code></td>
 <td>manifest-owned-internal</td>
 <td>NexusEngine Core</td>

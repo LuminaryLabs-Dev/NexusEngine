@@ -514,6 +514,101 @@
       ]
     },
     {
+      "domainPath": "n:agent:worker",
+      "forbiddenResponsibilities": [
+        "goal acceptance",
+        "host scheduling",
+        "provider selection",
+        "tool execution"
+      ],
+      "id": "agent-worker-domain",
+      "inputs": [
+        {
+          "description": "Agent Worker required capability.",
+          "deterministic": true,
+          "id": "n:agent",
+          "schema": null
+        }
+      ],
+      "label": "Agent Worker",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Agent Worker API without duplicate state or systems.",
+        "install": "Create one Agent Worker state owner and public API.",
+        "replay": "Reapply equivalent Agent Worker inputs deterministically.",
+        "reset": "Restore the configured Agent Worker baseline.",
+        "snapshot": "Serialize Agent Worker state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Agent Worker provided capability.",
+          "deterministic": true,
+          "id": "n:agent:worker",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "assignment revisions",
+        "worker assignments",
+        "worker identities"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Agent Worker state and registry records.",
+          "id": "agent-worker-domain-state",
+          "owner": "agent-worker-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:agent",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Agent Worker contract fixture.",
+            "deterministic": true,
+            "id": "agent-worker-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Agent Worker composition fixture.",
+            "deterministic": true,
+            "id": "agent-worker-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:agent"
+      ],
+      "responsibility": "Own portable worker identity, bounded assignments and result references.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Agent Worker behavior.",
+          "deterministic": true,
+          "id": "n:agent:worker:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:agent:graph",
       "forbiddenResponsibilities": [
         "goal acceptance",
@@ -21698,6 +21793,81 @@
         "exportName": "createPlayerKit",
         "module": "./src/core-domains/actor/player/kits/player-kit/index.js",
         "publicSubpath": "./domains/actor/player"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "agentWorker",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:agent:worker",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "agent-worker-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:agent",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-worker-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-worker-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:agent:worker"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Maintain portable worker assignments and revision-checked result references.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAgentWorkerKit",
+        "module": "./src/core-domains/agent/worker/index.js",
+        "publicSubpath": "./domains/agent/worker"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -50269,6 +50439,7 @@
     "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
     "./domains/agent/loop/goal-graph": "./src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js",
     "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
+    "./domains/agent/worker": "./src/core-domains/agent/worker/index.js",
     "./domains/asset": "./src/core-domains/asset/index.js",
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",
@@ -50725,7 +50896,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+  "registryHash": "fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -50786,7 +50957,7 @@
     },
     {
       "path": "src/core-domains/agent/domain.manifest.js",
-      "sha256": "c7e51874c5049e450c48d7f33ddb78e90ee9d90d15c574532d37f4bd42b5f697"
+      "sha256": "437681727b9ea3a04cc85dff43e7e161163ba7531feb41de1f6b68e65ae0e99d"
     },
     {
       "path": "src/core-domains/agent/goal/goals.js",
@@ -50806,7 +50977,7 @@
     },
     {
       "path": "src/core-domains/agent/index.js",
-      "sha256": "f91b0432038da8926a7fa87deae682642a6e291d077ad1133b092c8e5f6cca74"
+      "sha256": "c9b7430bcb8ea29bee686a34c33a7e94b4de48bf8a087d32d313b3cc99c12ab1"
     },
     {
       "path": "src/core-domains/agent/interaction/answer-session.js",
@@ -50866,7 +51037,7 @@
     },
     {
       "path": "src/core-domains/agent/loop/coordination/index.js",
-      "sha256": "59953942c7975afb9cb75aee4f845b218a153d270435dbfba2291bae0950d4e4"
+      "sha256": "13d5cd3b032bec05b6af34e6969409f541b36ab4e9176122deea03e35d3ecc69"
     },
     {
       "path": "src/core-domains/agent/loop/index.js",
@@ -50899,6 +51070,14 @@
     {
       "path": "src/core-domains/agent/loop/step/index.js",
       "sha256": "94581687fa3b1f4fab8740ed64f17335e4370afef241ac4648673a095979958c"
+    },
+    {
+      "path": "src/core-domains/agent/worker/index.js",
+      "sha256": "b356499954c76945be352cda6293de4419626f8ae65930e2a9736df11c13100f"
+    },
+    {
+      "path": "src/core-domains/agent/worker/worker.js",
+      "sha256": "0106c2c53c765119e7a93a85d879d6edd33a55586278e220407249d465afdf9a"
     },
     {
       "path": "src/core-domains/asset/domain.manifest.js",
@@ -51025,6 +51204,10 @@
       "sha256": "a59bf65d8eed8e2add92fef10befe95f7ca77c8c20e84d2fdaea80adafbb4e19"
     },
     {
+      "path": "src/core-domains/authoring/contracts/capabilities.js",
+      "sha256": "7c46fcb4b7356bf66250b09b2ee5e0828a2e6cbc487349bd29c6d5efb81f10a7"
+    },
+    {
       "path": "src/core-domains/authoring/contracts/io-kit.js",
       "sha256": "95dc33be3bec8e9d2783b39f34d6735045cea8c217bfba9918e4a7333c3797fa"
     },
@@ -51046,7 +51229,7 @@
     },
     {
       "path": "src/core-domains/authoring/contracts/services.js",
-      "sha256": "73885f0f4bc23a6c38759188afcdf1038faf2d7ff1b159f9bf4bf82784071f4d"
+      "sha256": "18249a224f50b4a99ec5435af4013df11e9e7275e9d372ce72dffe259ed46c12"
     },
     {
       "path": "src/core-domains/authoring/contracts/tool-schema.js",
@@ -51306,7 +51489,7 @@
     },
     {
       "path": "src/core-domains/authoring/mesh/services.js",
-      "sha256": "2de0344833c19489dd3fc3c4e8c971248448ef0baca2d5fdb03cbf9f755c08ea"
+      "sha256": "ed7b2d15007752b9188ab2dde2adfe1d95e833239b56a46111a0ddcfd066bbd7"
     },
     {
       "path": "src/core-domains/authoring/mesh/subdomain.manifest.js",
@@ -51346,7 +51529,7 @@
     },
     {
       "path": "src/core-domains/authoring/modifier/services.js",
-      "sha256": "127ee566e855f4d507f3ed91abc77c18015cd307134cf0d8fc914a820b10b318"
+      "sha256": "909be273a3ae36b5fa5dc18312b76f6a38b0446e45031de9848ecfa5d652c208"
     },
     {
       "path": "src/core-domains/authoring/modifier/subdivision.js",
@@ -51462,7 +51645,7 @@
     },
     {
       "path": "src/core-domains/authoring/project/store.js",
-      "sha256": "9b7fd821be68fa23ece08d9687be62cdc00178d0c4fde748daacdef230757797"
+      "sha256": "d5e1bdc66e5a96efb1459e8e20561bf7bd9068321adfdf188d01063ad74223aa"
     },
     {
       "path": "src/core-domains/authoring/project/subdomain.manifest.js",

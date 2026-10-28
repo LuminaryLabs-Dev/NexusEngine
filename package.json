@@ -30,6 +30,7 @@
     "./domains/agent/loop/coordination": "./src/core-domains/agent/loop/coordination/index.js",
     "./domains/agent/loop/goal-graph": "./src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js",
     "./domains/agent/loop/step": "./src/core-domains/agent/loop/step/index.js",
+    "./domains/agent/worker": "./src/core-domains/agent/worker/index.js",
     "./domains/asset": "./src/core-domains/asset/index.js",
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",

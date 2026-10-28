@@ -2,6 +2,7 @@ import {
   authoringToolInputSchema,
   authoringToolOwnership,
 } from "../contracts/tool-schema.js";
+import {normalizeAuthoringCapabilities} from '../contracts/capabilities.js';
 import {
   authoringError as error,
   canonical,
@@ -675,6 +676,9 @@ export function createAuthoringProjectStore({
       metadata.documentation = "AUTHORING.md#capability-profiles";
       metadata.validation =
         "Project.preview validates typed schemas, limits, references and the complete prospective state before commit.";
+      metadata.capabilities = normalizeAuthoringCapabilities(definition.capabilities, metadata);
+      const existingCapabilities = new Set([...operations.values()].flatMap(op=>op.capabilities.map(c=>c.id)));
+      if(metadata.capabilities.some(c=>existingCapabilities.has(c.id))) throw error('AUTHORING_CAPABILITY_CONFLICT','Capability identities must be unique across operations.');
       operations.set(
         definition.id,
         Object.freeze({

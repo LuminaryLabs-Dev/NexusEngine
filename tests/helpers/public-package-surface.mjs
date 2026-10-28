@@ -35,6 +35,7 @@ export * from "../../src/core-domains/agent/loop/coordination/index.js";
 export * from "../../src/core-domains/agent/loop/index.js";
 export * from "../../src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js";
 export * from "../../src/core-domains/agent/loop/step/index.js";
+export * from "../../src/core-domains/agent/worker/index.js";
 export * from "../../src/core-domains/asset/index.js";
 export * from "../../src/core-domains/asset/kits/asset-kit/index.js";
 export * from "../../src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js";

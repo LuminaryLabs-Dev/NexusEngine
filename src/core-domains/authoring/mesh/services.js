@@ -9,8 +9,19 @@ import {
   transformAuthoringMesh,
 } from "./geometry.js";
 import { authoringError as error, requireFields } from "../contracts/value.js";
+import {authoringToolInputSchema} from '../contracts/tool-schema.js';
 
 export function installAuthoringMeshServices(project) {
+  const topologyCapabilities = authoringToolInputSchema('mesh.topology',['parameters']).properties.parameters.properties.operation.enum.map(operation => ({
+    id:'mesh.topology#'+operation,version:1,description:'Edit mesh topology using '+operation,
+    selector:{path:['parameters','operation'],value:operation},
+    limitations:[
+      'Uses the native planar-manifold-polygons profile; unsupported attribute remaps reject before commit.',
+      ...(operation==='bevel'?['Closed convex polyhedra only; flat chamfer; authored attributes must be absent.']:[]),
+      ...(operation==='inset'?['This profile insets one selected face at a time.']:[]),
+      ...(operation==='knife'?['Native knife-chord profile; arbitrary interactive cutting paths are not declared.']:[])
+    ],verifierRefs:['tests/core-domains/core-authoring-geometry.mjs']
+  }));
   project.registerKind({
     id: "mesh",
     version: 1,
@@ -25,6 +36,7 @@ export function installAuthoringMeshServices(project) {
       parameters: { type: "object", fields, additionalProperties: false },
       effects: { writes: ["mesh"], atomic: true },
       profile: "planar-manifold-polygons/1",
+      ...(id==='mesh.topology'?{capabilities:topologyCapabilities}:{}),
       cancellation: "before-submit",
       execute(tx, args) {
         requireFields(args, fields, id);

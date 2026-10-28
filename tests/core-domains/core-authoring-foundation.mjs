@@ -2,8 +2,48 @@ import { authoringFixture } from "../helpers/authoring-fixture.mjs";
 import assert from "node:assert/strict";
 import { createEngine } from "nexusengine";
 import { createAuthoringDomain } from "../../src/core-domains/authoring/index.js";
+import {authoringDomainManifest} from '../../src/core-domains/authoring/index.js';
+import {buildAuthoringCapabilityLedger} from '../../src/core-domains/authoring/contracts/capabilities.js';
 const engine = createEngine({ kits: createAuthoringDomain() });
 const p = engine.n.authoringProject;
+// Discovery and readiness use existing contracts; neither executes nor authorizes tools.
+{
+ const manifest=authoringDomainManifest,commands=p.tools(),identity='synthetic-source-v1';
+ const build=(evidence=[],overrides={})=>buildAuthoringCapabilityLedger({manifest,commands,implementationIdentity:identity,evidence,...overrides});
+ const ledger=build();
+ assert.equal(ledger.executionAuthority,false);
+ assert.equal(new Set(ledger.capabilities.map(c=>c.operationId)).size,commands.length);
+ assert.ok(ledger.capabilities.every(c=>c.verification.status==='unverified'));
+ const bevel=ledger.capabilities.find(c=>c.id==='mesh.topology#bevel');
+ assert.equal(bevel.selector.value,'bevel');
+ assert.ok(bevel.limitations.some(x=>x.includes('convex')));
+ assert.equal(ledger.capabilities.find(c=>c.id==='mesh.cube').support,'undeclared');
+ const types=commands.find(c=>c.id==='mesh.topology').inputSchema.properties.parameters.properties.operation.enum;
+ assert.deepEqual(ledger.capabilities.filter(c=>c.operationId==='mesh.topology').map(c=>c.selector.value).sort(),[...types].sort());
+ const evidence={capabilityId:bevel.id,profileVersion:bevel.version,contractHash:bevel.contractHash,
+   implementationIdentity:identity,receiptRef:'synthetic-fixture:not-live-proof',scenarios:['convex-chamfer'],result:'passed'};
+ const status=(reports,overrides)=>build(reports,overrides).capabilities.find(c=>c.id===bevel.id).verification.status;
+ assert.equal(status([evidence]),'verified');
+ assert.equal(status([{...evidence,profileVersion:2}]),'stale');
+ assert.equal(status([{...evidence,contractHash:'old'}]),'stale');
+ assert.equal(status([evidence],{implementationIdentity:'changed-source'}),'stale');
+ assert.equal(status([evidence,{...evidence,result:'failed'}]),'failed');
+ assert.throws(()=>build([{...evidence,scenarios:[]}]),/evidence/);
+ assert.throws(()=>build([{...evidence,capabilityId:'missing'}]),/undiscovered/);
+ assert.throws(()=>build([],{manifest:{publicKits:[]}}),/owner/);
+ assert.deepEqual(build(),build([],{commands:[...commands].reverse()}));
+ const tampered=structuredClone(commands);tampered.find(c=>c.id==='mesh.topology').capabilities[0].selector.value='not-a-tool';
+ assert.throws(()=>build([],{commands:tampered}),/enum/);
+ const toolCount=p.tools().length,before=p.getSnapshot();let calls=0;
+ const definition={id:'mesh.ledger-probe',domainPath:'n:authoring:mesh',parameters:{fields:[]},execute:()=>{calls++;}};
+ assert.throws(()=>p.registerOperation({...definition,capabilities:[{id:'bad',version:0,description:'bad',limitations:[],verifierRefs:[]}]}));
+ assert.throws(()=>p.registerOperation({...definition,capabilities:[{id:'mesh.cube',version:1,description:'Duplicate identity',limitations:[],verifierRefs:[]}]}),{code:'AUTHORING_CAPABILITY_CONFLICT'});
+ assert.equal(p.tools().length,toolCount);
+ p.registerOperation(definition);
+ assert.ok(build([],{commands:p.tools()}).capabilities.some(c=>c.id==='mesh.ledger-probe'));
+ assert.equal(calls,0);assert.deepEqual(p.getSnapshot(),before);
+ console.log('Authoring ledger automatic discovery, schema selectors, evidence freshness and no-authority checks passed');
+}
 const request = (requestId, operations) => ({
   requestId,
   epoch: p.context().epoch,

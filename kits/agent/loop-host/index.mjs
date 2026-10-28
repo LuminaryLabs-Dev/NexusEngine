@@ -26,5 +26,6 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
  });
 }
 export {createProductionLoopDispatcher} from "./production-bridge.mjs";
+export {runAssignedWorker} from './worker.mjs';
 
 export {createTypeSafeInference,createTypeSafeRuntimeBridge} from "./providers/typesafe.mjs";

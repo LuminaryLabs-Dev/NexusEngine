@@ -5,15 +5,15 @@
   "stability": "stable-candidate",
   "generatedBy": "scripts/generate-dsk-manifest.mjs",
   "registrySchema": "nexusengine.composition-registry/3",
-  "registryHash": "sha256:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
-  "compositionRegistryHash": "sha256:d325f8cb0a3003336d519e451838ea1e1f320af2daebb5fb9f80c45f3f91eb32",
+  "registryHash": "sha256:fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
+  "compositionRegistryHash": "sha256:e817ee525d231bd408748c271b5b1df72e5616252ac3254f2391dce1dd01f1aa",
   "sources": [
     {
       "registryId": "nexusengine-core",
       "package": "nexusengine",
       "version": "0.0.4",
-      "sourceCommit": "builtin:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
-      "integrity": "sha256:9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+      "sourceCommit": "builtin:fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
+      "integrity": "sha256:fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
       "status": "available",
       "environments": [
         "browser",
@@ -396,6 +396,39 @@
       ],
       "provides": [
         "n:agent:loop:step"
+      ],
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "sourceRegistryId": "nexusengine-core",
+      "metadata": {
+        "core": true
+      }
+    },
+    {
+      "id": "agent-worker-domain",
+      "domainPath": "n:agent:worker",
+      "parentDomainPath": "n:agent",
+      "label": "Agent Worker",
+      "status": "stable-candidate",
+      "responsibility": "Own portable worker identity, bounded assignments and result references.",
+      "ownedMeaning": [
+        "assignment revisions",
+        "worker assignments",
+        "worker identities"
+      ],
+      "forbiddenResponsibilities": [
+        "goal acceptance",
+        "host scheduling",
+        "provider selection",
+        "tool execution"
+      ],
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:worker"
       ],
       "settingsSchema": {
         "type": "object",
@@ -7416,6 +7449,85 @@
             },
             {
               "id": "agent-graph-kit-installed-consumer",
+              "description": "Installed Domain composition fixture.",
+              "schema": null,
+              "deterministic": true
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "agent-worker-kit",
+      "version": "0.0.4",
+      "status": "stable-candidate",
+      "kind": "domain-service-kit",
+      "responsibility": "Maintain portable worker assignments and revision-checked result references.",
+      "domainPath": "n:agent:worker",
+      "parentDomainPath": "n:agent",
+      "apiName": "agentWorker",
+      "apiVisibility": "public",
+      "requires": [
+        "n:agent"
+      ],
+      "provides": [
+        "n:agent:worker"
+      ],
+      "composes": [],
+      "defaults": {},
+      "settingsSchema": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "source": {
+        "registryId": "nexusengine-core",
+        "subpath": "./domains/agent/worker",
+        "exportName": "createAgentWorkerKit",
+        "environments": [
+          "browser",
+          "node",
+          "worker"
+        ],
+        "permissions": [],
+        "installable": true
+      },
+      "metadata": {
+        "core": true,
+        "determinism": "deterministic",
+        "idempotency": {
+          "key": "kit-id-and-manifest-content",
+          "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id."
+        },
+        "reset": {
+          "supported": true,
+          "semantics": "Restore the configured baseline without duplicate state or systems."
+        },
+        "snapshot": {
+          "supported": true,
+          "schema": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        },
+        "proof": {
+          "status": "proven",
+          "references": [
+            "tests/core-kits/core-agent-kit-smoke.mjs",
+            "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+            "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+            "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+            "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+            "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+          ],
+          "consumers": [
+            {
+              "id": "agent-worker-kit-direct-consumer",
+              "description": "Direct API contract fixture.",
+              "schema": null,
+              "deterministic": true
+            },
+            {
+              "id": "agent-worker-kit-installed-consumer",
               "description": "Installed Domain composition fixture.",
               "schema": null,
               "deterministic": true

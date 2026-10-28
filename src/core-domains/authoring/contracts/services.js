@@ -1,5 +1,5 @@
 import { authoringError as error, requireFields } from "./value.js";
-export function serviceRegistrar(project, domain, profile) {
+export function serviceRegistrar(project, domain, profile, capabilityMetadata = {}) {
   return (
     id,
     fields,
@@ -13,6 +13,7 @@ export function serviceRegistrar(project, domain, profile) {
       parameters: { type: "object", fields, additionalProperties: false },
       effects,
       profile,
+      ...(capabilityMetadata[id] ? {capabilities:capabilityMetadata[id]} : {}),
       cancellation: "before-submit",
       execute(tx, args) {
         requireFields(args, fields, `${domain}.${id}`);
@@ -43,6 +44,7 @@ export function registerDocumentService(
     dependencies = () => [],
     validateReferences,
     profile,
+    capabilities = {},
   },
 ) {
   project.registerKind({
@@ -52,7 +54,7 @@ export function registerDocumentService(
     dependencies,
     validateReferences,
   });
-  const register = serviceRegistrar(project, domain, profile);
+  const register = serviceRegistrar(project, domain, profile, capabilities);
   register("set", ["id", "expectedRevision", "content"], (tx, args) => {
     tx.put({ id: args.id, kind, content: args.content }, args.expectedRevision);
     return { id: args.id };

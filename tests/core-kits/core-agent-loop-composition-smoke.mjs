@@ -1,4 +1,43 @@
 import assert from "node:assert/strict";
+import {createEngine} from '../../src/engine.js';
+import {createAgentKit,createAgentWorkerKit,createAgentWorker,assignAgentWorker,transitionAgentWorker,restoreAgentWorker} from '../../src/core-domains/agent/index.js';
+import {runAssignedWorker} from '../../kits/agent/loop-host/worker.mjs';
+
+// Worker is an assignment wrapper; Loop owns execution and actual usage.
+{
+  const assignment={id:'a',version:1,outcomeRef:'inspect',loopId:'worker-loop',capabilities:['inspect'],gateRefs:[]};
+  const pure=assignAgentWorker(createAgentWorker({id:'w'}),assignment,{expectedRevision:0});
+  const engine=createEngine({kits:[createAgentKit(),createAgentWorkerKit()]});
+  engine.n.agentWorker.create({id:'w'});
+  assert.deepEqual(engine.n.agentWorker.assign('w',assignment,{expectedRevision:0}),pure);
+  assert.throws(()=>engine.n.agentWorker.assign('w',assignment,{expectedRevision:0}),/revision/);
+  assert.throws(()=>transitionAgentWorker(pure,'completed',{expectedRevision:1}),/transition/);
+  const before=engine.n.agentWorker.getState();
+  assert.throws(()=>assignAgentWorker(createAgentWorker({id:'large'}),{...assignment,description:'x'.repeat(70000)},{expectedRevision:0}),/limit/);
+  assert.throws(()=>engine.n.agentWorker.loadSnapshot({workers:[{...pure,status:'completed'}]}));
+  assert.deepEqual(engine.n.agentWorker.getState(),before);
+  for(const mode of ['deterministic','classifier','llm']) {
+    const records=[];
+    const result=await runAssignedWorker({worker:pure,authorize:async()=>true,
+      observe:async()=>({}),decide:async()=>({decision:{action:'finish'},usage:{modelCalls:mode==='deterministic'?0:1,tokens:mode==='deterministic'?0:4}}),
+      execute:async()=>{throw Error('No operation needed');},verify:async()=>({ok:true,receiptRef:'inspection'}),checkpoint:async s=>records.push(s)});
+    assert.equal(result.worker.status,'completed');
+    assert.equal(result.run.state.progress.modelCalls,mode==='deterministic'?0:1);
+    assert.equal(result.worker.result.receiptRef,'inspection');
+    assert.deepEqual(restoreAgentWorker(result.worker),result.worker);
+    assert.equal(records.at(-1).worker.status,'completed');
+  }
+  let executing=0,peak=0;
+  await Promise.all(['x','y'].map(id=>runAssignedWorker({worker:assignAgentWorker(createAgentWorker({id}),{...assignment,id,loopId:id},{expectedRevision:0}),
+    authorize:async()=>true,observe:async()=>{peak=Math.max(peak,++executing);await new Promise(r=>setTimeout(r,5));executing--;return {};},
+    decide:async()=>({decision:{action:'finish'},usage:{modelCalls:0}}),execute:async()=>{},verify:async()=>({ok:true,receiptRef:id})})));
+  assert.equal(peak,2);
+  let writes=0;
+  const denied=await runAssignedWorker({worker:pure,authorize:async({phase})=>phase!=='execute',observe:async()=>({}),
+    decide:async()=>({decision:{action:'inspect'},usage:{modelCalls:0}}),execute:async()=>{writes++;},verify:async()=>({ok:true,receiptRef:'v'})});
+  assert.equal(writes,0);assert.equal(denied.worker.status,'blocked');
+  console.log('Worker installed parity, model neutrality, concurrency and authorization passed');
+}
 import {createLoopStep,transitionLoopStep,createLoopControl,advanceLoopControl,createLoopCoordination,runSelfPropagation} from "../../src/core-domains/agent/loop/index.js";
 let step=createLoopStep({stepId:"s",loopId:"l"});
 step=transitionLoopStep(transitionLoopStep(step,"ready"),"running");

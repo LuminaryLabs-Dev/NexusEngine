@@ -3,8 +3,8 @@
 Core architecture, composition, integration, and migration reference
 
 Version: `0.0.4`<br>
-Core registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`<br>
-Guide content SHA-256: `9ea5e94c1202b8c8a0f92bc228a3fe3940ef363706e4165157f154bcc9b0a0ab`
+Core registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`<br>
+Guide content SHA-256: `30c3924f30eecad7c2ff1e47bb8c500642e2a7419dda2f02a70c2c7cf47f6ce6`
 
 This combined file is generated from `docs/guide/book.json` and modular Markdown chapters. Edit the chapter sources, not this file.
 
@@ -447,6 +447,43 @@ A receipt distinguishes the committed mutation from subsequent export or visual
 review. It contains request identity, before/after clocks, changed document
 identities, operation results, validation and recovery information. Successful
 transport delivery alone does not establish valid geometry or visual quality.
+
+## Automatically discovered capability ledger
+
+`project.tools()` discovers every registered command and exposes capability
+metadata without changing operation IDs or parameter schemas. The existing
+`npm run authoring:generate` catalogue includes an additive `ledger` section;
+`npm run authoring:check` detects source or registration drift. Ownership comes
+from manifests; parameters and selectors reference the installed tool schemas.
+Mesh topology profiles are generated from the schema's operation enum. Modifier
+support metadata is declared beside its existing service. Unannotated tools stay
+discoverable with `support: undeclared`; no generic claim of unlimited support is
+inferred. Studio bindings and export fidelity remain unknown unless separately
+established. Proposed tools are outside this executable catalogue.
+
+The default catalogue contains no execution authority and never promotes manifest
+proof declarations or test filenames to verification. Its implementation identity
+conservatively fingerprints all `src` and `kits/authoring` JavaScript/JSON sources
+and the declared capability verifier files.
+Each capability also has a contract hash binding its schema, effects and profile.
+Source changes can therefore stale evidence even if the profile name is unchanged.
+
+For a reviewed, retained evidence view, run:
+
+```sh
+node scripts/generate-authoring-capabilities.mjs --evidence /absolute/evidence.json --output /absolute/ledger-view.json
+```
+
+The evidence file is an array of records containing `capabilityId`, `profileVersion`,
+`contractHash`, `implementationIdentity`, `receiptRef`, `scenarios` and `result`
+(`passed` or `failed`). Matching passed evidence yields `verified` only for those
+reported scenarios. Matching failures take precedence; mismatched retained evidence
+is `stale`; missing evidence is `unverified`. References must point to retained
+actual validation output reviewed by the caller. Parsing a supplied record is not
+an independent audit or proof that its author told the truth. Raw reports stay
+outside the catalogue; the default generated file cannot be replaced by an
+evidence-enriched view. Runtime project eligibility and authorization are always
+rechecked by their owning services.
 
 ## Capability profiles
 
@@ -1336,13 +1373,14 @@ This documentation build does not push, publish, archive ProtoKits, mutate Googl
 
 # Domain Index
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
 - `n:actor:character`: Own active embodied character identity and neutral runtime bindings.
 - `n:actor:player`: Own neutral player identity, possession, control authority, and spawn generations.
 - `n:agent`: Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts.
+- `n:agent:worker`: Own portable worker identity, bounded assignments and result references.
 - `n:agent:graph`: Own bounded typed agent-work topology and revisioned atomic graph operations.
 - `n:agent:goal`: Own outcome meaning, conditional checks and revision-linked verification over Agent graphs.
 - `n:agent:decision`: Own typed judgments, classification questions and evidence-bound proposal selections.
@@ -1554,7 +1592,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 
 # Core Dependency Table
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -1563,6 +1601,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `n:actor:character` | `n:actor` | - |
 | `n:actor:player` | `n:actor:character` | - |
 | `n:agent` | - | - |
+| `n:agent:worker` | `n:agent` | - |
 | `n:agent:graph` | `n:agent` | - |
 | `n:agent:goal` | `n:agent:graph` | - |
 | `n:agent:decision` | `n:agent` | - |
@@ -1776,7 +1815,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
 ## Domains
 
@@ -1787,6 +1826,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `n:actor:character` | `n:actor` | Own active embodied character identity and neutral runtime bindings. | stable-candidate |
 | `n:actor:player` | `n:actor` | Own neutral player identity, possession, control authority, and spawn generations. | stable-candidate |
 | `n:agent` | - | Own product-neutral observation, proposal, decision-cycle, execution receipt, and replay evidence contracts. | stable-candidate |
+| `n:agent:worker` | `n:agent` | Own portable worker identity, bounded assignments and result references. | stable-candidate |
 | `n:agent:graph` | `n:agent` | Own bounded typed agent-work topology and revisioned atomic graph operations. | stable-candidate |
 | `n:agent:goal` | `n:agent` | Own outcome meaning, conditional checks and revision-linked verification over Agent graphs. | stable-candidate |
 | `n:agent:decision` | `n:agent` | Own typed judgments, classification questions and evidence-bound proposal selections. | stable-candidate |
@@ -2000,6 +2040,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `creature-registry-kit` | `n:actor:creature` | `nexusengine/domains/actor/creature` | Register and resolve neutral creature embodiment definitions. |
 | `character-registry-kit` | `n:actor:character` | `nexusengine/domains/actor/character` | Register and resolve active embodied character descriptors. |
 | `player-authority-kit` | `n:actor:player` | `nexusengine/domains/actor/player` | Track player identity, possession, control authority, and spawn generations. |
+| `agent-worker-kit` | `n:agent:worker` | `nexusengine/domains/agent/worker` | Maintain portable worker assignments and revision-checked result references. |
 | `agent-graph-kit` | `n:agent:graph` | `nexusengine/domains/agent/graph` | Maintain bounded typed graphs with atomic patches, traversal and replay. |
 | `agent-goal-kit` | `n:agent:goal` | `nexusengine/domains/agent/goal` | Interpret Agent graphs as evidence-bound conditional goals. |
 | `agent-goal-loop-kit` | `n:agent:loop` | `nexusengine/domains/agent/loop/goal-graph` | Optionally follow goal graphs through existing model-neutral loop ports. |
@@ -2403,13 +2444,13 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 
 Generated from Domain manifest v2 and the production source inventory. Null compliance fields are intentionally unproven; they are never inferred as true.
 
-Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d`
+Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
 
-- Source modules: 1825
-- Manifest-proven public atoms: 398
-- Manifest-owned internal modules: 1354
+- Source modules: 1829
+- Manifest-proven public atoms: 399
+- Manifest-owned internal modules: 1356
 - Root contract modules: 26
-- Optional provider modules: 47
+- Optional provider modules: 48
 - Unreviewed modules: 0
 - Violations: 0
 
@@ -2420,6 +2461,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `kits/agent/loop-host/providers/openai-compatible.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/providers/typesafe.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/loop-host/storage.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
+| `kits/agent/loop-host/worker.mjs` | `n:agent:loop` | optional-provider-kit | NexusEngine optional Agent loop host |
 | `kits/agent/production/authoring-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/blockout-recipes.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
 | `kits/agent/production/cli.mjs` | `n:agent` | optional-provider-kit | NexusEngine optional Agent production host |
@@ -2505,6 +2547,8 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/kits/validation-loop-kit/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/agent/loop/step/index.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/agent/worker/index.js` | `n:agent` | manifest-proven-public-atom | NexusEngine Core |
+| `src/core-domains/agent/worker/worker.js` | `n:agent` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/domain.manifest.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/index.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/asset/kits/asset-kit/cache-provider.js` | `n:asset` | manifest-owned-internal | NexusEngine Core |
@@ -2536,6 +2580,7 @@ Registry SHA-256: `9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6
 | `src/core-domains/authoring/code/kits/code-intelligence-kit/kit.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/code/services.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/code/subdomain.manifest.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
+| `src/core-domains/authoring/contracts/capabilities.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io-kit.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/io.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |
 | `src/core-domains/authoring/contracts/ledger.js` | `n:authoring` | manifest-owned-internal | NexusEngine Core |

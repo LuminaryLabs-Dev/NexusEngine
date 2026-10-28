@@ -1,11 +1,11 @@
 {
   "coreRule": "atomic, idempotent, deterministic, fully reusable, product-neutral, lifecycle-complete, and proven",
   "counts": {
-    "manifestOwnedInternalModules": 1354,
-    "manifestProvenPublicAtoms": 398,
-    "optionalProviderModules": 47,
+    "manifestOwnedInternalModules": 1356,
+    "manifestProvenPublicAtoms": 399,
+    "optionalProviderModules": 48,
     "rootContractModules": 26,
-    "sourceModules": 1825,
+    "sourceModules": 1829,
     "unreviewedModules": 0,
     "violations": 0
   },
@@ -37,6 +37,7 @@
         "createProductionLoopDispatcher",
         "createTypeSafeInference",
         "createTypeSafeRuntimeBridge",
+        "runAssignedWorker",
         "runHostedAgent"
       ],
       "responsibility": null,
@@ -115,6 +116,24 @@
       "proof": null,
       "publicExports": [
         "createLoopCheckpointStore"
+      ],
+      "responsibility": null,
+      "reviewStatus": "optional-provider-kit"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine optional Agent loop host",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent:loop",
+      "ownershipBasis": "kits/agent/loop-host/index.mjs",
+      "packageEntrypoints": [],
+      "path": "kits/agent/loop-host/worker.mjs",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "runAssignedWorker"
       ],
       "responsibility": null,
       "reviewStatus": "optional-provider-kit"
@@ -2142,6 +2161,79 @@
       "reviewStatus": "manifest-owned-internal"
     },
     {
+      "atomic": true,
+      "currentConsumers": [
+        "./domains/agent/worker"
+      ],
+      "destination": "NexusEngine Core",
+      "fullyReusable": true,
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "owner": "n:agent",
+      "ownershipBasis": "atomic-kit-manifest-v2",
+      "packageEntrypoints": [
+        "./domains/agent/worker"
+      ],
+      "path": "src/core-domains/agent/worker/index.js",
+      "productOrGenreSpecific": false,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "agent-worker-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "agent-worker-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-kits/core-agent-kit-smoke.mjs",
+          "tests/core-kits/core-agent-loop-canonical-completion-smoke.mjs",
+          "tests/core-kits/core-agent-loop-composition-smoke.mjs",
+          "tests/core-kits/core-agent-loop-coordination-smoke.mjs",
+          "tests/core-kits/core-agent-loop-recovery-smoke.mjs",
+          "tests/core-kits/core-agent-loop-specialized-smoke.mjs"
+        ],
+        "status": "proven"
+      },
+      "publicExports": [
+        "*",
+        "createAgentWorkerKit"
+      ],
+      "responsibility": "Maintain portable worker assignments and revision-checked result references.",
+      "reviewStatus": "manifest-proven-public-atom"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:agent",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/agent/worker/worker.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "assignAgentWorker",
+        "createAgentWorker",
+        "restoreAgentWorker",
+        "transitionAgentWorker",
+        "validateWorkerAssignment",
+        "workerAssignmentHash"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
       "atomic": null,
       "currentConsumers": [],
       "destination": "NexusEngine Core",
@@ -2883,6 +2975,26 @@
       "publicExports": [
         "codeDomain",
         "intelligenceDomain"
+      ],
+      "responsibility": null,
+      "reviewStatus": "manifest-owned-internal"
+    },
+    {
+      "atomic": null,
+      "currentConsumers": [],
+      "destination": "NexusEngine Core",
+      "fullyReusable": null,
+      "idempotency": null,
+      "owner": "n:authoring",
+      "ownershipBasis": "semantic-folder-and-domain-manifest",
+      "packageEntrypoints": [],
+      "path": "src/core-domains/authoring/contracts/capabilities.js",
+      "productOrGenreSpecific": null,
+      "proof": null,
+      "publicExports": [
+        "buildAuthoringCapabilityLedger",
+        "normalizeAuthoringCapabilities",
+        "validateAuthoringEvidence"
       ],
       "responsibility": null,
       "reviewStatus": "manifest-owned-internal"
@@ -46430,7 +46542,7 @@
       "reviewStatus": "root-contract"
     }
   ],
-  "registrySha256": "9a3da271d4846f584bdb6e4f9d6affb5452c19720b3940375a9ef57fae1b6e4d",
+  "registrySha256": "fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
   "schema": "nexusengine.kit-ownership-ledger/2",
   "violations": []
 }

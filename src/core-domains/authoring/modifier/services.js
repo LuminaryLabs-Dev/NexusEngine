@@ -89,6 +89,15 @@ export function installAuthoringModifierServices(project) {
         .map((m) => reference(m.parameters.targetId, "mesh")),
     ],
     profile: "binary-crease-catmull-clark-bsp-csg-validated-edge-collapse/1",
+    capabilities:{apply:[{id:'modifier.apply',version:1,
+      description:'Evaluate and atomically apply the native modifier stack. Supported entry types: '+Object.keys(parameters).join(', '),
+      limitations:[
+        'Ordered stack has at most 32 unique entries; disabled entries do not evaluate.',
+        'Subdivision uses binary smooth/hard creases, not fractional crease weights.',
+        'BSP Boolean supports at most 4000 faces per operand and enforces a tree-depth bound.',
+        'Validated edge-collapse decimation supports at most 5000 vertices.',
+        'Remesh is the native subdivision/triangulation/relaxation profile, not voxel remeshing.'
+      ],verifierRefs:['tests/core-domains/core-authoring-geometry.mjs']} ]},
   });
   register("entry", ["id", "expectedRevision", "entry"], (tx, a) => {
     const d = typedDocument(tx, a.id, "modifier", a.expectedRevision),
