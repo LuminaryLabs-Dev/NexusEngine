@@ -255,8 +255,24 @@ An independent Three GLTFLoader renders the resulting bytes and samples animatio
 A validator warning remains visible in the receipt; it is not discarded.
 
 The packet/source revision check runs again at publication. Stale output is not
-committed as current output. Cancellation cleans staging directories. FBX and
-arbitrary Blender node compatibility are not implemented format profiles.
+committed as current output. Cancellation cleans staging directories. Native FBX export writes binary 7400,
+including typed properties, authored corner normals and a complete footer.
+FBX import reads bounded binary and ASCII 7.x containers through the same
+semantic profile, preserving authored normals when supplied. Supported axes are
+Y-up with X coordinate and Z front axes; the +X/+Z source profile composes one
+Z-reflection group into the canonical right-handed assembly. Unsupported axis
+signs, pivots and invalid faces fail explicitly. Consumer coordinate conversion
+must be included when comparing world positions and normals. Match consumer
+welding settings before judging attribute fidelity.
+
+Project requests, snapshots and history can reuse validated immutable mesh data;
+mutable inputs remain copied. Filesystem history weakly references live immutable
+content while still verifying stored hashes before every read. This does not
+remove the import-byte, Core mesh, selection or decimation limits. Filesystem
+packages enforce the same 512 MiB total read/write budget and a 256 MiB
+per-object budget before publishing their manifest. Large imports
+and saved-project readback require independent resource measurements.
+Arbitrary Blender node compatibility is not an implemented format profile.
 
 ## Sequences and durable hosts
 

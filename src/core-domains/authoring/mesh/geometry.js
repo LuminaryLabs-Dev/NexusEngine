@@ -284,6 +284,7 @@ export function normalizeAuthoringMesh(input) {
     requireInteger(attribute.arity, "attribute arity", 1, 16);
     const reserved = {
       uv0: ["corner", 2],
+      normal: ["corner", 3],
       color: ["vertex", 4],
       mask: ["vertex", 1],
       material: ["face", 1],
@@ -316,7 +317,11 @@ export function normalizeAuthoringMesh(input) {
           `Attribute references missing element ${id}.`,
         );
       vector(data, attribute.arity, "attribute value");
+      if (attribute.id === "normal" && Math.hypot(...data) < 1e-12)
+        throw error("AUTHORING_INVALID_ATTRIBUTE", "Authored normals must be nonzero.");
     }
+    if (attribute.id === "normal" && Object.keys(attribute.values).length !== corners.size)
+      throw error("AUTHORING_INVALID_ATTRIBUTE", "Authored normals must cover every corner.");
   }
   freeze(value.vertices);
   freeze(value.faces);

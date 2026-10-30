@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Repaired FBX property types, binary footer/header metadata, consumer axis metadata and authored corner-normal round trips. Added bounded ASCII FBX decoding with embedded-content handling and a canonical frame for supported left-handed input. Unity 2020.3 CLI verified a fresh 50-triangle export and its 50 collider probes; a separate 254,169-triangle transfer matched source positions, UVs and normals with 1,291 sampled collider hits. These are transfer checks, not full terrain optimization or device acceptance.
+- Reduced redundant immutable Authoring request/snapshot copies and repeated content-addressed history decoding while retaining disk hash checks and interrupted-operation gates. Carried the Kit's existing ordered-step runner, memory revision checks and inference usage accounting into Engine so repinning preserves optional-loop behavior. Core mesh/import/reducer budgets remain enforced.
+
 - Repaired the optional Graphics Language CPU path with atomic scene transactions, resident meshes/instances, bounded shadow and output ownership, explicit host pacing and per-artifact ABI2 integrity. ABI1 and public captures remain compatible; native/WASM pixels, sanitizer, display and bounded-soak checks pass. See `docs/GRAPHICS-LANGUAGE.md` and `.agent/runs/2026-10-27-graphics-efficiency/report.md`.
 
 - Added `n:agent:decision` typed classifications and evidence-bound proposal judgments, model-neutral loop decision ports with explicit usage/recovery, and an optional TypeSafe/Jev runtime adapter. Existing LLM callbacks remain supported; Core selects no model by default. See `docs/AGENT-DECISION.md`.

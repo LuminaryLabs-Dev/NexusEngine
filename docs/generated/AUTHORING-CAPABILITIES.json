@@ -7080,7 +7080,7 @@
   ],
   "ledger": {
     "schema": "nexusengine.authoring-capability-ledger/1",
-    "implementationIdentity": "sha256:149c7154adc1004a20e47c013517702b394cb98528816d10ad8d94b71d6e483f",
+    "implementationIdentity": "sha256:68c04889f663c505b5286c7819c83f754de3ab23fd366985ae28b39d672be5e0",
     "executionAuthority": false,
     "capabilities": [
       {

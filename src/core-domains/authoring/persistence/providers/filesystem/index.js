@@ -1,5 +1,6 @@
 import { asBytes, digest, safePath, fail, jsonBytes, text, abort } from '../../../contracts/io.js';
 import { packageManifest } from '../../project-package.js';
+const PACKAGE_BYTES=512*1024*1024,OBJECT_BYTES=256*1024*1024;
 /** Node-only implementation, loaded on demand; importing Authoring never imports Node modules. */
 export function createFilesystemAuthoringStorageProvider(){return {
   id:'authoring-filesystem-storage/1',version:'1',format:'filesystem',profile:'filesystem-atomic-cas/1',capabilities:{persistent:true,atomic:true},
@@ -10,7 +11,7 @@ export function createFilesystemAuthoringStorageProvider(){return {
     const files=Object.create(null);let total=0;
     for(const [p,hash] of Object.entries(m.files)){
       const full=path.join(root,...safePath(p).split('/'));await rejectLinks(fs,path,root,p);
-      const stat=await fs.stat(full);if((total+=stat.size)>256*1024*1024)throw fail('AUTHORING_BYTE_BUDGET','Project package exceeds read budget.');
+      const stat=await fs.stat(full);if(stat.size>OBJECT_BYTES||(total+=stat.size)>PACKAGE_BYTES)throw fail('AUTHORING_BYTE_BUDGET','Project package exceeds read budget.');
       const bytes=new Uint8Array(await fs.readFile(full));if(digest(bytes)!==hash)throw fail('AUTHORING_STORAGE_CORRUPT',`Corrupt ${p}.`);files[p]=bytes;
     }
     return {...m,files,manifest:m};
@@ -29,7 +30,7 @@ export function createFilesystemAuthoringStorageProvider(){return {
       if((prior?.generation??0)!==expectedGeneration)throw fail('AUTHORING_STORAGE_CONFLICT','Saved generation changed.');
       const {createHash}=await import('node:crypto');
       const {createReadStream}=await import('node:fs');
-      const hashes=Object.create(null);
+      const hashes=Object.create(null);let total=0;
       const entries=bundle.entries ? bundle.entries() : (function*(){for(const [path,bytes] of Object.entries(bundle.files))yield {path,bytes};})();
       for(const entry of entries){
         abort(signal);
@@ -37,14 +38,16 @@ export function createFilesystemAuthoringStorageProvider(){return {
         let output;
         try {
           output=await fs.open(staging,'wx',0o600);
-          const hash=createHash('sha256');
+          const hash=createHash('sha256');let objectBytes=0;
           for(const chunk of entry.chunks??[entry.bytes]) {
             abort(signal);const bytes=typeof chunk==='string'?new TextEncoder().encode(chunk):asBytes(chunk);
+            if((objectBytes+=bytes.length)>OBJECT_BYTES)throw fail('AUTHORING_BYTE_BUDGET','Project object exceeds read/write budget.');
             hash.update(bytes);await output.writeFile(bytes);
           }
           await output.sync();await output.close();output=null;
           const integrity=`sha256:${hash.digest('hex')}`;
           const p=entry.checkpoint?`checkpoints/${integrity.slice(7)}.json`:safePath(entry.path);
+          if(!Object.hasOwn(hashes,p)&&(total+=objectBytes)>PACKAGE_BYTES)throw fail('AUTHORING_BYTE_BUDGET','Project package exceeds read/write budget.');
           await rejectLinks(fs,path,root,p);
           const full=path.join(root,...p.split('/'));await fs.mkdir(path.dirname(full),{recursive:true});await rejectLinks(fs,path,root,p);
           let existing=false;

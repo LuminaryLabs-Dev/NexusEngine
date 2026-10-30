@@ -1,3 +1,4 @@
+import {operationRequestHash} from "../../../../foundation/idempotency-ledger.js";
 const clone = (value) => structuredClone(value);
 const checkId = (id) => {
   if (typeof id !== "string" || !id.trim()) throw new TypeError("Context key must be a nonempty string.");
@@ -10,13 +11,17 @@ export function createAgentContextStore({ maxEntries = 256, maxTextLength = 1600
   }
   const records = new Map();
   return Object.freeze({
-    put(agentId, key, value, { source = null } = {}) {
+    put(agentId, key, value, { source = null, expectedRevision, commitId = null } = {}) {
       checkId(agentId); checkId(key);
       const json = JSON.stringify(value);
       if (json === undefined || json.length > maxTextLength) throw new RangeError("Context exceeds configured budget.");
       const id = JSON.stringify([agentId, key]);
+      const prior=records.get(id);
+      if(commitId!==null)checkId(commitId);
+      if(commitId&&prior?.commitId===commitId){if(operationRequestHash(prior.value)!==operationRequestHash(value))throw new Error('Context commit identity conflict');return clone(prior);}
+      if(expectedRevision!==undefined&&(!Number.isSafeInteger(expectedRevision)||expectedRevision<0||(prior?.revision??0)!==expectedRevision))throw new Error('Context revision conflict');
       if (!records.has(id) && records.size >= maxEntries) throw new RangeError("Context entry limit reached.");
-      const entry = { agentId, key, value: clone(value), source, revision: (records.get(id)?.revision ?? 0) + 1 };
+      const entry = { agentId, key, value: clone(value), source, ...(commitId?{commitId}:{}), revision: (records.get(id)?.revision ?? 0) + 1 };
       records.set(id, entry);
       return clone(entry);
     },
@@ -29,9 +34,10 @@ export function createAgentContextStore({ maxEntries = 256, maxTextLength = 1600
       checkId(agentId);
       return [...records.values()].filter(x => x.agentId === agentId).map(clone);
     },
-    remove(agentId, key) {
+    remove(agentId, key, {expectedRevision} = {}) {
       checkId(agentId); checkId(key);
-      return records.delete(JSON.stringify([agentId, key]));
+      const id=JSON.stringify([agentId,key]);if(expectedRevision!==undefined&&(records.get(id)?.revision??0)!==expectedRevision)throw new Error('Context revision conflict');
+      return records.delete(id);
     },
     snapshot() { return { schema: "nexusengine.agent-context/1", entries: [...records.values()].map(clone) }; },
     restore(snapshot) {
@@ -45,6 +51,7 @@ export function createAgentContextStore({ maxEntries = 256, maxTextLength = 1600
         if (serialized === undefined || serialized.length > maxTextLength) throw new RangeError("Restored context exceeds configured budget.");
         const id = JSON.stringify([item.agentId, item.key]);
         if (staged.has(id) || !Number.isSafeInteger(item.revision) || item.revision < 1) throw new TypeError("Invalid or duplicate context entry.");
+        if(item.commitId!==undefined)checkId(item.commitId);
         staged.set(id, clone(item));
       }
       records.clear();

@@ -1,4 +1,5 @@
 import { jsonBytes, digest, text, unhex, hex, fail, record, asBytes } from '../contracts/io.js';
+import { freeze } from '../contracts/value.js';
 /** All current and historical documents reference content-addressed image tile blobs. */
 export function encodeProjectPackage(snapshot) {
   const files=Object.create(null),seen=new WeakMap();
@@ -18,7 +19,7 @@ export function encodeProjectPackage(snapshot) {
 }
 export function decodeProjectPackage(bundle) {
   if(bundle?.schema!=='nexusengine.authoring-package/1'||!bundle.files)throw fail('AUTHORING_PACKAGE','Invalid project package.');
-  let budget=0;const cache=new Map();
+  let budget=0;const cache=new Map(),contents=new Map();
   function read(ref){
     if(!ref||typeof ref.path!=='string'||!/^sha256:[0-9a-f]{64}$/.test(ref.hash))throw fail('AUTHORING_PACKAGE','Malformed object reference.');
     const bytes=bundle.files[ref.path];if(!bytes||digest(asBytes(bytes))!==ref.hash)throw fail('AUTHORING_STORAGE_CORRUPT',`Missing/corrupt ${ref.path}.`);
@@ -28,6 +29,10 @@ export function decodeProjectPackage(bundle) {
     if(ref===null)return null;if(cache.has(ref.hash))return cache.get(ref.hash);
     const doc=JSON.parse(text(read(ref)));
     if(doc.kind==='image')doc.content.layers=doc.content.layers.map(layer=>({...layer,tiles:Object.fromEntries(Object.entries(layer.tiles).map(([k,r])=>[k,hex(read(r))]))}));
+    // Different document revisions may contain identical geometry. Verify each
+    // file above, then share only payloads with identical canonical bytes.
+    freeze(doc.content);const contentKey=digest(jsonBytes(doc.content));
+    if(contents.has(contentKey))doc.content=contents.get(contentKey);else contents.set(contentKey,doc.content);
     cache.set(ref.hash,doc);return doc;
   }
   const checkpoint=JSON.parse(text(read(bundle.root)));

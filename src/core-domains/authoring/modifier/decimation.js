@@ -49,19 +49,25 @@ export function decimateAuthoringMesh(
         protectedVertices.add(edge.a);
         protectedVertices.add(edge.b);
       }
-    edges.sort((a, b) => {
-      const distance = (e) =>
-        Math.hypot(
-          ...vertices
-            .get(e.a)
-            .position.map((n, i) => n - vertices.get(e.b).position[i]),
-        );
-      return distance(a) - distance(b) || a.id.localeCompare(b.id);
-    });
+    // Protected edges cannot be collapsed. Rank only eligible edges, computing
+    // each distance once rather than for every sort comparison. Retain the
+    // original distance and ID ordering so existing results stay deterministic.
+    const candidates = edges
+      .filter(
+        (edge) => !protectedVertices.has(edge.a) && !protectedVertices.has(edge.b),
+      )
+      .map((edge) => ({
+        edge,
+        distance: Math.hypot(
+          ...vertices.get(edge.a).position
+            .map((n, i) => n - vertices.get(edge.b).position[i]),
+        ),
+      }))
+      .sort(
+        (a, b) => a.distance - b.distance || a.edge.id.localeCompare(b.edge.id),
+      );
     let changed = false;
-    for (const edge of edges) {
-      if (protectedVertices.has(edge.a) || protectedVertices.has(edge.b))
-        continue;
+    for (const { edge } of candidates) {
       if (++attempts > 10000)
         throw error(
           "AUTHORING_DECIMATION_BUDGET",

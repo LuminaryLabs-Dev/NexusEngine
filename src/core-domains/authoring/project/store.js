@@ -189,7 +189,7 @@ export function createAuthoringProjectStore({
   }
 
   function normalizeRequest(input, action) {
-    const request = canonical(input);
+    const request = sharedCanonical(input);
     requireFields(
       request,
       action === "execute"
@@ -387,7 +387,7 @@ export function createAuthoringProjectStore({
             "AUTHORING_OPERATION_MISSING",
             `Operation ${operation.id} is not installed.`,
           );
-        const result = definition.execute(tx, canonical(operation.args ?? {}));
+        const result = definition.execute(tx, sharedCanonical(operation.args ?? {}));
         if (result && typeof result.then === "function")
           throw error(
             "AUTHORING_ASYNC_TRANSACTION",
@@ -412,7 +412,7 @@ export function createAuthoringProjectStore({
           schema: "nexusengine.authoring-preview/1",
           epoch: current.epoch,
           baseClock: current.clock,
-          request: canonical(input),
+          request: sharedCanonical(input),
           changed: deltas.map(
             (d) => summary(d.after) ?? { id: d.id, deleted: true },
           ),
@@ -475,7 +475,7 @@ export function createAuthoringProjectStore({
   }
 
   function validateSnapshot(input) {
-    const value = canonical(input);
+    let value = sharedCanonical(input);
     requireFields(
       value,
       [
@@ -510,6 +510,7 @@ export function createAuthoringProjectStore({
           "AUTHORING_INVALID_SNAPSHOT",
           `${field} must be an object.`,
         );
+    value = { ...value, documents: { ...value.documents } };
     const checkDoc = (doc, id) => {
       if (doc === null) return null;
       const normalized = normalizeDocument(doc, doc.revision);

@@ -30,7 +30,7 @@ export const TOOL_DEFINITIONS = [
   ['kit_recipes', 'List reusable native authoring recipes and stages.', schema()],
   ['kit_look', 'Render a canonical GLB from six fixed views at requested pose times. Writes evidence only; appearance requires review.', schema({assemblyId:string,destination:string,times:{type:'array',minItems:1,maxItems:8,items:{type:'number',minimum:0,maximum:3600}},mode:{enum:['surface','wireframe','normals']},focus:{type:'array',maxItems:20,items:string},view:{enum:['front','back','right','left','top','oblique']},camera:object,selection:object},['assemblyId','destination']),true],
   ['kit_inspect_geometry','Inspect bounded native mesh topology, face normals, element IDs and placement metadata.',schema({meshId:string,offset:{type:'integer',minimum:0},limit:{type:'integer',minimum:1,maximum:100}},['meshId'])],
-  ['kit_select_geometry','Resolve exact native element IDs and optional native selection expansion. Returns a revision-bound selection and overlay points; source unchanged.',schema({meshId:string,expectedRevision:{type:'integer'},mode:{enum:['object','face','edge','vertex']},ids:{type:'array',maxItems:500,items:string},action:{enum:['expand','contract','connected','loop','ring']}},['meshId','expectedRevision','mode','ids'])],
+  ['kit_select_geometry','Resolve explicit IDs or complete faces inside mesh-local bounds, with optional expansion. Returns a revision-bound selection; source unchanged.',schema({meshId:string,expectedRevision:{type:'integer'},mode:{enum:['object','face','edge','vertex']},ids:{type:'array',maxItems:500,items:string},bounds:schema({min:{type:'array',minItems:3,maxItems:3,items:{type:'number'}},max:{type:'array',minItems:3,maxItems:3,items:{type:'number'}}},['min','max']),action:{enum:['expand','contract','connected','loop','ring']}},['meshId','expectedRevision','mode'])],
   ['kit_compare_inspections','Compare verified captured images and source revisions under identical viewing settings; no automatic aesthetic verdict.',schema({before:string,after:string,destination:string,reason:string,finding:string},['before','after','destination','reason','finding']),true],
   ['kit_read', 'Read one editable document or the current document index.', schema({ id: string })],
   ['kit_author', 'Preview or execute typed Project operations; supply the current epoch and edit revisions from kit_read.', schema({ request: object, selection:object, preview: { type: 'boolean' } }, ['request']), true],
@@ -104,7 +104,7 @@ export async function createEngineProductionHost({ workspace, writable = false, 
     let checkpointExists = false;
     try {
       const checkpointBytes=await readFile(file,'utf8'); const state = JSON.parse(checkpointBytes); checkpointExists = true;
-      if (![ENGINE_REVISION, '081fea1cdd9ca1662bc15116e7174d9c27821630', ...[1,2,3,4].map(version=>`081fea1cdd9ca1662bc15116e7174d9c27821630+agent-production.${version}`)].includes(state.engineRevision)) throw Error('Checkpoint revision mismatch.');
+      if (![ENGINE_REVISION, '4905af9a566d66d3cd283dcb4f1032d9150110f3+integration-candidate.1', '081fea1cdd9ca1662bc15116e7174d9c27821630', ...[1,2,3,4].map(version=>`081fea1cdd9ca1662bc15116e7174d9c27821630+agent-production.${version}`)].includes(state.engineRevision)) throw Error('Checkpoint revision mismatch.');
       if (state.schema === 'nexus-engine-kit.checkpoint/1') {
         storage.atomic(path.join(stateDir,'checkpoint-v1-preserved.json'),checkpointBytes);
         project.loadSnapshot(state.source);
@@ -160,9 +160,9 @@ export async function createEngineProductionHost({ workspace, writable = false, 
           // Use Core's own importer and snapshot validator on disposable prospective state.
           // Some pinned animated format profiles import successfully but cannot restore.
           const staged = createEngine({ kits: createAuthoringDomain() });
-          staged.n.authoringProject.loadSnapshot(project.getSnapshot());
+          staged.n.authoringProject.loadSnapshot(project.getSnapshot({immutable:true}));
           await staged.n.authoringImport.import(request);
-          staged.n.authoringProject.validateSnapshot(staged.n.authoringProject.getSnapshot());
+          staged.n.authoringProject.validateSnapshot(staged.n.authoringProject.getSnapshot({immutable:true}));
           if (JSON.stringify(before) !== JSON.stringify(project.context())) throw Error('Source changed during import preflight.');
           return engine.n.authoringImport.import(request);
         }

@@ -24,11 +24,11 @@ export function encodeFBXTree(nodes){
   return concat([u32(offset),u32(n.props.length),u32(properties.length),Uint8Array.of(name.length),name,properties,...children]);}
  const parts=[MAGIC,u32(7400)];let offset=27;for(const n of nodes){const bytes=node(n,offset);parts.push(bytes);offset+=bytes.length;}
  parts.push(new Uint8Array(13));offset+=13;
- const foot=Uint8Array.from([250,188,171,9,208,200,212,102,177,118,251,131,28,247,38,126]);parts.push(foot,new Uint8Array(4));offset+=20;
- parts.push(new Uint8Array(16-offset%16),u32(7400),new Uint8Array(120),Uint8Array.from([248,90,140,106,222,245,217,126,236,233,12,227,117,143,41,11]));return concat(parts);
+ const foot=Uint8Array.from([250,188,171,9,208,200,212,102,177,118,251,131,28,247,38,126]);parts.push(foot);offset+=foot.length;
+ parts.push(new Uint8Array(16-offset%16),new Uint8Array(4),u32(7400),new Uint8Array(120),Uint8Array.from([248,90,140,106,222,245,217,126,236,233,12,227,117,143,41,11]));return concat(parts);
 }
 export async function decodeFBXTree(input){
- const bytes=asBytes(input);if(!MAGIC.every((n,i)=>n===bytes[i]))throw fail('AUTHORING_FBX_BINARY_REQUIRED','This provider reads binary FBX 7.x. ASCII FBX is not accepted by this profile.');
+ const bytes=asBytes(input);if(!MAGIC.every((n,i)=>n===bytes[i]))return decodeAscii(bytes);
  const v=new DataView(bytes.buffer,bytes.byteOffset,bytes.length);let p=23;const version=v.getUint32(p,true);p+=4;if(version<7000||version>7700)throw fail('AUTHORING_FBX_VERSION','Unsupported FBX binary version.');
  let nodeCount=0,total=0;const header=version>=7500?25:13;
  const bound=n=>{if(!Number.isSafeInteger(n)||n<0||p+n>bytes.length)throw fail('AUTHORING_FBX_TRUNCATED','FBX input exceeds bounds.');};
@@ -52,6 +52,33 @@ export async function decodeFBXTree(input){
   const children=[];while(p<end){const child=await node(depth+1,end);if(!child){if(p!==end)throw fail('AUTHORING_FBX_NULL','Unexpected null record.');break;}children.push(child);}if(p!==end)throw fail('AUTHORING_FBX_NODE','Node length mismatch.');return {name,props,children};
  }
  const nodes=[];while(p+header<=bytes.length){const n=await node(0);if(!n)break;nodes.push(n);}return {version,nodes};
+}
+// Decode the standard text container without a geometry conversion. Both
+// containers feed the same semantic importer and its existing profile checks.
+function decodeAscii(bytes){
+ if(bytes.length>256*1024*1024)throw fail('AUTHORING_BYTE_BUDGET','FBX text budget exceeded.');
+ const source=text(bytes);if(!/^\s*;\s*FBX 7\.[0-7]\.\d+ project file/.test(source))throw fail('AUTHORING_FBX_BINARY_REQUIRED','Expected binary or ASCII FBX 7.x.');
+ let at=0,count=0,total=0;
+ const bad=message=>fail('AUTHORING_FBX_ASCII',`${message} at character ${at}.`);
+ function space(lines=true){while(at<source.length){const c=source[at];if(c===';'){while(at<source.length&&!/[\r\n]/.test(source[at]))at++;}else if(c===' '||c==='\t'||(lines&&/[\r\n]/.test(c)))at++;else break;}}
+ function number(){const start=at;while(at<source.length&&/[+\-\d.eE]/.test(source[at]))at++;const raw=source.slice(start,at);if(!/^[+-]?(?:\d+\.?\d*|\.\d+)(?:[eE][+-]?\d+)?$/.test(raw))throw bad('Invalid number');const n=Number(raw);if(!Number.isFinite(n)||(!/[.eE]/.test(raw)&&!Number.isSafeInteger(n)))throw bad('Unsafe number');return n;}
+ function scalar(){space(false);if(source[at]!=='"'){if(/[+\-\d.]/.test(source[at]??''))return number();const m=/^[A-Za-z_][A-Za-z_0-9]*/.exec(source.slice(at,at+256));if(!m)throw bad('Expected property');at+=m[0].length;return m[0];}
+  at++;let result='',start=at;while(at<source.length){const c=source[at++];if(c==='"')return result+source.slice(start,at-1);if(c==='\\'){result+=source.slice(start,at-1);const next=source[at++];if(next!=='"'&&next!=='\\')throw bad('Unsupported string escape');result+=next;start=at;}}throw bad('Unterminated string');}
+ function nodes(depth=0,nested=false){if(depth>256)throw bad('Node depth budget exceeded');const out=[];while(true){space();if(at>=source.length){if(nested)throw bad('Unclosed node');return out;}if(source[at]==='}'){if(!nested)throw bad('Unexpected closing brace');at++;return out;}
+  if(++count>1000000)throw bad('Node count budget exceeded');const m=/^[A-Za-z_][A-Za-z_0-9]*/.exec(source.slice(at,at+256));if(!m)throw bad('Expected node name');const name=m[0];at+=name.length;space(false);if(source[at++]!==':')throw bad('Expected colon');space(false);
+  if(source[at]==='*'){at++;const length=number();if(!Number.isSafeInteger(length)||length<0||length>16000000||(total+=length*8)>256*1024*1024)throw fail('AUTHORING_BYTE_BUDGET','FBX array budget exceeded.');space();if(source[at++]!=='{')throw bad('Expected array body');space();if(source[at++]!=='a')throw bad('Expected array data');space();if(source[at++]!==':')throw bad('Expected array colon');const values=[];space();while(source[at]!=='}'){if(values.length>=length)throw bad('Excess array values');values.push(number());space();if(source[at]===','){at++;space();}else if(source[at]!=='}')throw bad('Expected array separator');}at++;if(values.length!==length)throw bad('Array count mismatch');out.push({name,props:[values],children:[]});continue;}
+  const props=[];while(at<source.length&&!/[\r\n{}]/.test(source[at])){props.push(scalar());if(props.length>1000000)throw bad('Property count budget exceeded');space(false);if(source[at]!==',')break;at++;space();}
+  space(false);let children=[];if(source[at]==='{'){at++;children=nodes(depth+1,true);}
+  if(name==='Content'&&props.length===1&&typeof props[0]==='string'){
+   const encoded=props[0];if(/[^A-Za-z0-9+/=]/.test(encoded)||(total+=Math.ceil(encoded.length*3/4))>256*1024*1024)throw bad('Invalid or oversized embedded content');
+   try{const raw=atob(encoded);props[0]=Uint8Array.from(raw,c=>c.charCodeAt(0));}catch{throw bad('Invalid embedded content base64');}
+  }
+  out.push({name,props,children});
+ }}
+ const result=nodes();
+ const header=result.find(n=>n.name==='FBXHeaderExtension'),fileVersion=value(header,'FBXVersion');
+ if(!Number.isInteger(fileVersion)||fileVersion<7000||fileVersion>7700)throw fail('AUTHORING_FBX_VERSION','Unsupported ASCII FBX version.');
+ return {version:fileVersion,nodes:result};
 }
 export const child=(n,name)=>n?.children.find(c=>c.name===name);
 export const children=(n,name)=>n?.children.filter(c=>c.name===name)??[];

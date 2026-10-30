@@ -4,7 +4,7 @@ import { digest, fail, abort, issue } from '../../../../contracts/io.js';
 import { transformMatrix, multiplyMatrix, inverseMatrix, identityMatrix } from '../../../../contracts/transforms.js';
 import { sampleAuthoringTrack } from '../../../../animation/services.js';
 const S=v=>P('S',String(v)),I=v=>P('I',v),D=v=>P('D',v),L=v=>P('L',v),A=(t,v)=>P(t,Array.from(v));
-const p70=(name,type,values)=>N('P',[S(name),S(type),S(''),S('A'),...values.map(n=>typeof n==='string'?S(n):D(n))]);
+const p70=(name,type,values)=>N('P',[S(name),S(type),S(''),S('A'),...values.map(n=>typeof n==='string'?S(n):type==='enum'||type==='int'?I(n):type==='KTime'?L(n):D(n))]);
 export function quatToEuler([x,y,z,w]){const d=180/Math.PI;return [Math.atan2(2*(w*x+y*z),1-2*(x*x+y*y))*d,Math.asin(Math.max(-1,Math.min(1,2*(w*y-z*x))))*d,Math.atan2(2*(w*z+x*y),1-2*(y*y+z*z))*d];}
 export function eulerToQuat([x,y,z]){x*=Math.PI/360;y*=Math.PI/360;z*=Math.PI/360;const sx=Math.sin(x),cx=Math.cos(x),sy=Math.sin(y),cy=Math.cos(y),sz=Math.sin(z),cz=Math.cos(z);return [sx*cy*cz-cx*sy*sz,cx*sy*cz+sx*cy*sz,cx*cy*sz-sx*sy*cz,cx*cy*cz+sx*sy*sz];}
 const TIME=46186158000;
@@ -72,9 +72,11 @@ export async function encodeFBX(packet,{signal}={}){
  for(const c of packet.assembly.cameras){if(!models.has(c.nodeId))continue;const id=fresh();objects.push(N('NodeAttribute',[L(id),S(c.id+'\x00\x01NodeAttribute'),S('Camera')],[N('TypeFlags',[S('Camera')]),N('Properties70',[],[p70('CameraProjectionType','enum',[0]),p70('FieldOfView','Number',[c.yfov*180/Math.PI]),p70('FieldOfViewY','Number',[c.yfov*180/Math.PI]),p70('NearPlane','Number',[c.near*1000]),p70('FarPlane','Number',[c.far*1000]),p70('AspectWidth','Number',[1]),p70('AspectHeight','Number',[1])])]));connect(id,models.get(c.nodeId));}
  for(const l of packet.assembly.lights){if(!models.has(l.nodeId))continue;const id=fresh();objects.push(N('NodeAttribute',[L(id),S(l.id+'\x00\x01NodeAttribute'),S('Light')],[N('TypeFlags',[S('Light')]),N('Properties70',[],[p70('LightType','enum',[{point:0,directional:1,spot:2}[l.type]]),p70('Color','Color',l.color),p70('Intensity','Number',[l.intensity*100]),p70('DecayType','enum',[2]),p70('FarAttenuationEnd','Number',[l.range??0]),p70('InnerAngle','Number',[0]),p70('OuterAngle','Number',[90])])]));connect(id,models.get(l.nodeId));}
  const counts=new Map();for(const o of objects)counts.set(o.name,(counts.get(o.name)??0)+1);
- const root=[N('FBXHeaderExtension',[],[N('FBXHeaderVersion',[I(1003)]),N('FBXVersion',[I(7400)]),N('Creator',[S('NexusEngine Authoring FBX/2')])]),
-  N('GlobalSettings',[],[N('Version',[I(1000)]),N('Properties70',[],[p70('UpAxis','int',[1]),p70('UpAxisSign','int',[1]),p70('FrontAxis','int',[2]),p70('FrontAxisSign','int',[-1]),p70('CoordAxis','int',[0]),p70('CoordAxisSign','int',[1]),p70('UnitScaleFactor','double',[packet.assembly.units.metersPerUnit*100]),p70('OriginalUnitScaleFactor','double',[packet.assembly.units.metersPerUnit*100])])]),
-  N('Documents',[],[N('Count',[I(1)]),N('Document',[L(1),S('Scene'),S('Scene')],[N('RootNode',[L(0)])])]),
+ const creator='NexusEngine Authoring FBX/2';
+ const root=[N('FBXHeaderExtension',[],[N('FBXHeaderVersion',[I(1003)]),N('FBXVersion',[I(7400)]),N('EncryptionType',[I(0)]),N('CreationTimeStamp',[],[N('Version',[I(1000)]),N('Year',[I(1970)]),N('Month',[I(1)]),N('Day',[I(1)]),N('Hour',[I(10)]),N('Minute',[I(0)]),N('Second',[I(0)]),N('Millisecond',[I(0)])]),N('Creator',[S(creator)])]),
+  N('FileId',[P('R',Uint8Array.from([40,179,42,235,182,36,204,194,191,200,176,42,169,43,252,241]))]),N('CreationTime',[S('1970-01-01 10:00:00:000')]),N('Creator',[S(creator)]),
+  N('GlobalSettings',[],[N('Version',[I(1000)]),N('Properties70',[],[p70('UpAxis','int',[1]),p70('UpAxisSign','int',[1]),p70('FrontAxis','int',[2]),p70('FrontAxisSign','int',[-1]),p70('CoordAxis','int',[0]),p70('CoordAxisSign','int',[-1]),p70('UnitScaleFactor','double',[packet.assembly.units.metersPerUnit*100]),p70('OriginalUnitScaleFactor','double',[packet.assembly.units.metersPerUnit*100])])]),
+  N('Documents',[],[N('Count',[I(1)]),N('Document',[L(1),S('Scene'),S('Scene')],[N('RootNode',[L(0)])])]),N('References'),
   N('Definitions',[],[N('Version',[I(100)]),N('Count',[I(objects.length)]),...[...counts].map(([type,count])=>N('ObjectType',[S(type)],[N('Count',[I(count)])]))]),N('Objects',[],objects),N('Connections',[],connections),N('Takes',[],[N('Current',[S('')])])];
  const bytes=encodeFBXTree(root);abort(signal);return {bytes,resources,fileName:'scene.fbx',format:'fbx',hash:digest(bytes),warnings};
 }

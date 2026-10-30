@@ -14,7 +14,9 @@ export async function decodeFBX(bytes,{resources={},signal}={}){
  const linked=(id,objectType,relationship)=>links.filter(l=>l[2]===id&&(!relationship||l[3]===relationship)).map(l=>({object:byId.get(l[1]),relationship:l[3]})).filter(x=>x.object&&(!objectType||x.object.name===objectType));
  const scene={meshes:[],materials:[],images:[],nodes:[],rigs:[],skins:[],shapes:[],animations:[],cameras:[],lights:[],warnings:[]};
  const settings=properties(tree.nodes.find(n=>n.name==='GlobalSettings'));
- if((settings.UpAxis??1)!==1||(settings.UpAxisSign??1)!==1||(settings.CoordAxis??0)!==0)throw fail('AUTHORING_FBX_COORDINATES','This import profile requires Y-up, right-handed coordinates; explicit axis conversion is not yet implemented.');
+ if((settings.UpAxis??1)!==1||(settings.UpAxisSign??1)!==1||(settings.CoordAxis??0)!==0||(settings.FrontAxis??2)!==2)throw fail('AUTHORING_FBX_COORDINATES','This import profile requires Y-up with X coordinate and Z front axes.');
+ const frontSign=settings.FrontAxisSign??-1,coordSign=settings.CoordAxisSign??1;
+ if(![-1,1].includes(frontSign)||![-1,1].includes(coordSign)||(frontSign===1&&coordSign!==1))throw fail('AUTHORING_FBX_COORDINATES','Unsupported FBX axis-sign profile.');
  scene.metersPerUnit=(settings.UnitScaleFactor??1)/100;
  const modelObjects=objects.children.filter(o=>o.name==='Model'),modelById=new Map(modelObjects.map(o=>[o.props[0],o])),parentMap=new Map(),worlds=new Map(),local=new Map(),active=new Set();
  for(const m of modelObjects){const id=m.props[0],p=properties(m),parents=links.filter(l=>l[0]==='OO'&&l[1]===id&&modelById.has(l[2]));if(parents.length>1)throw fail('AUTHORING_FBX_HIERARCHY','A model has multiple parents.');parentMap.set(id,parents[0]?.[2]??null);
@@ -44,7 +46,7 @@ export async function decodeFBX(bytes,{resources={},signal}={}){
  for(const m of modelObjects){abort(signal);const mid=m.props[0],node={id:`n${mid}`,name:name(m),parent:parentMap.get(mid)===null?null:`n${parentMap.get(mid)}`,transform:local.get(mid),materials:[],animationIds:[]};scene.nodes.push(node);
   const meshes=linked(mid,'Geometry').filter(x=>x.object.props[2]==='Mesh');if(meshes.length>1)throw fail('AUTHORING_FBX_MESH','Multiple geometry objects per model are not supported by this profile.');
   if(meshes.length){const geo=meshes[0].object,gid=geo.props[0],positions=value(geo,'Vertices',[]),indices=value(geo,'PolygonVertexIndex',[]);if(!positions.length||positions.length%3||!indices.length)throw fail('AUTHORING_FBX_MESH','Missing geometry arrays.');
-    const out={id:`mesh${mid}`,positions:[],normals:[],uvs:[],colors:[],indices:[],materialIndices:[]},sourceIndices=[];let face=[],corner=0,polygon=0;
+    const out={id:`mesh${mid}`,positions:[],normals:[],uvs:[],colors:[],indices:[],materialIndices:[],authoredNormals:children(geo,'LayerElementNormal').length>0},sourceIndices=[];let face=[],corner=0,polygon=0;
     node.materials=linked(mid,'Material').map(x=>`mat${x.object.props[0]}`);if(!node.materials.length){if(!scene.materials.some(x=>x.id==='default'))scene.materials.push({id:'default',pbr:{baseColor:[.8,.8,.8,1],roughness:.5,metallic:0,textures:{}}});node.materials=['default'];}
     for(const raw of indices){const control=raw<0?-raw-1:raw;if(!Number.isInteger(control)||control<0||control*3+2>=positions.length)throw fail('AUTHORING_FBX_MESH','Control point out of bounds.');face.push({control,corner:corner++});
       if(raw<0){if(face.length<3)throw fail('AUTHORING_FBX_MESH','Degenerate polygon.');const points=face.map(x=>positions.slice(x.control*3,x.control*3+3)),triangles=triangulateAuthoringPolygon(points).triangles;
@@ -56,7 +58,7 @@ export async function decodeFBX(bytes,{resources={},signal}={}){
       }
     }
     if(face.length)throw fail('AUTHORING_FBX_MESH','Unterminated polygon.');scene.meshes.push(out);node.meshId=out.id;controlsForMesh.set(node.id,sourceIndices);geometriesForNode.set(node.id,gid);
-    scene.warnings.push(issue('IMPORTED_NORMALS_REEVALUATED','Imported source uses canonical Authoring normal generation.','warning',{meshId:out.id}));
+    if(!out.authoredNormals)scene.warnings.push(issue('IMPORTED_NORMALS_REEVALUATED','Source has no authored normals; Authoring will generate them.','warning',{meshId:out.id}));
     const skins=linked(gid,'Deformer').filter(x=>x.object.props[2]==='Skin');if(skins.length>1)throw fail('AUTHORING_FBX_SKIN','Multiple skin deformers require conversion.');
     if(skins.length){const skin=skins[0].object,clusters=linked(skin.props[0],'Deformer').filter(x=>x.object.props[2]==='Cluster').map(x=>x.object),joints=new Map();
       for(const cluster of clusters){const bone=linked(cluster.props[0],'Model')[0]?.object;if(!bone)throw fail('AUTHORING_FBX_SKIN','Cluster has no bone.');joints.set(bone.props[0],bone);}
@@ -89,6 +91,14 @@ export async function decodeFBX(bytes,{resources={},signal}={}){
    if(tracks.length){const id=`animation${stack.props[0]}-${node.id}`;scene.animations.push({id,rigId:node.rigId??null,shapeId:node.shapeId??null,clips:[{id:`clip${stack.props[0]}`,name:name(stack),duration:Math.max(...tracks.flatMap(t=>t.keys.map(k=>k.time))),tracks}]});node.animationIds.push(id);}
   }
   if(claimed!==curveNodes.length)throw fail('AUTHORING_FBX_ANIMATION_PROFILE','Arbitrary object animation is outside the current Authoring source schema.');
+ }
+ // DirectX-style FBX uses a left-handed +Z frame. Authoring owns a
+ // right-handed frame: retain local geometry and attributes, and compose the
+ // frame change once above every source root (including rigs and cameras).
+ if(frontSign===1&&coordSign===1){
+  const id='fbx-coordinate-frame';for(const node of scene.nodes)if(node.parent===null)node.parent=id;
+  scene.nodes.unshift({id,name:'FBX coordinate frame',parent:null,transform:normalizeTransform({scale:[1,1,-1]}),materials:[],animationIds:[]});
+  scene.warnings.push(issue('FBX_COORDINATE_FRAME_CONVERTED','Left-handed +Z source converted to the canonical right-handed frame through one assembly transform.','warning'));
  }
  abort(signal);return scene;
 }

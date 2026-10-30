@@ -36,6 +36,7 @@ export function evaluateAuthoringMesh(
       (a) => a.id === "sharp" && a.domain === "edge",
     ),
     uv = mesh.attributes.find((a) => a.id === "uv0" && a.domain === "corner"),
+    authoredNormal = mesh.attributes.find((a) => a.id === "normal" && a.domain === "corner"),
     color = mesh.attributes.find(
       (a) => a.id === "color" && a.domain === "vertex",
     ),
@@ -106,7 +107,7 @@ export function evaluateAuthoringMesh(
             : null;
       for (let j = 0; j < 3; j++) {
         const i = tri[j],
-          n = cornerNormal(f.vertices[i], f.id);
+          n = authoredNormal ? vunit(authoredNormal.values[f.corners[i]]) : cornerNormal(f.vertices[i], f.id);
         let t = sdir
           ? vsub(sdir, vmul(n, vdot(n, sdir)))
           : vcross(Math.abs(n[1]) < 0.9 ? [0, 1, 0] : [1, 0, 0], n);

@@ -1,5 +1,5 @@
 import { sha256Integrity } from '../../../foundation/sha256.js';
-import { canonical, freeze, authoringError, requireText } from './value.js';
+import { sharedCanonical, freeze, authoringError, requireText } from './value.js';
 export const fail = authoringError;
 export const utf8 = new TextEncoder();
 export const text = (value) => new TextDecoder('utf-8', { fatal: true }).decode(asBytes(value));
@@ -9,9 +9,9 @@ export function asBytes(value, max = 256 * 1024 * 1024) {
   return bytes;
 }
 export const digest = (value) => sha256Integrity(asBytes(value));
-export const jsonBytes = (value) => utf8.encode(JSON.stringify(canonical(value)));
+export const jsonBytes = (value) => utf8.encode(JSON.stringify(sharedCanonical(value)));
 export const copy = (value) => structuredClone(value);
-export const record = (value) => freeze(canonical(value));
+export const record = (value) => freeze(sharedCanonical(value));
 export function abort(signal) {
   if (signal?.aborted) throw fail('AUTHORING_CANCELLED', 'Authoring operation cancelled.');
 }

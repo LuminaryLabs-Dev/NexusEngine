@@ -8,3 +8,13 @@ assert.deepEqual((await planLoopWork({goal:"g",propose:async()=>({nodes:[{id:"a"
 assert.equal((await validateLoopResult({checks:[{id:"c",run:async()=>({ok:true})}]})).ok,true);
 assert.equal((await runCodingLoop({goal:"g",inspect:async()=>({}),propose:async()=>({id:"x",operation:"patch",expectedRevision:"1"}),authorize:async()=>true,apply:async()=>({ok:true,receiptRef:"r"}),validate:async()=>({ok:true})})).ok,true);
 console.log("specialized loop composition passed");
+let codeEffects=0;
+const unauthorized=await runCodingLoop({goal:'g',inspect:async()=>({}),propose:async()=>({id:'x',expectedRevision:'1',operation:'patch'}),authorize:async()=>false,apply:async()=>{codeEffects++;},validate:async()=>({ok:true})});
+assert.equal(unauthorized.status,'unauthorized');assert.equal(codeEffects,0);
+const failedApply=await runCodingLoop({goal:'g',inspect:async()=>({}),propose:async()=>({id:'x',expectedRevision:'1',operation:'patch'}),authorize:async()=>true,apply:async()=>({ok:false,receiptRef:'failed-effect'}),validate:async()=>{throw Error('Must not validate failed edit');}});
+assert.equal(failedApply.status,'failed');assert.equal(failedApply.receiptRef,'failed-effect');
+const noReceipt=await runCodingLoop({goal:'g',inspect:async()=>({}),propose:async()=>({id:'x',expectedRevision:'1',operation:'patch'}),authorize:async()=>true,apply:async()=>({ok:true}),validate:async()=>({ok:true})});assert.equal(noReceipt.status,'uncertain');
+console.log('Coding recipe preserves authorization, failed edit and uncertain receipt outcomes');
+
+await assert.rejects(runCodingLoop({goal:'g',inspect:async()=>({}),propose:async()=>({}),authorize:async()=>true,apply:async()=>({}),validate:async()=>({ok:true})}),/Invalid coding proposal/);
+const inspectionFailure=new Error('Original inspection error');await assert.rejects(runCodingLoop({inspect:async()=>{throw inspectionFailure;},propose:async()=>({}),authorize:async()=>true,apply:async()=>({}),validate:async()=>({ok:true})}),e=>e===inspectionFailure);

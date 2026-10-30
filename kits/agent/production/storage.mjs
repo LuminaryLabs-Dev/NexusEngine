@@ -1,6 +1,7 @@
 import { mkdirSync, readFileSync, writeFileSync, renameSync, openSync, closeSync, fsyncSync, existsSync, lstatSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 import { createHash } from 'node:crypto';
+import { freeze } from '../../../src/core-domains/authoring/contracts/value.js';
 const hash = value => createHash('sha256').update(value).digest('hex');
 /** Optional filesystem provider. Core stores opaque version keys, never filesystem paths. */
 export function createProductionStorage(root, { maxCacheBytes = 2 * 1024 * 1024, maxCacheEntries = 64 } = {}) {
@@ -19,19 +20,38 @@ export function createProductionStorage(root, { maxCacheBytes = 2 * 1024 * 1024,
     renameSync(temporary,file);const dir=openSync(path.dirname(file),'r');try{fsyncSync(dir);}finally{closeSync(dir);}
   }
   const objectFile = key => {if(!/^[a-f0-9]{64}$/.test(key))throw Error('Invalid content key.');return safe(path.join(objects,key+'.json'));};
+  // History often references the same immutable mesh as the live Project.
+  // Reuse that object while it remains live, without retaining its geometry or
+  // skipping the on-disk integrity check. Mutable values are never shared.
+  const contentRefs=new Map(),verifiedFrozen=new WeakSet();
+  function deeplyFrozen(value){
+    if(!value||typeof value!=='object')return true;
+    if(verifiedFrozen.has(value))return true;
+    if(!Object.isFrozen(value))return false;
+    for(const key of Object.keys(value)){const d=Object.getOwnPropertyDescriptor(value,key);if(!Object.hasOwn(d,'value')||!deeplyFrozen(d.value))return false;}
+    verifiedFrozen.add(value);return true;
+  }
   function putRaw(value) { const bytes=JSON.stringify(value), key=hash(bytes),file=objectFile(key); if(!existsSync(file))atomic(file,bytes);else if(hash(readFileSync(file))!==key)throw Error('Stored object integrity mismatch.'); return key; }
-  function getRaw(key) {const bytes=readFileSync(objectFile(key));if(hash(bytes)!==key)throw Error('Stored object integrity mismatch.');return JSON.parse(bytes);}
+  function putContent(value){const key=putRaw(value);if(deeplyFrozen(value)){contentRefs.delete(key);contentRefs.set(key,new WeakRef(value));while(contentRefs.size>1024)contentRefs.delete(contentRefs.keys().next().value);}return key;}
+  function getRaw(key,memo) {
+    const bytes=readFileSync(objectFile(key));if(hash(bytes)!==key)throw Error('Stored object integrity mismatch.');
+    if(!memo)return JSON.parse(bytes);
+    const live=memo.get(key)??contentRefs.get(key)?.deref();if(live){memo.set(key,live);return live;}
+    const value=freeze(JSON.parse(bytes));memo.set(key,value);contentRefs.set(key,new WeakRef(value));
+    while(contentRefs.size>1024)contentRefs.delete(contentRefs.keys().next().value);
+    return value;
+  }
   function encode(value) {
     if(!value||typeof value!=='object')return value;
-    if(value.kind&&value.id&&value.hash&&value.content&&value.dependencies) return {$nexusDocument:putRaw({...value,content:{$nexusContent:putRaw(value.content)}})};
+    if(value.kind&&value.id&&value.hash&&value.content&&value.dependencies) return {$nexusDocument:putRaw({...value,content:{$nexusContent:putContent(value.content)}})};
     if(Array.isArray(value))return value.map(encode);
     return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,encode(v)]));
   }
-  function decode(value) {
+  function decode(value,memo=new Map()) {
     if(!value||typeof value!=='object')return value;
-    if(Object.keys(value).length===1&&value.$nexusDocument){const doc=getRaw(value.$nexusDocument);if(doc.content&&Object.keys(doc.content).length===1&&doc.content.$nexusContent)doc.content=getRaw(doc.content.$nexusContent);return doc;}
-    if(Array.isArray(value))return value.map(decode);
-    return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,decode(v)]));
+    if(Object.keys(value).length===1&&value.$nexusDocument){const doc=getRaw(value.$nexusDocument);if(doc.content&&Object.keys(doc.content).length===1&&doc.content.$nexusContent)doc.content=getRaw(doc.content.$nexusContent,memo);return doc;}
+    if(Array.isArray(value))return value.map(v=>decode(v,memo));
+    return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,decode(v,memo)]));
   }
   const put=value=>putRaw(encode(value)),get=key=>decode(getRaw(key));
   const cache=new Map();let cacheBytes=0,count=readdirSync(index).filter(n=>/^[a-f0-9]{64}\.json$/.test(n)).length;

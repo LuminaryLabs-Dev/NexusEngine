@@ -100,3 +100,16 @@ const classificationLoop=await runAgentLoop({loopId:'classifier-composition',age
 assert.equal(classificationLoop.state.status,'completed');assert.equal(classificationLoop.state.progress.modelCalls,1);assert.equal(classifierEffects,1);
 console.log('Classifier-driven step with explicit caller policy and deterministic completion passed');
 const missingThreshold=createTypeSafeInference({runtime,project:'approved',thresholds:{}});assert.equal((await missingThreshold.infer({request:classification,instance:selected})).status,'rejected');
+
+const fixturePool=()=>createInferenceProviderPool({providers:[{id:'p',protocol:'fixture'}],instances:['one','two'].map(id=>({id,providerId:'p',models:['m'],capacity:1,free:true}))});
+let attempt=0;
+const aggregate=await executeInference({request:{id:'aggregate',modelId:'m'},pool:fixturePool(),adapter:{infer:async()=>++attempt===1?{status:'failed',reason:'unavailable',retryable:true,usage:{total_tokens:10},reportedCost:1}:{status:'ok',output:'done',usage:{total_tokens:20},reportedCost:2}}});
+assert.equal(aggregate.usage.total_tokens,30);assert.equal(aggregate.reportedCost,3);assert.equal(aggregate.usageComplete,true);assert.equal(aggregate.attempts[0].usage.total_tokens,10);
+const unknown=await executeInference({request:{id:'unknown',modelId:'m'},pool:fixturePool(),adapter:{infer:async()=>({status:'ok',output:'done'})}});assert.equal(unknown.usageComplete,false);
+let executions=0,checkpoints=0;
+const overrun=await runHostedAgent({loopId:'overrun-host',agentId:'a',goalRef:'g',pool:fixturePool(),inference:{infer:async()=>({status:'ok',output:{action:'finish'},usage:{total_tokens:5000}})},observe:async()=>({modelId:'m'}),discover:()=>[],authorize:()=>false,dispatch:async()=>{executions++;},verify:async()=>{executions++;},checkpoint:async()=>checkpoints++,limits:{maxTokens:1}});
+assert.equal(overrun.state.status,'blocked');assert.equal(overrun.state.progress.tokens,5000);assert.equal(executions,0);assert.ok(checkpoints>0);
+const cooperativePool=fixturePool(),controller=new AbortController();
+const cancelling=executeInference({request:{id:'cancel-request',modelId:'m'},pool:cooperativePool,signal:controller.signal,adapter:{infer:async({signal})=>new Promise((resolve,reject)=>{signal.addEventListener('abort',()=>reject(signal.reason),{once:true});controller.abort();})}});
+assert.equal((await cancelling).status,'cancelled');assert.equal(cooperativePool.snapshot().leases.length,0);
+console.log('Per-attempt consumption, unknown usage, public checkpoints and cancellation passed');

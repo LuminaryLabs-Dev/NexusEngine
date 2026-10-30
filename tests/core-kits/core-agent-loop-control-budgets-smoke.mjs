@@ -8,3 +8,7 @@ s=advanceLoopControl(s,{status:"active",stepId:"one",tokens:6});
 assert.equal(s.status,"blocked");
 assert.throws(()=>advanceLoopControl(s,{status:"active"}));
 console.log("Loop control budgets and receipts passed");
+const {restoreLoopControl}=await import('../../src/core-domains/agent/loop/control/index.js');
+for(const field of ['steps','modelCalls','tokens','wallTimeMs'])assert.throws(()=>restoreLoopControl({...s,progress:{...s.progress,[field]:-1}}),/progress/);
+assert.throws(()=>restoreLoopControl({...s,agentId:null}),/checkpoint/);
+assert.throws(()=>restoreLoopControl({...s,budgets:{...s.budgets,maxTokens:-1}}),/budget/);

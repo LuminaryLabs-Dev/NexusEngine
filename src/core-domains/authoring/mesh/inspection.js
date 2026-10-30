@@ -9,14 +9,25 @@ export function inspectGeometry(engine,{meshId,offset=0,limit=30}){
  const placements=engine.n.authoringProject.listDocuments().filter(x=>x.kind==='assembly').flatMap(a=>engine.n.authoringProject.getDocument(a.id).content.nodes.filter(n=>n.meshId===meshId).map(n=>({assemblyId:a.id,nodeId:n.id,transform:n.transform,parent:n.parent??null,space:'node-local; parent chain belongs to assembly'})));
  return {meshId,revision:d.revision,hash:d.hash,context:engine.n.authoringProject.context(),space:'mesh-local units; each assembly metersPerUnit defines scale',summary,attributes:m.attributes.map(a=>({id:a.id,domain:a.domain,arity:a.arity})),placements:placements.slice(0,30),boundaryEdges:[...edges.values()].filter(e=>e.faces.length===1).length,nonManifoldEdges:[...edges.values()].filter(e=>e.faces.length>2).length,triangles:evaluated.indices.length/3,faces,edges:[...edges.values()].slice(offset,offset+limit),vertices:m.vertices.slice(offset,offset+limit),nextFaceOffset:offset+limit<m.faces.length?offset+limit:null};
 }
-export function selectGeometry(engine,{meshId,expectedRevision,mode,ids,action}){
+export function selectGeometry(engine,{meshId,expectedRevision,mode,ids,action,bounds}){
  const d=meshDocument(engine,meshId);if(d.revision!==expectedRevision)throw Error('Stale mesh revision; inspect geometry again.');
+ if(bounds!==undefined){
+  if(ids!==undefined||mode!=='face'||!bounds||Object.keys(bounds).some(k=>!['min','max'].includes(k))||!['min','max'].every(k=>Array.isArray(bounds[k])&&bounds[k].length===3&&bounds[k].every(Number.isFinite))||bounds.min.some((n,i)=>n>bounds.max[i]))throw Error('Bounds require face mode, no explicit IDs, and finite mesh-local min/max vectors.');
+  const points=new Map(d.content.vertices.map(v=>[v.id,v.position]));
+  ids=[];
+  for(const face of d.content.faces){
+   if(face.vertices.every(id=>points.get(id).every((v,i)=>v>=bounds.min[i]&&v<=bounds.max[i])))ids.push(face.id);
+   if(ids.length>500)throw Error('Bounds select more than 500 faces; use narrower bounds.');
+  }
+  if(!ids.length)throw Error('Bounds select no complete faces.');
+ }
  if(!Array.isArray(ids)||ids.length>500||ids.some(id=>typeof id!=='string'))throw Error('Selection requires at most 500 explicit element IDs.');
  let selection={mode,ids};engine.n.authoringMesh.resolveSelection(meshId,selection);
  if(action)selection=engine.n.authoringEditing.modifyContent(d.content,selection,{action});
  if(selection.ids.length>500)throw Error('Expanded selection exceeds 500 elements; use a narrower selection.');
  const vertices=engine.n.authoringMesh.resolveSelection(meshId,selection);if(vertices.length>2000)throw Error('Selection overlay exceeds 2000 vertices.');
- return {meshId,revision:d.revision,hash:d.hash,...engine.n.authoringProject.context(),...selection,vertices:d.content.vertices.filter(v=>vertices.includes(v.id))};
+ const vertexIds=new Set(vertices);
+ return {meshId,revision:d.revision,hash:d.hash,...engine.n.authoringProject.context(),...selection,vertices:d.content.vertices.filter(v=>vertexIds.has(v.id))};
 }
 export function validateSelection(engine,s){
  const d=meshDocument(engine,s.meshId),c=engine.n.authoringProject.context();

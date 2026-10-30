@@ -1,7 +1,8 @@
 import {test} from 'node:test';import assert from 'node:assert/strict';import {mkdtemp,readFile,writeFile,readdir,rm,symlink} from 'node:fs/promises';import {tmpdir} from 'node:os';import {join} from 'node:path';import {execFileSync} from 'node:child_process';
 import {building,newEngine,operations} from '../fixtures/authoring-assets.mjs';
 import {authoringDomainManifest} from 'nexusengine/domains/authoring';
-import {digest} from '../../src/core-domains/authoring/contracts/io.js';
+import {canonical,freeze} from '../../src/core-domains/authoring/contracts/value.js';
+import {digest,record,jsonBytes} from '../../src/core-domains/authoring/contracts/io.js';
 import {encodeUSDZ,decodeUSDZ} from '../../src/core-domains/authoring/publishing/export/codecs/zip.js';
 import {encodePNG,decodePNG} from '../../src/core-domains/authoring/publishing/export/codecs/png.js';
 const copy=x=>structuredClone(x);
@@ -54,4 +55,24 @@ test('import collision and source mutation after preview reject before any docum
 test('PNG and USDZ bytes are deterministic, CRC checked, truncated input rejected',async()=>{
  const pixels={width:2,height:1,data:new Uint8Array([22,45,99,255,0,1,2,3])},png=encodePNG(pixels);assert.deepEqual((await decodePNG(png)).data,pixels.data);const zip=encodeUSDZ({'scene.usda':new TextEncoder().encode('#usda 1.0\n'),'Textures/a.png':png});assert.deepEqual(zip,encodeUSDZ({'scene.usda':new TextEncoder().encode('#usda 1.0\n'),'Textures/a.png':png}));assert.equal(Object.keys((await decodeUSDZ(zip)).entries).length,2);
  await assert.rejects(decodeUSDZ(zip.subarray(0,zip.length-10)));const bad=png.slice();bad[45]^=1;await assert.rejects(decodePNG(bad));
+});
+
+test('I/O records share only validated immutable content without changing canonical bytes',()=>{
+ const original={vertices:[{id:'v',position:[1,2,3]}]};const frozen=freeze(canonical(original));const input={request:{content:frozen},documents:[{content:frozen}]};const result=record(input);assert.equal(result.request.content,frozen);assert.equal(result.documents[0].content,frozen);assert.deepEqual(jsonBytes(result),new TextEncoder().encode(JSON.stringify(canonical(input))));assert.throws(()=>{result.request.content.vertices[0].position[0]=99;});
+ const mutable={position:[1,2,3]};const copy=record({mutable});mutable.position[0]=99;assert.equal(copy.mutable.position[0],1);
+ const unsafe=Object.freeze({get value(){throw Error('must not evaluate accessor');}});assert.throws(()=>record(unsafe),/Accessors/);
+});
+
+import {createProductionStorage} from '../../kits/agent/production/storage.mjs';
+test('history storage reuses only deeply immutable live content and still checks disk hashes',async()=>{
+ const dir=await makeFile();try{const storage=createProductionStorage(dir),content=record({vertices:[{id:'v',position:[1,2,3]}]}),doc=record({id:'mesh',kind:'mesh',hash:'sha256:fixture',content,dependencies:[]});const key=storage.put(doc);assert.equal(storage.get(key).content,content);const graphKey=storage.put({current:doc,history:[doc]});const reopened=createProductionStorage(dir),graph=reopened.get(graphKey);assert.equal(graph.current.content,graph.history[0].content);assert.ok(Object.isFrozen(graph.current.content.vertices[0].position));assert.equal(reopened.get(graphKey).current.content,graph.current.content);
+ const mutable={id:'other',kind:'mesh',hash:'sha256:fixture',content:{position:[1,2,3]},dependencies:[]},other=storage.put(mutable);mutable.content.position[0]=99;assert.equal(storage.get(other).content.position[0],1);
+ const ref=JSON.parse(await readFile(join(dir,'objects',key+'.json'),'utf8')).$nexusDocument,meta=JSON.parse(await readFile(join(dir,'objects',ref+'.json'),'utf8')),file=join(dir,'objects',meta.content.$nexusContent+'.json');await writeFile(file,'{}');assert.throws(()=>storage.get(key),/integrity mismatch/);
+ }finally{await rm(dir,{recursive:true,force:true});}
+});
+
+import {createFilesystemAuthoringStorageProvider} from '../../src/core-domains/authoring/persistence/providers/filesystem/index.js';
+test('filesystem streaming rejects unreadable oversized objects before publishing a manifest',async()=>{
+ const directory=await makeFile();try{const provider=createFilesystemAuthoringStorageProvider(),chunk=new Uint8Array(1024*1024);const bundle={schema:'nexusengine.authoring-package/1',projectId:'budget',entries:function*(){yield {path:'documents/oversized.json',chunks:(function*(){for(let i=0;i<257;i++)yield chunk;})()};}};await assert.rejects(()=>provider.write({path:directory},bundle),e=>e.code==='AUTHORING_BYTE_BUDGET');assert.equal((await readdir(directory)).includes('authoring-project.json'),false);assert.equal((await readdir(directory)).some(p=>p.startsWith('.authoring-')),false);}
+ finally{await rm(directory,{recursive:true,force:true});}
 });

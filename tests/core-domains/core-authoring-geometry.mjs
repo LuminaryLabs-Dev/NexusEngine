@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import { authoringFixture, near } from "../helpers/authoring-fixture.mjs";
 import { triangulateAuthoringPolygon } from "../../src/core-domains/authoring/mesh/geometry.js";
 import { meshEdges } from "../../src/core-domains/authoring/mesh/topology.js";
+import { evaluateAuthoringMesh } from "../../src/core-domains/authoring/mesh/evaluate.js";
+import { normalizeAuthoringMesh } from "../../src/core-domains/authoring/mesh/geometry.js";
+import { selectGeometry, validateSelection } from "../../src/core-domains/authoring/mesh/inspection.js";
 const { engine: e, project: p, command, edit, unchanged } = authoringFixture(),
   mesh = e.n.authoringMesh;
 for (const type of [
@@ -41,6 +44,20 @@ for (const type of [
 assert.equal(mesh.inspect("torus").vertices, 64);
 assert.equal(mesh.inspect("box").edges, 12);
 const cube = p.getDocument("box").content;
+const boxRevision = p.getDocument("box").revision;
+const boxBounds = {min:[-100,-100,-100],max:[100,100,100]};
+const boundedSelection = selectGeometry(e,{meshId:'box',expectedRevision:boxRevision,mode:'face',bounds:boxBounds});
+assert.deepEqual(new Set(boundedSelection.ids),new Set(cube.faces.map(f=>f.id)));
+assert.deepEqual(validateSelection(e,boundedSelection).ids,boundedSelection.ids);
+assert.throws(()=>selectGeometry(e,{meshId:'box',expectedRevision:boxRevision,mode:'face',bounds:boxBounds,ids:['f1']}),/Bounds require/);
+assert.throws(()=>selectGeometry(e,{meshId:'box',expectedRevision:boxRevision,mode:'face',bounds:{min:[100,100,100],max:[101,101,101]}}),/no complete faces/);
+assert.throws(()=>selectGeometry(e,{meshId:'box',expectedRevision:boxRevision-1,mode:'face',bounds:boxBounds}),/Stale/);
+const withNormals = structuredClone(cube);
+withNormals.attributes.push({id:'normal',domain:'corner',arity:3,values:Object.fromEntries(withNormals.faces.flatMap(f=>f.corners.map(c=>[c,[0,2,0]])))});
+const authored = evaluateAuthoringMesh(withNormals);
+for(let i=0;i<authored.normals.length;i+=3) assert.deepEqual(authored.normals.slice(i,i+3),[0,1,0]);
+delete withNormals.attributes.at(-1).values[withNormals.faces[0].corners[0]];
+assert.throws(()=>normalizeAuthoringMesh(withNormals),/cover every corner/);
 edit("mesh.attribute", {
   id: "box",
   attribute: {

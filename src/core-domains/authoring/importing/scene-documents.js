@@ -20,7 +20,7 @@ export function sceneToDocuments(scene,prefix){
   }
   if(m.colors?.length)vertices.forEach((v,i)=>colors[v.id]=m.colors.slice(i*4,i*4+4));
   const attr=(name,domain,arity,values)=>({id:name,domain,arity,values});
-  const attributes=[...(m.uvs?.length?[attr('uv0','corner',2,uv)]:[]),...(m.colors?.length?[attr('color','vertex',4,colors)]:[]),...(m.materialIndices?.length?[attr('material','face',1,material)]:[])];
+  const attributes=[...(m.uvs?.length?[attr('uv0','corner',2,uv)]:[]),...(m.authoredNormals?[attr('normal','corner',3,normal)]:[]),...(m.colors?.length?[attr('color','vertex',4,colors)]:[]),...(m.materialIndices?.length?[attr('material','face',1,material)]:[])];
   const content=normalizeAuthoringMesh({vertices,faces,attributes});meshMap.set(m.id,content);docs.push({id:id('mesh',m.id),kind:'mesh',content});
  }
  for(const rig of scene.rigs??[]){const content=normalizeAuthoringRig({bones:rig.bones,constraints:[]});rigMap.set(rig.id,content);docs.push({id:id('rig',rig.id),kind:'rig',content});}

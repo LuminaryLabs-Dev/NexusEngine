@@ -1,10 +1,11 @@
-import {createInferenceRequest,createInferenceResult} from "../contract/index.js";
+import {createInferenceRequest,createInferenceResult,normalizeInferenceUsage} from "../contract/index.js";
 const copy=x=>x===undefined?undefined:structuredClone(x);
 export async function executeInference({request,pool,adapter,maxAttempts=3,timeoutMs=120000,allowPaid=false,signal,now=Date.now}={}){
  if(!pool?.reserve||!pool?.release||typeof adapter?.infer!=="function")throw new TypeError("Inference requires a provider pool and adapter");
  const r=createInferenceRequest(request);
  if(!Number.isSafeInteger(maxAttempts)||maxAttempts<1||maxAttempts>50||!Number.isSafeInteger(timeoutMs)||timeoutMs<1)throw new RangeError("Invalid inference limits");
  const deadline=now()+timeoutMs,attempts=[],excluded=new Set();
+ let knownTokens=0,inputTokens=0,outputTokens=0,usageComplete=true;
  let terminal="failed",output=null,usage=null,error=null,providerId=null,deploymentId=null,reportedCost=null,estimatedCost=null;
  for(let n=0;n<maxAttempts;n++){
   if(signal?.aborted){terminal="cancelled";error={reason:"cancelled"};break;}
@@ -17,10 +18,15 @@ export async function executeInference({request,pool,adapter,maxAttempts=3,timeo
   const abort=()=>ac.abort(signal?.reason??new Error("cancelled"));
   signal?.addEventListener("abort",abort,{once:true});
   const timer=setTimeout(()=>ac.abort(new Error("deadline_exceeded")),remaining);
-  const entry={attemptId:r.id+":attempt:"+(n+1),instanceId:instance.id,providerId,deploymentId,status:"uncertain",reason:null};
+  const entry={usage:null,usageComplete:false,reportedCost:null,estimatedCost:null,attemptId:r.id+":attempt:"+(n+1),instanceId:instance.id,providerId,deploymentId,status:"uncertain",reason:null};
   try{
    if(signal?.aborted)abort();
    const outcome=await adapter.infer({request:r,instance,signal:ac.signal});
+   if(outcome&&typeof outcome==='object'){
+    entry.usage=copy(outcome.usage??null);entry.reportedCost=outcome.reportedCost??null;entry.estimatedCost=outcome.estimatedCost??null;
+    const u=normalizeInferenceUsage(entry.usage);entry.usageComplete=u.complete;
+    knownTokens+=u.total??((u.input??0)+(u.output??0));inputTokens+=u.input??0;outputTokens+=u.output??0;
+   }
    if(ac.signal.aborted){terminal=signal?.aborted?"cancelled":"uncertain";entry.status=terminal;entry.reason="interrupted";error={reason:"uncertain_completion"};attempts.push(entry);break;}
    if(!outcome||typeof outcome!=="object"){terminal="malformed";entry.status="malformed";entry.reason="invalid_response";error={reason:entry.reason};attempts.push(entry);break;}
    entry.status=outcome.status??"failed";entry.reason=outcome.reason??null;
@@ -33,7 +39,11 @@ export async function executeInference({request,pool,adapter,maxAttempts=3,timeo
    entry.status=signal?.aborted?"cancelled":"uncertain";
    entry.reason=signal?.aborted?"cancelled":"unclassified_transport_error";
    attempts.push(entry);terminal=entry.status;error={reason:entry.reason};break;
-  }finally{clearTimeout(timer);signal?.removeEventListener("abort",abort);pool.release(r.id);}
+  }finally{usageComplete=usageComplete&&entry.usageComplete;clearTimeout(timer);signal?.removeEventListener("abort",abort);pool.release(r.id);}
  }
- return createInferenceResult({requestId:r.id,modelId:r.modelId,traceId:r.traceId,status:terminal,output,usage,error,providerId,deploymentId,attempts,reportedCost,estimatedCost});
+ usage=attempts.length?{total_tokens:knownTokens,input_tokens:inputTokens,output_tokens:outputTokens}:null;
+ const sumCost=key=>attempts.length&&attempts.every(x=>typeof x[key]==='number'&&Number.isFinite(x[key])&&x[key]>=0)?attempts.reduce((n,x)=>n+x[key],0):null;
+ reportedCost=sumCost('reportedCost');estimatedCost=sumCost('estimatedCost');
+ if(!Number.isSafeInteger(knownTokens))throw new RangeError("Inference usage overflow");
+ return createInferenceResult({requestId:r.id,modelId:r.modelId,traceId:r.traceId,status:terminal,output,usage,error,providerId,deploymentId,attempts,reportedCost,estimatedCost,usageComplete});
 }
