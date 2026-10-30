@@ -260,7 +260,8 @@ including typed properties, authored corner normals and a complete footer.
 FBX import reads bounded binary and ASCII 7.x containers through the same
 semantic profile, preserving authored normals when supplied. Supported axes are
 Y-up with X coordinate and Z front axes; the +X/+Z source profile composes one
-Z-reflection group into the canonical right-handed assembly. Unsupported axis
+180-degree Y rotation into the Engine frame. Both horizontal axis signs differ
+from the Engine export profile; treating this as a single-axis reflection is incorrect. Unsupported axis
 signs, pivots and invalid faces fail explicitly. Consumer coordinate conversion
 must be included when comparing world positions and normals. Match consumer
 welding settings before judging attribute fidelity.

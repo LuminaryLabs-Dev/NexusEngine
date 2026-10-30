@@ -92,13 +92,13 @@ export async function decodeFBX(bytes,{resources={},signal}={}){
   }
   if(claimed!==curveNodes.length)throw fail('AUTHORING_FBX_ANIMATION_PROFILE','Arbitrary object animation is outside the current Authoring source schema.');
  }
- // DirectX-style FBX uses a left-handed +Z frame. Authoring owns a
- // right-handed frame: retain local geometry and attributes, and compose the
- // frame change once above every source root (including rigs and cameras).
+ // The +X/+Z source frame differs from the Engine export frame on both
+ // horizontal axes. Preserve local data and compose that proper rotation once
+ // above every root, including rigs and cameras; it is not a Z reflection.
  if(frontSign===1&&coordSign===1){
   const id='fbx-coordinate-frame';for(const node of scene.nodes)if(node.parent===null)node.parent=id;
-  scene.nodes.unshift({id,name:'FBX coordinate frame',parent:null,transform:normalizeTransform({scale:[1,1,-1]}),materials:[],animationIds:[]});
-  scene.warnings.push(issue('FBX_COORDINATE_FRAME_CONVERTED','Left-handed +Z source converted to the canonical right-handed frame through one assembly transform.','warning'));
+  scene.nodes.unshift({id,name:'FBX coordinate frame',parent:null,transform:normalizeTransform({rotation:[0,1,0,0]}),materials:[],animationIds:[]});
+  scene.warnings.push(issue('FBX_COORDINATE_FRAME_CONVERTED','The +X/+Z source frame is rotated 180 degrees about Y into the Engine frame through one assembly transform.','warning'));
  }
  abort(signal);return scene;
 }

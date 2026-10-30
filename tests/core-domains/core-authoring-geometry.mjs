@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { authoringFixture, near } from "../helpers/authoring-fixture.mjs";
 import { triangulateAuthoringPolygon } from "../../src/core-domains/authoring/mesh/geometry.js";
-import { meshEdges } from "../../src/core-domains/authoring/mesh/topology.js";
+import { meshEdges, editAuthoringTopology } from "../../src/core-domains/authoring/mesh/topology.js";
 import { evaluateAuthoringMesh } from "../../src/core-domains/authoring/mesh/evaluate.js";
 import { normalizeAuthoringMesh } from "../../src/core-domains/authoring/mesh/geometry.js";
 import { selectGeometry, validateSelection } from "../../src/core-domains/authoring/mesh/inspection.js";
@@ -209,3 +209,17 @@ assert.equal(evalMesh.tangents.length, 144);
 console.log(
   "Authoring geometry: primitive orientation, concave triangulation, mapped topology, dependency rollback, curves, workspaces, sculpt, UVs and evaluated corners passed.",
 );
+
+// Chained welds retain numeric interpolation order and independent corner data.
+{
+ const positions=[[0,0,0],[1,0,0],[1,0,1],[0,0,0],[1,0,1],[0,0,1],[0,0,0]];
+ const input={vertices:positions.map((position,i)=>({id:'w'+i,position})),
+ faces:[{id:'wa',vertices:['w0','w1','w2'],corners:['a0','a1','a2']},{id:'wb',vertices:['w3','w4','w5'],corners:['b0','b1','b2']}],
+ attributes:[{id:'weight',domain:'vertex',arity:1,values:Object.fromEntries(positions.map((_,i)=>['w'+i,[i]]))},
+ {id:'uv0',domain:'corner',arity:2,values:{a0:[0,0],a1:[1,0],a2:[1,1],b0:[2,0],b1:[2,1],b2:[0,1]}}]};
+ const before=JSON.stringify(input),result=editAuthoringTopology(input,{operation:'weld',pairs:[['w3','w6'],['w6','w0'],['w4','w2']],tolerance:0}).mesh;
+ assert.equal(result.vertices.length,4);assert.deepEqual(result.faces[1].vertices,['w0','w2','w5']);
+ near(result.attributes[0].values.w0[0],3);near(result.attributes[0].values.w2[0],3);
+ assert.deepEqual(result.attributes[1],input.attributes[1]);assert.equal(JSON.stringify(input),before);
+ assert.throws(()=>editAuthoringTopology(input,{operation:'weld',pairs:[['w0','w3'],['w3','w0']],tolerance:0}),/Cyclic weld mapping/);
+}

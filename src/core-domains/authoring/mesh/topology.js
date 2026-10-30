@@ -264,13 +264,16 @@ export function editAuthoringTopology(input, args) {
       }
       return id;
     };
+    // Resolve each source once. Keep source order within each group so numeric
+    // attribute interpolation is identical to the former per-retained scan.
+    const members = new Map();
+    for (const old of mesh.vertices) {
+      const retained = resolve(old.id);
+      if (!members.has(retained)) members.set(retained, []);
+      members.get(retained).push(old.id);
+    }
     for (const v of vertices)
-      if (!replace.has(v.id)) {
-        const ids = mesh.vertices
-          .filter((old) => resolve(old.id) === v.id)
-          .map((old) => old.id);
-        maps.vertex[v.id] = average(ids);
-      }
+      if (!replace.has(v.id)) maps.vertex[v.id] = average(members.get(v.id));
     vertices = vertices.filter((v) => !replace.has(v.id));
     faces = faces.map((f) => ({ ...f, vertices: f.vertices.map(resolve) }));
     // Do not silently collapse degenerate faces or UV corners.
