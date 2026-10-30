@@ -21,11 +21,12 @@ export async function inspectAuthoringAsset({ engine, assemblyId, destination, t
   const threeRoot = path.dirname(require.resolve('three').replace(/three\.cjs$/, 'three.module.js'));
   const loader = require.resolve('three/addons/loaders/GLTFLoader.js');
   const utilities = require.resolve('three/addons/utils/BufferGeometryUtils.js');
+  const skeletons = require.resolve('three/addons/utils/SkeletonUtils.js');
   const files = new Map([
     ['/viewer.mjs', path.join(import.meta.dirname, 'inspection-viewer.mjs')],
     ['/three/three.module.js', path.join(threeRoot, 'three.module.js')],
     ['/three/three.core.js', path.join(threeRoot, 'three.core.js')],
-    ['/three/GLTFLoader.js', loader], ['/utils/BufferGeometryUtils.js', utilities]
+    ['/three/GLTFLoader.js', loader], ['/utils/BufferGeometryUtils.js', utilities], ['/utils/SkeletonUtils.js', skeletons]
   ]);
   const options = { times, mode, focus, view, camera, selection:selection?{meshId:selection.meshId,vertices:selection.vertices}:null };
   const html = `<!doctype html><html><head><meta charset="utf-8"><link rel="icon" href="data:,"><title>Nexus asset inspection</title><style>body{margin:0;background:#19232d;color:#eef3f5;font:15px system-ui}canvas{display:block}#labels{position:absolute;inset:0;display:grid;grid-template-columns:repeat(${view?1:3},1fr);grid-template-rows:repeat(${view?1:2},1fr);pointer-events:none}#labels span{padding:12px;background:linear-gradient(#19232d88,transparent 48px)}#caption{position:absolute;bottom:8px;left:12px;font-size:12px;color:#b7c6ce}</style><script type="importmap">{"imports":{"three":"/three/three.module.js"}}</script></head><body><div id="labels">${(view?[view]:['Front','Back','Right','Left','Top','Oblique (ortho)']).map(x=>`<span>${x}</span>`).join('')}</div><div id="caption"></div><script>window.inspectionOptions=${JSON.stringify(options)}</script><script type="module" src="/viewer.mjs"></script></body></html>`;

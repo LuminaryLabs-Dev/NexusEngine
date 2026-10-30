@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Restored optional asset inspection with Three.js 0.186 by serving GLTFLoader's SkeletonUtils dependency. A real Chromium wireframe capture passed all six fixed views without console errors.
+
 - Repaired FBX property types, binary footer/header metadata, consumer axis metadata and authored corner-normal round trips. Added bounded ASCII FBX decoding with embedded-content handling and a canonical frame for supported left-handed input. Unity 2020.3 CLI verified a fresh 50-triangle export and its 50 collider probes; a separate 254,169-triangle transfer matched source positions, UVs and normals with 1,291 sampled collider hits. These are transfer checks, not full terrain optimization or device acceptance.
 - Reduced redundant immutable Authoring request/snapshot copies and repeated content-addressed history decoding while retaining disk hash checks and interrupted-operation gates. Carried the Kit's existing ordered-step runner, memory revision checks and inference usage accounting into Engine so repinning preserves optional-loop behavior. Core mesh/import/reducer budgets remain enforced.
 
