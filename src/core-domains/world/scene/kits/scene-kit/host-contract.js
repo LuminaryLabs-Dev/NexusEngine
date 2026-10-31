@@ -11,6 +11,10 @@ export function createSceneHostBinding(config = {}) {
     canLoad(scene) {
       return typeof config.canLoad === "function" ? Boolean(config.canLoad(scene)) : kinds.size === 0 || kinds.has(scene?.kind);
     },
+    discard(transition, context = {}) {
+      if (typeof config.discard !== "function") throw new Error("SCENE_HOST_DISCARD_REQUIRED: cannot discard staged content.");
+      return config.discard(transition, context);
+    },
     unload(transition, context = {}) {
       return typeof config.unload === "function"
         ? config.unload(transition, context)
