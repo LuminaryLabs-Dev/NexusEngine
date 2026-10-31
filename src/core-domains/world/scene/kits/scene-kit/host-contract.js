@@ -19,7 +19,7 @@ export function createSceneHostBinding(config = {}) {
     load(transition, context = {}) {
       return typeof config.load === "function"
         ? config.load(transition, context)
-        : { hostBinding: hostId, mounted: true, sceneId: transition?.toSceneId ?? transition?.scene?.id ?? null, entry: transition?.scene?.entry ?? null };
+        : (() => { throw new Error("SCENE_HOST_LOAD_REQUIRED: supply a real load callback."); })();
     }
   };
 }
@@ -30,7 +30,14 @@ export function mountAcceptedSceneTransition(engine, hostBinding, resultOrTransi
   if (!hostBinding?.canLoad?.(transition.scene)) {
     throw new Error(`Scene host binding ${hostBinding?.id ?? "unknown"} cannot load scene kind ${transition.scene?.kind}.`);
   }
-  const apply = (mountResult) => ({
+  const apply = (mountResult) => {
+    if (!mountResult || mountResult.mounted !== true || mountResult.sceneId !== transition.toSceneId) {
+      throw new Error("SCENE_LOAD_INVALID_RESULT: host did not confirm destination mount.");
+    }
+    if (typeof engine?.n?.scene?.mountScene !== "function") {
+      throw new Error("SCENE_MOUNT_API_MISSING");
+    }
+    return ({
     transition,
     mountResult,
     mountedState: engine?.n?.scene?.mountScene?.({
@@ -40,7 +47,8 @@ export function mountAcceptedSceneTransition(engine, hostBinding, resultOrTransi
       hostBinding: hostBinding.id,
       result: mountResult
     })
-  });
+    });
+  };
   const result = hostBinding.load(transition, context);
   return typeof result?.then === "function" ? result.then(apply) : apply(result);
 }
