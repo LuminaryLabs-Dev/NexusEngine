@@ -28,8 +28,11 @@ export function createSceneExit(exit = {}) {
 
 export function normalizeSceneExits(exits = {}) {
   if (Array.isArray(exits)) {
+    const seen = new Set();
     return Object.fromEntries(exits.map((exit) => {
       const normalized = createSceneExit(exit);
+      if (seen.has(normalized.id)) throw new Error(`Duplicate scene exit: ${normalized.id}`);
+      seen.add(normalized.id);
       return [normalized.id, normalized];
     }));
   }
@@ -50,7 +53,8 @@ export function createSceneDescriptor(scene = {}) {
     kind,
     hostBinding: hostBindingForSceneKind(kind, scene.hostBinding),
     entry: scene.entry ?? scene.url ?? scene.bundle ?? scene.module ?? null,
-    exits: Object.freeze(normalizeSceneExits(scene.exits ?? {})),
+    // Legacy exit data remains readable for old projects; new scenes need no exits.
+    ...(scene.exits === undefined ? {} : { exits: Object.freeze(normalizeSceneExits(scene.exits)) }),
     restore: Object.freeze(clone(scene.restore ?? {})),
     descriptors: Object.freeze(clone(scene.descriptors ?? {})),
     metadata: Object.freeze(isObject(scene.metadata) ? clone(scene.metadata) : {})
@@ -62,6 +66,12 @@ export function createSceneRegistry(input = {}) {
   const entries = Array.isArray(source)
     ? source.map((scene) => [scene?.id, scene])
     : Object.entries(isObject(source) ? source : {});
+  const ids = new Set();
+  for (const [sceneId, scene] of entries) {
+    const id = requireSceneId(scene?.id ?? sceneId, "scene id");
+    if (ids.has(id)) throw new Error(`Duplicate scene descriptor: ${id}`);
+    ids.add(id);
+  }
   return Object.freeze(Object.fromEntries(entries.map(([sceneId, scene]) => {
     const descriptor = createSceneDescriptor({ id: sceneId, ...(scene ?? {}) });
     return [descriptor.id, descriptor];
