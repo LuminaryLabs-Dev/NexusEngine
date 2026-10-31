@@ -126,12 +126,12 @@ const direct = createEngine({ kits: [
   createSpatialKit(), createWorldDomain({ childDomains: false }),
   createSceneKit({ scenes: { town: { kind: "game-scene", entry: "town" }, forest: { kind: "game-scene", entry: "forest" } }, initialSceneId: "town" })
 ] });
-let fail = true, unloads = 0, resolveLoad;
+let fail = true, unloads = 0, resolveLoad, holdLoad = false;
 const realHost = createSceneHostBinding({
   id: "test-loader",
   load: async t => {
     if (fail) throw new Error("asset-failure");
-    if (resolveLoad) await new Promise(resolve => { resolveLoad = resolve; });
+    if (holdLoad) await new Promise(resolve => { resolveLoad = resolve; });
     return { mounted: true, sceneId: t.toSceneId };
   },
   unload: () => { unloads++; return { unloaded: true }; }
@@ -140,6 +140,7 @@ await assert.rejects(direct.n.scene.loadScene("forest", { hostBinding: realHost 
 assert.equal(direct.n.scene.getCurrentScene().id, "town", "failed loading preserves the old scene");
 assert.deepEqual(direct.n.scene.getVisitedScenes(), ["town"], "failed loading does not mark destination visited");
 fail = false;
+holdLoad = true;
 const pending = direct.n.scene.loadScene("forest", { hostBinding: realHost, transitionId: "direct-forest" });
 await assert.rejects(direct.n.scene.loadScene("town", { hostBinding: realHost }), /SCENE_LOAD_BUSY/);
 assert.equal(direct.n.scene.getCurrentScene().id, "town", "the old scene stays active while loading");
