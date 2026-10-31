@@ -45,6 +45,7 @@ export function createSceneKit(config = {}) {
       const state = () => baseApi.getState();
       const snap = () => baseApi.getSnapshot();
       const limit = config.transitionHistoryLimit ?? 512;
+      let activeLoad = null;
       const commit = (patch, eventName, payload = {}) => baseApi.update(patch, eventName, payload);
       const reject = (request, reason, extra = {}) => {
         const current = state();
@@ -58,6 +59,83 @@ export function createSceneKit(config = {}) {
       };
 
       const api = {
+        async loadScene(sceneId, options = {}) {
+          const destination = requireSceneId(sceneId, "destination scene id");
+          if (activeLoad) throw new Error("SCENE_LOAD_BUSY: another scene load is in progress.");
+          const before = state();
+          const scene = getSceneById(before, destination);
+          if (!scene) throw new Error(`SCENE_UNKNOWN: ${destination}`);
+          if (before.currentSceneId === destination && options.reload !== true) {
+            return { accepted: true, unchanged: true, sceneId: destination };
+          }
+          const host = options.hostBinding ?? config.hostBinding;
+          if (!host || typeof host.load !== "function" || typeof host.unload !== "function" || typeof host.canLoad !== "function") {
+            throw new Error("SCENE_HOST_REQUIRED: an executable load/unload host is required.");
+          }
+          if (!host.canLoad(scene)) throw new Error(`SCENE_HOST_UNSUPPORTED: ${destination}`);
+          const transitionId = requireSceneId(options.transitionId ?? `load:${Number(before.transitionSequence ?? 0) + 1}:${destination}`, "transition id");
+          const existing = before.transitionLedger?.[transitionId];
+          if (existing) {
+            if (existing.toSceneId !== destination || existing.fromSceneId !== before.currentSceneId)
+              throw new Error("SCENE_TRANSITION_ID_CONFLICT");
+            return { accepted: true, duplicate: true, transition: clone(existing) };
+          }
+          const transition = {
+            accepted: true, transitionId, fromSceneId: before.currentSceneId ?? null,
+            toSceneId: destination, scene: clone(scene), payload: clone(options.payload ?? {}),
+            sequence: Number(before.transitionSequence ?? 0) + 1
+          };
+          let release;
+          activeLoad = new Promise((resolve) => { release = resolve; });
+          const context = { ...(options.context ?? {}), signal: options.signal };
+          let loaded = false;
+          try {
+            if (options.signal?.aborted) throw new Error("SCENE_LOAD_CANCELLED");
+            const result = await host.load(transition, context);
+            loaded = true;
+            if (!result || result.mounted !== true || result.sceneId !== destination)
+              throw new Error("SCENE_LOAD_INVALID_RESULT: host must confirm mounted:true and the destination sceneId.");
+            if (options.signal?.aborted) throw new Error("SCENE_LOAD_CANCELLED");
+            if (state().currentSceneId !== before.currentSceneId)
+              throw new Error("SCENE_LOAD_STALE: active scene changed while loading.");
+            const entryId = `transition:${transitionId}:enter:${destination}`;
+            const exitId = transition.fromSceneId ? `transition:${transitionId}:exit:${transition.fromSceneId}` : null;
+            const entry = { entryId, sceneId: destination, fromSceneId: transition.fromSceneId, transitionId, payload: transition.payload };
+            const exit = exitId ? { exitId, sceneId: transition.fromSceneId, toSceneId: destination, transitionId } : null;
+            const committed = commit({
+              previousSceneId: transition.fromSceneId,
+              currentSceneId: destination,
+              visitedSceneIds: addVisitedScene(before.visitedSceneIds, destination),
+              transitionLedger: ledgerWith(before.transitionLedger, transitionId, transition, limit),
+              sceneEntryLedger: ledgerWith(before.sceneEntryLedger, entryId, entry, limit),
+              sceneExitLedger: exit ? ledgerWith(before.sceneExitLedger, exitId, exit, limit) : before.sceneExitLedger,
+              mountedSceneLedger: ledgerWith(before.mountedSceneLedger, transitionId, {
+                mountId: transitionId, transitionId, sceneId: destination, hostBinding: host.id,
+                kind: scene.kind, entry: scene.entry, result: clone(result)
+              }, limit),
+              activePayload: transition.payload,
+              lastAcceptedTransition: transition,
+              lastMountedScene: { mountId: transitionId, transitionId, sceneId: destination, result: clone(result) },
+              transitionSequence: transition.sequence
+            }, "transitionAccepted", { transition });
+            let cleanupError = null;
+            if (transition.fromSceneId && transition.fromSceneId !== destination) {
+              try { await host.unload(transition, context); }
+              catch (error) { cleanupError = String(error?.message ?? error); }
+            }
+            return { accepted: true, transition, mountResult: result, state: clone(committed), cleanupError };
+          } catch (error) {
+            // A failed load must never change the active scene. Dispose any
+            // candidate that reached the host, without touching the old scene.
+            if (loaded && state().currentSceneId === before.currentSceneId && typeof host.discard === "function") {
+              try { await host.discard(transition, context); } catch { /* preserve original failure */ }
+            }
+            throw error;
+          } finally {
+            activeLoad = null;
+            release();
+          }
+        },
         ...baseApi,
         getSceneRegistry: () => clone(snap().registry ?? {}),
         registerScene(scene) {
