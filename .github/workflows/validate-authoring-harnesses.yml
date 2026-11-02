@@ -5,7 +5,6 @@ on:
     paths:
       - 'src/core-domains/authoring/**'
       - 'kits/agent/**'
-      - 'tests/**authoring**'
       - 'tests/core-domains/**'
       - 'tests/core-kits/**'
       - '.github/workflows/validate-authoring-harnesses.yml'
@@ -24,9 +23,9 @@ jobs:
       - name: Contract validation
         run: |
           set -euo pipefail
-          node --test tests/core-domains/core-authoring-harness-contracts.mjs | tee authoring-contracts.tap
+          node --test tests/core-domains/core-authoring-harness-contracts.mjs tests/core-domains/core-authoring-harness-safety.mjs | tee authoring-contracts.tap
       - name: Source-bound implementation snapshot
-        if: always() && github.ref == 'refs/heads/authoring-four-harnesses-20261102'
+        if: always()
         run: |
           git rev-parse HEAD > source-commit.txt
           git archive --format=tar HEAD | gzip > nexus-source.tar.gz
