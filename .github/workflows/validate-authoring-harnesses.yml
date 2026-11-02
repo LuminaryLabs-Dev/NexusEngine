@@ -1,0 +1,43 @@
+name: Validate Authoring Harnesses
+on:
+  push:
+    branches: [main, authoring-four-harnesses-20261102]
+    paths:
+      - 'src/core-domains/authoring/**'
+      - 'kits/agent/**'
+      - 'tests/**authoring**'
+      - 'tests/core-domains/**'
+      - 'tests/core-kits/**'
+      - '.github/workflows/validate-authoring-harnesses.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+      - name: Contract validation
+        run: |
+          set -euo pipefail
+          node --test tests/core-domains/core-authoring-harness-contracts.mjs | tee authoring-contracts.tap
+      - name: Source-bound implementation snapshot
+        if: always() && github.ref == 'refs/heads/authoring-four-harnesses-20261102'
+        run: |
+          git rev-parse HEAD > source-commit.txt
+          git archive --format=tar HEAD | gzip > nexus-source.tar.gz
+      - name: Retain validation evidence
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: authoring-harness-validation
+          if-no-files-found: error
+          retention-days: 7
+          path: |
+            authoring-contracts.tap
+            source-commit.txt
+            nexus-source.tar.gz
