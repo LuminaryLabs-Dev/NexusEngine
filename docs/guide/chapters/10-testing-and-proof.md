@@ -2,6 +2,12 @@
 
 Tests prove contracts at the level where failure would matter. A green unit test is not enough when a change affects package exports, composition, consumers, or rendered output.
 
+## Proof at the scale of a game
+
+Engine-level tests establish important guarantees about the machinery a game uses. They do not answer every question a player will ask. A dungeon door can have valid source, an idempotent state update, and a correct dependency graph while still being invisible, unresponsive to the player's input, or confusing to use.
+
+The [playtesting and refinement chapter](game-07-testing-and-refinement.md) complements the technical proofs below with source inspection, actual runtime scenarios, rendered review, performance measurements, and tests of the delivered package. Each result should say what was tested, in which environment, and what is still unverified.
+
 ## Manifest Proof
 
 Validate unique IDs, normalized paths, immediate parents, one owner per public module, source paths, export names, schemas, lifecycle declarations, dependencies, and proof references.
