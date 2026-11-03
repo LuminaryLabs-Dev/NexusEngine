@@ -6,6 +6,10 @@ on:
       - docs/nexusengine-game-guide-2026-11-03
     paths:
       - .github/workflows/guide-regenerate-staging.yml
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/guide-regenerate-staging.yml
   workflow_dispatch:
 
 permissions:
@@ -17,13 +21,14 @@ concurrency:
 
 jobs:
   build-guide:
-    if: github.ref_name == 'docs/nexusengine-game-guide-2026-11-03'
+    if: github.event_name == 'pull_request' || github.ref_name == 'docs/nexusengine-game-guide-2026-11-03'
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+          ref: docs/nexusengine-game-guide-2026-11-03
           persist-credentials: true
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
