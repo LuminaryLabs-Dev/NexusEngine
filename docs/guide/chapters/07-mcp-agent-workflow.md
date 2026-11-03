@@ -6,6 +6,12 @@ MCP makes the semantic catalog inspectable by an agent. It does not make the age
 
 An application installs the MCP registry Domain, registers the Composition provider, supplies a transactional host, and chooses a transport. Without those steps, the package exposes no live MCP server.
 
+## Catalog inspection is not creative production
+
+This MCP surface lets a host inspect and apply a specific selection of Domains and Kits. It is not the same thing as designing levels, creating art, evaluating screenshots, or proving gameplay. Those activities involve the [Authoring project](../../../AUTHORING.md), the [four creative harnesses](../../authoring-harnesses.md), an authorized production host, and independent runtime or visual evidence.
+
+The difference matters to a human developer too. A successful `composition_apply` receipt means an accepted composition was applied under its stated conditions; it does not mean a complete game feature has been created or playtested. The [creative Authoring chapter](game-06-creative-authoring.md) explains how those broader responsibilities fit together.
+
 ## Read Tools
 
 | Tool | Purpose |
