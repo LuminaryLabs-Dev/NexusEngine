@@ -17,6 +17,21 @@ This page is the active documentation router.
 The modular source for the guide is `guide/book.json` plus
 `guide/chapters/*.md`. Generated guide files are not edited directly.
 
+## Build a Game with NexusEngine
+
+For a practical, human-readable journey from a game idea to a playable build, follow the new game-building chapters in order. They share one fictional dungeon project so each explanation builds on the previous one:
+
+1. [From Game Idea to Development Plan](guide/chapters/game-01-idea-to-plan.md)
+2. [Setting Up a Project and Choosing Capabilities](guide/chapters/game-02-project-and-capabilities.md)
+3. [Creating Game Assets](guide/chapters/game-03-creating-assets.md)
+4. [Building Scenes and Environments](guide/chapters/game-04-scenes-and-environments.md)
+5. [Connecting Gameplay Systems](guide/chapters/game-05-gameplay-systems.md)
+6. [Using the Four Authoring Harnesses](guide/chapters/game-06-creative-authoring.md)
+7. [Playtesting, Reviewing, and Improving](guide/chapters/game-07-testing-and-refinement.md)
+8. [Building, Packaging, and Publishing](guide/chapters/game-08-building-and-publishing.md)
+
+These chapters explain the practical workflow. The existing technical chapters and generated appendices remain the detailed reference for real operations and current limitations. The dungeon is an instructional example, not an asserted production-ready game.
+
 ## Contracts
 
 - [Domain Addressability](DOMAIN-ADDRESSABILITY.md)

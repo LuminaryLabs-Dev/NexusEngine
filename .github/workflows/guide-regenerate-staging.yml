@@ -1,0 +1,78 @@
+name: Regenerate NexusEngine Guide (staging)
+
+on:
+  push:
+    branches:
+      - docs/nexusengine-game-guide-2026-11-03
+    paths:
+      - .github/workflows/guide-regenerate-staging.yml
+      - docs/guide/book.json
+      - docs/guide/chapters/**
+      - AUTHORING.md
+      - docs/README.md
+      - scripts/generate-guide.mjs
+      - scripts/check-guide-pdf.mjs
+  pull_request:
+    branches: [main]
+    paths:
+      - .github/workflows/guide-regenerate-staging.yml
+      - docs/guide/book.json
+      - docs/guide/chapters/**
+      - AUTHORING.md
+      - docs/README.md
+      - scripts/generate-guide.mjs
+      - scripts/check-guide-pdf.mjs
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: nexusengine-guide-staging
+  cancel-in-progress: false
+
+jobs:
+  build-guide:
+    if: github.event_name == 'pull_request' || github.ref_name == 'docs/nexusengine-game-guide-2026-11-03'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          ref: docs/nexusengine-game-guide-2026-11-03
+          persist-credentials: true
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version: 24
+          cache: npm
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
+      - name: Install Chromium
+        run: npx --no-install playwright install --with-deps chromium
+      - name: Install PDF verification tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes --no-install-recommends poppler-utils
+      - name: Regenerate guide and PDF
+        run: npm run guide:pdf
+      - name: Verify guide and examples
+        run: |
+          npm run guide:check
+          npm run guide:examples
+          npm run guide:pdf:check
+          npm run docs:check
+      - name: Commit exactly generated outputs
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -- \
+            docs/NexusEngine-Guide.md \
+            docs/NexusEngine-Guide.pdf \
+            docs/guide/generated/NexusEngine-Guide.html \
+            docs/guide/generated/book-state.json \
+            src/core-domains/composition/adapters/mcp/generated-guide-resources.js
+          if ! git diff --cached --quiet; then
+            git commit -m "docs(guide): regenerate complete guide and PDF"
+            git push origin HEAD:refs/heads/docs/nexusengine-game-guide-2026-11-03
+          fi

@@ -35,16 +35,43 @@ assert.ok(pageCount >= 20, `Expected a substantial guide, found ${pageCount} pag
 assert.ok(Math.abs(Number(sizeMatch[1]) - 612) < 1 && Math.abs(Number(sizeMatch[2]) - 792) < 1, "Guide pages must be US Letter.");
 
 const extracted = run("pdftotext", ["-layout", pdfPath, "-"]);
+
+const gameChapterEvidence = [
+  "A game usually starts as a description",
+  "With a small playable goal in mind",
+  "A game asset is more than a shape",
+  "A well-made asset becomes useful only when it belongs somewhere",
+  "Our dungeon room now has a shape",
+  "A good game takes several kinds of creative judgment",
+  "A feature is not finished simply because the code ran",
+  "A game is not delivered when the source looks finished"
+];
+for (const passage of gameChapterEvidence) {
+  assert.match(
+    extracted,
+    new RegExp(passage.split(/\s+/).join("\\s+")),
+    "Guide PDF is missing chapter body passage: " + passage
+  );
+}
+
 assert.doesNotMatch(extracted, /\uFFFD/, "Guide text contains replacement glyphs.");
 for (const heading of [
   "Start Here",
+  "From Game Idea to Development Plan",
+  "Setting Up a Project",
+  "Creating Game Assets",
+  "Building Scenes and Environments",
+  "Connecting Gameplay Systems",
+  "Using the Four Authoring Harnesses",
+  "Playtesting, Reviewing, and Improving",
+  "Building, Packaging, and Publishing",
   "MCP Agent Workflow",
   "ProtoKit Extraction",
   "Generated Restored Behavior Migration",
   "Generated Atomic API Reference",
   "Generated Ownership Ledger"
 ]) {
-  assert.match(extracted, new RegExp(heading), `Guide is missing chapter ${heading}.`);
+  assert.match(extracted, new RegExp(heading.split(/\s+/).join("\\s+")), `Guide is missing chapter ${heading}.`);
 }
 
 fs.rmSync(tempRoot, { recursive: true, force: true });

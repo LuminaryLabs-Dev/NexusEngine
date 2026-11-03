@@ -2,6 +2,12 @@
 
 Composition turns semantic intent into a deterministic, reviewable installation order.
 
+## Composition in an actual game
+
+Think of the first room of a dungeon adventure. The room has authored objects, but the running game also needs input, object identity, placement, interaction, and a way to present the result. Composition selects the compatible reusable capabilities needed to support that application. It does not write the dungeon's rules or create its artwork.
+
+For example, a door interaction can need several underlying capabilities even when the player sees just one action. A reviewed composition makes those dependencies explicit and keeps optional systems from arriving through surprising side effects. The [game-building workflow](game-02-project-and-capabilities.md) explains how to decide which capabilities the product needs before planning their installation.
+
 ## Registry First
 
 Core discovery starts from merged registry metadata generated from manifests. It never scans the filesystem at runtime. Imported registries may add identities but may not replace Core records or collide with an existing Domain path.

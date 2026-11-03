@@ -11,6 +11,14 @@ Experiments and games        authored product behavior
 Hosts and adapters           platform and vendor implementations
 ```
 
+## Two ways to read this guide
+
+If you want to **make a game**, begin with the [idea-to-plan chapter](game-01-idea-to-plan.md), then follow the practical chapters through project setup, asset creation, scene construction, gameplay, creative collaboration, testing, and publishing. They use one small dungeon adventure to connect the concepts. They explain what to build and why, rather than requiring you to master every internal contract before you start.
+
+If you want to **understand or extend the Engine**, use the technical reference beginning with [First Runtime](03-first-runtime.md). It covers semantic ownership, atomic Kits, composition, lifecycle, host boundaries, security, build targets, validation, and migration. The two paths are complementary: a creator can read the practical chapters first and follow technical links when a specific question arises.
+
+The practical example is an instructional design, not a shipped game or proof of a fully automated game-production pipeline. The capabilities and release claims in each chapter must still be matched to the version and providers a reader actually uses.
+
 ## Who This Guide Is For
 
 - Application developers who need to assemble a runtime.

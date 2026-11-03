@@ -71,6 +71,33 @@ const bookHash = sha256(JSON.stringify({
   }))
 }));
 
+const chapterIdBySource = new Map(chapters.map((chapter) => [path.normalize(chapter.source), chapter.id]));
+
+// Chapter links are written relative to each canonical source. The combined
+// Markdown and generated HTML have different locations, so rebase those links
+// when rendering instead of changing their source documents.
+function rebaseChapterLinks(markdown, sourcePath, outputPath) {
+  const sourceDirectory = path.dirname(path.resolve(root, sourcePath));
+  const outputDirectory = path.dirname(path.resolve(root, outputPath));
+  return markdown.replace(/(!?\[[^\]]*]\()([^)]+)(\))/g, (match, opening, target, closing) => {
+    if (!target || target.startsWith("#") || target.startsWith("//")
+        || /^[a-z][a-z0-9+.-]*:/i.test(target) || /\s/.test(target)) {
+      return match;
+    }
+    const hashAt = target.indexOf("#");
+    const fileName = hashAt < 0 ? target : target.slice(0, hashAt);
+    const anchor = hashAt < 0 ? "" : target.slice(hashAt);
+    if (!fileName) return match;
+    const absolute = path.resolve(sourceDirectory, fileName);
+    if (absolute === root || !absolute.startsWith(root + path.sep)) return match;
+    const sourceRelative = path.relative(root, absolute);
+    const chapterId = chapterIdBySource.get(path.normalize(sourceRelative));
+    if (chapterId && !anchor) return opening + "#" + chapterId + closing;
+    const outputRelative = path.relative(outputDirectory, absolute).split(path.sep).join("/");
+    return opening + outputRelative + anchor + closing;
+  });
+}
+
 function renderCombinedMarkdown() {
   const lines = [
     `# ${book.title}`,
@@ -89,7 +116,7 @@ function renderCombinedMarkdown() {
     ""
   ];
   for (const chapter of chapters) {
-    lines.push("---", "", `<a id="${chapter.id}"></a>`, "", chapter.markdown.trimEnd(), "");
+    lines.push("---", "", `<a id="${chapter.id}"></a>`, "", rebaseChapterLinks(chapter.markdown, chapter.source, "docs/NexusEngine-Guide.md").trimEnd(), "");
   }
   return `${lines.join("\n")}\n`;
 }
@@ -98,7 +125,7 @@ function renderHtml() {
   const contents = chapters.map((chapter) => `
     <article class="chapter" id="${escapeHtml(chapter.id)}">
       <div class="chapter-kicker">${escapeHtml(chapter.generated ? "Generated reference" : "Guide chapter")}</div>
-      ${marked.parse(chapter.markdown)}
+      ${marked.parse(rebaseChapterLinks(chapter.markdown, chapter.source, "docs/guide/generated/NexusEngine-Guide.html"))}
     </article>`).join("\n");
   const toc = chapters.map((chapter, index) => `
       <li><a href="#${escapeHtml(chapter.id)}"><span>${String(index + 1).padStart(2, "0")}</span>${escapeHtml(chapter.title)}</a></li>`).join("");
