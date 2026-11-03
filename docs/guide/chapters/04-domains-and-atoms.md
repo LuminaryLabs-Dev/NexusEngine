@@ -2,6 +2,14 @@
 
 The semantic path tells you where a responsibility belongs. The manifest tells tools and humans what that owner may and may not do.
 
+## A practical ownership decision
+
+Suppose a dungeon door needs a lock, an opening animation, and a rule that consumes a key. The mesh and its editable animation source are Authoring concerns. Object identity and runtime state belong to their relevant Core owners. A general lock mechanism might justify a reusable optional Kit; the rule that this particular exit requires a blue key belongs to the game.
+
+This is the practical reason for semantic ownership: each responsibility can be tested and revised without silently creating a competing source of truth. Before introducing a new Domain or Kit, ask whether the behavior is genuinely reusable, whether an owner already exists, and whether a proven public capability can supply it.
+
+The [gameplay chapter](game-05-gameplay-systems.md) follows this door through an actual player-facing interaction, while the catalog below explains how Core enforces its internal boundaries.
+
 ## Domain Manifest V2
 
 Every top-level semantic Domain declares:
