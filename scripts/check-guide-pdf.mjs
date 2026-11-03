@@ -38,6 +38,14 @@ const extracted = run("pdftotext", ["-layout", pdfPath, "-"]);
 assert.doesNotMatch(extracted, /\uFFFD/, "Guide text contains replacement glyphs.");
 for (const heading of [
   "Start Here",
+  "From Game Idea to Development Plan",
+  "Setting Up a Project",
+  "Creating Game Assets",
+  "Building Scenes and Environments",
+  "Connecting Gameplay Systems",
+  "Using the Four Authoring Harnesses",
+  "Playtesting, Reviewing, and Improving",
+  "Building, Packaging, and Publishing",
   "MCP Agent Workflow",
   "ProtoKit Extraction",
   "Generated Restored Behavior Migration",
