@@ -16,6 +16,12 @@ console.log(engine.clock.frame);
 
 The root API is intentionally small. Domain factories and atoms are imported from generated semantic subpaths.
 
+## From a runtime to something the player can see
+
+This example is deliberately small: it proves that an Engine instance can be created and advanced with explicit time. It does **not** create a window, install a concrete renderer, provide player controls, or load a level. Those are separate decisions made by the application and its selected Domains, Kits, host, and providers.
+
+To see how those responsibilities become a game, follow [Setting Up a Project](game-02-project-and-capabilities.md), [Building Scenes](game-04-scenes-and-environments.md), and [Connecting Gameplay](game-05-gameplay-systems.md). The Editor offers an Authoring viewport and isolated Play Mode, but a complete product still needs its own runtime integration and verified application export.
+
 ## Add Object And Placement
 
 The runnable source is `examples/guide/object-placement.mjs`.
