@@ -15,121 +15,121 @@
       "id": "mental-model",
       "title": "The NexusEngine Mental Model",
       "source": "docs/guide/chapters/02-mental-model.md",
-      "googleDocTab": "02 The NexusEngine Mental Model"
+      "googleDocTab": "02 Mental Model"
     },
     {
       "id": "game-idea-to-plan",
       "title": "From Game Idea to Development Plan",
       "source": "docs/guide/chapters/game-01-idea-to-plan.md",
-      "googleDocTab": "03 From Game Idea to Development Plan"
+      "googleDocTab": "03 Game Idea and Plan"
     },
     {
       "id": "game-project-capabilities",
       "title": "Setting Up a Project and Choosing Capabilities",
       "source": "docs/guide/chapters/game-02-project-and-capabilities.md",
-      "googleDocTab": "04 Setting Up a Project and Choosing Capa…"
+      "googleDocTab": "04 Project Capabilities"
     },
     {
       "id": "game-assets",
       "title": "Creating Game Assets",
       "source": "docs/guide/chapters/game-03-creating-assets.md",
-      "googleDocTab": "05 Creating Game Assets"
+      "googleDocTab": "05 Game Assets"
     },
     {
       "id": "game-scenes",
       "title": "Building Scenes and Environments",
       "source": "docs/guide/chapters/game-04-scenes-and-environments.md",
-      "googleDocTab": "06 Building Scenes and Environments"
+      "googleDocTab": "06 Scenes and Environments"
     },
     {
       "id": "game-gameplay",
       "title": "Connecting Gameplay Systems",
       "source": "docs/guide/chapters/game-05-gameplay-systems.md",
-      "googleDocTab": "07 Connecting Gameplay Systems"
+      "googleDocTab": "07 Gameplay Systems"
     },
     {
       "id": "game-creative-authoring",
       "title": "Using the Four Authoring Harnesses",
       "source": "docs/guide/chapters/game-06-creative-authoring.md",
-      "googleDocTab": "08 Using the Four Authoring Harnesses"
+      "googleDocTab": "08 Creative Authoring"
     },
     {
       "id": "game-testing",
       "title": "Playtesting, Reviewing, and Improving",
       "source": "docs/guide/chapters/game-07-testing-and-refinement.md",
-      "googleDocTab": "09 Playtesting, Reviewing, and Improving"
+      "googleDocTab": "09 Playtesting"
     },
     {
       "id": "game-publishing",
       "title": "Building, Packaging, and Publishing",
       "source": "docs/guide/chapters/game-08-building-and-publishing.md",
-      "googleDocTab": "10 Building, Packaging, and Publishing"
+      "googleDocTab": "10 Building and Publishing"
     },
     {
       "id": "first-runtime",
       "title": "Build A First Runtime",
       "source": "docs/guide/chapters/03-first-runtime.md",
-      "googleDocTab": "11 Build A First Runtime"
+      "googleDocTab": "11 First Runtime"
     },
     {
       "id": "domains-atoms",
       "title": "Domains And Atomic Kits",
       "source": "docs/guide/chapters/04-domains-and-atoms.md",
-      "googleDocTab": "12 Domains And Atomic Kits"
+      "googleDocTab": "12 Domains and Atoms"
     },
     {
       "id": "authoring",
       "title": "Author Editable Source",
       "source": "AUTHORING.md",
-      "googleDocTab": "13 Author Editable Source"
+      "googleDocTab": "13 Authoring Reference"
     },
     {
       "id": "lifecycle",
       "title": "State, Lifecycle, And Idempotence",
       "source": "docs/guide/chapters/05-state-lifecycle-idempotence.md",
-      "googleDocTab": "14 State, Lifecycle, And Idempotence"
+      "googleDocTab": "14 Lifecycle"
     },
     {
       "id": "composition",
       "title": "Composition And Recipes",
       "source": "docs/guide/chapters/06-composition-and-recipes.md",
-      "googleDocTab": "15 Composition And Recipes"
+      "googleDocTab": "15 Composition"
     },
     {
       "id": "mcp",
       "title": "MCP Agent Workflow",
       "source": "docs/guide/chapters/07-mcp-agent-workflow.md",
-      "googleDocTab": "16 MCP Agent Workflow"
+      "googleDocTab": "16 MCP Workflow"
     },
     {
       "id": "registry-security",
       "title": "Registries And Security",
       "source": "docs/guide/chapters/08-registry-and-security.md",
-      "googleDocTab": "17 Registries And Security"
+      "googleDocTab": "17 Registries"
     },
     {
       "id": "integration-boundaries",
       "title": "Hosts, Providers, And Adapters",
       "source": "docs/guide/chapters/09-hosts-providers-adapters.md",
-      "googleDocTab": "18 Hosts, Providers, And Adapters"
+      "googleDocTab": "18 Hosts and Providers"
     },
     {
       "id": "build-domain",
       "title": "Build Projects And Targets",
       "source": "docs/guide/building/README.md",
-      "googleDocTab": "19 Build Projects And Targets"
+      "googleDocTab": "19 Build Domain"
     },
     {
       "id": "testing",
       "title": "Testing And Proof",
       "source": "docs/guide/chapters/10-testing-and-proof.md",
-      "googleDocTab": "20 Testing And Proof"
+      "googleDocTab": "20 Testing and Proof"
     },
     {
       "id": "migration",
       "title": "Migrating To 0.0.4",
       "source": "docs/guide/chapters/11-migration-0.0.4.md",
-      "googleDocTab": "21 Migrating To 0.0.4"
+      "googleDocTab": "21 Migration 0.0.4"
     },
     {
       "id": "protokit-extraction",
@@ -141,7 +141,7 @@
       "id": "release-operation",
       "title": "Release And Operating Model",
       "source": "docs/guide/chapters/13-release-and-operation.md",
-      "googleDocTab": "23 Release And Operating Model"
+      "googleDocTab": "23 Release Operations"
     },
     {
       "id": "domain-index",
