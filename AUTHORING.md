@@ -6,6 +6,12 @@ single document authority; the other kits register typed source and operations.
 Use this guide to start editing. The general Engine README remains the runtime
 entry point.
 
+## From editable assets to a complete game
+
+Authoring is one important part of game development, not a replacement for the game's runtime. It creates and validates editable source: meshes, materials, rigs, animations, assemblies, and related definitions. A complete game must also provide input, gameplay rules, executable providers, a playable host, and release validation.
+
+For a human-readable walkthrough, the [NexusEngine game-building chapters](docs/guide/chapters/game-01-idea-to-plan.md) follow a small dungeon example from planning to publishing. In particular, [Creating Game Assets](docs/guide/chapters/game-03-creating-assets.md) explains the artistic decisions behind these APIs, while [Using the Four Authoring Harnesses](docs/guide/chapters/game-06-creative-authoring.md) explains how Design, Art, Interaction, and Craft coordinate work. The detailed schemas and operation limits below remain authoritative for actual editing.
+
 ## Start editing in a local browser
 
 The [Editor repository](https://github.com/LuminaryLabs-Dev/NexusEngine-Editor)
