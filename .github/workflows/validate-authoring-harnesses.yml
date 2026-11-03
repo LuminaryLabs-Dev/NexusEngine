@@ -20,10 +20,17 @@ jobs:
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 24
+      - name: Install dependencies
+        run: npm ci --ignore-scripts --no-audit --no-fund
       - name: Contract validation
         run: |
           set -euo pipefail
-          node --test tests/core-domains/core-authoring-harness-contracts.mjs tests/core-domains/core-authoring-harness-safety.mjs | tee authoring-contracts.tap
+          node --test tests/core-domains/core-authoring-harness-contracts.mjs tests/core-domains/core-authoring-harness-safety.mjs tests/core-domains/core-authoring-creative-harnesses.mjs tests/core-domains/core-authoring-creative-install.mjs tests/core-kits/core-authoring-creative-loops.mjs | tee authoring-contracts.tap
+      - name: Check generated Core truth
+        run: |
+          npm run core:check
+          npm run authoring:check
+          git diff --exit-code
       - name: Source-bound implementation snapshot
         if: always()
         run: |

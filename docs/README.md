@@ -27,6 +27,7 @@ The modular source for the guide is `guide/book.json` plus
 - [Generated Build Targets](generated/BUILD-TARGETS.md)
 - [Experiment Workflow](how-to-experiment.md)
 - [Visual Target Review](visual-target-review.md)
+- [Authoring Harnesses](authoring-harnesses.md): Design, Art, Interaction, Craft and Agent Loop steps.
 
 ## Migration
 

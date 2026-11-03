@@ -7,7 +7,9 @@ import { compareInspections } from './inspection-comparison.mjs';
 import { inspectAuthoringAsset } from './visual-inspection.mjs';
 import { AUTHORING_RECIPES } from './authoring-recipes.mjs';
 import { createEngine } from 'nexusengine';
-import { createAuthoringDomain } from 'nexusengine/domains/authoring';
+import {createAuthoringDomain,createAuthoringDesignKit,createAuthoringArtKit,createAuthoringInteractionKit,createAuthoringCraftKit} from 'nexusengine/domains/authoring';
+export {createCreativeAuthoringRunner} from './authoring-harnesses/index.mjs';
+const CREATIVE_KITS=Object.freeze({design:createAuthoringDesignKit,art:createAuthoringArtKit,interaction:createAuthoringInteractionKit,craft:createAuthoringCraftKit});
 import { createAgentKit } from 'nexusengine/domains/agent';
 import { createProductionStorage } from './storage.mjs';
 import { createAssetRegistryKit } from 'nexusengine/domains/asset/registry';
@@ -49,7 +51,8 @@ export const TOOL_DEFINITIONS = [
   ['kit_recover', 'Acknowledge an interrupted host call as unverified after inspection. Preserve its record and allow a fresh source-bound request; never claim it completed.', schema({ requestId: string, resolution: { enum: ['discard-unverified'] }, reason: string }, ['requestId', 'resolution', 'reason']), true]
 ].map(([name, description, inputSchema, writes = false]) => ({ name, description, inputSchema, writes }));
 
-export async function createEngineProductionHost({ workspace, writable = false, authorize = null, agentId = "nexus-engine-kit", dependencies, budgets = {} } = {}) {
+export async function createEngineProductionHost({ workspace, writable = false, authorize = null, agentId = "nexus-engine-kit", dependencies, budgets = {}, authoringHarnesses = [] } = {}) {
+  if(!Array.isArray(authoringHarnesses)||new Set(authoringHarnesses).size!==authoringHarnesses.length||authoringHarnesses.some(name=>typeof name!=='string'||!Object.hasOwn(CREATIVE_KITS,name)))throw new TypeError("Invalid optional Authoring harness Kit selection");
   const root = await realpath(path.resolve(text(workspace)));
   if (!(await lstat(root)).isDirectory()) throw Error('Workspace must be a directory.');
   // Reject symlink traversal, including metadata, on every host path.
@@ -86,7 +89,7 @@ export async function createEngineProductionHost({ workspace, writable = false, 
   const file = path.join(stateDir, 'checkpoint.json');
   try {
     storage = createProductionStorage(stateDir, budgets); receipts = storage.receipts;
-    engine = createEngine({ kits: [ ...createAuthoringDomain({project:{maxHistoryBytes:budgets.maxHistoryBytes??4*1024*1024,historyArchive:storage.historyArchive,maxReceipts:1000000,maxReceiptBytes:budgets.maxReceiptBytes??256*1024,receiptArchive:storage.historyArchive}}), createAssetRegistryKit(),
+    engine = createEngine({ kits: [ ...createAuthoringDomain({project:{maxHistoryBytes:budgets.maxHistoryBytes??4*1024*1024,historyArchive:storage.historyArchive,maxReceipts:1000000,maxReceiptBytes:budgets.maxReceiptBytes??256*1024,receiptArchive:storage.historyArchive}}), ...authoringHarnesses.map(name=>CREATIVE_KITS[name]()),createAssetRegistryKit(),
       createAgentKit({ eventState:"delta", maxProposals:32, ledger:{maxRecords:32,maxBytes:256*1024,retrieve:id=>{const value=receipts.get(id);return value?{id,agentId:value.agentId??id.slice(0,id.lastIndexOf(":")),action:value.action,accepted:value.ok,result:{requestId:id,receiptRef:{id,storage:"production-receipts"}}}:null;}}, listTools: () => engine.n.authoringProject.tools(), authorizeTool: () => writable }),
       ...createMcpDomain({ authorize: ({ tool, arguments: args }) => allowed(tool.name, args) }) ] });
     engine.n.agent.registerAgent({ id: agentId });

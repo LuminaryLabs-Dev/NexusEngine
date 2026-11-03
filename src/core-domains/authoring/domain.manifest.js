@@ -1,3 +1,11 @@
+import designDomain from "./design/subdomain.manifest.js";
+import designKit from "./design/kits/authoring-design-kit/kit.manifest.js";
+import artDomain from "./art/subdomain.manifest.js";
+import artKit from "./art/kits/authoring-art-kit/kit.manifest.js";
+import interactionDomain from "./interaction/subdomain.manifest.js";
+import interactionKit from "./interaction/kits/authoring-interaction-kit/kit.manifest.js";
+import craftDomain from "./craft/subdomain.manifest.js";
+import craftKit from "./craft/kits/authoring-craft-kit/kit.manifest.js";
 import codeDomain,{intelligenceDomain} from './code/subdomain.manifest.js';
 import codeDocumentManifest from './code/kits/code-document-kit/kit.manifest.js';
 import codeIntelligenceManifest from './code/kits/code-intelligence-kit/kit.manifest.js';
@@ -70,6 +78,7 @@ export default defineCoreDomainManifest(
     }),
     subdomains: [
       codeDomain,intelligenceDomain,
+      designDomain,artDomain,interactionDomain,craftDomain,
       ...AUTHORING_IO_DOMAINS,
       modifierDomain,
       publishingDomain,
@@ -90,7 +99,10 @@ export default defineCoreDomainManifest(
       meshDomain,
       editingDomain,
     ],
-    publicEntries: [{domainPath:'n:authoring:code',subpath:'./domains/authoring/code',module:'./src/core-domains/authoring/code/index.js'}],
+    publicEntries: [
+      {domainPath:'n:authoring:code',subpath:'./domains/authoring/code',module:'./src/core-domains/authoring/code/index.js'},
+      ...[{domainPath:'n:authoring:design',subpath:'./domains/authoring/design',module:'./src/core-domains/authoring/design/index.js'},{domainPath:'n:authoring:art',subpath:'./domains/authoring/art',module:'./src/core-domains/authoring/art/index.js'},{domainPath:'n:authoring:interaction',subpath:'./domains/authoring/interaction',module:'./src/core-domains/authoring/interaction/index.js'},{domainPath:'n:authoring:craft',subpath:'./domains/authoring/craft',module:'./src/core-domains/authoring/craft/index.js'}],
+    ],
     publicEntry: {
       subpath: "./domains/authoring",
       module: "./src/core-domains/authoring/index.js",
@@ -98,6 +110,7 @@ export default defineCoreDomainManifest(
     publicKits: [
       codeDocumentManifest,
       codeIntelligenceManifest,
+      designKit,artKit,interactionKit,craftKit,
       ...AUTHORING_IO_KIT_MANIFESTS,
       modifierManifest,
       publishingManifest,

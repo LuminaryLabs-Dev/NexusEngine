@@ -1,0 +1,32 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {createCreativeHarnessContract,CREATIVE_HARNESS_KINDS,sameSource} from '../../src/core-domains/authoring/contracts/creative-harness.js';
+const source={epoch:1,clock:0};
+const tools=[{id:'assembly.set',domainPath:'n:authoring:assembly'},{id:'mesh.cube',domainPath:'n:authoring:mesh'},{id:'sequence.set',domainPath:'n:authoring:sequence'},{id:'other',domainPath:'n:other'}];
+const commands={design:'assembly.set',art:'mesh.cube',interaction:'sequence.set'};
+const ref={id:'room',kind:'mesh',revision:1,hash:'sha:content'};
+const make=kind=>({requestId:'r-'+kind,harnessId:kind,goalRef:'create exhibit',projectRef:'museum',targetRef:'EXH-001',sourceRevision:source,inputRefs:[],allowedCapabilities:commands[kind]?[commands[kind]]:[],acceptanceCriteria:[{id:'shape',kind:'structural',description:'Geometry matches brief'}],reviewPolicy:{humanRequired:true,reviewerIds:['curator']}});
+for(const kind of CREATIVE_HARNESS_KINDS)test(kind+': independent planning, review and revisions',()=>{
+ const kit=createCreativeHarnessContract(kind),request=kit.request(make(kind));
+ assert.equal(kit.stages.length,6);
+ assert.deepEqual(kit.discover(request,tools).map(x=>x.id),commands[kind]?[commands[kind]]:[]);
+ const ops=commands[kind]?[{id:commands[kind],args:{id:'room'}}]:[];
+ assert.deepEqual(kit.plan(request,ops,tools).operations,ops);
+ assert.throws(()=>kit.plan(request,[{id:'other',args:{}}],tools));
+ const accepted={status:'accepted',sourceRevision:source,outputRefs:[ref],validationEvidenceRefs:['validation:1'],reviewer:{id:'curator',kind:'human'}};
+ assert.equal(kit.review(request,accepted).result.status,'accepted');
+ assert.throws(()=>kit.review(request,{...accepted,reviewer:{id:'agent',kind:'agent'}}));
+ assert.throws(()=>kit.review(request,{...accepted,outputRefs:[]}));
+ assert.throws(()=>kit.review(request,{...accepted,sourceRevision:{epoch:1,clock:1}}));
+ const failed=kit.review(request,{status:'needs_revision',sourceRevision:source,reviewFindings:[{id:'f',subject:'face',reason:'not centered'}]});
+ if(kind==='craft')assert.throws(()=>kit.revision(request,failed,[{id:'mesh.cube',args:{id:'x'}}],tools,source));
+ else assert.equal(kit.revision(request,failed,ops,tools,source).findingIds[0],'f');
+});
+test('visual acceptance requires inspection and source equality is exact',()=>{
+ const kit=createCreativeHarnessContract('art'),req={...make('art'),acceptanceCriteria:[{id:'v',kind:'visual',description:'Approve six views'}]};
+ const review={status:'accepted',sourceRevision:source,outputRefs:[ref],validationEvidenceRefs:['pass:1'],reviewer:{id:'curator',kind:'human'}};
+ assert.throws(()=>kit.review(req,review));
+ assert.equal(kit.review(req,{...review,inspectionEvidenceRefs:['view:1']}).result.status,'accepted');
+ assert.equal(sameSource(source,{epoch:1,clock:0}),true);
+ assert.equal(sameSource(source,{epoch:1,clock:1}),false);
+});

@@ -30,5 +30,6 @@ export async function runHostedAgent({loopId,agentId,goalRef,pool,inference,disc
  });
 }
 export {createProductionLoopDispatcher} from "./production-bridge.mjs";
+export {createAuthoringStepProgram,createAuthoringProgramRunner} from "./authoring-steps.mjs";
 
 export {createTypeSafeInference,createTypeSafeRuntimeBridge} from "./providers/typesafe.mjs";

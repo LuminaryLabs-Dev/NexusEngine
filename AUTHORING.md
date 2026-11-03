@@ -311,6 +311,16 @@ image edits checkpoint directly when they exceed the journal frame profile.
 Closing a host cancels its workers. These are resource budgets, not an operating
 system security sandbox.
 
+## Composable creative Authoring harnesses
+
+The optional `n:authoring:design`, `n:authoring:art`, `n:authoring:interaction`,
+and `n:authoring:craft` Kits expose source-bound creative planning, inspection
+criteria and review contracts without installing agents by default. Optional
+Agent Loop adapters execute them through authorized production-host operations;
+reviews are not automatically approved by tool receipts. See
+[Four composable Authoring harnesses](docs/authoring-harnesses.md) for exact
+installation, composition and evidence boundaries.
+
 ## Proofs and reproducible examples
 
 Core tests run normally through `npm test`:
