@@ -6,10 +6,22 @@ on:
       - docs/nexusengine-game-guide-2026-11-03
     paths:
       - .github/workflows/guide-regenerate-staging.yml
+      - docs/guide/book.json
+      - docs/guide/chapters/**
+      - AUTHORING.md
+      - docs/README.md
+      - scripts/generate-guide.mjs
+      - scripts/check-guide-pdf.mjs
   pull_request:
     branches: [main]
     paths:
       - .github/workflows/guide-regenerate-staging.yml
+      - docs/guide/book.json
+      - docs/guide/chapters/**
+      - AUTHORING.md
+      - docs/README.md
+      - scripts/generate-guide.mjs
+      - scripts/check-guide-pdf.mjs
   workflow_dispatch:
 
 permissions:
