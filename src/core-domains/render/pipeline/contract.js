@@ -72,30 +72,111 @@ function dependencyMap(graph) {
   return dependencies;
 }
 
-export function resolveRenderLayerGraph(input = {}) {
-  const graph = input.passes ? createRenderLayerGraph(input) : input;
-  const dependencies = dependencyMap(graph);
+// Pure dependency resolution; the provider owns actual parallel execution.
+function orderPasses(graph, dependencies) {
   const byId = new Map(graph.passes.map(pass => [pass.id, pass]));
   const pending = new Map([...dependencies].map(([id, values]) => [id, new Set(values)]));
-  const ordered = [];
-
+  const ordered = [], batches = [];
   while (pending.size) {
     const ready = [...pending.entries()]
       .filter(([, values]) => values.size === 0)
       .map(([id]) => byId.get(id))
       .sort((a, b) => a.order - b.order || a.id.localeCompare(b.id));
     if (!ready.length) {
-      const cycle = [...pending.keys()].sort();
-      return Object.freeze({ valid: false, orderedPasses: Object.freeze(ordered), cycle: Object.freeze(cycle) });
+      return { valid: false, ordered, batches, cycle: [...pending.keys()].sort() };
     }
+    batches.push(ready.map(pass => pass.id));
     for (const pass of ready) {
       ordered.push(pass);
       pending.delete(pass.id);
       for (const values of pending.values()) values.delete(pass.id);
     }
   }
+  return { valid: true, ordered, batches, cycle: [] };
+}
 
-  return Object.freeze({ valid: true, orderedPasses: Object.freeze(ordered), cycle: Object.freeze([]) });
+function resourceReads(pass) {
+  // Depth testing consumes the selected depth resource even when the author
+  // did not repeat it in the ordinary reads list.
+  return new Set([
+    ...pass.reads,
+    ...(pass.depth.test && pass.depth.source ? [pass.depth.source] : [])
+  ]);
+}
+
+function inferResourceDependencies(ordered, dependencies) {
+  const lastWriter = new Map(), readers = new Map(), hazards = [];
+  const add = (pass, before, resourceId, type) => {
+    if (!before || before === pass.id) return;
+    dependencies.get(pass.id).add(before);
+    hazards.push(Object.freeze({ before, after: pass.id, resourceId, type }));
+  };
+  for (const pass of ordered) {
+    for (const resourceId of resourceReads(pass)) {
+      add(pass, lastWriter.get(resourceId), resourceId, 'RAW');
+      if (!readers.has(resourceId)) readers.set(resourceId, new Set());
+      readers.get(resourceId).add(pass.id);
+    }
+    for (const resourceId of pass.writes) {
+      add(pass, lastWriter.get(resourceId), resourceId, 'WAW');
+      for (const reader of readers.get(resourceId) ?? []) {
+        add(pass, reader, resourceId, 'WAR');
+      }
+      readers.set(resourceId, new Set());
+      lastWriter.set(resourceId, pass.id);
+    }
+  }
+  return hazards;
+}
+
+function resourceLifetimes(graph, ordered) {
+  const uses = Object.create(null);
+  const external = new Set(graph.externalInputs);
+  ordered.forEach((pass, index) => {
+    for (const resourceId of new Set([...resourceReads(pass), ...pass.writes])) {
+      const value = uses[resourceId] ?? { firstUse: index, lastUse: index, external: external.has(resourceId) };
+      value.lastUse = index;
+      uses[resourceId] = value;
+    }
+  });
+  return Object.freeze(Object.fromEntries(
+    Object.entries(uses).sort(([a], [b]) => a.localeCompare(b))
+      .map(([id, use]) => [id, Object.freeze(use)])
+  ));
+}
+
+export function resolveRenderLayerGraph(input = {}) {
+  const graph = input.passes ? createRenderLayerGraph(input) : input;
+  const dependencies = dependencyMap(graph);
+  const explicit = orderPasses(graph, dependencies);
+  if (!explicit.valid) {
+    return Object.freeze({
+      valid: false,
+      orderedPasses: Object.freeze(explicit.ordered),
+      cycle: Object.freeze(explicit.cycle),
+      dependencies: Object.freeze({}),
+      batches: Object.freeze([]),
+      hazards: Object.freeze([]),
+      resourceLifetimes: Object.freeze({})
+    });
+  }
+  // Preserve the established authored/explicit order. Record the missing
+  // inter-pass resource hazards as dependencies before any provider may
+  // parallelize passes; no GPU barriers or queue submission happen here.
+  const hazards = inferResourceDependencies(explicit.ordered, dependencies);
+  const resolved = orderPasses(graph, dependencies);
+  return Object.freeze({
+    valid: resolved.valid,
+    orderedPasses: Object.freeze(resolved.ordered),
+    cycle: Object.freeze(resolved.cycle),
+    dependencies: Object.freeze(Object.fromEntries(
+      [...dependencies].sort(([a], [b]) => a.localeCompare(b))
+        .map(([id, values]) => [id, Object.freeze([...values].sort())])
+    )),
+    batches: Object.freeze(resolved.batches.map(ids => Object.freeze(ids))),
+    hazards: Object.freeze(hazards),
+    resourceLifetimes: resourceLifetimes(graph, resolved.ordered)
+  });
 }
 
 export function validateRenderLayerGraph(input = {}, options = {}) {
@@ -140,7 +221,7 @@ export function validateRenderLayerGraph(input = {}, options = {}) {
   const external = new Set(graph.externalInputs ?? []);
   const available = new Set(external);
   for (const pass of ordered) {
-    for (const read of pass.reads) {
+    for (const read of resourceReads(pass)) {
       if (!available.has(read)) issues.push(`unresolved-read:${pass.id}:${read}`);
     }
     for (const write of pass.writes) available.add(write);

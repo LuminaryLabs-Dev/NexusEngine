@@ -64,6 +64,8 @@ const tests = [
   "tests/core-kits/core-graphics-reflection-kit-smoke.mjs",
   "tests/core-kits/core-graphics-render-layer-graph-contract.mjs",
   "tests/core-kits/core-graphics-render-layer-graph-smoke.mjs",
+  "tests/core-kits/render-resource-hazards.mjs",
+  "tests/core-kits/render-quality-profiles.mjs",
   "tests/core-domains/core-graphics-domain-smoke.mjs",
   "tests/core-kits/core-simulation-kit-smoke.mjs",
   "tests/core-kits/core-promoted-services-smoke.mjs",
