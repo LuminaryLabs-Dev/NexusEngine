@@ -1,6 +1,7 @@
 import {createDomainKit} from '../../domain-kit.js';
 import {createAgentWorker, restoreAgentWorker, assignAgentWorker, transitionAgentWorker} from './worker.js';
 export * from './worker.js';
+export * from './context.js';
 
 export function createAgentWorkerKit(config = {}) {
   const maxWorkers = config.maxWorkers ?? 64;

@@ -1,10 +1,11 @@
 import {cloneSerializableState as copy} from '../../../foundation/serializable-state.js';
 import {operationRequestHash as hash} from '../../../foundation/idempotency-ledger.js';
+import {validateWorkerContextReference} from './context.js';
 
 const text = x => typeof x === 'string' && x.length > 0 && x.length <= 512;
 const count = x => Number.isSafeInteger(x) && x >= 0;
-const statuses = new Set(['assigned', 'running', 'completed', 'blocked', 'cancelled']);
-const transitions = {assigned:['running','cancelled'],running:['completed','blocked','cancelled'],blocked:['running','cancelled']};
+const statuses = new Set(['assigned', 'running', 'completed', 'blocked', 'waiting', 'suspended', 'cancelled']);
+const transitions = {assigned:['running','cancelled'],running:['completed','blocked','waiting','suspended','cancelled'],blocked:['running','cancelled'],waiting:['running','blocked','cancelled'],suspended:['running','blocked','cancelled']};
 
 export function validateWorkerAssignment(input) {
   const a = copy(input);
@@ -13,6 +14,16 @@ export function validateWorkerAssignment(input) {
   if (!Array.isArray(a.gateRefs) || a.gateRefs.some(x => !text(x))) throw new TypeError('Gate references required');
   for (const key of ['sourceRevision','parentDelegationRef','targetRef']) if (a[key] !== undefined && !text(a[key])) throw new TypeError('Invalid assignment reference');
   if (a.graph !== undefined && (!text(a.graph?.id) || !text(a.graph.nodeId) || !count(a.graph.revision))) throw new TypeError('Invalid graph binding');
+  if (a.contextRef !== undefined) a.contextRef = validateWorkerContextReference(a.contextRef);
+  if (a.sourceScope !== undefined) {
+    if (!a.sourceScope || typeof a.sourceScope !== 'object' || Array.isArray(a.sourceScope) ||
+        Object.keys(a.sourceScope).some(k => !['readRefs','writeRefs'].includes(k))) throw new TypeError('Invalid source scope');
+    for (const key of ['readRefs','writeRefs']) {
+      const values = a.sourceScope[key];
+      if (!Array.isArray(values) || values.length > 128 || new Set(values).size !== values.length ||
+          values.some(x => !text(x))) throw new TypeError('Explicit source references required');
+    }
+  }
   return a;
 }
 
@@ -44,7 +55,7 @@ function current(input, expectedRevision) {
 
 export function assignAgentWorker(input, assignment, {expectedRevision} = {}) {
   const worker = current(input, expectedRevision), next = validateWorkerAssignment(assignment);
-  if (['assigned','running','blocked'].includes(worker.status)) throw new Error('Worker still has an unresolved assignment');
+  if (['assigned','running','blocked','waiting','suspended'].includes(worker.status)) throw new Error('Worker still has an unresolved assignment');
   if (worker.assignment && (next.loopId === worker.assignment.loopId || next.id === worker.assignment.id)) throw new Error('New assignment requires fresh identity and loop');
   return restoreAgentWorker({...worker, revision:worker.revision+1, assignment:next, status:'assigned', result:null});
 }

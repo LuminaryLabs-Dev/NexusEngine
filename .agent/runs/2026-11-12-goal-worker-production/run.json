@@ -1,0 +1,11 @@
+{
+  "runId": "2026-11-12-goal-worker-production",
+  "repository": "LuminaryLabs-Dev/NexusEngine",
+  "baseline": "c674a53e054640f5acc035180a2f3fe1d7d4fe03",
+  "workspace": "/mnt/data/nexus-worker",
+  "taskId": "nexus-goal-worker-production-20261112",
+  "sessionId": "nexus-goal-worker-production-20261112:session",
+  "stateRef": "4c701d4fb7daae30ba0e922c0c1272307665fc753d06699a607f2d0fa76316c3",
+  "executionMode": "Native Core workflow APIs and ProductionStorage from hash-verified source slice; complete installed host proof pending",
+  "evidence": "checks/"
+}
