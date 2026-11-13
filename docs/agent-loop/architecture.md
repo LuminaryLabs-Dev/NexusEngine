@@ -35,3 +35,13 @@ remain subject to normal pending-receipt reconciliation. Parent completion is
 verified independently of child completion, including visual/gameplay gates
 when relevant. Host-level crash-recovery and concurrent integration must be
 proven against the full installed system before declaring production readiness.
+
+## Optional goal-scoped source references
+
+Goals may declare specific `sourceRefs` (artifact ID and current revision).
+When present, verification binds to those exact artifacts and relevant conditional
+facts rather than unrelated project-wide changes. Implementation must supply
+the observed current revisions for every declared source; missing source evidence
+blocks acceptance, and a changed relevant revision marks the goal stale.
+Goals without scoped references preserve their existing global source-revision
+and evidence semantics for backwards compatibility.

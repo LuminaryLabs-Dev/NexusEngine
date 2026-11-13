@@ -64,7 +64,7 @@ export async function runAgentGoalLoop({map,requiredGoals,observe,propose,decide
     if(map.snapshot().revision!==expectedRevision) throw new Error('Graph changed during source operation; reconcile retained receipt');
     const after=await observe({signal});signal?.throwIfAborted();
     if(!result.sourceRevision||after.sourceRevision!==result.sourceRevision) throw new Error('Source revision must match the retained execution receipt');
-    map.implemented({operationId,expectedRevision,id:selection.goalId,sourceRevision:result.sourceRevision,receiptRef:result.receiptRef});
+    map.implemented({operationId,expectedRevision,id:selection.goalId,sourceRevision:result.sourceRevision,sourceRefs:after.sourceRefs??null,receiptRef:result.receiptRef});
     return result;
   }
   return runAgentLoop({...options,goalRef:options.goalRef??requiredGoals[0],signal,resume,resolvePending,

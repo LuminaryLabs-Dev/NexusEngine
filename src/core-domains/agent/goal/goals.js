@@ -3,6 +3,7 @@ import {operationRequestHash as hash} from '../../../foundation/idempotency-ledg
 import {createAgentGraph,graphText} from '../graph/index.js';
 
 const origins=new Set(['user','inferred','dependency']);
+const validRevision=value=>graphText(value)||(Number.isSafeInteger(value)&&value>=0);
 function condition(value,depth=0) {
   if(depth>16||!value||typeof value!=='object') throw new TypeError('Invalid goal condition');
   if(value.kind==='always') return;
@@ -29,9 +30,13 @@ export function createAgentGoal(input={}) {
   }
   const targets=copy(input.targets??[]);
   if(!Array.isArray(targets)||targets.some(t=>!graphText(t))) throw new TypeError('Invalid goal targets');
+  const sourceRefs=copy(input.sourceRefs??[]);
+  if(!Array.isArray(sourceRefs)||sourceRefs.length>64||new Set(sourceRefs.map(r=>r?.id)).size!==sourceRefs.length||
+    sourceRefs.some(r=>!graphText(r?.id)||!validRevision(r?.revision)||Object.keys(r).some(k=>!['id','revision'].includes(k))))
+    throw new TypeError('Invalid goal source references');
   const constraints=copy(input.constraints??[]),requirementRef=input.requirementRef??null;
   if(!Array.isArray(constraints)||constraints.some(c=>!graphText(c))||requirementRef!==null&&!graphText(requirementRef)) throw new TypeError('Invalid goal requirements');
-  return {constraints,requirementRef,outcome:input.outcome,origin:input.origin,version:input.version??1,sourceRevision:input.sourceRevision,targets,gates,
+  return {constraints,requirementRef,outcome:input.outcome,origin:input.origin,version:input.version??1,sourceRevision:input.sourceRevision,...(sourceRefs.length?{sourceRefs}:{}),targets,gates,
     disposition:'active',implementation:null,evidence:[],history:[]};
 }
 function validateGoalNode(node) {
@@ -51,13 +56,26 @@ export function createAgentGoalMap({graph,verifiers={},authorizeSupersession=()=
   function goal(id) {const n=snapshot().nodes.find(n=>n.id===id);if(n?.type!=='goal') throw new Error('Unknown goal');return n;}
   function context(input) {
     if(!graphText(input?.sourceRevision)||!input.facts||Array.isArray(input.facts)||typeof input.facts!=='object') throw new TypeError('Current source revision and condition facts required');
+    if(input.sourceRefs!==undefined){
+      if(!input.sourceRefs||typeof input.sourceRefs!=='object'||Array.isArray(input.sourceRefs)||
+         Object.keys(input.sourceRefs).length>128||Object.entries(input.sourceRefs).some(([id,revision])=>!graphText(id)||!validRevision(revision)))
+         throw new TypeError('Invalid observed source references');
+    }
     return copy(input);
   }
   function binding(id,input) {
     const ctx=context(input),node=goal(id),state=snapshot();
     const dependencies=graph.traverse(id,{type:'requires'}).sort().map(key=>state.nodes.find(n=>n.id===key));
     const {evidence,history,...meaning}=node.data;
-    return hash({id,data:meaning,retired:node.retired,dependencies,sourceRevision:ctx.sourceRevision,facts:ctx.facts});
+    const scoped=node.data.sourceRefs?.length>0;
+    const sourceIdentity=scoped?Object.fromEntries(node.data.sourceRefs.map(r=>[r.id,ctx.sourceRefs?.[r.id]??null])):ctx.sourceRevision;
+    const keys=new Set();
+    const scan=condition=>{if(condition?.kind==='fact')keys.add(condition.key);
+      for(const nested of condition?.conditions??[])scan(nested);};
+    if(scoped)for(const gate of node.data.gates)scan(gate.when);
+    const facts=scoped?Object.fromEntries([...keys].filter(k=>Object.hasOwn(ctx.facts,k)).map(k=>[k,ctx.facts[k]])):ctx.facts;
+    return scoped?hash({id,data:meaning,retired:node.retired,dependencies,sourceIdentity,facts}):
+      hash({id,data:meaning,retired:node.retired,dependencies,sourceRevision:ctx.sourceRevision,facts:ctx.facts});
   }
   function evaluate(id,input) {
     const ctx=context(input),state=snapshot(),memo=new Map();
@@ -76,6 +94,16 @@ export function createAgentGoalMap({graph,verifiers={},authorizeSupersession=()=
       if(dependencies.some(d=>d.status!=='verified')) {status='waiting';reason='unverified_dependency';}
       else if(!gates.length) {status='blocked';reason='missing_verification';}
       else if(gates.some(g=>g.status==='unresolved')) {status='blocked';reason='unknown_condition';}
+      else if(data.sourceRefs?.length){
+        const missing=data.sourceRefs.some(r=>!Object.hasOwn(ctx.sourceRefs??{},r.id));
+        const changed=data.sourceRefs.some(r=>ctx.sourceRefs?.[r.id]!==r.revision);
+        if(missing){status='blocked';reason='unknown_source_ref';}
+        else if(changed)status='stale';
+        else if(!data.implementation)status='active';
+        else if(gates.some(g=>g.status==='failed'))status='needs_revision';
+        else if(gates.every(g=>['passed','not_applicable'].includes(g.status)))status='verified';
+        else status='ready_to_verify';
+      }
       else if(data.sourceRevision!==ctx.sourceRevision||data.implementation&&data.implementation.sourceRevision!==ctx.sourceRevision) status='stale';
       else if(!data.implementation) status='active';
       else if(gates.some(g=>g.status==='failed')) status='needs_revision';
@@ -127,10 +155,19 @@ export function createAgentGoalMap({graph,verifiers={},authorizeSupersession=()=
     return commit(operationId,expectedRevision,[{kind:'update_node',id,data}],command);
   }
   function implemented(command) {
-    const {operationId,expectedRevision,id,sourceRevision,receiptRef}=command;
+    const {operationId,expectedRevision,id,sourceRevision,receiptRef,sourceRefs}=command;
     const previous=replay(operationId,command);if(previous) return previous;
     const node=goal(id);if(!graphText(receiptRef)||!graphText(sourceRevision)||node.data.disposition!=='active') throw new Error('Current implementation receipt required');
-    return commit(operationId,expectedRevision,[{kind:'update_node',id,data:{...node.data,sourceRevision,implementation:{receiptRef,sourceRevision},evidence:[],history:node.data.implementation?[...node.data.history,{event:'implementation_replaced',version:node.data.version,implementation:node.data.implementation,evidence:node.data.evidence}]:node.data.history}}],command);
+    let refs=node.data.sourceRefs;
+    if(refs?.length){
+      if(!sourceRefs||typeof sourceRefs!=='object'||Array.isArray(sourceRefs)||
+         refs.some(r=>!validRevision(sourceRefs[r.id])))throw new Error('Scoped goal implementation needs current source evidence');
+      refs=refs.map(r=>({id:r.id,revision:sourceRefs[r.id]}));
+    }
+    return commit(operationId,expectedRevision,[{kind:'update_node',id,data:{...node.data,sourceRevision,...(refs?.length?{sourceRefs:refs}:{}),
+      implementation:{receiptRef,sourceRevision},evidence:[],
+      history:node.data.implementation?[...node.data.history,{event:'implementation_replaced',version:node.data.version,
+        implementation:node.data.implementation,evidence:node.data.evidence}]:node.data.history}}],command);
   }
   const inflight=new Map();
   function verify(input) {
