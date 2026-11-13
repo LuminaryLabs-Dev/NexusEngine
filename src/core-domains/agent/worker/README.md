@@ -22,3 +22,17 @@ assignment content, loop and outcome. Pending operations use `resolvePending`;
 uncertain decisions never automatically repeat inference. Terminal blocked
 checkpoints require explicit host reconciliation before resumption. Provider
 accounting remains external to Worker reset and replay.
+
+
+## Goal-bound production assignments
+
+The optional Production Worker route binds an assignment to an existing Agent Goal/Graph
+revision, a bounded versioned `contextRef`, source read/write references and explicit
+capabilities. The context packet references relevant decisions, sibling commitments,
+evidence and expected outputs. The text is a handoff, **not** authority to run tools.
+Legacy Worker assignments remain valid without a graph or context.
+
+A Worker can enter `waiting` after an evidence-bound loop wait, with the same
+assignment identity and budget. Resume requires its complete checkpoint plus a
+trusted wake receipt. A waiting Worker cannot be reassigned or silently started as
+a fresh loop. Child completion does not accept the parent's goal.

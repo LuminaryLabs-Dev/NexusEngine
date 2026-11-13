@@ -56,3 +56,19 @@ A validated FBX export is not proof of a working Unity scene. Interaction
 scenario acceptance requires an executable provider and source-bound scenario
 evidence; a generic Authoring validation is not a gameplay test. Human or agent
 reviews must be explicit, and historical/content approval remains separate.
+
+
+## Optional Authoring Agent guidance
+
+`createAuthoringAgentKit()` installs `engine.n.authoringAgent` only when requested.
+Its `guide({discipline,request,evidence})` method exposes discovered,
+source-bound operations from existing Design, Art, Interaction or Craft
+contracts. `review` delegates acceptance to those existing discipline
+contracts, including required visual evidence and reviewer policy.
+It does not execute tools, generate images, supply a model or run an Agent Loop.
+
+A generic Worker receives this guidance as **evidence-linked input**, then its
+own decision provider chooses eligible goal actions. The older creative
+fixed-phase runner remains available as a compatible recipe. Neither a
+successful operation nor a rendered capture by itself establishes artistic
+acceptance.

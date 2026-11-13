@@ -12,6 +12,8 @@ export {createCreativeAuthoringRunner} from './authoring-harnesses/index.mjs';
 const CREATIVE_KITS=Object.freeze({design:createAuthoringDesignKit,art:createAuthoringArtKit,interaction:createAuthoringInteractionKit,craft:createAuthoringCraftKit});
 import { createAgentKit } from 'nexusengine/domains/agent';
 import { createProductionStorage } from './storage.mjs';
+import {createGoalProductionWorkers} from './worker.mjs';
+export {createGoalProductionWorkers} from './worker.mjs';
 import { createAssetRegistryKit } from 'nexusengine/domains/asset/registry';
 import { createBuildDomain } from 'nexusengine/domains/build';
 import { createMcpDomain, defineMcpProvider } from 'nexusengine/domains/mcp';
@@ -85,7 +87,7 @@ export async function createEngineProductionHost({ workspace, writable = false, 
   let engine, closed = false, closing, serial = Promise.resolve();
   const allowed = async (action, args) => writable && (authorize ? await authorize({ action, args, workspace: root }) === true : true);
   const plans = new Map();
-  let storage, receipts;
+  let storage, receipts, workerControl=null;
   const file = path.join(stateDir, 'checkpoint.json');
   try {
     storage = createProductionStorage(stateDir, budgets); receipts = storage.receipts;
@@ -276,7 +278,16 @@ export async function createEngineProductionHost({ workspace, writable = false, 
       name:'production.'+tool.name.slice(4),description:tool.description,inputSchema:tool.inputSchema,
       ...(tool.writes?{approval:'required'}:{}),handler:input=>call(tool.name,input)
     }))}));
-    return Object.freeze({ call, workspace: root, engine, workflows, readReceipt:id=>receipts.get(id),
-      close() { return closing ??= (async()=>{closed=true;await serial;try{if(!commitFailure)await checkpoint();}finally{await lock.close();await unlink(lockPath);}})(); } });
+    const host={call,workspace:root,engine,workflows,readReceipt:id=>receipts.get(id),
+      close() { return closing ??= (async()=>{closed=true;await serial;try{if(!commitFailure)await checkpoint();}finally{await lock.close();await unlink(lockPath);}})(); }};
+    host.workers=(options={})=>{
+      if(closed)throw Error('Host closed');
+      if(workerControl){if(Object.keys(options).length)throw Error('Worker controller already bound; reuse its identity');return workerControl;}
+      workerControl=createGoalProductionWorkers({...options,
+        load:()=>{try{return storage.read('worker-sessions.json');}catch(error){if(error.code==='ENOENT')return null;throw error;}},
+        save:value=>storage.write('worker-sessions.json',value)});
+      return workerControl;
+    };
+    return Object.freeze(host);
   } catch (error) { await lock.close(); await unlink(lockPath); throw error; }
 }

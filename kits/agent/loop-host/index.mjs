@@ -33,3 +33,5 @@ export {createProductionLoopDispatcher} from "./production-bridge.mjs";
 export {createAuthoringStepProgram,createAuthoringProgramRunner} from "./authoring-steps.mjs";
 
 export {createTypeSafeInference,createTypeSafeRuntimeBridge} from "./providers/typesafe.mjs";
+
+export {runAssignedWorker} from './worker.mjs';

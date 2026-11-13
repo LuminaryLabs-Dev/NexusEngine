@@ -23,3 +23,18 @@ Current integration run: `runs/2026-10-23-integration-commit/`; workspace and ta
 ## 4. History
 
 The old tracker and contract are archived at `archive/2026-10-23-editor-controller/` with SHA-256 preservation records. Existing historical run state is unchanged. Historical `nexus-editor` routes and historical completion claims are not current instructions. The Editor remains an optional consumer; this retirement does not remove Editor product features or build capabilities.
+
+
+## Optional Worker-driven repository development
+
+The goal-bound Worker controller provides a higher-level route for bounded
+outcomes using existing Engine task/session state and retained evidence.
+Continue to bootstrap through AGENTS.md and this guide, preserve the active
+`.agent/runs/<run-id>/` handoff, and use the canonical Agent Graph and Goal
+for goal-map authority. Do not create a replacement tracker or controller.
+
+Workers can pursue eligible goals, delegate independent subtasks with
+evidence-linked context, or wait for dependencies. Source modifications still
+run through authorized host operations and exact revision checks. A child
+receipt never proves the parent's full acceptance. Adopt this route as default
+only after installed-composition, recovery, and task-specific validation pass.

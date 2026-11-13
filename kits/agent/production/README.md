@@ -9,3 +9,29 @@ Commit persists before observer delivery, acknowledges after successful delivery
 Checkpoint v2 stores immutable document version references, archived history references and compact workflow state. Full receipts are stored separately with a bounded hot cache. V1 migration preserves original checkpoint bytes; missing/corrupt blobs fail closed. Keep the object store with its checkpoint. Filesystem portable Authoring saves now pull archived history and receipts one record at a time, stream document objects and checkpoint JSON to staged files, and replace the generation-guarded manifest last. V1 package bytes and independent portability remain compatible. Additional save memory scales with the largest document/history record plus compact reference metadata, rather than all retained geometry. Explicit in-memory snapshots, non-streaming storage providers and portable loading still materialize data and retain their existing byte budgets. Count limits still apply to retained Authoring history and session turns.
 
 Browser rendering stays in this optional provider and never enters portable Core imports. Focus resolves source dependencies before export. Numeric image comparison never supplies aesthetic acceptance. Agent/human image review remains explicit.
+
+
+## Goal-bound Worker controller (optional)
+
+The Production host exposes `host.workers({authorize,resolveGoalMap})`.
+It creates one controller per host, using the existing content-addressed and
+atomic filesystem storage under `.nexus-engine-kit/worker-sessions.json`.
+Call `await controller.ready()` before inspecting persisted sessions.
+`assign` binds a Worker and optional versioned context; `setParentBudget`
+reserves a parent's allocation; `delegate` creates a child with subset
+capabilities/write targets; `run` invokes the existing Agent Loop through
+`runAssignedWorker`; `settle`, `join` and `cancelChildren` manage
+coordination receipts and budgets.
+
+The host supplies a current Goal Map with verifiers, explicit
+`observe/propose/decide/execute/verify` ports, and `authorize`.
+The decision model is not bundled, and a context summary grants no authority.
+The controller does not create a scheduler, a renderer or a second source writer.
+It persists Worker's portable assignment/context/loop checkpoints and coordination
+snapshots, while Authoring Project remains the sole editable source owner.
+Concurrent sessions may decide independently; host source operations serialize.
+
+`cancelChildren` cancels **coordination reservations**. Running host effects
+must separately be stopped and reconciled by the authorized caller; do not
+interpret reservation cancellation as forceful process termination. Do not
+reissue a pending operation until its original receipt has been reconciled.

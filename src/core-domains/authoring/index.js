@@ -6,6 +6,7 @@ import { requireFields } from "./contracts/value.js";
 export { default as authoringDomainManifest } from "./domain.manifest.js";
 export {createAuthoringDesignKit} from "./design/index.js";
 export {createAuthoringArtKit} from "./art/index.js";
+export {createAuthoringAgentKit,createAuthoringAgentGuidance,reviewAuthoringAgentEvidence} from './agent/index.js';
 export {createAuthoringInteractionKit} from "./interaction/index.js";
 export {createAuthoringCraftKit} from "./craft/index.js";
 import { createAuthoringModifierServiceKit } from "./modifier/index.js";

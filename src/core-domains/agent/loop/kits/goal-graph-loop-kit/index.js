@@ -19,6 +19,16 @@ export async function runAgentGoalLoop({map,requiredGoals,observe,propose,decide
   };
   async function perform(decision,idempotencyKey,context) {
     if(decision.action==='report_blocker') return {ok:false,receiptRef:'goal-blocker:'+idempotencyKey,reason:decision.reason??'No eligible goal work'};
+    if(decision.action==='wait'){
+      const refs=decision.waitForRefs;
+      if(!Array.isArray(refs)||!refs.length||refs.length>64||new Set(refs).size!==refs.length||
+         refs.some(ref=>typeof ref!=='string'||!ref))throw new TypeError('Explicit wait dependencies required');
+      const proposal={id:'wait:'+idempotencyKey,kind:'wait',goalId:requiredGoals[0],waitForRefs:refs};
+      if(await authorize({proposal:copy(proposal),context:copy(context),signal})!==true)throw new Error('Unauthorized goal wait');
+      const result=await execute({proposal,context:copy(context),idempotencyKey,signal,expectedGraphRevision:context.graphRevision});
+      if(result?.ok!==true||!result.receiptRef)return result;
+      return {...result,waitForRefs:copy(refs)};
+    }
     const selection=context.candidates.find(p=>p.id===decision.proposalId);
     if(!selection||map.snapshot().revision!==context.graphRevision) throw new Error('Stale or unavailable goal proposal');
     const fresh=await observe({signal});signal?.throwIfAborted();
@@ -26,6 +36,11 @@ export async function runAgentGoalLoop({map,requiredGoals,observe,propose,decide
     if(await authorize({proposal:copy(selection),context:copy(context),signal})!==true) throw new Error('Unauthorized goal action');
     if(map.snapshot().revision!==context.graphRevision) throw new Error('Goal graph changed during authorization');
     const operationId=idempotencyKey+':goal',expectedRevision=context.graphRevision;
+    if(selection.kind==='delegate'){
+      const result=await execute({proposal:copy(selection),context:copy(context),idempotencyKey,signal,expectedGraphRevision:expectedRevision});
+      // Delegating a goal is not implementing it. A later join must supply proof.
+      return result;
+    }
     if(selection.kind==='verify') {
       const result=await map.verify({operationId,expectedRevision,id:selection.goalId,context:context.context});
       // A rejected check is successful observation, not successful goal completion.
@@ -61,13 +76,12 @@ export async function runAgentGoalLoop({map,requiredGoals,observe,propose,decide
       const offered=await propose({...copy(current),signal});
       if(!Array.isArray(offered)||offered.length>32) throw new TypeError('Bounded goal proposals required');
       const candidates=[...builtins,...copy(offered)];
-      if(candidates.length>64||new Set(candidates.map(p=>p.id)).size!==candidates.length||candidates.some(p=>!p.id||!current.eligible.includes(p.goalId)||!['implement','repair','expand','verify','update','supersede'].includes(p.kind))) throw new TypeError('Invalid or ineligible goal proposals');
+      if(candidates.length>64||new Set(candidates.map(p=>p.id)).size!==candidates.length||candidates.some(p=>!p.id||!current.eligible.includes(p.goalId)||!['implement','repair','expand','verify','update','supersede','delegate','join'].includes(p.kind))) throw new TypeError('Invalid or ineligible goal proposals');
       return current={...current,candidates};
     },
     decide:async args=>{
       const {context}=args;
       if(context.acceptance.ok) return {decision:{action:'propose_completion'},usage:{modelCalls:0,tokens:0}};
-      if(!context.candidates.length) return {decision:{action:'report_blocker',reason:'No eligible goal work'},usage:{modelCalls:0,tokens:0}};
       const answer=await decide({...args,context:copy(args.context),state:copy(args.state)}),decision=answer?.decision??answer;
       if(!decision||typeof decision!=='object') return answer;
       const proposal=context.candidates.find(p=>p.id===decision.proposalId);
@@ -76,6 +90,7 @@ export async function runAgentGoalLoop({map,requiredGoals,observe,propose,decide
     },
     validateDecision:(decision,{context})=>decision.action==='propose_completion'?context.acceptance.ok:
       decision.action==='report_blocker'?!context.acceptance.ok:
+      decision.action==='wait'?!context.acceptance.ok&&Array.isArray(decision.waitForRefs)&&decision.waitForRefs.length>0:
       decision.action==='invoke_capability'&&context.candidates.some(p=>p.id===decision.proposalId),
     execute:({decision,idempotencyKey})=>perform(decision,idempotencyKey,currentContext()),
     verify:async()=>{

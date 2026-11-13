@@ -19,10 +19,10 @@ function patchMemory(value,patch){
 // The sole execution loop. Old inference-driven calls are a repeatable one-step
 // recipe; explicit programs use the same step, memory and recovery machinery.
 export async function runAgentLoop({loopId,agentId,goalRef,steps:definitions,infer,decide,observe=async()=>({}),execute,verify,limits={},signal,
- checkpoint=null,resume=null,resolvePending=null,validateDecision=null,memory:initialMemory,memoryStore=createAgentContextStore(),memoryKey='loop:'+loopId}={}){
+ checkpoint=null,resume=null,resolvePending=null,wake=null,validateDecision=null,memory:initialMemory,memoryStore=createAgentContextStore(),memoryKey='loop:'+loopId}={}){
  const array=definitions!==undefined;
  if((array&&(infer||decide))||(!array&&(typeof infer==='function')===(typeof decide==='function'))||[observe,execute,verify].some(x=>typeof x!=='function'))throw new TypeError('Supply steps or exactly one decision implementation and observation/execution/verification ports');
- if(checkpoint!==null&&typeof checkpoint!=='function'||validateDecision!==null&&typeof validateDecision!=='function'||['get','put','snapshot','restore'].some(k=>typeof memoryStore?.[k]!=='function'))throw new TypeError('Invalid loop callback or memory store');
+ if(checkpoint!==null&&typeof checkpoint!=='function'||wake!==null&&typeof wake!=='function'||validateDecision!==null&&typeof validateDecision!=='function'||['get','put','snapshot','restore'].some(k=>typeof memoryStore?.[k]!=='function'))throw new TypeError('Invalid loop callback or memory store');
  if(resume)resume=validateLoopCheckpoint(resume);
  if(array&&resume?.schema==='nexusengine.agent.loop.run/1')throw new Error('Legacy checkpoint requires its adaptive compatibility recipe');
  let state=resume?restoreLoopControl(resume.state):advanceLoopControl(createLoopControl({loopId,agentId,goalRef,budgets:limits}));
@@ -62,7 +62,9 @@ export async function runAgentLoop({loopId,agentId,goalRef,steps:definitions,inf
   const finished=transitionLoopStep(step,'succeeded',{output:clone(result),evidenceRefs:result.receiptRef?[result.receiptRef]:[]});
   const previous=trace.findIndex(s=>s.stepId===step.stepId);if(previous<0)trace.push(finished);else trace[previous]=finished;
   const completed=array?program.cursor===program.definitions.length:result.completion===true;
-  state=advanceLoopControl(state,{status:state.status==='cancelled'?'cancelled':completed?'completed':'active',stepId:recovered&&state.activeStepId===step.stepId?null:step.stepId,elapsedMs,receiptRef:result.receiptRef??null,memoryReceipt:recovered&&step.kind==='compute'?accepted:null});
+  const waiting=Array.isArray(result.waitForRefs)&&result.waitForRefs.length>0;
+  if(waiting&&completed)throw new Error('A waiting step cannot complete the loop');
+  state=advanceLoopControl(state,{status:state.status==='cancelled'?'cancelled':waiting?'waiting':completed?'completed':'active',stepId:recovered&&state.activeStepId===step.stepId?null:step.stepId,elapsedMs,receiptRef:result.receiptRef??null,memoryReceipt:recovered&&step.kind==='compute'?accepted:null});
  };
  if(resume?.pending){
   const pending=clone(resume.pending),expected=binding(pending),definition=current();
@@ -84,6 +86,14 @@ export async function runAgentLoop({loopId,agentId,goalRef,steps:definitions,inf
    if(pending.phase!=='acceptance')await save({...pending,phase:'acceptance',result,definitionId:definition.id,memoryRevision:accepted.revision});
    settle(pending.step,result,pending.idempotencyKey,{recovered:true});await save(null);
   }
+ }
+ if(state.status==='waiting'){
+  const latest=trace.at(-1),waitForRefs=latest?.output?.waitForRefs??[];
+  const resumed=wake?await wake({loopId,agentId,goalRef,state:clone(state),waitForRefs:clone(waitForRefs),trace:clone(trace),...ports()}):null;
+  if(resumed?.ready!==true)return {state,steps:trace,...ports(),checkpoint:clone(snapshot(outstanding)),unresolved:{kind:'waiting',waitForRefs:clone(waitForRefs)}};
+  if(typeof resumed.receiptRef!=='string'||!resumed.receiptRef)throw new Error('Verified wake receipt required');
+  state=advanceLoopControl(state,{status:'active',receiptRef:resumed.receiptRef});
+  await save(null);
  }
  while(!loopIsTerminal(state)){
   if(signal?.aborted){state=advanceLoopControl(state,{status:'cancelled'});await save(null);break;}
@@ -120,6 +130,11 @@ export async function runAgentLoop({loopId,agentId,goalRef,steps:definitions,inf
    const args={goalRef,context,trace:clone(trace),decision,state:clone(state),step:clone(definition),input:clone(definition.input),idempotencyKey:step.idempotencyKey,signal,accountUsage,...ports()};
    let result=await (completion?verify:execute)(args);
    if(!object(result)||typeof result.ok!=='boolean'||(completion||step.kind==='action')&&!result.receiptRef)throw new Error('No authoritative execution receipt');
+   if(decision.action==='wait'){
+    if(!Array.isArray(result.waitForRefs)||!result.waitForRefs.length||result.waitForRefs.length>64||
+       new Set(result.waitForRefs).size!==result.waitForRefs.length||
+       result.waitForRefs.some(ref=>typeof ref!=='string'||!ref))throw new TypeError('Waiting requires bounded dependency references');
+   }else if(result.waitForRefs!==undefined)throw new TypeError('Only a wait decision may yield');
    result=cloneSerializableState({...result,...(completion?{completion:true}:{})});
    if(result.ok!==true){step=transitionLoopStep(step,'failed',{output:result,evidenceRefs:result.receiptRef?[result.receiptRef]:[]});trace.push(step);state=advanceLoopControl(state,{status:signal?.aborted?'cancelled':'blocked',stepId:step.stepId,elapsedMs:elapsed(),receiptRef:result.receiptRef??null});await save(null);break;}
    patchMemory(accepted.value,result.memoryPatch);

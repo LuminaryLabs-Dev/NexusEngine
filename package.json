@@ -35,6 +35,7 @@
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring/design": "./src/core-domains/authoring/design/index.js",
     "./domains/authoring/art": "./src/core-domains/authoring/art/index.js",
+    "./domains/authoring/agent": "./src/core-domains/authoring/agent/index.js",
     "./domains/authoring/interaction": "./src/core-domains/authoring/interaction/index.js",
     "./domains/authoring/craft": "./src/core-domains/authoring/craft/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",
