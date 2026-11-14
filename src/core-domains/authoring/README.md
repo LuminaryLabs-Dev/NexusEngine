@@ -4,7 +4,7 @@ This file is generated from the Domain manifest. Do not edit it directly.
 
 - Path: `n:authoring`
 - Status: `stable-candidate`
-- Registry SHA-256: `6a22be0498b35e1552e941baf226327c42c86f63fff45d820b1550a15ea71436`
+- Registry SHA-256: `917cf7aa3780539a410fc3928ffe5678aa5187e0b1542cd2d0938a6ab6547884`
 - Public entry: `nexusengine/domains/authoring`
 
 ## Responsibility
@@ -29,6 +29,11 @@ Own canonical headless creation, import, editing, validation, persistence and pu
 | --- | --- |
 | `n:authoring:code` | Own editable code documents and revision-bound language intelligence contracts. |
 | `n:authoring:code:intelligence` | Own revision-bound language service requests. |
+| `n:authoring:design` | Define layout, intent and reusable scene structures using existing native Authoring operations. |
+| `n:authoring:art` | Select modeling approaches and review editable visual assets using existing native Authoring operations. |
+| `n:authoring:interaction` | Define interaction behavior and scenario acceptance using existing native Authoring operations. |
+| `n:authoring:craft` | Coordinate discipline quality and targeted revision directions using existing native Authoring operations. |
+| `n:authoring:agent` | Provide evidence-driven Authoring guidance to goal-bound Workers. |
 | `n:authoring:create` | Own canonical create operations, default providers, diagnostics and source-safe lifecycle. |
 | `n:authoring:importing` | Own canonical importing operations, default providers, diagnostics and source-safe lifecycle. |
 | `n:authoring:persistence` | Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle. |
@@ -59,6 +64,11 @@ Own canonical headless creation, import, editing, validation, persistence and pu
 | --- | --- | --- |
 | `code-document-kit` | `nexusengine/domains/authoring/code/code-document` | Own revisioned source-code document operations. |
 | `code-intelligence-kit` | `nexusengine/domains/authoring/code/code-intelligence` | Own revision-bound language intelligence requests and proposed edits. |
+| `authoring-design-kit` | `nexusengine/domains/authoring/design` | Define layout, intent and reusable scene structures. |
+| `authoring-art-kit` | `nexusengine/domains/authoring/art` | Select modeling approaches and review editable visual assets. |
+| `authoring-interaction-kit` | `nexusengine/domains/authoring/interaction` | Define interaction behavior and scenario acceptance. |
+| `authoring-craft-kit` | `nexusengine/domains/authoring/craft` | Coordinate discipline quality and targeted revision directions. |
+| `authoring-agent-kit` | `nexusengine/domains/authoring/agent` | Provide evidence-driven methods and review contracts to Authoring Workers. |
 | `authoring-create-service-kit` | `nexusengine/domains/authoring/create/create-service` | Route creation requests to existing typed Project operations without owning duplicate content. |
 | `authoring-import-registry-kit` | `nexusengine/domains/authoring/importing/import-registry` | Own trusted canonical importer discovery and provider selection. |
 | `authoring-import-validation-kit` | `nexusengine/domains/authoring/importing/import-validation` | Validate a complete staged canonical import against the existing Project writer. |

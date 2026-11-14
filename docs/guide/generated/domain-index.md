@@ -1,6 +1,6 @@
 # Domain Index
 
-Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
+Registry SHA-256: `917cf7aa3780539a410fc3928ffe5678aa5187e0b1542cd2d0938a6ab6547884`
 
 - `n:actor`: Own neutral embodied actor identity and shared actor references.
 - `n:actor:creature`: Own neutral creature embodiment definitions and references.
@@ -19,6 +19,11 @@ Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07
 - `n:authoring`: Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations.
 - `n:authoring:code`: Own editable code documents and revision-bound language intelligence contracts.
 - `n:authoring:code:intelligence`: Own revision-bound language service requests.
+- `n:authoring:design`: Define layout, intent and reusable scene structures using existing native Authoring operations.
+- `n:authoring:art`: Select modeling approaches and review editable visual assets using existing native Authoring operations.
+- `n:authoring:interaction`: Define interaction behavior and scenario acceptance using existing native Authoring operations.
+- `n:authoring:craft`: Coordinate discipline quality and targeted revision directions using existing native Authoring operations.
+- `n:authoring:agent`: Provide evidence-driven Authoring guidance to goal-bound Workers.
 - `n:authoring:create`: Own canonical create operations, default providers, diagnostics and source-safe lifecycle.
 - `n:authoring:importing`: Own canonical importing operations, default providers, diagnostics and source-safe lifecycle.
 - `n:authoring:persistence`: Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle.

@@ -2,7 +2,7 @@
 
 This file is generated from Domain manifest v2 records. Do not edit it directly.
 
-Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
+Registry SHA-256: `917cf7aa3780539a410fc3928ffe5678aa5187e0b1542cd2d0938a6ab6547884`
 
 ## Domains
 
@@ -25,6 +25,11 @@ Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07
 | `n:authoring` | - | Own canonical headless creation, import, editing, validation, persistence and publishing with default format implementations. | stable-candidate |
 | `n:authoring:code` | `n:authoring` | Own editable code documents and revision-bound language intelligence contracts. | stable-candidate |
 | `n:authoring:code:intelligence` | `n:authoring:code` | Own revision-bound language service requests. | stable-candidate |
+| `n:authoring:design` | `n:authoring` | Define layout, intent and reusable scene structures using existing native Authoring operations. | stable-candidate |
+| `n:authoring:art` | `n:authoring` | Select modeling approaches and review editable visual assets using existing native Authoring operations. | stable-candidate |
+| `n:authoring:interaction` | `n:authoring` | Define interaction behavior and scenario acceptance using existing native Authoring operations. | stable-candidate |
+| `n:authoring:craft` | `n:authoring` | Coordinate discipline quality and targeted revision directions using existing native Authoring operations. | stable-candidate |
+| `n:authoring:agent` | `n:authoring` | Provide evidence-driven Authoring guidance to goal-bound Workers. | stable-candidate |
 | `n:authoring:create` | `n:authoring` | Own canonical create operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
 | `n:authoring:importing` | `n:authoring` | Own canonical importing operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
 | `n:authoring:persistence` | `n:authoring` | Own canonical persistence operations, default providers, diagnostics and source-safe lifecycle. | stable-candidate |
@@ -236,6 +241,11 @@ Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07
 | `asset-registry-kit` | `n:asset` | `nexusengine/domains/asset/registry` | Resolve asset manifests and bundles through content-addressed provider jobs. |
 | `code-document-kit` | `n:authoring:code` | `nexusengine/domains/authoring/code/code-document` | Own revisioned source-code document operations. |
 | `code-intelligence-kit` | `n:authoring:code:intelligence` | `nexusengine/domains/authoring/code/code-intelligence` | Own revision-bound language intelligence requests and proposed edits. |
+| `authoring-design-kit` | `n:authoring:design` | `nexusengine/domains/authoring/design` | Define layout, intent and reusable scene structures. |
+| `authoring-art-kit` | `n:authoring:art` | `nexusengine/domains/authoring/art` | Select modeling approaches and review editable visual assets. |
+| `authoring-interaction-kit` | `n:authoring:interaction` | `nexusengine/domains/authoring/interaction` | Define interaction behavior and scenario acceptance. |
+| `authoring-craft-kit` | `n:authoring:craft` | `nexusengine/domains/authoring/craft` | Coordinate discipline quality and targeted revision directions. |
+| `authoring-agent-kit` | `n:authoring:agent` | `nexusengine/domains/authoring/agent` | Provide evidence-driven methods and review contracts to Authoring Workers. |
 | `authoring-create-service-kit` | `n:authoring:create` | `nexusengine/domains/authoring/create/create-service` | Route creation requests to existing typed Project operations without owning duplicate content. |
 | `authoring-import-registry-kit` | `n:authoring:importing` | `nexusengine/domains/authoring/importing/import-registry` | Own trusted canonical importer discovery and provider selection. |
 | `authoring-import-validation-kit` | `n:authoring:importing` | `nexusengine/domains/authoring/importing/import-validation` | Validate a complete staged canonical import against the existing Project writer. |

@@ -4,7 +4,7 @@ export default atomicKit({
   apiName: "authoringCraft",
   responsibility: "Coordinate discipline quality and targeted revision directions.",
   requires: ["n:authoring:project"], provides: ["n:authoring:craft"],
-  module: "./src/core-domains/authoring/craft/kits/authoring-craft-kit/index.js",
+  module: "./src/core-domains/authoring/craft/index.js",
   exportName: "createAuthoringCraftKit",
   publicSubpath: "./domains/authoring/craft",
   proofReferences: ["tests/core-domains/core-authoring-creative-harnesses.mjs"],

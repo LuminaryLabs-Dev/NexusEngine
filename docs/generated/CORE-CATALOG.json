@@ -1635,6 +1635,452 @@
       ]
     },
     {
+      "domainPath": "n:authoring:design",
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "direct source mutation",
+        "host tool execution",
+        "inference transport",
+        "renderer implementation"
+      ],
+      "id": "authoring-design-domain",
+      "inputs": [
+        {
+          "description": "Authoring Design required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Design",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Design API without duplicate state or systems.",
+        "install": "Create one Authoring Design state owner and public API.",
+        "replay": "Reapply equivalent Authoring Design inputs deterministically.",
+        "reset": "Restore the configured Authoring Design baseline.",
+        "snapshot": "Serialize Authoring Design state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Design provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:design",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "design briefs, approaches and source-bound review contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Design state and registry records.",
+          "id": "authoring-design-domain-state",
+          "owner": "authoring-design-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Design contract fixture.",
+            "deterministic": true,
+            "id": "authoring-design-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Design composition fixture.",
+            "deterministic": true,
+            "id": "authoring-design-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Define layout, intent and reusable scene structures using existing native Authoring operations.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Design behavior.",
+          "deterministic": true,
+          "id": "n:authoring:design:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:art",
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "direct source mutation",
+        "host tool execution",
+        "inference transport",
+        "renderer implementation"
+      ],
+      "id": "authoring-art-domain",
+      "inputs": [
+        {
+          "description": "Authoring Art required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Art",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Art API without duplicate state or systems.",
+        "install": "Create one Authoring Art state owner and public API.",
+        "replay": "Reapply equivalent Authoring Art inputs deterministically.",
+        "reset": "Restore the configured Authoring Art baseline.",
+        "snapshot": "Serialize Authoring Art state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Art provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:art",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "art briefs, approaches and source-bound review contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Art state and registry records.",
+          "id": "authoring-art-domain-state",
+          "owner": "authoring-art-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Art contract fixture.",
+            "deterministic": true,
+            "id": "authoring-art-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Art composition fixture.",
+            "deterministic": true,
+            "id": "authoring-art-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Select modeling approaches and review editable visual assets using existing native Authoring operations.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Art behavior.",
+          "deterministic": true,
+          "id": "n:authoring:art:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:interaction",
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "direct source mutation",
+        "host tool execution",
+        "inference transport",
+        "renderer implementation"
+      ],
+      "id": "authoring-interaction-domain",
+      "inputs": [
+        {
+          "description": "Authoring Interaction required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Interaction",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Interaction API without duplicate state or systems.",
+        "install": "Create one Authoring Interaction state owner and public API.",
+        "replay": "Reapply equivalent Authoring Interaction inputs deterministically.",
+        "reset": "Restore the configured Authoring Interaction baseline.",
+        "snapshot": "Serialize Authoring Interaction state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Interaction provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:interaction",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "interaction briefs, approaches and source-bound review contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Interaction state and registry records.",
+          "id": "authoring-interaction-domain-state",
+          "owner": "authoring-interaction-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Interaction contract fixture.",
+            "deterministic": true,
+            "id": "authoring-interaction-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Interaction composition fixture.",
+            "deterministic": true,
+            "id": "authoring-interaction-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Define interaction behavior and scenario acceptance using existing native Authoring operations.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Interaction behavior.",
+          "deterministic": true,
+          "id": "n:authoring:interaction:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:craft",
+      "forbiddenResponsibilities": [
+        "agent lifecycle",
+        "direct source mutation",
+        "host tool execution",
+        "inference transport",
+        "renderer implementation"
+      ],
+      "id": "authoring-craft-domain",
+      "inputs": [
+        {
+          "description": "Authoring Craft required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Craft",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Craft API without duplicate state or systems.",
+        "install": "Create one Authoring Craft state owner and public API.",
+        "replay": "Reapply equivalent Authoring Craft inputs deterministically.",
+        "reset": "Restore the configured Authoring Craft baseline.",
+        "snapshot": "Serialize Authoring Craft state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Craft provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:craft",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "craft briefs, approaches and source-bound review contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Craft state and registry records.",
+          "id": "authoring-craft-domain-state",
+          "owner": "authoring-craft-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Craft contract fixture.",
+            "deterministic": true,
+            "id": "authoring-craft-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Craft composition fixture.",
+            "deterministic": true,
+            "id": "authoring-craft-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Coordinate discipline quality and targeted revision directions using existing native Authoring operations.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Craft behavior.",
+          "deterministic": true,
+          "id": "n:authoring:craft:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
+      "domainPath": "n:authoring:agent",
+      "forbiddenResponsibilities": [
+        "agent execution loop",
+        "direct source mutation",
+        "host tools",
+        "inference transport",
+        "renderer implementation",
+        "worker assignment ownership"
+      ],
+      "id": "authoring-agent-domain",
+      "inputs": [
+        {
+          "description": "Authoring Agent required capability.",
+          "deterministic": true,
+          "id": "n:authoring:project",
+          "schema": null
+        }
+      ],
+      "label": "Authoring Agent",
+      "lifecycle": {
+        "duplicateInstall": "Return the installed Authoring Agent API without duplicate state or systems.",
+        "install": "Create one Authoring Agent state owner and public API.",
+        "replay": "Reapply equivalent Authoring Agent inputs deterministically.",
+        "reset": "Restore the configured Authoring Agent baseline.",
+        "snapshot": "Serialize Authoring Agent state and descriptors."
+      },
+      "optionalDependencies": [],
+      "outputs": [
+        {
+          "description": "Authoring Agent provided capability.",
+          "deterministic": true,
+          "id": "n:authoring:agent",
+          "schema": null
+        }
+      ],
+      "ownedMeaning": [
+        "source-bound authoring methodology and review guidance contracts"
+      ],
+      "ownedState": [
+        {
+          "description": "Serializable Authoring Agent state and registry records.",
+          "id": "authoring-agent-domain-state",
+          "owner": "authoring-agent-domain",
+          "persistence": "snapshot",
+          "schema": {
+            "additionalProperties": true,
+            "type": "object"
+          }
+        }
+      ],
+      "parentDomainPath": "n:authoring",
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct Authoring Agent contract fixture.",
+            "deterministic": true,
+            "id": "authoring-agent-domain-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Authoring Agent composition fixture.",
+            "deterministic": true,
+            "id": "authoring-agent-domain-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-agent.mjs"
+        ],
+        "status": "proven"
+      },
+      "requires": [
+        "n:authoring:project"
+      ],
+      "responsibility": "Provide evidence-driven Authoring guidance to goal-bound Workers.",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "status": "stable-candidate",
+      "systems": [
+        {
+          "description": "Install, validate, snapshot, reset, and replay Authoring Agent behavior.",
+          "deterministic": true,
+          "id": "n:authoring:agent:lifecycle",
+          "schema": null
+        }
+      ]
+    },
+    {
       "domainPath": "n:authoring:create",
       "forbiddenResponsibilities": [
         "Editor-specific presentation",
@@ -22482,6 +22928,356 @@
         "exportName": "createCodeIntelligenceKit",
         "module": "./src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
         "publicSubpath": "./domains/authoring/code/code-intelligence"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringDesign",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:design",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-design-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-design-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-design-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:authoring:design"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Define layout, intent and reusable scene structures.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringDesignKit",
+        "module": "./src/core-domains/authoring/design/index.js",
+        "publicSubpath": "./domains/authoring/design"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringArt",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:art",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-art-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-art-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-art-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:authoring:art"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Select modeling approaches and review editable visual assets.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringArtKit",
+        "module": "./src/core-domains/authoring/art/index.js",
+        "publicSubpath": "./domains/authoring/art"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringInteraction",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:interaction",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-interaction-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-interaction-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-interaction-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:authoring:interaction"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Define interaction behavior and scenario acceptance.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringInteractionKit",
+        "module": "./src/core-domains/authoring/interaction/index.js",
+        "publicSubpath": "./domains/authoring/interaction"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringCraft",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:craft",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-craft-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-craft-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-craft-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-creative-harnesses.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:authoring:craft"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Coordinate discipline quality and targeted revision directions.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringCraftKit",
+        "module": "./src/core-domains/authoring/craft/index.js",
+        "publicSubpath": "./domains/authoring/craft"
+      },
+      "status": "stable-candidate",
+      "version": "0.0.4"
+    },
+    {
+      "apiName": "authoringAgent",
+      "atomic": true,
+      "composes": [],
+      "determinism": "deterministic",
+      "domainPath": "n:authoring:agent",
+      "environments": [
+        "browser",
+        "node",
+        "worker"
+      ],
+      "id": "authoring-agent-kit",
+      "idempotency": {
+        "duplicateInstall": "Return the installed API for matching content; reject changed content for the same id.",
+        "key": "kit-id-and-manifest-content"
+      },
+      "kind": "domain-service-kit",
+      "parentDomainPath": "n:authoring",
+      "productNeutral": true,
+      "proof": {
+        "consumers": [
+          {
+            "description": "Direct API contract fixture.",
+            "deterministic": true,
+            "id": "authoring-agent-kit-direct-consumer",
+            "schema": null
+          },
+          {
+            "description": "Installed Domain composition fixture.",
+            "deterministic": true,
+            "id": "authoring-agent-kit-installed-consumer",
+            "schema": null
+          }
+        ],
+        "references": [
+          "tests/core-domains/core-authoring-agent.mjs"
+        ],
+        "status": "proven"
+      },
+      "provides": [
+        "n:authoring:agent"
+      ],
+      "requires": [
+        "n:authoring:project"
+      ],
+      "reset": {
+        "semantics": "Restore the configured baseline without duplicate state or systems.",
+        "supported": true
+      },
+      "responsibility": "Provide evidence-driven methods and review contracts to Authoring Workers.",
+      "schema": "nexusengine.atomic-kit-manifest/2",
+      "settingsSchema": {
+        "additionalProperties": true,
+        "type": "object"
+      },
+      "snapshot": {
+        "schema": {
+          "additionalProperties": true,
+          "type": "object"
+        },
+        "supported": true
+      },
+      "source": {
+        "exportName": "createAuthoringAgentKit",
+        "module": "./src/core-domains/authoring/agent/index.js",
+        "publicSubpath": "./domains/authoring/agent"
       },
       "status": "stable-candidate",
       "version": "0.0.4"
@@ -50443,21 +51239,26 @@
     "./domains/asset": "./src/core-domains/asset/index.js",
     "./domains/asset/registry": "./src/core-domains/asset/kits/asset-kit/index.js",
     "./domains/authoring": "./src/core-domains/authoring/index.js",
+    "./domains/authoring/agent": "./src/core-domains/authoring/agent/index.js",
     "./domains/authoring/animation": "./src/core-domains/authoring/animation/kits/authoring-animation-service-kit/index.js",
+    "./domains/authoring/art": "./src/core-domains/authoring/art/index.js",
     "./domains/authoring/assembly": "./src/core-domains/authoring/assembly/kits/authoring-assembly-service-kit/index.js",
     "./domains/authoring/brush": "./src/core-domains/authoring/brush/kits/authoring-brush-service-kit/index.js",
     "./domains/authoring/code": "./src/core-domains/authoring/code/index.js",
     "./domains/authoring/code/code-document": "./src/core-domains/authoring/code/kits/code-document-kit/index.js",
     "./domains/authoring/code/code-intelligence": "./src/core-domains/authoring/code/kits/code-intelligence-kit/index.js",
     "./domains/authoring/contract": "./src/core-domains/authoring/kits/authoring-domain-contract-kit/index.js",
+    "./domains/authoring/craft": "./src/core-domains/authoring/craft/index.js",
     "./domains/authoring/create/create-service": "./src/core-domains/authoring/create/kits/authoring-create-service-kit/index.js",
     "./domains/authoring/curve": "./src/core-domains/authoring/curve/kits/authoring-curve-service-kit/index.js",
+    "./domains/authoring/design": "./src/core-domains/authoring/design/index.js",
     "./domains/authoring/domain-composition": "./src/core-domains/authoring/domain-composition/kits/authoring-domain-composition-service-kit/index.js",
     "./domains/authoring/editing": "./src/core-domains/authoring/editing/kits/authoring-editing-session-kit/index.js",
     "./domains/authoring/importing/import-commit": "./src/core-domains/authoring/importing/kits/authoring-import-commit-kit/index.js",
     "./domains/authoring/importing/import-registry": "./src/core-domains/authoring/importing/kits/authoring-import-registry-kit/index.js",
     "./domains/authoring/importing/import-service": "./src/core-domains/authoring/importing/kits/authoring-import-service-kit/index.js",
     "./domains/authoring/importing/import-validation": "./src/core-domains/authoring/importing/kits/authoring-import-validation-kit/index.js",
+    "./domains/authoring/interaction": "./src/core-domains/authoring/interaction/index.js",
     "./domains/authoring/material": "./src/core-domains/authoring/material/kits/authoring-material-service-kit/index.js",
     "./domains/authoring/mesh": "./src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js",
     "./domains/authoring/modifier": "./src/core-domains/authoring/modifier/kits/authoring-modifier-service-kit/index.js",
@@ -50896,7 +51697,7 @@
     "./domains/world/weather": "./src/core-domains/world/weather/weather-domain.js",
     "./domains/world/weather/layers": "./src/core-domains/world/weather/layered-weather-domain/index.js"
   },
-  "registryHash": "fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb",
+  "registryHash": "917cf7aa3780539a410fc3928ffe5678aa5187e0b1542cd2d0938a6ab6547884",
   "schema": "nexusengine.core-domain-catalog/2",
   "sourceFiles": [
     {
@@ -50961,7 +51762,7 @@
     },
     {
       "path": "src/core-domains/agent/goal/goals.js",
-      "sha256": "a132411251ad2a3ca048f6c2a6dc69a06f754de656938c404baefcbb8914d5a0"
+      "sha256": "c15e8b60b61ce29109b8be4a0ff505e5b901037890f500b1a1247602ea78e4a0"
     },
     {
       "path": "src/core-domains/agent/goal/index.js",
@@ -51009,7 +51810,7 @@
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/context-store.js",
-      "sha256": "2b7e464cdb2dd7ea12952b7a48539fb417f4579594444187049453deb6578a2b"
+      "sha256": "0f7da5410ea7e93639f6e0b2929978c3a271ffac9d371ce180440b2ecff4b652"
     },
     {
       "path": "src/core-domains/agent/kits/agent-kit/decision-cycle.js",
@@ -51033,23 +51834,23 @@
     },
     {
       "path": "src/core-domains/agent/loop/control/index.js",
-      "sha256": "1b3f2953a3d41ae1d93cbb3b09a3ffbed7bba51b417be9cf9ff2e7ec936690b2"
+      "sha256": "f51e0c7190181c153cd47830d1562f0f726519a3ed800f42b80bad3d2aa26a4a"
     },
     {
       "path": "src/core-domains/agent/loop/coordination/index.js",
-      "sha256": "13d5cd3b032bec05b6af34e6969409f541b36ab4e9176122deea03e35d3ecc69"
+      "sha256": "8747c5587a225ff7d1c1f4935f41bb6e1883090790eac636af3e3cf040fdd189"
     },
     {
       "path": "src/core-domains/agent/loop/index.js",
-      "sha256": "afe61d5670a23d665c9375eb07d4425ef1690d356bdb72bb3996898c5d4ec62c"
+      "sha256": "957610055a05a5bddceb459b2af3be204adf2be826315ca88df1135bafa7499a"
     },
     {
       "path": "src/core-domains/agent/loop/kits/coding-loop-kit/index.js",
-      "sha256": "32e2ff354e3f76602075333bc4b4b24e6a8c473051752edcfcec47b45a7d8d7c"
+      "sha256": "cba5559c39c340657aa193f3a09d57b10246d00672490e4b4503e91e4eee3288"
     },
     {
       "path": "src/core-domains/agent/loop/kits/goal-graph-loop-kit/index.js",
-      "sha256": "a46540cd856393e05c3c848d0b13942a895e5cee3f608477ec3a74f3ca0c916e"
+      "sha256": "53c6f889abd812cb3c3d38e744f2f218e60cd87e13e193cd91aa534187db2404"
     },
     {
       "path": "src/core-domains/agent/loop/kits/memory-loop-kit/index.js",
@@ -51061,23 +51862,31 @@
     },
     {
       "path": "src/core-domains/agent/loop/kits/self-propagation-loop-kit/index.js",
-      "sha256": "3ecaf90a48d3a5bc0a7db4b41cbe2e3e5c275adf8c3a0739eb0c0a75dbb4b77e"
+      "sha256": "1e0a012b7553ec94237ac35da1092c5f66df9284d2511b661fe53327a5d3e75a"
     },
     {
       "path": "src/core-domains/agent/loop/kits/validation-loop-kit/index.js",
       "sha256": "85c67af4f7dcef57944db5277f7115dcc1ee3650a8623297abeb4a17c3a935fb"
     },
     {
+      "path": "src/core-domains/agent/loop/runner.js",
+      "sha256": "dafcf5f05ff704549b262389591defb30b27bda6014b78098b0246a7833d8546"
+    },
+    {
       "path": "src/core-domains/agent/loop/step/index.js",
       "sha256": "94581687fa3b1f4fab8740ed64f17335e4370afef241ac4648673a095979958c"
     },
     {
+      "path": "src/core-domains/agent/worker/context.js",
+      "sha256": "199676b6df6981bf68dfc72fda6d004adfd55cd37fc63fdf51d82c0105d39502"
+    },
+    {
       "path": "src/core-domains/agent/worker/index.js",
-      "sha256": "b356499954c76945be352cda6293de4419626f8ae65930e2a9736df11c13100f"
+      "sha256": "3c5bc65bb4544e6798babd7679d82b44c08d3de63f37fa4d9d67fa7af0430910"
     },
     {
       "path": "src/core-domains/agent/worker/worker.js",
-      "sha256": "0106c2c53c765119e7a93a85d879d6edd33a55586278e220407249d465afdf9a"
+      "sha256": "7162c433dec71c1935bbaf94a9163781fba1d6d9c341a72759fa195c31fc975f"
     },
     {
       "path": "src/core-domains/asset/domain.manifest.js",
@@ -51104,6 +51913,26 @@
       "sha256": "fe0ef378eb8500b2fdd3c5d87cd23716a3626bb82dd0141f7074de8f036426df"
     },
     {
+      "path": "src/core-domains/authoring/agent/index.js",
+      "sha256": "1e39888bba8bb6d150e45f8c2bba07cf5e762188e22fe094248991662ec14ed0"
+    },
+    {
+      "path": "src/core-domains/authoring/agent/kits/authoring-agent-kit/index.js",
+      "sha256": "81868a8957f32d06e96432fcbb576bd4718adb2458f1e34c1cdd0ce235893c9b"
+    },
+    {
+      "path": "src/core-domains/authoring/agent/kits/authoring-agent-kit/kit.manifest.js",
+      "sha256": "3039f1dbb1906265624e6b1207daa455144c04c55271066277d9b75b0fcce5c4"
+    },
+    {
+      "path": "src/core-domains/authoring/agent/services.js",
+      "sha256": "7dddaa1093e13ff5400d5385908b60506318054dc62c6b9710fb1ab341a7e0c4"
+    },
+    {
+      "path": "src/core-domains/authoring/agent/subdomain.manifest.js",
+      "sha256": "a83b5d85256689e7e689b7d961dd4c7724e90dbf9be4a84a19dcf25bc0abdf04"
+    },
+    {
       "path": "src/core-domains/authoring/animation/index.js",
       "sha256": "4518e07084056d0b8af62cb2d62b49730b30686f450877cf2e66864e6141e27b"
     },
@@ -51122,6 +51951,22 @@
     {
       "path": "src/core-domains/authoring/animation/subdomain.manifest.js",
       "sha256": "84058931063aa864ddf0dbd7cd8ede4a4b255942f424058d0813b82fb7cd5331"
+    },
+    {
+      "path": "src/core-domains/authoring/art/index.js",
+      "sha256": "a4613a405304d2a9b8143a651f940d63f3713bb9a40c835cf7852fb91b1d6a44"
+    },
+    {
+      "path": "src/core-domains/authoring/art/kits/authoring-art-kit/index.js",
+      "sha256": "4cbabd1cc9bf45e97637eee62039482349a73e4af6e9b7557a6fe352c8a9c03a"
+    },
+    {
+      "path": "src/core-domains/authoring/art/kits/authoring-art-kit/kit.manifest.js",
+      "sha256": "45f9821358335eb801b985dbcb21ab10c73efe9535ceca264814d1ebf9df0159"
+    },
+    {
+      "path": "src/core-domains/authoring/art/subdomain.manifest.js",
+      "sha256": "f4d21b82385484666fb036bdf60bc07aa140094e554e005de4583cccc415e532"
     },
     {
       "path": "src/core-domains/authoring/assembly/index.js",
@@ -51208,12 +52053,20 @@
       "sha256": "7c46fcb4b7356bf66250b09b2ee5e0828a2e6cbc487349bd29c6d5efb81f10a7"
     },
     {
+      "path": "src/core-domains/authoring/contracts/creative-harness.js",
+      "sha256": "00e0b04e3d438e1ce65d29ab112f9e10b8eb69b822f2ce6bf02d87a17655e3ff"
+    },
+    {
+      "path": "src/core-domains/authoring/contracts/harness.js",
+      "sha256": "604b6d22708cb7a5ce4a961d5ab114007c76e16d4a4dfda0f3054ef157145341"
+    },
+    {
       "path": "src/core-domains/authoring/contracts/io-kit.js",
       "sha256": "95dc33be3bec8e9d2783b39f34d6735045cea8c217bfba9918e4a7333c3797fa"
     },
     {
       "path": "src/core-domains/authoring/contracts/io.js",
-      "sha256": "41915b272cc0a552a39d58becba9b3e7a7954d209e0b146e0a66753ddd643d32"
+      "sha256": "58041672a58d30661758d0a20532ee9deb01b016c20eeed7185553851d153482"
     },
     {
       "path": "src/core-domains/authoring/contracts/ledger.js",
@@ -51242,6 +52095,22 @@
     {
       "path": "src/core-domains/authoring/contracts/value.js",
       "sha256": "4c34ca2398af5e6ebf958400c8dc70c165e0fa56af28016d67ba9c546f41f8e0"
+    },
+    {
+      "path": "src/core-domains/authoring/craft/index.js",
+      "sha256": "d954eb45abfe0329f22b2edb2a15a34acdf8c0eea3028c5d3b37e286cb06b123"
+    },
+    {
+      "path": "src/core-domains/authoring/craft/kits/authoring-craft-kit/index.js",
+      "sha256": "0c263d5d5d00a363ac18606d0bf06be03e94d8d6cc55e86e93191422abe42955"
+    },
+    {
+      "path": "src/core-domains/authoring/craft/kits/authoring-craft-kit/kit.manifest.js",
+      "sha256": "5922da7a8b57ceec8c2da77abcec627b90bbcbf2361f941d32d93cdfefe401f1"
+    },
+    {
+      "path": "src/core-domains/authoring/craft/subdomain.manifest.js",
+      "sha256": "ca4a4af7b4480873bde31f2e1d64d519465db8388b758e9d3846037d595aa981"
     },
     {
       "path": "src/core-domains/authoring/create/index.js",
@@ -51284,6 +52153,22 @@
       "sha256": "b62697555a286eab91d683dc0ea36831d8a907c238ff3815c303e282dc8b8c0d"
     },
     {
+      "path": "src/core-domains/authoring/design/index.js",
+      "sha256": "8a4e015f8e4bec28de37f318f6705c5747f19c22997fede32d8fdc9ba1d3822d"
+    },
+    {
+      "path": "src/core-domains/authoring/design/kits/authoring-design-kit/index.js",
+      "sha256": "020d15ca8184437fc8fd67a98a3dce313ec29869daff82c7b1cb2dbbb9663739"
+    },
+    {
+      "path": "src/core-domains/authoring/design/kits/authoring-design-kit/kit.manifest.js",
+      "sha256": "bb8556f7eef9c78f48a9a62790d37b8c6b8518c07e6fb737b9e93e9f7fef5d2e"
+    },
+    {
+      "path": "src/core-domains/authoring/design/subdomain.manifest.js",
+      "sha256": "99790e82d0c3089c4fff721addd8944af3fc496eb9b7ba1f1344f624ac062119"
+    },
+    {
       "path": "src/core-domains/authoring/domain-composition/index.js",
       "sha256": "45348bd451acbfccec092809f4ed2a94187a810e54d4ab3c97a9c32b2a98ac07"
     },
@@ -51305,7 +52190,7 @@
     },
     {
       "path": "src/core-domains/authoring/domain.manifest.js",
-      "sha256": "5d241680e0da2355693f452f5c90d6465d03ca1f1900842bf27c7e125fa4815d"
+      "sha256": "dd4d4c5c76324909fb5a201cd391bb261a27391b1ffd3292460984a31408f8b9"
     },
     {
       "path": "src/core-domains/authoring/editing/index.js",
@@ -51369,11 +52254,11 @@
     },
     {
       "path": "src/core-domains/authoring/importing/providers/fbx/decode.js",
-      "sha256": "28f8fae422214b2413f79f3773ef7bc3d17b6ba926b2977cc41a7caa2613303c"
+      "sha256": "0b7b77f652a9a5b38fdec57336bddd321d65dd948d9a92c81ef296fa08831e86"
     },
     {
       "path": "src/core-domains/authoring/importing/providers/fbx/index.js",
-      "sha256": "e570f26bfe0b18e70be4c2c355c0eedd84e573c2dc9c81b8a825850e84483a38"
+      "sha256": "10f74faae8684450e74ba328441c11fb6ee63119361f10a3f632a770cb71ce4b"
     },
     {
       "path": "src/core-domains/authoring/importing/providers/fbx/texture-helpers.js",
@@ -51405,7 +52290,7 @@
     },
     {
       "path": "src/core-domains/authoring/importing/scene-documents.js",
-      "sha256": "ca573f2b5d6b2c3a7ac38b3cd4b2e8739b2dc1a6b5d763e2cffd67ab33332b06"
+      "sha256": "352cd4df6af1a55a93d61c0a48135868ae417ae078af488a8936cee160a63872"
     },
     {
       "path": "src/core-domains/authoring/importing/services.js",
@@ -51417,7 +52302,23 @@
     },
     {
       "path": "src/core-domains/authoring/index.js",
-      "sha256": "3e8972c82d2d0bcd6eff8633b4817d337b22eafc4118fdfe1457bb4c0fa7dd3e"
+      "sha256": "1409b912e15d8876ad441668d26e5578db1b7d7c19a357140360ef33c2fb4a0c"
+    },
+    {
+      "path": "src/core-domains/authoring/interaction/index.js",
+      "sha256": "c18a37ba0f230730aac94a647fa5964a3ddd36945c9b42b54ade187b640b1bff"
+    },
+    {
+      "path": "src/core-domains/authoring/interaction/kits/authoring-interaction-kit/index.js",
+      "sha256": "0de5587246df82223070907f45609f2a17632a3d66f07b606eeaf2146ff1d504"
+    },
+    {
+      "path": "src/core-domains/authoring/interaction/kits/authoring-interaction-kit/kit.manifest.js",
+      "sha256": "756f79d02995db0499bb237b910ac33b950f3a605e9ae5da831fb259691e43fd"
+    },
+    {
+      "path": "src/core-domains/authoring/interaction/subdomain.manifest.js",
+      "sha256": "4732e76e2725a93e1c095c0527c08cc2f8b6197c04792e8adb03e61d61bf91d5"
     },
     {
       "path": "src/core-domains/authoring/io-kits.js",
@@ -51461,11 +52362,11 @@
     },
     {
       "path": "src/core-domains/authoring/mesh/evaluate.js",
-      "sha256": "be800fd7a28dd42d3fa26e364ab2f66da4d32700b532a185768ceee5339cd55f"
+      "sha256": "fba5c9c1bc2a5f3715a319d012c2d295ef4d340dc9eae160bcfdd2d11f79e35e"
     },
     {
       "path": "src/core-domains/authoring/mesh/geometry.js",
-      "sha256": "f32d9a2318b5851bd2ba1f6e74fc4a1574fa90a7d8c98e45cb6fd725640949c9"
+      "sha256": "807851cecdacffb79c31cec921081b397492b907d30b6b394c722316b5b4a162"
     },
     {
       "path": "src/core-domains/authoring/mesh/index.js",
@@ -51473,7 +52374,7 @@
     },
     {
       "path": "src/core-domains/authoring/mesh/inspection.js",
-      "sha256": "fe30721f2bcf1145a20199f0628edadfbb7202d0435acdf57eb96320a28b6650"
+      "sha256": "c708df32b340dd2a019b587e1dbd1ed707cc5a40e07b0aa564c7c8130f74987d"
     },
     {
       "path": "src/core-domains/authoring/mesh/kits/authoring-mesh-document-kit/index.js",
@@ -51501,7 +52402,7 @@
     },
     {
       "path": "src/core-domains/authoring/mesh/topology.js",
-      "sha256": "33baddb302024339f04d6d82b62e1071bf1f0d38499d0703034e82d184cbfb9d"
+      "sha256": "ef3ddeb46660085513788fe3459b6e3256f9a42061dd02a7f4129fee71e00da2"
     },
     {
       "path": "src/core-domains/authoring/modifier/boolean.js",
@@ -51509,7 +52410,7 @@
     },
     {
       "path": "src/core-domains/authoring/modifier/decimation.js",
-      "sha256": "c28a60274c1465c892dfee27251370bd5ee84519b2341500d717f075aebbc2c4"
+      "sha256": "5d55f8724c307f69ca22a693a97f89ec4bd2ee691e3c4860a03d4645f43c4f44"
     },
     {
       "path": "src/core-domains/authoring/modifier/evaluate.js",
@@ -51609,11 +52510,11 @@
     },
     {
       "path": "src/core-domains/authoring/persistence/project-package.js",
-      "sha256": "fff86add478f52f27bfb5b8731ad8fa300798af4dacf1a67fa4e17747828727c"
+      "sha256": "22dc2f8e7c6b34bd822d6ec764a914537e6972e9e68ebf90be0dcecd93baaf8a"
     },
     {
       "path": "src/core-domains/authoring/persistence/providers/filesystem/index.js",
-      "sha256": "a50d2979ad2235cb7ba9950ea80f89d9ad6febc18b246855330ea347e7335a8b"
+      "sha256": "08d54ef8945c5573849eddecc0f9fb5affd7c2ff8470dd0bfbd11d5e04e49bb4"
     },
     {
       "path": "src/core-domains/authoring/persistence/providers/indexeddb/index.js",
@@ -51645,7 +52546,7 @@
     },
     {
       "path": "src/core-domains/authoring/project/store.js",
-      "sha256": "d5e1bdc66e5a96efb1459e8e20561bf7bd9068321adfdf188d01063ad74223aa"
+      "sha256": "2d8b6e0374544d3ac5d1ed6a49a2b678ccdc37caf5627368f9024913377cb179"
     },
     {
       "path": "src/core-domains/authoring/project/subdomain.manifest.js",
@@ -51653,7 +52554,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/codecs/fbx-binary.js",
-      "sha256": "bac6439a29a07f4ce9f5024bcfe666c1e8c7f8008c8ee96061590899611673eb"
+      "sha256": "a4e04d2ef748fb636b73932d34a9483548095e0cc5d6691242954adc19bf72be"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/codecs/png.js",
@@ -51717,7 +52618,7 @@
     },
     {
       "path": "src/core-domains/authoring/publishing/export/providers/fbx/encode.js",
-      "sha256": "c6dc56079075e99aa70b8732e4e82617795c5ada4c004d18b87a1d34b6c67902"
+      "sha256": "e3de96daa69cb648b3b7511782b1f9db76f68c0b2a437ac8f3852c8e69d6810e"
     },
     {
       "path": "src/core-domains/authoring/publishing/export/providers/fbx/index.js",
@@ -54077,7 +54978,7 @@
     },
     {
       "path": "src/core-domains/inference/contract/index.js",
-      "sha256": "34c14324f647fd136e003671d099e77f9fc74e6efc3e0880c8d6122cd3fdfac2"
+      "sha256": "57a728b43ecb996bfe333db3812adbcbdf0a38d8b6e8d2554614f7692d44704c"
     },
     {
       "path": "src/core-domains/inference/domain.manifest.js",
@@ -54085,7 +54986,7 @@
     },
     {
       "path": "src/core-domains/inference/execution/index.js",
-      "sha256": "29ac7bb12836f6eb41ffe8ddbaad97dcb6f47c66be01724e07e7eeaf9a9cf209"
+      "sha256": "5b96db4a9424b549e41823baec1e252bbacb5ecc53a0afe8ed812f58d4967f6f"
     },
     {
       "path": "src/core-domains/inference/index.js",
@@ -58289,15 +59190,15 @@
     },
     {
       "path": "src/core-domains/world/scene/kits/scene-kit/descriptors.js",
-      "sha256": "8ac89d1c9e26792026bb1d036a615dc3b83d8ced2d17205fbeb5567c6d554391"
+      "sha256": "e5bdd746b4e0c814129352345e3569e81723b051fb2abc5d88b4875bea9d8070"
     },
     {
       "path": "src/core-domains/world/scene/kits/scene-kit/host-contract.js",
-      "sha256": "ef4f7147993d497d4a385dd880837a2828d3c7760b370b36b113a4a2980a4ff7"
+      "sha256": "3796b15033015f66e8e72dd96a9c0d979f1b4d4473934b39e1c65c2f4b317d05"
     },
     {
       "path": "src/core-domains/world/scene/kits/scene-kit/index.js",
-      "sha256": "8a36cbb9c3616e70149c94ca70b969135273231b2d859a2cd2de34d884fec009"
+      "sha256": "24b8c954390f57e0e89571ae9be78241673f9c82d7f7f7d1faab7218687b6a8c"
     },
     {
       "path": "src/core-domains/world/scene/kits/scene-kit/ledgers.js",

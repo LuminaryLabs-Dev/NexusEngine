@@ -1,6 +1,6 @@
 # Core Dependency Table
 
-Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07ebb`
+Registry SHA-256: `917cf7aa3780539a410fc3928ffe5678aa5187e0b1542cd2d0938a6ab6547884`
 
 | Owner | Requires | Optional |
 | --- | --- | --- |
@@ -21,6 +21,11 @@ Registry SHA-256: `fd877aba917a79166b17b0a18d9edbcdc65f8c67ab941aada12f1724abd07
 | `n:authoring` | `n:runtime` | - |
 | `n:authoring:code` | `n:authoring:project` | - |
 | `n:authoring:code:intelligence` | `authoring:code-document` | - |
+| `n:authoring:design` | `n:authoring:project` | - |
+| `n:authoring:art` | `n:authoring:project` | - |
+| `n:authoring:interaction` | `n:authoring:project` | - |
+| `n:authoring:craft` | `n:authoring:project` | - |
+| `n:authoring:agent` | `n:authoring:project` | - |
 | `n:authoring:create` | `n:authoring:project` | - |
 | `n:authoring:importing` | `n:authoring:project` | - |
 | `n:authoring:persistence` | `n:authoring:project` | - |

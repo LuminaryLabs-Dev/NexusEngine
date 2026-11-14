@@ -4,7 +4,7 @@ export default atomicKit({
   apiName: "authoringInteraction",
   responsibility: "Define interaction behavior and scenario acceptance.",
   requires: ["n:authoring:project"], provides: ["n:authoring:interaction"],
-  module: "./src/core-domains/authoring/interaction/kits/authoring-interaction-kit/index.js",
+  module: "./src/core-domains/authoring/interaction/index.js",
   exportName: "createAuthoringInteractionKit",
   publicSubpath: "./domains/authoring/interaction",
   proofReferences: ["tests/core-domains/core-authoring-creative-harnesses.mjs"],

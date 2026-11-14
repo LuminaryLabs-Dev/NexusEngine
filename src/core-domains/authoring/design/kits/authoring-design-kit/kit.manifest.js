@@ -4,7 +4,7 @@ export default atomicKit({
   apiName: "authoringDesign",
   responsibility: "Define layout, intent and reusable scene structures.",
   requires: ["n:authoring:project"], provides: ["n:authoring:design"],
-  module: "./src/core-domains/authoring/design/kits/authoring-design-kit/index.js",
+  module: "./src/core-domains/authoring/design/index.js",
   exportName: "createAuthoringDesignKit",
   publicSubpath: "./domains/authoring/design",
   proofReferences: ["tests/core-domains/core-authoring-creative-harnesses.mjs"],

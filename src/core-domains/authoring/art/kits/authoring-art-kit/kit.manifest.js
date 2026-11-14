@@ -4,7 +4,7 @@ export default atomicKit({
   apiName: "authoringArt",
   responsibility: "Select modeling approaches and review editable visual assets.",
   requires: ["n:authoring:project"], provides: ["n:authoring:art"],
-  module: "./src/core-domains/authoring/art/kits/authoring-art-kit/index.js",
+  module: "./src/core-domains/authoring/art/index.js",
   exportName: "createAuthoringArtKit",
   publicSubpath: "./domains/authoring/art",
   proofReferences: ["tests/core-domains/core-authoring-creative-harnesses.mjs"],
